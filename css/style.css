@@ -1,0 +1,119 @@
+*{
+    margin: 0;
+    padding: 0;
+    transition: 0.2s;
+}
+
+body{
+    background-color: #000;
+}
+
+body {
+  font-family: "Inter", system-ui, sans-serif;
+  font-weight: 600;          /* This is SemiBold */
+  font-feature-settings: "liga" 1, "calt" 1;  /* Recommended for best rendering */
+}
+
+section{
+    padding: 30px 5%;
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-direction: column;
+}
+
+img{
+    width: 100%;
+}
+
+.width-container-1000{
+    max-width: 1000px;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.width-container{
+    max-width: 1600px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.row{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.column{
+    display: flex;
+    flex-direction: column;
+}
+
+.text-yellow{
+    color: #ffbc27;
+}
+
+.text-white{
+    color: white;
+}
+
+.text-purple{
+    color: #573cf9;
+}
+
+.text-purple-light{
+    color: #bfc3ff;
+}
+
+.background-yellow{
+    background-color: #ffbc27;
+}
+
+.background-white{
+    background-color: white;
+}
+
+.background-purple{
+    background-color: #573cf9 ;
+}
+
+.background-purple-lightish{
+    background-color: #8875f3 ;
+}
+
+.background-purple-dark{
+    background-color: #2f2375 ;
+}
+
+.background-purple-light{
+    background-color: #bfc3ff;
+}
+
+.background-grey-light{
+    background-color: rgb(233, 233, 233);
+}
+
+.round{
+    border-radius: 25px;
+}
+
+.pad{
+    padding: 15px;
+}
+
+.shadow-black{
+     box-shadow: 0 10px 20px #000000;
+}
+
+.shadow-purple-dark{
+    box-shadow: 0 10px 20px #2d1f7a ;
+}
+
+.shadow-purple-light{
+     box-shadow: 0 6px 6px #bfc3ff;
+}
+
+a{
+    text-decoration: none;
+    color: white;
+}

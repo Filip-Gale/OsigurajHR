@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="img/favicon.png">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/wapp.css">
+    <title>Osiguraj.hr</title>
+    <script type="module" src="js/loader.js" defer></script>
+</head>
+<body>
+    <content-include src="nav.html"></content-include>
+
+    <section id="title-section" class="text-yellow background-purple">
+        <h1>
+            Najpovoljnija ponuda za osiguranje vozila u samo par koraka!
+        </h1>
+    </section>
+    <section id="form-section" class="text-purple background-purple">
+
+        <form action="registration" class="background-yellow round">
+            <input class="round" type="text" name="username" placeholder="Registracijska oznaka vozila:" required>
+
+            <div class="segmented-control round">
+                <input type="radio" id="fiz" name="user-type" value="fiz" checked>
+                <label for="fiz" class="segment round">Fizička osoba</label>
+
+                <input type="radio" id="pra" name="user-type" value="pra">
+                <label for="pra" class="segment round">Pravna osoba</label>
+            </div>
+
+            <!-- Group 2 - Age (you can use the same style or keep simple) -->
+            <div class="segmented-control round">
+                <input type="radio" id="young" name="age" value="less" checked>
+                <label for="young" class="segment round">Mlađi od 28 g.</label>
+
+                <input type="radio" id="old" name="age" value="more">
+                <label for="old" class="segment round">Stariji od 28 g.</label>
+            </div>
+
+
+            <input class="round" type="text" name="contact" placeholder="Email ili broj mobitela:" required>
+            <input type="submit" value="Saznaj cijenu" class="round background-purple text-white">
+        </form>
+
+        <div class="after-form-panel background-purple-light text-purple round row">
+            <img src="img/car_crash.png" alt="car">
+            <p>
+                Dogodila vam se nezgoda? Mi preuzimamo brigu!
+                <br>
+                <br>
+                Vodimo te kroz cijeli proces prijave štete - brzo, jednostavno i bez troškova!
+            </p>
+        </div>
+
+        <div class="after-form-panel background-purple-light text-purple round row">
+            <img src="img/phone_bubble.png" alt="phone_bubble">
+            <p>
+                Digitalna polica odmah je dostupna na Whatsappu i e-mailu te je automatski vidljiva na svim stranicama na tehnički pregled u Hrvatskoj.
+            </p>
+        </div>
+    </section>
+
+    <section id="services-section" class="background-white text-purple">
+        <div class="section-introduction">
+            <h2>
+                Pouzdan partner za moderno auto osiguranje
+            </h2>
+            <p>
+                Osiguraj.hr omogućuje brz, jednostavan, povoljan i digitalan pristup auto 
+                osiguranju kroz suradnju s više osiguravajućih društava. Naš stručni tim vodi 
+                klijente kroz cijeli proces – od usporedbe ponuda do potpune podrške nakon 
+                ugovaranja police.
+            </p>
+        </div>
+        <div id="service-list">
+            <div class="service-panel service-panel-center round column background-grey-light shadow-purple-light">
+                <img class="round" src="img/calendar.jpg" alt="calendar">
+                <p>20 godina poslovanja</p>
+            </div>
+             <div class="service-panel service-panel-center round column background-grey-light shadow-purple-light">
+                <img class="round" src="img/checkmark.jpg" alt="calendar">
+                <p>Personalizirane ponude</p>
+            </div>
+             <div class="service-panel service-panel-center round column background-grey-light shadow-purple-light">
+                <img class="round" src="img/agent.jpg" alt="calendar">
+                <p> Osobni agent</p>
+            </div>
+             <div class="service-panel service-panel-center round column background-grey-light shadow-purple-light">
+                <img class="round" src="img/message.jpg" alt="calendar">
+                <p>Obavještavanje o isteku osiguranja </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="background-purple text-white">
+        <div class="section-introduction column">
+            <h2>
+                Što sve pokriva osiguranje?
+            </h2>
+            <div class="service-panel service-panel-left background-purple-lightish round column shadow-purple-dark">
+                <img class="round" src="img/shield.png" alt="calendar">
+                <h3>Obavezno Osiguranje (AO)</h3>
+                <p>Temeljna zaštita koja pokriva štete nastale trećim osobama u prometu. Zakonski obavezno za sva vozila. </p>
+            </div>
+        </div>
+        <div class="service-panel service-panel-left background-purple-lightish round column shadow-purple-dark">
+                <img class="round" src="img/car.png" alt="calendar">
+                <h3>Kasko osiguranje</h3>
+                <p>Cjelovita zaštita vašeg vozila od oštećenja, krađe i prirodnih nepogoda bez obzira na krivnju </p>
+            </div>
+        </div>
+        <div class="service-panel service-panel-left background-purple-lightish round column shadow-purple-dark">
+                <img class="round" src="img/wrench.png" alt="calendar">
+                <h3>Pomoć na cesti</h3>
+                <p>Brza intervencija u slučaju kvara ili nezgode. Dostupnost 24/7 na cijelom teritoriju Hrvatske i šire. </p>
+            </div>
+        </div>
+        <div class="service-panel service-panel-left background-purple-lightish round column shadow-purple-dark">
+                <img class="round" src="img/insurance.png" alt="calendar">
+                <h3>Osiguranje Putnika</h3>
+                <p>Dodatna zaštita za vozača i putnike od ozljeda nastalih u prometnoj nezgodi</p>
+            </div>
+        </div>
+        <div class="service-panel service-panel-left background-purple-lightish round column shadow-purple-dark">
+                <img class="round " src="img/danger.png" alt="calendar">
+                <h3>Osiguranje Od nezgode</h3>
+                <p>Financijska zaštita u slučaju ozljeda, invaliditeta ili smrti uslijed prometne nezgode.</p>
+            </div>
+        </div>
+        <div class="service-panel service-panel-left background-purple-lightish round column shadow-purple-dark">
+                <img class="round" src="img/justice.png" alt="calendar">
+                <h3>Pravna zaštita</h3>
+                <p>Pokriće troškova pravne pomoći u slučaju sporova vezanih uz prometne nezgode.</p>
+            </div>
+        </div>
+        <div class="service-panel service-panel-left background-purple-lightish round column shadow-purple-dark">
+                <img class="round " src="img/health.png" alt="calendar">
+                <h3>Zdravstveno osiguranje</h3>
+                <p>Proširena medicinska zaštita koja pokriva liječenje ozljeda nastalih u prometu.</p>
+            </div>
+        </div>
+        <div class="service-panel service-panel-left background-purple-lightish round column shadow-purple-dark">
+                <img class="round " src="img/star.png" alt="calendar">
+                <h3>Bonus zaštita</h3>
+                <p>Čuvajte svoj stečeni bonus čak i nakon prijavljene štete. Zaštita vaše povoljnije premije</p>
+            </div>
+        </div>
+
+    </section>
+
+    <content-include src="footer.html">
+    </content-include>
+
+    <div id="wapp" class="round">
+        <a href="https://wa.me/38598813220" target="_blank">
+            <img src="img/wapp.png" alt="Kontaktirajte nas na WhatsApp">
+        </a>
+    </div>
+</body>
+</html>

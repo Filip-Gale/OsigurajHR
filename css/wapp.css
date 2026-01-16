@@ -1,0 +1,13 @@
+#wapp {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 65px;
+  height: 65px;
+  z-index: 1000;
+}
+
+#wapp img{
+    width: 100%;
+    border-radius: 50%;
+}

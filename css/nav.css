@@ -1,0 +1,46 @@
+nav{
+    display: flex;
+    flex-direction: row;
+    height: 50px;
+    align-items: center;
+    width: 100%;
+    background-color: white;
+}
+
+nav a{
+    width: 35%;
+}
+
+#phone-number{
+    display: flex;
+    flex-direction: row;
+    background-color: #ffbc27;
+    height: 35px;
+    border-radius: 25px;
+    align-items: center;
+    width: 150px;
+    padding: 0 10px;
+    gap: 8px;
+}
+
+#green-dot{
+    width: 10px;
+    height: 10px;
+    border-radius: 5px;
+    background-color: #4db964;
+}
+
+#phone-number p{
+    white-space: nowrap;
+    font-feature-settings: "tnum";
+    font-size: 14px;
+}
+
+#logo{
+    max-height: 60px;
+    max-width: 200px;
+}
+
+.row{
+    justify-content: space-around;
+}
