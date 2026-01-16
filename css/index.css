@@ -58,12 +58,10 @@ form input:focus{
     width: 70%;
 }
 
-#phone-preview
-{
+#phone-preview{
     text-align: center;
     font-weight: bold;
 }
-
 
 .segmented-control {
     display: inline-flex;
@@ -145,7 +143,7 @@ h2{
 }
 
 .service-panel{
-    width: 100%;
+    width: 90%;
     margin: 0 auto;
     max-width: 300px;
     padding: 20px 5%;
