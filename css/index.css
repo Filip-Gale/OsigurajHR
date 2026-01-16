@@ -13,9 +13,9 @@
 }
 
 h1{
-    font-size: 36px;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    font-size: 30px;
+    margin-bottom: 10px;
+    margin-top: -10px;
 }
 
 form{
@@ -25,7 +25,7 @@ form{
     width: 90%;
     max-width: 350px;
     justify-content: center;
-    align-items: center;
+    align-items:center;
     text-align: center;
     margin: 0 auto;
     gap: 15px;
@@ -34,7 +34,7 @@ form{
 form input{
     width: 80%;
     border: 0;
-    padding: 15px 20px;
+    padding: 10px 20px;
     font-weight: bold;
     color: #573cf9;
     border: transparent solid 3px;
@@ -52,6 +52,18 @@ form input:focus{
     outline: none;
     border-color: #573cf9;
 }
+
+#saznaj{
+    padding: 15px 5px;
+    width: 70%;
+}
+
+#phone-preview
+{
+    text-align: center;
+    font-weight: bold;
+}
+
 
 .segmented-control {
     display: inline-flex;
@@ -75,6 +87,22 @@ form input:focus{
 
 .segment:hover {
     background-color: rgba(255,255,255,0.15);
+}
+
+/* Visual disabled style (very important for UX) */
+.segmented-control.age-group {
+    overflow: hidden;
+    transition: all 0.15s ease-in-out;   /* all = max-height + opacity */
+    max-height: 200px;                /* make this comfortably bigger than needed */
+    opacity: 1;
+}
+
+.segmented-control.age-group.disabled {
+    max-height: 0;
+    opacity: 0;                       /* full fade = cleaner look */
+    pointer-events: none;
+    user-select: none;
+    margin-bottom: -10px;
 }
 
 /* Selected state – this creates the yellow pill effect */
@@ -106,27 +134,20 @@ input[type="radio"] {
     width: 80%;
 }
 
-.section-introduction
-{
+.section-introduction{
     text-align: center;
+    max-width: 1000px;
+    margin: 0 auto;
 }
 
 h2{
     margin-bottom: 20px;
 }
 
-#service-list{
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    text-align: center;
-    gap: 15px;
-}
-
 .service-panel{
     width: 100%;
     margin: 0 auto;
-    max-width: 250px;
+    max-width: 300px;
     padding: 20px 5%;
     font-weight: bold;
 }
@@ -134,6 +155,7 @@ h2{
 .service-panel-center{
     align-items: center;
     justify-content: center;
+    text-align: center;
 }
 
 .service-panel-left{
@@ -146,4 +168,162 @@ h2{
     width: 50px;
     height: 50px;
     background-color: #8D6FBF;
+}
+
+.service-panel-collection{
+    margin-bottom: 30px;
+}
+
+/* USERS */
+
+.profile-info{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    gap: 0px;
+}
+
+.user-info{
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    align-items: start;
+    width: 70%;
+}
+
+.user-info img{
+    background-color: transparent;
+    max-width: none;
+    max-height: 20px;
+    width: 50%;
+}
+
+.user-review{
+    font-weight: normal;
+}
+
+
+/* QUESTIONS */
+.question {
+    cursor: pointer;
+    overflow: hidden;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.answer {
+    margin-top: 20px;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    font-weight: normal;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+details[open] .answer {
+    max-height: 500px; /* Adjust based on your content */
+    opacity: 1;
+    margin-bottom: 10px; /* Add some space at the bottom */
+}
+
+details summary {
+    list-style: none;
+    outline: none;
+    position: relative;
+    padding-right: 30px;
+    display: flex;
+    align-items: center;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+details summary::-webkit-details-marker {
+    display: none;
+}
+
+/* Add arrow icon */
+details summary::after {
+    content: '▶';
+    position: absolute;
+    right: 10px;
+    font-size: 0.9rem;
+    transition: transform 0.3s ease;
+}
+
+details[open] summary::after {
+    transform: rotate(90deg);
+}
+
+/* POP UP */
+.scroll-to-top {
+    position: fixed;
+  
+    background-color: #ffbc27;
+    color: white;
+    padding: 5px 0px 10px;
+    width: 100%;
+    border-bottom-left-radius: 50px;
+    border-bottom-right-radius: 50px;
+    cursor: pointer;
+    font-weight: bold;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    transition: all 0.3s ease;
+    z-index: 1000;
+    height: 50px;
+    max-width: 450px;
+    position: fixed;
+    inset: 0; /* Sets top, right, bottom, left to 0 */
+    top:0;
+    margin: 0 auto;
+
+}
+
+.scroll-to-top.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.scroll-to-top *{
+    width: 70%;
+    margin: 0 auto;
+    text-align: center;
+    max-width: 200px;
+}
+
+.scroll-to-top:hover {
+    background-color: #ffa127cc;
+    opacity: 1;
+}
+
+@media (min-width: 768px) { 
+    .service-panel-center{
+        width: 24%;
+        max-width: none;
+    }
+
+    .service-panel-left{
+        width: 32%;
+        max-width: none;
+        margin: 0;
+    }
+
+    .scroll-to-top{
+        height: 70px;
+    }
+
+    form input{
+        width: 100%;
+    }
 }

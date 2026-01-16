@@ -14,7 +14,8 @@ nav a{
 #phone-number{
     display: flex;
     flex-direction: row;
-    background-color: #ffbc27;
+    background-color: #573cf9;
+    color: white;
     height: 35px;
     border-radius: 25px;
     align-items: center;

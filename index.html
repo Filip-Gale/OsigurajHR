@@ -7,23 +7,23 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/wapp.css">
+    <meta name="format-detection" content="telephone=no">
     <title>Osiguraj.hr</title>
     <script type="module" src="js/loader.js" defer></script>
 </head>
+
 <body>
     <content-include src="nav.html"></content-include>
+    <section id="form-section" class="text-purple background-purple fade-in">
 
-    <section id="title-section" class="text-yellow background-purple">
-        <h1>
+        <h1 id="title-section" class="text-yellow">
             Najpovoljnija ponuda za osiguranje vozila u samo par koraka!
         </h1>
-    </section>
-    <section id="form-section" class="text-purple background-purple">
 
         <form action="registration" class="background-yellow round">
             <input class="round" type="text" name="username" placeholder="Registracijska oznaka vozila:" required>
 
-            <div class="segmented-control round">
+            <div class="segmented-control round" id="user-type-group">
                 <input type="radio" id="fiz" name="user-type" value="fiz" checked>
                 <label for="fiz" class="segment round">Fizička osoba</label>
 
@@ -31,8 +31,8 @@
                 <label for="pra" class="segment round">Pravna osoba</label>
             </div>
 
-            <!-- Group 2 - Age (you can use the same style or keep simple) -->
-            <div class="segmented-control round">
+            <!-- Age selector -->
+            <div class="segmented-control round age-group" id="age-group">
                 <input type="radio" id="young" name="age" value="less" checked>
                 <label for="young" class="segment round">Mlađi od 28 g.</label>
 
@@ -42,8 +42,17 @@
 
 
             <input class="round" type="text" name="contact" placeholder="Email ili broj mobitela:" required>
-            <input type="submit" value="Saznaj cijenu" class="round background-purple text-white">
+            <input id="saznaj" type="submit" value="Saznaj cijenu" class="round background-purple text-white">
         </form>
+
+        
+
+        <div class="after-form-panel background-purple-light text-purple round row">
+            <img src="img/policy-purple.png" alt="phone_bubble">
+            <p>
+                Digitalna polica odmah je dostupna na Whatsappu i e-mailu te je automatski vidljiva na svim stranicama na tehnički pregled u Hrvatskoj.
+            </p>
+        </div>
 
         <div class="after-form-panel background-purple-light text-purple round row">
             <img src="img/car_crash.png" alt="car">
@@ -55,15 +64,15 @@
             </p>
         </div>
 
-        <div class="after-form-panel background-purple-light text-purple round row">
-            <img src="img/phone_bubble.png" alt="phone_bubble">
-            <p>
-                Digitalna polica odmah je dostupna na Whatsappu i e-mailu te je automatski vidljiva na svim stranicama na tehnički pregled u Hrvatskoj.
-            </p>
+        <div id="phone-preview" class="text-yellow">
+            <img src="img/OsiguranjaMobitel_v01(1).png" alt="mob">
+            <p >Pošalji nam sliku svoje stare police osiguranja na Whatsapp i mi ti se
+javljamo s povoljnijom ponudom!</p>
         </div>
+
     </section>
 
-    <section id="services-section" class="background-white text-purple">
+    <section class="background-white text-purple fade-in">
         <div class="section-introduction">
             <h2>
                 Pouzdan partner za moderno auto osiguranje
@@ -75,7 +84,7 @@
                 ugovaranja police.
             </p>
         </div>
-        <div id="service-list">
+        <div class="row-pc-column wrap-no">
             <div class="service-panel service-panel-center round column background-grey-light shadow-purple-light">
                 <img class="round" src="img/calendar.jpg" alt="calendar">
                 <p>20 godina poslovanja</p>
@@ -95,69 +104,388 @@
         </div>
     </section>
 
-    <section class="background-purple text-white">
+    <section class="background-purple text-white fade-in">
         <div class="section-introduction column">
             <h2>
                 Što sve pokriva osiguranje?
             </h2>
+        </div>
+        <p class="center">
+            Osnovna osiguranja
+        </p>
+
+        <div class="service-panel-collection row-pc-column wrap">
             <div class="service-panel service-panel-left background-purple-lightish round column shadow-purple-dark">
-                <img class="round" src="img/shield.png" alt="calendar">
-                <h3>Obavezno Osiguranje (AO)</h3>
-                <p>Temeljna zaštita koja pokriva štete nastale trećim osobama u prometu. Zakonski obavezno za sva vozila. </p>
+                    <img class="round" src="img/shield.png" alt="calendar">
+                    <h3>Obvezno osiguranje (AO)</h3>
+                    <p>Temeljna zaštita koja pokriva štetu koju tvoje vozilo može uzrokovati drugima. Zakonski obvezno za sva vozila. </p>
+                </div>
+
+            <div class="service-panel service-panel-left background-purple-lightish round column shadow-purple-dark">
+                    <img class="round" src="img/car.png" alt="calendar">
+                    <h3>Kasko osiguranje</h3>
+                    <p>Cjelovita zaštita vašeg vozila od sudara, oštećenja i krađe bez obzira na krivnju. Zaštiti vozilo, rastereti glavu.</p>
             </div>
         </div>
-        <div class="service-panel service-panel-left background-purple-lightish round column shadow-purple-dark">
-                <img class="round" src="img/car.png" alt="calendar">
-                <h3>Kasko osiguranje</h3>
-                <p>Cjelovita zaštita vašeg vozila od oštećenja, krađe i prirodnih nepogoda bez obzira na krivnju </p>
-            </div>
-        </div>
-        <div class="service-panel service-panel-left background-purple-lightish round column shadow-purple-dark">
+        
+        <p class="center">
+            Dodatne opcije
+        </p>
+
+        <div class="service-panel-collection row-pc-column wrap">
+            <div class="service-panel service-panel-left background-purple-lightish round column shadow-purple-dark">
                 <img class="round" src="img/wrench.png" alt="calendar">
-                <h3>Pomoć na cesti</h3>
-                <p>Brza intervencija u slučaju kvara ili nezgode. Dostupnost 24/7 na cijelom teritoriju Hrvatske i šire. </p>
+                <h3> Vuča i asistencija</h3>
+                <p>Ako zapneš na cesti, organiziramo pomoć – od manjih popravaka do vuče vozila ili motora. Brzo, 
+jednostavno i dostupno kad ti najviše treba, po cijeni koja ima smisla. </p>
             </div>
-        </div>
-        <div class="service-panel service-panel-left background-purple-lightish round column shadow-purple-dark">
+            <div class="service-panel service-panel-left background-purple-lightish round column shadow-purple-dark">
                 <img class="round" src="img/insurance.png" alt="calendar">
-                <h3>Osiguranje Putnika</h3>
-                <p>Dodatna zaštita za vozača i putnike od ozljeda nastalih u prometnoj nezgodi</p>
+                <h3>Vozač i putnici</h3>
+                <p>U slučaju teže nezgode, osiguranje pruža financijsku potporu ako dođe do dužeg 
+liječenja ili smrtnog slučaja vozača i/ili putnika</p>
             </div>
-        </div>
-        <div class="service-panel service-panel-left background-purple-lightish round column shadow-purple-dark">
-                <img class="round " src="img/danger.png" alt="calendar">
-                <h3>Osiguranje Od nezgode</h3>
-                <p>Financijska zaštita u slučaju ozljeda, invaliditeta ili smrti uslijed prometne nezgode.</p>
+            <div class="service-panel service-panel-left background-purple-lightish round column shadow-purple-dark">
+                <img class="round " src="img/justice.png" alt="calendar">
+                <h3>Zaštita bonusa</h3>
+                <p>Dogodi li se prometna nezgoda koju si ti uzrokovao, tvoj stečeni bonus ostaje sačuvan. Ugovori 
+Zaštitu bonusa uz auto osiguranje ili osiguranje motora! </p>
             </div>
-        </div>
-        <div class="service-panel service-panel-left background-purple-lightish round column shadow-purple-dark">
-                <img class="round" src="img/justice.png" alt="calendar">
-                <h3>Pravna zaštita</h3>
-                <p>Pokriće troškova pravne pomoći u slučaju sporova vezanih uz prometne nezgode.</p>
+            <div class="service-panel service-panel-left background-purple-lightish round column shadow-purple-dark">
+                <img class="round" src="img/danger.png" alt="calendar">
+                <h3>Tuča</h3>
+                <p>Ako nevrijeme i tuča oštete tvoje vozilo, pokrivaju se troškovi popravka. 
+Kako su vremenske nepogode sve češće, ovo je korisno dodatno pokriće uz 
+obvezno osiguranje.
+</p>
             </div>
-        </div>
-        <div class="service-panel service-panel-left background-purple-lightish round column shadow-purple-dark">
+            <div class="service-panel service-panel-left background-purple-lightish round column shadow-purple-dark">
                 <img class="round " src="img/health.png" alt="calendar">
-                <h3>Zdravstveno osiguranje</h3>
-                <p>Proširena medicinska zaštita koja pokriva liječenje ozljeda nastalih u prometu.</p>
+                <h3> Lom stakla</h3>
+                <p>Puknuće ili oštećenje stakala na vozilu? Troškovi popravka ili zamjene su pokriveni. 
+Ovu opciju možeš ugovoriti kao dodatak uz obvezno osiguranje.</p>
             </div>
-        </div>
-        <div class="service-panel service-panel-left background-purple-lightish round column shadow-purple-dark">
+            <div class="service-panel service-panel-left background-purple-lightish round column shadow-purple-dark">
                 <img class="round " src="img/star.png" alt="calendar">
-                <h3>Bonus zaštita</h3>
-                <p>Čuvajte svoj stečeni bonus čak i nakon prijavljene štete. Zaštita vaše povoljnije premije</p>
+                <h3> Kasko basic</h3>
+                <p>Pokriva se šteta na tvom vozilu ako skriviš sudar s drugim vozilom.</p>
             </div>
         </div>
 
+        <p class="center">
+            Ako uz Obvezno osiguranje ugovoriš i Kasko, automatski su uključena pokrića Tuča, Lom stakla 
+i Sudar sa životinjom, bez potrebe za dodatnim ugovaranjem.
+        </p>
     </section>
+
+
+     <section class="background-white text-purple fade-in">
+        <div class="section-introduction">
+            <h2>
+                Iskustva naših klijenata
+            </h2>
+            <p>
+                Pogledajte što naši zadovoljni korisnici kažu o suradnji s nama.
+            </p>
+        </div>
+
+        <div class="row-pc-column wrap">
+            <div class="service-panel service-panel-left background-grey-light round column shadow-purple-light">
+
+                <div class="profile-info">
+                    <img class="round" src="img/agent.jpg" alt="calendar">
+                    <div class="user-info">
+                        <h3> Ana K. </h3>
+                        <p>45 godina</p>
+                        <img src="img/5-star.png" alt="5">
+                    </div>
+                </div>
+                    <p class="user-review">Odlična usluga! Agent je strpljivo objasnio sve detalje oko police i pomogao mi 
+                        odabrati opciju koja je bila najpovoljnija za moj profil vozača i auta . Sve je 
+                        jednostavno i digitalno, bez nepotrebnog gubljenja vremena i papirologije. 
+                        Osjećam se sigurno i preporučujem svakome tko želi brzo, povoljno i bez stresa 
+                        riješiti osiguranje vozila.
+                    </p>
+            </div>
+
+            <div class="service-panel service-panel-left background-grey-light round column shadow-purple-light">
+
+                <div class="profile-info">
+                    <img class="round" src="img/agent.jpg" alt="calendar">
+                    <div class="user-info">
+                        <h3>  Ivan M. </h3>
+                        <p>38 godina</p>
+                        <img src="img/5-star.png" alt="5">
+                    </div>
+                </div>
+                    <p class="user-review">Za mene je cijeli proces bio iznenađujuće jednostavan. Agent mi se kroz par 
+                        minuta javio s ponudama i odabrali smo najbolju opciju za moj auto. Posebno mi 
+                        se svidjelo što je sve digitalno i da nisam morao fizički obilaziti osiguravatelje. Sve 
+                        je prošlo glatko i osjećam se sigurno s policom koju imam.
+                    </p>
+            </div>
+
+            <div class="service-panel service-panel-left background-grey-light round column shadow-purple-light">
+
+                <div class="profile-info">
+                    <img class="round" src="img/agent.jpg" alt="calendar">
+                    <div class="user-info">
+                        <h3> Lucija M. </h3>
+                        <p>20 godina</p>
+                        <img src="img/5-star.png" alt="5">
+                    </div>
+                </div>
+                    <p class="user-review">Ovo mi je bila prva polica u životu i prije toga sam bila totalno zbunjena. Agentica 
+                        mi je sve super objasnila, korak po korak, i osjećala sam se sigurno tijekom cijelog 
+                        procesa. Sad imam svoju policu i sve je bilo brzo i jednostavno! Hvala Osiguraj.hr 
+                        ❤
+                    </p>
+            </div>
+
+            <div class="service-panel service-panel-left background-grey-light round column shadow-purple-light">
+
+                <div class="profile-info">
+                    <img class="round" src="img/agent.jpg" alt="calendar">
+                    <div class="user-info">
+                        <h3>Marko P </h3>
+                        <p>67 godina</p>
+                        <img src="img/5-star.png" alt="5">
+                    </div>
+                </div>
+                    <p class="user-review">Kao stariji vozač, mislio sam da će digitalni proces biti kompliciran, ali 
+                        nije bilo nimalo! Agent mi je detaljno objasnio sve opcije i pronašao najpovoljniju 
+                        ponudu za mene. Cijeli proces je bio jednostavan, brz i bez stresa. Sada imam mir 
+                        znajući da je moj auto osiguran na najbolji mogući način.
+                    </p>
+            </div>
+
+        </div>
+     </section>
+
+
+    <section class="background-purple text-white fade-in">
+        <div class="section-introduction column fade-in">
+            <h2>Često postavljana pitanja</h2>
+        </div>
+
+        <details class="question background-purple-lightish shadow-purple-dark round pad">
+            <summary>
+                <h3>Je li usluga Osiguraj.hr besplatna?</h3>
+            </summary>
+            <div class="answer">
+                Da. Naša usluga je u potpunosti besplatna za korisnike. Ne naplaćujemo izradu 
+                ponude, savjetovanje niti pomoć pri ugovaranju police. Naš rad financira se kroz 
+                proviziju koju nam isplaćuju osiguravajuće kuće s kojima surađujemo, bez ikakvog 
+                dodatnog troška za vas.
+            </div>
+        </details>
+
+        <details class="question background-purple-lightish shadow-purple-dark round pad">
+            <summary>
+                <h3>Kako se određuje cijena premije za auto osiguranje?</h3>
+            </summary>
+            <div class="answer">
+                Cijena premije ovisi o više faktora, uključujući tehničke karakteristike vozila, 
+                registarsku zonu, dob vozača te bonus ili popuste na koje ostvarujete pravo. Na 
+                temelju tih podataka određuje se konačna cijena police.
+            </div>
+        </details>
+
+        <details class="question background-purple-lightish shadow-purple-dark round pad">
+            <summary>
+                <h3>Zašto surađivati s Osiguraj.hr umjesto direktno s osiguravateljem?</h3>
+            </summary>
+            <div class="answer">
+                Umjesto da gubiš vrijeme obilazeći različite osiguravatelje, mi za tebe 
+                uspoređujemo više ponuda, pronalazimo najbolju opciju i vodimo te kroz cijeli 
+                proces – brzo, jednostavno i s maksimalnom uštedom.
+            </div>
+        </details>
+
+        <details class="question background-purple-lightish shadow-purple-dark round pad">
+            <summary>
+                <h3>Što pokriva obvezno auto osiguranje?</h3>
+            </summary>
+            <div class="answer">
+                Obvezno auto osiguranje pokriva štete prema trećim osobama nastale uporabom 
+                vozila, uključujući ozljede, smrt i oštećenje imovine, ali ne pokriva štetu na 
+                vlastitom vozilu.
+            </div>
+        </details>
+
+        <details class="question background-purple-lightish shadow-purple-dark round pad">
+            <summary>
+                <h3>Koje vrste osiguranja nudite?</h3>
+            </summary>
+            <div class="answer">
+                • Obavezno auto osiguranje (AO)<br>
+                • Kasko osiguranje (različite razine pokrića)<br>
+                • Dopunske opcije prema potrebama klijenta
+            </div>
+        </details>
+
+        <details class="question background-purple-lightish shadow-purple-dark round pad">
+            <summary>
+                <h3>Koliko brzo mogu dobiti policu?</h3>
+            </summary>
+            <div class="answer">
+                Ponude šaljemo u roku od nekoliko minuta do nekoliko sati. Ako agent ne stigne 
+                odmah odgovoriti, kontaktirat ćemo vas prvom prilikom ili idući radni dan, kako 
+                biste što prije imali važeću policu.
+            </div>
+        </details>
+
+        <details class="question background-purple-lightish shadow-purple-dark round pad">
+            <summary>
+                <h3>Zašto su vaše ponude povoljnije?</h3>
+            </summary>
+            <div class="answer">
+                Naše ponude su povoljnije jer pratimo aktualne cijene kod renomiranih 
+                osiguravatelja s kojima surađujemo, pa možemo brzo pronaći najpovoljniju opciju u 
+                ovom trenutku prilagođenu upravo vašem profilu vozača.
+            </div>
+        </details>
+
+        <details class="question background-purple-lightish shadow-purple-dark round pad">
+            <summary>
+                <h3>Gdje dobivam policu osiguranja?</h3>
+            </summary>
+            <div class="answer">
+                Policu dobivate odmah nakon ugovaranja, direktno na WhatsApp i e-mail kao 
+                digitalni dokument. Elektronička polica automatski je vidljiva na svim stanicama za 
+                tehnički pregled u Hrvatskoj, bez potrebe za ispisom.
+            </div>
+        </details>
+
+        <details class="question background-purple-lightish shadow-purple-dark round pad">
+            <summary>
+                <h3>Kako mogu kontaktirati agenta?</h3>
+            </summary>
+            <div class="answer">
+                Naši agenti dostupni su 0–24 sata putem WhatsAppa, e-maila ili telefonskog broja 
+                navedenog na web stranici, kako biste u svakom trenutku mogli dobiti pomoć i 
+                informacije.
+            </div>
+        </details>
+
+        <details class="question background-purple-lightish shadow-purple-dark round pad">
+            <summary>
+                <h3>Hoćete li me podsjetiti na istek osiguranja?</h3>
+            </summary>
+            <div class="answer">
+                Da. Uvijek se javljamo 14 dana prije isteka police kako bismo zajedno obnovili 
+                osiguranje na vrijeme i izbjegli moguće kazne zbog vožnje bez važeće police.
+            </div>
+        </details>
+
+        <details class="question background-purple-lightish shadow-purple-dark round pad">
+            <summary>
+                <h3>Što ako mi istekne polica auto osiguranja?</h3>
+            </summary>
+            <div class="answer">
+                Ako ti istekne polica obveznog auto osiguranja, vozilo više nema važeće osiguranje 
+                i njegovo korištenje u prometu predstavlja prekršaj. To može rezultirati novčanom 
+                kaznom, a u slučaju prometne nezgode sav trošak štete snosiš osobno. Zato 
+                preporučujemo da obnovu police napraviš na vrijeme i izbjegneš nepotrebne 
+                troškove i rizike.
+            </div>
+        </details>
+
+        <details class="question background-purple-lightish shadow-purple-dark round pad">
+            <summary>
+                <h3>Što se događa s mojom policom kada prodam vozilo?</h3>
+            </summary>
+            <div class="answer">
+                Kod prodaje vozila, postojeća polica auto osiguranja ostaje vezana uz vozilo i 
+                prelazi na novog vlasnika. Važno je da o promjeni vlasništva obavijestiš 
+                osiguravatelja. Bonus koji si ostvario ostaje tvoj i ne gubi se, čak i ako novi vlasnik 
+                kasnije prijavi štetu, pod uvjetom da imaš kupoprodajni ugovor kojim dokazuješ da 
+                vozilo više nije u tvom vlasništvu.
+            </div>
+        </details>
+     </section>
 
     <content-include src="footer.html">
     </content-include>
+
+    <div id="scrollTopButton" class="scroll-to-top">
+         <a href="#form-section"> <div class="background-yellow border-purple text-purple round pad center">
+            <p>Saznaj Cijenu</p>
+        </div></a>
+    </div>
 
     <div id="wapp" class="round">
         <a href="https://wa.me/38598813220" target="_blank">
             <img src="img/wapp.png" alt="Kontaktirajte nas na WhatsApp">
         </a>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const scrollButton = document.getElementById('scrollTopButton');
+            const scrollThreshold = 650; // Show after 600px scroll
+            
+            // Show/hide button based on scroll position
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > scrollThreshold) {
+                    scrollButton.classList.add('show');
+                } else {
+                    scrollButton.classList.remove('show');
+                }
+            });
+            
+            // Scroll to top when button is clicked
+            scrollButton.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+         document.addEventListener('DOMContentLoaded', function() {
+            const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                // Optional: Unobserve after first animation
+                // observer.unobserve(entry.target);
+                }
+            });
+            }, {
+            threshold: 0.1, // Trigger when 10% of element is visible
+            rootMargin: '0px 0px -50px 0px' // Optional: Adjust trigger point
+            });
+            
+            // Observe all elements with .fade-in class
+            document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+        });
+
+        // Pure JS - no dependencies
+        document.addEventListener('DOMContentLoaded', () => {
+            const userTypeRadios = document.querySelectorAll('input[name="user-type"]');
+            const ageGroup = document.getElementById('age-group');
+            
+            function updateAgeState() {
+                const isPravna = document.getElementById('pra').checked;
+                
+                if (isPravna) {
+                    ageGroup.classList.add('disabled');
+                    // Optional: uncheck or force default value when disabled
+                    // document.getElementById('young').checked = true;
+                } else {
+                    ageGroup.classList.remove('disabled');
+                }
+            }
+
+            // Run once on load
+            updateAgeState();
+
+            // Listen to changes
+            userTypeRadios.forEach(radio => {
+                radio.addEventListener('change', updateAgeState);
+            });
+        });
+    </script>
 </body>
 </html>
