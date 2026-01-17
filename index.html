@@ -16,60 +16,104 @@
     <content-include src="nav.html"></content-include>
     <section id="form-section" class="text-purple background-purple fade-in">
 
-        <h1 id="title-section" class="text-yellow">
-            Najpovoljnija ponuda za osiguranje vozila u samo par koraka!
-        </h1>
+        <div id="title-segment" class="row-pc width-container-1000">
+            <div class="text-yellow">
+                <h1 >
+                    Najpovoljnija ponuda za osiguranje vozila u samo par koraka!
+                </h1>
+                <p class="desktop-only">
+                    Unesi registraciju
+                    i saznaj cijenu!
+                    ⟶
+                </p>
+            </div>
+            
 
-        <form action="registration" class="background-yellow round">
-            <input class="round" type="text" name="username" placeholder="Registracijska oznaka vozila:" required>
+                        <!-- 1. Change action & add hidden field with your email -->
+           <form action="https://api.web3forms.com/submit" method="POST" class="background-yellow round" id="contact-form">
 
-            <div class="segmented-control round" id="user-type-group">
-                <input type="radio" id="fiz" name="user-type" value="fiz" checked>
-                <label for="fiz" class="segment round">Fizička osoba</label>
+                <input type="hidden" name="access_key" value="a9a0ed10-9384-403b-a6dc-b4f4046ab530">
+                <input type="hidden" name="subject" value="Nova registracijska upit - {{username}}">
+                <input type="hidden" name="from_name" value="{{username}} - {{user-type}}">
 
-                <input type="radio" id="pra" name="user-type" value="pra">
-                <label for="pra" class="segment round">Pravna osoba</label>
+                 <input type="hidden" name="Registracija" value="{{username}}">
+                <input type="hidden" name="Tip_korisnika" value="{{user-type}}">
+                <input type="hidden" name="Dob" value="{{age}}">
+                <input type="hidden" name="Kontakt" value="{{contact}}">
+
+                <input class="round" type="text" name="username" placeholder="Registracijska oznaka vozila:" required>
+
+                <div class="segmented-control round" id="user-type-group">
+                    <input type="radio" id="fiz" name="user-type" value="fizicka_osoba" checked>
+                    <label for="fiz" class="segment round">Fizička osoba</label>
+
+                    <input type="radio" id="pra" name="user-type" value="pra">
+                    <label for="pra" class="segment round">Pravna osoba</label>
+                </div>
+
+                <!-- Age selector -->
+                <div class="segmented-control round age-group" id="age-group">
+                    <input type="radio" id="young" name="age" value="less" checked>
+                    <label for="young" class="segment round">Mlađi od 28 g.</label>
+
+                    <input type="radio" id="old" name="age" value="more">
+                    <label for="old" class="segment round">Stariji od 28 g.</label>
+                </div>
+
+                <input class="round" type="text" name="contact" placeholder="Email ili broj mobitela:" required>
+
+                
+                <!--<div class="h-captcha" data-captcha="true"></div>-->
+
+                <!-- Optional honeypot (good extra layer) -->
+                <input type="checkbox" name="botcheck" style="display:none;" tabindex="-1" autocomplete="off">
+
+                <input id="saznaj" type="submit" value="Saznaj cijenu" class="round background-purple text-white">
+            </form>
+
+        <!-- Important: Add this script before </body> (or in head) -->
+        <script src="https://web3forms.com/client/script.js" async defer></script>
+
+        <!-- Keep your success message div -->
+        <div id="form-result" style="display:none; margin-top:1rem; padding:1rem; border-radius:8px;"></div>
+
+            <!-- 2. Success / error message area -->
+            <div id="form-result" style="display:none; margin-top:1rem; padding:1rem; border-radius:8px;"></div>
+        </div>
+
+        <div class="column-pc-reverse">
+            
+
+            <div class="row-pc width-container-1000">
+                <div class="after-form-panel background-purple-light text-purple round row">
+                    <img src="img/policy-purple.png" alt="phone_bubble">
+                    <p>
+                        Digitalna polica odmah je dostupna na Whatsappu i e-mailu te je automatski vidljiva na svim stranicama na tehnički pregled u Hrvatskoj.
+                    </p>
+                </div>
+
+                <div class="after-form-panel background-purple-light text-purple round row">
+                    <img src="img/car_crash.png" alt="car">
+                    <p>
+                        Dogodila vam se nezgoda? Mi preuzimamo brigu!
+                        <br>
+                        <br>
+                        Vodimo te kroz cijeli proces prijave štete - brzo, jednostavno i bez troškova!
+                    </p>
+                </div>
             </div>
 
-            <!-- Age selector -->
-            <div class="segmented-control round age-group" id="age-group">
-                <input type="radio" id="young" name="age" value="less" checked>
-                <label for="young" class="segment round">Mlađi od 28 g.</label>
+            
 
-                <input type="radio" id="old" name="age" value="more">
-                <label for="old" class="segment round">Stariji od 28 g.</label>
+            
+
+            <div id="phone-preview" class="text-yellow row-pc width-container-1000 fade-in">
+                <img src="img/OsiguranjaMobitel_v01(1).png" alt="mob">
+                <p id="phone-dialogue" >Pošalji nam sliku svoje stare police osiguranja na Whatsapp i mi ti se
+    javljamo s povoljnijom ponudom!</p>
             </div>
 
-
-            <input class="round" type="text" name="contact" placeholder="Email ili broj mobitela:" required>
-            <input id="saznaj" type="submit" value="Saznaj cijenu" class="round background-purple text-white">
-        </form>
-
-        
-
-        <div class="after-form-panel background-purple-light text-purple round row">
-            <img src="img/policy-purple.png" alt="phone_bubble">
-            <p>
-                Digitalna polica odmah je dostupna na Whatsappu i e-mailu te je automatski vidljiva na svim stranicama na tehnički pregled u Hrvatskoj.
-            </p>
         </div>
-
-        <div class="after-form-panel background-purple-light text-purple round row">
-            <img src="img/car_crash.png" alt="car">
-            <p>
-                Dogodila vam se nezgoda? Mi preuzimamo brigu!
-                <br>
-                <br>
-                Vodimo te kroz cijeli proces prijave štete - brzo, jednostavno i bez troškova!
-            </p>
-        </div>
-
-        <div id="phone-preview" class="text-yellow">
-            <img src="img/OsiguranjaMobitel_v01(1).png" alt="mob">
-            <p >Pošalji nam sliku svoje stare police osiguranja na Whatsapp i mi ti se
-javljamo s povoljnijom ponudom!</p>
-        </div>
-
     </section>
 
     <section class="background-white text-purple fade-in">
@@ -84,7 +128,7 @@ javljamo s povoljnijom ponudom!</p>
                 ugovaranja police.
             </p>
         </div>
-        <div class="row-pc-column wrap-no">
+        <div class="row-pc wrap-no width-container">
             <div class="service-panel service-panel-center round column background-grey-light shadow-purple-light">
                 <img class="round" src="img/calendar.jpg" alt="calendar">
                 <p>20 godina poslovanja</p>
@@ -114,7 +158,7 @@ javljamo s povoljnijom ponudom!</p>
             Osnovna osiguranja
         </p>
 
-        <div class="service-panel-collection row-pc-column wrap">
+        <div class="service-panel-collection row-pc wrap width-container">
             <div class="service-panel service-panel-left background-purple-lightish round column shadow-purple-dark">
                     <img class="round" src="img/shield.png" alt="calendar">
                     <h3>Obvezno osiguranje (AO)</h3>
@@ -132,7 +176,7 @@ javljamo s povoljnijom ponudom!</p>
             Dodatne opcije
         </p>
 
-        <div class="service-panel-collection row-pc-column wrap">
+        <div class="service-panel-collection row-pc wrap width-container">
             <div class="service-panel service-panel-left background-purple-lightish round column shadow-purple-dark">
                 <img class="round" src="img/wrench.png" alt="calendar">
                 <h3> Vuča i asistencija</h3>
@@ -189,11 +233,9 @@ i Sudar sa životinjom, bez potrebe za dodatnim ugovaranjem.
             </p>
         </div>
 
-        <div class="row-pc-column wrap">
-            <div class="service-panel service-panel-left background-grey-light round column shadow-purple-light">
-
+        <div class="row-pc wrap width-container-1000">
+            <div class="service-panel service-panel-left background-grey-light round column shadow-purple-light mobile-only">
                 <div class="profile-info">
-                    <img class="round" src="img/agent.jpg" alt="calendar">
                     <div class="user-info">
                         <h3> Ana K. </h3>
                         <p>45 godina</p>
@@ -211,7 +253,6 @@ i Sudar sa životinjom, bez potrebe za dodatnim ugovaranjem.
             <div class="service-panel service-panel-left background-grey-light round column shadow-purple-light">
 
                 <div class="profile-info">
-                    <img class="round" src="img/agent.jpg" alt="calendar">
                     <div class="user-info">
                         <h3>  Ivan M. </h3>
                         <p>38 godina</p>
@@ -228,7 +269,6 @@ i Sudar sa životinjom, bez potrebe za dodatnim ugovaranjem.
             <div class="service-panel service-panel-left background-grey-light round column shadow-purple-light">
 
                 <div class="profile-info">
-                    <img class="round" src="img/agent.jpg" alt="calendar">
                     <div class="user-info">
                         <h3> Lucija M. </h3>
                         <p>20 godina</p>
@@ -245,7 +285,6 @@ i Sudar sa životinjom, bez potrebe za dodatnim ugovaranjem.
             <div class="service-panel service-panel-left background-grey-light round column shadow-purple-light">
 
                 <div class="profile-info">
-                    <img class="round" src="img/agent.jpg" alt="calendar">
                     <div class="user-info">
                         <h3>Marko P </h3>
                         <p>67 godina</p>
@@ -268,141 +307,145 @@ i Sudar sa životinjom, bez potrebe za dodatnim ugovaranjem.
             <h2>Često postavljana pitanja</h2>
         </div>
 
-        <details class="question background-purple-lightish shadow-purple-dark round pad">
-            <summary>
-                <h3>Je li usluga Osiguraj.hr besplatna?</h3>
-            </summary>
-            <div class="answer">
-                Da. Naša usluga je u potpunosti besplatna za korisnike. Ne naplaćujemo izradu 
-                ponude, savjetovanje niti pomoć pri ugovaranju police. Naš rad financira se kroz 
-                proviziju koju nam isplaćuju osiguravajuće kuće s kojima surađujemo, bez ikakvog 
-                dodatnog troška za vas.
-            </div>
-        </details>
+        <div class="width-container column gap">
+            <details class="question background-purple-lightish shadow-purple-dark round pad">
+                        <summary>
+                            <h3>Je li usluga Osiguraj.hr besplatna?</h3>
+                        </summary>
+                <div class="answer">
+                    Da. Naša usluga je u potpunosti besplatna za korisnike. Ne naplaćujemo izradu 
+                    ponude, savjetovanje niti pomoć pri ugovaranju police. Naš rad financira se kroz 
+                    proviziju koju nam isplaćuju osiguravajuće kuće s kojima surađujemo, bez ikakvog 
+                    dodatnog troška za vas.
+                </div>
+            </details>
 
-        <details class="question background-purple-lightish shadow-purple-dark round pad">
-            <summary>
-                <h3>Kako se određuje cijena premije za auto osiguranje?</h3>
-            </summary>
-            <div class="answer">
-                Cijena premije ovisi o više faktora, uključujući tehničke karakteristike vozila, 
-                registarsku zonu, dob vozača te bonus ili popuste na koje ostvarujete pravo. Na 
-                temelju tih podataka određuje se konačna cijena police.
-            </div>
-        </details>
+            <details class="question background-purple-lightish shadow-purple-dark round pad">
+                <summary>
+                    <h3>Kako se određuje cijena premije za auto osiguranje?</h3>
+                </summary>
+                <div class="answer">
+                    Cijena premije ovisi o više faktora, uključujući tehničke karakteristike vozila, 
+                    registarsku zonu, dob vozača te bonus ili popuste na koje ostvarujete pravo. Na 
+                    temelju tih podataka određuje se konačna cijena police.
+                </div>
+            </details>
 
-        <details class="question background-purple-lightish shadow-purple-dark round pad">
-            <summary>
-                <h3>Zašto surađivati s Osiguraj.hr umjesto direktno s osiguravateljem?</h3>
-            </summary>
-            <div class="answer">
-                Umjesto da gubiš vrijeme obilazeći različite osiguravatelje, mi za tebe 
-                uspoređujemo više ponuda, pronalazimo najbolju opciju i vodimo te kroz cijeli 
-                proces – brzo, jednostavno i s maksimalnom uštedom.
-            </div>
-        </details>
+            <details class="question background-purple-lightish shadow-purple-dark round pad">
+                <summary>
+                    <h3>Zašto surađivati s Osiguraj.hr umjesto direktno s osiguravateljem?</h3>
+                </summary>
+                <div class="answer">
+                    Umjesto da gubiš vrijeme obilazeći različite osiguravatelje, mi za tebe 
+                    uspoređujemo više ponuda, pronalazimo najbolju opciju i vodimo te kroz cijeli 
+                    proces – brzo, jednostavno i s maksimalnom uštedom.
+                </div>
+            </details>
 
-        <details class="question background-purple-lightish shadow-purple-dark round pad">
-            <summary>
-                <h3>Što pokriva obvezno auto osiguranje?</h3>
-            </summary>
-            <div class="answer">
-                Obvezno auto osiguranje pokriva štete prema trećim osobama nastale uporabom 
-                vozila, uključujući ozljede, smrt i oštećenje imovine, ali ne pokriva štetu na 
-                vlastitom vozilu.
-            </div>
-        </details>
+            <details class="question background-purple-lightish shadow-purple-dark round pad">
+                <summary>
+                    <h3>Što pokriva obvezno auto osiguranje?</h3>
+                </summary>
+                <div class="answer">
+                    Obvezno auto osiguranje pokriva štete prema trećim osobama nastale uporabom 
+                    vozila, uključujući ozljede, smrt i oštećenje imovine, ali ne pokriva štetu na 
+                    vlastitom vozilu.
+                </div>
+            </details>
 
-        <details class="question background-purple-lightish shadow-purple-dark round pad">
-            <summary>
-                <h3>Koje vrste osiguranja nudite?</h3>
-            </summary>
-            <div class="answer">
-                • Obavezno auto osiguranje (AO)<br>
-                • Kasko osiguranje (različite razine pokrića)<br>
-                • Dopunske opcije prema potrebama klijenta
-            </div>
-        </details>
+            <details class="question background-purple-lightish shadow-purple-dark round pad">
+                <summary>
+                    <h3>Koje vrste osiguranja nudite?</h3>
+                </summary>
+                <div class="answer">
+                    • Obavezno auto osiguranje (AO)<br>
+                    • Kasko osiguranje (različite razine pokrića)<br>
+                    • Dopunske opcije prema potrebama klijenta
+                </div>
+            </details>
 
-        <details class="question background-purple-lightish shadow-purple-dark round pad">
-            <summary>
-                <h3>Koliko brzo mogu dobiti policu?</h3>
-            </summary>
-            <div class="answer">
-                Ponude šaljemo u roku od nekoliko minuta do nekoliko sati. Ako agent ne stigne 
-                odmah odgovoriti, kontaktirat ćemo vas prvom prilikom ili idući radni dan, kako 
-                biste što prije imali važeću policu.
-            </div>
-        </details>
+            <details class="question background-purple-lightish shadow-purple-dark round pad">
+                <summary>
+                    <h3>Koliko brzo mogu dobiti policu?</h3>
+                </summary>
+                <div class="answer">
+                    Ponude šaljemo u roku od nekoliko minuta do nekoliko sati. Ako agent ne stigne 
+                    odmah odgovoriti, kontaktirat ćemo vas prvom prilikom ili idući radni dan, kako 
+                    biste što prije imali važeću policu.
+                </div>
+            </details>
 
-        <details class="question background-purple-lightish shadow-purple-dark round pad">
-            <summary>
-                <h3>Zašto su vaše ponude povoljnije?</h3>
-            </summary>
-            <div class="answer">
-                Naše ponude su povoljnije jer pratimo aktualne cijene kod renomiranih 
-                osiguravatelja s kojima surađujemo, pa možemo brzo pronaći najpovoljniju opciju u 
-                ovom trenutku prilagođenu upravo vašem profilu vozača.
-            </div>
-        </details>
+            <details class="question background-purple-lightish shadow-purple-dark round pad">
+                <summary>
+                    <h3>Zašto su vaše ponude povoljnije?</h3>
+                </summary>
+                <div class="answer">
+                    Naše ponude su povoljnije jer pratimo aktualne cijene kod renomiranih 
+                    osiguravatelja s kojima surađujemo, pa možemo brzo pronaći najpovoljniju opciju u 
+                    ovom trenutku prilagođenu upravo vašem profilu vozača.
+                </div>
+            </details>
 
-        <details class="question background-purple-lightish shadow-purple-dark round pad">
-            <summary>
-                <h3>Gdje dobivam policu osiguranja?</h3>
-            </summary>
-            <div class="answer">
-                Policu dobivate odmah nakon ugovaranja, direktno na WhatsApp i e-mail kao 
-                digitalni dokument. Elektronička polica automatski je vidljiva na svim stanicama za 
-                tehnički pregled u Hrvatskoj, bez potrebe za ispisom.
-            </div>
-        </details>
+            <details class="question background-purple-lightish shadow-purple-dark round pad">
+                <summary>
+                    <h3>Gdje dobivam policu osiguranja?</h3>
+                </summary>
+                <div class="answer">
+                    Policu dobivate odmah nakon ugovaranja, direktno na WhatsApp i e-mail kao 
+                    digitalni dokument. Elektronička polica automatski je vidljiva na svim stanicama za 
+                    tehnički pregled u Hrvatskoj, bez potrebe za ispisom.
+                </div>
+            </details>
 
-        <details class="question background-purple-lightish shadow-purple-dark round pad">
-            <summary>
-                <h3>Kako mogu kontaktirati agenta?</h3>
-            </summary>
-            <div class="answer">
-                Naši agenti dostupni su 0–24 sata putem WhatsAppa, e-maila ili telefonskog broja 
-                navedenog na web stranici, kako biste u svakom trenutku mogli dobiti pomoć i 
-                informacije.
-            </div>
-        </details>
+            <details class="question background-purple-lightish shadow-purple-dark round pad">
+                <summary>
+                    <h3>Kako mogu kontaktirati agenta?</h3>
+                </summary>
+                <div class="answer">
+                    Naši agenti dostupni su 0–24 sata putem WhatsAppa, e-maila ili telefonskog broja 
+                    navedenog na web stranici, kako biste u svakom trenutku mogli dobiti pomoć i 
+                    informacije.
+                </div>
+            </details>
 
-        <details class="question background-purple-lightish shadow-purple-dark round pad">
-            <summary>
-                <h3>Hoćete li me podsjetiti na istek osiguranja?</h3>
-            </summary>
-            <div class="answer">
-                Da. Uvijek se javljamo 14 dana prije isteka police kako bismo zajedno obnovili 
-                osiguranje na vrijeme i izbjegli moguće kazne zbog vožnje bez važeće police.
-            </div>
-        </details>
+            <details class="question background-purple-lightish shadow-purple-dark round pad">
+                <summary>
+                    <h3>Hoćete li me podsjetiti na istek osiguranja?</h3>
+                </summary>
+                <div class="answer">
+                    Da. Uvijek se javljamo 14 dana prije isteka police kako bismo zajedno obnovili 
+                    osiguranje na vrijeme i izbjegli moguće kazne zbog vožnje bez važeće police.
+                </div>
+            </details>
 
-        <details class="question background-purple-lightish shadow-purple-dark round pad">
-            <summary>
-                <h3>Što ako mi istekne polica auto osiguranja?</h3>
-            </summary>
-            <div class="answer">
-                Ako ti istekne polica obveznog auto osiguranja, vozilo više nema važeće osiguranje 
-                i njegovo korištenje u prometu predstavlja prekršaj. To može rezultirati novčanom 
-                kaznom, a u slučaju prometne nezgode sav trošak štete snosiš osobno. Zato 
-                preporučujemo da obnovu police napraviš na vrijeme i izbjegneš nepotrebne 
-                troškove i rizike.
-            </div>
-        </details>
+            <details class="question background-purple-lightish shadow-purple-dark round pad">
+                <summary>
+                    <h3>Što ako mi istekne polica auto osiguranja?</h3>
+                </summary>
+                <div class="answer">
+                    Ako ti istekne polica obveznog auto osiguranja, vozilo više nema važeće osiguranje 
+                    i njegovo korištenje u prometu predstavlja prekršaj. To može rezultirati novčanom 
+                    kaznom, a u slučaju prometne nezgode sav trošak štete snosiš osobno. Zato 
+                    preporučujemo da obnovu police napraviš na vrijeme i izbjegneš nepotrebne 
+                    troškove i rizike.
+                </div>
+            </details>
 
-        <details class="question background-purple-lightish shadow-purple-dark round pad">
-            <summary>
-                <h3>Što se događa s mojom policom kada prodam vozilo?</h3>
-            </summary>
-            <div class="answer">
-                Kod prodaje vozila, postojeća polica auto osiguranja ostaje vezana uz vozilo i 
-                prelazi na novog vlasnika. Važno je da o promjeni vlasništva obavijestiš 
-                osiguravatelja. Bonus koji si ostvario ostaje tvoj i ne gubi se, čak i ako novi vlasnik 
-                kasnije prijavi štetu, pod uvjetom da imaš kupoprodajni ugovor kojim dokazuješ da 
-                vozilo više nije u tvom vlasništvu.
-            </div>
-        </details>
+            <details class="question background-purple-lightish shadow-purple-dark round pad">
+                <summary>
+                    <h3>Što se događa s mojom policom kada prodam vozilo?</h3>
+                </summary>
+                <div class="answer">
+                    Kod prodaje vozila, postojeća polica auto osiguranja ostaje vezana uz vozilo i 
+                    prelazi na novog vlasnika. Važno je da o promjeni vlasništva obavijestiš 
+                    osiguravatelja. Bonus koji si ostvario ostaje tvoj i ne gubi se, čak i ako novi vlasnik 
+                    kasnije prijavi štetu, pod uvjetom da imaš kupoprodajni ugovor kojim dokazuješ da 
+                    vozilo više nije u tvom vlasništvu.
+                </div>
+            </details>
+        </div>
+
+       
      </section>
 
     <content-include src="footer.html">
@@ -484,6 +527,71 @@ i Sudar sa životinjom, bez potrebe za dodatnim ugovaranjem.
             // Listen to changes
             userTypeRadios.forEach(radio => {
                 radio.addEventListener('change', updateAgeState);
+            });
+        });
+
+        
+        document.getElementById("contact-form").addEventListener("submit", function(e) {
+            e.preventDefault();
+            
+            const form = this;
+            const resultDiv = document.getElementById("form-result");
+            
+            resultDiv.style.display = "block";
+            resultDiv.innerHTML = "Šaljem...";
+            resultDiv.style.background = "#fef3c7";
+            resultDiv.style.color = "#92400e";
+
+            // Create a new FormData with custom fields
+            const originalData = new FormData(form);
+            const customData = new FormData();
+
+            // Copy required fields (access_key, botcheck, etc.)
+            customData.append("access_key", originalData.get("access_key"));
+            customData.append("subject", originalData.get("subject")); // keeps your dynamic subject
+            customData.append("from_name", originalData.get("from_name")); // optional
+
+            // Add custom-labeled fields with real values
+            const username = originalData.get("username") || "N/A";
+            const userTypeRaw = originalData.get("user-type") || "N/A";
+            const ageRaw = originalData.get("age") || "N/A";
+            const contact = originalData.get("contact") || "N/A";
+
+            // Map to nice values/labels
+            const userType = userTypeRaw === "fizicka_osoba" ? "Fizička osoba" : "Pravna osoba";
+            const dob = ageRaw === "less" ? "Manje od 28 godina" : "Više od 28 godina";
+
+            customData.append("Registracija", username);
+            customData.append("Tip_korisnika", userType);
+            customData.append("Dob", dob);
+            customData.append("Kontakt", contact);
+
+            // Optional: If you want the original fields too (for debugging), add them
+            // customData.append("username (original)", username);
+            // etc.
+
+            fetch(form.action, {
+                method: "POST",
+                body: customData,  // ← send the custom one!
+                headers: { "Accept": "application/json" }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    resultDiv.innerHTML = "Poruka poslana! Javimo se uskoro ✓";
+                    resultDiv.style.background = "#d1fae5";
+                    resultDiv.style.color = "#065f46";
+                    form.reset();
+                } else {
+                    resultDiv.innerHTML = data.message || "Nešto je pošlo po zlu... Pokušajte ponovo.";
+                    resultDiv.style.background = "#fee2e2";
+                    resultDiv.style.color = "#991b1b";
+                }
+            })
+            .catch(() => {
+                resultDiv.innerHTML = "Greška pri slanju. Provjerite internet?";
+                resultDiv.style.background = "#fee2e2";
+                resultDiv.style.color = "#991b1b";
             });
         });
     </script>
