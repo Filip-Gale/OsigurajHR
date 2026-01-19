@@ -11,8 +11,8 @@ form{
     padding: 15px;
     width: 90%;
     max-width: 450px;
-    justify-content: left;
-    align-items:start;
+    justify-content: center;
+    align-items:center;
     text-align: center;
     margin: 0 auto;
     gap: 15px;
@@ -25,7 +25,7 @@ form input{
     font-weight: bold;
     color: #573cf9;
     border: transparent solid 3px;
-    
+
     -webkit-appearance: none;
     appearance: none;
 }
@@ -44,8 +44,8 @@ form input:focus{
 }
 
 #saznaj{
-    padding: 15px 5px;
-    width: 70%;
+    padding: 15px 25px;
+    width: 100%;
 }
 
 #disclaimer{
@@ -320,5 +320,11 @@ details[open] summary::after {
     #disclaimer{
         border: none;
         padding-top: 0;
+    }
+
+    
+    #saznaj{
+        width: 70%;
+        padding: 15px 10px;
     }
 }

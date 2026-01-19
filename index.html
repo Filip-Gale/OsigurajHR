@@ -10,6 +10,7 @@
     <meta name="format-detection" content="telephone=no">
     <title>Osiguraj.hr</title>
     <script type="module" src="js/loader.js" defer></script>
+    <script type="module" src="js/nav-behavior.js" defer></script>
 
      <script type="application/ld+json">
     {
@@ -109,6 +110,8 @@
 </head>
 
 <body>
+   
+
     <content-include src="nav.html"></content-include>
     <script src="js/nav-behavior.js" defer></script>
 
@@ -168,7 +171,7 @@
 
                 <div class="row-pc">
                     <input id="saznaj" type="submit" value="Saznaj cijenu" class="round background-purple text-white">
-                    <p id="disclaimer">
+                    <p id="disclaimer" class="desktop-only">
                         Naš agent vam se javlja u kratkom
                         roku s najpovoljnijim cijenama naših
                         osiguravajućih partnera.
@@ -557,8 +560,18 @@ i Sudar sa životinjom </b>, bez potrebe za dodatnim ugovaranjem.
        
      </section>
 
+     
+    <div id="scrollTopButton" class="scroll-to-top">
+        <a href="#form-section"> 
+            <div class="background-yellow text-purple round center">
+                <p>Saznaj Cijenu</p>
+            </div>
+        </a>
+    </div>
+
     <content-include src="footer.html">
     </content-include>
+
 
 
     <div id="wapp" class="round">

@@ -269,5 +269,7 @@ a{
 }
 
 @media (max-width: 767px) {
-    .desktop-only  { display: none; }
+    .desktop-only  {
+         display: none; 
+    }
 }

@@ -1,67 +1,13 @@
 <head>
     <link rel="stylesheet" href="css/nav.css">
 </head>
-<div>
-    
 <nav id="main-nav">
     <div class="width-container row">
         <a href="index.html"> <img src="img/Logo.png" alt="logo" id="logo"></a>
         <div class="row gap">
-             <a href="oNama.html"><div class="background-purple-light round pad-s text-purple desktop-only"><p>O nama</p></div></a>
-             <a href="tel:+38598813220"> <div id="phone-number"> <div id="green-dot"></div> <p>+ 385 98 813 220 </p> </div></a>
+            <a href="oNama.html"><div class="background-purple-light round pad-s text-purple desktop-only"><p>O nama</p></div></a>
+            <a href="tel:+38598813220"> <div id="phone-number"> <div id="green-dot"></div> <p>+ 385 98 813 220 </p> </div></a>
         </div>
     </div>
 </nav>
-<div id="scrollTopButton" class="scroll-to-top">
-        <a href="#form-section"> <div class="background-yellow text-purple round center">
-        <p>Saznaj Cijenu</p>
-    </div></a>
-</div>
-
-<script>
-    console.log("AAAA – nav-behavior.js started");
-
-    document.addEventListener('DOMContentLoaded', function () {
-        // Give the include some time to finish loading
-        setTimeout(() => {
-            const path = window.location.pathname;
-            const isIndex =
-                path === '/' ||
-                path === '' ||
-                path.endsWith('index.html') ||
-                path.endsWith('/index.html') ||
-                path.endsWith('/index');
-
-            console.log("Is index page?", isIndex);
-
-            if (!isIndex) return;
-
-            const mainNav = document.getElementById('main-nav');
-            const miniButton = document.getElementById('scrollTopButton');
-
-            if (!mainNav || !miniButton) {
-                console.warn('Navigation elements not found even after delay');
-                return;
-            }
-
-            console.log("✓ Navigation elements found!");
-
-            const THRESHOLD = 650;
-
-            function updateNav() {
-                const shouldShowMini = window.scrollY > THRESHOLD;
-                mainNav.classList.toggle('nav-hidden', shouldShowMini);
-                miniButton.classList.toggle('show', shouldShowMini);
-
-                mainNav.classList.toggle('show', !shouldShowMini);
-                miniButton.classList.toggle('nav-hidden', !shouldShowMini);
-            }
-
-            window.addEventListener('scroll', updateNav, { passive: true });
-            updateNav();
-
-        }, 400); // ← 400–800ms usually works, try different values
-    });
-</script>
-</div>
 
