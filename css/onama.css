@@ -1,3 +1,9 @@
-p{
-    font-weight: normal;
+iframe{
+    display: block;
+    width: 90%;
+    height: 300px;
+    max-width: 700px;
+    margin: 0 auto;
+    margin-bottom: 30px;
+    border-radius: 25px;
 }

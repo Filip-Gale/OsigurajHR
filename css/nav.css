@@ -1,14 +1,14 @@
 nav{
     display: flex;
     flex-direction: row;
-    height: 50px;
+    height: 60px;
     align-items: center;
-    width: 100%;
     background-color: white;
-}
-
-nav a{
-    width: 35%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
 }
 
 #phone-number{
@@ -22,14 +22,21 @@ nav a{
     width: 150px;
     padding: 0 10px;
     gap: 8px;
+    margin-right: 15px;
 }
 
-#green-dot{
+#green-dot {
     width: 10px;
     height: 10px;
-    border-radius: 5px;
+    border-radius: 50%;
     background-color: #4db964;
+    
+    min-width: 10px;
+    min-height: 10px;
+    display: inline-block;
+    flex-shrink: 0;
 }
+
 
 #phone-number p{
     white-space: nowrap;
@@ -44,4 +51,54 @@ nav a{
 
 .row{
     justify-content: space-around;
+}
+
+/* POP UP */
+.scroll-to-top {
+    position: fixed;
+    inset: 0;
+    top: 0;
+    margin: 0 auto;
+    height: 40px;
+    z-index: 1000;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-100%);
+    
+    transition: 
+        transform 0.35s ease,
+        opacity 0.35s ease,
+        visibility 0.35s ease;
+    
+    background-color: #573cf9;
+    font-weight: bold;
+    cursor: pointer;
+    border-bottom: #ffa127 solid 1px;
+}
+
+.scroll-to-top.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.scroll-to-top *{
+    width: 70%;
+    margin: 0 auto;
+    text-align: center;
+    max-width: 400px;
+}
+
+.nav-hidden {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-100%);
+}
+
+@media (min-width: 768px) {
 }
