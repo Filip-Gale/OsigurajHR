@@ -4,7 +4,8 @@ function initNavBehavior() {
         const path = window.location.pathname;
         const repoBase = location.pathname.split('/')[1] || '';  
 
-        console.log(pa);
+        console.log(path);
+        console.log(repoBase);
 
       const isIndex =
         path === '/' ||
