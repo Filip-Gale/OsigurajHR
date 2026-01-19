@@ -2,8 +2,9 @@ function initNavBehavior() {
     // Give the include some time to finish loading
     setTimeout(() => {
         const path = window.location.pathname;
+        const repoBase = location.pathname.split('/')[1] || '';  
 
-        console.log(path);
+        console.log(pa);
 
       const isIndex =
         path === '/' ||
