@@ -2,6 +2,9 @@ function initNavBehavior() {
     // Give the include some time to finish loading
     setTimeout(() => {
         const path = window.location.pathname;
+
+        console.log(path);
+
       const isIndex =
         path === '/' ||
         path === '' ||
