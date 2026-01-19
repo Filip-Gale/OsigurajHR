@@ -10,6 +10,102 @@
     <meta name="format-detection" content="telephone=no">
     <title>Osiguraj.hr</title>
     <script type="module" src="js/loader.js" defer></script>
+
+     <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "InsuranceAgency",
+      "@id": "https://www.osiguraj.hr/#organization",
+      "name": "Osiguraj.hr",
+      "legalName": "MAKSI MIRO d.o.o. za zastupanje u osiguranju",
+      "url": "https://www.osiguraj.hr",
+      "logo": "https://www.osiguraj.hr/putanja-do-tvoj-logo.png",
+      "description": "Neovisna platforma za usporedbu i ugovaranje auto osiguranja u Hrvatskoj.",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Božidarevićeva ulica 13",
+        "addressLocality": "Zagreb",
+        "postalCode": "10000",
+        "addressCountry": "HR"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+385 98 813 220",
+        "contactType": "customer service",
+        "areaServed": "HR",
+        "availableLanguage": "Croatian"
+      },
+      "memberOf": {
+        "@type": "Organization",
+        "name": "HANFA",
+        "url": "https://www.hanfa.hr/registri/trziste-osiguranja/drustva-za-zastupanje-u-osiguranju/"
+      },
+      "award": "HANFA Datum dozvole za rad 20.07.2006., Klasa dozvole za rad UP/I-453-06/06-02/455"
+    }
+
+    {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Je li usluga Osiguraj.hr besplatna?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Da. Naša usluga je u potpunosti besplatna za korisnike. Ne naplaćujemo izradu ponude, savjetovanje niti pomoć pri ugovaranju police. Naš rad financira se kroz proviziju koju nam isplaćuju osiguravajuće kuće."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Kako se određuje cijena premije za auto osiguranje?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Cijena premije ovisi o više faktora, uključujući tehničke karakteristike vozila, registarsku zonu, dob vozača te bonus ili popuste na koje ostvarujete pravo."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Što se događa s mojom policom kada prodam vozilo?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Kod prodaje vozila, polica ostaje uz vozilo i prelazi na novog vlasnika. Važno je obavijestiti osiguravatelja o promjeni vlasništva. Bonus koji ste ostvarili ostaje vama i ne gubi se."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Gdje dobivam policu osiguranja?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Policu dobivate odmah nakon ugovaranja na WhatsApp i e-mail. Elektronička polica automatski je vidljiva na svim stanicama za tehnički pregled u Hrvatskoj."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Koliko brzo mogu dobiti policu?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ponude šaljemo u roku od nekoliko minuta do nekoliko sati. Naš cilj je da što prije imate važeću policu u digitalnom obliku."
+      }
+    }
+  ]
+}
+    </script>
+
+    <!-- WebSite schema - also good to have on every page -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Osiguraj.hr",
+      "url": "https://www.osiguraj.hr",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://www.osiguraj.hr/search?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
+
 </head>
 
 <body>
@@ -140,19 +236,19 @@
         <div class="margin-top-50 desktop-only"></div>
 
         <div class="row-pc wrap-no width-container">
-            <div class="service-panel service-panel-center round column background-grey-light shadow-purple-light">
+            <div class="service-panel service-panel-center round column background-grey-light shadow-purple-light gap">
                 <img class="round" src="img/calendar.jpg" alt="calendar">
                 <p>20 godina poslovanja</p>
             </div>
-             <div class="service-panel service-panel-center round column background-grey-light shadow-purple-light">
+             <div class="service-panel service-panel-center round column background-grey-light shadow-purple-light gap">
                 <img class="round" src="img/checkmark.jpg" alt="calendar">
                 <p>Personalizirane ponude</p>
             </div>
-             <div class="service-panel service-panel-center round column background-grey-light shadow-purple-light">
+             <div class="service-panel service-panel-center round column background-grey-light shadow-purple-light gap">
                 <img class="round" src="img/agent.jpg" alt="calendar">
                 <p> Osobni agent</p>
             </div>
-             <div class="service-panel service-panel-center round column background-grey-light shadow-purple-light">
+             <div class="service-panel service-panel-center round column background-grey-light shadow-purple-light gap">
                 <img class="round" src="img/message.jpg" alt="calendar">
                 <p>Obavještavanje o isteku osiguranja </p>
             </div>
@@ -299,7 +395,7 @@ i Sudar sa životinjom </b>, bez potrebe za dodatnim ugovaranjem.
 
                 <div class="profile-info">
                     <div class="user-info">
-                        <h3>Marko P </h3>
+                        <h3>Marko P.</h3>
                         <p>67 godina</p>
                         <img src="img/5-star.png" alt="5">
                     </div>

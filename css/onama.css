@@ -7,3 +7,14 @@ iframe{
     margin-bottom: 30px;
     border-radius: 25px;
 }
+
+p{
+    pointer-events: all;
+}
+
+
+a{
+    text-decoration: none;
+    font-weight: bold;
+    color: #573cf9;
+}
