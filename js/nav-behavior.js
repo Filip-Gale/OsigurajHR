@@ -2,12 +2,16 @@ function initNavBehavior() {
     // Give the include some time to finish loading
     setTimeout(() => {
         const path = window.location.pathname;
-        const isIndex = 
-            path === '/' ||
-            path === '' ||
-            path.endsWith('index.html') ||
-            path.endsWith('/index.html') ||
-            path.endsWith('/index');
+      const isIndex =
+        path === '/' ||
+        path === '' ||
+        path === `/${repoBase}/` ||
+        path === `/${repoBase}` ||
+        path.endsWith('index.html') ||
+        path.endsWith('/index.html') ||
+        path.endsWith('/index') ||
+        path === `/${repoBase}/index.html` ||
+        path.endsWith(`/${repoBase}/index.html`);
 
         if (!isIndex) return;
 
