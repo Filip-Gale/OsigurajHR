@@ -46,6 +46,14 @@ form input:focus{
 #saznaj{
     padding: 15px 45px;
     width: 100%;
+    cursor: pointer;
+    border: transparent 2px solid;
+}
+
+#saznaj:hover{
+    background-color: #bfc3ff;
+    color: #573cf9;
+    border-color: #573cf9;
 }
 
 #disclaimer{
@@ -55,6 +63,14 @@ form input:focus{
     padding-top: 10px;
     text-align: left;
     border-top: #573cf9 1px solid;
+}
+
+#form-result{
+    display: none;
+    margin-top:1rem; 
+    padding:1rem; 
+    background-color: #d1fae5;
+    color: #065f46;
 }
 
 #phone-preview{
