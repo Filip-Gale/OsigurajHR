@@ -1,13 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    
     <link rel="icon" type="image/png" href="img/favicon.jpg">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/wapp.css">
-    <meta name="format-detection" content="telephone=no">
+    <link rel="canonical" href="https://www.osiguraj.hr/" />
+
+    
     <title>Osiguraj.hr</title>
     <script type="module" src="js/loader.js" defer></script>
     <script type="module" src="js/nav-behavior.js" defer></script>
@@ -673,7 +677,7 @@ Ovu opciju možeš ugovoriti kao dodatak uz obvezno osiguranje.</p>
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
-                    resultDiv.innerHTML = "Poruka poslana! Javimo se uskoro ✓";
+                    resultDiv.innerHTML = "✅ Tvoj upit je uspješno zaprimljen 📞 Naš agent će te kontaktirati u najkraćem mogućem roku";
                     resultDiv.style.background = "#d1fae5";
                     resultDiv.style.color = "#065f46";
                     form.reset();
