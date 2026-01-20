@@ -13,42 +13,67 @@
 
     
     <title>Osiguraj.hr</title>
+
+        <!-- Open Graph basics -->
+    <meta property="og:title" content="Osiguraj.hr – Usporedi i ugovori auto osiguranje online" />
+    <meta property="og:description" content="Neovisna platforma za brzu usporedbu cijena auto osiguranja u Hrvatskoj. Besplatno savjetovanje i ugovaranje police u nekoliko minuta." />
+    <meta property="og:image" content="https://www.osiguraj.hr/img/favicon.jpg" />
+    <meta property="og:image:width" content="600" />
+    <meta property="og:image:height" content="600" />
+    <meta property="og:url" content="https://www.osiguraj.hr/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Osiguraj.hr" />
+    <meta property="og:locale" content="hr_HR" />  <!-- important for Croatian audience -->
+    <!-- Optional but helpful extras -->
+    <meta property="og:image:alt" content="Usporedba auto osiguranja na Osiguraj.hr" />
+
     <script type="module" src="js/loader.js" defer></script>
     <script type="module" src="js/nav-behavior.js" defer></script>
     <script src="https://analytics.ahrefs.com/analytics.js" data-key="XUViRDpRmbXzBjNPRyc/XQ" async></script>
-     <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "InsuranceAgency",
-      "@id": "https://www.osiguraj.hr/#organization",
-      "name": "Osiguraj.hr",
-      "legalName": "MAKSI MIRO d.o.o. za zastupanje u osiguranju",
-      "url": "https://www.osiguraj.hr",
-      "logo": "https://www.osiguraj.hr/img/favicon.jpg",
-      "description": "Neovisna platforma za usporedbu i ugovaranje auto osiguranja u Hrvatskoj.",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "Božidarevićeva ulica 13",
-        "addressLocality": "Zagreb",
-        "postalCode": "10000",
-        "addressCountry": "HR"
-      },
-      "contactPoint": {
-        "@type": "ContactPoint",
-        "telephone": "+385 98 813 220",
-        "contactType": "customer service",
-        "areaServed": "HR",
-        "availableLanguage": "Croatian"
-      },
-      "memberOf": {
-        "@type": "Organization",
-        "name": "HANFA",
-        "url": "https://www.hanfa.hr/registri/trziste-osiguranja/drustva-za-zastupanje-u-osiguranju/"
-      },
-      "award": "HANFA Datum dozvole za rad 20.07.2006., Klasa dozvole za rad UP/I-453-06/06-02/455"
-    }
+    <!-- Organization / Insurance Agency schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "InsuranceAgency",
+  "@id": "https://www.osiguraj.hr/#organization",
+  "name": "Osiguraj.hr",
+  "alternateName": "Osiguraj HR",
+  "legalName": "MAKSI MIRO d.o.o. za zastupanje u osiguranju",
+  "url": "https://www.osiguraj.hr",
+  "logo": "https://www.osiguraj.hr/img/favicon.jpg",
+  "description": "Uštedite na auto osiguranju uz Osiguraj.hr. Brza usporedba cijena svih osiguravatelja u Hrvatskoj – pronađite najjeftiniju policu i ugovorite je online u par klikova. Neovisna platforma za usporedbu i ugovaranje auto osiguranja.",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Božidarevićeva ulica 13",
+    "addressLocality": "Zagreb",
+    "postalCode": "10000",
+    "addressCountry": "HR"
+  },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+385 98 813 220",
+    "contactType": "customer service",
+    "areaServed": "HR",
+    "availableLanguage": "Croatian"
+  },
+  "sameAs": [
+    "https://web.facebook.com/profile.php?id=61586831552294",
+    "https://www.instagram.com/osiguraj_hr",
+    "https://www.tiktok.com/@osiguraj.hr",
+    "https://www.linkedin.com/company/osigurajhr/"
+  ],
+  "memberOf": {
+    "@type": "Organization",
+    "name": "HANFA",
+    "url": "https://www.hanfa.hr/registri/trziste-osiguranja/drustva-za-zastupanje-u-osiguranju/"
+  },
+  "award": "HANFA Datum dozvole za rad 20.07.2006., Klasa dozvole za rad UP/I-453-06/06-02/455"
+}
+</script>
 
-    {
+<!-- FAQPage schema -->
+<script type="application/ld+json">
+{
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
@@ -94,22 +119,22 @@
     }
   ]
 }
-    </script>
+</script>
 
-    <!-- WebSite schema - also good to have on every page -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      "name": "Osiguraj.hr",
-      "url": "https://www.osiguraj.hr",
-      "potentialAction": {
-        "@type": "SearchAction",
-        "target": "https://www.osiguraj.hr/search?q={search_term_string}",
-        "query-input": "required name=search_term_string"
-      }
-    }
-    </script>
+<!-- WebSite schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Osiguraj.hr",
+  "url": "https://www.osiguraj.hr",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://www.osiguraj.hr/search?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
 
 </head>
 
