@@ -1,3 +1,4 @@
+---\n---
 <!DOCTYPE html>
 <html lang="hr">
 <head>
@@ -31,7 +32,7 @@
     <script src="https://analytics.ahrefs.com/analytics.js" data-key="XUViRDpRmbXzBjNPRyc/XQ" async></script>
 </head>
 <body>
-    <content-include src="nav.html"></content-include>
+    {% include nav.html %}
 
     <section class="background-purple text-yellow pad">
     <h1>
@@ -135,10 +136,7 @@
     </div>
     </section>
 
-    <content-include src="footer.html">
-    </content-include>
-
-    <content-include src="wapp.html">
-    </content-include>
+    {% include footer.html %}
+    {% include wapp.html %}
 </body>
 </html>

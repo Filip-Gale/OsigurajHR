@@ -621,13 +621,8 @@
         </a>
     </div>
 
-    <content-include src="footer.html">
-    </content-include>
-
-    <content-include src="wapp.html">
-        </content-include>
-
-    
+    {% include footer.html %}
+    {% include wapp.html %}
 
     <script>
          document.addEventListener('DOMContentLoaded', function() {
