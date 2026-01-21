@@ -1,8 +1,9 @@
 h1{
-    font-size: 28px;
-    margin: -10px auto 10px;
+    font-size: 24px;
+    margin: -10px 0 10px;
     width: 100%;
     max-width: 1000px;
+    text-align: left;
 }
 
 form{
@@ -63,6 +64,7 @@ form input:focus{
     padding-top: 10px;
     text-align: left;
     border-top: #573cf9 1px solid;
+    font-weight: normal;
 }
 
 #form-result{
@@ -297,7 +299,7 @@ details[open] summary::after {
     }
 
     h1{
-        font-size: 46px;
+        font-size: 40px;
         max-width: 500px;
         margin-top: 20px;
     }
