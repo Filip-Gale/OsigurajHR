@@ -35,7 +35,6 @@ footer h3{
 #socials img{
     width: 30px;
     height: 30px;
-    background-color: #000000;
     border-radius: 15px;
 }
 
@@ -62,10 +61,6 @@ footer h3{
 .contact-part img{
     width: 30px;
     height: 30px;
-}
-
-.assurance{
-    background-color: #221752;
 }
 
 #rights{
