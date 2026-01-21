@@ -23,7 +23,7 @@ footer p{
     color: #8875f3;
 }
 
-footer h3{
+footer .card-title{
     font-size: 24px;
 }
 
@@ -52,10 +52,6 @@ footer h3{
     display: flex;
     gap: 10px;
     align-items: center;
-}
-
-.contact-part p{
-    width: 80%;
 }
 
 .contact-part img{
