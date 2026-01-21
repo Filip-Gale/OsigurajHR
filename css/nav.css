@@ -11,6 +11,10 @@ nav{
     z-index: 1000;
 }
 
+nav span{
+    color: #573cf9;
+}
+
 .page-loader{
     z-index: 99999;
     width: 100%;
