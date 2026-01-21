@@ -239,6 +239,10 @@ transform: translateY(0);
     pointer-events: all;
 }
 
+.card-title{
+    font-size: 20px;
+}
+
 @media (min-width: 768px) { 
 
     *{

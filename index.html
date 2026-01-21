@@ -141,8 +141,7 @@
 <body>
    
 
-    <content-include src="nav.html"></content-include>
-    <script src="js/nav-behavior.js" defer></script>
+    {% include nav.html %}
 
     <section id="form-section" class="text-purple background-purple fade-in gap-50 margin-top-50">
 
@@ -219,14 +218,14 @@
         <div class="column">
             <div class="row-pc width-container-1000">
                 <div class="after-form-panel background-purple-light text-purple round row">
-                    <img src="img/policy-purple.png" alt="phone_bubble">
+                    <img src="img/policy-purple.jpg" alt="phone_bubble">
                     <p>
                         Digitalna polica odmah je dostupna na Whatsappu i e-mailu te je automatski vidljiva na svim stranicama na tehnički pregled u Hrvatskoj.
                     </p>
                 </div>
 
                 <div class="after-form-panel background-purple-light text-purple round row">
-                    <img src="img/car_crash.png" alt="car">
+                    <img src="img/car-crash.jpg" alt="car">
                     <p>
                         Dogodila vam se nezgoda? Mi preuzimamo brigu!
                         <br>
@@ -299,61 +298,84 @@
 
         <div class="service-panel-collection row-pc wrap width-container">
             <div class="service-panel service-panel-left background-purple-lightish round column shadow-purple-dark">
-                    <img class="round" src="img/shield.png" alt="calendar" loading="lazy">
-                    <h3>Obvezno osiguranje (AO)</h3>
-                    <p>Temeljna zaštita koja pokriva štetu koju tvoje vozilo može uzrokovati drugima. Zakonski obvezno za sva vozila. </p>
-                </div>
+                <img class="round" src="img/shield-services.jpg" alt="shield" loading="lazy">
+                <p class="card-title">Obvezno osiguranje (AO)</p>
+                <p>
+                    Temeljna zaštita koja pokriva štetu koju tvoje vozilo može uzrokovati drugima.
+                    Zakonski obvezno za sva vozila.
+                </p>
+            </div>
 
             <div class="service-panel service-panel-left background-purple-lightish round column shadow-purple-dark">
-                    <img class="round" src="img/car.png" alt="calendar" loading="lazy">
-                    <h3>Kasko osiguranje</h3>
-                    <p>Cjelovita zaštita vašeg vozila od sudara, oštećenja i krađe bez obzira na krivnju. Zaštiti vozilo, rastereti glavu.</p>
+                <img class="round" src="img/car.jpg" alt="car" loading="lazy">
+                <p class="card-title">Kasko osiguranje</p>
+                <p>
+                    Cjelovita zaštita vašeg vozila od sudara, oštećenja i krađe bez obzira na krivnju.
+                    Zaštiti vozilo, rastereti glavu.
+                </p>
             </div>
         </div>
-        
+
         <p class="center text-yellow">
             Dodatne opcije
         </p>
 
         <div class="service-panel-collection row-pc wrap width-container">
             <div class="service-panel service-panel-left background-purple-lightish round column shadow-purple-dark">
-                <img class="round" src="img/wrench.png" alt="calendar" loading="lazy">
-                <h3> Vuča i asistencija</h3>
-                <p>Ako zapneš na cesti, organiziramo pomoć – od manjih popravaka do vuče vozila ili motora. Brzo, 
-jednostavno i dostupno kad ti najviše treba, po cijeni koja ima smisla. </p>
+                <img class="round" src="img/wrench.jpg" alt="wrench" loading="lazy">
+                <p class="card-title">Vuča i asistencija</p>
+                <p>
+                    Ako zapneš na cesti, organiziramo pomoć – od manjih popravaka do vuče vozila ili motora.
+                    Brzo, jednostavno i dostupno kad ti najviše treba, po cijeni koja ima smisla.
+                </p>
             </div>
+
             <div class="service-panel service-panel-left background-purple-lightish round column shadow-purple-dark">
-                <img class="round" src="img/insurance.png" alt="calendar" loading="lazy">
-                <h3>Vozač i putnici</h3>
-                <p>U slučaju teže nezgode, osiguranje pruža financijsku potporu ako dođe do dužeg 
-liječenja ili smrtnog slučaja vozača i/ili putnika</p>
+                <img class="round" src="img/insurance.jpg" alt="insurance" loading="lazy">
+                <p class="card-title">Vozač i putnici</p>
+                <p>
+                    U slučaju teže nezgode, osiguranje pruža financijsku potporu ako dođe do dužeg
+                    liječenja ili smrtnog slučaja vozača i/ili putnika.
+                </p>
             </div>
+
             <div class="service-panel service-panel-left background-purple-lightish round column shadow-purple-dark">
-                <img class="round " src="img/justice.png" alt="calendar" loading="lazy">
-                <h3>Zaštita bonusa</h3>
-                <p>Dogodi li se prometna nezgoda koju si ti uzrokovao, tvoj stečeni bonus ostaje sačuvan. Ugovori 
-Zaštitu bonusa uz auto osiguranje ili osiguranje motora! </p>
+                <img class="round" src="img/justice.jpg" alt="justice" loading="lazy">
+                <p class="card-title">Zaštita bonusa</p>
+                <p>
+                    Dogodi li se prometna nezgoda koju si ti uzrokovao, tvoj stečeni bonus ostaje sačuvan.
+                    Ugovori Zaštitu bonusa uz auto osiguranje ili osiguranje motora!
+                </p>
             </div>
+
             <div class="service-panel service-panel-left background-purple-lightish round column shadow-purple-dark">
-                <img class="round" src="img/danger.png" alt="calendar" loading="lazy">
-                <h3>Tuča</h3>
-                <p>Ako nevrijeme i tuča oštete tvoje vozilo, pokrivaju se troškovi popravka. 
-Kako su vremenske nepogode sve češće, ovo je korisno dodatno pokriće uz 
-obvezno osiguranje.
-</p>
+                <img class="round" src="img/danger.jpg" alt="danger" loading="lazy">
+                <p class="card-title">Tuča</p>
+                <p>
+                    Ako nevrijeme i tuča oštete tvoje vozilo, pokrivaju se troškovi popravka.
+                    Kako su vremenske nepogode sve češće, ovo je korisno dodatno pokriće uz
+                    obvezno osiguranje.
+                </p>
             </div>
+
             <div class="service-panel service-panel-left background-purple-lightish round column shadow-purple-dark">
-                <img class="round " src="img/health.png" alt="calendar" loading="lazy">
-                <h3> Lom stakla</h3>
-                <p>Puknuće ili oštećenje stakala na vozilu? Troškovi popravka ili zamjene su pokriveni. 
-Ovu opciju možeš ugovoriti kao dodatak uz obvezno osiguranje.</p>
+                <img class="round" src="img/health-option.jpg" alt="health" loading="lazy">
+                <p class="card-title">Lom stakla</p>
+                <p>
+                    Puknuće ili oštećenje stakala na vozilu? Troškovi popravka ili zamjene su pokriveni.
+                    Ovu opciju možeš ugovoriti kao dodatak uz obvezno osiguranje.
+                </p>
             </div>
+
             <div class="service-panel service-panel-left background-purple-lightish round column shadow-purple-dark">
-                <img class="round " src="img/star.png" alt="calendar" loading="lazy">
-                <h3> Kasko basic</h3>
-                <p>Pokriva se šteta na tvom vozilu ako skriviš sudar s drugim vozilom.</p>
+                <img class="round" src="img/star.jpg" alt="star" loading="lazy">
+                <p class="card-title">Kasko basic</p>
+                <p>
+                    Pokriva se šteta na tvom vozilu ako skriviš sudar s drugim vozilom.
+                </p>
             </div>
         </div>
+
 
         <p class="center text-purple-light">
             Ako uz <b class="text-white"> Obvezno osiguranje</b> ugovoriš i  <b class="text-white">Kasko</b>, automatski su uključena pokrića <b class="text-white"> Tuča, Lom stakla 
@@ -376,7 +398,7 @@ Ovu opciju možeš ugovoriti kao dodatak uz obvezno osiguranje.</p>
             <div class="service-panel service-panel-left background-grey-light round column shadow-purple-light mobile-only">
                 <div class="profile-info">
                     <div class="user-info">
-                        <h3> Ana K. </h3>
+                        <p class="card-title">  Ana K. </p>
                         <p>45 godina</p>
                         <img src="img/5-star.png" alt="5" loading="lazy">
                     </div>
@@ -393,7 +415,7 @@ Ovu opciju možeš ugovoriti kao dodatak uz obvezno osiguranje.</p>
 
                 <div class="profile-info">
                     <div class="user-info">
-                        <h3>  Ivan M. </h3>
+                        <p class="card-title">  Ivan M. </p>
                         <p>38 godina</p>
                         <img src="img/5-star.png" alt="5" loading="lazy">
                     </div>
@@ -409,7 +431,7 @@ Ovu opciju možeš ugovoriti kao dodatak uz obvezno osiguranje.</p>
 
                 <div class="profile-info">
                     <div class="user-info">
-                        <h3> Lucija M. </h3>
+                        <p class="card-title">  Lucija M. </p>
                         <p>20 godina</p>
                         <img src="img/5-star.png" alt="5" loading="lazy">
                     </div>
@@ -425,7 +447,7 @@ Ovu opciju možeš ugovoriti kao dodatak uz obvezno osiguranje.</p>
 
                 <div class="profile-info">
                     <div class="user-info">
-                        <h3>Marko P.</h3>
+                        <p class="card-title">  Marko P. </p>
                         <p>67 godina</p>
                         <img src="img/5-star.png" alt="5" loading="lazy">
                     </div>
@@ -440,17 +462,17 @@ Ovu opciju možeš ugovoriti kao dodatak uz obvezno osiguranje.</p>
         </div>
      </section>
 
-
     <section class="background-purple text-white fade-in">
         <div class="section-introduction column fade-in">
             <h2>Često postavljana pitanja</h2>
         </div>
 
         <div class="width-container-1000 column gap">
+
             <details class="question background-purple-lightish shadow-purple-dark round pad">
-                        <summary>
-                            <h3>Je li usluga Osiguraj.hr besplatna?</h3>
-                        </summary>
+                <summary>
+                    <p class="card-title">Je li usluga Osiguraj.hr besplatna?</p>
+                </summary>
                 <div class="answer">
                     Da. Naša usluga je u potpunosti besplatna za korisnike. Ne naplaćujemo izradu 
                     ponude, savjetovanje niti pomoć pri ugovaranju police. Naš rad financira se kroz 
@@ -461,7 +483,7 @@ Ovu opciju možeš ugovoriti kao dodatak uz obvezno osiguranje.</p>
 
             <details class="question background-purple-lightish shadow-purple-dark round pad">
                 <summary>
-                    <h3>Kako se određuje cijena premije za auto osiguranje?</h3>
+                    <p class="card-title">Kako se određuje cijena premije za auto osiguranje?</p>
                 </summary>
                 <div class="answer">
                     Cijena premije ovisi o više faktora, uključujući tehničke karakteristike vozila, 
@@ -472,7 +494,7 @@ Ovu opciju možeš ugovoriti kao dodatak uz obvezno osiguranje.</p>
 
             <details class="question background-purple-lightish shadow-purple-dark round pad">
                 <summary>
-                    <h3>Zašto surađivati s Osiguraj.hr umjesto direktno s osiguravateljem?</h3>
+                    <p class="card-title">Zašto surađivati s Osiguraj.hr umjesto direktno s osiguravateljem?</p>
                 </summary>
                 <div class="answer">
                     Umjesto da gubiš vrijeme obilazeći različite osiguravatelje, mi za tebe 
@@ -483,7 +505,7 @@ Ovu opciju možeš ugovoriti kao dodatak uz obvezno osiguranje.</p>
 
             <details class="question background-purple-lightish shadow-purple-dark round pad">
                 <summary>
-                    <h3>Što pokriva obvezno auto osiguranje?</h3>
+                    <p class="card-title">Što pokriva obvezno auto osiguranje?</p>
                 </summary>
                 <div class="answer">
                     Obvezno auto osiguranje pokriva štete prema trećim osobama nastale uporabom 
@@ -494,7 +516,7 @@ Ovu opciju možeš ugovoriti kao dodatak uz obvezno osiguranje.</p>
 
             <details class="question background-purple-lightish shadow-purple-dark round pad">
                 <summary>
-                    <h3>Koje vrste osiguranja nudite?</h3>
+                    <p class="card-title">Koje vrste osiguranja nudite?</p>
                 </summary>
                 <div class="answer">
                     • Obavezno auto osiguranje (AO)<br>
@@ -505,7 +527,7 @@ Ovu opciju možeš ugovoriti kao dodatak uz obvezno osiguranje.</p>
 
             <details class="question background-purple-lightish shadow-purple-dark round pad">
                 <summary>
-                    <h3>Koliko brzo mogu dobiti policu?</h3>
+                    <p class="card-title">Koliko brzo mogu dobiti policu?</p>
                 </summary>
                 <div class="answer">
                     Ponude šaljemo u roku od nekoliko minuta do nekoliko sati. Ako agent ne stigne 
@@ -516,7 +538,7 @@ Ovu opciju možeš ugovoriti kao dodatak uz obvezno osiguranje.</p>
 
             <details class="question background-purple-lightish shadow-purple-dark round pad">
                 <summary>
-                    <h3>Zašto su vaše ponude povoljnije?</h3>
+                    <p class="card-title">Zašto su vaše ponude povoljnije?</p>
                 </summary>
                 <div class="answer">
                     Naše ponude su povoljnije jer pratimo aktualne cijene kod renomiranih 
@@ -527,7 +549,7 @@ Ovu opciju možeš ugovoriti kao dodatak uz obvezno osiguranje.</p>
 
             <details class="question background-purple-lightish shadow-purple-dark round pad">
                 <summary>
-                    <h3>Gdje dobivam policu osiguranja?</h3>
+                    <p class="card-title">Gdje dobivam policu osiguranja?</p>
                 </summary>
                 <div class="answer">
                     Policu dobivate odmah nakon ugovaranja, direktno na WhatsApp i e-mail kao 
@@ -538,7 +560,7 @@ Ovu opciju možeš ugovoriti kao dodatak uz obvezno osiguranje.</p>
 
             <details class="question background-purple-lightish shadow-purple-dark round pad">
                 <summary>
-                    <h3>Kako mogu kontaktirati agenta?</h3>
+                    <p class="card-title">Kako mogu kontaktirati agenta?</p>
                 </summary>
                 <div class="answer">
                     Naši agenti dostupni su 0–24 sata putem WhatsAppa, e-maila ili telefonskog broja 
@@ -549,7 +571,7 @@ Ovu opciju možeš ugovoriti kao dodatak uz obvezno osiguranje.</p>
 
             <details class="question background-purple-lightish shadow-purple-dark round pad">
                 <summary>
-                    <h3>Hoćete li me podsjetiti na istek osiguranja?</h3>
+                    <p class="card-title">Hoćete li me podsjetiti na istek osiguranja?</p>
                 </summary>
                 <div class="answer">
                     Da. Uvijek se javljamo 14 dana prije isteka police kako bismo zajedno obnovili 
@@ -559,7 +581,7 @@ Ovu opciju možeš ugovoriti kao dodatak uz obvezno osiguranje.</p>
 
             <details class="question background-purple-lightish shadow-purple-dark round pad">
                 <summary>
-                    <h3>Što ako mi istekne polica auto osiguranja?</h3>
+                    <p class="card-title">Što ako mi istekne polica auto osiguranja?</p>
                 </summary>
                 <div class="answer">
                     Ako ti istekne polica obveznog auto osiguranja, vozilo više nema važeće osiguranje 
@@ -572,7 +594,7 @@ Ovu opciju možeš ugovoriti kao dodatak uz obvezno osiguranje.</p>
 
             <details class="question background-purple-lightish shadow-purple-dark round pad">
                 <summary>
-                    <h3>Što se događa s mojom policom kada prodam vozilo?</h3>
+                    <p class="card-title">Što se događa s mojom policom kada prodam vozilo?</p>
                 </summary>
                 <div class="answer">
                     Kod prodaje vozila, postojeća polica auto osiguranja ostaje vezana uz vozilo i 
@@ -582,10 +604,10 @@ Ovu opciju možeš ugovoriti kao dodatak uz obvezno osiguranje.</p>
                     vozilo više nije u tvom vlasništvu.
                 </div>
             </details>
-        </div>
 
-       
-     </section>
+        </div>
+    </section>
+
 
      
     <div id="scrollTopButton" class="scroll-to-top">
