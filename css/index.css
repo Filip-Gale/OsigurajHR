@@ -67,6 +67,10 @@ form input:focus{
     font-weight: normal;
 }
 
+strong{
+    font-weight: normal;
+}
+
 #form-result{
     display: none;
     margin-top:1rem; 
