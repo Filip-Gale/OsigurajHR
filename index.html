@@ -642,7 +642,30 @@
     {% include footer.html %}
     {% include wapp.html %}
 
+    
+
     <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const scrollButton = document.getElementById('scrollTopButton');
+            const navBar = document.querySelector('nav'); // Adjust this selector if your Jekyll navbar uses a different tag or class
+
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 650) {
+                    // Show the sticky CTA button
+                    scrollButton.classList.add('show');
+                    // Hide the original navbar
+                    if (navBar) navBar.classList.add('nav-hidden');
+                } else {
+                    // Hide the sticky CTA button
+                    scrollButton.classList.remove('show');
+                    // Show the original navbar again
+                    if (navBar) navBar.classList.remove('nav-hidden');
+                }
+            });
+        });
+
+
+
          document.addEventListener('DOMContentLoaded', function() {
             const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -694,6 +717,7 @@
             const form = this;
             const resultDiv = document.getElementById("form-result");
             
+            // UI Feedback: Loading state
             resultDiv.style.display = "block";
             resultDiv.innerHTML = "Šaljem...";
             resultDiv.style.background = "#fef3c7";
@@ -703,33 +727,40 @@
             const originalData = new FormData(form);
             const customData = new FormData();
 
-            // Copy required fields (access_key, botcheck, etc.)
-            customData.append("access_key", originalData.get("access_key"));
-            customData.append("subject", originalData.get("subject")); // keeps your dynamic subject
-            customData.append("from_name", originalData.get("from_name")); // optional
-
-            // Add custom-labeled fields with real values
+            // 1. Get raw values from the form
             const username = originalData.get("username") || "N/A";
             const userTypeRaw = originalData.get("user-type") || "N/A";
             const ageRaw = originalData.get("age") || "N/A";
             const contact = originalData.get("contact") || "N/A";
+            const accessKey = originalData.get("access_key");
 
-            // Map to nice values/labels
-            const userType = userTypeRaw === "fizicka_osoba" ? "Fizička osoba" : "Pravna osoba";
-            const dob = ageRaw === "less" ? "Manje od 28 godina" : "Više od 28 godina";
+            // 2. Format labels for the email
+            const userTypeFormatted = userTypeRaw === "fizicka_osoba" ? "Fizička osoba" : "Pravna osoba";
+            // We now use the actual number from the input instead of the "less/more" logic
+            const dobFormatted = ageRaw + " godina"; 
 
+            // 3. Construct the clean data object for Web3Forms
+            customData.append("access_key", accessKey);
+            
+            // Dynamic Subject & From Name (Fixes the {{username}} issue)
+            customData.append("subject", "Nova registracijska upit - " + username);
+            customData.append("from_name", username + " - " + userTypeFormatted);
+
+            // Custom Labeled Data
             customData.append("Registracija", username);
-            customData.append("Tip_korisnika", userType);
-            customData.append("Dob", dob);
+            customData.append("Tip_korisnika", userTypeFormatted);
+            customData.append("Dob", dobFormatted);
             customData.append("Kontakt", contact);
 
-            // Optional: If you want the original fields too (for debugging), add them
-            // customData.append("username (original)", username);
-            // etc.
+            // Honeypot for bot protection
+            if (originalData.get("botcheck")) {
+                customData.append("botcheck", originalData.get("botcheck"));
+            }
 
+            // 4. Send the data
             fetch(form.action, {
                 method: "POST",
-                body: customData,  // ← send the custom one!
+                body: customData,
                 headers: { "Accept": "application/json" }
             })
             .then(response => response.json())
