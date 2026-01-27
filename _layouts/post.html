@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>{{ page.title }} | Osiguraj.hr</title>
+    <link rel="stylesheet" href="{{ '/css/style.css' | relative_url }}">
+    <link rel="stylesheet" href="{{ '/css/post.css' | relative_url }}">
+
+    <link rel="icon" type="image/jpeg" href="{{ '/img/favicon.jpg' | relative_url }}">
+</head>
+<body>
+
+    {% include nav.html %}
+
+    <div class="margin-top-100"> </div>
+
+    <main class="width-container-1000 text-white pad round">
+        <article class="post-content">
+            {{ content }}
+        </article>
+    </main>
+
+    <div class="margin-top-100"> </div>
+
+    {% include wapp.html %}
+    {% include footer.html %}
+
+</body>
+</html>

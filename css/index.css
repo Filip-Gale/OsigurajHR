@@ -147,6 +147,29 @@ input[type="radio"] {
     height: 0;
 }
 
+/* Wrapper to control show/hide and centering */
+#age-wrapper {
+    width: 100%;
+    overflow: hidden;
+    transition: all 0.25s ease-in-out;
+    max-height: 200px;          /* large enough when visible */
+    opacity: 1;
+    margin: 0;                  /* reset if needed */
+}
+
+/* Hidden state – when pravna osoba is selected */
+#age-wrapper.hidden {
+    max-height: 0;
+    opacity: 0;
+    margin: 0;
+}
+
+/* The age input itself – make it noticeably wider */
+.age-input {
+    width: 72%;
+}
+
+
 .after-form-panel{
     padding: 15px 3%;
     gap:15px;
@@ -293,6 +316,37 @@ details summary::after {
 
 details[open] summary::after {
     transform: rotate(-90deg);
+}
+
+.post-card {
+    gap: 30px;
+    padding-top: -50px;
+    border: transparent 1px solid;
+    pointer-events: all;
+}
+
+.post-card *{
+    margin-bottom: 20px;
+    pointer-events: all;
+    cursor: pointer;
+    max-width: 370px;
+    max-height: 450px;
+}
+
+.read-more{
+    font-weight: bold;
+    font-size: 20px;
+    border-right: transparent 10px solid;
+}
+
+.post-card:hover{
+    box-shadow: #c9c9c9 0px 5px 10px;
+    border: #573cf9 1px solid;
+}
+
+.post-card:hover .read-more{
+    border-right-color: #573cf9;
+    padding-right: 10px;
 }
 
 @media (min-width: 768px) { 

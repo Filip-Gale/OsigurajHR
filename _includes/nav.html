@@ -1,12 +1,12 @@
 <head>
-    <link rel="stylesheet" href="css/nav.css">
+    <link rel="stylesheet" href="{{ '/css/nav.css' | relative_url }}">
 </head>
 <nav id="main-nav">
     <div class="width-container row">
-        <a href="index.html"> <img src="img/logo.jpg" alt="logo" id="logo" fetchpriority="high"></a>
+        <a href="{{ '/' | relative_url }}"> <img src="{{ '/img/logo.jpg' | relative_url }}" alt="logo" id="logo" fetchpriority="high"></a>
         <div class="row gap">
-            <a href="o-nama.html" class="background-purple-light round pad-s text-purple desktop-only"><span> O nama</span></a>
-            <a href="tel:+38598813220" id="phone-number"><div id="green-dot"></div>+ 385 98 813 220 </a>
+            <a href="{{ '/o-nama/' | relative_url }}" class="background-purple-light round pad-s text-purple desktop-only"><span> O nama</span></a>
+            <a href="tel:+38598813221" id="phone-number"><div id="green-dot"></div>+385 98 813 221 </a>
         </div>
     </div>
 </nav>

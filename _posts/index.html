@@ -1,0 +1,26 @@
+---
+layout: post          # ← use your main layout (the one with header, footer, wapp.html, etc.)
+title: Blog osiguraj.hr
+---
+
+<h1>Naš blog</h1>
+
+{% if site.posts.size == 0 %}
+  <p>Još nema objava. Dodajte ih u _posts/ folder!</p>
+{% else %}
+  <ul class="blog-list">
+    {% for post in site.posts reversed %}   <!-- newest first -->
+      <li>
+        <h2>
+          <a href="{{ post.url }}">{{ post.title | default: post.slug | replace: '-', ' ' | capitalize }}</a>
+        </h2>
+        {% if post.date %}
+          <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%d. %m. %Y" }}</time>
+        {% endif %}
+        {% if post.description %}
+          <p class="excerpt">{{ post.description | truncate: 160 }}</p>
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+{% endif %}

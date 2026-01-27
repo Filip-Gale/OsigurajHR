@@ -14,7 +14,7 @@
     <link rel="canonical" href="https://www.osiguraj.hr/" />
 
     <title>Digitalno Auto Osiguranje | Online Izračun i Usporedba</title>
-    <meta name="description" content="Besplatno usporedi auto osiguranje vodećih kuća na jednom mjestu. ✓ Izračun u 2 min ✓ Bonus i asistencija ✓ Obvezno i kasko online. » Saznaj cijenu!">
+    <meta name="description" content="Besplatno usporedi auto osiguranje vodećih kuća na jednom mjestu. ✓ brzi izračun ✓ Bonus i asistencija ✓ Obvezno i kasko online. » Saznaj cijenu!">
     <link rel="apple-touch-icon" sizes="180x180" href="img/favicon.jpg">
 
         <!-- Open Graph basics -->
@@ -42,7 +42,7 @@
   "legalName": "MAKSI MIRO d.o.o. za zastupanje u osiguranju",
   "url": "https://www.osiguraj.hr",
   "logo": "https://www.osiguraj.hr/img/favicon.jpg",
-  "description": "Besplatno usporedi auto osiguranje vodećih kuća na jednom mjestu. ✓ Izračun u 2 min ✓ Bonus i asistencija ✓ Obvezno i kasko online. » Saznaj cijenu",
+  "description": "Besplatno usporedi auto osiguranje vodećih kuća na jednom mjestu. ✓ brzi izračun ✓ Bonus i asistencija ✓ Obvezno i kasko online. » Saznaj cijenu",
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "Božidarevićeva ulica 13",
@@ -183,12 +183,8 @@
                 </div>
 
                 <!-- Age selector -->
-                <div class="segmented-control round age-group" id="age-group">
-                    <input type="radio" id="young" name="age" value="less" checked>
-                    <label for="young" class="segment round">Mlađi od 28 g.</label>
-
-                    <input type="radio" id="old" name="age" value="more">
-                    <label for="old" class="segment round">Stariji od 28 g.</label>
+                <div class="age-input-wrapper" id="age-wrapper">
+                    <input class="round age-input" type="number" name="age" min="1" max="100" placeholder="Broj godina:" required>
                 </div>
 
                 <input class="round" type="text" name="contact" placeholder="Email ili broj mobitela:" required>
@@ -609,6 +605,30 @@
 
         </div>
     </section>
+
+     <section class="background-white text-purple fade-in">
+       
+        <div class="section-introduction column fade-in">
+            <h2>Mala škola osiguranja</h2>
+        </div>
+
+        <div class="row-pc width-container fade-in">
+            {% for post in site.posts limit:4 %}
+                <div class="background-grey-light round pad gap post-card">
+                    <a href="{{ post.url | relative_url }}">
+                        <img src="{{ post.image | default: '/img/blog/default.jpg' | relative_url }}" alt="{{ post.title }}" class="round">
+                    </a>
+                    <h3>
+                        <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+                    </h3>
+                    <p>{{ post.excerpt | strip_html | truncatewords: 20 }}</p>
+                    <br>                    
+                    <a href="{{ post.url | relative_url }}" class="read-more">Pročitaj više</a>
+                </div>
+            {% endfor %}
+        </div>
+        
+     </section>
      
     <div id="scrollTopButton" class="scroll-to-top">
         <a href="#"> 
@@ -644,26 +664,26 @@
         // Pure JS - no dependencies
         document.addEventListener('DOMContentLoaded', () => {
             const userTypeRadios = document.querySelectorAll('input[name="user-type"]');
-            const ageGroup = document.getElementById('age-group');
-            
-            function updateAgeState() {
+            const ageWrapper    = document.getElementById('age-wrapper');
+
+            function updateAgeVisibility() {
                 const isPravna = document.getElementById('pra').checked;
-                
+
                 if (isPravna) {
-                    ageGroup.classList.add('disabled');
-                    // Optional: uncheck or force default value when disabled
-                    // document.getElementById('young').checked = true;
+                    ageWrapper.classList.add('hidden');
+                    // Optional: clear the value when switching to pravna osoba
+                    // ageWrapper.querySelector('input').value = '';
                 } else {
-                    ageGroup.classList.remove('disabled');
+                    ageWrapper.classList.remove('hidden');
                 }
             }
 
-            // Run once on load
-            updateAgeState();
+            // Run once on page load (sets correct initial state)
+            updateAgeVisibility();
 
-            // Listen to changes
+            // Listen for radio changes
             userTypeRadios.forEach(radio => {
-                radio.addEventListener('change', updateAgeState);
+                radio.addEventListener('change', updateAgeVisibility);
             });
         });
 

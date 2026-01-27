@@ -1,1 +1,11 @@
 title: Osiguraj.hr
+
+repository: Filip-Gale/osiguraj.hr   # e.g. pero123/osiguraj.hr
+
+permalink: /blog/:title/
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
