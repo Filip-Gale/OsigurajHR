@@ -4,13 +4,20 @@
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
-
 
 <url>
   <loc>https://www.osiguraj.hr/</loc>
-  <lastmod>2026-01-20T16:09:06+00:00</lastmod>
+  <lastmod>2026-01-29T10:00:00+00:00</lastmod>
 </url>
 
+<url>
+  <loc>https://www.osiguraj.hr/o-nama/</loc>
+  <lastmod>2026-01-29T10:00:00+00:00</lastmod>
+</url>
+
+<url>
+  <loc>https://www.osiguraj.hr/privacy/</loc>
+  <lastmod>2026-01-29T10:00:00+00:00</lastmod>
+</url>
 
 </urlset>
