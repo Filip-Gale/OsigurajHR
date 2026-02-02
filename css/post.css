@@ -21,21 +21,20 @@ ul, ol {
     margin-left: 30px;
 }
 
-/* Glavni stil za sve linkove - bez prisilnog podcrtavanja */
+/* Svi linkovi su žuti, ali bez crte (za gumbe i navigaciju) */
 a {
-    color: #ffbc27;
-    text-decoration: none;
+    color: #ffbc27 !important;
+    text-decoration: none !important;
     font-weight: bold;
-    user-select: all;
-    pointer-events: all;
 }
 
-/* Podcrtaj SAMO linkove u tekstu (p, li i blockquote) za bolji SEO */
+/* SAMO linkovi u tekstu dobivaju crtu i ostaju žuti */
 p a, li a, blockquote a {
+    color: #ffbc27 !important;
     text-decoration: underline !important;
 }
 
-/* Efekt kada se mišem prođe preko bilo kojeg linka ili gumba */
+/* Hover efekt - link pobijeli */
 a:hover {
     color: #ffffff !important;
     text-decoration: none !important;
@@ -62,4 +61,3 @@ blockquote {
         font-size: 48px;
     }
 }
-
