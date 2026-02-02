@@ -1,12 +1,20 @@
 title: Osiguraj.hr
 repository: Filip-Gale/osiguraj.hr
-
 permalink: /blog/:title/
+
+collections:
+  gradovi:
+    output: true
 
 defaults:
   - scope:
       path: ""
       type: "posts"
+    values:
+      layout: "post"
+  - scope:
+      path: ""
+      type: "gradovi"
     values:
       layout: "post"
 
