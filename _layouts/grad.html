@@ -1,34 +1,48 @@
----
-layout: default
----
-<div style="background-color: #573cf9; padding: 80px 20px; text-align: center; color: white;">
-    <h1 style="font-size: 3rem; font-weight: 800; color: #ffbc27; margin-bottom: 20px; line-height: 1.1;">
-        {{ page.title }}
-    </h1>
-    <p style="font-size: 1.3rem; max-width: 850px; margin: 0 auto; opacity: 0.95; line-height: 1.6;">
-        {{ page.description }}
-    </p>
-</div>
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-TPNZZVZ5');</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>{{ page.title }} | Osiguraj.hr</title>
+    <link rel="stylesheet" href="{{ '/css/style.css' | relative_url }}">
+    <link rel="stylesheet" href="{{ '/css/post.css' | relative_url }}">
+    <link rel="icon" type="image/jpeg" href="{{ '/img/favicon.jpg' | relative_url }}">
+</head>
+<body>
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TPNZZVZ5"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    
+    {% include nav.html %}
 
-<div style="max-width: 900px; margin: 0 auto; padding: 60px 20px; background: white;">
-    <div style="font-size: 1.15rem; line-height: 1.9; color: #2d2d2d;">
-        {{ content }}
-    </div>
+    <div class="margin-top-100"> </div>
 
-    <div style="margin-top: 60px; padding: 40px; background-color: #f4f2ff; border-radius: 30px; border: 2px solid #573cf9; text-align: center;">
-        <h2 style="color: #573cf9; font-size: 2rem; margin-bottom: 10px;">Uštedite na polici u gradu: {{ page.grad_ime }}</h2>
-        <p style="margin-bottom: 30px; font-size: 1.1rem;">Naš stručni tim uspoređuje cijene vodećih osiguranja za vas.</p>
+    <main class="width-container-1000 text-white pad round" style="background-color: #573cf9;">
         
-        <a href="/izracunaj-cijenu/" style="display: inline-block; background-color: #25d366; color: white; padding: 20px 40px; text-decoration: none; border-radius: 15px; font-weight: 800; font-size: 1.3rem; box-shadow: 0 10px 20px rgba(37,211,102,0.2); transition: transform 0.2s ease;">
-            IZRAČUNAJ CIJENU →
-        </a>
-    </div>
-</div>
+        <header style="text-align: center; border-bottom: 1px solid rgba(255,255,255,0.2); padding-bottom: 40px; margin-bottom: 40px;">
+            <h1 style="font-size: 2.8rem; color: #ffbc27; margin-bottom: 20px;">{{ page.title }}</h1>
+            <p style="font-size: 1.2rem; opacity: 0.9; max-width: 800px; margin: 0 auto;">{{ page.description }}</p>
+        </header>
 
-<div style="background-color: #573cf9; padding: 40px 20px; text-align: center; color: white;">
-     <p style="margin: 0; font-weight: 600; font-size: 1.1rem;">
-        <span style="color: #ffbc27;">✔</span> HANFA regulirano &nbsp;&nbsp; 
-        <span style="color: #ffbc27;">✔</span> Neovisna usporedba &nbsp;&nbsp; 
-        <span style="color: #ffbc27;">✔</span> Podrška 24/7
-     </p>
-</div>
+        <article class="post-content" style="color: white; line-height: 1.8;">
+            {{ content }}
+        </article>
+
+        <div style="margin-top: 50px; padding: 30px; background: rgba(255,255,255,0.1); border-radius: 20px; text-align: center; border: 1px solid #ffbc27;">
+            <h2 style="color: #ffbc27; margin-bottom: 10px;">Uštedite na polici u gradu: {{ page.grad_ime }}</h2>
+            <p style="margin-bottom: 25px;">Naš stručni tim pronalazi najbolju ponudu za vaš profil vozača.</p>
+            <a href="/izracunaj-cijenu/" style="display: inline-block; background-color: #25d366; color: white; padding: 18px 35px; text-decoration: none; border-radius: 10px; font-weight: bold; font-size: 1.2rem; box-shadow: 0 4px 15px rgba(0,0,0,0.2);">IZRAČUNAJ CIJENU →</a>
+        </div>
+    </main>
+
+    <div class="margin-top-100"> </div>
+
+    {% include wapp.html %}
+    {% include footer.html %}
+</body>
+</html>
