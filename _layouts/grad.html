@@ -6,6 +6,7 @@
     j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-TPNZZVZ5');</script>
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
@@ -15,10 +16,32 @@
     <link rel="icon" type="image/jpeg" href="{{ '/img/favicon.jpg' | relative_url }}">
 
     <style>
-        /* Podnaslovi u tvojoj žutoj boji */
+        /* Boje podnaslova */
         .post-content h2, .post-content h3 {
             color: #ffbc27 !important;
             margin-top: 35px;
+            font-weight: 700;
+        }
+
+        /* 1. ISPRAVAK: Agresivnije bojanje BOLDANOG teksta u žuto */
+        .post-content strong, 
+        .post-content b,
+        .post-content span[style*="font-weight: bold"],
+        .post-content span[style*="font-weight:bold"] {
+            color: #ffbc27 !important;
+        }
+
+        /* 2. ISPRAVAK: Linkovi moraju biti žuti i podcrtani */
+        .post-content a {
+            color: #ffbc27 !important;
+            text-decoration: underline !important;
+            font-weight: 700 !important;
+            transition: opacity 0.2s;
+        }
+        
+        .post-content a:hover {
+            opacity: 0.8;
+            text-decoration: none !important;
         }
 
         /* Glavni zeleni 3D gumb */
@@ -26,8 +49,8 @@
             display: inline-block;
             background-color: #2ecc71;
             color: white !important;
-            padding: 18px 40px;
-            text-decoration: none;
+            padding: 18px 45px;
+            text-decoration: none !important;
             border-radius: 12px;
             font-weight: 800;
             font-size: 1.4rem;
@@ -35,27 +58,30 @@
             transition: all 0.1s ease;
             border: none;
             cursor: pointer;
+            text-transform: uppercase;
         }
         .btn-saznaj:active {
             transform: translateY(4px);
             box-shadow: 0 4px 0 #27ae60;
         }
 
-        /* Tag za godinu - diskretno i profesionalno */
+        /* Tag za godinu */
         .year-tag {
             display: inline-block;
             background-color: rgba(255, 188, 39, 0.15);
             color: #ffbc27;
-            padding: 6px 16px;
+            padding: 8px 20px;
             border-radius: 50px;
-            font-weight: bold;
-            font-size: 0.9rem;
-            margin-bottom: 20px;
-            border: 1px solid rgba(255, 188, 39, 0.3);
+            font-weight: 800;
+            font-size: 0.95rem;
+            margin-bottom: 25px;
+            border: 1px solid rgba(255, 188, 39, 0.4);
             text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        .post-content li { margin-bottom: 10px; }
+        .post-content li { margin-bottom: 15px; }
+        .post-content p { margin-bottom: 20px; }
     </style>
 </head>
 <body>
@@ -66,16 +92,16 @@
 
     <div class="margin-top-100"> </div>
 
-    <main class="width-container-1000 text-white pad round" style="background-color: #573cf9;">
+    <main class="width-container-1000 text-white pad round" style="background-color: #573cf9; box-shadow: 0 20px 40px rgba(0,0,0,0.2);">
         
-        <header style="text-align: center; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 50px; margin-bottom: 40px;">
-            <div class="year-tag">Aktualno za 2026. godinu</div>
-            <h1 style="font-size: 2.8rem; color: #ffbc27; margin-bottom: 20px; line-height: 1.2;">{{ page.title }}</h1>
-            <p style="font-size: 1.25rem; opacity: 0.95; max-width: 800px; margin: 0 auto 30px auto; line-height: 1.6;">
+        <header style="text-align: center; border-bottom: 1px solid rgba(255,255,255,0.15); padding-bottom: 50px; margin-bottom: 45px;">
+            <div class="year-tag">AKTUALNO ZA 2026. GODINU</div>
+            <h1 style="font-size: 3rem; color: #ffbc27; margin-bottom: 25px; line-height: 1.1; letter-spacing: -1px;">{{ page.title }}</h1>
+            <p style="font-size: 1.3rem; opacity: 0.95; max-width: 850px; margin: 0 auto 35px auto; line-height: 1.7;">
                 {{ page.description }}
             </p>
             
-            <a href="/izracunaj-cijenu/" class="btn-saznaj" style="font-size: 1.2rem; padding: 15px 35px;">
+            <a href="/izracunaj-cijenu/" class="btn-saznaj">
                 SAZNAJ CIJENU ODMAH →
             </a>
         </header>
@@ -84,45 +110,12 @@
             {{ content }}
         </article>
 
-        <div style="margin-top: 60px; padding: 50px 20px; background: rgba(0,0,0,0.2); border-radius: 30px; text-align: center; border: 2px solid #ffbc27;">
-            <h2 style="color: #ffbc27 !important; margin-bottom: 10px; margin-top: 0; font-size: 2.2rem;">Uštedite do 30% u gradu: {{ page.grad_ime }}</h2>
-            <p style="margin-bottom: 35px; font-size: 1.2rem; opacity: 0.9;">Usporedite ponude svih osiguranja i saznajte svoju cijenu u par sekundi.</p>
+        <div style="margin-top: 70px; padding: 55px 30px; background: rgba(0,0,0,0.25); border-radius: 40px; text-align: center; border: 3px solid #ffbc27;">
+            <h2 style="color: #ffbc27 !important; margin-bottom: 15px; margin-top: 0; font-size: 2.4rem;">Uštedite do 30% u gradu: {{ page.grad_ime }}</h2>
+            <p style="margin-bottom: 40px; font-size: 1.25rem; opacity: 0.9;">Usporedite sve osiguravajuće kuće u Hrvatskoj i preuzmite ponudu na mail.</p>
             
             <a href="/izracunaj-cijenu/" class="btn-saznaj">
-                SAZNAJ CIJENU →
-            </a>
-        </div>
-    </main>
-
-    <div class="margin-top-100"> </div>
-
-    {% include wapp.html %}
-    {% include footer.html %}
-</body>
-</html>
-
-    <div class="margin-top-100"> </div>
-
-    <main class="width-container-1000 text-white pad round" style="background-color: #573cf9;">
-        
-        <header style="text-align: center; border-bottom: 1px solid rgba(255,255,255,0.2); padding-bottom: 40px; margin-bottom: 40px;">
-            <div class="year-tag">AKTUALNO ZA 2026. GODINU</div>
-            <h1 style="font-size: 2.8rem; color: #ffbc27; margin-bottom: 20px; line-height: 1.2;">{{ page.title }}</h1>
-            <p style="font-size: 1.25rem; opacity: 0.95; max-width: 850px; margin: 0 auto; line-height: 1.6;">
-                {{ page.description }}
-            </p>
-        </header>
-
-        <article class="post-content" style="color: white; line-height: 1.9; font-size: 1.15rem;">
-            {{ content }}
-        </article>
-
-        <div style="margin-top: 60px; padding: 45px 20px; background: rgba(0,0,0,0.2); border-radius: 30px; text-align: center; border: 2px solid #ffbc27;">
-            <h2 style="color: #ffbc27 !important; margin-bottom: 5px; margin-top: 0; font-size: 2.2rem;">Uštedite do 30% u gradu: {{ page.grad_ime }}</h2>
-            <p style="margin-bottom: 35px; font-size: 1.2rem; opacity: 0.9;">Usporedite ponude svih osiguranja i saznajte svoju cijenu odmah.</p>
-            
-            <a href="/izracunaj-cijenu/" class="btn-saznaj">
-                SAZNAJ CIJENU →
+                IZRAČUNAJ CIJENU →
             </a>
         </div>
     </main>
