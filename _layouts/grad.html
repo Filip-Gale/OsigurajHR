@@ -15,29 +15,29 @@
     <link rel="icon" type="image/jpeg" href="{{ '/img/favicon.jpg' | relative_url }}">
 
     <style>
-        /* Svi podnaslovi u žutoj boji unutar artikla */
-        .post-content h2, .post-content h3, .post-content h4 {
+        .post-content h2, .post-content h3 {
             color: #ffbc27 !important;
-            margin-top: 30px;
+            margin-top: 35px;
         }
-        /* Stil za tvoj "Saznaj cijenu" gumb */
         .btn-saznaj {
             display: inline-block;
-            background-color: #2ecc71; /* Tvoja zelena */
+            background-color: #2ecc71;
             color: white !important;
-            padding: 16px 32px;
+            padding: 18px 40px;
             text-decoration: none;
             border-radius: 12px;
             font-weight: 800;
-            font-size: 1.25rem;
-            box-shadow: 0 8px 0 #27ae60; /* 3D efekt sjene */
+            font-size: 1.4rem;
+            box-shadow: 0 8px 0 #27ae60;
             transition: all 0.1s ease;
             border: none;
-            cursor: pointer;
         }
         .btn-saznaj:active {
             transform: translateY(4px);
             box-shadow: 0 4px 0 #27ae60;
+        }
+        .post-content li {
+            margin-bottom: 10px;
         }
     </style>
 </head>
@@ -52,23 +52,24 @@
     <main class="width-container-1000 text-white pad round" style="background-color: #573cf9;">
         
         <header style="text-align: center; border-bottom: 1px solid rgba(255,255,255,0.2); padding-bottom: 40px; margin-bottom: 40px;">
-            <h1 style="font-size: 2.8rem; color: #ffbc27; margin-bottom: 20px;">{{ page.title }}</h1>
-            <p style="font-size: 1.2rem; opacity: 0.95; max-width: 850px; margin: 0 auto; line-height: 1.6;">
+            <h1 style="font-size: 2.8rem; color: #ffbc27; margin-bottom: 20px; line-height: 1.2;">{{ page.title }}</h1>
+            <p style="font-size: 1.25rem; opacity: 0.95; max-width: 850px; margin: 0 auto; line-height: 1.6;">
                 {{ page.description }}
             </p>
         </header>
 
-        <article class="post-content" style="color: white; line-height: 1.9; font-size: 1.1rem;">
+        <article class="post-content" style="color: white; line-height: 1.9; font-size: 1.15rem;">
             {{ content }}
         </article>
 
-        <div style="margin-top: 60px; padding: 40px; background: rgba(0,0,0,0.15); border-radius: 25px; text-align: center; border: 2px dashed #ffbc27;">
-            <h2 style="color: #ffbc27 !important; margin-bottom: 15px; margin-top: 0;">Uštedite na polici u gradu: {{ page.grad_ime }}</h2>
-            <p style="margin-bottom: 30px; font-size: 1.1rem; opacity: 0.9;">Usporedite ponude i osigurajte svoje vozilo digitalno u par klikova.</p>
+        <div style="margin-top: 60px; padding: 45px 20px; background: rgba(0,0,0,0.2); border-radius: 30px; text-align: center; border: 2px solid #ffbc27;">
+            <h2 style="color: #ffbc27 !important; margin-bottom: 5px; margin-top: 0; font-size: 2.2rem;">Uštedite do 30% u gradu: {{ page.grad_ime }}</h2>
+            <p style="margin-bottom: 35px; font-size: 1.2rem; opacity: 0.9;">Usporedite ponude svih osiguranja i saznajte svoju cijenu odmah.</p>
             
             <a href="/izracunaj-cijenu/" class="btn-saznaj">
                 SAZNAJ CIJENU →
             </a>
+            <p style="margin-top: 20px; font-size: 0.9rem; opacity: 0.7;">* Prosječna ušteda naših korisnika u 2026. godini</p>
         </div>
     </main>
 
