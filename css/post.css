@@ -21,21 +21,25 @@ ul, ol {
     margin-left: 30px;
 }
 
-/* Svi linkovi su žuti, ali bez crte (za gumbe i navigaciju) */
+/* 1. Svi osnovni linkovi (navigacija, gumbi) */
 a {
     color: #ffbc27 !important;
     text-decoration: none !important;
     font-weight: bold;
 }
 
-/* SAMO linkovi u tekstu dobivaju crtu i ostaju žuti */
-p a, li a, blockquote a {
+/* 2. BRUTALNO SPECIFIČNO: Linkovi unutar teksta MORAJU biti žuti i podcrtani */
+/* Dodajemo 'body' i 'html' ispred da budemo jači od teme */
+html body p a, 
+html body li a, 
+html body blockquote a {
     color: #ffbc27 !important;
     text-decoration: underline !important;
+    display: inline; /* Osigurava da se ne ponaša kao blok */
 }
 
-/* Hover efekt - link pobijeli */
-a:hover {
+/* 3. Hover efekt */
+a:hover, p a:hover, li a:hover {
     color: #ffffff !important;
     text-decoration: none !important;
 }
