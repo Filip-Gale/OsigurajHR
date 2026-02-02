@@ -4,7 +4,6 @@ grad_ime: "Zagreb"
 title: "Auto osiguranje Zagreb | Uštedite do 30% uz online usporedbu"
 permalink: /auto-osiguranje/zagreb/
 description: "Tražite najpovoljnije auto osiguranje u Zagrebu? Osiguraj.hr vam nudi neovisnu usporedbu polica za ZG područje i uštedu do 30% uz par klikova."
-cta_podnaslov: "Usporedite ponude osiguravajućih kuća i saznajte svoju cijenu u kratkom roku."
 ---
 
 U današnjem ubrzanom svijetu, trošenje dragocjenog vremena na obilazak poslovnica osiguravajućih kuća postalo je relikt prošlosti. Za vozače u **Zagrebu**, gdje gustoća prometa stalno raste, pronalazak optimalne police kroz digitalni **izračun osiguranja za auto** nije samo pitanje uštede, već i pametnog upravljanja vremenom, baš kao što to rade vozači u [Splitu](https://www.osiguraj.hr/auto-osiguranje/split/).
@@ -13,18 +12,13 @@ U današnjem ubrzanom svijetu, trošenje dragocjenog vremena na obilazak poslovn
 
 **Osiguraj.hr** je neovisna platforma koja transformira način na koji pristupate zaštiti svog vozila. Naš stručni tim osigurava vam potpuno transparentan pristup tržištu za **ZG registracijsko područje**, vodeći vas kroz svaki korak — od prve usporedbe do finalnog ugovaranja police. Bez obzira trebate li policu u Zagrebu ili [Osijeku](https://www.osiguraj.hr/auto-osiguranje/osijek/), naš sustav pronalazi najnižu cijenu.
 
-<div style="background: #4A3AFF; padding: 40px; border-radius: 20px; text-align: center; color: white; border: 2px solid #FFD700; margin: 30px 0;">
-    <h2 style="color: #FFD700; margin-top: 0;">Uštedite do 30% u gradu: Zagreb</h2>
-    <p style="font-size: 1.1rem;">Usporedite ponude osiguravajućih kuća i saznajte svoju cijenu u kratkom roku.</p>
-    <a href="#izracun" style="background: #32D74B; padding: 15px 30px; border-radius: 10px; color: white; text-decoration: none; font-weight: bold; display: inline-block; margin-top: 20px; font-size: 1.2rem;">IZRAČUNAJ CIJENU →</a>
-</div>
 ### Zašto je usporedba ključna za ZG tablice?
 
 Zagreb statistički nosi veće rizike u prometu, ali uz pravu platformu to ne mora značiti visoku cijenu police. Naš primarni cilj je osigurati vam najpovoljnije opcije naših partnera prilagođene upravo vašem profilu vozača:
 
 * **Maksimalna ušteda:** Uspoređujemo ponude više od 10 osiguravatelja kako biste uštedjeli do 30%.
 * **Sve na jednom mjestu:** Obvezno auto osiguranje, kasko ili dodatne pogodnosti poput pomoći na cesti.
-* **Brza podrška:** Naš tim nudi istu razinu preciznosti koju pružamo i vozačima u [Rijeci](https://www.osiguraj.hr/auto-osiguranje/rijeka/), [Zadru](https://www.osiguraj.hr/auto-osiguranje/zadar/) i ostatku Hrvatske.
+* **Brza podrška:** Naš stručni tim vam je na raspolaganju za sva pitanja tijekom i nakon ugovaranja.
 
 ### Razbijanje mitova o cijeni polica
 
