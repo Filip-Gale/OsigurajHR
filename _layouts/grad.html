@@ -1,17 +1,34 @@
 ---
 layout: default
 ---
-<div style="padding: 60px 20px; text-align: center; background: #4a3aff; color: white;">
-    <h1 style="font-size: 2.8rem; margin-bottom: 15px;">{{ page.title }}</h1>
-    <p style="font-size: 1.2rem; max-width: 800px; margin: 0 auto; opacity: 0.9;">{{ page.description }}</p>
+<div style="background-color: #573cf9; padding: 80px 20px; text-align: center; color: white;">
+    <h1 style="font-size: 3rem; font-weight: 800; color: #ffbc27; margin-bottom: 20px; line-height: 1.1;">
+        {{ page.title }}
+    </h1>
+    <p style="font-size: 1.3rem; max-width: 850px; margin: 0 auto; opacity: 0.95; line-height: 1.6;">
+        {{ page.description }}
+    </p>
 </div>
 
-<div style="max-width: 800px; margin: 0 auto; padding: 40px 20px; line-height: 1.8; color: #333; font-size: 1.1rem;">
-    {{ content }}
-
-    <div style="margin-top: 50px; padding: 30px; border: 2px solid #4a3aff; border-radius: 20px; text-align: center; background: #f9f9ff;">
-        <h2 style="color: #4a3aff;">Uštedite do 30% na polici u gradu: {{ page.grad_ime }}</h2>
-        <p>Naš sustav uspoređuje cijene vodećih osiguranja u par sekundi.</p>
-        <a href="/izracunaj-cijenu/" style="display: inline-block; background: #25d366; color: white; padding: 18px 35px; text-decoration: none; border-radius: 10px; font-weight: bold; font-size: 1.2rem; margin-top: 15px; box-shadow: 0 4px 15px rgba(37,211,102,0.3);">IZRAČUNAJ CIJENU →</a>
+<div style="max-width: 900px; margin: 0 auto; padding: 60px 20px; background: white;">
+    <div style="font-size: 1.15rem; line-height: 1.9; color: #2d2d2d;">
+        {{ content }}
     </div>
+
+    <div style="margin-top: 60px; padding: 40px; background-color: #f4f2ff; border-radius: 30px; border: 2px solid #573cf9; text-align: center;">
+        <h2 style="color: #573cf9; font-size: 2rem; margin-bottom: 10px;">Uštedite na polici u gradu: {{ page.grad_ime }}</h2>
+        <p style="margin-bottom: 30px; font-size: 1.1rem;">Naš stručni tim uspoređuje cijene vodećih osiguranja za vas.</p>
+        
+        <a href="/izracunaj-cijenu/" style="display: inline-block; background-color: #25d366; color: white; padding: 20px 40px; text-decoration: none; border-radius: 15px; font-weight: 800; font-size: 1.3rem; box-shadow: 0 10px 20px rgba(37,211,102,0.2); transition: transform 0.2s ease;">
+            IZRAČUNAJ CIJENU →
+        </a>
+    </div>
+</div>
+
+<div style="background-color: #573cf9; padding: 40px 20px; text-align: center; color: white;">
+     <p style="margin: 0; font-weight: 600; font-size: 1.1rem;">
+        <span style="color: #ffbc27;">✔</span> HANFA regulirano &nbsp;&nbsp; 
+        <span style="color: #ffbc27;">✔</span> Neovisna usporedba &nbsp;&nbsp; 
+        <span style="color: #ffbc27;">✔</span> Podrška 24/7
+     </p>
 </div>
