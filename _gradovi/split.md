@@ -6,7 +6,7 @@ permalink: /auto-osiguranje/split/
 description: "Pronađite najpovoljnije auto osiguranje u Splitu u 2026. godini. Uz Osiguraj.hr usporedite vodeće osiguravatelje i uštedite do 30% digitalno."
 ---
 
-Vožnja splitskim ulicama, od vreve oko trajektne luke do svakodnevnih gužvi na izlazima prema Solinu i Kaštelima, zahtijeva maksimalnu koncentraciju, ali i kvalitetnu zaštitu. Za vlasnike vozila u **Splitu**, pronalazak optimalne police kroz digitalni **izračun osiguranja za auto** u 2026. godini postao je najbrži način za sigurnu i jeftiniju vožnju, baš kao što je to trend i u [Zagrebu](/auto-osiguranje/zagreb/).
+Vožnja splitskim ulicama, od vreve oko trajektne luke do svakodnevnih gužvi na izlazima prema Solinu i Kaštelima, zahtijeva maksimalnu koncentraciju, ali i kvalitetnu zaštitu. Za vlasnike vozila u **Splitu**, pronalazak optimalne police kroz digitalni **izračun osiguranja za auto** u 2026. godini postao je najbrži način za sigurnu i jeftiniju vožnju, baš kao što je to trend i u [Zagrebu](https://www.osiguraj.hr/auto-osiguranje/zagreb/).
 
 ### Vaš digitalni partner pod Marjanom
 
@@ -18,7 +18,7 @@ Split je poznat po specifičnim prometnim izazovima i velikom broju vozila po gl
 
 * **Maksimalna ušteda:** Uspoređujemo ponude više od 10 osiguravatelja kako biste uštedjeli do 30%.
 * **Sveobuhvatna zaštita:** Birajte između obveznog auto osiguranja, kasko polica ili dodatnih opcija poput pomoći na cesti.
-* **Lokalna podrška:** Naš tim nudi istu razinu preciznosti koju pružamo i vozačima u [Rijeci](/auto-osiguranje/rijeka/) i ostatku Hrvatske.
+* **Lokalna podrška:** Naš tim nudi istu razinu preciznosti koju pružamo i vozačima u [Rijeci](https://www.osiguraj.hr/auto-osiguranje/rijeka/) i ostatku Hrvatske.
 
 ### Pametan izračun za pametne vozače
 
