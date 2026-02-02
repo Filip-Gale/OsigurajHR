@@ -1,51 +1,59 @@
-h1{
+h1 {
     color: #ffbc27;
     font-size: 38px;
     text-align: center;
 }
 
-h2{
+h2 {
     color: #ffbc27;
     margin-top: 50px;
     margin-bottom: 20px;
     font-size: 30px;
 }
 
-p, ul, ol{
+p, ul, ol {
     font-size: 20px;
     margin-bottom: 15px;
     line-height: 1.5;
 }
 
-ul, ol{
+ul, ol {
     margin-left: 30px;
 }
 
-a{
+/* Optimizirani linkovi za bolji klik (SEO) */
+a {
+    color: #ffbc27 !important;
+    text-decoration: underline !important; /* Obavezno podcrtano za uočljivost */
+    font-weight: bold;
     user-select: all;
     pointer-events: all;
-    color: #ffbc27;
 }
 
-img{
+/* Efekt kada se mišem prođe preko linka */
+a:hover {
+    color: #ffffff !important;
+    text-decoration: none !important;
+}
+
+img {
     width: 100%;
     margin: 30px 0;
 }
 
-.contact-link, .contact-part{
+.contact-link, .contact-part {
     margin: 0;
     padding: 0;
     max-height: 40px;
 }
 
-blockquote{
+blockquote {
     border-left: 5px #ffbc27 solid;
     padding: 0 10px;
 }
 
-
 @media (min-width: 768px) {
-    h1{
+    h1 {
         font-size: 48px;
     }
 }
