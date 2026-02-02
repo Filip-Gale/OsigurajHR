@@ -21,16 +21,21 @@ ul, ol {
     margin-left: 30px;
 }
 
-/* Optimizirani linkovi za bolji klik (SEO) */
+/* Glavni stil za sve linkove - bez prisilnog podcrtavanja */
 a {
-    color: #ffbc27 !important;
-    text-decoration: underline !important; /* Obavezno podcrtano za uočljivost */
+    color: #ffbc27;
+    text-decoration: none;
     font-weight: bold;
     user-select: all;
     pointer-events: all;
 }
 
-/* Efekt kada se mišem prođe preko linka */
+/* Podcrtaj SAMO linkove u tekstu (p, li i blockquote) za bolji SEO */
+p a, li a, blockquote a {
+    text-decoration: underline !important;
+}
+
+/* Efekt kada se mišem prođe preko bilo kojeg linka ili gumba */
 a:hover {
     color: #ffffff !important;
     text-decoration: none !important;
@@ -57,3 +62,4 @@ blockquote {
         font-size: 48px;
     }
 }
+
