@@ -6,8 +6,6 @@ permalink: /auto-osiguranje/rijeka/
 description: "Tražite najpovoljnije auto osiguranje u Rijeci? Osiguraj.hr vam nudi neovisnu usporedbu polica za RI područje i uštedu do 30% u par klikova."
 ---
 
-# Auto osiguranje Rijeka
-
 U gradu koji teče, vrijeme je najdragocjeniji resurs. Za vozače u **Rijeci**, pronalazak optimalne police kroz digitalni **izračun osiguranja za auto** postao je standard koji štedi i novac i živce, baš kao što to rade vozači u [Zagrebu]({{ '/auto-osiguranje/zagreb/' | relative_url }}) ili [Splitu]({{ '/auto-osiguranje/split/' | relative_url }}).
 
 ### Vaš digitalni partner na Kvarneru
