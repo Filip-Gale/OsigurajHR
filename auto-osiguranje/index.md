@@ -3,17 +3,61 @@ layout: post
 title: Auto osiguranje po gradovima
 ---
 
-# Auto osiguranje u vašem gradu
+<div class="margin-top-100"></div>
 
-Odaberite grad za izračun police prema registracijskom području:
+<h1 class="text-center" style="margin-bottom: 50px;">Auto osiguranje po gradovima</h1>
 
-<div class="margin-top-100"> </div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; padding: 20px 0;">
 
-* **[Auto osiguranje Zagreb]({{ '/auto-osiguranje/zagreb/' | relative_url }})**
-* **[Auto osiguranje Split]({{ '/auto-osiguranje/split/' | relative_url }})**
+    <a href="{{ '/auto-osiguranje/zagreb/' | relative_url }}" style="text-decoration: none;">
+        <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 25px; border-radius: 20px; text-align: center; transition: 0.3s;">
+            <h2 style="color: #fff; margin: 0; font-size: 1.5rem;">Zagreb</h2>
+            <p style="color: #ccc; margin-top: 10px; font-size: 0.85rem;">Osiguranje za ZG područje</p>
+        </div>
+    </a>
 
-<div class="margin-top-100"> </div>
+    <a href="{{ '/auto-osiguranje/split/' | relative_url }}" style="text-decoration: none;">
+        <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 25px; border-radius: 20px; text-align: center; transition: 0.3s;">
+            <h2 style="color: #fff; margin: 0; font-size: 1.5rem;">Split</h2>
+            <p style="color: #ccc; margin-top: 10px; font-size: 0.85rem;">Osiguranje za ST područje</p>
+        </div>
+    </a>
 
-### Zašto provjeriti cijenu po gradu?
+    <a href="{{ '/auto-osiguranje/rijeka/' | relative_url }}" style="text-decoration: none;">
+        <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 25px; border-radius: 20px; text-align: center; transition: 0.3s;">
+            <h2 style="color: #fff; margin: 0; font-size: 1.5rem;">Rijeka</h2>
+            <p style="color: #ccc; margin-top: 10px; font-size: 0.85rem;">Osiguranje za RI područje</p>
+        </div>
+    </a>
 
-Premijske skupine ovise o vašoj registracijskoj oznaci (ZG, ST, RI...). Online izračun omogućuje vam da odmah vidite točan iznos za vašu lokaciju.
+    <a href="{{ '/auto-osiguranje/osijek/' | relative_url }}" style="text-decoration: none;">
+        <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 25px; border-radius: 20px; text-align: center; transition: 0.3s;">
+            <h2 style="color: #fff; margin: 0; font-size: 1.5rem;">Osijek</h2>
+            <p style="color: #ccc; margin-top: 10px; font-size: 0.85rem;">Osiguranje za OS područje</p>
+        </div>
+    </a>
+
+    <a href="{{ '/auto-osiguranje/zadar/' | relative_url }}" style="text-decoration: none;">
+        <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 25px; border-radius: 20px; text-align: center; transition: 0.3s;">
+            <h2 style="color: #fff; margin: 0; font-size: 1.5rem;">Zadar</h2>
+            <p style="color: #ccc; margin-top: 10px; font-size: 0.85rem;">Osiguranje za ZD područje</p>
+        </div>
+    </a>
+
+    <a href="{{ '/auto-osiguranje/slavonski-brod/' | relative_url }}" style="text-decoration: none;">
+        <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 25px; border-radius: 20px; text-align: center; transition: 0.3s;">
+            <h2 style="color: #fff; margin: 0; font-size: 1.5rem;">Slavonski Brod</h2>
+            <p style="color: #ccc; margin-top: 10px; font-size: 0.85rem;">Osiguranje za SB područje</p>
+        </div>
+    </a>
+
+    <a href="{{ '/auto-osiguranje/velika-gorica/' | relative_url }}" style="text-decoration: none;">
+        <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 25px; border-radius: 20px; text-align: center; transition: 0.3s;">
+            <h2 style="color: #fff; margin: 0; font-size: 1.5rem;">Velika Gorica</h2>
+            <p style="color: #ccc; margin-top: 10px; font-size: 0.85rem;">Osiguranje za VK područje</p>
+        </div>
+    </a>
+
+</div>
+
+<div class="margin-top-100"></div>
