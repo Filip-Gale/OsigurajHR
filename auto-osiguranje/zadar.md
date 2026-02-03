@@ -6,8 +6,6 @@ permalink: /auto-osiguranje/zadar/
 description: "Tražite najpovoljnije auto osiguranje u Zadru? Osiguraj.hr vam nudi neovisnu usporedbu polica za ZD područje i uštedu do 30% uz par klikova."
 ---
 
-# Auto osiguranje Zadar
-
 Zadar, grad s najljepšim zalaskom sunca, zaslužuje i najpovoljniju zaštitu za vaše vozilo. Za vozače u **Zadru**, pronalazak optimalne police kroz digitalni **izračun osiguranja za auto** postao je najbrži put do uštede, baš kao što to rade vozači u [Splitu]({{ '/auto-osiguranje/split/' | relative_url }}) ili [Rijeci]({{ '/auto-osiguranje/rijeka/' | relative_url }}).
 
 ### Vaša digitalna podrška u Donatovu gradu
