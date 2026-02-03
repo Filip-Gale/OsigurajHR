@@ -1,4 +1,4 @@
-footer{
+footer {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -9,7 +9,7 @@ footer{
     padding: 20px 0;
 }
 
-#footer-info{
+#footer-info {
     display: flex;
     flex-direction: column;
     gap: 40px;
@@ -19,47 +19,64 @@ footer{
     justify-content: center;
 }
 
-footer span, footer p{
+footer span, footer p {
     color: #8875f3;
 }
 
-footer .card-title{
+footer .card-title {
     font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
 }
 
-#socials{
+#socials {
     display: flex;
     gap: 10px;
 }
 
-#socials img{
+#socials img {
     width: 30px;
     height: 30px;
-    border-radius: 15px;
+    border-radius: 50%; /* Osigurava krug za društvene mreže */
+    background-color: transparent;
 }
 
-.footer-segment{
+.footer-segment {
     max-width: 300px;
     display: flex;
-    justify-content: left;
+    justify-content: flex-start;
     flex-direction: column;
     text-align: left;
     padding-left: 10px;
     gap: 15px;
 }
 
-.contact-part{
+.contact-part {
     display: flex;
-    gap: 10px;
+    gap: 12px;
     align-items: center;
+    text-decoration: none; /* Za linkove unutar ovog diva */
 }
 
-.contact-part img{
-    width: 30px;
-    height: 30px;
+/* KLJUČNI DIO ZA BRISANJE KOCKI */
+.contact-part img {
+    width: 24px;
+    height: 24px;
+    background: transparent !important; /* Briše pozadinu */
+    border: none !important;           /* Briše okvir */
+    box-shadow: none !important;      /* Briše sjenu koja može izgledati kao okvir */
+    padding: 0 !important;            /* Uklanja unutarnji razmak */
+    object-fit: contain;              /* Čuva proporcije ikone */
 }
 
-#rights{
+.contact-part p, .contact-part a {
+    margin: 0;
+    color: #8875f3;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+#rights {
     display: flex;
     flex-direction: column;
     gap: 8px;
@@ -71,7 +88,7 @@ footer .card-title{
 }
 
 @media (min-width: 768px) {
-    #footer-info{
+    #footer-info {
         flex-direction: row;
         flex-wrap: wrap;
     }
