@@ -51,10 +51,10 @@ title: Auto osiguranje po gradovima
         </div>
     </a>
 
-    <a href="{{ '/auto-osiguranje/velika-gorica/' | relative_url }}" style="text-decoration: none;">
+    <a href="{{ '/auto-osiguranje/karlovac/' | relative_url }}" style="text-decoration: none;">
         <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 25px; border-radius: 20px; text-align: center; transition: 0.3s;">
-            <h2 style="color: #fff; margin: 0; font-size: 1.5rem;">Velika Gorica</h2>
-            <p style="color: #ccc; margin-top: 10px; font-size: 0.85rem;">Osiguranje za VK područje</p>
+            <h2 style="color: #fff; margin: 0; font-size: 1.5rem;">Karlovac</h2>
+            <p style="color: #ccc; margin-top: 10px; font-size: 0.85rem;">Osiguranje za KA područje</p>
         </div>
     </a>
 
