@@ -233,6 +233,14 @@ h2{
     gap: 0px;
 }
 
+.profile-info > img{
+    border-radius: 50%;
+    width: 70px;
+    height: 70px;
+    border: 2px solid #573cf9;
+    margin-top: -10px;    
+}
+
 .user-info{
     display: flex;
     flex-direction: column;
