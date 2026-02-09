@@ -1,23 +1,30 @@
 ---
 layout: post
-title: "Auto osiguranje za VW Golf 7 | Uštedite do 30% online"
-description: "Izračunajte najpovoljnije auto osiguranje za Volkswagen Golf 7. Usporedite cijene svih osiguranja u Hrvatskoj na jednom mjestu."
+title: "Auto osiguranje za VW Golf 7 | Uštedite do 30% uz online usporedbu"
+description: "Tražite najpovoljnije auto osiguranje za Volkswagen Golf 7? Osiguraj.hr vam nudi neovisnu usporedbu polica i uštedu do 30% uz par klikova."
 marka: "Volkswagen"
 model: "Golf 7"
 prosjecna_usteda: "30%"
 permalink: /auto-osiguranje/vw-golf-7/
 ---
 
-## Najpovoljnije osiguranje za {{ page.marka }} {{ page.model }}
+<section class="hero-section">
+  <div class="badge">AKTUALNO ZA 2026. GODINU</div>
+  
+  <h1>Auto osiguranje {{ page.model }} | Uštedite do {{ page.prosjecna_usteda }} uz online usporedbu</h1>
+  
+  <p class="hero-subtitle">
+    Tražite najpovoljnije auto osiguranje za {{ page.marka }} {{ page.model }}? 
+    Osiguraj.hr vam nudi neovisnu usporedbu polica i uštedu do {{ page.prosjecna_usteda }} uz par klikova.
+  </p>
 
-Tražite optimalnu policu za vaš **{{ page.marka }} {{ page.model }}**? Naš digitalni izračun omogućuje vam da u par klikova pronađete najjeftinije opcije na tržištu za 2026. godinu.
+  <a href="#kalkulator" class="cta-button">SAZNAJ CIJENU ODMAH →</a>
+</section>
 
-### Zašto usporediti cijene za {{ page.model }}?
-Vlasnici modela {{ page.marka }} često preplaćuju svoje police jer ne uspoređuju ponude različitih kuća. Uz našu platformu:
-* **Uštedite do {{ page.prosjecna_usteda }}** na godišnjoj premiji.
-* Dobijete izračun **odmah** bez nepotrebnog čekanja.
-* Proces je potpuno **online** i neovisan.
-
-U današnjem ubrzanom svijetu, trošenje vremena na obilazak poslovnica postalo je relikt prošlosti. Pronalazak optimalne police kroz digitalni izračun osiguranja za auto nije samo pitanje uštede, već i pametnog upravljanja vremenom.
-
-[ SAZNAJ CIJENU ODMAH → ](#)
+<section class="content-section">
+  <p>
+    U današnjem ubrzanom svijetu, trošenje dragocjenog vremena na obilazak poslovnica osiguravajućih kuća postalo je relikt prošlosti. 
+    Za vlasnike modela <strong>{{ page.model }}</strong>, pronalazak optimalne police kroz digitalni 
+    <span class="highlight">izračun osiguranja za auto</span> nije samo pitanje uštede, već i pametnog upravljanja vremenom.
+  </p>
+</section>
