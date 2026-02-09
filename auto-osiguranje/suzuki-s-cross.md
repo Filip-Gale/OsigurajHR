@@ -46,3 +46,4 @@ S-Cross je izuzetno izdržljiv automobil, ali su troškovi zamjene modernih LED 
         <p>Ukoliko je kuka atestirana i upisana u prometnu dozvolu, AO polica pokriva štetu koju priključno vozilo nanese trećim osobama, bez dodatne nadoplate kod većine osiguravatelja.</p>
     </div>
 </div>
+     
