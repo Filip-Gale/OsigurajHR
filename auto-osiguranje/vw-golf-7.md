@@ -8,26 +8,33 @@ model: "Golf 7"
 permalink: /auto-osiguranje/vw-golf-7/
 ---
 
-U današnjem ubrzanom svijetu, trošenje dragocjenog vremena na obilazak poslovnica osiguravajućih kuća postalo je relikt prošlosti. Za vlasnike modela **{{ page.model }}**, pronalazak optimalne police kroz digitalni **izračun osiguranja za auto** nije samo pitanje uštede, već i pametnog upravljanja vremenom.
+<p>U današnjem ubrzanom svijetu, trošenje dragocjenog vremena na obilazak poslovnica osiguravajućih kuća postalo je relikt prošlosti. Za vlasnike modela <strong>{{ page.model }}</strong>, pronalazak optimalne police kroz digitalni <strong>izračun osiguranja za auto</strong> nije samo pitanje uštede, već i pametnog upravljanja vremenom.</p>
 
 ## Zašto je online izračun najbolji za {{ page.marka }} {{ page.model }}?
 
-Kada tražite **najjeftinije auto osiguranje**, ključno je usporediti parametre koji su specifični za vaš automobil. Za model {{ page.model }}, cijena premije najviše ovisi o snazi motora (kW) i vašem prebivalištu.
+Kada tražite <strong>najjeftinije auto osiguranje</strong>, ključno je usporediti parametre koji su specifični za vaš automobil. Za model {{ page.model }}, cijena premije najviše ovisi o snazi motora (kW) i vašem prebivalištu.
 
-* **Ušteda do 30%:** Online usporedba omogućuje vam uvid u ponude koje često nisu dostupne u fizičkim poslovnicama.
-* **Sve kuće na jednom mjestu:** Ne gubite vrijeme na pozive; dobijte ponude od svih vodećih osiguravatelja odmah.
-* **Brza izrada police:** Polica stiže na vaš e-mail čim izvršite uplatu, spremna za tehnički pregled.
+<ul>
+    <li><strong>Ušteda do 30%:</strong> Online usporedba omogućuje vam uvid u ponude koje često nisu dostupne u fizičkim poslovnicama.</li>
+    <li><strong>Sve kuće na jednom mjestu:</strong> Ne gubite vrijeme na pozive; dobijte ponude od svih vodećih osiguravatelja odmah.</li>
+    <li><strong>Brza izrada police:</strong> Polica stiže na vaš e-mail čim izvršite uplatu, spremna za tehnički pregled.</li>
+</ul>
 
-## Tehnički faktori i cijena police
+<div style="text-align: center; margin: 40px 0;">
+    <a href="/izracunaj-cijenu/" class="btn-saznaj">SAZNAJ CIJENU ZA {{ page.model }} →</a>
+</div>
 
-Vlasnici **VW Golf 7** modela u Hrvatskoj najčešće biraju motore poput **1.6 TDI (85 kW)** ili **2.0 TDI (110 kW)**. Razlika u cijeni osiguranja između ovih kategorija može biti značajna, stoga je [usporedba cijena osiguranja](/izracunaj-cijenu/) neophodan korak prije registracije.
+## Tehnički faktori i cijena police za {{ page.model }}
 
-### Česta pitanja za osiguranje {{ page.model }}
+Vlasnici **VW Golf 7** modela u Hrvatskoj najčešće biraju motore poput **1.6 TDI (85 kW)** ili **2.0 TDI (110 kW)**. Budući da snaga motora direktno utječe na cijenu, <a href="/izracunaj-cijenu/">usporedba cijena osiguranja</a> je neophodan korak prije registracije.
 
-#### Mogu li prenijeti bonus od 50% na novi Golf 7?
-Naravno! Vaš stečeni bonus prati vas kao vozača. Prilikom izračuna online, jednostavno unesite podatke s prošle police i sustav će automatski obračunati vaš maksimalni popust.
-
-#### Što ako mi polica istječe za vikend?
-Naš sustav radi **24/7**. Možete ugovoriti policu u subotu navečer i ona će biti važeća odmah, što je idealno ako planirate odlazak na tehnički pregled u ponedjeljak ujutro.
-
----
+<section class="faq-section">
+    <div class="faq-item">
+        <h4>Mogu li prenijeti bonus od 50% na novi Golf 7?</h4>
+        <p>Naravno! Vaš stečeni bonus prati vas kao vozača. Prilikom izračuna online, jednostavno unesite podatke s prošle police i sustav će automatski obračunati vaš popust.</p>
+    </div>
+    <div class="faq-item">
+        <h4>Koliko traje izrada police online?</h4>
+        <p>Naš sustav omogućuje usporedbu i ugovaranje u manje od 2 minute. Polica je važeća odmah po uplati.</p>
+    </div>
+</section>
