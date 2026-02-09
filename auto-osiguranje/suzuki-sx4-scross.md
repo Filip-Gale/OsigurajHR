@@ -2,7 +2,7 @@
 layout: grad
 grad_ime: ""
 title: "Osiguranje za Suzuki S-Cross | Izračun cijene prema kW (2026)"
-permalink: /auto-osiguranje/suzuki-s-cross/
+permalink: /auto-osiguranje/suzuki-sx4-scross/
 description: "Saznajte točnu cijenu auto osiguranja za Suzuki S-Cross. Usporedite ponude za BoosterJet Hybrid i AllGrip modele uz uštede do 30% online."
 ---
 
@@ -46,4 +46,3 @@ S-Cross je izuzetno izdržljiv automobil, ali su troškovi zamjene modernih LED 
         <p>Ukoliko je kuka atestirana i upisana u prometnu dozvolu, AO polica pokriva štetu koju priključno vozilo nanese trećim osobama, bez dodatne nadoplate kod većine osiguravatelja.</p>
     </div>
 </div>
-     
