@@ -15,6 +15,48 @@
     <link rel="stylesheet" href="{{ '/css/post.css' | relative_url }}">
     <link rel="icon" type="image/jpeg" href="{{ '/img/favicon.jpg' | relative_url }}">
 
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "Tehnički pregled {{ page.grad }} 2026",
+      "description": "{{ page.opis }}",
+      "areaServed": {
+        "@type": "City",
+        "name": "{{ page.grad }}"
+      },
+      "provider": {
+        "@type": "Organization",
+        "name": "Osiguraj.hr",
+        "url": "https://www.osiguraj.hr"
+      }
+    }
+    </script>
+
+    {% if page.grad == "Zagreb" %}
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [{
+        "@type": "Question",
+        "name": "Koliko košta tehnički pregled u Zagrebu?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Cijena tehničkog pregleda u Zagrebu ovisi o snazi motora i vrsti vozila. Naš kalkulator nudi preciznu procjenu svih naknada za 2026. godinu."
+        }
+      }, {
+        "@type": "Question",
+        "name": "Gdje je najbolje obaviti tehnički u Zagrebu?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Najpoznatije stanice su u Sigetu, Dubravi i Remetincu. Preporučuje se zakazivanje termina online zbog velikih gužvi."
+        }
+      }]
+    }
+    </script>
+    {% endif %}
+
     <style>
         .post-content h2, .post-content h3 { color: #ffbc27 !important; margin-top: 35px; font-weight: 700; }
         .post-content strong { color: #ffbc27 !important; }
@@ -47,10 +89,8 @@
             margin-bottom: 25px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.2);
             text-transform: uppercase;
-            letter-spacing: 1px;
         }
 
-        /* PREMIUM BADGES - Redizajnirano da ne izgleda cheap */
         .trust-badge-container {
             display: flex;
             justify-content: center;
@@ -71,7 +111,6 @@
             box-shadow: 0 6px 0 rgba(0,0,0,0.15);
             border: 2px solid #ffbc27;
         }
-        .trust-badge i { color: #2ecc71; }
 
         .calc-card {
             background: rgba(0, 0, 0, 0.25);
@@ -91,16 +130,9 @@
             background: white;
             color: #333;
             box-sizing: border-box;
-            transition: border 0.3s;
         }
         .calc-input:focus { border: 2px solid #ffbc27; outline: none; }
-        .calc-label {
-            font-weight: bold;
-            color: #ffbc27;
-            display: block;
-            margin-top: 20px;
-            font-size: 1.1rem;
-        }
+        .calc-label { font-weight: bold; color: #ffbc27; display: block; margin-top: 20px; font-size: 1.1rem; }
 
         .smart-offer {
             margin-top: 25px;
@@ -113,6 +145,14 @@
             animation: slideIn 0.5s ease;
         }
         @keyframes slideIn { from { opacity: 0; transform: translateX(-20px); } to { opacity: 1; transform: translateX(0); } }
+
+        .city-grid a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            padding: 5px;
+            transition: color 0.2s;
+        }
+        .city-grid a:hover { color: #ffbc27; }
     </style>
 </head>
 <body>
@@ -127,7 +167,7 @@
         
         <header style="text-align: center; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 40px; margin-bottom: 40px;">
             <div class="year-tag">AKTUALNO ZA 2026.</div>
-            <h1 style="font-size: 3.2rem; color: #ffbc27; margin-bottom: 25px; line-height: 1.1; letter-spacing: -1px;">{{ page.title }}</h1>
+            <h1 style="font-size: 3.2rem; color: #ffbc27; margin-bottom: 25px; line-height: 1.1;">{{ page.title }}</h1>
             
             <div class="trust-badge-container">
                 <div class="trust-badge"><span>✅</span> USPOREDBA</div>
@@ -136,7 +176,7 @@
             </div>
             
             <p style="font-size: 1.35rem; opacity: 0.95; max-width: 850px; margin: 0 auto; line-height: 1.6;">
-                Saznajte točne troškove tehničkog pregleda u gradu <strong>{{ page.grad }}</strong> i osigurajte svoje vozilo po najpovoljnijim uvjetima.
+                {{ page.description }}
             </p>
         </header>
 
@@ -159,12 +199,16 @@
 
             <div id="prikaz-cijene" style="display:none; text-align: center; margin-top: 40px; padding-top: 30px; border-top: 2px dashed rgba(255,188,39,0.4);">
                 <span style="font-size: 1.5rem; color: white;">Procjena za {{ page.grad }}:</span><br>
-                <span id="cifra" style="font-size: 4.5rem; font-weight: 900; color: #ffbc27; line-height: 1; text-shadow: 2px 4px 10px rgba(0,0,0,0.3);">0.00 €</span>
+                <span id="cifra" style="font-size: 4.5rem; font-weight: 900; color: #ffbc27; line-height: 1;">0.00 €</span>
                 
+                <p style="font-size: 0.85rem; opacity: 0.7; margin: 15px auto; max-width: 500px;">
+                    <i>Napomena: Izračun je informativnog karaktera. Stvarni trošak može varirati ovisno o stanju vozila i specifičnim naknadama stanice.</i>
+                </p>
+
                 <div class="smart-offer">
                     <p style="margin: 0; font-weight: 900; font-size: 1.3rem; color: #573cf9; text-transform: uppercase;">🔥 Želiš smanjiti ovaj trošak?</p>
-                    <p style="margin: 10px 0 20px 0; font-size: 1.05rem; color: #333; line-height: 1.5;">
-                        Ne plaćaj više nego što moraš! Usporedi ponude i <strong>uštedi do 50%</strong> na polici osiguranja u gradu <strong>{{ page.grad }}</strong>.
+                    <p style="margin: 10px 0 20px 0; font-size: 1.05rem; color: #333;">
+                        Usporedi ponude i <strong>uštedi do 50%</strong> na polici osiguranja u gradu <strong>{{ page.grad }}</strong>.
                     </p>
                     <a href="/izracunaj-cijenu/" style="background: #2ecc71; color: white; padding: 12px 25px; border-radius: 8px; font-weight: 800; text-decoration: none; display: inline-block; box-shadow: 0 4px 0 #27ae60;">PROVJERI CIJENU OSIGURANJA →</a>
                 </div>
@@ -175,12 +219,21 @@
             {{ content }}
         </article>
 
-        <div style="margin-top: 80px; padding: 65px 35px; background: rgba(0,0,0,0.35); border-radius: 40px; text-align: center; border: 4px solid #ffbc27; box-shadow: 0 20px 40px rgba(0,0,0,0.4);">
-            <h2 style="color: #ffbc27 !important; margin-top: 0; font-size: 2.8rem; letter-spacing: -1px;">Trebaš i povoljno auto osiguranje?</h2>
-            <p style="margin-bottom: 45px; font-size: 1.4rem; opacity: 0.9; max-width: 800px; margin-left: auto; margin-right: auto;">
-                Usporedi ponude vodećih osiguravajućih kuća i <strong>uštedi do 50%</strong> na polici obveznog i kasko osiguranja u gradu <strong>{{ page.grad }}</strong>!
+        <div style="margin-top: 80px; padding: 65px 35px; background: rgba(0,0,0,0.35); border-radius: 40px; text-align: center; border: 4px solid #ffbc27;">
+            <h2 style="color: #ffbc27 !important; margin-top: 0; font-size: 2.8rem;">Trebaš i povoljno auto osiguranje?</h2>
+            <p style="margin-bottom: 45px; font-size: 1.4rem; opacity: 0.9;">
+                Usporedi vodeće kuće i <strong>uštedi do 50%</strong> na polici u gradu <strong>{{ page.grad }}</strong>!
             </p>
             <a href="/izracunaj-cijenu/" class="btn-saznaj">SAZNAJ CIJENU ODMAH →</a>
+        </div>
+
+        <div style="margin-top: 60px; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.1);">
+            <p style="font-weight: bold; color: #ffbc27; margin-bottom: 20px; text-transform: uppercase; font-size: 0.9rem;">Tehnički pregled u ostalim gradovima:</p>
+            <div class="city-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 10px; font-size: 0.85rem;">
+                {% for post in site.tehnicki_pregled %}
+                    <a href="{{ post.url }}">📍 {{ post.grad }}</a>
+                {% endfor %}
+            </div>
         </div>
     </main>
 
