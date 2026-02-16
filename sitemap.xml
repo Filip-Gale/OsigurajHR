@@ -3,11 +3,11 @@ layout: null
 ---
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://www.osiguraj.hr/</loc>
-    <lastmod>{{ site.time | date_to_xmlschema }}</lastmod>
-    <priority>1.0</priority>
-  </url>
+  <url><loc>https://www.osiguraj.hr/</loc><priority>1.0</priority></url>
+  <url><loc>https://www.osiguraj.hr/kasko/</loc><priority>0.9</priority></url>
+  <url><loc>https://www.osiguraj.hr/kontakt/</loc><priority>0.5</priority></url>
+  <url><loc>https://www.osiguraj.hr/izracunaj-cijenu/</loc><priority>0.9</priority></url>
+  <url><loc>https://www.osiguraj.hr/digitalno-auto-osiguranje/</loc><priority>0.8</priority></url>
 
   {% for grad in site.tehnicki_pregled %}
   <url>
@@ -24,13 +24,6 @@ layout: null
       <priority>0.8</priority>
     </url>
     {% endif %}
-  {% endfor %}
-
-  {% for g in site.gradovi %}
-  <url>
-    <loc>https://www.osiguraj.hr{{ g.url }}</loc>
-    <priority>0.5</priority>
-  </url>
   {% endfor %}
 
   {% for post in site.posts %}
