@@ -7,7 +7,7 @@ image: /img/tehnicki-pregled-2026.jpg
 
 Planirate tehnički pregled u 2026. godini? Bez obzira vozite li novi hibrid ili provjereni klasik, priprema je ključ uštede vremena i novca. U ovom vodiču donosimo sve aktualne informacije o cijenama, postupku i najčešćim razlozima pada na pregledu.
 
-![Vodič kroz tehnički pregled 2026](/img/tehnicki-pregled-2026.jpg)
+![Vodič kroz tehnički pregled 2026](../img/tehnicki-pregled-2026.jpg)
 
 ## Koliko košta tehnički pregled u 2026.?
 
@@ -33,7 +33,7 @@ Statistike pokazuju da 15% vozila padne na tehničkom zbog banalnih grešaka. Pr
 4. **Obvezna oprema:** Imate li ispravan vatrogasni aparat (za komercijalna vozila), trokut, prvu pomoć i rezervne žarulje?
 5. **Dokumenti:** Pripremite prometnu dozvolu i dokaz o uplaćenoj polici obveznog osiguranja.
 
-![Checklista za tehnički pregled vozila](/img/checklista-tehnicki-pregled.jpg)
+![Checklista za tehnički pregled vozila](../img/checklista-tehnicki-pregled.jpg)
 
 ---
 
