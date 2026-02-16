@@ -3,11 +3,11 @@ repository: Filip-Gale/osiguraj.hr
 permalink: /blog/:title/
 
 collections:
-  gradovi: # Ovo ostaje za tvoj stari projekt
+  gradovi:
     output: true
-  tehnicki_pregled: # OVO JE NOVO
+  tehnicki_pregled:
     output: true
-    permalink: /tehnicki-pregled/:path/ 
+    permalink: /tehnicki-pregled/:path/
 
 defaults:
   - scope:
@@ -17,11 +17,11 @@ defaults:
       layout: "post"
   - scope:
       path: ""
-      type: "gradovi" # Stari projekt
+      type: "gradovi"
     values:
       layout: "post"
   - scope:
       path: ""
-      type: "tehnicki_pregled" # NOVI PROJEKT
+      type: "tehnicki_pregled"
     values:
-      layout: "tehnicki-layout" # Poseban layout za ovaj projekt
+      layout: "tehnicki-layout"
