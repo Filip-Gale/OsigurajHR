@@ -1,0 +1,45 @@
+---
+layout: default
+---
+<section class="tehnicki-container">
+  <h1>{{ page.title }}</h1>
+  
+  <div class="kalkulator-box" style="background: #f9f9f9; padding: 25px; border: 2px solid #0056b3; border-radius: 12px;">
+    <h3>📊 Brzi kalkulator troškova</h3>
+    <p>Odaberi kategoriju i snagu za procjenu cijene u gradu <strong>{{ page.grad }}</strong>:</p>
+    
+    <select id="kategorija" style="width: 100%; padding: 10px; margin-bottom: 10px;">
+      <option value="35.50">Osobni automobil (M1)</option>
+      <option value="45.20">Teretno vozilo (N1)</option>
+      <option value="18.10">Motocikl (L3)</option>
+    </select>
+
+    <input type="number" id="kw" placeholder="Unesi kW (npr. 80)" style="width: 100%; padding: 10px; margin-bottom: 10px;">
+    
+    <button onclick="izracunaj()" style="width: 100%; background: #0056b3; color: white; padding: 15px; border: none; font-weight: bold; cursor: pointer;">IZRAČUNAJ TROŠAK</button>
+    
+    <div id="prikaz-cijene" style="margin-top: 20px; font-size: 1.2rem; color: #333;"></div>
+  </div>
+
+  <div class="content" style="margin-top: 30px;">
+    {{ content }}
+  </div>
+</section>
+
+<script>
+function izracunaj() {
+    const osnovica = parseFloat(document.getElementById('kategorija').value);
+    const kw = parseFloat(document.getElementById('kw').value) || 0;
+    
+    // Službene naknade (okvirno za 2026):
+    const ekoTest = 12.50; 
+    const cestarinaBase = 30.00; // Ovisi o kW, ovo je prosjek
+    const naknadaOkolis = 5.50;
+    
+    const ukupno = osnovica + ekoTest + (kw * 0.15) + cestarinaBase + naknadaOkolis;
+    
+    document.getElementById('prikaz-cijene').innerHTML = 
+        "<strong>Procjena za {{ page.grad }}:</strong> <span style='color: #d32f2f;'>" + ukupno.toFixed(2) + " €</span><br>" +
+        "<small>*Uključuje tehnički, eko-test, cestarinu i naknade.</small>";
+}
+</script>
