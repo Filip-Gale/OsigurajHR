@@ -7,7 +7,7 @@ image: /img/tehnicki-pregled-2026.jpg
 
 Planirate tehnički pregled u 2026. godini? Bez obzira vozite li novi hibrid ili provjereni klasik, priprema je ključ uštede vremena i novca. U ovom vodiču donosimo sve aktualne informacije o cijenama, postupku i najčešćim razlozima pada na pregledu.
 
-![Vodič kroz tehnički pregled 2026](../img/tehnicki-pregled-2026.jpg)
+![Vodič kroz tehnički pregled 2026](https://www.osiguraj.hr/img/tehnicki-pregled-2026.jpg)
 
 ## Koliko košta tehnički pregled u 2026.?
 
@@ -33,21 +33,28 @@ Statistike pokazuju da 15% vozila padne na tehničkom zbog banalnih grešaka. Pr
 4. **Obvezna oprema:** Imate li ispravan vatrogasni aparat (za komercijalna vozila), trokut, prvu pomoć i rezervne žarulje?
 5. **Dokumenti:** Pripremite prometnu dozvolu i dokaz o uplaćenoj polici obveznog osiguranja.
 
-![Checklista za tehnički pregled vozila](../img/checklista-tehnicki-pregled.jpg)
+![Checklista za tehnički pregled vozila](https://www.osiguraj.hr/img/checklista-tehnicki-pregled.jpg)
 
 ---
 
 ## Tehnički pregled po gradovima (Hrvatska 2026)
 
-Lokalne stanice za tehnički pregled (STP) mogu imati različita radna vremena i razinu gužve. Odaberite svoj grad za detaljne informacije, lokacije i savjete specifične za vašu regiju:
+Lokalne stanice za tehnički pregled (STP) mogu imati različita radna vremena. Odaberite svoj grad za detaljne informacije:
 
-| Regija | Dostupni Gradovi |
-| :--- | :--- |
-| **Grad Zagreb i okolica** | [Zagreb](/tehnicki-pregled/zagreb/) • [Sesvete](/tehnicki-pregled/sesvete/) • [Samobor](/tehnicki-pregled/samobor/) • [Velika Gorica](/tehnicki-pregled/velika-gorica/) • [Zaprešić](/tehnicki-pregled/zapresic/) |
-| **Središnja Hrvatska** | [Karlovac](/tehnicki-pregled/karlovac/) • [Sisak](/tehnicki-pregled/sisak/) • [Varaždin](/tehnicki-pregled/varazdin/) • [Krapina](/tehnicki-pregled/krapina/) • [Koprivnica](/tehnicki-pregled/koprivnica/) • [Bjelovar](/tehnicki-pregled/bjelovar/) |
-| **Slavonija i Baranja** | [Osijek](/tehnicki-pregled/osijek/) • [Slavonski Brod](/tehnicki-pregled/slavonski-brod/) • [Vinkovci](/tehnicki-pregled/vinkovci/) • [Vukovar](/tehnicki-pregled/vukovar/) • [Đakovo](/tehnicki-pregled/dakovo/) • [Požega](/tehnicki-pregled/pozega/) |
-| **Dalmacija** | [Split](/tehnicki-pregled/split/) • [Zadar](/tehnicki-pregled/zadar/) • [Šibenik](/tehnicki-pregled/sibenik/) • [Dubrovnik](/tehnicki-pregled/dubrovnik/) • [Makarska](/tehnicki-pregled/makarska/) • [Imotski](/tehnicki-pregled/imotski/) |
-| **Istra i Kvarner** | [Rijeka](/tehnicki-pregled/rijeka/) • [Pula](/tehnicki-pregled/pula/) • [Pazin](/tehnicki-pregled/pazin/) • [Delnice](/tehnicki-pregled/delnice/) • [Gospić](/tehnicki-pregled/gospic/) |
+### Grad Zagreb i okolica
+[Zagreb](/tehnicki-pregled/zagreb/) • [Sesvete](/tehnicki-pregled/sesvete/) • [Samobor](/tehnicki-pregled/samobor/) • [Velika Gorica](/tehnicki-pregled/velika-gorica/) • [Zaprešić](/tehnicki-pregled/zapresic/)
+
+### Središnja Hrvatska
+[Karlovac](/tehnicki-pregled/karlovac/) • [Sisak](/tehnicki-pregled/sisak/) • [Varaždin](/tehnicki-pregled/varazdin/) • [Krapina](/tehnicki-pregled/krapina/) • [Koprivnica](/tehnicki-pregled/koprivnica/) • [Bjelovar](/tehnicki-pregled/bjelovar/)
+
+### Slavonija i Baranja
+[Osijek](/tehnicki-pregled/osijek/) • [Slavonski Brod](/tehnicki-pregled/slavonski-brod/) • [Vinkovci](/tehnicki-pregled/vinkovci/) • [Vukovar](/tehnicki-pregled/vukovar/) • [Đakovo](/tehnicki-pregled/dakovo/) • [Požega](/tehnicki-pregled/pozega/)
+
+### Dalmacija
+[Split](/tehnicki-pregled/split/) • [Zadar](/tehnicki-pregled/zadar/) • [Šibenik](/tehnicki-pregled/sibenik/) • [Dubrovnik](/tehnicki-pregled/dubrovnik/) • [Makarska](/tehnicki-pregled/makarska/) • [Imotski](/tehnicki-pregled/imotski/)
+
+### Istra i Kvarner
+[Rijeka](/tehnicki-pregled/rijeka/) • [Pula](/tehnicki-pregled/pula/) • [Pazin](/tehnicki-pregled/pazin/) • [Delnice](/tehnicki-pregled/delnice/) • [Gospić](/tehnicki-pregled/gospic/)
 
 ---
 
