@@ -3,8 +3,11 @@ repository: Filip-Gale/osiguraj.hr
 permalink: /blog/:title/
 
 collections:
-  gradovi:
+  gradovi: # Ovo ostaje za tvoj stari projekt
     output: true
+  tehnicki_pregled: # OVO JE NOVO
+    output: true
+    permalink: /tehnicki-pregled/:path/ 
 
 defaults:
   - scope:
@@ -14,9 +17,11 @@ defaults:
       layout: "post"
   - scope:
       path: ""
-      type: "gradovi"
+      type: "gradovi" # Stari projekt
     values:
       layout: "post"
-
-plugins:
-  - jekyll-sitemap
+  - scope:
+      path: ""
+      type: "tehnicki_pregled" # NOVI PROJEKT
+    values:
+      layout: "tehnicki-layout" # Poseban layout za ovaj projekt
