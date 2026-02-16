@@ -176,7 +176,7 @@
             </div>
             
             <p style="font-size: 1.35rem; opacity: 0.95; max-width: 850px; margin: 0 auto; line-height: 1.6;">
-                {{ page.description }}
+                {{ page.opis }}
             </p>
         </header>
 
@@ -254,12 +254,14 @@
         
         const ukupno = osnovica + ekoTest + (kw * 0.18) + cestarinaBase + naknadaOkolis + administrativniTroskovi;
         
+        const prikaz = document.getElementById('prikaz-cijene');
         document.getElementById('cifra').innerText = ukupno.toFixed(2) + " €";
-        document.getElementById('prikaz-cijene').style.display = "block";
+        prikaz.style.display = "block";
         
-        window.scrollTo({
-            top: document.getElementById('prikaz-cijene').offsetTop + 200,
-            behavior: 'smooth'
+        // NOVI POPRAVLJENI SCROLL - Centriranje rezultata na ekranu
+        prikaz.scrollIntoView({ 
+            behavior: 'smooth', 
+            block: 'center' 
         });
     }
     </script>
