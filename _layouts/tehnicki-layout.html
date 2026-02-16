@@ -134,32 +134,26 @@
         .calc-input:focus { border: 2px solid #ffbc27; outline: none; }
         .calc-label { font-weight: bold; color: #ffbc27; display: block; margin-top: 20px; font-size: 1.1rem; }
 
-        /* NOVI PREMIUM DIZAJN ZA SMART OFFER */
+        /* UNAPRIJEĐEN DIZAJN U TVOJIM BOJAMA */
         .smart-offer {
             margin-top: 30px;
-            background: linear-gradient(145deg, #ffffff 0%, #f0f0f0 100%);
-            color: #333;
+            background: rgba(0, 0, 0, 0.4); /* Tamnija prozirna podloga */
+            color: white;
             padding: 40px 30px;
             border-radius: 24px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-            border: 1px solid rgba(255,255,255,0.8);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            border: 3px solid #2ecc71; /* Jarko zeleni rub */
             position: relative;
             overflow: hidden;
             animation: slideIn 0.5s ease;
             text-align: center;
         }
-        .smart-offer::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 6px;
-            background: #2ecc71;
-        }
         .smart-offer strong {
-            color: #573cf9 !important;
-            font-weight: 800;
+            color: #ffbc27 !important; /* Žuta za naglašavanje */
+            font-weight: 900;
+        }
+        .smart-offer p {
+            color: rgba(255,255,255,0.9);
         }
 
         .city-grid a {
@@ -222,11 +216,11 @@
                 </p>
 
                 <div class="smart-offer">
-                    <div style="font-size: 2rem; margin-bottom: 15px;">🔥</div>
-                    <h3 style="margin: 0; font-weight: 900; font-size: 1.6rem; color: #573cf9; text-transform: uppercase; letter-spacing: -0.5px;">
+                    <div style="font-size: 2.2rem; margin-bottom: 10px;">⚡</div>
+                    <h3 style="margin: 0; font-weight: 900; font-size: 1.7rem; color: #ffbc27; text-transform: uppercase;">
                         Želiš smanjiti ovaj trošak?
                     </h3>
-                    <p style="margin: 15px 0 30px 0; font-size: 1.25rem; color: #444; line-height: 1.5;">
+                    <p style="margin: 15px 0 30px 0; font-size: 1.25rem; line-height: 1.5;">
                         Usporedi ponude i uštedi <strong>do 50%</strong> na polici osiguranja u gradu <strong>{{ page.grad }}</strong>.
                     </p>
                     <a href="/izracunaj-cijenu/" class="btn-saznaj" style="padding: 15px 40px; font-size: 1.2rem; width: auto; display: inline-block;">
@@ -279,7 +273,7 @@
         document.getElementById('cifra').innerText = ukupno.toFixed(2) + " €";
         prikaz.style.display = "block";
         
-        // POPRAVLJENI SCROLL - Centriranje na sredinu ekrana
+        // POPRAVLJENI SCROLL - Centriranje
         setTimeout(() => {
             prikaz.scrollIntoView({ 
                 behavior: 'smooth', 
