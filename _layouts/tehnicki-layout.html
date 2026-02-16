@@ -19,6 +19,7 @@
         .post-content h2, .post-content h3 { color: #ffbc27 !important; margin-top: 35px; font-weight: 700; }
         .post-content strong { color: #ffbc27 !important; }
         
+        /* Tvoj agresivni zeleni 3D gumb */
         .btn-saznaj {
             display: inline-block;
             background-color: #2ecc71;
@@ -33,6 +34,7 @@
             border: none;
             cursor: pointer;
             text-transform: uppercase;
+            text-align: center;
         }
         .btn-saznaj:active { transform: translateY(4px); box-shadow: 0 4px 0 #27ae60; }
 
@@ -43,33 +45,57 @@
             padding: 8px 20px;
             border-radius: 50px;
             font-weight: 800;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             border: 1px solid rgba(255, 188, 39, 0.4);
         }
 
+        .trust-badge {
+            font-size: 0.85rem;
+            background: rgba(46, 204, 113, 0.15);
+            color: #2ecc71;
+            padding: 6px 15px;
+            border-radius: 8px;
+            border: 1px solid rgba(46, 204, 113, 0.4);
+            font-weight: 700;
+        }
+
         .calc-card {
-            background: rgba(0, 0, 0, 0.2);
-            border: 2px solid #ffbc27;
-            border-radius: 25px;
-            padding: 30px;
+            background: rgba(0, 0, 0, 0.25);
+            border: 3px solid #ffbc27;
+            border-radius: 30px;
+            padding: 35px;
             margin: 40px 0;
         }
         .calc-input {
             width: 100%;
-            padding: 15px;
-            border-radius: 10px;
+            padding: 18px;
+            border-radius: 12px;
             border: none;
             margin-top: 10px;
             font-size: 1.1rem;
             background: white;
             color: #333;
+            box-sizing: border-box;
         }
         .calc-label {
             font-weight: bold;
             color: #ffbc27;
             display: block;
-            margin-top: 15px;
+            margin-top: 20px;
+            font-size: 1.1rem;
         }
+
+        .smart-offer {
+            margin-top: 25px;
+            background: white;
+            color: #333;
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body>
@@ -80,16 +106,25 @@
 
     <div class="margin-top-100"> </div>
 
-    <main class="width-container-1000 text-white pad round" style="background-color: #573cf9; box-shadow: 0 20px 40px rgba(0,0,0,0.2);">
+    <main class="width-container-1000 text-white pad round" style="background-color: #573cf9; box-shadow: 0 20px 40px rgba(0,0,0,0.3);">
         
-        <header style="text-align: center; border-bottom: 1px solid rgba(255,255,255,0.15); padding-bottom: 50px; margin-bottom: 45px;">
+        <header style="text-align: center; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 40px; margin-bottom: 40px;">
             <div class="year-tag">AKTUALNO ZA 2026. GODINU</div>
-            <h1 style="font-size: 3rem; color: #ffbc27; margin-bottom: 25px; line-height: 1.1;">{{ page.title }}</h1>
-            <p style="font-size: 1.3rem; opacity: 0.95;">Saznajte točne troškove tehničkog pregleda i registracije u gradu <strong>{{ page.grad }}</strong>.</p>
+            <h1 style="font-size: 3rem; color: #ffbc27; margin-bottom: 20px; line-height: 1.1;">{{ page.title }}</h1>
+            
+            <div style="display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-bottom: 20px;">
+                <span class="trust-badge">✅ USPOREDBA OSIGURANJA</span>
+                <span class="trust-badge">✅ NAJNIŽA CIJENA</span>
+                <span class="trust-badge">✅ BRZI IZRAČUN</span>
+            </div>
+            
+            <p style="font-size: 1.3rem; opacity: 0.95; max-width: 800px; margin: 0 auto;">
+                Saznajte točne troškove tehničkog pregleda i registracije u gradu <strong>{{ page.grad }}</strong> te uštedite na polici osiguranja.
+            </p>
         </header>
 
         <div class="calc-card">
-            <h2 style="margin-top:0; text-align:center;">📊 Kalkulator troškova registracije</h2>
+            <h2 style="margin-top:0; text-align:center; color: #ffbc27;">📊 Kalkulator troškova registracije</h2>
             
             <label class="calc-label">Vrsta vozila:</label>
             <select id="kategorija" class="calc-input">
@@ -105,20 +140,27 @@
                 <button onclick="izracunaj()" class="btn-saznaj" style="width: 100%;">IZRAČUNAJ TROŠAK</button>
             </div>
 
-            <div id="prikaz-cijene" style="display:none; text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px dashed #ffbc27;">
-                <span style="font-size: 1.5rem;">Procjena troškova za {{ page.grad }}:</span><br>
-                <span id="cifra" style="font-size: 3.5rem; font-weight: 900; color: #ffbc27;">0.00 €</span>
-                <p style="font-size: 0.85rem; opacity: 0.8; margin-top: 10px;">*Uključuje tehnički pregled, eko-test, cestarinu i naknade.</p>
+            <div id="prikaz-cijene" style="display:none; text-align: center; margin-top: 35px; padding-top: 25px; border-top: 2px dashed rgba(255,188,39,0.3);">
+                <span style="font-size: 1.4rem;">Ukupna procjena za {{ page.grad }}:</span><br>
+                <span id="cifra" style="font-size: 4rem; font-weight: 900; color: #ffbc27; line-height: 1;">0.00 €</span>
+                
+                <div class="smart-offer">
+                    <p style="margin: 0; font-weight: 800; font-size: 1.2rem; color: #573cf9;">🔥 Želiš smanjiti ovaj trošak?</p>
+                    <p style="margin: 8px 0 15px 0; font-size: 0.95rem; color: #444;">
+                        Ne plaćaj punu cijenu! Usporedi ponude i <strong>uštedi do 50%</strong> na polici osiguranja u gradu <strong>{{ page.grad }}</strong>.
+                    </p>
+                    <a href="/izracunaj-cijenu/" style="color: #2ecc71; font-weight: 800; text-decoration: underline; font-size: 1.1rem;">KLIKNI ZA JEFTINIJE OSIGURANJE →</a>
+                </div>
             </div>
         </div>
 
-        <article class="post-content">
+        <article class="post-content" style="line-height: 1.8;">
             {{ content }}
         </article>
 
-        <div style="margin-top: 70px; padding: 55px 30px; background: rgba(0,0,0,0.25); border-radius: 40px; text-align: center; border: 3px solid #ffbc27;">
-            <h2 style="color: #ffbc27 !important; margin-top: 0; font-size: 2.4rem;">Trebaš i auto osiguranje?</h2>
-            <p style="margin-bottom: 40px; font-size: 1.25rem; line-height: 1.6;">
+        <div style="margin-top: 70px; padding: 60px 30px; background: rgba(0,0,0,0.3); border-radius: 40px; text-align: center; border: 3px solid #ffbc27;">
+            <h2 style="color: #ffbc27 !important; margin-top: 0; font-size: 2.5rem;">Trebaš i auto osiguranje?</h2>
+            <p style="margin-bottom: 40px; font-size: 1.3rem; opacity: 0.9;">
                 Usporedi ponude osiguravajućih kuća i <strong>uštedi do 50%</strong> na polici obveznog i kasko osiguranja u gradu <strong>{{ page.grad }}</strong>!
             </p>
             <a href="/izracunaj-cijenu/" class="btn-saznaj">SAZNAJ CIJENU ODMAH →</a>
@@ -137,7 +179,7 @@
         
         // Službene naknade (realna procjena 2026)
         const ekoTest = 12.50; 
-        const cestarinaBase = 35.00; // Prosjek za osobna vozila
+        const cestarinaBase = 35.00;
         const naknadaOkolis = 5.50;
         const administrativniTroskovi = 15.00;
         
@@ -145,6 +187,9 @@
         
         document.getElementById('cifra').innerText = ukupno.toFixed(2) + " €";
         document.getElementById('prikaz-cijene').style.display = "block";
+        
+        // Scroll do rezultata da ga korisnik ne fula
+        document.getElementById('prikaz-cijene').scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
     </script>
 </body>
