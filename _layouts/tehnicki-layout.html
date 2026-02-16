@@ -134,17 +134,33 @@
         .calc-input:focus { border: 2px solid #ffbc27; outline: none; }
         .calc-label { font-weight: bold; color: #ffbc27; display: block; margin-top: 20px; font-size: 1.1rem; }
 
+        /* NOVI PREMIUM DIZAJN ZA SMART OFFER */
         .smart-offer {
-            margin-top: 25px;
-            background: #ffffff;
+            margin-top: 30px;
+            background: linear-gradient(145deg, #ffffff 0%, #f0f0f0 100%);
             color: #333;
-            padding: 25px;
-            border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.4);
-            border-left: 8px solid #2ecc71;
+            padding: 40px 30px;
+            border-radius: 24px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.8);
+            position: relative;
+            overflow: hidden;
             animation: slideIn 0.5s ease;
+            text-align: center;
         }
-        @keyframes slideIn { from { opacity: 0; transform: translateX(-20px); } to { opacity: 1; transform: translateX(0); } }
+        .smart-offer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: #2ecc71;
+        }
+        .smart-offer strong {
+            color: #573cf9 !important;
+            font-weight: 800;
+        }
 
         .city-grid a {
             color: rgba(255,255,255,0.8);
@@ -202,15 +218,20 @@
                 <span id="cifra" style="font-size: 4.5rem; font-weight: 900; color: #ffbc27; line-height: 1;">0.00 €</span>
                 
                 <p style="font-size: 0.85rem; opacity: 0.7; margin: 15px auto; max-width: 500px;">
-                    <i>Napomena: Izračun je informativnog karaktera. Stvarni trošak može varirati ovisno o stanju vozila i specifičnim naknadama stanice.</i>
+                    <i>*Izračun je informativnog karaktera ovisno o stanju vozila.</i>
                 </p>
 
                 <div class="smart-offer">
-                    <p style="margin: 0; font-weight: 900; font-size: 1.3rem; color: #573cf9; text-transform: uppercase;">🔥 Želiš smanjiti ovaj trošak?</p>
-                    <p style="margin: 10px 0 20px 0; font-size: 1.05rem; color: #333;">
-                        Usporedi ponude i <strong>uštedi do 50%</strong> na polici osiguranja u gradu <strong>{{ page.grad }}</strong>.
+                    <div style="font-size: 2rem; margin-bottom: 15px;">🔥</div>
+                    <h3 style="margin: 0; font-weight: 900; font-size: 1.6rem; color: #573cf9; text-transform: uppercase; letter-spacing: -0.5px;">
+                        Želiš smanjiti ovaj trošak?
+                    </h3>
+                    <p style="margin: 15px 0 30px 0; font-size: 1.25rem; color: #444; line-height: 1.5;">
+                        Usporedi ponude i uštedi <strong>do 50%</strong> na polici osiguranja u gradu <strong>{{ page.grad }}</strong>.
                     </p>
-                    <a href="/izracunaj-cijenu/" style="background: #2ecc71; color: white; padding: 12px 25px; border-radius: 8px; font-weight: 800; text-decoration: none; display: inline-block; box-shadow: 0 4px 0 #27ae60;">PROVJERI CIJENU OSIGURANJA →</a>
+                    <a href="/izracunaj-cijenu/" class="btn-saznaj" style="padding: 15px 40px; font-size: 1.2rem; width: auto; display: inline-block;">
+                        PROVJERI CIJENU OSIGURANJA →
+                    </a>
                 </div>
             </div>
         </div>
@@ -258,11 +279,13 @@
         document.getElementById('cifra').innerText = ukupno.toFixed(2) + " €";
         prikaz.style.display = "block";
         
-        // NOVI POPRAVLJENI SCROLL - Centriranje rezultata na ekranu
-        prikaz.scrollIntoView({ 
-            behavior: 'smooth', 
-            block: 'center' 
-        });
+        // POPRAVLJENI SCROLL - Centriranje na sredinu ekrana
+        setTimeout(() => {
+            prikaz.scrollIntoView({ 
+                behavior: 'smooth', 
+                block: 'center' 
+            });
+        }, 50);
     }
     </script>
 </body>
