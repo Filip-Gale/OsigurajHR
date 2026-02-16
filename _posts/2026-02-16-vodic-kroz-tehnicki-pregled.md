@@ -2,12 +2,12 @@
 layout: post
 title: "Tehnički pregled vozila 2026: Kompletni vodič, cijene i kako proći iz prve"
 description: "Sve na jednom mjestu: detaljan cjenik tehničkog pregleda u 2026., popis dokumenata, checklista za siguran prolazak i lokacije po gradovima u Hrvatskoj."
-image: /img/blog/tehnicki-pregled-2026.jpg
+image: /img/tehnicki-pregled-2026.jpg
 ---
 
 Planirate tehnički pregled u 2026. godini? Bez obzira vozite li novi hibrid ili provjereni klasik, priprema je ključ uštede vremena i novca. U ovom vodiču donosimo sve aktualne informacije o cijenama, postupku i najčešćim razlozima pada na pregledu.
 
-![Vodič kroz tehnički pregled 2026](https://www.osiguraj.hr/img/blog/tehnicki-pregled-2026.jpg)
+![Vodič kroz tehnički pregled 2026](/img/tehnicki-pregled-2026.jpg)
 
 ## Koliko košta tehnički pregled u 2026.?
 
@@ -27,13 +27,13 @@ Cijene tehničkog pregleda i popratnih davanja (naknada za ceste, ekološka nakn
 
 Statistike pokazuju da 15% vozila padne na tehničkom zbog banalnih grešaka. Provjerite ovo:
 
-1.  **Signalizacija:** Rade li sva svjetla (uključujući osvjetljenje tablice i žmigavce)?
-2.  **Tekućine:** Provjerite razinu ulja i tekućine za pranje stakla.
-3.  **Gume:** Provjerite dubinu ripne i tlak u gumama.
-4.  **Obvezna oprema:** Imate li ispravan vatrogasni aparat (za komercijalna vozila), trokut, prvu pomoć i rezervne žarulje?
-5.  **Dokumenti:** Pripremite prometnu dozvolu i dokaz o uplaćenoj polici obveznog osiguranja.
+1. **Signalizacija:** Rade li sva svjetla (uključujući osvjetljenje tablice i žmigavce)?
+2. **Tekućine:** Provjerite razinu ulja i tekućine za pranje stakla.
+3. **Gume:** Provjerite dubinu ripne i tlak u gumama.
+4. **Obvezna oprema:** Imate li ispravan vatrogasni aparat (za komercijalna vozila), trokut, prvu pomoć i rezervne žarulje?
+5. **Dokumenti:** Pripremite prometnu dozvolu i dokaz o uplaćenoj polici obveznog osiguranja.
 
-![Checklista za tehnički pregled vozila](https://www.osiguraj.hr/img/blog/checklista-tehnicki-pregled.jpg)
+![Checklista za tehnički pregled vozila](/img/checklista-tehnicki-pregled.jpg)
 
 ---
 
@@ -65,4 +65,4 @@ Ne, za prolazak vam je potrebno samo [obvezno auto osiguranje (AO)](/kasko/). Ip
 ---
 
 ## Zaključak
-Pravovremena priprema štedi novac. Provjerite svoje vozilo, osigurajte se na vrijeme i obavite tehnički pregled bez stresa. Za najbrži izračun cijene osiguranja, posjetite naš [digitalni servis](/digitalno-auto-osiguranje/).
+Pravovremena priprema štedi novac. Provjerite svoje vozilo, osigurajte se na vrijeme i obavite tehnički pregled bez stresa. Za najbrži izračun cijene osiguranja, posjetite naš [digitalni servis](/izracunaj-cijenu/).
