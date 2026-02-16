@@ -1,73 +1,149 @@
----
-layout: default
----
-<div class="tehnicki-wrapper" style="max-width: 800px; margin: 0 auto; padding: 20px; font-family: sans-serif;">
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-TPNZZVZ5');</script>
     
-    <nav style="font-size: 0.8rem; margin-bottom: 20px; color: #666;">
-        <a href="/">Naslovnica</a> > <a href="/tehnicki-pregled/">Tehnički pregled</a> > {{ page.grad }}
-    </nav>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>{{ page.title }} | Osiguraj.hr</title>
+    <link rel="stylesheet" href="{{ '/css/style.css' | relative_url }}">
+    <link rel="stylesheet" href="{{ '/css/post.css' | relative_url }}">
+    <link rel="icon" type="image/jpeg" href="{{ '/img/favicon.jpg' | relative_url }}">
 
-    <h1 style="color: #002e5d; font-size: 2.2rem; margin-bottom: 10px; line-height: 1.2;">{{ page.title }}</h1>
-    <p style="color: #444; font-size: 1.1rem;">Provjerite troškove tehničkog pregleda u <strong>{{ page.grad }}u</strong> i osigurajte svoje vozilo po najpovoljnijoj cijeni.</p>
-
-    <div class="calculator-card" style="background: white; border: 1px solid #e1e4e8; border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); overflow: hidden; margin: 30px 0;">
-        <div style="background: #0056b3; color: white; padding: 15px 25px;">
-            <h3 style="margin: 0; font-size: 1.2rem;">📊 Kalkulator troškova registracije</h3>
-        </div>
+    <style>
+        .post-content h2, .post-content h3 { color: #ffbc27 !important; margin-top: 35px; font-weight: 700; }
+        .post-content strong { color: #ffbc27 !important; }
         
-        <div style="padding: 25px;">
-            <div style="margin-bottom: 15px;">
-                <label style="display: block; margin-bottom: 5px; font-weight: bold; color: #333;">Vrsta vozila:</label>
-                <select id="kategorija" style="width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 8px; font-size: 1rem;">
-                    <option value="35.50">Osobni automobil (M1)</option>
-                    <option value="45.20">Teretno vozilo (N1)</option>
-                    <option value="18.10">Motocikl (L3)</option>
-                </select>
+        /* Tvoj potpisni zeleni gumb */
+        .btn-saznaj {
+            display: inline-block;
+            background-color: #2ecc71;
+            color: white !important;
+            padding: 18px 45px;
+            text-decoration: none !important;
+            border-radius: 12px;
+            font-weight: 800;
+            font-size: 1.4rem;
+            box-shadow: 0 8px 0 #27ae60;
+            transition: all 0.1s ease;
+            border: none;
+            cursor: pointer;
+            text-transform: uppercase;
+        }
+        .btn-saznaj:active { transform: translateY(4px); box-shadow: 0 4px 0 #27ae60; }
+
+        .year-tag {
+            display: inline-block;
+            background-color: rgba(255, 188, 39, 0.15);
+            color: #ffbc27;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-weight: 800;
+            margin-bottom: 25px;
+            border: 1px solid rgba(255, 188, 39, 0.4);
+        }
+
+        /* Stilovi za kalkulator unutar tvog ljubičastog dizajna */
+        .calc-card {
+            background: rgba(0, 0, 0, 0.2);
+            border: 2px solid #ffbc27;
+            border-radius: 25px;
+            padding: 30px;
+            margin: 40px 0;
+        }
+        .calc-input {
+            width: 100%;
+            padding: 15px;
+            border-radius: 10px;
+            border: none;
+            margin-top: 10px;
+            font-size: 1.1rem;
+            background: white;
+            color: #333;
+        }
+        .calc-label {
+            font-weight: bold;
+            color: #ffbc27;
+            display: block;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TPNZZVZ5"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    
+    {% include nav.html %}
+
+    <div class="margin-top-100"> </div>
+
+    <main class="width-container-1000 text-white pad round" style="background-color: #573cf9; box-shadow: 0 20px 40px rgba(0,0,0,0.2);">
+        
+        <header style="text-align: center; border-bottom: 1px solid rgba(255,255,255,0.15); padding-bottom: 50px; margin-bottom: 45px;">
+            <div class="year-tag">AKTUALNO ZA 2026. GODINU</div>
+            <h1 style="font-size: 3rem; color: #ffbc27; margin-bottom: 25px; line-height: 1.1;">{{ page.title }}</h1>
+            <p style="font-size: 1.3rem; opacity: 0.95;">Provjerite troškove tehničkog pregleda u gradu <strong>{{ page.grad }}</strong>.</p>
+        </header>
+
+        <div class="calc-card">
+            <h2 style="margin-top:0; text-align:center;">📊 Kalkulator troškova</h2>
+            
+            <label class="calc-label">Vrsta vozila:</label>
+            <select id="kategorija" class="calc-input">
+                <option value="35.50">Osobni automobil (M1)</option>
+                <option value="45.20">Teretno vozilo (N1)</option>
+                <option value="18.10">Motocikl (L3)</option>
+            </select>
+
+            <label class="calc-label">Snaga motora (kW):</label>
+            <input type="number" id="kw" value="80" class="calc-input">
+
+            <div style="text-align: center; margin-top: 30px;">
+                <button onclick="izracunaj()" class="btn-saznaj" style="width: 100%;">IZRAČUNAJ TROŠAK</button>
             </div>
 
-            <div style="margin-bottom: 20px;">
-                <label style="display: block; margin-bottom: 5px; font-weight: bold; color: #333;">Snaga motora (kW):</label>
-                <input type="number" id="kw" value="80" style="width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 8px; font-size: 1rem;">
-            </div>
-
-            <button onclick="izracunaj()" style="width: 100%; background: #00d285; color: white; padding: 16px; border: none; border-radius: 8px; font-size: 1.1rem; font-weight: bold; cursor: pointer; transition: 0.3s;">
-                IZRAČUNAJ CIJENU
-            </button>
-
-            <div id="prikaz-cijene" style="margin-top: 20px; text-align: center; border-top: 1px solid #eee; padding-top: 20px; display: none;">
-                <span style="font-size: 0.9rem; color: #666;">Procjena za {{ page.grad }}:</span><br>
-                <span id="cifra" style="font-size: 2.5rem; font-weight: 800; color: #002e5d;">0.00 €</span>
-                <p style="font-size: 0.8rem; color: #888; margin-top: 5px;">*Uključuje sve pristojbe i naknade bez police osiguranja.</p>
+            <div id="prikaz-cijene" style="display:none; text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px dashed #ffbc27;">
+                <span style="font-size: 1.5rem;">Ukupna procjena za {{ page.grad }}:</span><br>
+                <span id="cifra" style="font-size: 3.5rem; font-weight: 900; color: #ffbc27;">0.00 €</span>
             </div>
         </div>
-    </div>
 
-    <div class="cta-box" style="background: linear-gradient(135deg, #002e5d 0%, #0056b3 100%); color: white; padding: 30px; border-radius: 16px; text-align: center; margin: 40px 0;">
-        <h2 style="margin-top: 0; font-size: 1.6rem;">Trebaš i policu osiguranja?</h2>
-        <p style="font-size: 1.1rem; opacity: 0.9;">Usporedi sve osiguravajuće kuće u 2 minute i uštedi do 50€!</p>
-        <a href="/izracunaj-cijenu/" style="display: inline-block; background: #ffcc00; color: #002e5d; padding: 18px 35px; border-radius: 50px; font-weight: 800; text-decoration: none; font-size: 1.2rem; margin-top: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.2);">
-            DOBIJ PONUDU ODMAH →
-        </a>
-    </div>
+        <article class="post-content">
+            {{ content }}
+        </article>
 
-    <div class="content-text" style="line-height: 1.7; color: #333;">
-        {{ content }}
-    </div>
-</div>
+        <div style="margin-top: 70px; padding: 55px 30px; background: rgba(0,0,0,0.25); border-radius: 40px; text-align: center; border: 3px solid #ffbc27;">
+            <h2 style="color: #ffbc27 !important; margin-top: 0; font-size: 2.4rem;">Trebaš i osiguranje?</h2>
+            <p style="margin-bottom: 40px; font-size: 1.25rem;">Uštedi do 50€ na polici u gradu <strong>{{ page.grad }}</strong>!</p>
+            <a href="/izracunaj-cijenu/" class="btn-saznaj">SAZNAJ CIJENU ODMAH →</a>
+        </div>
+    </main>
 
-<script>
-function izracunaj() {
-    const osnovica = parseFloat(document.getElementById('kategorija').value);
-    const kw = parseFloat(document.getElementById('kw').value) || 0;
-    
-    // Službene naknade 2026:
-    const ekoTest = 12.50; 
-    const cestarinaBase = 30.00;
-    const naknadaOkolis = 5.50;
-    
-    const ukupno = osnovica + ekoTest + (kw * 0.15) + cestarinaBase + naknadaOkolis;
-    
-    document.getElementById('cifra').innerText = ukupno.toFixed(2) + " €";
-    document.getElementById('prikaz-cijene').style.display = "block";
-}
-</script>
+    <div class="margin-top-100"> </div>
+
+    {% include wapp.html %}
+    {% include footer.html %}
+
+    <script>
+    function izracunaj() {
+        const osnovica = parseFloat(document.getElementById('kategorija').value);
+        const kw = parseFloat(document.getElementById('kw').value) || 0;
+        
+        // Službene naknade (procjena 2026)
+        const ekoTest = 12.50; 
+        const cestarinaBase = 30.00;
+        const naknadaOkolis = 5.50;
+        
+        const ukupno = osnovica + ekoTest + (kw * 0.15) + cestarinaBase + naknadaOkolis;
+        
+        document.getElementById('cifra').innerText = ukupno.toFixed(2) + " €";
+        document.getElementById('prikaz-cijene').style.display = "block";
+    }
+    </script>
+</body>
+</html>
