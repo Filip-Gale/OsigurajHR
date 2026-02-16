@@ -13,27 +13,15 @@ Planirate tehnički pregled u 2026. godini? Bez obzira vozite li novi hibrid ili
 
 ## Koliko košta tehnički pregled u 2026.?
 
-Cijene tehničkog pregleda i popratnih davanja (naknada za ceste, ekološka naknada) podložne su promjenama, ali okvirni trošak za osobno vozilo M1 kategorije kreće se od **150 € do 250 €**, ovisno o snazi motora (kW), vrsti goriva i emisiji CO2.
+Cijene tehničkog pregleda i popratnih davanja kreću se od **150 € do 250 €**, ovisno o snazi motora (kW), vrsti goriva i emisiji CO2.
 
-### Okvirni cjenik davanja:
-* **Tehnički pregled (rad stanice):** cca 30 - 45 €
-* **Eko-test:** 15 - 20 € (ovisno o motoru)
-* **Naknada za ceste:** Ovisi o zapremnini motora.
-* **Posebna naknada za okoliš:** Ovisi o vrsti goriva i emisiji.
-
-> **Savjet:** Najveća ušteda se zapravo ostvaruje na **auto osiguranju**. Prije nego što krenete na liniju, provjerite naš [besplatni kalkulator osiguranja](/izracunaj-cijenu/) i uštedite do 30% na polici.
+> **Savjet:** Najveća ušteda se zapravo ostvaruje na **auto osiguranju**. Prije nego što krenete na liniju, provjerite naš <a href="https://www.osiguraj.hr/izracunaj-cijenu/">besplatni kalkulator osiguranja</a> i uštedite do 30% na polici.
 
 ---
 
-## Checklista: 5 stvari koje morate provjeriti prije polaska
+## Checklista: Što provjeriti prije polaska
 
-Statistike pokazuju da 15% vozila padne na tehničkom zbog banalnih grešaka. Provjerite ovo:
-
-1. **Signalizacija:** Rade li sva svjetla (uključujući osvjetljenje tablice i žmigavce)?
-2. **Tekućine:** Provjerite razinu ulja i tekućine za pranje stakla.
-3. **Gume:** Provjerite dubinu ripne i tlak u gumama.
-4. **Obvezna oprema:** Imate li ispravan vatrogasni aparat (za komercijalna vozila), trokut, prvu pomoć i rezervne žarulje?
-5. **Dokumenti:** Pripremite prometnu dozvolu i dokaz o uplaćenoj polici obveznog osiguranja.
+Statistike pokazuju da 15% vozila padne na tehničkom zbog banalnih grešaka. Provjerite signalizaciju, tekućine, gume i obveznu opremu.
 
 ![Checklista za tehnički pregled vozila](https://www.osiguraj.hr/img/checklista-tehnicki-pregled.jpg)
 
@@ -41,37 +29,34 @@ Statistike pokazuju da 15% vozila padne na tehničkom zbog banalnih grešaka. Pr
 
 ## Tehnički pregled po gradovima (Hrvatska 2026)
 
-Lokalne stanice za tehnički pregled (STP) mogu imati različita radna vremena. Odaberite svoj grad za detaljne informacije:
+Odaberite svoj grad za detaljne informacije:
 
 ### Grad Zagreb i okolica
-[Zagreb](https://www.osiguraj.hr/tehnicki-pregled/zagreb/) • [Sesvete](https://www.osiguraj.hr/tehnicki-pregled/sesvete/) • [Samobor](https://www.osiguraj.hr/tehnicki-pregled/samobor/) • [Velika Gorica](https://www.osiguraj.hr/tehnicki-pregled/velika-gorica/) • [Zaprešić](https://www.osiguraj.hr/tehnicki-pregled/zapresic/)
+<a href="https://www.osiguraj.hr/tehnicki-pregled/zagreb/">Zagreb</a> • <a href="https://www.osiguraj.hr/tehnicki-pregled/sesvete/">Sesvete</a> • <a href="https://www.osiguraj.hr/tehnicki-pregled/samobor/">Samobor</a> • <a href="https://www.osiguraj.hr/tehnicki-pregled/velika-gorica/">Velika Gorica</a> • <a href="https://www.osiguraj.hr/tehnicki-pregled/zapresic/">Zaprešić</a>
 
 ### Središnja Hrvatska
-[Karlovac](https://www.osiguraj.hr/tehnicki-pregled/karlovac/) • [Sisak](https://www.osiguraj.hr/tehnicki-pregled/sisak/) • [Varaždin](https://www.osiguraj.hr/tehnicki-pregled/varazdin/) • [Krapina](https://www.osiguraj.hr/tehnicki-pregled/krapina/) • [Koprivnica](https://www.osiguraj.hr/tehnicki-pregled/koprivnica/) • [Bjelovar](https://www.osiguraj.hr/tehnicki-pregled/bjelovar/)
+<a href="https://www.osiguraj.hr/tehnicki-pregled/karlovac/">Karlovac</a> • <a href="https://www.osiguraj.hr/tehnicki-pregled/sisak/">Sisak</a> • <a href="https://www.osiguraj.hr/tehnicki-pregled/varazdin/">Varaždin</a> • <a href="https://www.osiguraj.hr/tehnicki-pregled/krapina/">Krapina</a> • <a href="https://www.osiguraj.hr/tehnicki-pregled/koprivnica/">Koprivnica</a> • <a href="https://www.osiguraj.hr/tehnicki-pregled/bjelovar/">Bjelovar</a>
 
 ### Slavonija i Baranja
-[Osijek](https://www.osiguraj.hr/tehnicki-pregled/osijek/) • [Slavonski Brod](https://www.osiguraj.hr/tehnicki-pregled/slavonski-brod/) • [Vinkovci](https://www.osiguraj.hr/tehnicki-pregled/vinkovci/) • [Vukovar](https://www.osiguraj.hr/tehnicki-pregled/vukovar/) • [Đakovo](https://www.osiguraj.hr/tehnicki-pregled/dakovo/) • [Požega](https://www.osiguraj.hr/tehnicki-pregled/pozega/)
+<a href="https://www.osiguraj.hr/tehnicki-pregled/osijek/">Osijek</a> • <a href="https://www.osiguraj.hr/tehnicki-pregled/slavonski-brod/">Slavonski Brod</a> • <a href="https://www.osiguraj.hr/tehnicki-pregled/vinkovci/">Vinkovci</a> • <a href="https://www.osiguraj.hr/tehnicki-pregled/vukovar/">Vukovar</a> • <a href="https://www.osiguraj.hr/tehnicki-pregled/dakovo/">Đakovo</a> • <a href="https://www.osiguraj.hr/tehnicki-pregled/pozega/">Požega</a>
 
 ### Dalmacija
-[Split](https://www.osiguraj.hr/tehnicki-pregled/split/) • [Zadar](https://www.osiguraj.hr/tehnicki-pregled/zadar/) • [Šibenik](https://www.osiguraj.hr/tehnicki-pregled/sibenik/) • [Dubrovnik](https://www.osiguraj.hr/tehnicki-pregled/dubrovnik/) • [Makarska](https://www.osiguraj.hr/tehnicki-pregled/makarska/) • [Imotski](https://www.osiguraj.hr/tehnicki-pregled/imotski/)
+<a href="https://www.osiguraj.hr/tehnicki-pregled/split/">Split</a> • <a href="https://www.osiguraj.hr/tehnicki-pregled/zadar/">Zadar</a> • <a href="https://www.osiguraj.hr/tehnicki-pregled/sibenik/">Šibenik</a> • <a href="https://www.osiguraj.hr/tehnicki-pregled/dubrovnik/">Dubrovnik</a> • <a href="https://www.osiguraj.hr/tehnicki-pregled/makarska/">Makarska</a> • <a href="https://www.osiguraj.hr/tehnicki-pregled/imotski/">Imotski</a>
 
 ### Istra i Kvarner
-[Rijeka](https://www.osiguraj.hr/tehnicki-pregled/rijeka/) • [Pula](https://www.osiguraj.hr/tehnicki-pregled/pula/) • [Pazin](https://www.osiguraj.hr/tehnicki-pregled/pazin/) • [Delnice](https://www.osiguraj.hr/tehnicki-pregled/delnice/) • [Gospić](https://www.osiguraj.hr/tehnicki-pregled/gospic/)
+<a href="https://www.osiguraj.hr/tehnicki-pregled/rijeka/">Rijeka</a> • <a href="https://www.osiguraj.hr/tehnicki-pregled/pula/">Pula</a> • <a href="https://www.osiguraj.hr/tehnicki-pregled/pazin/">Pazin</a> • <a href="https://www.osiguraj.hr/tehnicki-pregled/delnice/">Delnice</a> • <a href="https://www.osiguraj.hr/tehnicki-pregled/gospic/">Gospić</a>
 
 ---
 
 ## Česta pitanja (FAQ)
 
 **1. Što ako padnem na eko-testu?**
-Imate rok od 15 dana za otklanjanje kvara i ponovni dolazak na pregled bez ponovnog plaćanja pune cijene (plaća se samo eko-test).
+Imate rok od 15 dana za otklanjanje kvara i ponovni dolazak.
 
-**2. Može li se tehnički obaviti ranije?**
-Da, tehnički pregled možete obaviti u bilo kojem trenutku unutar kalendarskog mjeseca u kojem vam istječe registracija.
-
-**3. Trebam li kasko osiguranje za tehnički?**
-Ne, za prolazak vam je potrebno samo [obvezno auto osiguranje (AO)](https://www.osiguraj.hr/kasko/). Ipak, kasko je preporučljiv za novija vozila radi zaštite vlastite investicije.
+**2. Trebam li kasko osiguranje za tehnički?**
+Ne, za prolazak vam je potrebno samo <a href="https://www.osiguraj.hr/kasko/">obvezno auto osiguranje (AO)</a>.
 
 ---
 
 ## Zaključak
-Pravovremena priprema štedi novac. Provjerite svoje vozilo, osigurajte se na vrijeme i obavite tehnički pregled bez stresa. Za najbrži izračun cijene osiguranja, posjetite naš [digitalni servis](https://www.osiguraj.hr/izracunaj-cijenu/).
+Pravovremena priprema štedi novac. Posjetite naš <a href="https://www.osiguraj.hr/izracunaj-cijenu/">digitalni servis</a> za najbrži izračun cijene.
