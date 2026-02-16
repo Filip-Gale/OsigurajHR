@@ -5,6 +5,8 @@ description: "Sve na jednom mjestu: detaljan cjenik tehničkog pregleda u 2026.,
 image: /img/tehnicki-pregled-2026.jpg
 ---
 
+# Tehnički pregled vozila 2026: Sve što trebate znati
+
 Planirate tehnički pregled u 2026. godini? Bez obzira vozite li novi hibrid ili provjereni klasik, priprema je ključ uštede vremena i novca. U ovom vodiču donosimo sve aktualne informacije o cijenama, postupku i najčešćim razlozima pada na pregledu.
 
 ![Vodič kroz tehnički pregled 2026](https://www.osiguraj.hr/img/tehnicki-pregled-2026.jpg)
@@ -42,19 +44,19 @@ Statistike pokazuju da 15% vozila padne na tehničkom zbog banalnih grešaka. Pr
 Lokalne stanice za tehnički pregled (STP) mogu imati različita radna vremena. Odaberite svoj grad za detaljne informacije:
 
 ### Grad Zagreb i okolica
-[Zagreb](/tehnicki-pregled/zagreb/) • [Sesvete](/tehnicki-pregled/sesvete/) • [Samobor](/tehnicki-pregled/samobor/) • [Velika Gorica](/tehnicki-pregled/velika-gorica/) • [Zaprešić](/tehnicki-pregled/zapresic/)
+[Zagreb](https://www.osiguraj.hr/tehnicki-pregled/zagreb/) • [Sesvete](https://www.osiguraj.hr/tehnicki-pregled/sesvete/) • [Samobor](https://www.osiguraj.hr/tehnicki-pregled/samobor/) • [Velika Gorica](https://www.osiguraj.hr/tehnicki-pregled/velika-gorica/) • [Zaprešić](https://www.osiguraj.hr/tehnicki-pregled/zapresic/)
 
 ### Središnja Hrvatska
-[Karlovac](/tehnicki-pregled/karlovac/) • [Sisak](/tehnicki-pregled/sisak/) • [Varaždin](/tehnicki-pregled/varazdin/) • [Krapina](/tehnicki-pregled/krapina/) • [Koprivnica](/tehnicki-pregled/koprivnica/) • [Bjelovar](/tehnicki-pregled/bjelovar/)
+[Karlovac](https://www.osiguraj.hr/tehnicki-pregled/karlovac/) • [Sisak](https://www.osiguraj.hr/tehnicki-pregled/sisak/) • [Varaždin](https://www.osiguraj.hr/tehnicki-pregled/varazdin/) • [Krapina](https://www.osiguraj.hr/tehnicki-pregled/krapina/) • [Koprivnica](https://www.osiguraj.hr/tehnicki-pregled/koprivnica/) • [Bjelovar](https://www.osiguraj.hr/tehnicki-pregled/bjelovar/)
 
 ### Slavonija i Baranja
-[Osijek](/tehnicki-pregled/osijek/) • [Slavonski Brod](/tehnicki-pregled/slavonski-brod/) • [Vinkovci](/tehnicki-pregled/vinkovci/) • [Vukovar](/tehnicki-pregled/vukovar/) • [Đakovo](/tehnicki-pregled/dakovo/) • [Požega](/tehnicki-pregled/pozega/)
+[Osijek](https://www.osiguraj.hr/tehnicki-pregled/osijek/) • [Slavonski Brod](https://www.osiguraj.hr/tehnicki-pregled/slavonski-brod/) • [Vinkovci](https://www.osiguraj.hr/tehnicki-pregled/vinkovci/) • [Vukovar](https://www.osiguraj.hr/tehnicki-pregled/vukovar/) • [Đakovo](https://www.osiguraj.hr/tehnicki-pregled/dakovo/) • [Požega](https://www.osiguraj.hr/tehnicki-pregled/pozega/)
 
 ### Dalmacija
-[Split](/tehnicki-pregled/split/) • [Zadar](/tehnicki-pregled/zadar/) • [Šibenik](/tehnicki-pregled/sibenik/) • [Dubrovnik](/tehnicki-pregled/dubrovnik/) • [Makarska](/tehnicki-pregled/makarska/) • [Imotski](/tehnicki-pregled/imotski/)
+[Split](https://www.osiguraj.hr/tehnicki-pregled/split/) • [Zadar](https://www.osiguraj.hr/tehnicki-pregled/zadar/) • [Šibenik](https://www.osiguraj.hr/tehnicki-pregled/sibenik/) • [Dubrovnik](https://www.osiguraj.hr/tehnicki-pregled/dubrovnik/) • [Makarska](https://www.osiguraj.hr/tehnicki-pregled/makarska/) • [Imotski](https://www.osiguraj.hr/tehnicki-pregled/imotski/)
 
 ### Istra i Kvarner
-[Rijeka](/tehnicki-pregled/rijeka/) • [Pula](/tehnicki-pregled/pula/) • [Pazin](/tehnicki-pregled/pazin/) • [Delnice](/tehnicki-pregled/delnice/) • [Gospić](/tehnicki-pregled/gospic/)
+[Rijeka](https://www.osiguraj.hr/tehnicki-pregled/rijeka/) • [Pula](https://www.osiguraj.hr/tehnicki-pregled/pula/) • [Pazin](https://www.osiguraj.hr/tehnicki-pregled/pazin/) • [Delnice](https://www.osiguraj.hr/tehnicki-pregled/delnice/) • [Gospić](https://www.osiguraj.hr/tehnicki-pregled/gospic/)
 
 ---
 
@@ -67,9 +69,9 @@ Imate rok od 15 dana za otklanjanje kvara i ponovni dolazak na pregled bez ponov
 Da, tehnički pregled možete obaviti u bilo kojem trenutku unutar kalendarskog mjeseca u kojem vam istječe registracija.
 
 **3. Trebam li kasko osiguranje za tehnički?**
-Ne, za prolazak vam je potrebno samo [obvezno auto osiguranje (AO)](/kasko/). Ipak, kasko je preporučljiv za novija vozila radi zaštite vlastite investicije.
+Ne, za prolazak vam je potrebno samo [obvezno auto osiguranje (AO)](https://www.osiguraj.hr/kasko/). Ipak, kasko je preporučljiv za novija vozila radi zaštite vlastite investicije.
 
 ---
 
 ## Zaključak
-Pravovremena priprema štedi novac. Provjerite svoje vozilo, osigurajte se na vrijeme i obavite tehnički pregled bez stresa. Za najbrži izračun cijene osiguranja, posjetite naš [digitalni servis](/izracunaj-cijenu/).
+Pravovremena priprema štedi novac. Provjerite svoje vozilo, osigurajte se na vrijeme i obavite tehnički pregled bez stresa. Za najbrži izračun cijene osiguranja, posjetite naš [digitalni servis](https://www.osiguraj.hr/izracunaj-cijenu/).
