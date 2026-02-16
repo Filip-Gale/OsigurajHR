@@ -15,22 +15,21 @@
     <link rel="icon" type="image/jpeg" href="{{ '/img/favicon.jpg' | relative_url }}">
 
     <style>
+        /* Popravak samo za linkove - ne dira veličinu naslova ni teksta */
         .post-content a {
-            color: #ffcc00 !important; /* Žuta boja da se istakne */
+            color: #ffcc00 !important;
             text-decoration: underline !important;
-            font-weight: bold;
-            transition: 0.3s;
+            font-weight: bold !important;
         }
         .post-content a:hover {
             color: #ffffff !important;
-            opacity: 0.8;
         }
-        /* Osiguravamo da slike ne pobjegnu iz kontejnera */
+        /* Osigurava da su slike responzivne */
         .post-content img {
             max-width: 100%;
             height: auto;
-            border-radius: 8px;
-            margin: 20px 0;
+            display: block;
+            margin: 20px auto;
         }
     </style>
 </head>
