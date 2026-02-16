@@ -19,7 +19,6 @@
         .post-content h2, .post-content h3 { color: #ffbc27 !important; margin-top: 35px; font-weight: 700; }
         .post-content strong { color: #ffbc27 !important; }
         
-        /* Tvoj potpisni zeleni gumb */
         .btn-saznaj {
             display: inline-block;
             background-color: #2ecc71;
@@ -48,7 +47,6 @@
             border: 1px solid rgba(255, 188, 39, 0.4);
         }
 
-        /* Stilovi za kalkulator unutar tvog ljubičastog dizajna */
         .calc-card {
             background: rgba(0, 0, 0, 0.2);
             border: 2px solid #ffbc27;
@@ -87,11 +85,11 @@
         <header style="text-align: center; border-bottom: 1px solid rgba(255,255,255,0.15); padding-bottom: 50px; margin-bottom: 45px;">
             <div class="year-tag">AKTUALNO ZA 2026. GODINU</div>
             <h1 style="font-size: 3rem; color: #ffbc27; margin-bottom: 25px; line-height: 1.1;">{{ page.title }}</h1>
-            <p style="font-size: 1.3rem; opacity: 0.95;">Provjerite troškove tehničkog pregleda u gradu <strong>{{ page.grad }}</strong>.</p>
+            <p style="font-size: 1.3rem; opacity: 0.95;">Saznajte točne troškove tehničkog pregleda i registracije u gradu <strong>{{ page.grad }}</strong>.</p>
         </header>
 
         <div class="calc-card">
-            <h2 style="margin-top:0; text-align:center;">📊 Kalkulator troškova</h2>
+            <h2 style="margin-top:0; text-align:center;">📊 Kalkulator troškova registracije</h2>
             
             <label class="calc-label">Vrsta vozila:</label>
             <select id="kategorija" class="calc-input">
@@ -108,8 +106,9 @@
             </div>
 
             <div id="prikaz-cijene" style="display:none; text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px dashed #ffbc27;">
-                <span style="font-size: 1.5rem;">Ukupna procjena za {{ page.grad }}:</span><br>
+                <span style="font-size: 1.5rem;">Procjena troškova za {{ page.grad }}:</span><br>
                 <span id="cifra" style="font-size: 3.5rem; font-weight: 900; color: #ffbc27;">0.00 €</span>
+                <p style="font-size: 0.85rem; opacity: 0.8; margin-top: 10px;">*Uključuje tehnički pregled, eko-test, cestarinu i naknade.</p>
             </div>
         </div>
 
@@ -118,8 +117,10 @@
         </article>
 
         <div style="margin-top: 70px; padding: 55px 30px; background: rgba(0,0,0,0.25); border-radius: 40px; text-align: center; border: 3px solid #ffbc27;">
-            <h2 style="color: #ffbc27 !important; margin-top: 0; font-size: 2.4rem;">Trebaš i osiguranje?</h2>
-            <p style="margin-bottom: 40px; font-size: 1.25rem;">Uštedi do 50€ na polici u gradu <strong>{{ page.grad }}</strong>!</p>
+            <h2 style="color: #ffbc27 !important; margin-top: 0; font-size: 2.4rem;">Trebaš i auto osiguranje?</h2>
+            <p style="margin-bottom: 40px; font-size: 1.25rem; line-height: 1.6;">
+                Usporedi ponude osiguravajućih kuća i <strong>uštedi do 50%</strong> na polici obveznog i kasko osiguranja u gradu <strong>{{ page.grad }}</strong>!
+            </p>
             <a href="/izracunaj-cijenu/" class="btn-saznaj">SAZNAJ CIJENU ODMAH →</a>
         </div>
     </main>
@@ -134,12 +135,13 @@
         const osnovica = parseFloat(document.getElementById('kategorija').value);
         const kw = parseFloat(document.getElementById('kw').value) || 0;
         
-        // Službene naknade (procjena 2026)
+        // Službene naknade (realna procjena 2026)
         const ekoTest = 12.50; 
-        const cestarinaBase = 30.00;
+        const cestarinaBase = 35.00; // Prosjek za osobna vozila
         const naknadaOkolis = 5.50;
+        const administrativniTroskovi = 15.00;
         
-        const ukupno = osnovica + ekoTest + (kw * 0.15) + cestarinaBase + naknadaOkolis;
+        const ukupno = osnovica + ekoTest + (kw * 0.18) + cestarinaBase + naknadaOkolis + administrativniTroskovi;
         
         document.getElementById('cifra').innerText = ukupno.toFixed(2) + " €";
         document.getElementById('prikaz-cijene').style.display = "block";
