@@ -1,48 +1,80 @@
 ---
 layout: grad
 grad_ime: ""
-title: "Osiguranje za Audi Q5 | Izračun cijene prema kW (2026)"
+title: "Osiguranje za Audi Q5 | Cijene po godištima (2008-2024)"
 permalink: /auto-osiguranje/audi-q5/
-description: "Saznajte točnu cijenu auto osiguranja za Audi Q5. Usporedite ponude za TDI, TFSI i hibridne modele uz online uštede do 30%."
+description: "Izračunajte cijenu auto osiguranja za Audi Q5. Provjerite informativne cijene za 35 TDI, 40 TDI i TFSI e hibrid modele po godištima. Uštedite online."
 ---
 
-Audi Q5 jedan je od najuspješnijih luksuznih SUV-ova na tržištu, koji spaja vrhunsku kvalitetu izrade s naprednim pogonskim sustavima. Za vlasnike **Audija Q5**, cijena obveznog auto osiguranja u 2026. godini određena je visokim platnim razredima zbog snažnih motora, ali i naprednim sustavima sigurnosti koji mogu smanjiti premiju. Uz naš digitalni **izračun osiguranja za auto**, osigurajte svoj Q5 uz najpovoljnije uvjete u samo nekoliko minuta.
+Audi Q5 dominira cestama kao jedan od najuspješnijih luksuznih SUV-ova. Budući da ovaj model često dolazi sa snažnim motorima i Quattro pogonom, **izračun osiguranja za Audi Q5** u 2026. godini zahtijeva precizno poznavanje platnih razreda. Bilo da vozite prvu generaciju ili najnoviji hibridni model, ključ uštede leži u usporedbi kW i godišta.
 
-### Ključni faktori za izračun police za Audi Q5
+### Informativni pregled AO cijena za Audi Q5
 
-Prilikom obrade podataka za vaš Audi Q5, sustav uzima u obzir ključne tehničke karakteristike:
+Cijena obveznog auto osiguranja (AO) za Audi Q5 određena je prvenstveno snagom motora. Ispod su okvirni rasponi cijena za najpopularnije generacije s maksimalnim bonusom (50%):
 
-* **Snaga motora (kW):** Najčešće verzije su **40 TDI (150 kW)** i **45 TFSI (195 kW)**. S obzirom na to da ovi modeli spadaju u gornje platne razrede, precizan izračun je ključan za uštedu na osnovnoj polici.
-* **Quattro pogon i automatik:** Iako ove komponente ne mijenjaju osnovnu cijenu AO osiguranja, one značajno podižu nabavnu vrijednost vozila, što je presudan faktor kod izračuna kasko osiguranja.
-* **Oyster tehnologija i senzori:** Audi Q5 koristi kompleksne radarske i laserske sustave za pomoć u vožnji. Njihova cijena u slučaju zamjene čini kasko osiguranje nužnim dodatkom za svakog vlasnika.
+| Generacija / Serija | Godište | Popularni motori (kW) | Informativna cijena (AO) |
+| :--- | :--- | :--- | :--- |
+| **Audi Q5 (FY - druga gen.)** | 2017. – 2024. | 35 TDI (120 kW), 40 TDI (150 kW) | **Od 195 €** |
+| **Audi Q5 (8R - prva gen.)** | 2008. – 2016. | 2.0 TDI (105-140 kW), 3.0 TDI | **Od 170 €** |
+| **Audi Q5 TFSI e (Hybrid)** | 2020. – 2024. | 50 TFSI e (220 kW sustavno) | **Od 210 €** |
 
-### Zašto ugovoriti policu online preko Osiguraj.hr?
+> **Pro-tip za vlasnike Q5:** Zbog statusa premium SUV-a, popravci limarije i zamjena Matrix LED tehnologije na modelu Q5 su iznimno skupi. Čak i za starije modele (2015+), toplo preporučujemo provjeru cijena kasko osiguranja, jer razlika u premiji često iznosi manje od cijene jednog retrovizora sa senzorima.
 
-Vlasnici Audija Q5 putem naše platforme ostvaruju premium pogodnosti:
+### Ključni faktori za izračun police
 
-1. **Usporedba svih osiguravatelja:** Pregledajte ponude svih vodećih kuća koje nude posebne uvjete za vozila visoke klase.
-2. **Transparentnost i točnost:** Naš sustav automatski prepoznaje specifikacije vašeg motora prema broju šasije ili kW, osiguravajući ispravan izračun.
-3. **Mogućnost plaćanja na rate:** Premiju osiguranja za snažnije motore možete podijeliti na do 12 rata bez dodatnih kamata.
+Prilikom usporedbe ponuda za vaš Audi Q5, sustav analizira tri ključne točke:
+1.  **Visoki platni razredi (kW):** Modeli poput **40 TDI (150 kW)** i **45 TFSI (195 kW)** spadaju u gornji dom cjenika osiguranja. Točan izračun može vam uštedjeti i do 50 € na razlici između osiguravatelja.
+2.  **Eko-popusti za hibride:** Plug-in hibridni modeli (**TFSI e**) u 2026. godini često ostvaruju dodatne popuste na policu, što djelomično kompenzira njihovu veliku snagu u kW.
+3.  **Zona registracije:** SUV visoke klase poput Q5 imat će osjetno skuplju policu u zonama poput Zagreba ili Rijeke u odnosu na manje sredine.
 
-### Savjet za vlasnike: Isplati li se kasko za Audi Q5?
-
-Zbog statusa vozila i iznimno visokih troškova popravka čak i kod manjih oštećenja (poput Matrix LED farova), za Audi Q5 se **puni kasko** smatra standardom, a ne luksuzom. Vlasnicima modela mlađih od 10 godina toplo preporučujemo kasko zaštitu, dok za starija godišta savjetujemo barem **djelomični kasko** koji pokriva zaštitu od krađe i loma stakla.
+---
 
 <div class="faq-section">
-    <h3>FAQ: Sve što trebate znati o osiguranju za Audi Q5</h3>
+    <h3>Česta pitanja o osiguranju za Audi Q5</h3>
     
     <div class="faq-item">
         <h4>Koja je razlika u cijeni osiguranja za 35 TDI i 40 TDI modele?</h4>
-        <p>Model 35 TDI (120 kW) obično ima nešto povoljniju policu u odnosu na 40 TDI (150 kW) jer potonji ulazi u najviši razred snage za izračun premije.</p>
+        <p>Model 35 TDI (120 kW) obično ima 10-15% povoljniju osnovnu policu u odnosu na 40 TDI (150 kW) jer potonji ulazi u najviši razred snage za izračun premije.</p>
     </div>
 
     <div class="faq-item">
-        <h4>Postoje li popusti za Audi Q5 TFSI e (hibrid)?</h4>
-        <p>Da, plug-in hibridni modeli (TFSI e) često ostvaruju dodatne eko-popuste na obvezno osiguranje, što može značajno umanjiti ukupni trošak registracije.</p>
+        <h4>Koliko košta osiguranje za Audi Q5 star 10 godina?</h4>
+        <p>Za prvu generaciju Audija Q5 (2014-2016) s motorom od 110-130 kW, cijena obveznog osiguranja uz 50% bonusa najčešće se kreće između 175 € i 210 €.</p>
     </div>
 
     <div class="faq-item">
-        <h4>Pokriva li polica štetu na aluminijskim felgama?</h4>
-        <p>Osnovna AO polica ne pokriva oštećenja na vašem vozilu. Za zaštitu skupocjenih Audi naplataka od rubnika ili rupa na cesti, potreban vam je odgovarajući kasko paket.</p>
+        <h4>Isplati li se ugovoriti kasko za Audi Q5 online?</h4>
+        <p>Da! Putem Osiguraj.hr kalkulatora možete dobiti ponude za puni kasko koje su često do 30% povoljnije nego u poslovnicama, uz mogućnost plaćanja na 12 rata bez kamata.</p>
     </div>
 </div>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [{
+    "@type": "Question",
+    "name": "Koja je razlika u cijeni osiguranja za 35 TDI i 40 TDI modele?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Model 35 TDI (120 kW) je obično 10-15% jeftiniji za osiguranje od modela 40 TDI (150 kW) zbog ulaska u niži platni razred snage motora."
+    }
+  },
+  {
+    "@type": "Question",
+    "name": "Koliko košta osiguranje za Audi Q5 star 10 godina?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Za Audi Q5 star oko 10 godina s 2.0 TDI motorom, cijena obveznog osiguranja s maksimalnim bonusom iznosi otprilike 175 do 210 EUR."
+    }
+  },
+  {
+    "@type": "Question",
+    "name": "Isplati li se ugovoriti kasko za Audi Q5 online?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Da, online ugovaranje omogućuje usporedbu svih kuća na jednom mjestu i pristup posebnim web popustima koji nisu dostupni u poslovnicama."
+    }
+  }]
+}
+</script>
