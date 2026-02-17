@@ -1,48 +1,82 @@
 ---
 layout: grad
-grad_ime: ""
-title: "Osiguranje za Peugeot 208 | Usporedba i online izračun (2026)"
+grad_ime: "Hrvatska"
+title: "Osiguranje za Peugeot 208 | Cijene po godištima (2012-2024)"
 permalink: /auto-osiguranje/peugeot-208/
-description: "Saznajte cijenu osiguranja za Peugeot 208. Usporedite ponude za PureTech, BlueHDi i e-208 modele uz uštede do 30% online."
+description: "Izračunajte cijenu osiguranja za Peugeot 208. Provjerite informativne cijene za PureTech, BlueHDi i električni e-208 po godištima. Uštedite do 30% online."
 ---
 
-Peugeot 208 je jedan od najatraktivnijih automobila u svojoj klasi, poznat po inovativnom i-Cockpit dizajnu. Za vlasnike ovog modela, **izračun osiguranja za auto** ovisi o širokoj paleti motora – od ekonomičnih benzinaca do potpuno električnih verzija. Naša platforma omogućuje vam da u trenu pronađete najpovoljniju policu za vaš "lavlji" gradski auto.
+Peugeot 208 je jedan od najatraktivnijih i najprodavanijih automobila u svojoj klasi, poznat po inovativnom i-Cockpit dizajnu i vrhunskoj učinkovitosti. Za vlasnike ovog modela, **izračun osiguranja za auto** u 2026. godini ovisi o širokoj paleti motora – od štedljivih gradskih benzinaca do potpuno električnih verzija. Bez obzira vozite li prvu generaciju ili najnoviji model s potpisom "lavljih očnjaka", ključ uštede je u preciznom odabiru kW platnog razreda.
 
-### Ključni faktori za izračun police za Peugeot 208
+### Informativni pregled AO cijena za Peugeot 208
 
-Prilikom ugovaranja police, nekoliko tehničkih stavki definira visinu vaše premije:
+Cijena obveznog auto osiguranja (AO) za Peugeot 208 primarno je određena snagom motora. Ispod donosimo okvirne raspone cijena uz maksimalni bonus (50%):
 
-* **Vrsta motora (kW):** Najčešći modeli koriste **1.2 PureTech (55-96 kW)** benzince ili štedljivi **1.5 BlueHDi (75 kW)** dizel. **Električni e-208 (100 kW)** spada u specifičnu kategoriju gdje mnogi osiguravatelji nude eko-popuste.
-* **Godište i oprema:** Novije generacije Peugeota 208 opremljene su naprednim sustavima za prepoznavanje prometnih znakova i automatsko kočenje, što može smanjiti faktor rizika u izračunu.
-* **Troškovi popravka:** Zbog specifičnog dizajna svjetala u obliku "očnjaka" (LED tehnologija), kasko osiguranje je česta preporuka kako bi se izbjegli visoki troškovi u slučaju manjih sudara.
+| Generacija&nbsp;/&nbsp;Model | Godište&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Najčešći motori (kW)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Informativna cijena |
+| :--- | :--- | :--- | :--- |
+| **Peugeot e-208 (Struja)** | 2019. – 2024. | Elektromotor (100-115 kW) | **Od 155 €** |
+| **Peugeot 208 (II gen.)** | 2019. – 2024. | 1.2 PureTech (55-74-96 kW) | **Od 115 €** |
+| **Peugeot 208 (I gen. FL)** | 2015. – 2019. | 1.6 BlueHDi (55-88 kW) | **Od 120 €** |
+| **Peugeot 208 (I gen.)** | 2012. – 2015. | 1.0 / 1.2 VTi (50-60 kW) | **Od 110 €** |
+| **Peugeot 208 GTi** | 2013. – 2018. | 1.6 THP (147-153 kW) | **Od 190 €** |
 
-### Zašto ugovoriti policu online preko Osiguraj.hr?
+> **💡 Pro-tip za vlasnike Peugeota:** Nova generacija 208-ice prepoznatljiva je po LED dnevnim svjetlima u obliku tri pruge ili "očnjaka". Zamjena jednog ovakvog fara u slučaju gradskog sudara može stajati više od **1.100 €**. S obzirom na to da se 208-ica najviše vozi u gustim gradskim uvjetima, čak i za starije modele toplo preporučujemo **djelomični kasko za stakla** (doplata cca 25-30 €), dok je za nove modele **puni kasko** jedini način potpune zaštite vaše investicije.
 
-Vlasnici Peugeota cijene stil i tehnologiju, a naša platforma nudi upravo to korisničko iskustvo:
+### Ključni faktori za izračun police
 
-1. **Usporedba svih opcija:** Vidite cijene vodećih hrvatskih osiguravatelja na jednom mjestu, jasno i pregledno.
-2. **Ušteda uz online bonus:** Naš sustav automatski uračunava vaš stečeni bonus i primjenjuje dodatne online popuste za 2026. godinu.
-3. **Jednostavna obnova:** Ako već imate policu, proces produljenja putem našeg kalkulatora traje manje od dvije minute.
+Prilikom usporedbe ponuda za vaš Peugeot, sustav u 2026. godini analizira tri presudne točke:
+1.  **Platni razredi (kW):** Najpopularniji PureTech motor od **74 kW (100 KS)** smješten je u vrlo povoljan razred osiguranja. Ako se odlučite za verziju od **96 kW**, premija se penje u viši razred, no online kalkulator može pomoći u pronalaženju kuće koja te razlike minimalizira.
+2.  **Električni e-208 i Eko-popusti:** Iako e-208 ima znatnu snagu (100 kW), u 2026. godini većina osiguravatelja nudi "zelene tarife" koje nagrađuju nultu emisiju CO2, čineći policu hibrida i električnih modela iznimno konkurentnom.
+3.  **i-Cockpit i Sigurnost:** Peugeot 208 opremljen je brojnim sustavima asistencije. Modeli s aktivnim kočenjem i nadzorom mrtvog kuta smatraju se vozilima nižeg rizika, što se u našem sustavu može odraziti kroz povoljnije uvjete za kasko polica.
 
-### Savjet stručnjaka: Kasko za Peugeot 208
-
-Budući da se Peugeot 208 često koristi u gustim gradskim sredinama gdje su oštećenja na parkingu i sitni sudari svakodnevica, preporučujemo **puni kasko** za vozila do 4 godine starosti. Za starije modele, razmislite o **djelomičnom kasko osiguranju** koji pokriva lom stakala ili štetu nastalu od prirodnih nepogoda poput tuče.
+---
 
 <div class="faq-section">
     <h3>FAQ: Sve što trebate znati o osiguranju za Peugeot 208</h3>
     
     <div class="faq-item">
-        <h4>Je li osiguranje skuplje za električni Peugeot e-208?</h4>
-        <p>Cijena ovisi o snazi (100 kW), no električna vozila često ostvaruju popuste na temelju nulte emisije CO2. Provjerite točan iznos kroz naš <strong>izračun osiguranja za auto</strong>.</p>
+        <h4>Je li osiguranje skuplje za GT i GT-Line pakete?</h4>
+        <p>Ne za obvezno AO osiguranje. Cijena ovisi isključivo o kilovatima (kW). Razlika se javlja samo kod kasko osiguranja jer GT oprema uključuje skuplje LED sustave, veće naplatke i specifične elemente karoserije koji podižu vrijednost vozila.</p>
     </div>
 
     <div class="faq-item">
-        <h4>Što ako vozim Peugeot 208 iz prve generacije?</h4>
-        <p>Stariji modeli s motorima manje snage obično spadaju u najpovoljnije platne razrede, što policu obveznog osiguranja čini vrlo pristupačnom.</p>
+        <h4>Mogu li prenijeti bonus od 50% ako mi je ovo prvi Peugeot?</h4>
+        <p>Apsolutno. Vaš bonus je vezan uz vas kao vozača. Naš online <strong>izračun osiguranja za auto</strong> automatski će primijeniti vaš stečeni popust bez obzira jeste li ranije vozili Peugeot ili neku drugu marku vozila.</p>
     </div>
 
     <div class="faq-item">
-        <h4>Mogu li ugovoriti policu ako sam mladi vozač?</h4>
-        <p>Da, naš sustav omogućuje izračun za sve dobne skupine. Mladi vozači mogu usporediti cijene različitih kuća kako bi pronašli najpovoljniji uvjet za početak svoje vozačke karijere.</p>
+        <h4>Što ako moj Peugeot 208 ima panoramski krov?</h4>
+        <p>Panoramski krov je stavka koju svakako treba uključiti u kasko policu. U slučaju loma uslijed tuče ili pada predmeta, trošak zamjene je izuzetno visok, a standardni kasko za stakla ga često ne pokriva ako nije izričito navedeno.</p>
     </div>
 </div>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [{
+    "@type": "Question",
+    "name": "Je li osiguranje skuplje za GT i GT-Line pakete?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "AO osiguranje ovisi o kW, pa je isto kao za običan model, dok kasko može biti skuplji zbog luksuznije opreme."
+    }
+  },
+  {
+    "@type": "Question",
+    "name": "Mogu li prenijeti bonus od 50% ako mi je ovo prvi Peugeot?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Da, bonus je vezan uz vozača i primjenjuje se na svaku policu za Peugeot 208 preko našeg sustava."
+    }
+  },
+  {
+    "@type": "Question",
+    "name": "Što ako moj Peugeot 208 ima panoramski krov?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Panoramski krov zahtijeva pažljivo ugovaranje kaska jer zamjena stoji puno više od standardnog vjetrobranskog stakla."
+    }
+  }]
+}
+</script>
