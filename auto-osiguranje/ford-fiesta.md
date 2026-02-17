@@ -1,48 +1,81 @@
 ---
 layout: grad
 grad_ime: "Hrvatska"
-title: "Osiguranje za Ford Fiesta | Izračun cijene prema kW (2026)"
+title: "Osiguranje za Ford Fiesta | Cijene po godištima (2002-2023)"
 permalink: /auto-osiguranje/ford-fiesta/
-description: "Saznajte točnu cijenu auto osiguranja za Ford Fiestu. Usporedite ponude za EcoBoost motore uz uštede do 30% online."
+description: "Izračunajte cijenu osiguranja za Ford Fiestu. Provjerite informativne cijene za EcoBoost, Ti-VCT i ST modele po godištima. Uštedite do 30% online."
 ---
 
-Ford Fiesta je desetljećima simbol dinamične gradske vožnje i jedan od najpopularnijih rabljenih automobila u Hrvatskoj. Za vlasnike **Ford Fieste**, cijena obveznog auto osiguranja direktno je povezana s kompaktnim, ali snažnim motorima koji definiraju njezine performanse. Uz naš digitalni **izračun osiguranja za auto**, provjerite cijene svih osiguravatelja i osigurajte svoju Fiestu u manje od dvije minute.
+Ford Fiesta je desetljećima simbol dinamične gradske vožnje i jedan od najpopularnijih automobila na hrvatskom tržištu rabljenih vozila. Za vlasnike **Ford Fieste**, cijena obveznog auto osiguranja u 2026. godini direktno je povezana sa snagom motora (kW), od štedljivih gradskih modela do snažnih ST izvedbi. Bez obzira vozite li najnoviju generaciju ili stariji model, ključ uštede je u preciznom **izračunu osiguranja za auto** prema kilovatima.
 
-### Ključni faktori za izračun police za Ford Fiestu
+### Informativni pregled AO cijena za Ford Fiestu
 
-Prilikom ugovaranja police, sustav procjenjuje rizik na temelju nekoliko tehničkih varijabli vašeg Forda:
+Cijena obveznog auto osiguranja (AO) za Fiestu primarno ovisi o platnom razredu snage motora. Ispod donosimo okvirne raspone cijena uz maksimalni bonus (50%):
 
-* **Snaga motora (kW):** Fiesta je poznata po **1.0 EcoBoost (74-92 kW)** motorima. Iako su male zapremnine, njihova snaga može vas smjestiti u srednji platni razred, dok bazični **1.1 Ti-VCT (55 kW)** modeli uživaju u najnižim premijama.
-* **Sigurnosna oprema:** Fordovi sustavi poput *Lane Keeping Aid* i *MyKey* tehnologije smanjuju rizik na cesti, što neki osiguravatelji prepoznaju kroz povoljnije uvjete police.
-* **Godište i povijest:** Bez obzira vozite li najnoviji model ili stariju generaciju, vaš bonus od 50% ostaje najsnažniji alat za smanjenje konačne cijene.
+| Generacija&nbsp;/&nbsp;Model | Godište&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Najčešći motori (kW)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Informativna cijena |
+| :--- | :--- | :--- | :--- |
+| **Ford Fiesta (Mk8)** | 2017. – 2023. | 1.0 EcoBoost (74-92 kW), 1.1 | **Od 135 €** |
+| **Ford Fiesta (Mk7 - Redizajn)** | 2012. – 2017. | 1.0 EcoBoost (74 kW), 1.5 TDCi | **Od 125 €** |
+| **Ford Fiesta (Mk6/Mk7)** | 2008. – 2012. | 1.25 (44-60 kW), 1.4 TDCi | **Od 115 €** |
+| **Ford Fiesta ST** | 2013. – 2023. | 1.6 EcoBoost / 1.5 (134-147 kW) | **Od 175 €** |
 
-### Zašto ugovoriti policu online preko Osiguraj.hr?
+> **💡 Pro-tip za vlasnike Forda:** Mnoge Fieste opremljene su **Quickclear** tehnologijom grijanja vjetrobranskog stakla (prepoznatljive sitne niti u staklu). Zamjena ovakvog stakla je i do 3 puta skuplja od običnog. Za vlasnike Fieste preporučujemo barem **djelomični kasko za stakla**, jer je nadoplata na osnovnu policu minimalna u usporedbi s troškom popravka.
 
-Korištenjem naše platforme, vlasnici Forda dobivaju maksimalnu transparentnost i brzinu:
+### Ključni faktori za izračun police
 
-1. **Usporedba po kilovatima:** Naš sustav automatski prepoznaje kW razred vaše Fieste prema OIB-u i prometnoj dozvoli.
-2. **Bez skrivenih naknada:** Cijena koju vidite nakon izračuna je finalna, bez dodatnih provizija.
-3. **Plaćanje na rate:** Osigurajte vozilo odmah, a platite do 12 rata bez kamata, što je idealno za planiranje kućnog budžeta.
+Prilikom usporedbe ponuda za vašu Fiestu, sustav u 2026. godini analizira tri presudne točke:
+1.  **EcoBoost vs. Ti-VCT (kW):** Iako su zapremninom mali (1.0L), EcoBoost motori često imaju 92 kW ili više, što ih svrstava u viši platni razred u odnosu na bazični 1.1 Ti-VCT (55 kW).
+2.  **MyKey® tehnologija:** Ako Fiestu koriste mladi vozači, Fordov MyKey sustav (ograničavanje brzine i glasnoće glazbe) može utjecati na smanjenje rizika, što pojedini osiguravatelji vrednuju kod kasko osiguranja.
+3.  **Sportske ST izvedbe:** Zbog iznimno velike snage za gradski auto (do 147 kW), ST modeli zahtijevaju poseban izračun premije i snažno se preporučuje puni kasko zbog visoke tržišne vrijednosti dijelova.
 
-### Savjet za vlasnike: Isplati li se kasko za Ford Fiestu?
-
-Ford Fiesta često dolazi s **Quickclear** vjetrobranskim staklima koja sadrže grijače. Zamjena ovakvog stakla može biti višestruko skuplja od običnog. Zato vlasnicima preporučujemo barem **djelomični kasko** koji pokriva stakla, ili puni kasko za sportske **ST** izvedbe koje imaju visoku tržišnu vrijednost.
+---
 
 <div class="faq-section">
-    <h3>FAQ: Sve što trebate znati o osiguranju za Ford Fiestu</h3>
+    <h3>Česta pitanja o osiguranju za Ford Fiestu</h3>
     
     <div class="faq-item">
         <h4>Koja je razlika u cijeni osiguranja za 1.1 motor i EcoBoost?</h4>
-        <p>Zbog manje snage (55 kW), model 1.1 obično ima 10-15% povoljniju AO policu u odnosu na snažnije EcoBoost varijante od 92 kW.</p>
+        <p>Model 1.1 (55 kW) obično ima 10-15% povoljniju AO policu jer spada u niži platni razred u odnosu na snažnije EcoBoost varijante od 92 kW (125 KS).</p>
     </div>
 
     <div class="faq-item">
-        <h4>Mogu li dobiti popust ako moja Fiesta ima sustav automatskog kočenja?</h4>
-        <p>Da, sustavi asistencije smanjuju rizik od sudara, a određene osiguravajuće kuće to nagrađuju nižom premijom kroz <strong>izračun osiguranja za auto</strong>.</p>
+        <h4>Što ako vozim Ford Fiestu ST iz uvoza?</h4>
+        <p>Kod uvoza ST modela, osim snage (kW), na cijenu utječe i prva registracija u Hrvatskoj. Naš kalkulator omogućuje unos podataka iz inozemne dokumentacije za točan izračun troškova prve police.</p>
     </div>
 
     <div class="faq-item">
-        <h4>Što ako vozim Ford Fiestu ST?</h4>
-        <p>Fiesta ST (147 kW) spada u visoki razred snage. Za ovaj model preporučujemo isključivo puni kasko zbog specifičnih dijelova i visokih performansi.</p>
+        <h4>Mogu li prenijeti 50% bonusa sa starog Forda na novu Fiestu?</h4>
+        <p>Apsolutno. Bonus je vezan uz vas kao vozača. Prilikom online izrade police, vaš stečeni bonus će se automatski primijeniti na novi izračun, osiguravajući vam najnižu moguću cijenu.</p>
     </div>
 </div>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [{
+    "@type": "Question",
+    "name": "Koja je razlika u cijeni osiguranja za 1.1 motor i EcoBoost?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Modeli s 55 kW su u nižem platnom razredu i osiguranje je povoljnije u odnosu na EcoBoost modele koji često prelaze 74 kW."
+    }
+  },
+  {
+    "@type": "Question",
+    "name": "Što ako vozim Ford Fiestu ST iz uvoza?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Naš online sustav podržava izračun za vozila iz uvoza, uzimajući u obzir specifičnu snagu ST modela (do 147 kW) za točnu premiju."
+    }
+  },
+  {
+    "@type": "Question",
+    "name": "Mogu li prenijeti 50% bonusa sa starog Forda na novu Fiestu?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Da, bonus je prenosiv i trajno vlasništvo vozača, te se primjenjuje na svaku novu policu osiguranja za Ford Fiestu."
+    }
+  }]
+}
+</script>
