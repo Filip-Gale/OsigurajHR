@@ -1,48 +1,82 @@
 ---
 layout: grad
-grad_ime: ""
-title: "Osiguranje za Mazda CX-5 | Usporedba cijena i kW (2026)"
+grad_ime: "Hrvatska"
+title: "Osiguranje za Mazda CX-5 | Cijene po godištima (2012-2024)"
 permalink: /auto-osiguranje/mazda-cx-5/
-description: "Saznajte cijenu osiguranja za Mazda CX-5. Usporedite ponude za Skyactiv benzinske i dizelske motore uz uštede do 30% online."
+description: "Izračunajte cijenu osiguranja za Mazda CX-5. Provjerite informativne cijene za Skyactiv-G i Skyactiv-D modele po godištima. Uštedite do 30% online."
 ---
 
-Mazda CX-5 predstavlja sam vrh ponude u segmentu obiteljskih SUV-ova, poznata po svojoj vrhunskoj završnoj obradi i Kodo dizajnu. Za vlasnike Mazde, **izračun osiguranja za auto** često donosi ugodna iznenađenja jer Mazda koristi specifične Skyactiv motore koji, unatoč većoj kubikaži, imaju optimiziranu snagu za povoljnije platne razrede. Naša platforma omogućuje vam da u par sekundi usporedite sve vodeće osiguravatelje u Hrvatskoj.
+Mazda CX-5 predstavlja sam vrh ponude u segmentu obiteljskih SUV-ova, poznata po svojoj vrhunskoj završnoj obradi, Kodo dizajnu i voznoj dinamici. Za vlasnike **Mazde CX-5**, cijena obveznog auto osiguranja u 2026. godini ovisi o specifičnim Skyactiv motorima koji, unatoč većoj kubikaži, imaju optimiziranu snagu za povoljnije platne razrede. Bez obzira vozite li prvu generaciju ili najnoviji model, ključ uštede je u preciznom **izračunu osiguranja za auto** prema kilovatima (kW).
 
-### Ključni faktori za izračun police za Mazdu CX-5
+### Informativni pregled AO cijena za Mazda CX-5
 
-Prilikom ugovaranja osiguranja, sustav uzima u obzir tehničke specifikacije koje definiraju vašu premiju:
+Cijena obveznog auto osiguranja (AO) za CX-5 primarno je određena platnim razredom snage motora. Ispod donosimo okvirne raspone cijena uz maksimalni bonus (50%):
 
-* **Snaga motora (kW):** Najčešći modeli su **2.0 Skyactiv-G (121 kW)** i snažniji **2.5 benzinc (143 kW)**, dok dizelski **2.2 Skyactiv-D (110-135 kW)** nudi drugačiji profil rizika. Svaki kilovat je bitan za točno svrstavanje u platni razred.
-* **i-Activsense sigurnost:** Mazda CX-5 je opremljena naprednim sustavima poput podrške za kočenje u gradskoj vožnji i nadzora mrtvog kuta. Ovi sustavi aktivno smanjuju rizik, što neki osiguravatelji nagrađuju kroz povoljnije uvjete police.
-* **Opremljenost i LED tehnologija:** S obzirom na to da CX-5 često dolazi s adaptivnim LED svjetlima visoke vrijednosti, kasko osiguranje je ključna stavka za dugoročnu zaštitu vaše investicije.
+| Generacija&nbsp;/&nbsp;Model | Godište&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Najčešći motori (kW)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Informativna cijena |
+| :--- | :--- | :--- | :--- |
+| **Mazda CX-5 (KF - New)** | 2022. – 2024. | 2.5 Skyactiv-G (143 kW) | **Od 185 €** |
+| **Mazda CX-5 (KF - MHEV)**| 2020. – 2024. | 2.0 Skyactiv-G (121 kW) | **Od 165 €** |
+| **Mazda CX-5 (KF - Dizel)**| 2017. – 2024. | 2.2 Skyactiv-D (110-135 kW) | **Od 155 €** |
+| **Mazda CX-5 (KE - I gen.)**| 2012. – 2017. | 2.0 Skyactiv-G (118-121 kW) | **Od 150 €** |
+| **Mazda CX-5 (KE - Dizel)**| 2012. – 2017. | 2.2 Skyactiv-D (110 kW) | **Od 145 €** |
 
-### Zašto ugovoriti policu online preko Osiguraj.hr?
+> **💡 Pro-tip za vlasnike Mazde:** Mazda CX-5 često dolazi u kultnoj **Soul Red Crystal** boji. Zbog specifičnog troslojnog nanošenja, popravak ove boje nakon manjeg oštećenja može biti i do **40% skuplji** od standardnih metalik boja. Također, napredna adaptivna LED prednja svjetla na novijim modelima koštaju preko **1.500 €** po komadu. Za Mazdu CX-5, čak i ako nije pod leasingom, **puni kasko** je najsigurnija investicija, dok se za starije modele preporučuje **djelomični kasko za stakla**.
 
-Vlasnici Mazde biraju naš servis jer nudi brzinu i maksimalnu transparentnost troškova:
+### Ključni faktori za izračun police
 
-1. **Usporedba kW razreda:** Odmah vidite kako vaš bonus od 50% ili više utječe na cijenu police za specifičnu snagu vašeg motora.
-2. **Bez skrivenih naknada:** Cijena koju vidite na ekranu je finalna cijena, bez dodatnih provizija ili troškova administracije.
-3. **Digitalna polica na e-mail:** Cijeli proces traje manje od dvije minute, a polica vam stiže odmah, spremna za odlazak na tehnički pregled.
+Prilikom usporedbe ponuda za vašu Mazdu, sustav u 2026. godini analizira tri presudne točke:
+1.  **kW vs. Kubikaža:** Iako Mazda koristi 2.0 i 2.5 motore tamo gdje konkurencija koristi manje turbine, u Hrvatskoj se AO plaća isključivo po kW. To Mazdu CX-5 od **121 kW** stavlja u isti platni razred kao i znatno manje automobile slične snage, što je velika prednost za vlasnike SUV-ova.
+2.  **i-Activ AWD sustav:** Pogon na sve kotače povećava nabavnu vrijednost i kompleksnost vozila. Dok ne utječe na osnovno AO osiguranje, AWD sustav može neznatno povisiti premiju kasko osiguranja zbog rizika i troškova popravka.
+3.  **Napredna i-Activsense sigurnost:** CX-5 je opremljena radarskim sustavima i pametnim kočenjem. Ovi sustavi aktivno smanjuju rizik od sudara, što pametni izračuni u 2026. godini prepoznaju kroz povoljnije uvjete za kasko polica.
 
-### Savjet stručnjaka: Kasko zaštita za Mazdu CX-5
-
-Mazda CX-5 je vozilo koje izuzetno dobro drži cijenu kao rabljeno. Zbog specifičnih boja (poput Soul Red Crystal) i napredne elektronike, popravci mogu biti skuplji od prosjeka. Preporučujemo **puni kasko** za novija godišta, dok za starije modele savjetujemo barem **djelomični kasko** koji pokriva štetu na staklima ili nalet na životinju.
+---
 
 <div class="faq-section">
     <h3>FAQ: Sve što trebate znati o osiguranju za Mazdu CX-5</h3>
     
     <div class="faq-item">
         <h4>Utječe li veća kubikaža Mazdinih motora na cijenu osiguranja?</h4>
-        <p>Ne izravno. U Hrvatskoj se obvezno auto osiguranje primarno računa prema snazi motora u kilovatima (kW), a ne prema kubikaži (ccm), što Mazdu čini vrlo konkurentnom u svojoj klasi.</p>
+        <p>Ne izravno. U Hrvatskoj se obvezno auto osiguranje primarno računa prema snazi motora u kilovatima (kW), a ne prema kubikaži (ccm), što Mazdu CX-5 čini vrlo konkurentnom u odnosu na SUV modele s manjim motorima.</p>
     </div>
 
     <div class="faq-item">
         <h4>Što ako moj CX-5 ima pogon na sva četiri kotača (AWD)?</h4>
-        <p>AWD sustav može utjecati na premiju kasko osiguranja jer povećava ukupnu vrijednost vozila i kompleksnost popravka, dok je za osnovnu policu ključna snaga motora.</p>
+        <p>AWD sustav primarno utječe na premiju kasko osiguranja jer povećava ukupnu vrijednost vozila i kompleksnost popravka pogonskog sklopa, dok je za osnovnu policu ključna snaga u kW.</p>
     </div>
 
     <div class="faq-item">
-        <h4>Mogu li dobiti popust ako sam dugogodišnji siguran vozač?</h4>
-        <p>Apsolutno. Naš <strong>izračun osiguranja za auto</strong> automatski povlači vaš maksimalni bonus i primjenjuje sve dodatne popuste na temelju vašeg vozačkog iskustva.</p>
+        <h4>Mogu li prenijeti bonus s drugog automobila na CX-5?</h4>
+        <p>Da! Vaš bonus (npr. 50%) vezan je uz vas kao vozača. Naš online kalkulator će automatski primijeniti vaš popust na Mazdu CX-5, bez obzira na snagu motora ili prethodno vozilo.</p>
     </div>
 </div>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [{
+    "@type": "Question",
+    "name": "Utječe li veća kubikaža Mazdinih motora na cijenu osiguranja?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Ne, cijena AO osiguranja u Hrvatskoj ovisi isključivo o snazi u kilovatima (kW), pa Mazdin 2.0 ili 2.5 motor ne znači nužno skuplju policu."
+    }
+  },
+  {
+    "@type": "Question",
+    "name": "Što ako moj CX-5 ima pogon na sva četiri kotača (AWD)?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Pogon na sve kotače utječe na procjenu vrijednosti vozila kod kasko osiguranja, dok za osnovno AO osiguranje nema izravan utjecaj na cijenu."
+    }
+  },
+  {
+    "@type": "Question",
+    "name": "Mogu li prenijeti bonus s drugog automobila na CX-5?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Da, bonus je vezan uz vozača i može se u potpunosti iskoristiti za novu policu Mazde CX-5 preko našeg online sustava."
+    }
+  }]
+}
+</script>
