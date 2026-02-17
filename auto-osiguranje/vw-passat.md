@@ -1,48 +1,82 @@
 ---
 layout: grad
-grad_ime: ""
-title: "Osiguranje za VW Passat | Usporedba cijena i kW (2026)"
+grad_ime: "Hrvatska"
+title: "Osiguranje za VW Passat | Cijene po godištima (2014-2026)"
 permalink: /auto-osiguranje/vw-passat/
-description: "Izračunajte cijenu osiguranja za VW Passat. Usporedite ponude za 2.0 TDI i GTE modele uz uštede do 30% putem online kalkulatora."
+description: "Izračunajte cijenu osiguranja za VW Passat. Provjerite informativne cijene za 2.0 TDI, GTE i nove B9 modele po godištima. Uštedite do 30% online."
 ---
 
-Volkswagen Passat desetljećima je mjerilo vrijednosti na hrvatskom tržištu rabljenih i novih vozila. Bilo da je riječ o limuzini ili Variant (karavan) izvedbi, **izračun osiguranja za auto** kod Passata zahtijeva preciznost zbog velikih razlika u snazi motora koje izravno utječu na platni razred. Naša platforma omogućuje vam da u par sekundi vidite tko nudi najpovoljniju policu za vaš "njemacki klasik".
+Volkswagen Passat desetljećima je mjerilo vrijednosti na hrvatskom tržištu rabljenih i novih vozila. Bilo da je riječ o klasičnoj limuzini ili Variant (karavan) izvedbi, **izračun osiguranja za auto** kod Passata zahtijeva preciznost zbog velikih razlika u snazi motora koje izravno utječu na platni razred. U 2026. godini, fokus se seli na hibridne pogone i napredne sustave asistencije koji definiraju cijenu police za ovaj "njemački klasik".
 
-### Ključni faktori za izračun police za VW Passat
+### Informativni pregled AO cijena za VW Passat
 
-Konačna cijena premije za Passat ovisi o nekoliko tehničkih detalja:
+Cijena obveznog auto osiguranja (AO) za Passat primarno je određena snagom motora u kilovatima (kW). Ispod donosimo okvirne raspone cijena uz maksimalni bonus (50%):
 
-* **Snaga motora (kW):** Najčešći modeli su **2.0 TDI (110 kW / 150 KS)**, no postoje i snažnije verzije od **140 kW (190 KS)** ili čak **176 kW (240 KS)** kod BiTDI modela. Svaki skok u kilovatima može značiti prelazak u skuplju kategoriju osiguranja.
-* **GTE i hibridni modeli:** Passat GTE (Plug-in Hybrid) kombinira snagu benzinca i elektromotora. Prilikom izračuna, sustav uzima u obzir ukupnu sustavnu snagu, a neki osiguravatelji nude popuste na eko-vozila.
-* **Oprema i senzori:** Budući da Passat često dolazi s LED Matrix svjetlima i naprednim radarima (ACC), troškovi popravka su visoki, što je ključno kod izračuna kasko osiguranja.
+| Generacija&nbsp;/&nbsp;Model | Godište&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Snaga motora (kW)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Informativna cijena |
+| :--- | :--- | :--- | :--- |
+| **Passat B9 (Variant)** | 2024. – 2026. | 1.5 eTSI / 2.0 TDI (110 kW) | **Od 155 €** |
+| **Passat B8 GTE (Plug-in)** | 2015. – 2023. | 160 kW (Sustavna snaga) | **Od 190 €** |
+| **Passat B8 2.0 TDI** | 2014. – 2023. | 110 kW / 140 kW / 176 kW | **Od 155 €** |
+| **Passat B8 1.6 TDI** | 2014. – 2020. | 88 kW | **Od 145 €** |
+| **Passat B7 2.0 TDI** | 2010. – 2014. | 103 kW / 125 kW | **Od 150 €** |
 
-### Zašto ugovoriti policu online preko Osiguraj.hr?
+> **💡 Pro-tip za vlasnike Passata:** Passat (pogotovo modeli B8 i B9) koristi **IQ.LIGHT** Matrix LED tehnologiju i radarske senzore integrirane u branike i vjetrobransko staklo. Zamjena jednog Matrix fara košta preko **1.700 €**, dok kalibracija sustava nakon promjene stakla iznosi oko **300 €**. S obzirom na to da je Passat i dalje visoko na listi rizika od krađe navigacijskih sustava i zračnih jastuka, za modele novije od 8 godina toplo preporučujemo **puni kasko**, dok se za starije modele preporučuje doplata za **zaštitu stakala i asistenciju na cesti**.
 
-Vlasnici Volkswagena biraju Osiguraj.hr jer traže pouzdanost i najbolji omjer cijene i zaštite:
+### Ključni faktori za izračun police
 
-1. **Brza usporedba kW razreda:** Odmah saznajte koliko vaš bonus smanjuje cijenu za specifičnu snagu vašeg Passata.
-2. **Transparentnost bez naknada:** Prikazana cijena je ona koju plaćate, uz uključene sve trenutne akcije osiguravatelja.
-3. **Digitalni pristup:** Vaša polica je dostupna na mobitelu u svakom trenutku, spremna za tehnički pregled ili prijavu štete.
+Prilikom usporedbe ponuda za vaš Passat, sustav u 2026. godini analizira tri presudne točke:
+1.  **Sustavna snaga hibrida (GTE):** Kod Passata GTE osiguranje se obračunava prema ukupnoj sustavnoj snazi. Iako to može značiti viši platni razred, u 2026. godini mnogi osiguravatelji nude eko-popuste od **10% do 15%** za plug-in hibride, što finalnu policu čini vrlo konkurentnom.
+2.  **Namjena vozila (Privatno vs. Službeno):** Passat je najčešće flotno vozilo. Ako je vaš Passat registriran na firmu, sustav će vam ponuditi specifične tarife za pravne osobe. Za privatne korisnike, grad registracije i dalje ostaje ključni faktor osnovne cijene.
+3.  **Sigurnosni paketi:** Modeli opremljeni **Front Assist** i **Side Assist** sustavima statistički rjeđe sudjeluju u nezgodama, što određeni osiguravatelji u kasko izračunima nagrađuju nižom premijom.
 
-### Savjet stručnjaka: Isplati li se kasko za VW Passat?
-
-Passat je vozilo koje izuzetno dobro drži cijenu, ali je i često na meti kradljivaca dijelova (navigacije, zračni jastuci). Za novije modele od 2018. godine naviše, **puni kasko** je najsigurnija opcija. Za starija godišta (B7 i raniji B8), preporučujemo **djelomični kasko** koji pokriva stakla i nalet na životinju.
+---
 
 <div class="faq-section">
     <h3>FAQ: Sve što trebate znati o osiguranju za VW Passat</h3>
     
     <div class="faq-item">
-        <h4>Je li osiguranje skuplje za Passat Variant (karavan)?</h4>
-        <p>Ne, oblik karoserije ne utječe na obvezno auto osiguranje. Cijena se računa prema snazi motora (kW) i gradu registracije vlasnika.</p>
+        <h4>Zašto je osiguranje za Passat 2.0 TDI (140 kW) skuplje nego za 1.6 TDI?</h4>
+        <p>Razlika je isključivo u platnim razredima kilovata. Motor od 140 kW ulazi u znatno višu kategoriju od motora s 88 kW, što rezultira razlikom u cijeni premije od oko 20-30%.</p>
     </div>
 
     <div class="faq-item">
-        <h4>Kako prenijeti bonus s drugog vozila na Passat?</h4>
-        <p>Naš <strong>izračun osiguranja za auto</strong> omogućuje vam da jednostavno unesete svoj postojeći bonus (npr. 50%). Bonus se veže uz vozača, a ne uz vozilo, te ga lako možete primijeniti na novi auto.</p>
+        <h4>Pokriva li kasko osiguranje krađu navigacijskog sustava iz Passata?</h4>
+        <p>Da, puni kasko osiguranje pokriva krađu dijelova vozila, uključujući i tvornički ugrađene navigacijske sustave ("Discover Pro" i sl.), koji su česta meta provalnika kod Passata B8.</p>
     </div>
 
     <div class="faq-item">
-        <h4>Što ako je moj Passat registriran na firmu?</h4>
-        <p>Vozila na tvrtku imaju drugačije tarife. Prilikom unosa podataka u kalkulator, odaberite opciju "Pravna osoba" kako biste dobili točan izračun za službeni Passat.</p>
+        <h4>Mogu li prenijeti bonus s drugog vozila ako kupujem novi Passat B9?</h4>
+        <p>Apsolutno. Vaš bonus (npr. 50%) vezan je uz vaš OIB. Naš online <strong>izračun osiguranja za auto</strong> automatski će povući vaše podatke i primijeniti maksimalni popust na novu policu.</p>
     </div>
 </div>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [{
+    "@type": "Question",
+    "name": "Koliko košta osiguranje za Passat 2.0 TDI?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Uz 50% bonusa, cijena za motor od 110 kW kreće se od približno 155 €, ovisno o gradu registracije."
+    }
+  },
+  {
+    "@type": "Question",
+    "name": "Je li kasko isplativ za VW Passat?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Da, zbog skupe LED optike, radarskih sustava i rizika od krađe dijelova, kasko se preporučuje za sve modele do 10 godina starosti."
+    }
+  },
+  {
+    "@type": "Question",
+    "name": "Ima li Passat GTE popust na osiguranje?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Većina osiguravatelja u 2026. nudi eko-popuste za hibridne modele poput Passata GTE."
+    }
+  }]
+}
+</script>
