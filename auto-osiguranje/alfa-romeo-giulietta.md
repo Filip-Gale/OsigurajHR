@@ -1,48 +1,80 @@
 ---
 layout: grad
 grad_ime: ""
-title: "Osiguranje za Alfa Romeo Giulietta | Izračun cijene prema kW (2026)"
+title: "Osiguranje za Alfa Romeo Giulietta | Cijene po godištima (2010-2021)"
 permalink: /auto-osiguranje/alfa-romeo-giulietta/
-description: "Saznajte cijenu auto osiguranja za Alfa Romeo Giulietta. Usporedite ponude za JTDm, MultiAir i Quadrifoglio Verde uz uštede do 30% online."
+description: "Izračunajte cijenu osiguranja za Alfu Giulietta. Provjerite informativne cijene za 1.6 JTDm, MultiAir i QV modele po godištima. Uštedite uz online usporedbu."
 ---
 
-Alfa Romeo Giulietta spaja talijansku strast prema vožnji s bezvremenskim dizajnom. Iako se više ne proizvodi kao novi model, Giulietta ostaje iznimno popularan izbor na tržištu rabljenih vozila u Hrvatskoj. Za vlasnike **Alfe Giulietta**, cijena obveznog auto osiguranja u 2026. godini ovisi o snazi motora, a uz naš digitalni **izračun osiguranja za auto** možete osigurati svoju "Alfu" uz najbolje uvjete i brzu usporedbu svih osiguravatelja.
+Alfa Romeo Giulietta spaja talijansku strast s bezvremenskim dizajnom, a na hrvatskom tržištu rabljenih vozila uživa kultni status. Budući da se model proizvodio preko desetljeća, **izračun osiguranja za Alfu Giulietta** značajno varira ovisno o generaciji (redizajnu) i snazi motora izražene u kW.
 
-### Ključni faktori za izračun police za Alfu Giulietta
+### Informativni pregled AO cijena za Alfu Giulietta
 
-Prilikom izrade ponude, sustav analizira tehničke karakteristike koje su specifične za ovaj model:
+Cijena obveznog auto osiguranja (AO) za Giuliettu primarno ovisi o platnom razredu snage motora. Ispod su okvirni rasponi cijena za najpopularnije izvedbe s maksimalnim bonusom (50%):
 
-* **Snaga motora (kW):** Raspon je širok – od štedljivih **1.6 JTDm (77-88 kW)** do snažnih **2.0 JTDm (125 kW)** i benzinskih **1.4 MultiAir (125 kW)**. Najsnažnija verzija **Quadrifoglio Verde (173-177 kW)** ulazi u najviši platni razred, što značajno utječe na osnovnu premiju.
-* **Alfa D.N.A. sustav:** Iako sustav za promjenu režima vožnje ne utječe direktno na cijenu AO police, on definira karakter automobila. Kod mlađih vozača, snažnije verzije Giuliette mogu imati specifične koeficijente rizika.
-* **Troškovi popravka:** Karakteristična LED stražnja svjetla i specifični prednji "scudetto" hladnjak mogu biti skupi za zamjenu, što je važan faktor kod ugovaranja kasko osiguranja za očuvane primjerke.
+| Godište / Verzija | Snaga (kW) | Najčešći motori | Informativna cijena (AO) |
+| :--- | :--- | :--- | :--- |
+| **2016. – 2021. (Serija 2)** | 88 kW - 177 kW | 1.6 JTDm, 2.0 JTDm, Veloce | **Od 160 €** |
+| **2013. – 2016. (Serija 1)** | 77 kW - 129 kW | 1.4 MultiAir, 2.0 JTDm | **Od 145 €** |
+| **2010. – 2013. (Serija 0)** | 77 kW - 173 kW | 1.6 JTDm, QV (1750 TBi) | **Od 135 €** |
 
-### Zašto ugovoriti policu online preko Osiguraj.hr?
+> **Pro-tip za Alfiste:** Iako je Giulietta pouzdan kompakt, specifični dijelovi limarije poput prednjeg "scudetto" hladnjaka ili LED stražnjih svjetala mogu biti skupi. Čak i za starija godišta, preporučujemo usporedbu cijena kasko osiguranja jer razlika u premiji može biti manja od cijene jednog fara.
 
-Vlasnici Alfe Giulietta putem naše platforme dobivaju pristup najpovoljnijim ponudama:
+### Ključni faktori za izračun police
 
-1. **Usporedba u realnom vremenu:** Brzo provjerite koji osiguravatelj nudi najnižu cijenu za vašu snagu motora (kW).
-2. **Plaćanje na rate:** Čak i skuplje police za snažnije motore možete podijeliti na do 12 rata bez kamata.
-3. **Zaštita bonusa:** S obzirom na sportski karakter vozila, preporučujemo ugovaranje opcije zaštite bonusa kako bi vaša premija ostala ista čak i u slučaju manje nezgode.
+Prilikom ugovaranja police za vašu Alfu, osiguravatelji u 2026. godini fokusiraju se na:
+1.  **Kilovate (kW):** Verzije od **88 kW (120 KS)** su najpovoljnije za osiguranje, dok snažni **Quadrifoglio Verde (QV)** sa 173+ kW ulazi u najvišu kategoriju.
+2.  **Zona registracije:** Giulietta registrirana u Zagrebu ili Rijeci imat će višu osnovnu premiju u odnosu na područja poput Daruvara ili Požege.
+3.  **Dodatna pokrića:** Zbog sportskog karaktera vozila, vlasnici Giuliette često biraju **zaštitu bonusa**, koja sprječava povećanje cijene police nakon prve skrivljene nezgode.
 
-### Savjet za vlasnike: Isplati li se kasko za Alfu Giulietta?
-
-Budući da je Giulietta model koji polako postaje moderni klasik, očuvanim primjercima s malom kilometražom preporučujemo barem **djelomični kasko**. On pokriva najčešće probleme poput loma stakla ili štete na parkiralištu. Za vlasnike Quadrifoglio Verde modela, **puni kasko** je nužan za zaštitu investicije, jer vrijednost ovih modela na tržištu rabljenih ostaje vrlo stabilna.
+---
 
 <div class="faq-section">
-    <h3>FAQ: Sve što trebate znati o osiguranju za Alfu Giulietta</h3>
+    <h3>Česta pitanja o osiguranju za Alfu Giulietta</h3>
     
     <div class="faq-item">
-        <h4>Je li osiguranje za JTDm (dizel) skuplje nego za benzinca?</h4>
-        <p>Cijena AO police ovisi isključivo o snazi u kilovatima (kW). Ako dizelska i benzinska Giulietta imaju istu snagu (npr. 88 kW), cijena osnovnog osiguranja bit će identična.</p>
+        <h4>Koliko košta osiguranje za Giuliettu 1.6 JTDm (120 KS)?</h4>
+        <p>Za najpopularniji motor od 88 kW, cijena obveznog osiguranja uz 50% bonusa najčešće se kreće između 155 € i 180 €, ovisno o gradu u kojem se vozilo registrira.</p>
     </div>
 
     <div class="faq-item">
-        <h4>Mogu li dobiti popust na temelju starosti vozila?</h4>
-        <p>Neki osiguravatelji u 2026. nude popuste za vozila starija od 10 godina, dok drugi imaju fiksne tarife po kW. Naš <strong>izračun osiguranja za auto</strong> automatski provjerava sve dostupne popuste za vas.</p>
+        <h4>Je li osiguranje skuplje za QV (Veloce) modele?</h4>
+        <p>Da, Quadrifoglio Verde i Veloce modeli imaju znatno više kilovata (173-177 kW), što ih svrstava u najskuplji platni razred obveznog osiguranja, a i kasko premija je viša zbog veće tržišne vrijednosti.</p>
     </div>
 
     <div class="faq-item">
-        <h4>Vrijedi li moja polica ako auto koristim za track day?</h4>
-        <p>Standardne AO i kasko police obično ne vrijede na trkaćim stazama ili organiziranim natjecanjima. Za takve uvjete potrebna su posebna proširenja police koja se ugovaraju individualno.</p>
+        <h4>Mogu li ugovoriti osiguranje online za rabljenu Giuliettu?</h4>
+        <p>Naravno! Putem Osiguraj.hr kalkulatora možete u 2 minute unijeti podatke iz prometne dozvole rabljenog vozila i odmah dobiti usporedbu ponuda svih hrvatskih osiguravatelja.</p>
     </div>
 </div>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [{
+    "@type": "Question",
+    "name": "Koliko košta osiguranje za Giuliettu 1.6 JTDm (120 KS)?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Za motor od 88 kW (120 KS), cijena obveznog osiguranja s 50% bonusa obično iznosi između 155 i 180 EUR, ovisno o gradu registracije."
+    }
+  },
+  {
+    "@type": "Question",
+    "name": "Je li osiguranje skuplje za QV (Veloce) modele?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Da, zbog velike snage motora (preko 170 kW), ovi modeli spadaju u najviši cjenovni razred za obvezno osiguranje."
+    }
+  },
+  {
+    "@type": "Question",
+    "name": "Mogu li ugovoriti osiguranje online za rabljenu Giuliettu?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Da, online kalkulator omogućuje trenutni izračun i ugovaranje police za rabljena vozila uz prikaz svih dostupnih popusta za 2026. godinu."
+    }
+  }]
+}
+</script>
