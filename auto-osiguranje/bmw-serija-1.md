@@ -10,9 +10,9 @@ BMW Serija 1 donosi prepoznatljivo „zadovoljstvo u vožnji“ u kompaktni segm
 
 ### Informativni pregled AO cijena za BMW Seriju 1
 
-Cijena obveznog auto osiguranja (AO) primarno je određena snagom motora. Ispod donosimo okvirne raspone cijena za najtraženije generacije uz maksimalni bonus (50%):
+Cijena obveznog auto osiguranja (AO) primarno je određena snagom motora. Ispod donosimo okvirne raspone cijena uz maksimalni bonus (50%):
 
-| Generacija / Oznaka | Godište | Najčešći motori (kW) | Informativna cijena |
+| Generacija&nbsp;/&nbsp;Oznaka | Godište&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Najčešći motori (kW)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Informativna cijena |
 | :--- | :--- | :--- | :--- |
 | **BMW Serija 1 (F40)** | 2019. – 2024. | 116d (85 kW), 118d (110 kW) | **Od 170 €** |
 | **BMW Serija 1 (F20/F21)** | 2011. – 2019. | 114d (70 kW), 118d (110 kW) | **Od 150 €** |
