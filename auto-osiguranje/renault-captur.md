@@ -1,48 +1,82 @@
 ---
 layout: grad
-grad_ime: ""
-title: "Osiguranje za Renault Captur | Izračun cijene prema kW (2026)"
+grad_ime: "Hrvatska"
+title: "Osiguranje za Renault Captur | Cijene po godištima (2013-2024)"
 permalink: /auto-osiguranje/renault-captur/
-description: "Saznajte točnu cijenu auto osiguranja za Renault Captur. Usporedite ponude za TCe, dCi i E-Tech hibride uz uštede do 30% online."
+description: "Izračunajte cijenu osiguranja za Renault Captur. Provjerite informativne cijene za TCe, dCi i E-Tech hibride po godištima. Uštedite do 30% online."
 ---
 
-Renault Captur je jedan od najpopularnijih gradskih SUV-ova, prepoznatljiv po svojoj praktičnosti i modernom dizajnu. Za vlasnike **Renault Captura**, troškovi obveznog auto osiguranja u 2026. godini variraju ovisno o vrsti pogona, pri čemu hibridne verzije često ostvaruju dodatne pogodnosti. Uz naš digitalni **izračun osiguranja za auto**, provjerite cijene svih osiguravatelja i osigurajte svoj Captur uz najbolji omjer cijene i kvalitete.
+Renault Captur je jedan od najpopularnijih gradskih SUV-ova na našim cestama, prepoznatljiv po svojoj praktičnosti i modernom dizajnu. Za vlasnike **Renault Captura**, troškovi obveznog auto osiguranja u 2026. godini ovise o širokoj paleti motora – od agilnih trocilindraša do naprednih E-Tech hibrida. Bez obzira vozite li prvu generaciju ili najnoviji model, ključ uštede je u preciznom **izračunu osiguranja za auto** prema kilovatima (kW).
 
-### Ključni faktori za izračun police za Renault Captur
+### Informativni pregled AO cijena za Renault Captur
 
-Prilikom izrade ponude za vaš Captur, sustav uzima u obzir ključne tehničke specifikacije:
+Cijena obveznog auto osiguranja (AO) za Captur primarno je određena platnim razredom snage motora. Ispod donosimo okvirne raspone cijena uz maksimalni bonus (50%):
 
-* **Snaga motora (kW):** Najčešći modeli su **1.0 TCe (67-74 kW)** i **1.3 TCe (103 kW)**. Ovi motori spadaju u niže i srednje platne razrede, što policu čini pristupačnom. Modeli **E-Tech hibrid (105-117 kW)** zahtijevaju precizan izračun zbog kombinirane snage.
-* **Dvobojna karoserija i personalizacija:** Captur je poznat po opcijama boja. Iako to ne utječe na AO, kod kasko osiguranja se uzima u obzir cijena specifičnih lakova u slučaju popravka.
-* **Sigurnosna oprema:** Sustavi poput prepoznavanja prometnih znakova i pomoći pri zadržavanju u traci pridonose većoj sigurnosti, što osiguravatelji pozitivno vrednuju.
+| Generacija&nbsp;/&nbsp;Model | Godište&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Najčešći motori (kW)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Informativna cijena |
+| :--- | :--- | :--- | :--- |
+| **Captur E-Tech (PHEV)** | 2020. – 2024. | 1.6 Hybrid (105 - 117 kW) | **Od 150 €** |
+| **Captur (II gen. - TCe)** | 2019. – 2024. | 1.0 TCe (67-74 kW), 1.3 TCe | **Od 120 €** |
+| **Captur (I gen. Redizajn)**| 2017. – 2019. | 0.9 TCe (66 kW), 1.5 dCi | **Od 115 €** |
+| **Captur (I gen. I faza)** | 2013. – 2017. | 1.5 dCi (66 kW), 1.2 TCe | **Od 115 €** |
+| **Captur GPL (Plin)** | 2020. – 2024. | 1.0 TCe 100 LPG (74 kW) | **Od 120 €** |
 
-### Zašto ugovoriti policu online preko Osiguraj.hr?
+> **💡 Pro-tip za vlasnike Renaulta:** Novi Captur koristi **Full LED Pure Vision** svjetla s karakterističnim "C" oblikom. Zamjena samo jednog fara u slučaju parkirnog oštećenja može stajati preko **850 €**, dok dvobojna karoserija (krov u drugoj boji) podiže trošak lakiranja kod popravaka. S obzirom na to da se Captur najviše koristi u gradu, za novije modele preporučujemo **puni kasko**, dok je za starije modele izuzetno isplativo ugovoriti **djelomični kasko za stakla**.
 
-Vlasnici Renault Captura putem naše platforme ostvaruju brojne prednosti:
+### Ključni faktori za izračun police
 
-1. **Ušteda u par klikova:** Brza usporedba svih dostupnih polica na tržištu bez odlaska u poslovnicu.
-2. **Transparentni kW razredi:** Naš kalkulator točno prepoznaje snagu vašeg motora, osiguravajući vam najpovoljniju tarifu.
-3. **Digitalna polica odmah:** Nakon uplate, polica stiže na vaš e-mail, spremna za registraciju vozila.
+Prilikom usporedbe ponuda za vaš Captur, sustav u 2026. godini analizira tri presudne točke:
+1.  **Idealni kW razredi:** Većina Captura s **1.0 TCe** motorom ima **67 kW** ili **74 kW**, što ih smješta u jedne od najpovoljnijih platnih razreda osiguranja u SUV kategoriji.
+2.  **E-Tech i ekologija:** Hibridni modeli (105-117 kW) u 2026. godini često ostvaruju "zelene popuste". Iako imaju više kilovata, eko-bonus može smanjiti premiju tako da bude blizu cijene standardnog benzinca.
+3.  **Tvornički plin (LPG):** Renault nudi Captur s tvorničkim LPG sustavom. Naš kalkulator prepoznaje ovu specifičnost, što je važno za točan unos podataka prilikom online ugovaranja police.
 
-### Savjet za vlasnike: Isplati li se kasko za Renault Captur?
-
-Budući da se Captur najčešće koristi u gradskim uvjetima gdje su česta sitna oštećenja na parkiralištima, preporučujemo barem **djelomični kasko**. Za nove modele i E-Tech hibride, **puni kasko** je najsigurnija opcija jer pokriva i skupe popravke hibridnih komponenti te LED rasvjete (Renault LED Pure Vision).
+---
 
 <div class="faq-section">
     <h3>FAQ: Sve što trebate znati o osiguranju za Renault Captur</h3>
     
     <div class="faq-item">
-        <h4>Postoje li popusti za Renault Captur E-Tech (hibrid)?</h4>
-        <p>Da, u 2026. godini hibridni modeli često ostvaruju dodatne eko-popuste na AO policu, što Captur čini još ekonomičnijim izborom.</p>
+        <h4>Je li osiguranje skuplje za Captur s krovom u drugoj boji?</h4>
+        <p>Za obvezno AO osiguranje boja nije bitna. Međutim, kod kasko osiguranja dvobojna karoserija može neznatno utjecati na premiju jer je postupak lakiranja takvog vozila u slučaju štete zahtjevniji i skuplji.</p>
     </div>
 
     <div class="faq-item">
-        <h4>Vrijedi li moj bonus od 50% i na Captur ako mi je to drugo vozilo?</h4>
-        <p>Bonus je vezan uz vlasnika, no uvjeti prijenosa na drugo vozilo ovise o osiguravatelju. Provjerite opcije kroz naš <strong>izračun osiguranja za auto</strong>.</p>
+        <h4>Vrijedi li moj bonus od 50% ako prelazim s Clija na Captur?</h4>
+        <p>Da, vaš bonus je vezan uz vas kao vozača. Naš online <strong>izračun osiguranja za auto</strong> automatski će primijeniti vaš stečeni popust bez obzira jeste li ranije vozili manji gradski auto ili SUV.</p>
     </div>
 
     <div class="faq-item">
-        <h4>Što ako moja polica istječe tijekom vikenda?</h4>
-        <p>Naš online servis radi 24/7. Možete ugovoriti i platiti policu bilo kada, a potvrdu dobivate trenutno na svoj e-mail.</p>
+        <h4>Što pokriva asistencija na cesti za hibridni Captur?</h4>
+        <p>Uz policu možete ugovoriti asistenciju koja pokriva vuču u slučaju kvara, ali i specifične situacije poput pražnjenja pogonske baterije ili pogrešnog točenja goriva, što je korisna opcija za moderne E-Tech modele.</p>
     </div>
 </div>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [{
+    "@type": "Question",
+    "name": "Je li osiguranje skuplje za dvobojni Captur?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "AO osiguranje je isto, ali kasko može biti neznatno skuplji zbog kompleksnosti popravka boje."
+    }
+  },
+  {
+    "@type": "Question",
+    "name": "Vrijedi li moj bonus od 50% za Renault Captur?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Da, bonus od 50% je prenosiv i automatski se obračunava preko našeg online sustava."
+    }
+  },
+  {
+    "@type": "Question",
+    "name": "Što pokriva asistencija za hibridni Captur?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Pokriva vuču vozila, pomoć kod kvara baterije i ostale standardne usluge pomoći na cesti 24/7."
+    }
+  }]
+}
+</script>
