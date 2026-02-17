@@ -1,48 +1,81 @@
 ---
 layout: grad
 grad_ime: ""
-title: "Osiguranje za Dacia Duster | Najjeftiniji izračun online (2026)"
-permalink: /auto-osiguranje/dacia-duster/
-description: "Saznajte cijenu osiguranja za Dacia Duster. Brza usporedba za 1.5 dCi i 1.0 LPG modele uz uštede do 30% na online polici."
+title: "Osiguranje za Citroen C4 | Cijene po godištima (2004-2024)"
+permalink: /auto-osiguranje/citroen-c4/
+description: "Izračunajte cijenu osiguranja za Citroen C4. Provjerite informativne cijene za PureTech, BlueHDi i električni ë-C4 po godištima. Uštedite do 30% online."
 ---
 
-Dacia Duster je postala sinonim za racionalan odabir i robusnost na hrvatskim cestama. Vlasnici Dustera cijene niske troškove održavanja, a mi vam pomažemo da i **izračun osiguranja za auto** bude jednako ekonomičan. Bez obzira koristite li ga za gradsku vožnju ili terenske izazove, naša platforma pronalazi najpovoljniju policu u par klikova.
+Citroen C4 redefinira udobnost u kompaktnoj klasi, od legendarne prve generacije do modernog crossover dizajna s progresivnim hidrauličnim graničnicima. Za vlasnike **Citroena C4**, cijena obveznog auto osiguranja u 2026. godini ovisi o odabranom pogonu, uz poseban naglasak na električne modele koji često uživaju povlašteni status kod osiguravatelja.
 
-### Ključni faktori za izračun police za Dacia Duster
+### Informativni pregled AO cijena za Citroen C4
 
-Specifičnosti Dustera izravno utječu na varijacije u cijeni premije:
+Cijena obveznog auto osiguranja (AO) primarno je određena platnim razredom snage (kW). Ispod donosimo okvirne raspone cijena uz maksimalni bonus (50%):
 
-* **Pogon i motorizacija (kW):** Najveći broj modela dolazi s provjerenim **1.5 dCi (80-85 kW)** motorima ili modernim **1.0 TCe (67-74 kW)** jedinicama. Ako vaš Duster ima pogon na sva četiri kotača (4x4), to može utjecati na procjenu rizika kod kasko osiguranja.
-* **Tvornički plin (LPG):** Dacia je predvodnik u modelima s plinskom instalacijom. Prilikom izračuna, važno je navesti vrstu goriva jer to može utjecati na tehničke parametre koji definiraju cijenu.
-* **Godište i namjena:** Rabljeni Dusteri prve generacije imaju znatno nižu premiju, dok za nove modele preporučujemo provjeru kasko opcija zbog zaštite vaše investicije.
+| Generacija&nbsp;/&nbsp;Model | Godište&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Najčešći motori (kW)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Informativna cijena |
+| :--- | :--- | :--- | :--- |
+| **Citroen ë-C4 (Električni)** | 2020. – 2024. | 100 kW (136 KS), 115 kW | **Od 165 €** |
+| **Citroen C4 (III - PureTech)** | 2020. – 2024. | 1.2 PureTech (74-96 kW) | **Od 145 €** |
+| **Citroen C4 (II - BlueHDi)** | 2010. – 2018. | 1.6 HDi (68-88 kW) | **Od 135 €** |
+| **Citroen C4 (I gen.)** | 2004. – 2010. | 1.4i (65 kW), 1.6 HDi | **Od 125 €** |
 
-### Zašto ugovoriti policu online preko Osiguraj.hr?
+> **💡 Pro-tip za vlasnike Citroena:** Novi modeli C4 opremljeni su naprednom optikom (LED Vision u obliku slova V) i Head-up zaslonima. Budući da su troškovi zamjene ovih visokotehnoloških dijelova visoki, za vozila mlađa od 7 godina toplo preporučujemo **puni kasko**, dok je za starije modele mudro ugovoriti barem zaštitu stakala.
 
-Korištenjem našeg kalkulatora, vlasnici Dacije dobivaju transparentan uvid u tržište:
+### Ključni faktori za izračun police
 
-1. **Brza usporedba:** Unesite podatke i odmah vidite ponude svih osiguravajućih kuća bez zvanja agenata.
-2. **Ušteda uz bonus:** Provjerite koliko vaš bonus za godine bez štete smanjuje cijenu police za Dusterov raspon snage.
-3. **Plaćanje na rate:** Naš sustav omogućuje jednostavno plaćanje online, uz sve pogodnosti koje nudi vaša kartica.
+Prilikom usporedbe ponuda za vaš Citroen C4, sustav u 2026. godini analizira tri presudne točke:
+1. **Ekološki popusti (ë-C4):** Iako električni modeli imaju veću snagu u kW, mnogi osiguravatelji nude "zelene popuste" do 15% na AO policu, što ih čini vrlo konkurentnima dizelašima.
+2. **Sustavi asistencije (Advanced Comfort):** Citroen C4 s naprednim sustavima kočenja i održavanja trake često se smatra vozilom nižeg rizika, što se može odraziti na povoljniji izračun kasko premije.
+3. **Zona registracije:** Kao i kod ostalih modela, premija za C4 bit će viša u Zagrebu (ZG) ili Splitu (ST) nego u zonama s manjom gustoćom prometa.
 
-### Savjet za vlasnike: Isplati li se kasko za Duster?
-
-Iako je Dacia povoljnija za održavanje od premium SUV-ova, popravci karoserije i zamjena svjetala na novijim modelima mogu biti nepredviđen trošak. Za Duster savjetujemo barem **djelomični kasko** (npr. zaštita od tuče ili sudara sa životinjama), što je čest scenarij za vlasnike koji ovaj auto koriste izvan asfalta.
+---
 
 <div class="faq-section">
-    <h3>FAQ: Sve što trebate znati o osiguranju za Dacia Duster</h3>
+    <h3>Česta pitanja o osiguranju za Citroen C4</h3>
     
     <div class="faq-item">
-        <h4>Utječe li kuka za vuču na cijenu osiguranja?</h4>
-        <p>Kuka mora biti atestirana i upisana u dokumente. Neki osiguravatelji mogu korigirati cijenu zbog promjene profila rizika, stoga je najbolje provjeriti kroz naš <strong>izračun osiguranja za auto</strong>.</p>
+        <h4>Je li osiguranje za električni ë-C4 skuplje od klasičnog benzinca?</h4>
+        <p>Zbog veće snage u kW osnovna cijena može biti viša, ali uz primjenu eko-popusta za električna vozila, konačna cijena police često je identična ili čak povoljnija od PureTech modela sličnih performansi.</p>
     </div>
 
     <div class="faq-item">
-        <h4>Koja je razlika u cijeni osiguranja za dizel i plin?</h4>
-        <p>Osnovna cijena police primarno ovisi o kilovatima (kW), a ne direktno o vrsti goriva. Međutim, kasko osiguranje može varirati ovisno o prodajnoj vrijednosti vozila na tržištu.</p>
+        <h4>Što pokriva polica u slučaju kvara Advanced Comfort ovjesa?</h4>
+        <p>Obvezno AO osiguranje ne pokriva kvarove na vozilu. Za pomoć u slučaju kvara na cesti, preporučujemo ugovaranje dodatne usluge <strong>asistencije na cesti</strong> uz vašu policu.</p>
     </div>
 
     <div class="faq-item">
-        <h4>Mogu li osigurati Duster ako ga koristim u poslovne svrhe?</h4>
-        <p>Da, ali važno je to naglasiti prilikom izračuna jer vozila registrirana na tvrtku ili za specifične djelatnosti mogu imati drugačije tarife u odnosu na privatne korisnike.</p>
+        <h4>Mogu li prenijeti 50% bonusa na novi Citroen C4?</h4>
+        <p>Da! Bonus je trajno vlasništvo vozača. Naš online kalkulator automatski preuzima vaš stečeni bonus i primjenjuje ga na novu policu, osiguravajući vam maksimalnu uštedu od prvog dana.</p>
     </div>
 </div>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [{
+    "@type": "Question",
+    "name": "Je li osiguranje za električni ë-C4 skuplje od klasičnog benzinca?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Iako električni ë-C4 ima više kW, uz eko-popuste cijena osiguranja je često vrlo slična onoj za benzinske PureTech modele."
+    }
+  },
+  {
+    "@type": "Question",
+    "name": "Što pokriva polica u slučaju kvara Advanced Comfort ovjesa?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "AO osiguranje ne pokriva mehaničke kvarove. Za takve situacije preporučuje se ugovaranje asistencije na cesti ili kasko osiguranja."
+    }
+  },
+  {
+    "@type": "Question",
+    "name": "Mogu li prenijeti 50% bonusa na novi Citroen C4?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Da, bonus je vezan uz vozača i može se u potpunosti prenijeti na bilo koji novi model Citroena C4 prilikom izrade police."
+    }
+  }]
+}
+</script>
