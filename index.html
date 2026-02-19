@@ -11,6 +11,25 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-TPNZZVZ5');</script>
 <!-- End Google Tag Manager -->
+    <!-- Google tag (gtag.js) event - delayed navigation helper -->
+<script>
+  // Helper function to delay opening a URL until a gtag event is sent.
+  // Call it in response to an action that should navigate to a URL.
+  function gtagSendEvent(url) {
+    var callback = function () {
+      if (typeof url === 'string') {
+        window.location = url;
+      }
+    };
+    gtag('event', 'conversion_event_submit_lead_form', {
+      'event_callback': callback,
+      'event_timeout': 2000,
+      // <event_parameters>
+    });
+    return false;
+  }
+</script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="format-detection" content="telephone=no">
@@ -206,7 +225,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <input type="checkbox" name="botcheck" style="display:none;" tabindex="-1" autocomplete="off">
 
                 <div class="row-pc">
-                    <input id="saznaj" type="submit" value="Saznaj cijenu" class="round background-purple text-white">
+                   <input id="saznaj" type="submit" value="Saznaj cijenu" class="round background-purple text-white" onclick="return gtagSendEvent();">
                     <p id="disclaimer" class="desktop-only">
                         Naš agent vam se javlja u kratkom
                         roku s <strong>najpovoljnijim cijenama naših osiguravajućih partnera</strong>.
@@ -805,6 +824,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </body>
 
 </html>
+
 
 
 
