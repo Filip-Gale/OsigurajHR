@@ -2,7 +2,7 @@
 layout: registracija-layout
 title: Vodič za registraciju vozila Karlovac (2026) | Provjerene cijene
 grad: Karlovac
-stp_lokacije_opis: "Karlovac je ključno prometno čvorište, a stanice za tehnički pregled smještene su uz glavne prilazne ceste. Zbog velikog tranzita, preporučujemo obavljanje pregleda radnim danom prijepodne."
+stp_lokacije_opis: "Karlovac, kao važno prometno čvorište, nudi nekoliko stanica za tehnički pregled s odličnim pristupom s glavnih cesta. Preporučujemo termine usred tjedna kako biste izbjegli tranzitne gužve vikendom."
 ---
 
 <div style="line-height: 1.8; font-size: 1.1rem;">
@@ -11,7 +11,7 @@ stp_lokacije_opis: "Karlovac je ključno prometno čvorište, a stanice za tehni
     </h1>
 
     <p style="text-align: center; max-width: 800px; margin: 0 auto 30px auto;">
-        Planirate tehnički pregled u Karlovcu? Saznajte sve o lokacijama stanica, potrebnoj dokumentaciji i izračunajte točan trošak registracije za 2026. godinu.
+        Obavljate tehnički pregled u gradu na četiri rijeke? Saznajte lokacije stanica u Karlovcu, potrebnu dokumentaciju i izračunajte troškove registracije za 2026. godinu.
     </p>
 
     <div style="background: rgba(0, 0, 0, 0.2); border: 3px solid #ffbc27; border-radius: 30px; padding: 35px; margin: 40px 0; text-align: center; box-shadow: 0 15px 35px rgba(0,0,0,0.2);">
@@ -34,35 +34,35 @@ stp_lokacije_opis: "Karlovac je ključno prometno čvorište, a stanice za tehni
                 <div style="color: #ffbc27; font-size: 2rem; margin-bottom: 15px;">⚡</div>
                 <h3 style="color: white; margin: 0 0 15px 0; font-size: 1.6rem; text-transform: uppercase; font-weight: 800;">ŽELIŠ SMANJITI OVAJ TROŠAK?</h3>
                 <p style="color: white; font-size: 1.1rem; margin-bottom: 25px; line-height: 1.5;">Usporedi ponude i uštedi <span style="color: #ffbc27; font-weight: 800;">do 65 EUR</span> na polici osiguranja u gradu <span style="font-weight: 800;">Karlovac</span>.</p>
-                <a href="https://osiguraj.hr/osiguranje-vozila/" style="display: inline-block; background: #2ecc71; color: white; padding: 18px 35px; border-radius: 15px; text-decoration: none; font-weight: 900; text-transform: uppercase; font-size: 1.2rem; box-shadow: 0 5px 0 #27ae60;">PROVJERI CIJENU OSIGURANJA →</a>
+                <a href="https://www.osiguraj.hr/" style="display: inline-block; background: #2ecc71; color: white; padding: 18px 35px; border-radius: 15px; text-decoration: none; font-weight: 900; text-transform: uppercase; font-size: 1.2rem; box-shadow: 0 5px 0 #27ae60;">PROVJERI CIJENU OSIGURANJA →</a>
             </div>
         </div>
     </div>
 
     <h3 style="color: #ffbc27; text-transform: uppercase; font-weight: 800;">✅ Gdje obaviti tehnički pregled u Karlovcu?</h3>
-    <p>U Karlovcu vozači najčešće biraju stanice (STP) koje su lako dostupne s glavnih cesta:</p>
+    <p>Karlovac nudi nekoliko stanica (STP) koje su lako dostupne iz svih dijelova grada i okolice:</p>
     
     <div style="background: rgba(255, 255, 255, 0.07); padding: 30px; border-radius: 20px; border: 1px solid rgba(255, 188, 39, 0.2); margin-bottom: 40px;">
         <ul style="list-style: none; padding-left: 0;">
-            <li style="margin-bottom: 12px;">📍 <strong style="color: #ffbc27;">Banija:</strong> Najpoznatija lokacija s dugom tradicijom i iskusnim kontrolorima.</li>
-            <li style="margin-bottom: 12px;">📍 <strong style="color: #ffbc27;">Mala Švarča:</strong> Moderno opremljena stanica, odlična za izbjegavanje gužve u širem centru grada.</li>
-            <li style="margin-bottom: 0;">📍 <strong style="color: #ffbc27;">Ilovac:</strong> Strateška pozicija za sve koji dolaze iz smjera sjevera ili poslovne zone.</li>
+            <li style="margin-bottom: 12px;">📍 <strong style="color: #ffbc27;">Ilovac:</strong> Najveća stanica u gradu, smještena uz glavne prometne pravce, pogodna za sve tipove vozila.</li>
+            <li style="margin-bottom: 12px;">📍 <strong style="color: #ffbc27;">Banija:</strong> Odlična lokacija za vozače koji gravitiraju centru i sjevernom dijelu grada.</li>
+            <li style="margin-bottom: 0;">📍 <strong style="color: #ffbc27;">Mala Švarča:</strong> Brza opcija za stanovnike južnog dijela Karlovca i Dugog Sela.</li>
         </ul>
     </div>
 
-    <h3 style="color: #ffbc27; text-transform: uppercase; font-weight: 800;">Što trebate za registraciju vozila (KA)?</h3>
-    <p>Za uspješno produljenje papira u Karlovcu osigurajte sljedeću dokumentaciju:</p>
+    <h3 style="color: #ffbc27; text-transform: uppercase; font-weight: 800;">Dokumentacija za KA tablice</h3>
+    <p>Za produljenje registracije u Karlovcu osigurajte sljedeće dokumente:</p>
     <ul>
-        <li><strong>Original prometna dozvola</strong></li>
-        <li><strong>Osobna iskaznica vlasnika</strong></li>
-        <li><strong>Potvrda o osiguranju (AO polica)</strong></li>
+        <li><strong>Originalnu prometnu dozvolu.</strong></li>
+        <li><strong>Osobnu iskaznicu vlasnika.</strong></li>
+        <li><strong>Potvrdu o ugovorenom AO osiguranju.</strong></li>
     </ul>
 
     <div style="background: rgba(255, 188, 39, 0.15); border-left: 5px solid #ffbc27; padding: 25px; border-radius: 0 15px 15px 0; margin-bottom: 40px;">
         <p style="margin: 0; font-size: 1.1rem;">
-            <strong style="color: #ffbc27;">Savjet stručnjaka:</strong> Iako su naknade u STP-u fiksne, online usporedbom polica za KA tablice možete uštedjeti do 
+            <strong style="color: #ffbc27;">Savjet stručnjaka:</strong> Iako su troškovi tehničkog pregleda u Karlovcu standardizirani, online usporedbom polica za KA tablice možete uštedjeti do 
             <span style="background: #ffbc27; color: #573cf9; padding: 3px 10px; border-radius: 6px; font-weight: 900; font-size: 1.2rem;">65 EUR</span> 
-            prilikom svake registracije.
+            prije samog dolaska u stanicu.
         </p>
     </div>
 </div>
@@ -70,7 +70,7 @@ stp_lokacije_opis: "Karlovac je ključno prometno čvorište, a stanice za tehni
 <script>
 function izracunajKarlovac() {
     const kw = parseFloat(document.getElementById('kw-input-karlovac').value) || 0;
-    const fiksniTroskovi = 101.80; 
+    const fiksniTroskovi = 101.50; 
     const varijabilniDio = kw * 0.19; 
     const ukupno = fiksniTroskovi + varijabilniDio;
     
