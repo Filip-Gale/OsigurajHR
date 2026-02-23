@@ -2,7 +2,7 @@
 layout: registracija-layout
 title: Vodič za registraciju vozila Slavonski Brod (2026) | Provjerene cijene
 grad: Slavonski Brod
-stp_lokacije_opis: "Slavonski Brod nudi nekoliko stanica za tehnički pregled, s najlakšim pristupom u industrijskim zonama. Preporučujemo dolazak rano ujutro kako biste izbjegli gužve na ulazima u grad."
+stp_lokacije_opis: "Slavonski Brod nudi nekoliko stanica za tehnički pregled s najlakšim pristupom u industrijskim zonama. Preporučujemo dolazak rano ujutro kako biste izbjegli gužve na ulazima u grad."
 ---
 
 <div style="line-height: 1.8; font-size: 1.1rem;">
@@ -15,38 +15,54 @@ stp_lokacije_opis: "Slavonski Brod nudi nekoliko stanica za tehnički pregled, s
     </p>
 
     <div style="background: rgba(0, 0, 0, 0.2); border: 3px solid #ffbc27; border-radius: 30px; padding: 35px; margin: 40px 0; text-align: center; box-shadow: 0 15px 35px rgba(0,0,0,0.2);">
-        <h2 style="color: #ffbc27; margin-top: 0; font-size: 1.8rem; text-transform: uppercase;">📊 IZRAČUNAJ TROŠAK U SLAVONSKOM BRODU</h2>
+        <h2 style="color: #ffbc27; margin-top: 0; font-size: 1.8rem; text-transform: uppercase;">📊 IZRAČUNAJ TROŠAK REGISTRACIJE U SLAVONSKOM BRODU</h2>
+        <p style="font-size: 1rem; opacity: 0.9; margin-bottom: 25px;">Saznaj okvirnu cijenu tehničkog pregleda i svih naknada za 2026. godinu:</p>
         
         <div style="max-width: 450px; margin: 0 auto; text-align: left;">
-            <label style="color: #ffbc27; font-weight: bold; display: block; margin-bottom: 8px; font-size: 1.1rem; text-align: center;">Snaga motora u kW:</label>
+            <label style="color: #ffbc27; font-weight: bold; display: block; margin-bottom: 8px; font-size: 1.1rem; text-align: center;">Snaga motora u kW (vidi u prometnoj):</label>
             <input type="number" id="kw-input-sb" value="75" style="width: 100%; padding: 15px; border-radius: 12px; border: none; margin-bottom: 25px; font-size: 1.1rem; font-weight: bold; background: white; color: #333; text-align: center;">
             
-            <button onclick="izracunajSB()" style="width: 100%; background: #2ecc71; color: white; padding: 18px; border-radius: 15px; border: none; font-weight: 900; cursor: pointer; text-transform: uppercase; font-size: 1.3rem; box-shadow: 0 6px 0 #27ae60;">IZRAČUNAJ TROŠAK →</button>
+            <button onclick="izracunajSB()" style="width: 100%; background: #2ecc71; color: white; padding: 18px; border-radius: 15px; border: none; font-weight: 900; cursor: pointer; text-transform: uppercase; font-size: 1.3rem; box-shadow: 0 6px 0 #27ae60; transition: all 0.1s ease;">IZRAČUNAJ TROŠAK →</button>
         </div>
 
         <div id="rezultat-sb" style="display:none; margin-top: 35px; padding-top: 30px; border-top: 2px dashed rgba(255,188,39,0.3);">
+            <p style="font-size: 1.2rem; color: white; margin-bottom: 10px;">Procjena za Slavonski Brod (Tehnički + naknade):</p>
             <div id="cifra-sb" style="font-size: 5rem; font-weight: 900; color: #ffbc27; line-height: 1; margin-bottom: 10px;">0.00 €</div>
             <p style="font-size: 0.9rem; opacity: 0.8; margin-bottom: 30px;"><i>*U cijenu nije uključena polica osiguranja.</i></p>
 
-            <div style="background: #1a1a3a; border-radius: 25px; padding: 30px; border: 2px solid #573cf9; max-width: 600px; margin: 0 auto;">
-                <h3 style="color: white; margin: 0 0 15px 0; font-size: 1.6rem; text-transform: uppercase; font-weight: 800;">Uštedi do 65 EUR</h3>
-                <p style="color: white; font-size: 1.1rem; margin-bottom: 25px;">Usporedi ponude i smanji trošak police osiguranja u Brodu.</p>
-                <a href="https://osiguraj.hr/osiguranje-vozila/" style="display: inline-block; background: #2ecc71; color: white; padding: 18px 35px; border-radius: 15px; text-decoration: none; font-weight: 900; text-transform: uppercase;">PROVJERI CIJENU →</a>
+            <div style="background: #1a1a3a; border-radius: 25px; padding: 30px; border: 2px solid #573cf9; box-shadow: 0 10px 30px rgba(0,0,0,0.3); max-width: 600px; margin: 0 auto; position: relative;">
+                <div style="color: #ffbc27; font-size: 2rem; margin-bottom: 15px;">⚡</div>
+                <h3 style="color: white; margin: 0 0 15px 0; font-size: 1.6rem; text-transform: uppercase; font-weight: 800;">ŽELIŠ SMANJITI OVAJ TROŠAK?</h3>
+                <p style="color: white; font-size: 1.1rem; margin-bottom: 25px; line-height: 1.5;">Usporedi ponude i uštedi <span style="color: #ffbc27; font-weight: 800;">do 65 EUR</span> na polici osiguranja u gradu <span style="font-weight: 800;">Slavonski Brod</span>.</p>
+                <a href="https://www.osiguraj.hr/" style="display: inline-block; background: #2ecc71; color: white; padding: 18px 35px; border-radius: 15px; text-decoration: none; font-weight: 900; text-transform: uppercase; font-size: 1.2rem; box-shadow: 0 5px 0 #27ae60;">PROVJERI CIJENU OSIGURANJA →</a>
             </div>
         </div>
     </div>
 
-    <h3 style="color: #ffbc27; text-transform: uppercase; font-weight: 800;">✅ Lokacije za tehnički u Brodu</h3>
+    <h3 style="color: #ffbc27; text-transform: uppercase; font-weight: 800;">✅ Gdje obaviti tehnički pregled u Brodu?</h3>
+    <p>U Slavonskom Brodu vozači imaju na raspolaganju nekoliko stanica (STP) s brzim pristupom:</p>
+    
     <div style="background: rgba(255, 255, 255, 0.07); padding: 30px; border-radius: 20px; border: 1px solid rgba(255, 188, 39, 0.2); margin-bottom: 40px;">
         <ul style="list-style: none; padding-left: 0;">
-            <li style="margin-bottom: 12px;">📍 <strong>Industrijska zona:</strong> Najveći kapaciteti i najkraće vrijeme čekanja.</li>
-            <li style="margin-bottom: 12px;">📍 <strong>Sjeverna vezna cesta:</strong> Odlična lokacija za brzi pristup s autoceste.</li>
+            <li style="margin-bottom: 12px;">📍 <strong style="color: #ffbc27;">Industrijska zona:</strong> Najveći kapaciteti i obično najkraće vrijeme čekanja u gradu.</li>
+            <li style="margin-bottom: 12px;">📍 <strong style="color: #ffbc27;">Sjeverna vezna cesta:</strong> Izvrsna lokacija za brzi pristup vozačima koji dolaze s autoceste ili iz smjera Požege.</li>
+            <li style="margin-bottom: 0;">📍 <strong style="color: #ffbc27;">Ulica kolišta:</strong> Popularna stanica za stanovnike zapadnog dijela grada.</li>
         </ul>
     </div>
 
-    <div style="background: rgba(255, 188, 39, 0.15); border-left: 5px solid #ffbc27; padding: 25px; border-radius: 0 15px 15px 0;">
+    <h3 style="color: #ffbc27; text-transform: uppercase; font-weight: 800;">Dokumentacija za SB tablice</h3>
+    <p>Za uspješno produljenje registracije u Brodu, pripremite sljedeće dokumente:</p>
+    <ul>
+        <li><strong>Važeća prometna dozvola</strong> (original).</li>
+        <li><strong>Osobna iskaznica vlasnika</strong> (ili valjana punomoć).</li>
+        <li><strong>Potvrda o osiguranju (AO polica)</strong> – digitalna ili tiskana.</li>
+    </ul>
+
+    <div style="background: rgba(255, 188, 39, 0.15); border-left: 5px solid #ffbc27; padding: 25px; border-radius: 0 15px 15px 0; margin-bottom: 40px;">
         <p style="margin: 0; font-size: 1.1rem;">
-            <strong style="color: #ffbc27;">Savjet stručnjaka:</strong> Provjerite tlak u gumama i razinu tekućina prije dolaska u STP kako biste osigurali prolazak iz prve!
+            <strong style="color: #ffbc27;">Savjet stručnjaka:</strong> Iako su naknade u STP-u fiksne, na polici osiguranja za SB tablice možete uštedjeti do 
+            <span style="background: #ffbc27; color: #573cf9; padding: 3px 10px; border-radius: 6px; font-weight: 900; font-size: 1.2rem;">65 EUR</span> 
+            korištenjem online usporedbe prije dolaska na tehnički pregled.
         </p>
     </div>
 </div>
@@ -57,9 +73,13 @@ function izracunajSB() {
     const fiksniTroskovi = 101.20; 
     const varijabilniDio = kw * 0.18; 
     const ukupno = fiksniTroskovi + varijabilniDio;
+    
     const prikaz = document.getElementById('rezultat-sb');
     document.getElementById('cifra-sb').innerText = ukupno.toFixed(2) + " €";
     prikaz.style.display = "block";
-    setTimeout(() => { prikaz.scrollIntoView({ behavior: 'smooth', block: 'center' }); }, 100);
+
+    setTimeout(() => {
+        prikaz.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 100);
 }
 </script>
