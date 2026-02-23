@@ -1,16 +1,22 @@
 ---
 layout: registracija-layout
-title: Registracija vozila Varaždin (2026) | Sve lokacije i cijene
+title: Vodič za registraciju vozila Varaždin (2026) | Provjerene cijene
 grad: Varaždin
-stp_lokacije_opis: "Varaždin nudi nekoliko modernih stanica za tehnički pregled, od gospodarske zone do lokacija u blizini centra. Preporučujemo termine sredinom tjedna za najbrži prolazak."
+stp_lokacije_opis: "Varaždin nudi moderne stanice za tehnički pregled, od gospodarske zone do lokacija u blizini centra. Preporučujemo termine sredinom tjedna za najbrži prolazak."
 ---
 
 <div style="line-height: 1.8; font-size: 1.1rem;">
-    <p>Registracija vozila u <span style="color: #ffbc27; font-weight: 800;">Varaždinu</span> u 2026. godini poznata je po dobroj organizaciji i modernim stanicama koje opslužuju cijelu županiju. Varaždinski vozači cijene brzinu i preciznost pri obavljanju tehničkog pregleda.</p>
+    <h1 style="text-align: center; color: #ffbc27; font-size: 2.5rem; font-weight: 900; text-transform: uppercase; margin-bottom: 20px;">
+        Vodič za registraciju vozila Varaždin (2026) – Provjerene cijene
+    </h1>
+
+    <p style="text-align: center; max-width: 800px; margin: 0 auto 30px auto;">
+        Planirate tehnički pregled u Varaždinu? Saznajte točne lokacije stanica, potrebnu dokumentaciju i izračunajte troškove registracije za 2026. godinu uz naš ažurirani vodič.
+    </p>
 
     <div style="background: rgba(0, 0, 0, 0.2); border: 3px solid #ffbc27; border-radius: 30px; padding: 35px; margin: 40px 0; text-align: center; box-shadow: 0 15px 35px rgba(0,0,0,0.2);">
         <h2 style="color: #ffbc27; margin-top: 0; font-size: 1.8rem; text-transform: uppercase;">📊 IZRAČUNAJ TROŠAK REGISTRACIJE U VARAŽDINU</h2>
-        <p style="font-size: 1rem; opacity: 0.9; margin-bottom: 25px;">Saznaj okvirnu cijenu tehničkog pregleda i svih naknada za 2026. godinu:</p>
+        <p style="font-size: 1rem; opacity: 0.9; margin-bottom: 25px;">Saznaj okvirnu cijenu tehničkog pregleda i svih naknada:</p>
         
         <div style="max-width: 450px; margin: 0 auto; text-align: left;">
             <label style="color: #ffbc27; font-weight: bold; display: block; margin-bottom: 8px; font-size: 1.1rem; text-align: center;">Snaga motora u kW (vidi u prometnoj):</label>
@@ -34,46 +40,9 @@ stp_lokacije_opis: "Varaždin nudi nekoliko modernih stanica za tehnički pregle
     </div>
 
     <h3 style="color: #ffbc27; text-transform: uppercase; font-weight: 800;">✅ Gdje obaviti tehnički pregled u Varaždinu?</h3>
-    <p>Varaždin nudi odličnu pokrivenost, a vozači se najčešće odlučuju za ove stanice (STP):</p>
+    <p>Varaždin nudi odličnu pokrivenost stanicama za tehnički pregled (STP). Većina vozača bira lokacije ovisno o dobu dana kako bi izbjegli gužve na ulazima u grad:</p>
     
     <div style="background: rgba(255, 255, 255, 0.07); padding: 30px; border-radius: 20px; border: 1px solid rgba(255, 188, 39, 0.2); margin-bottom: 40px;">
         <ul style="list-style: none; padding-left: 0;">
-            <li style="margin-bottom: 12px;">📍 <strong style="color: #ffbc27;">Gospodarska zona:</strong> Moderna stanica s velikim brojem linija, idealna za brzi prolazak bez naručivanja.</li>
-            <li style="margin-bottom: 12px;">📍 <strong style="color: #ffbc27;">Zagrebačka ulica:</strong> Popularna lokacija za stanovnike južnog dijela grada i prigradskih naselja.</li>
-            <li style="margin-bottom: 0;">📍 <strong style="color: #ffbc27;">STP u okolici (Ivanec/Novi Marof):</strong> Čest odabir Varaždinaca koji žele izbjeći povremene gužve u samom gradu.</li>
-        </ul>
-    </div>
-
-    <h3 style="color: #ffbc27; text-transform: uppercase; font-weight: 800;">Procedura registracije u VŽ županiji</h3>
-    <p>Prilikom odlaska na tehnički pregled u Varaždinu, ne zaboravite ponijeti osnovnu dokumentaciju:</p>
-    <ul>
-        <li><strong>Prometna dozvola:</strong> Originalni dokument vozila.</li>
-        <li><strong>Osobna iskaznica:</strong> Dokaz identiteta vlasnika.</li>
-        <li><strong>Polica osiguranja:</strong> Ugovor o obveznom auto osiguranju (može biti i u e-formatu).</li>
-    </ul>
-
-    <div style="background: rgba(255, 188, 39, 0.15); border-left: 5px solid #ffbc27; padding: 25px; border-radius: 0 15px 15px 0; margin-bottom: 40px;">
-        <p style="margin: 0; font-size: 1.1rem;">
-            <strong style="color: #ffbc27;">Savjet stručnjaka:</strong> Iako Varaždin ima fiksne naknade za tehnički pregled, cijena osiguranja ovisi o vašem bonusu i izboru osiguravatelja. Online usporedbom možete uštedjeti do 
-            <span style="background: #ffbc27; color: #573cf9; padding: 3px 10px; border-radius: 6px; font-weight: 900; font-size: 1.2rem;">65 EUR</span> 
-            na svojoj polici.
-        </p>
-    </div>
-</div>
-
-<script>
-function izracunajVarazdin() {
-    const kw = parseFloat(document.getElementById('kw-input-varazdin').value) || 0;
-    const fiksniTroskovi = 101.50; 
-    const varijabilniDio = kw * 0.18; 
-    const ukupno = fiksniTroskovi + varijabilniDio;
-    
-    const prikaz = document.getElementById('rezultat-varazdin');
-    document.getElementById('cifra-varazdin').innerText = ukupno.toFixed(2) + " €";
-    prikaz.style.display = "block";
-
-    setTimeout(() => {
-        prikaz.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }, 100);
-}
-</script>
+            <li style="margin-bottom: 12px;">📍 <strong style="color: #ffbc27;">Gospodarska zona:</strong> Najveća stanica u Varaždinu s brzim protokom i modernim uređajima.</li>
+            <li style="margin-bottom: 12px;">📍 <strong style="color: #ffbc27;">Zagrebačka ulica:</strong> Idealno za vozače s ju
