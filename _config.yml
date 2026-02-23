@@ -8,6 +8,9 @@ collections:
   tehnicki_pregled:
     output: true
     permalink: /tehnicki-pregled/:path/
+  registracija:
+    output: true
+    permalink: /registracija/:path/
 
 defaults:
   - scope:
@@ -25,3 +28,8 @@ defaults:
       type: "tehnicki_pregled"
     values:
       layout: "tehnicki-layout"
+  - scope:
+      path: ""
+      type: "registracija"
+    values:
+      layout: "registracija-layout"
