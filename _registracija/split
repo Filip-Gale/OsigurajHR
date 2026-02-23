@@ -1,12 +1,18 @@
 ---
 layout: registracija-layout
-title: Registracija vozila Split (2026) | Sve lokacije i cijene
+title: Vodič za registraciju vozila Split (2026) | Provjerene cijene
 grad: Split
-stp_lokacije_opis: "Split nudi nekoliko ključnih lokacija za tehnički pregled, od Kopilice do Dugopolja. Za brži prolazak preporučujemo izbjegavanje termina ponedjeljkom i petkom popodne zbog povećanog broja vozila iz okolice."
+stp_lokacije_opis: "Split nudi nekoliko ključnih stanica za tehnički pregled, od područja Lovrinac do sjevernih ulaza u grad. Preporučujemo izbjegavanje termina tijekom ljetnih popodnevnih sati zbog pojačanog gradskog prometa."
 ---
 
 <div style="line-height: 1.8; font-size: 1.1rem;">
-    <p>Registracija vozila u <span style="color: #ffbc27; font-weight: 800;">Splitu</span> u 2026. godini zahtijeva dobru organizaciju, posebno zbog specifičnog rasporeda stanica koje pokrivaju cijelu splitsku aglomeraciju.</p>
+    <h1 style="text-align: center; color: #ffbc27; font-size: 2.5rem; font-weight: 900; text-transform: uppercase; margin-bottom: 20px;">
+        Vodič za registraciju vozila Split (2026)
+    </h1>
+
+    <p style="text-align: center; max-width: 800px; margin: 0 auto 30px auto;">
+        Obavljate tehnički pregled u Splitu? Saznajte sve o lokacijama stanica, potrebnoj dokumentaciji i izračunajte troškove registracije za 2026. godinu uz naš ažurirani vodič.
+    </p>
 
     <div style="background: rgba(0, 0, 0, 0.2); border: 3px solid #ffbc27; border-radius: 30px; padding: 35px; margin: 40px 0; text-align: center; box-shadow: 0 15px 35px rgba(0,0,0,0.2);">
         <h2 style="color: #ffbc27; margin-top: 0; font-size: 1.8rem; text-transform: uppercase;">📊 IZRAČUNAJ TROŠAK REGISTRACIJE U SPLITU</h2>
@@ -14,7 +20,7 @@ stp_lokacije_opis: "Split nudi nekoliko ključnih lokacija za tehnički pregled,
         
         <div style="max-width: 450px; margin: 0 auto; text-align: left;">
             <label style="color: #ffbc27; font-weight: bold; display: block; margin-bottom: 8px; font-size: 1.1rem; text-align: center;">Snaga motora u kW (vidi u prometnoj):</label>
-            <input type="number" id="kw-input-split" value="70" style="width: 100%; padding: 15px; border-radius: 12px; border: none; margin-bottom: 25px; font-size: 1.1rem; font-weight: bold; background: white; color: #333; text-align: center;">
+            <input type="number" id="kw-input-split" value="75" style="width: 100%; padding: 15px; border-radius: 12px; border: none; margin-bottom: 25px; font-size: 1.1rem; font-weight: bold; background: white; color: #333; text-align: center;">
             
             <button onclick="izracunajSplit()" style="width: 100%; background: #2ecc71; color: white; padding: 18px; border-radius: 15px; border: none; font-weight: 900; cursor: pointer; text-transform: uppercase; font-size: 1.3rem; box-shadow: 0 6px 0 #27ae60; transition: all 0.1s ease;">IZRAČUNAJ TROŠAK →</button>
         </div>
@@ -28,26 +34,35 @@ stp_lokacije_opis: "Split nudi nekoliko ključnih lokacija za tehnički pregled,
                 <div style="color: #ffbc27; font-size: 2rem; margin-bottom: 15px;">⚡</div>
                 <h3 style="color: white; margin: 0 0 15px 0; font-size: 1.6rem; text-transform: uppercase; font-weight: 800;">ŽELIŠ SMANJITI OVAJ TROŠAK?</h3>
                 <p style="color: white; font-size: 1.1rem; margin-bottom: 25px; line-height: 1.5;">Usporedi ponude i uštedi <span style="color: #ffbc27; font-weight: 800;">do 65 EUR</span> na polici osiguranja u gradu <span style="font-weight: 800;">Split</span>.</p>
-                <a href="https://osiguraj.hr/osiguranje-vozila/" style="display: inline-block; background: #2ecc71; color: white; padding: 18px 35px; border-radius: 15px; text-decoration: none; font-weight: 900; text-transform: uppercase; font-size: 1.2rem; box-shadow: 0 5px 0 #27ae60; transition: transform 0.2s;">PROVJERI CIJENU OSIGURANJA →</a>
+                <a href="https://www.osiguraj.hr/" style="display: inline-block; background: #2ecc71; color: white; padding: 18px 35px; border-radius: 15px; text-decoration: none; font-weight: 900; text-transform: uppercase; font-size: 1.2rem; box-shadow: 0 5px 0 #27ae60;">PROVJERI CIJENU OSIGURANJA →</a>
             </div>
         </div>
     </div>
 
+    <h3 style="color: #ffbc27; text-transform: uppercase; font-weight: 800;">✅ Gdje obaviti tehnički pregled u Splitu?</h3>
+    <p>Split nudi nekoliko frekventnih stanica za tehnički pregled (STP) raspoređenih po ključnim zonama:</p>
+    
     <div style="background: rgba(255, 255, 255, 0.07); padding: 30px; border-radius: 20px; border: 1px solid rgba(255, 188, 39, 0.2); margin-bottom: 40px;">
-        <h3 style="color: #ffbc27; margin-top: 0; text-transform: uppercase;">✅ GDJE OBAVITI TEHNIČKI U SPLITU?</h3>
-        <p>Splitski vozači najčešće biraju stanice prema dostupnosti i blizini brzih cesta:</p>
         <ul style="list-style: none; padding-left: 0;">
-            <li style="margin-bottom: 12px;">📍 <strong style="color: #ffbc27;">Kopilica:</strong> Najveći kapacitet i najbrži protok vozila.</li>
-            <li style="margin-bottom: 12px;">📍 <strong style="color: #ffbc27;">Dugopolje:</strong> Moderno opremljena stanica, idealna za izbjegavanje gradskih gužvi.</li>
-            <li style="margin-bottom: 0;">📍 <strong style="color: #ffbc27;">Pazdigrad:</strong> Zgodna lokacija za stanovnike istočnog dijela Splita.</li>
+            <li style="margin-bottom: 12px;">📍 <strong style="color: #ffbc27;">Lovrinac:</strong> Jedna od najpopularnijih lokacija s velikim brojem traka za pregled.</li>
+            <li style="margin-bottom: 12px;">📍 <strong style="color: #ffbc27;">Dujmovača:</strong> Idealno za vozače koji dolaze iz sjevernog dijela grada ili Solina.</li>
+            <li style="margin-bottom: 0;">📍 <strong style="color: #ffbc27;">Hercegovačka:</strong> Dobro povezana lokacija, pogodna za stanovnike šireg centra.</li>
         </ul>
     </div>
 
+    <h3 style="color: #ffbc27; text-transform: uppercase; font-weight: 800;">Dokumentacija za ST tablice</h3>
+    <p>Prije nego krenete na pregled u bilo koju splitsku stanicu, provjerite imate li:</p>
+    <ul>
+        <li><strong>Originalnu prometnu dozvolu.</strong></li>
+        <li><strong>Važeću osobnu iskaznicu.</strong></li>
+        <li><strong>Policu obveznog auto osiguranja</strong> (digitalnu ili isprintanu).</li>
+    </ul>
+
     <div style="background: rgba(255, 188, 39, 0.15); border-left: 5px solid #ffbc27; padding: 25px; border-radius: 0 15px 15px 0; margin-bottom: 40px;">
         <p style="margin: 0; font-size: 1.1rem;">
-            <strong style="color: #ffbc27;">Savjet stručnjaka:</strong> Iako Split ima fiksne troškove tehničkog, police osiguranja značajno variraju. Usporedbom online možete uštedjeti do 
+            <strong style="color: #ffbc27;">Savjet stručnjaka:</strong> Iako su troškovi u STP-u fiksni, na polici osiguranja za ST tablice možete uštedjeti do 
             <span style="background: #ffbc27; color: #573cf9; padding: 3px 10px; border-radius: 6px; font-weight: 900; font-size: 1.2rem;">65 EUR</span> 
-            na polici auto odgovornosti.
+            korištenjem online usporedbe prije dolaska na šalter.
         </p>
     </div>
 </div>
@@ -55,8 +70,8 @@ stp_lokacije_opis: "Split nudi nekoliko ključnih lokacija za tehnički pregled,
 <script>
 function izracunajSplit() {
     const kw = parseFloat(document.getElementById('kw-input-split').value) || 0;
-    const fiksniTroskovi = 102.50; 
-    const varijabilniDio = kw * 0.20; 
+    const fiksniTroskovi = 104.20; 
+    const varijabilniDio = kw * 0.21; 
     const ukupno = fiksniTroskovi + varijabilniDio;
     
     const prikaz = document.getElementById('rezultat-split');
