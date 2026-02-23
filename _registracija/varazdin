@@ -45,4 +45,39 @@ stp_lokacije_opis: "Varaždin nudi moderne stanice za tehnički pregled, od gosp
     <div style="background: rgba(255, 255, 255, 0.07); padding: 30px; border-radius: 20px; border: 1px solid rgba(255, 188, 39, 0.2); margin-bottom: 40px;">
         <ul style="list-style: none; padding-left: 0;">
             <li style="margin-bottom: 12px;">📍 <strong style="color: #ffbc27;">Gospodarska zona:</strong> Najveća stanica u Varaždinu s brzim protokom i modernim uređajima.</li>
-            <li style="margin-bottom: 12px;">📍 <strong style="color: #ffbc27;">Zagrebačka ulica:</strong> Idealno za vozače s ju
+            <li style="margin-bottom: 12px;">📍 <strong style="color: #ffbc27;">Zagrebačka ulica:</strong> Idealno za vozače s južnog dijela grada i brzi pristup iz okolnih naselja.</li>
+            <li style="margin-bottom: 0;">📍 <strong style="color: #ffbc27;">Ivanec i Novi Marof:</strong> Dostupne stanice za vozače izvan užeg centra koji žele izbjeći gradsku vrevu.</li>
+        </ul>
+    </div>
+
+    <h3 style="color: #ffbc27; text-transform: uppercase; font-weight: 800;">📋 Potrebna dokumentacija</h3>
+    <p>Prije odlaska u stanicu za tehnički pregled u Varaždinu, provjerite imate li:</p>
+    <ul>
+        <li>Važeću osobnu iskaznicu vlasnika vozila.</li>
+        <li>Originalnu prometnu dozvolu.</li>
+        <li>Policu obveznog auto osiguranja (tiskanu ili digitalnu).</li>
+    </ul>
+
+    <div style="background: rgba(255, 188, 39, 0.15); border-left: 5px solid #ffbc27; padding: 25px; border-radius: 0 15px 15px 0; margin-top: 40px;">
+        <p style="margin: 0; font-size: 1.1rem;">
+            <strong style="color: #ffbc27;">Savjet stručnjaka:</strong> Termini utorkom i srijedom ujutro u Varaždinu su obično najmanje opterećeni. Iskoristite to vrijeme za najbrži prolazak.
+        </p>
+    </div>
+</div>
+
+<script>
+function izracunajVarazdin() {
+    const kw = parseFloat(document.getElementById('kw-input-varazdin').value) || 0;
+    const fiksniTroskovi = 101.50; 
+    const varijabilniDio = kw * 0.18; 
+    const ukupno = fiksniTroskovi + varijabilniDio;
+    
+    const prikaz = document.getElementById('rezultat-varazdin');
+    document.getElementById('cifra-varazdin').innerText = ukupno.toFixed(2) + " €";
+    prikaz.style.display = "block";
+
+    setTimeout(() => {
+        prikaz.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 100);
+}
+</script>
