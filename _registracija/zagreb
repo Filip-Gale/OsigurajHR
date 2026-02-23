@@ -1,12 +1,18 @@
 ---
 layout: registracija-layout
-title: Registracija vozila Zagreb (2026) | Sve lokacije i cijene
+title: Vodič za registraciju vozila Zagreb (2026) | Provjerene cijene
 grad: Zagreb
 stp_lokacije_opis: "Zagreb ima najgušću mrežu stanica za tehnički pregled. Najpopularnije lokacije su STP Siget, STP Euroherc (Jankomir) i STP Croatia (Remetinec). Za izbjegavanje gužvi preporučujemo termine radnim danom prijepodne."
 ---
 
 <div style="line-height: 1.8; font-size: 1.1rem;">
-    <p>Registracija vozila u <span style="color: #ffbc27; font-weight: 800;">Zagrebu</span> u 2026. godini zahtijeva dobru pripremu. Kao grad s najviše vozila, Zagreb nudi preko 15 stanica, ali i najveće gužve, posebno u popodnevnim satima.</p>
+    <h1 style="text-align: center; color: #ffbc27; font-size: 2.5rem; font-weight: 900; text-transform: uppercase; margin-bottom: 20px;">
+        Vodič za registraciju vozila Zagreb (2026) – Provjerene cijene
+    </h1>
+
+    <p style="text-align: center; max-width: 800px; margin: 0 auto 30px auto;">
+        Trebate obaviti tehnički pregled u Zagrebu? Saznajte sve o lokacijama stanica, potrebnoj dokumentaciji i izračunajte točan trošak registracije za 2026. godinu uz naš stručni vodič.
+    </p>
 
     <div style="background: rgba(0, 0, 0, 0.2); border: 3px solid #ffbc27; border-radius: 30px; padding: 35px; margin: 40px 0; text-align: center; box-shadow: 0 15px 35px rgba(0,0,0,0.2);">
         <h2 style="color: #ffbc27; margin-top: 0; font-size: 1.8rem; text-transform: uppercase;">📊 IZRAČUNAJ TROŠAK REGISTRACIJE U ZAGREBU</h2>
@@ -34,27 +40,29 @@ stp_lokacije_opis: "Zagreb ima najgušću mrežu stanica za tehnički pregled. N
     </div>
 
     <h3 style="color: #ffbc27; text-transform: uppercase; font-weight: 800;">✅ Najbolje stanice za tehnički pregled u Zagrebu</h3>
-    <p>Zagrebački vozači imaju najveći izbor stanica, a preporučujemo odabir prema dijelu grada kako biste izbjegli prometne špice na Slavonskoj ili Zagrebačkoj aveniji:</p>
+    <p>S obzirom na najveći broj vozila u Hrvatskoj, zagrebačke stanice (STP) nude vrhunsku opremu, ali zahtijevaju dobro planiranje vremena:</p>
     
     <div style="background: rgba(255, 255, 255, 0.07); padding: 30px; border-radius: 20px; border: 1px solid rgba(255, 188, 39, 0.2); margin-bottom: 40px;">
         <ul style="list-style: none; padding-left: 0;">
-            <li style="margin-bottom: 12px;">📍 <strong>Novi Zagreb:</strong> STP Siget i Remetinec (najveći kapaciteti na jugu grada).</li>
-            <li style="margin-bottom: 12px;">📍 <strong>Zapadni dio:</strong> STP Jankomir (Euroherc) i Samoborska cesta (idealno za Špansko i Malešnicu).</li>
-            <li style="margin-bottom: 0;">📍 <strong>Istočni dio:</strong> STP Dubrava i Sesvete (najbolji izbor za Dubravu i okolicu).</li>
+            <li style="margin-bottom: 12px;">📍 <strong style="color: #ffbc27;">Novi Zagreb:</strong> STP Siget i Remetinec – najveći kapaciteti s više ispitnih staza.</li>
+            <li style="margin-bottom: 12px;">📍 <strong style="color: #ffbc27;">Jankomir i Samoborska:</strong> STP Euroherc i Croatia – idealno za stanovnike zapadnog dijela grada.</li>
+            <li style="margin-bottom: 0;">📍 <strong style="color: #ffbc27;">Dubrava i Sesvete:</strong> Odlična pokrivenost za istočni ulaz u grad i širu okolicu.</li>
         </ul>
     </div>
 
-    <h3 style="color: #ffbc27; text-transform: uppercase; font-weight: 800;">Potrebna dokumentacija za registraciju u ZG</h3>
-    <p>Procedura u 2026. godini ostaje ista. Za produljenje valjanosti prometne dozvole u zagrebačkim stanicama pripremite:</p>
+    <h3 style="color: #ffbc27; text-transform: uppercase; font-weight: 800;">Potrebni dokumenti za registraciju u ZG</h3>
+    <p>Prije odlaska u stanicu, provjerite imate li svu dokumentaciju kako biste izbjegli ponovni dolazak:</p>
     <ul>
-        <li><strong>Osobnu iskaznicu</strong> vlasnika vozila (ili punomoć ako niste vlasnik).</li>
-        <li><strong>Prometnu dozvolu</strong> (original).</li>
-        <li><strong>Policu osiguranja</strong> (može biti u digitalnom obliku na mobitelu).</li>
+        <li><strong>Originalna prometna dozvola:</strong> Neophodna za ovjeru tehničkog pregleda.</li>
+        <li><strong>Osobna iskaznica:</strong> Vlasnika vozila ili valjana punomoć.</li>
+        <li><strong>Polica auto odgovornosti:</strong> Možete je predočiti u fizičkom ili digitalnom obliku.</li>
     </ul>
 
     <div style="background: rgba(255, 188, 39, 0.15); border-left: 5px solid #ffbc27; padding: 25px; border-radius: 0 15px 15px 0; margin-bottom: 40px;">
         <p style="margin: 0; font-size: 1.1rem;">
-            <strong style="color: #ffbc27;">Savjet za 100% prolaz:</strong> Prije tehničkog provjerite ispravnost signalizacije (žarulje) i posjedujete li obveznu opremu (prva pomoć, trokut, prsluk). Zagrebačke stanice su poznate po detaljnim pregledima kočionog sustava i eko-testa.
+            <strong style="color: #ffbc27;">Savjet stručnjaka:</strong> Zagrebačke ZG tablice nose najviši rizik, ali i najveću konkurenciju među osiguranjima. Online usporedbom ponuda u Zagrebu možete uštedjeti do 
+            <span style="background: #ffbc27; color: #573cf9; padding: 3px 10px; border-radius: 6px; font-weight: 900; font-size: 1.2rem;">65 EUR</span> 
+            na polici osiguranja.
         </p>
     </div>
 </div>
