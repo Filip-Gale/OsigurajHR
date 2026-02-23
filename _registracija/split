@@ -1,4 +1,3 @@
-
 ---
 layout: registracija-layout
 title: Registracija vozila Split (2026) | Sve lokacije i cijene
@@ -56,11 +55,8 @@ stp_lokacije_opis: "Split nudi nekoliko ključnih lokacija za tehnički pregled,
 <script>
 function izracunajSplit() {
     const kw = parseFloat(document.getElementById('kw-input-split').value) || 0;
-    
-    // Formule za 2026. (Prosjek Split)
     const fiksniTroskovi = 102.50; 
     const varijabilniDio = kw * 0.20; 
-    
     const ukupno = fiksniTroskovi + varijabilniDio;
     
     const prikaz = document.getElementById('rezultat-split');
