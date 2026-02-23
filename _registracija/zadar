@@ -1,12 +1,18 @@
 ---
 layout: registracija-layout
-title: Registracija vozila Zadar (2026) | Sve lokacije i cijene
+title: Vodič za registraciju vozila Zadar (2026) | Provjerene cijene
 grad: Zadar
-stp_lokacije_opis: "Zadar nudi moderne stanice za tehnički pregled na lokacijama poput Gaženice i puta Murvice. Preporučujemo termin u ranim jutarnjim satima za najbrži prolazak."
+stp_lokacije_opis: "Zadar nudi nekoliko ključnih STP lokacija, uključujući zonu Gaženica i sjeverni dio grada. Preporučujemo izbjegavanje termina u vrijeme ljetnih smjena turista zbog gužvi na prilaznim cestama."
 ---
 
 <div style="line-height: 1.8; font-size: 1.1rem;">
-    <p>Registracija vozila u <span style="color: #ffbc27; font-weight: 800;">Zadru</span> u 2026. godini zahtijeva poznavanje točnih lokacija i termina. Zadarski vozači najčešće koriste stanice u industrijskim zonama kako bi izbjegli gužve u centru grada tijekom turističke sezone.</p>
+    <h1 style="text-align: center; color: #ffbc27; font-size: 2.5rem; font-weight: 900; text-transform: uppercase; margin-bottom: 20px;">
+        Vodič za registraciju vozila Zadar (2026)
+    </h1>
+
+    <p style="text-align: center; max-width: 800px; margin: 0 auto 30px auto;">
+        Planirate tehnički pregled u Zadru? Saznajte točne lokacije stanica, potrebnu dokumentaciju i izračunajte troškove registracije za 2026. godinu uz naš ažurirani vodič.
+    </p>
 
     <div style="background: rgba(0, 0, 0, 0.2); border: 3px solid #ffbc27; border-radius: 30px; padding: 35px; margin: 40px 0; text-align: center; box-shadow: 0 15px 35px rgba(0,0,0,0.2);">
         <h2 style="color: #ffbc27; margin-top: 0; font-size: 1.8rem; text-transform: uppercase;">📊 IZRAČUNAJ TROŠAK REGISTRACIJE U ZADRU</h2>
@@ -14,7 +20,7 @@ stp_lokacije_opis: "Zadar nudi moderne stanice za tehnički pregled na lokacijam
         
         <div style="max-width: 450px; margin: 0 auto; text-align: left;">
             <label style="color: #ffbc27; font-weight: bold; display: block; margin-bottom: 8px; font-size: 1.1rem; text-align: center;">Snaga motora u kW (vidi u prometnoj):</label>
-            <input type="number" id="kw-input-zadar" value="75" style="width: 100%; padding: 15px; border-radius: 12px; border: none; margin-bottom: 25px; font-size: 1.1rem; font-weight: bold; background: white; color: #333; text-align: center;">
+            <input type="number" id="kw-input-zadar" value="74" style="width: 100%; padding: 15px; border-radius: 12px; border: none; margin-bottom: 25px; font-size: 1.1rem; font-weight: bold; background: white; color: #333; text-align: center;">
             
             <button onclick="izracunajZadar()" style="width: 100%; background: #2ecc71; color: white; padding: 18px; border-radius: 15px; border: none; font-weight: 900; cursor: pointer; text-transform: uppercase; font-size: 1.3rem; box-shadow: 0 6px 0 #27ae60; transition: all 0.1s ease;">IZRAČUNAJ TROŠAK →</button>
         </div>
@@ -28,36 +34,35 @@ stp_lokacije_opis: "Zadar nudi moderne stanice za tehnički pregled na lokacijam
                 <div style="color: #ffbc27; font-size: 2rem; margin-bottom: 15px;">⚡</div>
                 <h3 style="color: white; margin: 0 0 15px 0; font-size: 1.6rem; text-transform: uppercase; font-weight: 800;">ŽELIŠ SMANJITI OVAJ TROŠAK?</h3>
                 <p style="color: white; font-size: 1.1rem; margin-bottom: 25px; line-height: 1.5;">Usporedi ponude i uštedi <span style="color: #ffbc27; font-weight: 800;">do 65 EUR</span> na polici osiguranja u gradu <span style="font-weight: 800;">Zadar</span>.</p>
-                <a href="https://osiguraj.hr/osiguranje-vozila/" style="display: inline-block; background: #2ecc71; color: white; padding: 18px 35px; border-radius: 15px; text-decoration: none; font-weight: 900; text-transform: uppercase; font-size: 1.2rem; box-shadow: 0 5px 0 #27ae60;">PROVJERI CIJENU OSIGURANJA →</a>
+                <a href="https://www.osiguraj.hr/" style="display: inline-block; background: #2ecc71; color: white; padding: 18px 35px; border-radius: 15px; text-decoration: none; font-weight: 900; text-transform: uppercase; font-size: 1.2rem; box-shadow: 0 5px 0 #27ae60;">PROVJERI CIJENU OSIGURANJA →</a>
             </div>
         </div>
     </div>
 
-    <h3 style="color: #ffbc27; text-transform: uppercase; font-weight: 800;">✅ Najbolje stanice za tehnički pregled u Zadru</h3>
-    <p>Zadarski vozači biraju stanice prema protočnosti i blizini glavnih prometnica, a ovo su najčešći izbori:</p>
+    <h3 style="color: #ffbc27; text-transform: uppercase; font-weight: 800;">✅ Gdje obaviti tehnički pregled u Zadru?</h3>
+    <p>Zadar ima nekoliko strateški postavljenih stanica (STP) koje pokrivaju grad i okolicu:</p>
     
     <div style="background: rgba(255, 255, 255, 0.07); padding: 30px; border-radius: 20px; border: 1px solid rgba(255, 188, 39, 0.2); margin-bottom: 40px;">
         <ul style="list-style: none; padding-left: 0;">
-            <li style="margin-bottom: 12px;">📍 <strong style="color: #ffbc27;">Gaženica:</strong> Moderna stanica s brzim protokom, idealna za veća vozila i one koji žele izbjeći centar.</li>
-            <li style="margin-bottom: 12px;">📍 <strong style="color: #ffbc27;">Put Murvice:</strong> Centralna lokacija, vrlo posjećena, preporučuje se narudžba termina unaprijed.</li>
-            <li style="margin-bottom: 0;">📍 <strong style="color: #ffbc27;">Bibinje-Sukošan zona:</strong> Izvrsna alternativa za vozače koji dolaze s južnog ulaza u grad.</li>
+            <li style="margin-bottom: 12px;">📍 <strong style="color: #ffbc27;">Gaženica:</strong> Moderna stanica s velikim kapacitetom, idealna za vozače s južne strane i otoka.</li>
+            <li style="margin-bottom: 12px;">📍 <strong style="color: #ffbc27;">Put Murvice / Sjeverni dio:</strong> Popularna lokacija za stanovnike centra i sjevernih gradskih četvrti.</li>
+            <li style="margin-bottom: 0;">📍 <strong style="color: #ffbc27;">Biograd na Moru:</strong> Česta alternativa Zadranima tijekom ljetnih mjeseci kada su gradske stanice preopterećene.</li>
         </ul>
     </div>
 
-    <h3 style="color: #ffbc27; text-transform: uppercase; font-weight: 800;">Što je sve uključeno u cijenu registracije u Zadru?</h3>
-    <p>Ukupni iznos koji dobijete u našem kalkulatoru pokriva sve zakonske obveze koje plaćate u stanici za tehnički pregled (STP):</p>
+    <h3 style="color: #ffbc27; text-transform: uppercase; font-weight: 800;">Procedura i dokumenti u Zadru</h3>
+    <p>Za produljenje registracije u Zadru, na šalteru STP-a bit će vam potrebni:</p>
     <ul>
-        <li><strong>Tehnički pregled:</strong> Detaljna provjera kočnica, ovjesa i signalizacije.</li>
-        <li><strong>Eko test:</strong> Ispitivanje emisije štetnih plinova.</li>
-        <li><strong>Godišnja naknada za ceste:</strong> Izračunava se prema snazi i vrsti motora.</li>
-        <li><strong>Posebna naknada za okoliš:</strong> Obvezna naknada Fondu za zaštitu okoliša.</li>
+        <li><strong>Prometna dozvola:</strong> Original dokument.</li>
+        <li><strong>Osobna iskaznica:</strong> Vlasnika ili valjana punomoć.</li>
+        <li><strong>Polica osiguranja:</strong> AO polica (tiskani ili digitalni format).</li>
     </ul>
 
     <div style="background: rgba(255, 188, 39, 0.15); border-left: 5px solid #ffbc27; padding: 25px; border-radius: 0 15px 15px 0; margin-bottom: 40px;">
         <p style="margin: 0; font-size: 1.1rem;">
-            <strong style="color: #ffbc27;">Savjet stručnjaka:</strong> Iako Zadar ima fiksne troškove tehničkog, police osiguranja značajno variraju. Usporedbom online možete uštedjeti do 
+            <strong style="color: #ffbc27;">Savjet stručnjaka:</strong> Iako su naknade u STP-u fiksne, online usporedbom polica za ZD tablice možete uštedjeti do 
             <span style="background: #ffbc27; color: #573cf9; padding: 3px 10px; border-radius: 6px; font-weight: 900; font-size: 1.2rem;">65 EUR</span> 
-            na polici auto odgovornosti.
+            na svojoj polici prije odlaska na tehnički.
         </p>
     </div>
 </div>
@@ -65,11 +70,8 @@ stp_lokacije_opis: "Zadar nudi moderne stanice za tehnički pregled na lokacijam
 <script>
 function izracunajZadar() {
     const kw = parseFloat(document.getElementById('kw-input-zadar').value) || 0;
-    
-    // Formule za 2026. (Prosjek Zadar)
-    const fiksniTroskovi = 102.10; 
-    const varijabilniDio = kw * 0.19; 
-    
+    const fiksniTroskovi = 103.20; 
+    const varijabilniDio = kw * 0.21; 
     const ukupno = fiksniTroskovi + varijabilniDio;
     
     const prikaz = document.getElementById('rezultat-zadar');
