@@ -6,33 +6,40 @@ stp_lokacije_opis: "Split nudi nekoliko ključnih lokacija za tehnički pregled,
 ---
 
 <div style="line-height: 1.8; font-size: 1.1rem;">
-    <p>Registracija vozila u <span style="color: #ffbc27; font-weight: 800;">Splitu</span> u 2026. godini zahtijeva dobru organizaciju, posebno zbog ljetnih gužvi i specifičnog rasporeda stanica za tehnički pregled koje pokrivaju cijelu splitsku aglomeraciju.</p>
+    <p>Registracija vozila u <span style="color: #ffbc27; font-weight: 800;">Splitu</span> u 2026. godini zahtijeva dobru organizaciju, posebno zbog specifičnog rasporeda stanica koje pokrivaju cijelu splitsku aglomeraciju.</p>
 
     <div style="background: rgba(0, 0, 0, 0.2); border: 3px solid #ffbc27; border-radius: 30px; padding: 35px; margin: 40px 0; text-align: center; box-shadow: 0 15px 35px rgba(0,0,0,0.2);">
-        <h2 style="color: #ffbc27; margin-top: 0; font-size: 1.8rem;">📊 Izračunaj trošak registracije u Splitu</h2>
+        <h2 style="color: #ffbc27; margin-top: 0; font-size: 1.8rem; text-transform: uppercase;">📊 IZRAČUNAJ TROŠAK REGISTRACIJE U SPLITU</h2>
         <p style="font-size: 1rem; opacity: 0.9; margin-bottom: 25px;">Saznaj okvirnu cijenu tehničkog pregleda i svih naknada za 2026. godinu:</p>
         
         <div style="max-width: 450px; margin: 0 auto; text-align: left;">
-            <label style="color: #ffbc27; font-weight: bold; display: block; margin-bottom: 8px; font-size: 1.1rem;">Snaga motora u kW (vidi u prometnoj):</label>
-            <input type="number" id="kw-input-split" value="75" style="width: 100%; padding: 15px; border-radius: 12px; border: none; margin-bottom: 25px; font-size: 1.1rem; font-weight: bold; background: white; color: #333;">
+            <label style="color: #ffbc27; font-weight: bold; display: block; margin-bottom: 8px; font-size: 1.1rem; text-align: center;">Snaga motora u kW (vidi u prometnoj):</label>
+            <input type="number" id="kw-input-split" value="70" style="width: 100%; padding: 15px; border-radius: 12px; border: none; margin-bottom: 25px; font-size: 1.1rem; font-weight: bold; background: white; color: #333; text-align: center;">
             
-            <button onclick="izracunajSplit()" style="width: 100%; background: #2ecc71; color: white; padding: 18px; border-radius: 15px; border: none; font-weight: 900; cursor: pointer; text-transform: uppercase; font-size: 1.3rem; box-shadow: 0 6px 0 #27ae60; transition: all 0.1s ease;">Izračunaj trošak →</button>
+            <button onclick="izracunajSplit()" style="width: 100%; background: #2ecc71; color: white; padding: 18px; border-radius: 15px; border: none; font-weight: 900; cursor: pointer; text-transform: uppercase; font-size: 1.3rem; box-shadow: 0 6px 0 #27ae60; transition: all 0.1s ease;">IZRAČUNAJ TROŠAK →</button>
         </div>
 
         <div id="rezultat-split" style="display:none; margin-top: 35px; padding-top: 30px; border-top: 2px dashed rgba(255,188,39,0.3);">
-            <span style="font-size: 1.2rem; color: white;">Procjena za {{ page.grad }} (Tehnički + naknade):</span><br>
-            <span id="cifra-split" style="font-size: 4.5rem; font-weight: 900; color: #ffbc27; line-height: 1;">0.00 €</span>
-            <p style="font-size: 0.85rem; opacity: 0.7; margin-top: 15px;"><i>*U cijenu nije uključena polica osiguranja.</i></p>
+            <p style="font-size: 1.2rem; color: white; margin-bottom: 10px;">Procjena za Split (Tehnički + naknade):</p>
+            <div id="cifra-split" style="font-size: 5rem; font-weight: 900; color: #ffbc27; line-height: 1; margin-bottom: 10px;">0.00 €</div>
+            <p style="font-size: 0.9rem; opacity: 0.8; margin-bottom: 30px;"><i>*U cijenu nije uključena polica osiguranja.</i></p>
+
+            <div style="background: #1a1a3a; border-radius: 25px; padding: 30px; border: 2px solid #573cf9; box-shadow: 0 10px 30px rgba(0,0,0,0.3); max-width: 600px; margin: 0 auto; position: relative;">
+                <div style="color: #ffbc27; font-size: 2rem; margin-bottom: 15px;">⚡</div>
+                <h3 style="color: white; margin: 0 0 15px 0; font-size: 1.6rem; text-transform: uppercase; font-weight: 800;">ŽELIŠ SMANJITI OVAJ TROŠAK?</h3>
+                <p style="color: white; font-size: 1.1rem; margin-bottom: 25px; line-height: 1.5;">Usporedi ponude i uštedi <span style="color: #ffbc27; font-weight: 800;">do 65 EUR</span> na polici osiguranja u gradu <span style="font-weight: 800;">Split</span>.</p>
+                <a href="https://osiguraj.hr/osiguranje-vozila/" style="display: inline-block; background: #2ecc71; color: white; padding: 18px 35px; border-radius: 15px; text-decoration: none; font-weight: 900; text-transform: uppercase; font-size: 1.2rem; box-shadow: 0 5px 0 #27ae60; transition: transform 0.2s;">PROVJERI CIJENU OSIGURANJA →</a>
+            </div>
         </div>
     </div>
 
     <div style="background: rgba(255, 255, 255, 0.07); padding: 30px; border-radius: 20px; border: 1px solid rgba(255, 188, 39, 0.2); margin-bottom: 40px;">
-        <h3 style="color: #ffbc27; margin-top: 0; text-transform: uppercase;">✅ Gdje obaviti tehnički u Splitu?</h3>
+        <h3 style="color: #ffbc27; margin-top: 0; text-transform: uppercase;">✅ GDJE OBAVITI TEHNIČKI U SPLITU?</h3>
         <p>Splitski vozači najčešće biraju stanice prema dostupnosti i blizini brzih cesta:</p>
         <ul style="list-style: none; padding-left: 0;">
-            <li style="margin-bottom: 12px;">📍 <strong style="color: #ffbc27;">Kopilica i Sjeverna luka:</strong> Najveći promet i najviše linija, idealno ako radite u blizini industrijske zone.</li>
-            <li style="margin-bottom: 12px;">📍 <strong style="color: #ffbc27;">Dugopolje:</strong> Najmodernija stanica, savršen izbor za one koji žele izbjeći gradsku gužvu i brzo riješiti papire.</li>
-            <li style="margin-bottom: 0;">📍 <strong style="color: #ffbc27;">Pazdigrad/Lovrinac:</strong> Standardna lokacija za istočni dio grada s dobrom protočnošću.</li>
+            <li style="margin-bottom: 12px;">📍 <strong style="color: #ffbc27;">Kopilica:</strong> Najveći kapacitet i najbrži protok vozila.</li>
+            <li style="margin-bottom: 12px;">📍 <strong style="color: #ffbc27;">Dugopolje:</strong> Moderno opremljena stanica, idealna za izbjegavanje gradskih gužvi.</li>
+            <li style="margin-bottom: 0;">📍 <strong style="color: #ffbc27;">Pazdigrad:</strong> Zgodna lokacija za stanovnike istočnog dijela Splita.</li>
         </ul>
     </div>
 
@@ -42,16 +49,6 @@ stp_lokacije_opis: "Split nudi nekoliko ključnih lokacija za tehnički pregled,
             <span style="background: #ffbc27; color: #573cf9; padding: 3px 10px; border-radius: 6px; font-weight: 900; font-size: 1.2rem;">65 EUR</span> 
             na polici auto odgovornosti.
         </p>
-    </div>
-
-    <div style="background: rgba(255, 255, 255, 0.07); padding: 30px; border-radius: 20px; border: 1px solid rgba(255, 188, 39, 0.2); margin-bottom: 40px;">
-        <h3 style="color: #ffbc27; margin-top: 0; text-transform: uppercase;">✅ Dokumentacija i MUP postupak</h3>
-        <p style="margin-bottom: 20px;">U Splitu, kao i u cijeloj Hrvatskoj, cijeli proces registracije sada rješavate u stanici (STP). Ponesite:</p>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
-            <div style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 10px;">1. <strong>Osobnu iskaznicu</strong> vlasnika.</div>
-            <div style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 10px;">2. <strong>Prometnu dozvolu</strong>.</div>
-            <div style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 10px;">3. <strong>Policu osiguranja</strong> (e-polica je dovoljna).</div>
-        </div>
     </div>
 </div>
 
