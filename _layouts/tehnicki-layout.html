@@ -1,286 +1,58 @@
-<!DOCTYPE html>
-<html lang="hr">
-<head>
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-TPNZZVZ5');</script>
-    
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <title>{{ page.title }} | Osiguraj.hr</title>
-    <link rel="stylesheet" href="{{ '/css/style.css' | relative_url }}">
-    <link rel="stylesheet" href="{{ '/css/post.css' | relative_url }}">
-    <link rel="icon" type="image/jpeg" href="{{ '/img/favicon.jpg' | relative_url }}">
-
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Service",
-      "name": "Tehnički pregled {{ page.grad }} 2026",
-      "description": "{{ page.opis }}",
-      "areaServed": {
-        "@type": "City",
-        "name": "{{ page.grad }}"
-      },
-      "provider": {
-        "@type": "Organization",
-        "name": "Osiguraj.hr",
-        "url": "https://www.osiguraj.hr"
-      }
+<style>
+    /* Glavni kontejner za tekst koji ga odvaja od pozadine */
+    .post-content {
+        background: white;
+        color: #333 !important; /* Tamni tekst za maksimalnu čitljivost */
+        padding: 40px;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        margin-top: 30px;
     }
-    </script>
 
-    {% if page.grad == "Zagreb" %}
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": [{
-        "@type": "Question",
-        "name": "Koliko košta tehnički pregled u Zagrebu?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Cijena tehničkog pregleda u Zagrebu ovisi o snazi motora i vrsti vozila. Naš kalkulator nudi preciznu procjenu svih naknada za 2026. godinu."
-        }
-      }, {
-        "@type": "Question",
-        "name": "Gdje je najbolje obaviti tehnički u Zagrebu?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Najpoznatije stanice su u Sigetu, Dubravi i Remetincu. Preporučuje se zakazivanje termina online zbog velikih gužvi."
-        }
-      }]
+    /* Sređivanje naslova unutar bijelog bloka */
+    .post-content h2 { 
+        color: #573cf9 !important; 
+        border-bottom: 3px solid #ffbc27;
+        display: inline-block;
+        padding-bottom: 5px;
+        margin-top: 30px;
+        font-size: 1.6rem;
     }
-    </script>
-    {% endif %}
 
-    <style>
-        .post-content h2, .post-content h3 { color: #ffbc27 !important; margin-top: 35px; font-weight: 700; }
-        .post-content strong { color: #ffbc27 !important; }
-        
-        .btn-saznaj {
-            display: inline-block;
-            background-color: #2ecc71;
-            color: white !important;
-            padding: 18px 45px;
-            text-decoration: none !important;
-            border-radius: 12px;
-            font-weight: 800;
-            font-size: 1.4rem;
-            box-shadow: 0 8px 0 #27ae60;
-            transition: all 0.1s ease;
-            border: none;
-            cursor: pointer;
-            text-transform: uppercase;
-            text-align: center;
-        }
-        .btn-saznaj:active { transform: translateY(4px); box-shadow: 0 4px 0 #27ae60; }
-
-        .year-tag {
-            display: inline-block;
-            background: linear-gradient(135deg, #ffbc27 0%, #e6a800 100%);
-            color: #573cf9;
-            padding: 8px 25px;
-            border-radius: 50px;
-            font-weight: 900;
-            margin-bottom: 25px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            text-transform: uppercase;
-        }
-
-        .trust-badge-container {
-            display: flex;
-            justify-content: center;
-            gap: 12px;
-            flex-wrap: wrap;
-            margin-bottom: 30px;
-        }
-        .trust-badge {
-            font-size: 0.85rem;
-            background: #ffffff;
-            color: #573cf9;
-            padding: 10px 18px;
-            border-radius: 12px;
-            font-weight: 800;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            box-shadow: 0 6px 0 rgba(0,0,0,0.15);
-            border: 2px solid #ffbc27;
-        }
-
-        .calc-card {
-            background: rgba(0, 0, 0, 0.25);
-            border: 3px solid #ffbc27;
-            border-radius: 30px;
-            padding: 35px;
-            margin: 40px 0;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
-        }
-        .calc-input {
-            width: 100%;
-            padding: 18px;
-            border-radius: 12px;
-            border: 2px solid transparent;
-            margin-top: 10px;
-            font-size: 1.1rem;
-            background: white;
-            color: #333;
-            box-sizing: border-box;
-        }
-        .calc-input:focus { border: 2px solid #ffbc27; outline: none; }
-        .calc-label { font-weight: bold; color: #ffbc27; display: block; margin-top: 20px; font-size: 1.1rem; }
-
-        /* UNAPRIJEĐEN DIZAJN U TVOJIM BOJAMA */
-        .smart-offer {
-            margin-top: 30px;
-            background: rgba(0, 0, 0, 0.4); /* Tamnija prozirna podloga */
-            color: white;
-            padding: 40px 30px;
-            border-radius: 24px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
-            border: 3px solid #2ecc71; /* Jarko zeleni rub */
-            position: relative;
-            overflow: hidden;
-            animation: slideIn 0.5s ease;
-            text-align: center;
-        }
-        .smart-offer strong {
-            color: #ffbc27 !important; /* Žuta za naglašavanje */
-            font-weight: 900;
-        }
-        .smart-offer p {
-            color: rgba(255,255,255,0.9);
-        }
-
-        .city-grid a {
-            color: rgba(255,255,255,0.8);
-            text-decoration: none;
-            padding: 5px;
-            transition: color 0.2s;
-        }
-        .city-grid a:hover { color: #ffbc27; }
-    </style>
-</head>
-<body>
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TPNZZVZ5"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    /* Isticanje bitnih stvari unutar teksta */
+    .post-content strong { color: #573cf9 !important; font-weight: 800; }
     
-    {% include nav.html %}
-
-    <div class="margin-top-100"> </div>
-
-    <main class="width-container-1000 text-white pad round" style="background-color: #573cf9; box-shadow: 0 20px 50px rgba(0,0,0,0.35);">
-        
-        <header style="text-align: center; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 40px; margin-bottom: 40px;">
-            <div class="year-tag">AKTUALNO ZA 2026.</div>
-            <h1 style="font-size: 3.2rem; color: #ffbc27; margin-bottom: 25px; line-height: 1.1;">{{ page.title }}</h1>
-            
-            <div class="trust-badge-container">
-                <div class="trust-badge"><span>✅</span> USPOREDBA</div>
-                <div class="trust-badge"><span>✅</span> NAJNIŽA CIJENA</div>
-                <div class="trust-badge"><span>✅</span> BRZI IZRAČUN</div>
-            </div>
-            
-            <p style="font-size: 1.35rem; opacity: 0.95; max-width: 850px; margin: 0 auto; line-height: 1.6;">
-                {{ page.opis }}
-            </p>
-        </header>
-
-        <div class="calc-card">
-            <h2 style="margin-top:0; text-align:center; color: #ffbc27; font-size: 2rem;">📊 Kalkulator troškova registracije</h2>
-            
-            <label class="calc-label">Vrsta vozila:</label>
-            <select id="kategorija" class="calc-input">
-                <option value="35.50">Osobni automobil (M1)</option>
-                <option value="45.20">Teretno vozilo (N1)</option>
-                <option value="18.10">Motocikl (L3)</option>
-            </select>
-
-            <label class="calc-label">Snaga motora (kW):</label>
-            <input type="number" id="kw" value="80" class="calc-input">
-
-            <div style="text-align: center; margin-top: 35px;">
-                <button onclick="izracunaj()" class="btn-saznaj" style="width: 100%;">IZRAČUNAJ TROŠAK</button>
-            </div>
-
-            <div id="prikaz-cijene" style="display:none; text-align: center; margin-top: 40px; padding-top: 30px; border-top: 2px dashed rgba(255,188,39,0.4);">
-                <span style="font-size: 1.5rem; color: white;">Procjena za {{ page.grad }}:</span><br>
-                <span id="cifra" style="font-size: 4.5rem; font-weight: 900; color: #ffbc27; line-height: 1;">0.00 €</span>
-                
-                <p style="font-size: 0.85rem; opacity: 0.7; margin: 15px auto; max-width: 500px;">
-                    <i>*Izračun je informativnog karaktera ovisno o stanju vozila.</i>
-                </p>
-
-                <div class="smart-offer">
-                    <div style="font-size: 2.2rem; margin-bottom: 10px;">⚡</div>
-                    <h3 style="margin: 0; font-weight: 900; font-size: 1.7rem; color: #ffbc27; text-transform: uppercase;">
-                        Želiš smanjiti ovaj trošak?
-                    </h3>
-                    <p style="margin: 15px 0 30px 0; font-size: 1.25rem; line-height: 1.5;">
-                        Usporedi ponude i uštedi <strong>do 50%</strong> na polici osiguranja u gradu <strong>{{ page.grad }}</strong>.
-                    </p>
-                    <a href="/izracunaj-cijenu/" class="btn-saznaj" style="padding: 15px 40px; font-size: 1.2rem; width: auto; display: inline-block;">
-                        PROVJERI CIJENU OSIGURANJA →
-                    </a>
-                </div>
-            </div>
-        </div>
-
-        <article class="post-content" style="line-height: 1.9; font-size: 1.2rem;">
-            {{ content }}
-        </article>
-
-        <div style="margin-top: 80px; padding: 65px 35px; background: rgba(0,0,0,0.35); border-radius: 40px; text-align: center; border: 4px solid #ffbc27;">
-            <h2 style="color: #ffbc27 !important; margin-top: 0; font-size: 2.8rem;">Trebaš i povoljno auto osiguranje?</h2>
-            <p style="margin-bottom: 45px; font-size: 1.4rem; opacity: 0.9;">
-                Usporedi vodeće kuće i <strong>uštedi do 50%</strong> na polici u gradu <strong>{{ page.grad }}</strong>!
-            </p>
-            <a href="/izracunaj-cijenu/" class="btn-saznaj">SAZNAJ CIJENU ODMAH →</a>
-        </div>
-
-        <div style="margin-top: 60px; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.1);">
-            <p style="font-weight: bold; color: #ffbc27; margin-bottom: 20px; text-transform: uppercase; font-size: 0.9rem;">Tehnički pregled u ostalim gradovima:</p>
-            <div class="city-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 10px; font-size: 0.85rem;">
-                {% for post in site.tehnicki_pregled %}
-                    <a href="{{ post.url }}">📍 {{ post.grad }}</a>
-                {% endfor %}
-            </div>
-        </div>
-    </main>
-
-    <div class="margin-top-100"> </div>
-
-    {% include wapp.html %}
-    {% include footer.html %}
-
-    <script>
-    function izracunaj() {
-        const osnovica = parseFloat(document.getElementById('kategorija').value);
-        const kw = parseFloat(document.getElementById('kw').value) || 0;
-        
-        const ekoTest = 12.50; 
-        const cestarinaBase = 35.00;
-        const naknadaOkolis = 5.50;
-        const administrativniTroskovi = 15.00;
-        
-        const ukupno = osnovica + ekoTest + (kw * 0.18) + cestarinaBase + naknadaOkolis + administrativniTroskovi;
-        
-        const prikaz = document.getElementById('prikaz-cijene');
-        document.getElementById('cifra').innerText = ukupno.toFixed(2) + " €";
-        prikaz.style.display = "block";
-        
-        // POPRAVLJENI SCROLL - Centriranje
-        setTimeout(() => {
-            prikaz.scrollIntoView({ 
-                behavior: 'smooth', 
-                block: 'center' 
-            });
-        }, 50);
+    /* Liste (bullet points) sada trebaju više razmaka */
+    .post-content ul li {
+        margin-bottom: 15px;
+        list-style-type: none;
+        position: relative;
+        padding-left: 30px;
     }
-    </script>
-</body>
-</html>
+    .post-content ul li::before {
+        content: "👉";
+        position: absolute;
+        left: 0;
+    }
+
+    /* Poseban boks za STP lokacije da ne "pluta" */
+    .stp-info-box {
+        background: #f8f9fa;
+        border-left: 8px solid #ffbc27;
+        padding: 25px;
+        margin-top: 30px;
+        border-radius: 0 15px 15px 0;
+        color: #333;
+    }
+</style>
+
+<div class="content-wrapper">
+    <article class="post-content">
+        {{ content }}
+    </article>
+
+    <div class="stp-info-box">
+        <h3 style="margin-top: 0; color: #573cf9;">📍 Tehnički pregled: {{ page.grad }}</h3>
+        <p>{{ page.stp_lokacije_opis }}</p>
+    </div>
+</div>
