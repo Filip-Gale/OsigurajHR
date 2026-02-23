@@ -5,34 +5,71 @@ grad: Zagreb
 stp_lokacije_opis: "Zagreb ima najgušću mrežu stanica za tehnički pregled. Najpopularnije lokacije su STP Siget, STP Euroherc (Jankomir) i STP Croatia (Remetinec). Za izbjegavanje gužvi preporučujemo termine radnim danom od 10:00 do 13:00 sati."
 ---
 
-<p>Registracija vozila u <strong>Zagrebu</strong> u 2026. godini zahtijeva dobru pripremu. Kao administrativno središte s najvećim brojem vozila, Zagreb nudi preko 15 modernih stanica, ali i specifične izazove poput gužvi.</p>
+<div style="line-height: 1.8; font-size: 1.1rem;">
+    <p>Registracija vozila u <span style="color: #ffbc27; font-weight: 800;">Zagrebu</span> u 2026. godini zahtijeva dobru pripremu. Kao administrativno središte s najvećim brojem vozila, Zagreb nudi preko 15 modernih stanica, ali i specifične izazove poput gužvi.</p>
 
-<br>
+    <div style="background: rgba(0, 0, 0, 0.2); border: 3px solid #ffbc27; border-radius: 30px; padding: 35px; margin: 40px 0; text-align: center; box-shadow: 0 15px 35px rgba(0,0,0,0.2);">
+        <h2 style="color: #ffbc27; margin-top: 0; font-size: 1.8rem;">📊 Izračunaj trošak registracije u Zagrebu</h2>
+        <p style="font-size: 1rem; opacity: 0.9; margin-bottom: 25px;">Saznaj okvirnu cijenu tehničkog pregleda i svih naknada za 2026. godinu:</p>
+        
+        <div style="max-width: 450px; margin: 0 auto; text-align: left;">
+            <label style="color: #ffbc27; font-weight: bold; display: block; margin-bottom: 8px; font-size: 1.1rem;">Snaga motora u kW (vidi u prometnoj):</label>
+            <input type="number" id="kw-input" value="80" style="width: 100%; padding: 15px; border-radius: 12px; border: none; margin-bottom: 25px; font-size: 1.1rem; font-weight: bold; background: white; color: #333;">
+            
+            <button onclick="izracunajZG()" style="width: 100%; background: #2ecc71; color: white; padding: 18px; border-radius: 15px; border: none; font-weight: 900; cursor: pointer; text-transform: uppercase; font-size: 1.3rem; box-shadow: 0 6px 0 #27ae60; transition: all 0.1s ease;">Izračunaj trošak →</button>
+        </div>
 
-<h3>✅ Gdje obaviti tehnički u Zagrebu?</h3>
-<p>Zagrebački vozači imaju privilegiju birati stanicu koja im je najbliža, ali pametan odabir štedi vrijeme. Glavna čvorišta su:</p>
+        <div id="rezultat-zg" style="display:none; margin-top: 35px; padding-top: 30px; border-top: 2px dashed rgba(255,188,39,0.3);">
+            <span style="font-size: 1.2rem; color: white;">Procjena za {{ page.grad }} (Tehnički + naknade):</span><br>
+            <span id="cifra-zg" style="font-size: 4.5rem; font-weight: 900; color: #ffbc27; line-height: 1;">0.00 €</span>
+            <p style="font-size: 0.85rem; opacity: 0.7; margin-top: 15px;"><i>*U cijenu nije uključena polica osiguranja.</i></p>
+        </div>
+    </div>
 
-<ul>
-    <li><strong>Zapad:</strong> Jankomir i Samoborska (idealno za Špansko i Prečko).</li>
-    <li><strong>Jug:</strong> Siget i Remetinec (najveći kapaciteti u Novom Zagrebu).</li>
-    <li><strong>Istok:</strong> Dubrava i Sesvete (najbolje za izbjegavanje gradske gužve).</li>
-</ul>
+    <div style="background: rgba(255, 255, 255, 0.07); padding: 30px; border-radius: 20px; border: 1px solid rgba(255, 188, 39, 0.2); margin-bottom: 40px;">
+        <h3 style="color: #ffbc27; margin-top: 0; text-transform: uppercase;">✅ Gdje obaviti tehnički u Zagrebu?</h3>
+        <p>Zagrebački vozači biraju stanicu prema kvartu, a ovo su najbrže opcije:</p>
+        <ul style="list-style: none; padding-left: 0;">
+            <li style="margin-bottom: 12px;">📍 <strong style="color: #ffbc27;">Zapad:</strong> Jankomir i Samoborska (idealno za Špansko i Prečko).</li>
+            <li style="margin-bottom: 12px;">📍 <strong style="color: #ffbc27;">Jug:</strong> Siget i Remetinec (najveći kapaciteti u Novom Zagrebu).</li>
+            <li style="margin-bottom: 0;">📍 <strong style="color: #ffbc27;">Istok:</strong> Dubrava i Sesvete (najbolje za izbjegavanje gradske gužve).</li>
+        </ul>
+    </div>
 
-<p><em><strong>Savjet stručnjaka:</strong> Zbog najvećeg broja vozila, premije osiguranja za ZG tablice su tradicionalno najviše. Usporedbom online možete uštedjeti i do <strong>45 EUR</strong> na polici autoodgovornosti.</em></p>
+    <div style="background: rgba(255, 188, 39, 0.15); border-left: 5px solid #ffbc27; padding: 25px; border-radius: 0 15px 15px 0; margin-bottom: 40px;">
+        <p style="margin: 0;">
+            <strong style="color: #ffbc27;">Savjet stručnjaka:</strong> Zbog najvećeg broja vozila, premije osiguranja za ZG tablice su najviše. Usporedbom online možete uštedjeti i do <span style="background: #ffbc27; color: #573cf9; padding: 2px 8px; border-radius: 5px; font-weight: 900;">45 EUR</span> na polici.
+        </p>
+    </div>
 
-<br>
+    <div style="background: rgba(255, 255, 255, 0.07); padding: 30px; border-radius: 20px; border: 1px solid rgba(255, 188, 39, 0.2); margin-bottom: 40px;">
+        <h3 style="color: #ffbc27; margin-top: 0; text-transform: uppercase;">✅ Potrebna dokumentacija</h3>
+        <p style="margin-bottom: 20px;">U 2026. godini sve poslove obavljate izravno u stanicama (STP). Pripremite:</p>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
+            <div style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 10px;">1. <strong>Osobnu iskaznicu</strong></div>
+            <div style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 10px;">2. <strong>Prometnu dozvolu</strong></div>
+            <div style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 10px;">3. <strong>Policu osiguranja</strong></div>
+        </div>
+    </div>
+</div>
 
-<h3>✅ Dokumentacija i MUP poslovi</h3>
-<p>U 2026. godini većinu poslova oko produljenja registracije obavljate izravno u <strong>stanicama za tehnički pregled (STP)</strong>. Više ne morate odlaziti u Heinzelovu. Pripremite:</p>
+<script>
+function izracunajZG() {
+    const kw = parseFloat(document.getElementById('kw-input').value) || 0;
+    
+    // Formule za 2026. (Okvirne naknade: tehnički + eko + cestarina + naknade)
+    const fiksniTroskovi = 105.50; 
+    const varijabilniDio = kw * 0.22; // Cestarina i naknada za okoliš ovise o snazi/emisijama
+    
+    const ukupno = fiksniTroskovi + varijabilniDio;
+    
+    const prikaz = document.getElementById('rezultat-zg');
+    document.getElementById('cifra-zg').innerText = ukupno.toFixed(2) + " €";
+    prikaz.style.display = "block";
 
-<ol>
-    <li><strong>Osobnu iskaznicu</strong> vlasnika (ili punomoć).</li>
-    <li><strong>Prometnu dozvolu</strong>.</li>
-    <li><strong>Važeću policu osiguranja</strong> (preporučujemo online ugovaranje).</li>
-    <li><strong>Dokaz o uplati naknada</strong> (plaća se karticom na šalteru).</li>
-</ol>
-
-<br>
-
-<h3>✅ Kako proći povoljnije?</h3>
-<p>Najveća stavka u Zagrebu je polica osiguranja. Umjesto da uzmete prvu ponudu na šalteru, ugovorite policu unaprijed. Digitalna polica je odmah vidljiva u sustavu, što znači da na tehnički dolazite s već riješenim najskupljim dijelom troška.</p>
+    // Scroll da se odmah vidi rezultat
+    setTimeout(() => {
+        prikaz.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 100);
+}
+</script>
