@@ -2,6 +2,7 @@
 layout: registracija-layout
 title: Vodič za registraciju vozila Županja (2026) | Provjerene cijene
 grad: Županja
+permalink: /registracija/zupanja/
 stp_lokacije_opis: "Županja raspolaže s modernom stanicom za tehnički pregled koja je strateški smještena za lak pristup vozačima iz cijele županjske Posavine. Zbog blizine granice i autoceste, stanica je opremljena za brzu i efikasnu obradu svih vrsta vozila."
 ---
 
@@ -11,7 +12,7 @@ stp_lokacije_opis: "Županja raspolaže s modernom stanicom za tehnički pregled
     </h1>
 
     <p style="text-align: center; max-width: 800px; margin: 0 auto 30px auto;">
-        Sve informacije za vozače s ŽU tablicama na jednom mjestu: lokacije stanica, potrebna dokumentacija i kalkulator troškova tehničkog pregleda za 2026. godinu.
+        Sve informacije za vozače s <strong>ŽU tablicama</strong> na jednom mjestu: lokacije stanica, potrebna dokumentacija i kalkulator troškova tehničkog pregleda za 2026. godinu.
     </p>
 
     <div style="background: rgba(0, 0, 0, 0.2); border: 3px solid #ffbc27; border-radius: 30px; padding: 35px; margin: 40px 0; text-align: center; box-shadow: 0 15px 35px rgba(0,0,0,0.2);">
@@ -51,7 +52,7 @@ stp_lokacije_opis: "Županja raspolaže s modernom stanicom za tehnički pregled
     </div>
 
     <h3 style="color: #ffbc27; text-transform: uppercase; font-weight: 800;">Dokumentacija za ŽU tablice</h3>
-    <p>Prilikom dolaska na tehnički u Županji ponesite:</p>
+    <p>Prilikom odlaska na tehnički u Županji ponesite:</p>
     <ul>
         <li><strong>Originalnu prometnu dozvolu.</strong></li>
         <li><strong>Važeću osobnu iskaznicu vlasnika.</strong></li>
