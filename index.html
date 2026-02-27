@@ -200,6 +200,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <input type="hidden" name="Tip_korisnika" value="{{user-type}}">
                 <input type="hidden" name="Dob" value="{{age}}">
                 <input type="hidden" name="Kontakt" value="{{contact}}">
+               <input type="hidden" name="WhatsApp_Link" id="whatsapp_link">
 
                 <input class="round" type="text" name="username" placeholder="Registracijska oznaka vozila:" required>
 
@@ -790,6 +791,24 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 customData.append("botcheck", originalData.get("botcheck"));
             }
 
+            // --- DODATAK ZA WHATSAPP LINK ---
+    const whatsappHidden = document.getElementById('whatsapp_link');
+    const telefonInput = document.querySelector('input[name="contact"]');
+    let broj = telefonInput ? telefonInput.value.trim() : "";
+    
+    // Čišćenje i formatiranje (09x -> 3859x)
+    let cistiBroj = broj.replace(/\s+/g, '').replace(/-/g, '').replace(/\//g, '');
+    if (cistiBroj.startsWith('0')) {
+      cistiBroj = '385' + cistiBroj.substring(1);
+    } else if (!cistiBroj.startsWith('385') && cistiBroj.length >= 9) {
+      cistiBroj = '385' + cistiBroj;
+    }
+    
+    // Upisivanje u skriveno polje koje si dodao u liniji 203
+    if (whatsappHidden) {
+      whatsappHidden.value = "https://wa.me/" + cistiBroj;
+    }
+    // --------------------------------
             // 4. Send the data
             fetch(form.action, {
                 method: "POST",
@@ -824,6 +843,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </body>
 
 </html>
+
 
 
 
