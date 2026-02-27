@@ -806,7 +806,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     
     // Upisivanje u skriveno polje koje si dodao u liniji 203
     if (whatsappHidden) {
- const poruka = encodeURIComponent("Registracija: " + username + " | Dob: " + ageRaw + " god");
+const poruka = encodeURIComponent(username + " | " + ageRaw + " god");
 const waLink = "https://wa.me/" + cistiBroj + "?text=" + poruka;
       whatsappHidden.value = waLink;
       // Ova linija ispod je ključna da podatak zapravo ode u mail
@@ -847,6 +847,7 @@ const waLink = "https://wa.me/" + cistiBroj + "?text=" + poruka;
 </body>
 
 </html>
+
 
 
 
