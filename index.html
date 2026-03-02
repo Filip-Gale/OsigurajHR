@@ -21,11 +21,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         window.location = url;
       }
     };
-    gtag('event', 'conversion_event_submit_lead_form', {
-      'event_callback': callback,
-      'event_timeout': 2000,
-      // <event_parameters>
-    });
+    if (typeof gtag === 'function') {
+      gtag('event', 'conversion_event_submit_lead_form', {
+        'event_callback': callback,
+        'event_timeout': 2000,
+      });
+    } else {
+      callback();
+    }
     return false;
   }
 </script>
