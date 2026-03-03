@@ -22,277 +22,302 @@ permalink: /izracunaj-cijenu/
     <link rel="icon" type="image/jpeg" href="/img/favicon.jpg">
 
     <style>
-        body { background: #573cf9; min-height: 100vh; }
+        *, *::before, *::after { box-sizing: border-box; }
+        body { background: #573cf9; min-height: 100vh; margin: 0; }
+
+        /* hide number spinners */
+        input[type=number]::-webkit-outer-spin-button,
+        input[type=number]::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+        input[type=number] { -moz-appearance: textfield; }
 
         .nav-spacer { height: 80px; }
 
-        .hero {
-            text-align: center;
-            padding: 36px 20px 16px;
-            color: white;
-        }
+        /* ── Hero ── */
+        .hero { text-align: center; padding: 36px 20px 16px; color: white; }
         .hero h1 {
             font-size: clamp(1.8rem, 5vw, 2.8rem);
-            color: #ffbc27;
-            margin-bottom: 10px;
-            letter-spacing: -0.5px;
+            color: #ffbc27; margin-bottom: 10px; letter-spacing: -0.5px;
         }
         .hero p {
             font-size: clamp(0.95rem, 2.5vw, 1.15rem);
-            opacity: 0.82;
-            font-weight: normal;
-            max-width: 480px;
-            margin: 0 auto;
+            opacity: 0.82; font-weight: normal; max-width: 480px; margin: 0 auto;
         }
 
         /* ── Card ── */
         .wizard-card {
-            background: white;
-            border-radius: 24px;
-            max-width: 500px;
-            width: 92%;
+            background: white; border-radius: 24px;
+            max-width: 500px; width: 92%;
             margin: 28px auto 80px;
             padding: 30px 24px 34px;
-            box-shadow: 0 24px 60px rgba(0,0,0,0.28);
+            box-shadow: 0 32px 80px rgba(87,60,249,0.35), 0 8px 24px rgba(0,0,0,0.15);
+            overflow: hidden; position: relative;
         }
-        @media (min-width: 600px) {
-            .wizard-card { padding: 38px 42px 42px; }
-        }
+        @media (min-width: 600px) { .wizard-card { padding: 38px 42px 42px; } }
 
         /* ── Progress ── */
-        .progress-bar {
-            display: flex;
-            align-items: center;
-            margin-bottom: 28px;
-        }
-        .progress-step {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 5px;
-        }
+        .progress-bar { display: flex; align-items: center; margin-bottom: 32px; }
+        .progress-step { display: flex; flex-direction: column; align-items: center; gap: 5px; }
         .progress-dot {
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            background: #ebebeb;
-            color: #bbb;
-            font-size: 0.78rem;
-            font-weight: 800;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s;
+            width: 32px; height: 32px; border-radius: 50%;
+            background: #ebebeb; color: #bbb;
+            font-size: 0.78rem; font-weight: 800;
+            display: flex; align-items: center; justify-content: center;
+            transition: all 0.35s cubic-bezier(0.34,1.56,0.64,1);
         }
-        .progress-dot.active { background: #573cf9; color: white; }
-        .progress-dot.done   { background: #22c55e; color: white; }
+        .progress-dot.active {
+            background: #573cf9; color: white;
+            box-shadow: 0 0 0 5px rgba(87,60,249,0.2);
+            transform: scale(1.1);
+        }
+        .progress-dot.done { background: #22c55e; color: white; font-size: 0; }
+        .progress-dot.done::after { content: '✓'; font-size: 0.85rem; }
         .progress-lbl {
-            font-size: 0.68rem;
-            color: #bbb;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.4px;
-            white-space: nowrap;
+            font-size: 0.68rem; color: #bbb; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 0.4px; white-space: nowrap;
+            transition: color 0.3s;
         }
         .progress-lbl.active { color: #573cf9; }
         .progress-lbl.done   { color: #22c55e; }
         .progress-line {
-            flex: 1;
-            height: 2px;
-            background: #ebebeb;
-            max-width: 55px;
-            min-width: 15px;
-            margin-bottom: 18px;
-            transition: background 0.3s;
+            flex: 1; height: 3px; background: #ebebeb;
+            max-width: 55px; min-width: 15px; margin-bottom: 18px;
+            position: relative; overflow: hidden; border-radius: 2px;
         }
-        .progress-line.done { background: #22c55e; }
+        .progress-line::after {
+            content: ''; position: absolute; left: 0; top: 0;
+            height: 100%; width: 0; background: #22c55e;
+            transition: width 0.5s cubic-bezier(0.65,0,0.35,1);
+            border-radius: 2px;
+        }
+        .progress-line.done::after { width: 100%; }
 
         /* ── Steps ── */
-        .step-panel { display: none; }
+        .steps-wrapper { position: relative; }
+        .step-panel { display: none; animation-duration: 0.32s; animation-timing-function: cubic-bezier(0.22,1,0.36,1); animation-fill-mode: both; }
         .step-panel.active { display: block; }
+        .step-panel.slide-in-right { animation-name: slideInRight; }
+        .step-panel.slide-in-left  { animation-name: slideInLeft; }
+        @keyframes slideInRight { from { opacity:0; transform:translateX(36px); } to { opacity:1; transform:translateX(0); } }
+        @keyframes slideInLeft  { from { opacity:0; transform:translateX(-36px); } to { opacity:1; transform:translateX(0); } }
 
-        .step-title {
-            font-size: 1.35rem;
-            color: #111;
-            margin-bottom: 4px;
-        }
-        .step-sub {
-            font-size: 0.88rem;
-            color: #999;
-            font-weight: normal;
-            margin-bottom: 22px;
-        }
+        .step-title { font-size: 1.35rem; color: #111; margin-bottom: 4px; }
+        .step-sub   { font-size: 0.88rem; color: #999; font-weight: normal; margin-bottom: 22px; }
 
         /* ── Fields ── */
-        .fields { display: flex; flex-direction: column; gap: 14px; margin-bottom: 22px; }
-        .flabel {
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            color: #666;
-            margin-bottom: 5px;
-        }
+        .fields { display: flex; flex-direction: column; gap: 16px; margin-bottom: 22px; }
+        .flabel { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px; color: #666; margin-bottom: 6px; display: block; }
         .finput {
-            width: 100%;
-            padding: 13px 15px;
-            border: 2px solid #e5e5e5;
-            border-radius: 11px;
-            font-size: 1rem;
-            font-family: inherit;
-            font-weight: 600;
-            color: #111;
-            box-sizing: border-box;
-            -webkit-appearance: none;
-            appearance: none;
-            background: white;
-            transition: border-color 0.2s;
+            width: 100%; padding: 14px 16px;
+            border: 2px solid #e5e5e5; border-radius: 12px;
+            font-size: 1rem; font-family: inherit; font-weight: 600; color: #111;
+            -webkit-appearance: none; appearance: none; background: white;
+            transition: border-color 0.2s, box-shadow 0.2s;
         }
-        .finput:focus { outline: none; border-color: #573cf9; }
+        .finput:focus { outline: none; border-color: #573cf9; box-shadow: 0 0 0 4px rgba(87,60,249,0.12); }
         .finput::placeholder { font-weight: normal; color: #ccc; }
-        .finput.err { border-color: #ef4444; }
-        .fhint  { font-size: 0.76rem; color: #bbb; font-weight: normal; margin-top: 4px; }
-        .ferror { font-size: 0.76rem; color: #ef4444; font-weight: normal; margin-top: 4px; display: none; }
+        .finput.err { border-color: #ef4444; box-shadow: 0 0 0 4px rgba(239,68,68,0.1); }
+        .fhint  { font-size: 0.76rem; color: #bbb; font-weight: normal; margin-top: 5px; }
+        .ferror { font-size: 0.76rem; color: #ef4444; font-weight: normal; margin-top: 5px; display: none; }
 
-        /* ── Segmented ── */
-        .segmented {
-            display: flex;
-            border: 2px solid #e5e5e5;
-            border-radius: 11px;
-            overflow: hidden;
+        /* ── Registration indicator ── */
+        .reg-wrap { position: relative; }
+        .reg-ind {
+            position: absolute; right: 14px; top: 50%; transform: translateY(-50%);
+            font-size: 0.72rem; color: #573cf9; font-weight: 600;
+            display: none; align-items: center; gap: 5px; pointer-events: none;
         }
-        .segmented input[type=radio] { position: absolute; opacity: 0; width: 0; height: 0; }
-        .segmented label {
-            flex: 1;
-            text-align: center;
-            padding: 11px 6px;
-            font-size: 0.88rem;
-            cursor: pointer;
-            color: #999;
-            font-weight: 600;
-            transition: all 0.2s;
-            border-right: 1px solid #e5e5e5;
-            font-family: inherit;
+        .reg-ind.show { display: flex; }
+        .reg-dot { width: 6px; height: 6px; border-radius: 50%; background: #573cf9; animation: pdot 1s infinite; }
+        @keyframes pdot { 0%,100%{opacity:1;transform:scale(1);} 50%{opacity:0.35;transform:scale(0.65);} }
+
+        /* ── Tip cards ── */
+        .tip-cards { display: flex; gap: 8px; }
+        .tip-card-wrap { flex: 1; }
+        .tip-card-wrap input[type=radio] { position: absolute; opacity: 0; width: 0; height: 0; }
+        .tip-card {
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            gap: 4px; padding: 12px 6px;
+            border: 2px solid #e5e5e5; border-radius: 12px; cursor: pointer;
+            transition: all 0.2s; text-align: center;
         }
-        .segmented label:last-of-type { border-right: none; }
-        .segmented input[type=radio]:checked + label { background: #573cf9; color: white; }
+        .tip-card .t-ico { font-size: 1.4rem; }
+        .tip-card .t-lbl { font-size: 0.8rem; font-weight: 700; color: #888; transition: color 0.2s; }
+        .tip-card-wrap input:checked + .tip-card {
+            border-color: #573cf9; background: #f4f2ff;
+            box-shadow: 0 0 0 3px rgba(87,60,249,0.15);
+        }
+        .tip-card-wrap input:checked + .tip-card .t-lbl { color: #573cf9; }
+        .tip-card:hover { border-color: #c4bbff; }
+
+        /* ── Expandable year ── */
+        .opt-toggle {
+            display: flex; align-items: center; gap: 7px;
+            font-size: 0.82rem; color: #573cf9; cursor: pointer;
+            font-weight: 700; background: none; border: none;
+            padding: 0; font-family: inherit; transition: opacity 0.2s;
+        }
+        .opt-toggle:hover { opacity: 0.75; }
+        .opt-icon {
+            display: inline-flex; align-items: center; justify-content: center;
+            width: 18px; height: 18px; border-radius: 50%;
+            background: #573cf9; color: white;
+            font-size: 1rem; font-weight: 900; line-height: 1;
+            transition: transform 0.25s;
+        }
+        .opt-toggle.open .opt-icon { transform: rotate(45deg); }
+        .opt-field {
+            overflow: hidden; max-height: 0; opacity: 0;
+            transition: max-height 0.35s cubic-bezier(0.4,0,0.2,1), opacity 0.25s ease;
+        }
+        .opt-field.open { max-height: 130px; opacity: 1; }
 
         /* ── Buttons ── */
         .btn-main {
-            display: block; width: 100%; padding: 14px;
-            background: #573cf9; color: white;
-            border: none; border-radius: 11px;
+            display: block; width: 100%; padding: 15px;
+            background: #573cf9; color: white; border: none; border-radius: 12px;
             font-size: 1rem; font-family: inherit; font-weight: 800;
-            cursor: pointer; text-align: center;
-            transition: opacity 0.2s, transform 0.1s;
+            cursor: pointer; text-align: center; position: relative; overflow: hidden;
+            box-shadow: 0 4px 16px rgba(87,60,249,0.35);
+            transition: opacity 0.2s, transform 0.15s, box-shadow 0.2s;
         }
-        .btn-main:hover { opacity: 0.9; }
+        .btn-main:hover { opacity: 0.92; transform: translateY(-1px); box-shadow: 0 6px 24px rgba(87,60,249,0.45); }
         .btn-main:active { transform: scale(0.98); }
+        .btn-main::after {
+            content: ''; position: absolute; top: -50%; left: -75%;
+            width: 50%; height: 200%;
+            background: linear-gradient(90deg,transparent,rgba(255,255,255,0.22),transparent);
+            transform: skewX(-15deg); animation: shine 2.8s infinite;
+        }
+        @keyframes shine { 0%{left:-75%;} 45%,100%{left:130%;} }
         .btn-back {
-            background: none; border: none;
-            color: #bbb; font-size: 0.88rem; cursor: pointer;
-            padding: 10px 0; font-family: inherit; font-weight: 600;
+            background: none; border: none; color: #bbb;
+            font-size: 0.88rem; cursor: pointer; padding: 10px 0;
+            font-family: inherit; font-weight: 600; transition: color 0.2s;
         }
         .btn-back:hover { color: #573cf9; }
         .btn-stack { display: flex; flex-direction: column; gap: 8px; }
 
-        /* Optional kasko field */
-        .opt-toggle {
-            font-size: 0.82rem; color: #573cf9; cursor: pointer;
-            font-weight: 700; background: none; border: none;
-            padding: 0; font-family: inherit;
+        /* ── Encourage banner ── */
+        .encourage {
+            background: linear-gradient(135deg,#f4f2ff,#e8f5e9);
+            border-radius: 10px; padding: 11px 14px;
+            font-size: 0.82rem; color: #573cf9; font-weight: 700;
+            display: flex; align-items: center; gap: 8px;
         }
-        .opt-field {
-            overflow: hidden; max-height: 0; opacity: 0;
-            transition: max-height 0.3s ease, opacity 0.3s ease;
-        }
-        .opt-field.open { max-height: 110px; opacity: 1; }
 
-        /* ── Results ── */
+        /* ── Loader ── */
         .r-loading {
             display: flex; flex-direction: column;
-            align-items: center; gap: 14px; padding: 16px 0; text-align: center;
+            align-items: center; gap: 16px; padding: 24px 0; text-align: center;
         }
-        .spinner {
-            width: 42px; height: 42px;
-            border: 4px solid #ebebeb; border-top-color: #573cf9;
-            border-radius: 50%;
-            animation: spin 0.75s linear infinite;
+        .loader-car-wrap { animation: carbounce 0.45s ease-in-out infinite alternate; }
+        @keyframes carbounce { from{transform:translateY(0);} to{transform:translateY(-4px);} }
+        .loader-road {
+            width: 110px; height: 3px; border-radius: 2px;
+            background: repeating-linear-gradient(90deg,#573cf9 0,#573cf9 8px,#e5e5e5 8px,#e5e5e5 16px);
+            animation: roadscroll 0.4s linear infinite;
         }
-        @keyframes spin { to { transform: rotate(360deg); } }
-        .r-loading p { color: #999; font-weight: normal; font-size: 0.92rem; }
+        @keyframes roadscroll { from{background-position:0;} to{background-position:-16px;} }
+        .r-loading p {
+            color: #999; font-weight: normal; font-size: 0.92rem;
+            transition: opacity 0.2s;
+        }
 
+        /* ── Results ── */
         .price-box {
-            background: #f4f2ff;
-            border-radius: 14px;
-            padding: 22px;
-            text-align: center;
-            margin-bottom: 18px;
+            background: linear-gradient(135deg,#f4f2ff,#ede9fe);
+            border-radius: 16px; padding: 24px 20px; text-align: center;
+            margin-bottom: 18px; border: 2px solid rgba(87,60,249,0.1);
         }
         .price-lbl { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.8px; color: #999; margin-bottom: 6px; }
-        .price-num { font-size: 2.6rem; font-weight: 900; color: #573cf9; line-height: 1; }
-        .price-per { font-size: 0.88rem; color: #aaa; font-weight: normal; margin-top: 3px; }
+        .price-num { font-size: 2.8rem; font-weight: 900; color: #573cf9; line-height: 1; font-variant-numeric: tabular-nums; }
+        .price-per { font-size: 0.88rem; color: #aaa; font-weight: normal; margin-top: 4px; }
         .price-who { font-size: 0.82rem; color: #573cf9; font-weight: 700; margin-top: 8px; }
 
-        .pkgs-lbl { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px; color: #aaa; margin-bottom: 8px; }
+        .pkgs-lbl { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px; color: #aaa; margin: 18px 0 8px; }
         .pkg-row {
             display: flex; justify-content: space-between; align-items: center;
-            padding: 10px 13px;
-            border: 2px solid #e5e5e5; border-radius: 10px;
-            margin-bottom: 7px; cursor: pointer;
-            transition: border-color 0.2s, background 0.2s;
+            padding: 11px 14px; border: 2px solid #e5e5e5; border-radius: 11px;
+            margin-bottom: 7px; cursor: pointer; position: relative;
+            transition: border-color 0.2s, background 0.2s, transform 0.15s;
         }
-        .pkg-row:hover { border-color: #573cf9; }
-        .pkg-row.on { border-color: #573cf9; background: #f4f2ff; }
+        .pkg-row:hover { border-color: #c4bbff; transform: translateY(-1px); }
+        .pkg-row.on   { border-color: #573cf9; background: #f4f2ff; }
+        .pkg-left { display: flex; align-items: center; gap: 8px; }
+        .pkg-check {
+            width: 20px; height: 20px; border-radius: 50%; flex-shrink: 0;
+            border: 2px solid #e5e5e5; display: flex; align-items: center; justify-content: center;
+            transition: all 0.22s cubic-bezier(0.34,1.56,0.64,1);
+        }
+        .pkg-row.on .pkg-check { background: #573cf9; border-color: #573cf9; }
+        .pkg-check-icon { color: white; font-size: 0.65rem; opacity: 0; transform: scale(0); transition: all 0.22s cubic-bezier(0.34,1.56,0.64,1); }
+        .pkg-row.on .pkg-check-icon { opacity: 1; transform: scale(1); }
         .pkg-name { font-size: 0.88rem; color: #222; }
         .pkg-price { font-size: 0.88rem; color: #573cf9; font-weight: 800; white-space: nowrap; }
+        .pkg-info-btn {
+            background: none; width: 18px; height: 18px; border-radius: 50%;
+            border: 1.5px solid #ccc; color: #bbb; font-size: 0.65rem; font-weight: 800;
+            cursor: pointer; display: inline-flex; align-items: center; justify-content: center;
+            flex-shrink: 0; transition: border-color 0.2s, color 0.2s;
+            margin-left: 4px; font-family: inherit; line-height: 1;
+        }
+        .pkg-info-btn:hover { border-color: #573cf9; color: #573cf9; }
+        .pkg-popover {
+            position: absolute; bottom: calc(100% + 8px); left: 0; right: 0;
+            background: #1c1533; color: white; border-radius: 10px;
+            padding: 11px 13px; font-size: 0.79rem; font-weight: normal; line-height: 1.5;
+            z-index: 100; box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+            opacity: 0; pointer-events: none; transform: translateY(6px);
+            transition: opacity 0.2s, transform 0.2s;
+        }
+        .pkg-popover.show { opacity: 1; pointer-events: all; transform: translateY(0); }
+        .pkg-popover::after {
+            content: ''; position: absolute; top: 100%; left: 18px;
+            border: 6px solid transparent; border-top-color: #1c1533;
+        }
 
-        .chips { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 18px; }
+        .total-row { text-align: center; margin: 4px 0 14px; font-size: 0.82rem; color: #999; font-weight: normal; }
+        .total-row strong { color: #573cf9; font-weight: 900; font-variant-numeric: tabular-nums; }
+
+        .chips { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 20px; }
         .chip {
             background: #f4f2ff; color: #573cf9;
-            font-size: 0.75rem; padding: 3px 10px;
-            border-radius: 20px; font-weight: 700;
+            font-size: 0.75rem; padding: 4px 11px; border-radius: 20px; font-weight: 700;
+            animation: chippop 0.3s cubic-bezier(0.34,1.56,0.64,1) both;
         }
+        @keyframes chippop { from{opacity:0;transform:scale(0.65);} to{opacity:1;transform:scale(1);} }
 
         .ctas { display: flex; flex-direction: column; gap: 9px; margin-top: 18px; }
         .btn-wa {
             display: flex; align-items: center; justify-content: center; gap: 9px;
-            padding: 14px; background: #22c55e; color: white;
-            border: none; border-radius: 11px;
-            font-size: 0.97rem; font-family: inherit; font-weight: 800;
-            cursor: pointer; text-decoration: none;
-            transition: opacity 0.2s;
+            padding: 14px; background: #22c55e; color: white; border: none; border-radius: 11px;
+            font-size: 0.97rem; font-family: inherit; font-weight: 800; cursor: pointer;
+            text-decoration: none; box-shadow: 0 4px 14px rgba(34,197,94,0.35);
+            transition: opacity 0.2s, transform 0.15s;
         }
-        .btn-wa:hover { opacity: 0.9; }
+        .btn-wa:hover { opacity: 0.9; transform: translateY(-1px); }
         .btn-tel {
             display: flex; align-items: center; justify-content: center; gap: 9px;
-            padding: 12px; background: transparent;
-            color: #573cf9; border: 2px solid #573cf9;
-            border-radius: 11px;
+            padding: 12px; background: transparent; color: #573cf9;
+            border: 2px solid #573cf9; border-radius: 11px;
             font-size: 0.92rem; font-family: inherit; font-weight: 700;
-            cursor: pointer; text-decoration: none;
-            transition: background 0.2s;
+            cursor: pointer; text-decoration: none; transition: background 0.2s;
         }
         .btn-tel:hover { background: #f4f2ff; }
-        .disclaimer {
-            font-size: 0.7rem; color: #ccc; font-weight: normal;
-            text-align: center; margin-top: 12px; line-height: 1.5;
-        }
+        .disclaimer { font-size: 0.7rem; color: #ccc; font-weight: normal; text-align: center; margin-top: 12px; line-height: 1.5; }
 
-        .err-box {
-            background: #fff5f5; border-radius: 12px;
-            padding: 18px; text-align: center; margin-bottom: 18px;
-        }
+        .err-box { background: #fff5f5; border-radius: 12px; padding: 18px; text-align: center; margin-bottom: 18px; }
         .err-box .ico { font-size: 1.8rem; margin-bottom: 6px; }
         .err-box p { color: #dc2626; font-size: 0.88rem; font-weight: normal; margin: 0; }
-        .err-note {
-            font-size: 0.88rem; color: #666; text-align: center;
-            font-weight: normal; margin-bottom: 14px; line-height: 1.6;
-        }
+        .err-note { font-size: 0.88rem; color: #666; text-align: center; font-weight: normal; margin-bottom: 14px; line-height: 1.6; }
+
+        /* ── Confetti canvas ── */
+        #confetti-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9999; }
     </style>
 </head>
 <body>
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TPNZZVZ5"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TPNZZVZ5" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<canvas id="confetti-canvas"></canvas>
 
 {% include nav.html %}
 <div class="nav-spacer"></div>
@@ -304,7 +329,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <div class="wizard-card selectable">
 
-    <!-- Progress -->
+    <!-- Progress bar -->
     <div class="progress-bar">
         <div class="progress-step">
             <div class="progress-dot active" id="d1">1</div>
@@ -322,91 +347,134 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
     </div>
 
-    <!-- Step 1 -->
+    <div class="steps-wrapper">
+
+    <!-- Step 1: Vozilo -->
     <div class="step-panel active" id="s1">
         <h2 class="step-title">Vaše vozilo</h2>
         <p class="step-sub">Samo 2 podatka za trenutni izračun.</p>
         <div class="fields">
             <div>
-                <div class="flabel">Registracijska oznaka</div>
-                <input class="finput" id="reg" type="text" placeholder="ZG6426IB" maxlength="10"
-                       autocomplete="off" autocapitalize="characters" spellcheck="false">
-                <div class="fhint">Unesite punu registracijsku oznaku ili samo zonu (npr. ZG).</div>
+                <label class="flabel" for="reg">Registracijska oznaka</label>
+                <div class="reg-wrap">
+                    <input class="finput" id="reg" type="text" placeholder="ZG6426IB" maxlength="10"
+                           autocomplete="off" autocapitalize="characters" spellcheck="false">
+                    <div class="reg-ind" id="reg-ind">
+                        <div class="reg-dot"></div><span>Provjeravam...</span>
+                    </div>
+                </div>
+                <div class="fhint">Puna registracija ili samo zona (npr. ZG).</div>
                 <div class="ferror" id="e-reg">Unesite registracijsku oznaku.</div>
             </div>
             <div>
-                <div class="flabel">Snaga motora (kW)</div>
+                <label class="flabel" for="kw">Snaga motora (kW)</label>
                 <input class="finput" id="kw" type="number" placeholder="85" min="1" max="2000" inputmode="numeric">
                 <div class="fhint">Prometna dozvola — redak P.2.</div>
                 <div class="ferror" id="e-kw">Unesite snagu motora u kW.</div>
             </div>
             <div>
-                <button class="opt-toggle" id="opt-btn" onclick="toggleYear()">+ Dodajte godinu vozila (za kasko ponudu)</button>
+                <button class="opt-toggle" id="opt-btn" onclick="toggleYear()" type="button">
+                    <span class="opt-icon">+</span>
+                    <span id="opt-lbl">Dodajte godinu vozila (za kasko ponudu)</span>
+                </button>
                 <div class="opt-field" id="opt-field">
-                    <div style="height:10px"></div>
-                    <div class="flabel">Godina proizvodnje</div>
+                    <div style="height:12px"></div>
+                    <label class="flabel" for="yr">Godina proizvodnje</label>
                     <input class="finput" id="yr" type="number" placeholder="2019" min="1990" max="2026" inputmode="numeric">
                     <div class="fhint">Vozila starija od 12 god. nemaju kasko.</div>
                 </div>
             </div>
         </div>
         <div class="btn-stack">
-            <button class="btn-main" onclick="next1()">Dalje →</button>
+            <button class="btn-main" onclick="next1()" type="button">Dalje →</button>
         </div>
     </div>
 
-    <!-- Step 2 -->
+    <!-- Step 2: Vozač -->
     <div class="step-panel" id="s2">
         <h2 class="step-title">Podaci o vozaču</h2>
-        <p class="step-sub">Još 2 podatka i prikazujemo vam cijenu.</p>
+        <p class="step-sub">Još 2 podatka i odmah vidite cijenu.</p>
         <div class="fields">
             <div>
-                <div class="flabel">Tip osobe</div>
-                <div class="segmented">
-                    <input type="radio" name="tip" id="tip-f" value="F" checked>
-                    <label for="tip-f">Fizička</label>
-                    <input type="radio" name="tip" id="tip-p" value="P">
-                    <label for="tip-p">Pravna</label>
-                    <input type="radio" name="tip" id="tip-o" value="O">
-                    <label for="tip-o">Obrt</label>
+                <label class="flabel">Tip osobe</label>
+                <div class="tip-cards">
+                    <div class="tip-card-wrap">
+                        <input type="radio" name="tip" id="tip-f" value="F" checked>
+                        <label class="tip-card" for="tip-f">
+                            <span class="t-ico">👤</span><span class="t-lbl">Fizička</span>
+                        </label>
+                    </div>
+                    <div class="tip-card-wrap">
+                        <input type="radio" name="tip" id="tip-p" value="P">
+                        <label class="tip-card" for="tip-p">
+                            <span class="t-ico">🏢</span><span class="t-lbl">Pravna</span>
+                        </label>
+                    </div>
+                    <div class="tip-card-wrap">
+                        <input type="radio" name="tip" id="tip-o" value="O">
+                        <label class="tip-card" for="tip-o">
+                            <span class="t-ico">🔧</span><span class="t-lbl">Obrt</span>
+                        </label>
+                    </div>
                 </div>
             </div>
             <div id="dob-row">
-                <div class="flabel">Godina rođenja</div>
+                <label class="flabel" for="dob">Godina rođenja</label>
                 <input class="finput" id="dob" type="number" placeholder="1985" min="1920" max="2007" inputmode="numeric">
                 <div class="ferror" id="e-dob">Unesite vašu godinu rođenja.</div>
             </div>
             <div>
-                <div class="flabel">OIB <span style="text-transform:none;font-size:0.7rem;color:#bbb">(neobavezno — za točniju cijenu)</span></div>
+                <label class="flabel" for="oib">OIB <span style="text-transform:none;font-size:0.7rem;color:#bbb">(obvezan — za točnu cijenu)</span></label>
                 <input class="finput" id="oib" type="text" placeholder="12345678901" maxlength="11" inputmode="numeric" autocomplete="off">
-                <div class="fhint">OIB nam omogućuje dohvat vašeg premijskog stupnja i točniju cijenu.</div>
+                <div class="fhint">Dohvaćamo vaš premijski stupanj iz registra osiguranja.</div>
+                <div class="ferror" id="e-oib">Unesite OIB (11 znamenki).</div>
+            </div>
+            <div class="encourage">
+                <span>🎯</span><span>Gotovo! Još malo pa vidite vašu cijenu.</span>
             </div>
         </div>
         <div class="btn-stack">
-            <button class="btn-main" onclick="fetch_quote()">Saznaj cijenu →</button>
-            <button class="btn-back" onclick="go(1)">← Natrag</button>
+            <button class="btn-main" onclick="fetch_quote()" type="button">Saznaj cijenu →</button>
+            <button class="btn-back" onclick="go(1,'back')" type="button">← Natrag</button>
         </div>
     </div>
 
-    <!-- Step 3 -->
+    <!-- Step 3: Rezultati -->
     <div class="step-panel" id="s3">
         <div class="chips" id="chips"></div>
 
         <div id="r-load" class="r-loading">
-            <div class="spinner"></div>
-            <p>Računam vašu cijenu...</p>
+            <div class="loader-car-wrap">
+                <svg width="80" height="44" viewBox="0 0 80 44" fill="none">
+                    <rect x="5" y="14" width="70" height="22" rx="5" fill="#573cf9"/>
+                    <path d="M18 14L27 4H53L62 14" fill="#7b62ff"/>
+                    <rect x="29" y="5" width="9" height="9" rx="2" fill="#b8acff" opacity="0.85"/>
+                    <rect x="42" y="5" width="9" height="9" rx="2" fill="#b8acff" opacity="0.85"/>
+                    <circle cx="22" cy="36" r="7" fill="#1c1533" stroke="#7b62ff" stroke-width="2"/>
+                    <circle cx="22" cy="36" r="3" fill="#7b62ff"/>
+                    <circle cx="58" cy="36" r="7" fill="#1c1533" stroke="#7b62ff" stroke-width="2"/>
+                    <circle cx="58" cy="36" r="3" fill="#7b62ff"/>
+                    <rect x="6" y="20" width="9" height="5" rx="2" fill="#ffbc27" opacity="0.9"/>
+                    <rect x="65" y="20" width="9" height="5" rx="2" fill="#ff6b6b" opacity="0.9"/>
+                </svg>
+            </div>
+            <div class="loader-road"></div>
+            <p id="loader-msg">Računam vašu cijenu...</p>
         </div>
 
         <div id="r-ok" style="display:none">
             <div class="price-box">
-                <div class="price-lbl">AO Osiguranje</div>
+                <div class="price-lbl">AO Osiguranje — vaša cijena</div>
                 <div class="price-num" id="ao-num">—</div>
-                <div class="price-per">godišnje</div>
+                <div class="price-per">godišnje s PDV-om</div>
                 <div class="price-who">Generali osiguranje d.d.</div>
             </div>
             <div id="pkg-wrap" style="display:none">
                 <div class="pkgs-lbl">Dodajte po želji</div>
                 <div id="pkg-list"></div>
+            </div>
+            <div class="total-row" id="total-row" style="display:none">
+                Ukupno: <strong id="total-num"></strong> /god
             </div>
             <div class="ctas">
                 <a id="wa-ok" href="#" target="_blank" class="btn-wa">
@@ -433,134 +501,273 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
 
         <div style="margin-top:14px;text-align:center">
-            <button class="btn-back" onclick="go(2)">← Izmijeni podatke</button>
+            <button class="btn-back" onclick="go(2,'back')" type="button">← Izmijeni podatke</button>
         </div>
     </div>
 
+    </div><!-- /steps-wrapper -->
 </div><!-- /wizard-card -->
 
 {% include wapp.html %}
 {% include footer.html %}
 
 <script>
+/* ── State ── */
 var S = { reg:'', kw:0, yr:null, tip:'F', dob:0, oib:'' };
+var aoBase = 0;
+var selectedPkgs = {};
 
+/* ── Package descriptions ── */
 var PKG = {
-    'AO_PLUS':'AO Plus zaštita','ASIST_HR':'Asistencija (Hrvatska)',
-    'ASIST_SVE':'Asistencija (Europa)','DIVLJAC':'Zaštita od divljači',
-    'NEZGODA':'Nezgoda putnika','STAKLA':'Osiguranje stakla',
-    'TUCA':'Osiguranje od tuče',
-    'KASKO_1000':'Kasko (franšiza 1.000 €)','KASKO_400':'Kasko (franšiza 400 €)',
-    'KASKO_150':'Kasko (franšiza 150 €)','KASKO_140':'Kasko (franšiza 140 €)'
+  'AO_PLUS':    { name:'AO Plus zaštita',          desc:'Pokriva štetu za koju ste vi krivi, ali iznos premašuje zakonski minimum. Uključuje i pravnu zaštitu u slučaju spora s drugom stranom.' },
+  'ASIST_HR':   { name:'Asistencija (Hrvatska)',    desc:'Pomoć na cesti u cijeloj Hrvatskoj: vuča do servisa, zamjenski auto, smještaj ako ostanete bez prijevoza — dostupno 0-24h.' },
+  'ASIST_SVE':  { name:'Asistencija (Europa)',      desc:'Sve usluge domaće asistencije proširene na cijelu Europu. Idealno za česte putnike i godišnje odmore u inozemstvu.' },
+  'DIVLJAC':    { name:'Zaštita od divljači',       desc:'Pokriva štetu na vozilu nastalu neposrednim udarom divljači (srna, vepar, jelen...). Posebno preporučljivo za voznike koji voze autocestama izvan gradova.' },
+  'NEZGODA':    { name:'Nezgoda putnika',           desc:'Isplaćuje naknadu svim putnicima u vozilu ako dođe do prometne nezgode s tjelesnim ozljedama — neovisno o krivnji.' },
+  'STAKLA':     { name:'Osiguranje stakla',         desc:'Pokriva razbijanje ili pucanje vjetrobranskog stakla i bočnih stakala. Šteta se ne prijavljuje redovnom osiguranju pa nema utjecaja na vaš bonus.' },
+  'TUCA':       { name:'Osiguranje od tuče',        desc:'Pokriva oštećenja na karoseriji nastala tučom ili olujom. Jedna jača oluja može uzrokovati tisuće eura štete — ovo pokriće isplati se svake sezone.' },
+  'KASKO_1000': { name:'Kasko (franšiza 1.000 €)',  desc:'Sveobuhvatno pokriće vozila. Prvih 1.000 € štete snosite sami, ostatak plaća osiguranje. Najpovoljnija kasko varijanta za starija vozila.' },
+  'KASKO_400':  { name:'Kasko (franšiza 400 €)',    desc:'Kasko s franšizom 400 € — dobar balans između cijene police i visine pokrića. Preporučljivo za vozila srednje vrijednosti.' },
+  'KASKO_150':  { name:'Kasko (franšiza 150 €)',    desc:'Kasko s niskom franšizom — gotovo sve štete plaća osiguranje, vi sudjelujete samo sa 150 €. Idealno za novija i skuplja vozila.' },
+  'KASKO_140':  { name:'Kasko (franšiza 140 €)',    desc:'Najpotpunije kasko pokriće s minimalnom participacijom od svega 140 €. Maksimalna zaštita vaše investicije.' }
 };
 
-function go(n) {
-    [1,2,3].forEach(function(i) {
-        document.getElementById('s'+i).classList.toggle('active', i===n);
-        var d=document.getElementById('d'+i), l=document.getElementById('l'+i);
-        d.className='progress-dot'+(i<n?' done':i===n?' active':'');
-        l.className='progress-lbl'+(i<n?' done':i===n?' active':'');
-        if(i<3) document.getElementById('ln'+i).className='progress-line'+(i<n?' done':'');
+/* ── Confetti ── */
+function launchConfetti() {
+  var canvas = document.getElementById('confetti-canvas');
+  var ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+  var colors = ['#573cf9','#ffbc27','#22c55e','#f472b6','#60a5fa','#fb923c'];
+  var pieces = Array.from({length:110}, function() {
+    return { x:Math.random()*canvas.width, y:-10-Math.random()*180,
+             w:6+Math.random()*8, h:4+Math.random()*6,
+             color:colors[Math.floor(Math.random()*colors.length)],
+             angle:Math.random()*360, speed:2+Math.random()*3.5,
+             spin:(Math.random()-0.5)*7, drift:(Math.random()-0.5)*1.8 };
+  });
+  var start = null;
+  function draw(ts) {
+    if (!start) start = ts;
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    var alive = false;
+    pieces.forEach(function(p) {
+      p.y += p.speed; p.x += p.drift; p.angle += p.spin;
+      if (p.y < canvas.height+20) alive = true;
+      ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(p.angle*Math.PI/180);
+      ctx.fillStyle = p.color; ctx.globalAlpha = Math.max(0,1-(p.y/canvas.height)*1.1);
+      ctx.fillRect(-p.w/2,-p.h/2,p.w,p.h); ctx.restore();
     });
-    window.scrollTo({top:0,behavior:'smooth'});
+    if (alive && ts-start < 3500) requestAnimationFrame(draw);
+    else ctx.clearRect(0,0,canvas.width,canvas.height);
+  }
+  requestAnimationFrame(draw);
 }
 
-function toggleYear() {
-    var f=document.getElementById('opt-field'), b=document.getElementById('opt-btn');
-    var open=f.classList.toggle('open');
-    b.textContent=open?'− Sakrij godinu vozila':'+ Dodajte godinu vozila (za kasko ponudu)';
+/* ── Animated number counter ── */
+function animateCount(el, from, to, dur) {
+  var start = null;
+  function step(ts) {
+    if (!start) start = ts;
+    var p = Math.min((ts-start)/dur, 1);
+    var ep = 1 - Math.pow(1-p, 3); // ease-out cubic
+    el.textContent = (from+(to-from)*ep).toFixed(2).replace('.',',') + ' €';
+    if (p < 1) requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
 }
 
-// Step 2: hide/show dob based on tip
-document.querySelectorAll('input[name=tip]').forEach(function(r) {
-    r.addEventListener('change',function(){
-        document.getElementById('dob-row').style.display=this.value==='F'?'block':'none';
-    });
+/* ── Step navigation with slide animations ── */
+function go(n, dir) {
+  var cur = document.querySelector('.step-panel.active');
+  var nxt = document.getElementById('s'+n);
+  if (!nxt || nxt === cur) return;
+  var anim = (dir === 'back') ? 'slide-in-left' : 'slide-in-right';
+  if (cur) { cur.classList.remove('active','slide-in-right','slide-in-left'); cur.style.display = 'none'; }
+  nxt.style.display = 'block';
+  nxt.classList.remove('slide-in-right','slide-in-left');
+  void nxt.offsetWidth; // reflow
+  nxt.classList.add('active', anim);
+  [1,2,3].forEach(function(i) {
+    var d = document.getElementById('d'+i), l = document.getElementById('l'+i);
+    d.className = 'progress-dot'+(i<n?' done':i===n?' active':'');
+    l.className = 'progress-lbl'+(i<n?' done':i===n?' active':'');
+    if (i<3) document.getElementById('ln'+i).className = 'progress-line'+(i<n?' done':'');
+  });
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+/* ── Registration typing indicator ── */
+var regTimer;
+document.getElementById('reg').addEventListener('input', function() {
+  var ind = document.getElementById('reg-ind');
+  clearTimeout(regTimer);
+  if (this.value.length >= 2) {
+    ind.classList.add('show');
+    regTimer = setTimeout(function(){ ind.classList.remove('show'); }, 1300);
+  } else { ind.classList.remove('show'); }
 });
 
+/* ── Tip osobe: hide/show dob ── */
+document.querySelectorAll('input[name=tip]').forEach(function(r) {
+  r.addEventListener('change', function() {
+    document.getElementById('dob-row').style.display = this.value==='F' ? 'block' : 'none';
+  });
+});
+
+/* ── Expandable year section ── */
+function toggleYear() {
+  var f = document.getElementById('opt-field'), b = document.getElementById('opt-btn');
+  var open = f.classList.toggle('open');
+  b.classList.toggle('open', open);
+  document.getElementById('opt-lbl').textContent = open ? 'Sakrij godinu vozila' : 'Dodajte godinu vozila (za kasko ponudu)';
+}
+
+/* ── Field error helpers ── */
+function setErr(id, on) {
+  var inp = document.getElementById(id), err = document.getElementById('e-'+id);
+  if (!inp || !err) return;
+  inp.classList.toggle('err', on);
+  err.style.display = on ? 'block' : 'none';
+}
+
+/* ── Step 1 → Step 2 ── */
 function next1() {
-    var r=document.getElementById('reg').value.trim();
-    var k=document.getElementById('kw').value.trim();
-    var ok=true;
-    if(!r){document.getElementById('e-reg').style.display='block';document.getElementById('reg').classList.add('err');ok=false;}
-    else{document.getElementById('e-reg').style.display='none';document.getElementById('reg').classList.remove('err');}
-    if(!k||+k<1){document.getElementById('e-kw').style.display='block';document.getElementById('kw').classList.add('err');ok=false;}
-    else{document.getElementById('e-kw').style.display='none';document.getElementById('kw').classList.remove('err');}
-    if(!ok)return;
-    S.reg=r.toUpperCase();
-    S.kw=+k;
-    var y=document.getElementById('yr').value.trim();
-    S.yr=y?+y:null;
-    go(2);
+  var r = document.getElementById('reg').value.trim();
+  var k = document.getElementById('kw').value.trim();
+  var ok = true;
+  if (!r) { setErr('reg',true); ok=false; } else { setErr('reg',false); }
+  if (!k || +k<1) { setErr('kw',true); ok=false; } else { setErr('kw',false); }
+  if (!ok) return;
+  S.reg = r.toUpperCase(); S.kw = +k;
+  var y = document.getElementById('yr').value.trim();
+  S.yr = y ? +y : null;
+  go(2);
 }
 
+/* ── Loader messages ── */
+var MSGS = ['Računam vašu cijenu...','Dohvaćam bonus podatke...','Uspoređujem tarife...','Skoro gotovo...'];
+var loaderInt;
+function startLoader() {
+  var i = 0, el = document.getElementById('loader-msg');
+  el.textContent = MSGS[0];
+  loaderInt = setInterval(function() {
+    i = (i+1) % MSGS.length;
+    el.style.opacity = '0';
+    setTimeout(function(){ el.textContent = MSGS[i]; el.style.opacity = '1'; }, 200);
+  }, 1900);
+}
+function stopLoader() { clearInterval(loaderInt); }
+
+/* ── Fetch quote ── */
 function fetch_quote() {
-    var tip=document.querySelector('input[name=tip]:checked').value;
-    S.tip=tip;
-    if(tip==='F'){
-        var d=document.getElementById('dob').value.trim();
-        var maxYr=new Date().getFullYear()-17;
-        if(!d||+d<1920||+d>maxYr){
-            document.getElementById('e-dob').style.display='block';
-            document.getElementById('dob').classList.add('err');return;
-        }
-        document.getElementById('e-dob').style.display='none';
-        document.getElementById('dob').classList.remove('err');
-        S.dob=+d;
-    } else { S.dob=1970; }
+  var tip = document.querySelector('input[name=tip]:checked').value;
+  S.tip = tip;
+  var ok = true;
+  if (tip === 'F') {
+    var d = document.getElementById('dob').value.trim();
+    if (!d || +d<1920 || +d>new Date().getFullYear()-17) { setErr('dob',true); ok=false; }
+    else { setErr('dob',false); S.dob = +d; }
+  } else { S.dob = 1970; }
+  var oibVal = document.getElementById('oib').value.trim();
+  if (!oibVal || oibVal.length !== 11) { setErr('oib',true); ok=false; }
+  else { setErr('oib',false); S.oib = oibVal; }
+  if (!ok) return;
 
-    S.oib=document.getElementById('oib').value.trim();
+  var tipLabel = tip==='F' ? 'Fizička osoba' : tip==='P' ? 'Pravna osoba' : 'Obrt';
+  var cs = [S.reg, S.kw+' kW', tip==='F' ? (S.dob+'. god.') : tipLabel];
+  if (S.yr) cs.push(S.yr+'. god.');
+  document.getElementById('chips').innerHTML = cs.map(function(c,i) {
+    return '<span class="chip" style="animation-delay:'+(i*0.07)+'s">'+c+'</span>';
+  }).join('');
 
-    var tipLabel=tip==='F'?'Fizička osoba':tip==='P'?'Pravna osoba':'Obrt';
-    var cs=[S.reg,S.kw+' kW',tip==='F'?(S.dob+'. god.'):tipLabel];
-    if(S.yr)cs.push(S.yr+'. god.');
-    document.getElementById('chips').innerHTML=cs.map(function(c){return'<span class="chip">'+c+'</span>';}).join('');
+  var msg = encodeURIComponent('Zanima me AO osiguranje — '+S.reg+' '+S.kw+' kW'+(tip==='F'?', '+S.dob+'. god.':' ('+tipLabel+')'));
+  var wa = 'https://wa.me/38598813221?text='+msg;
+  document.getElementById('wa-ok').href = wa;
+  document.getElementById('wa-err').href = wa;
 
-    var msg=encodeURIComponent('Zanima me AO osiguranje — '+S.reg+' '+S.kw+' kW'+(tip==='F'?', '+S.dob+'. god.':' ('+tipLabel+')'));
-    var wa='https://wa.me/38598813221?text='+msg;
-    document.getElementById('wa-ok').href=wa;
-    document.getElementById('wa-err').href=wa;
+  selectedPkgs = {};
+  go(3);
+  document.getElementById('r-load').style.display = 'flex';
+  document.getElementById('r-ok').style.display = 'none';
+  document.getElementById('r-err').style.display = 'none';
+  document.getElementById('pkg-wrap').style.display = 'none';
+  document.getElementById('total-row').style.display = 'none';
+  startLoader();
 
-    go(3);
-    document.getElementById('r-load').style.display='flex';
-    document.getElementById('r-ok').style.display='none';
-    document.getElementById('r-err').style.display='none';
-
-    fetch('https://osiguraj-proxy.osiguraj1.workers.dev',{
-        method:'POST',
-        headers:{'Content-Type':'application/json'},
-        body:JSON.stringify({registracija:S.reg,snagaMotora:S.kw,godinaRodjenja:S.dob,tipStranke:S.tip,godinaProizvodnje:S.yr,oib:S.oib||null})
-    })
-    .then(function(r){return r.json();})
-    .then(function(d){
-        document.getElementById('r-load').style.display='none';
-        if(d.ao_cijena_s_porezom&&d.ao_cijena_s_porezom>0){showOk(d);}
-        else{showErr(d.error||'Cijena trenutno nije dostupna.');}
-    })
-    .catch(function(){
-        document.getElementById('r-load').style.display='none';
-        showErr('Greška pri dohvaćanju cijene. Pokušajte ponovo.');
-    });
+  fetch('https://osiguraj-proxy.osiguraj1.workers.dev', {
+    method: 'POST',
+    headers: {'Content-Type':'application/json'},
+    body: JSON.stringify({registracija:S.reg,snagaMotora:S.kw,godinaRodjenja:S.dob,tipStranke:S.tip,godinaProizvodnje:S.yr,oib:S.oib})
+  })
+  .then(function(r){ return r.json(); })
+  .then(function(d) {
+    stopLoader();
+    document.getElementById('r-load').style.display = 'none';
+    if (d.ao_cijena_s_porezom && d.ao_cijena_s_porezom > 0) showOk(d);
+    else showErr(d.error || 'Cijena trenutno nije dostupna.');
+  })
+  .catch(function() {
+    stopLoader();
+    document.getElementById('r-load').style.display = 'none';
+    showErr('Greška pri dohvaćanju cijene. Pokušajte ponovo.');
+  });
 }
 
-function showOk(d){
-    document.getElementById('ao-num').textContent=Number(d.ao_cijena_s_porezom).toFixed(2).replace('.',',')+' €';
-    document.getElementById('r-ok').style.display='block';
-    var pkgs=d.paketi||[], ao=Number(d.ao_cijena_s_porezom), html='';
-    pkgs.forEach(function(p){
-        var nm=p.nazivPaketa||PKG[p.code]||p.code;
-        var base=Number(p.premijaBezPoreza||0);
-        var pct=Number(p.porez||0);
-        var price=p.premium==='perc'?ao*base/100:base*(1+pct/100);
-        html+='<div class="pkg-row" onclick="this.classList.toggle(\'on\')"><span class="pkg-name">'+nm+'</span><span class="pkg-price">+ '+price.toFixed(0)+' €/god</span></div>';
-    });
-    if(html){document.getElementById('pkg-list').innerHTML=html;document.getElementById('pkg-wrap').style.display='block';}
-    if(typeof gtag==='function')gtag('event','quote_success',{event_category:'quote',value:d.ao_cijena_s_porezom});
+/* ── Show results ── */
+function showOk(d) {
+  aoBase = Number(d.ao_cijena_s_porezom);
+  var el = document.getElementById('ao-num');
+  el.textContent = '0,00 €';
+  document.getElementById('r-ok').style.display = 'block';
+  setTimeout(function(){ animateCount(el, 0, aoBase, 950); }, 80);
+  setTimeout(launchConfetti, 180);
+
+  var pkgs = d.paketi || [], html = '';
+  pkgs.forEach(function(p, idx) {
+    var info = PKG[p.code] || PKG[p.nazivPaketa] || {};
+    var nm = info.name || p.nazivPaketa || p.code || '';
+    var desc = info.desc || '';
+    var price = (Number(p.premijaBezPoreza||0) * (1 + Number(p.porez||0)/100)).toFixed(0);
+    var infoBtn = desc ? '<button class="pkg-info-btn" onclick="togglePop(event,\'pop'+idx+'\')" type="button">i</button><div class="pkg-popover" id="pop'+idx+'">'+desc+'</div>' : '';
+    html += '<div class="pkg-row" id="pkgr'+idx+'" onclick="togglePkg(this,'+price+')" data-price="'+price+'">'
+          + '<div class="pkg-left"><div class="pkg-check"><span class="pkg-check-icon">✓</span></div>'
+          + '<span class="pkg-name">'+nm+'</span>'+infoBtn+'</div>'
+          + '<span class="pkg-price">+ '+price+' €/god</span></div>';
+  });
+  if (html) { document.getElementById('pkg-list').innerHTML = html; document.getElementById('pkg-wrap').style.display = 'block'; }
+  if (typeof gtag === 'function') gtag('event','quote_success',{event_category:'quote',value:d.ao_cijena_s_porezom});
 }
 
-function showErr(msg){
-    document.getElementById('err-msg').textContent=msg;
-    document.getElementById('r-err').style.display='block';
+/* ── Package toggle ── */
+function togglePkg(el, price) {
+  el.classList.toggle('on');
+  if (el.classList.contains('on')) selectedPkgs[el.id] = +price;
+  else delete selectedPkgs[el.id];
+  var extra = Object.values(selectedPkgs).reduce(function(a,b){ return a+b; }, 0);
+  var total = aoBase + extra;
+  if (extra > 0) {
+    var tr = document.getElementById('total-row'), tn = document.getElementById('total-num');
+    var prev = parseFloat((tn.textContent||'0').replace(',','.').replace(' €','')) || aoBase;
+    tr.style.display = 'block';
+    animateCount(tn, prev, total, 380);
+  } else { document.getElementById('total-row').style.display = 'none'; }
+}
+
+/* ── Info popover ── */
+function togglePop(ev, id) {
+  ev.stopPropagation();
+  document.querySelectorAll('.pkg-popover.show').forEach(function(p){ if(p.id!==id) p.classList.remove('show'); });
+  var pop = document.getElementById(id);
+  if (pop) pop.classList.toggle('show');
+}
+document.addEventListener('click', function() {
+  document.querySelectorAll('.pkg-popover.show').forEach(function(p){ p.classList.remove('show'); });
+});
+
+/* ── Error ── */
+function showErr(msg) {
+  document.getElementById('err-msg').textContent = msg;
+  document.getElementById('r-err').style.display = 'block';
 }
 </script>
 </body>
