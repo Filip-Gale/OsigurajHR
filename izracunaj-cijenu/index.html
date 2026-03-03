@@ -141,7 +141,7 @@ permalink: /izracunaj-cijenu/
         .finput {
             width: 100%; padding: 14px 16px;
             border: 2px solid #e5e5e5; border-radius: 12px;
-            font-size: 1rem; font-family: inherit; font-weight: 600; color: #111;
+            font-size: 1rem; font-family: inherit; font-weight: 600; color: #573cf9;
             -webkit-appearance: none; appearance: none; background: white;
             transition: border-color 0.2s, box-shadow 0.2s;
         }
@@ -408,7 +408,7 @@ permalink: /izracunaj-cijenu/
                         <div class="reg-dot"></div><span>Provjeravam...</span>
                     </div>
                 </div>
-                <div class="fhint">Puna registracija ili samo zona (npr. ZG).</div>
+                <div class="fhint">Npr. ZG6426IB ili samo zona: ZG, ST, RI...</div>
                 <div class="ferror" id="e-reg">Unesite registracijsku oznaku.</div>
             </div>
             <div>
@@ -459,7 +459,7 @@ permalink: /izracunaj-cijenu/
                         <label class="tip-card" for="tip-p">
                             <span class="t-ico">
                                 <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#573cf9" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                                    <rect x="3" y="9" width="18" height="13" rx="1"/><path d="M8 9V7a4 4 0 0 1 8 0v2"/><line x1="12" y1="13" x2="12" y2="17"/>
+                                    <path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"/><path d="M10 6h4"/><path d="M10 10h4"/><path d="M10 14h4"/>
                                 </svg>
                             </span>
                             <span class="t-lbl">Pravna osoba</span>
@@ -642,7 +642,8 @@ function go(n, dir) {
     l.className = 'progress-lbl'+(i<n?' done':i===n?' active':'');
     if (i<3) document.getElementById('ln'+i).className = 'progress-line'+(i<n?' done':'');
   });
-  window.scrollTo({top:0,behavior:'smooth'});
+  var card = document.querySelector('.wizard-card');
+  if (card) card.scrollIntoView({behavior:'smooth', block:'start'});
 }
 
 /* ── Registration typing indicator ── */
