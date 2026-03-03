@@ -874,12 +874,12 @@ function togglePkg(el, price) {
 /* ── Info popover ── */
 function togglePop(ev, id) {
   ev.stopPropagation();
-  document.querySelectorAll('.pkg-popover.show').forEach(function(p){ if(p.id!==id) p.classList.remove('show'); });
+  document.querySelectorAll('.pkg-popover.show, .included-popover.show').forEach(function(p){ if(p.id!==id) p.classList.remove('show'); });
   var pop = document.getElementById(id);
   if (pop) pop.classList.toggle('show');
 }
 document.addEventListener('click', function() {
-  document.querySelectorAll('.pkg-popover.show').forEach(function(p){ p.classList.remove('show'); });
+  document.querySelectorAll('.pkg-popover.show, .included-popover.show').forEach(function(p){ p.classList.remove('show'); });
 });
 
 /* ── Error ── */
