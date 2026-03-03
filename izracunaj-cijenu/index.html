@@ -22,7 +22,8 @@ permalink: /izracunaj-cijenu/
     <link rel="icon" type="image/jpeg" href="/img/favicon.jpg">
 
     <style>
-        *, *::before, *::after { box-sizing: border-box; }
+        *, *::before, *::after { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        *:not(input):not(textarea) { -webkit-user-select: none; user-select: none; }
         body { background: #573cf9; min-height: 100vh; margin: 0; }
 
         /* hide number spinners */
@@ -245,7 +246,6 @@ permalink: /izracunaj-cijenu/
             border-radius: 10px; padding: 11px 14px;
             font-size: 0.82rem; color: white; font-weight: 700;
             display: flex; align-items: center; gap: 8px;
-            box-shadow: 0 3px 0 #15803d;
         }
 
         /* ── Loader ── */
