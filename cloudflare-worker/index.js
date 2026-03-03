@@ -79,7 +79,7 @@ export default {
       return json({ error: 'Neispravan JSON' }, 400, headers);
     }
 
-    const { registracija, snagaMotora, godinaRodjenja, tipStranke } = body;
+    const { registracija, snagaMotora, godinaRodjenja, tipStranke, godinaProizvodnje } = body;
 
     if (!registracija || !snagaMotora || !godinaRodjenja || !tipStranke) {
       return json(
@@ -104,7 +104,8 @@ export default {
       vozilo: {
         registracija: zona,
         snagaMotora: Number(snagaMotora),
-        godinaProizvodnje: null,
+        godinaProizvodnje: godinaProizvodnje ? Number(godinaProizvodnje) : null,
+        novonabavnaVrijednostVozila: null,
       },
       osiguranik: {
         godinaRodjenja: Number(godinaRodjenja),
@@ -112,6 +113,8 @@ export default {
       },
       datumPocetkaOsiguranja: getTomorrow(),
       premijskiStupanjAo: 10,
+      premijskiStupanjAk: 2,
+      brojPoliceZaObnovu: null,
       posrednik: env.ASDIRECT_POSREDNIK || '411111',
       pausalnoOsiguranjeDodatneOpreme: false,
     };

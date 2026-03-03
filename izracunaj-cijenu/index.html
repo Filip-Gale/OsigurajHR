@@ -1,23 +1,559 @@
 ---
-# File popravljen za Ahrefs i Google Search (Internal Links & Meta)
+layout: null
+title: Izračunaj cijenu auto osiguranja | Osiguraj.hr
+description: Besplatan izračun cijene AO osiguranja. Usporedite ponude i uštedite do 30%.
+permalink: /izracunaj-cijenu/
 ---
 <!DOCTYPE html>
 <html lang="hr">
 <head>
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-TPNZZVZ5');</script>
+
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Izračunaj cijenu auto osiguranja | Osiguraj.hr</title>
-    <meta name="description" content="Nalazimo najbolju cijenu police za tvoj profil vozača i auta. Usporedite ponude i uštedite do 30% uz online izračun.">
-    <meta http-equiv="refresh" content="0; url=https://www.osiguraj.hr/">
+    <meta name="description" content="Besplatan izračun cijene AO osiguranja u sekundi. Unesite registracijsku oznaku i saznajte koliko plaćate previše.">
     <link rel="canonical" href="https://www.osiguraj.hr/izracunaj-cijenu/"/>
-    <meta property="og:title" content="Izračunaj cijenu auto osiguranja" />
-    <meta property="og:description" content="Najbrži put do najpovoljnije police osiguranja." />
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="icon" type="image/jpeg" href="/img/favicon.jpg">
+
+    <style>
+        body { background: #573cf9; min-height: 100vh; }
+
+        .nav-spacer { height: 80px; }
+
+        .hero {
+            text-align: center;
+            padding: 36px 20px 16px;
+            color: white;
+        }
+        .hero h1 {
+            font-size: clamp(1.8rem, 5vw, 2.8rem);
+            color: #ffbc27;
+            margin-bottom: 10px;
+            letter-spacing: -0.5px;
+        }
+        .hero p {
+            font-size: clamp(0.95rem, 2.5vw, 1.15rem);
+            opacity: 0.82;
+            font-weight: normal;
+            max-width: 480px;
+            margin: 0 auto;
+        }
+
+        /* ── Card ── */
+        .wizard-card {
+            background: white;
+            border-radius: 24px;
+            max-width: 500px;
+            width: 92%;
+            margin: 28px auto 80px;
+            padding: 30px 24px 34px;
+            box-shadow: 0 24px 60px rgba(0,0,0,0.28);
+        }
+        @media (min-width: 600px) {
+            .wizard-card { padding: 38px 42px 42px; }
+        }
+
+        /* ── Progress ── */
+        .progress-bar {
+            display: flex;
+            align-items: center;
+            margin-bottom: 28px;
+        }
+        .progress-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+        }
+        .progress-dot {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: #ebebeb;
+            color: #bbb;
+            font-size: 0.78rem;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+        .progress-dot.active { background: #573cf9; color: white; }
+        .progress-dot.done   { background: #22c55e; color: white; }
+        .progress-lbl {
+            font-size: 0.68rem;
+            color: #bbb;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+            white-space: nowrap;
+        }
+        .progress-lbl.active { color: #573cf9; }
+        .progress-lbl.done   { color: #22c55e; }
+        .progress-line {
+            flex: 1;
+            height: 2px;
+            background: #ebebeb;
+            max-width: 55px;
+            min-width: 15px;
+            margin-bottom: 18px;
+            transition: background 0.3s;
+        }
+        .progress-line.done { background: #22c55e; }
+
+        /* ── Steps ── */
+        .step-panel { display: none; }
+        .step-panel.active { display: block; }
+
+        .step-title {
+            font-size: 1.35rem;
+            color: #111;
+            margin-bottom: 4px;
+        }
+        .step-sub {
+            font-size: 0.88rem;
+            color: #999;
+            font-weight: normal;
+            margin-bottom: 22px;
+        }
+
+        /* ── Fields ── */
+        .fields { display: flex; flex-direction: column; gap: 14px; margin-bottom: 22px; }
+        .flabel {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #666;
+            margin-bottom: 5px;
+        }
+        .finput {
+            width: 100%;
+            padding: 13px 15px;
+            border: 2px solid #e5e5e5;
+            border-radius: 11px;
+            font-size: 1rem;
+            font-family: inherit;
+            font-weight: 600;
+            color: #111;
+            box-sizing: border-box;
+            -webkit-appearance: none;
+            appearance: none;
+            background: white;
+            transition: border-color 0.2s;
+        }
+        .finput:focus { outline: none; border-color: #573cf9; }
+        .finput::placeholder { font-weight: normal; color: #ccc; }
+        .finput.err { border-color: #ef4444; }
+        .fhint  { font-size: 0.76rem; color: #bbb; font-weight: normal; margin-top: 4px; }
+        .ferror { font-size: 0.76rem; color: #ef4444; font-weight: normal; margin-top: 4px; display: none; }
+
+        /* ── Segmented ── */
+        .segmented {
+            display: flex;
+            border: 2px solid #e5e5e5;
+            border-radius: 11px;
+            overflow: hidden;
+        }
+        .segmented input[type=radio] { position: absolute; opacity: 0; width: 0; height: 0; }
+        .segmented label {
+            flex: 1;
+            text-align: center;
+            padding: 11px 6px;
+            font-size: 0.88rem;
+            cursor: pointer;
+            color: #999;
+            font-weight: 600;
+            transition: all 0.2s;
+            border-right: 1px solid #e5e5e5;
+            font-family: inherit;
+        }
+        .segmented label:last-of-type { border-right: none; }
+        .segmented input[type=radio]:checked + label { background: #573cf9; color: white; }
+
+        /* ── Buttons ── */
+        .btn-main {
+            display: block; width: 100%; padding: 14px;
+            background: #573cf9; color: white;
+            border: none; border-radius: 11px;
+            font-size: 1rem; font-family: inherit; font-weight: 800;
+            cursor: pointer; text-align: center;
+            transition: opacity 0.2s, transform 0.1s;
+        }
+        .btn-main:hover { opacity: 0.9; }
+        .btn-main:active { transform: scale(0.98); }
+        .btn-back {
+            background: none; border: none;
+            color: #bbb; font-size: 0.88rem; cursor: pointer;
+            padding: 10px 0; font-family: inherit; font-weight: 600;
+        }
+        .btn-back:hover { color: #573cf9; }
+        .btn-stack { display: flex; flex-direction: column; gap: 8px; }
+
+        /* Optional kasko field */
+        .opt-toggle {
+            font-size: 0.82rem; color: #573cf9; cursor: pointer;
+            font-weight: 700; background: none; border: none;
+            padding: 0; font-family: inherit;
+        }
+        .opt-field {
+            overflow: hidden; max-height: 0; opacity: 0;
+            transition: max-height 0.3s ease, opacity 0.3s ease;
+        }
+        .opt-field.open { max-height: 110px; opacity: 1; }
+
+        /* ── Results ── */
+        .r-loading {
+            display: flex; flex-direction: column;
+            align-items: center; gap: 14px; padding: 16px 0; text-align: center;
+        }
+        .spinner {
+            width: 42px; height: 42px;
+            border: 4px solid #ebebeb; border-top-color: #573cf9;
+            border-radius: 50%;
+            animation: spin 0.75s linear infinite;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .r-loading p { color: #999; font-weight: normal; font-size: 0.92rem; }
+
+        .price-box {
+            background: #f4f2ff;
+            border-radius: 14px;
+            padding: 22px;
+            text-align: center;
+            margin-bottom: 18px;
+        }
+        .price-lbl { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.8px; color: #999; margin-bottom: 6px; }
+        .price-num { font-size: 2.6rem; font-weight: 900; color: #573cf9; line-height: 1; }
+        .price-per { font-size: 0.88rem; color: #aaa; font-weight: normal; margin-top: 3px; }
+        .price-who { font-size: 0.82rem; color: #573cf9; font-weight: 700; margin-top: 8px; }
+
+        .pkgs-lbl { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px; color: #aaa; margin-bottom: 8px; }
+        .pkg-row {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 10px 13px;
+            border: 2px solid #e5e5e5; border-radius: 10px;
+            margin-bottom: 7px; cursor: pointer;
+            transition: border-color 0.2s, background 0.2s;
+        }
+        .pkg-row:hover { border-color: #573cf9; }
+        .pkg-row.on { border-color: #573cf9; background: #f4f2ff; }
+        .pkg-name { font-size: 0.88rem; color: #222; }
+        .pkg-price { font-size: 0.88rem; color: #573cf9; font-weight: 800; white-space: nowrap; }
+
+        .chips { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 18px; }
+        .chip {
+            background: #f4f2ff; color: #573cf9;
+            font-size: 0.75rem; padding: 3px 10px;
+            border-radius: 20px; font-weight: 700;
+        }
+
+        .ctas { display: flex; flex-direction: column; gap: 9px; margin-top: 18px; }
+        .btn-wa {
+            display: flex; align-items: center; justify-content: center; gap: 9px;
+            padding: 14px; background: #22c55e; color: white;
+            border: none; border-radius: 11px;
+            font-size: 0.97rem; font-family: inherit; font-weight: 800;
+            cursor: pointer; text-decoration: none;
+            transition: opacity 0.2s;
+        }
+        .btn-wa:hover { opacity: 0.9; }
+        .btn-tel {
+            display: flex; align-items: center; justify-content: center; gap: 9px;
+            padding: 12px; background: transparent;
+            color: #573cf9; border: 2px solid #573cf9;
+            border-radius: 11px;
+            font-size: 0.92rem; font-family: inherit; font-weight: 700;
+            cursor: pointer; text-decoration: none;
+            transition: background 0.2s;
+        }
+        .btn-tel:hover { background: #f4f2ff; }
+        .disclaimer {
+            font-size: 0.7rem; color: #ccc; font-weight: normal;
+            text-align: center; margin-top: 12px; line-height: 1.5;
+        }
+
+        .err-box {
+            background: #fff5f5; border-radius: 12px;
+            padding: 18px; text-align: center; margin-bottom: 18px;
+        }
+        .err-box .ico { font-size: 1.8rem; margin-bottom: 6px; }
+        .err-box p { color: #dc2626; font-size: 0.88rem; font-weight: normal; margin: 0; }
+        .err-note {
+            font-size: 0.88rem; color: #666; text-align: center;
+            font-weight: normal; margin-bottom: 14px; line-height: 1.6;
+        }
+    </style>
 </head>
 <body>
-    <p>Preusmjeravanje... Ako se ništa ne dogodi, <a href="https://www.osiguraj.hr/">kliknite ovdje</a>.</p>
-    <div style="display:none;">
-        <a href="https://www.osiguraj.hr/">Početna</a>
-        <a href="https://www.osiguraj.hr/auto-osiguranje/zagreb/">Osiguranje Zagreb</a>
-        <a href="https://www.osiguraj.hr/kasko/">Kasko osiguranje</a>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TPNZZVZ5"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+{% include nav.html %}
+<div class="nav-spacer"></div>
+
+<div class="hero">
+    <h1>Koliko plaćate<br>auto osiguranje?</h1>
+    <p>Besplatan izračun u sekundi za sve registracijske zone u Hrvatskoj.</p>
+</div>
+
+<div class="wizard-card selectable">
+
+    <!-- Progress -->
+    <div class="progress-bar">
+        <div class="progress-step">
+            <div class="progress-dot active" id="d1">1</div>
+            <div class="progress-lbl active" id="l1">Vozilo</div>
+        </div>
+        <div class="progress-line" id="ln1"></div>
+        <div class="progress-step">
+            <div class="progress-dot" id="d2">2</div>
+            <div class="progress-lbl" id="l2">Vozač</div>
+        </div>
+        <div class="progress-line" id="ln2"></div>
+        <div class="progress-step">
+            <div class="progress-dot" id="d3">3</div>
+            <div class="progress-lbl" id="l3">Rezultati</div>
+        </div>
     </div>
+
+    <!-- Step 1 -->
+    <div class="step-panel active" id="s1">
+        <h2 class="step-title">Vaše vozilo</h2>
+        <p class="step-sub">Samo 2 podatka za trenutni izračun.</p>
+        <div class="fields">
+            <div>
+                <div class="flabel">Registracijska oznaka</div>
+                <input class="finput" id="reg" type="text" placeholder="ZG, ST, RI, OS, KA..." maxlength="10"
+                       autocomplete="off" autocapitalize="characters" spellcheck="false">
+                <div class="fhint">Unesite zonu (prve 2 slova) ili punu tablicu.</div>
+                <div class="ferror" id="e-reg">Unesite registracijsku oznaku.</div>
+            </div>
+            <div>
+                <div class="flabel">Snaga motora (kW)</div>
+                <input class="finput" id="kw" type="number" placeholder="85" min="1" max="2000" inputmode="numeric">
+                <div class="fhint">Prometna dozvola — redak P.2.</div>
+                <div class="ferror" id="e-kw">Unesite snagu motora u kW.</div>
+            </div>
+            <div>
+                <button class="opt-toggle" id="opt-btn" onclick="toggleYear()">+ Dodajte godinu vozila (za kasko ponudu)</button>
+                <div class="opt-field" id="opt-field">
+                    <div style="height:10px"></div>
+                    <div class="flabel">Godina proizvodnje</div>
+                    <input class="finput" id="yr" type="number" placeholder="2019" min="1990" max="2026" inputmode="numeric">
+                    <div class="fhint">Vozila starija od 12 god. nemaju kasko.</div>
+                </div>
+            </div>
+        </div>
+        <div class="btn-stack">
+            <button class="btn-main" onclick="next1()">Dalje →</button>
+        </div>
+    </div>
+
+    <!-- Step 2 -->
+    <div class="step-panel" id="s2">
+        <h2 class="step-title">Podaci o vozaču</h2>
+        <p class="step-sub">Još 2 podatka i prikazujemo vam cijenu.</p>
+        <div class="fields">
+            <div>
+                <div class="flabel">Tip osobe</div>
+                <div class="segmented">
+                    <input type="radio" name="tip" id="tip-f" value="F" checked>
+                    <label for="tip-f">Fizička</label>
+                    <input type="radio" name="tip" id="tip-p" value="P">
+                    <label for="tip-p">Pravna</label>
+                    <input type="radio" name="tip" id="tip-o" value="O">
+                    <label for="tip-o">Obrt</label>
+                </div>
+            </div>
+            <div id="dob-row">
+                <div class="flabel">Godina rođenja</div>
+                <input class="finput" id="dob" type="number" placeholder="1985" min="1920" max="2007" inputmode="numeric">
+                <div class="ferror" id="e-dob">Unesite vašu godinu rođenja.</div>
+            </div>
+        </div>
+        <div class="btn-stack">
+            <button class="btn-main" onclick="fetch_quote()">Saznaj cijenu →</button>
+            <button class="btn-back" onclick="go(1)">← Natrag</button>
+        </div>
+    </div>
+
+    <!-- Step 3 -->
+    <div class="step-panel" id="s3">
+        <div class="chips" id="chips"></div>
+
+        <div id="r-load" class="r-loading">
+            <div class="spinner"></div>
+            <p>Računam vašu cijenu...</p>
+        </div>
+
+        <div id="r-ok" style="display:none">
+            <div class="price-box">
+                <div class="price-lbl">AO Osiguranje</div>
+                <div class="price-num" id="ao-num">—</div>
+                <div class="price-per">godišnje</div>
+                <div class="price-who">Generali osiguranje d.d.</div>
+            </div>
+            <div id="pkg-wrap" style="display:none">
+                <div class="pkgs-lbl">Dodajte po želji</div>
+                <div id="pkg-list"></div>
+            </div>
+            <div class="ctas">
+                <a id="wa-ok" href="#" target="_blank" class="btn-wa">
+                    <svg width="19" height="19" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                    Ugovori na WhatsAppu
+                </a>
+                <a href="tel:+38598813221" class="btn-tel">📞 Nazovi agenta: 098 813 221</a>
+            </div>
+            <p class="disclaimer">Okvirna cijena. Konačna cijena potvrđuje se pri ugovaranju.<br>Posrednik: Maksi Miro d.o.o. • Generali osiguranje d.d.</p>
+        </div>
+
+        <div id="r-err" style="display:none">
+            <div class="err-box">
+                <div class="ico">⚠️</div>
+                <p id="err-msg">Cijena trenutno nije dostupna online.</p>
+            </div>
+            <p class="err-note">Naš agent javit će vam se s ponudom u najkraćem mogućem roku.</p>
+            <div class="ctas">
+                <a id="wa-err" href="#" target="_blank" class="btn-wa">
+                    <svg width="19" height="19" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                    Zatraži ponudu na WhatsAppu
+                </a>
+            </div>
+        </div>
+
+        <div style="margin-top:14px;text-align:center">
+            <button class="btn-back" onclick="go(2)">← Izmijeni podatke</button>
+        </div>
+    </div>
+
+</div><!-- /wizard-card -->
+
+{% include wapp.html %}
+{% include footer.html %}
+
+<script>
+var S = { reg:'', kw:0, yr:null, tip:'F', dob:0 };
+
+var PKG = {
+    'AO_PLUS':'AO Plus zaštita','ASIST_HR':'Asistencija (HR)',
+    'ASIST_SVE':'Asistencija (Europa)','DIVLJAC':'Zaštita od divljači',
+    'NEZGODA':'Nezgoda putnika','STAKLA':'Osiguranje stakla',
+    'KASKO_1000':'Kasko franšiza 1.000 €','KASKO_400':'Kasko franšiza 400 €',
+    'KASKO_140':'Kasko franšiza 140 €'
+};
+
+function go(n) {
+    [1,2,3].forEach(function(i) {
+        document.getElementById('s'+i).classList.toggle('active', i===n);
+        var d=document.getElementById('d'+i), l=document.getElementById('l'+i);
+        d.className='progress-dot'+(i<n?' done':i===n?' active':'');
+        l.className='progress-lbl'+(i<n?' done':i===n?' active':'');
+        if(i<3) document.getElementById('ln'+i).className='progress-line'+(i<n?' done':'');
+    });
+    window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function toggleYear() {
+    var f=document.getElementById('opt-field'), b=document.getElementById('opt-btn');
+    var open=f.classList.toggle('open');
+    b.textContent=open?'− Sakrij godinu vozila':'+ Dodajte godinu vozila (za kasko ponudu)';
+}
+
+// Step 2: hide/show dob based on tip
+document.querySelectorAll('input[name=tip]').forEach(function(r) {
+    r.addEventListener('change',function(){
+        document.getElementById('dob-row').style.display=this.value==='F'?'block':'none';
+    });
+});
+
+function next1() {
+    var r=document.getElementById('reg').value.trim();
+    var k=document.getElementById('kw').value.trim();
+    var ok=true;
+    if(!r){document.getElementById('e-reg').style.display='block';document.getElementById('reg').classList.add('err');ok=false;}
+    else{document.getElementById('e-reg').style.display='none';document.getElementById('reg').classList.remove('err');}
+    if(!k||+k<1){document.getElementById('e-kw').style.display='block';document.getElementById('kw').classList.add('err');ok=false;}
+    else{document.getElementById('e-kw').style.display='none';document.getElementById('kw').classList.remove('err');}
+    if(!ok)return;
+    S.reg=r.replace(/[^A-Za-z]/g,'').substring(0,2).toUpperCase();
+    S.kw=+k;
+    var y=document.getElementById('yr').value.trim();
+    S.yr=y?+y:null;
+    go(2);
+}
+
+function fetch_quote() {
+    var tip=document.querySelector('input[name=tip]:checked').value;
+    S.tip=tip;
+    if(tip==='F'){
+        var d=document.getElementById('dob').value.trim();
+        var maxYr=new Date().getFullYear()-17;
+        if(!d||+d<1920||+d>maxYr){
+            document.getElementById('e-dob').style.display='block';
+            document.getElementById('dob').classList.add('err');return;
+        }
+        document.getElementById('e-dob').style.display='none';
+        document.getElementById('dob').classList.remove('err');
+        S.dob=+d;
+    } else { S.dob=1970; }
+
+    var tipLabel=tip==='F'?'Fizička osoba':tip==='P'?'Pravna osoba':'Obrt';
+    var cs=[S.reg,S.kw+' kW',tip==='F'?(S.dob+'. god.'):tipLabel];
+    if(S.yr)cs.push(S.yr+'. god.');
+    document.getElementById('chips').innerHTML=cs.map(function(c){return'<span class="chip">'+c+'</span>';}).join('');
+
+    var msg=encodeURIComponent('Zanima me AO osiguranje — '+S.reg+' '+S.kw+' kW'+(tip==='F'?', '+S.dob+'. god.':' ('+tipLabel+')'));
+    var wa='https://wa.me/38598813221?text='+msg;
+    document.getElementById('wa-ok').href=wa;
+    document.getElementById('wa-err').href=wa;
+
+    go(3);
+    document.getElementById('r-load').style.display='flex';
+    document.getElementById('r-ok').style.display='none';
+    document.getElementById('r-err').style.display='none';
+
+    fetch('https://osiguraj-proxy.osiguraj1.workers.dev',{
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({registracija:S.reg,snagaMotora:S.kw,godinaRodjenja:S.dob,tipStranke:S.tip,godinaProizvodnje:S.yr})
+    })
+    .then(function(r){return r.json();})
+    .then(function(d){
+        document.getElementById('r-load').style.display='none';
+        if(d.ao_cijena_s_porezom&&d.ao_cijena_s_porezom>0){showOk(d);}
+        else{showErr(d.error||'Cijena trenutno nije dostupna.');}
+    })
+    .catch(function(){
+        document.getElementById('r-load').style.display='none';
+        showErr('Greška pri dohvaćanju cijene. Pokušajte ponovo.');
+    });
+}
+
+function showOk(d){
+    document.getElementById('ao-num').textContent=Number(d.ao_cijena_s_porezom).toFixed(2).replace('.',',')+' €';
+    document.getElementById('r-ok').style.display='block';
+    var pkgs=d.paketi||[], ao=Number(d.ao_cijena_s_porezom), html='';
+    pkgs.forEach(function(p){
+        var nm=PKG[p.code]||p.code;
+        var base=Number(p.premijaBezPoreza||0);
+        var pct=Number(p.porez||0);
+        var price=p.premium==='perc'?ao*base/100:base*(1+pct/100);
+        html+='<div class="pkg-row" onclick="this.classList.toggle(\'on\')"><span class="pkg-name">'+nm+'</span><span class="pkg-price">+ '+price.toFixed(0)+' €/god</span></div>';
+    });
+    if(html){document.getElementById('pkg-list').innerHTML=html;document.getElementById('pkg-wrap').style.display='block';}
+    if(typeof gtag==='function')gtag('event','quote_success',{event_category:'quote',value:d.ao_cijena_s_porezom});
+}
+
+function showErr(msg){
+    document.getElementById('err-msg').textContent=msg;
+    document.getElementById('r-err').style.display='block';
+}
+</script>
 </body>
 </html>
