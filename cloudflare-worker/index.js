@@ -130,11 +130,17 @@ export default {
     const zona = registracija.replace(/[^A-Za-z]/g, '').substring(0, 2).toUpperCase();
     const credentials = btoa(`${env.ASDIRECT_USERNAME}:${env.ASDIRECT_PASSWORD}`);
 
+    // godinaProizvodnje je tehnički opcionalna po docs, ali API baca NullPointerException
+    // bez nje jer ne može dohvatiti TehnickaKarakteristikaAO. Koristimo fallback: 5 god. staro vozilo.
+    const godinaVozila = godinaProizvodnje
+      ? Number(godinaProizvodnje)
+      : new Date().getFullYear() - 5;
+
     const payload = {
       vozilo: {
         registracija: zona,
         snagaMotora: Number(snagaMotora),
-        godinaProizvodnje: godinaProizvodnje ? Number(godinaProizvodnje) : null,
+        godinaProizvodnje: String(godinaVozila),
         novonabavnaVrijednostVozila: null,
       },
       osiguranik: {

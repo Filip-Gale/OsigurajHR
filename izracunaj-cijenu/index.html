@@ -441,11 +441,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 var S = { reg:'', kw:0, yr:null, tip:'F', dob:0 };
 
 var PKG = {
-    'AO_PLUS':'AO Plus zaštita','ASIST_HR':'Asistencija (HR)',
+    'AO_PLUS':'AO Plus zaštita','ASIST_HR':'Asistencija (Hrvatska)',
     'ASIST_SVE':'Asistencija (Europa)','DIVLJAC':'Zaštita od divljači',
     'NEZGODA':'Nezgoda putnika','STAKLA':'Osiguranje stakla',
-    'KASKO_1000':'Kasko franšiza 1.000 €','KASKO_400':'Kasko franšiza 400 €',
-    'KASKO_140':'Kasko franšiza 140 €'
+    'TUCA':'Osiguranje od tuče',
+    'KASKO_1000':'Kasko (franšiza 1.000 €)','KASKO_400':'Kasko (franšiza 400 €)',
+    'KASKO_150':'Kasko (franšiza 150 €)','KASKO_140':'Kasko (franšiza 140 €)'
 };
 
 function go(n) {
@@ -521,7 +522,7 @@ function fetch_quote() {
     fetch('https://osiguraj-proxy.osiguraj1.workers.dev',{
         method:'POST',
         headers:{'Content-Type':'application/json'},
-        body:JSON.stringify({registracija:S.reg,snagaMotora:S.kw,godinaRodjenja:S.dob,tipStranke:S.tip,godinaProizvodnje:S.yr,demo:true})
+        body:JSON.stringify({registracija:S.reg,snagaMotora:S.kw,godinaRodjenja:S.dob,tipStranke:S.tip,godinaProizvodnje:S.yr})
     })
     .then(function(r){return r.json();})
     .then(function(d){
@@ -538,10 +539,9 @@ function fetch_quote() {
 function showOk(d){
     document.getElementById('ao-num').textContent=Number(d.ao_cijena_s_porezom).toFixed(2).replace('.',',')+' €';
     document.getElementById('r-ok').style.display='block';
-    if(d.demo) document.querySelector('.price-who').textContent='Generali osiguranje d.d. (procjena)';
     var pkgs=d.paketi||[], ao=Number(d.ao_cijena_s_porezom), html='';
     pkgs.forEach(function(p){
-        var nm=PKG[p.code]||p.code;
+        var nm=p.nazivPaketa||PKG[p.code]||p.code;
         var base=Number(p.premijaBezPoreza||0);
         var pct=Number(p.porez||0);
         var price=p.premium==='perc'?ao*base/100:base*(1+pct/100);
