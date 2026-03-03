@@ -205,25 +205,36 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <input type="hidden" name="Kontakt" value="{{contact}}">
                <input type="hidden" name="WhatsApp_Link" id="whatsapp_link">
 
-                <input class="round" type="text" name="username" id="registracija-input" placeholder="Registracijska oznaka vozila:" required>
+                <div class="form-field">
+                    <label for="registracija-input">Registracijska oznaka vozila</label>
+                    <input class="round" type="text" name="username" id="registracija-input" placeholder="npr. ZG1234AA" required>
+                </div>
 
-                <input class="round" type="number" name="snagaMotora" id="snagaMotora-input" min="1" max="1000" placeholder="Snaga motora (kW):" required>
-                <small style="color:#999;font-size:12px;margin-top:-8px;display:block;padding-left:4px;">kW se nalazi na prometnoj dozvoli pod oznakom P.2</small>
+                <div class="form-field">
+                    <label for="snagaMotora-input">Snaga motora (kW) <small>— prometna dozvola, rubrika P.2</small></label>
+                    <input class="round" type="number" name="snagaMotora" id="snagaMotora-input" min="1" max="1000" placeholder="npr. 85" required>
+                </div>
 
-                <div class="segmented-control round" id="user-type-group">
-                    <input type="radio" id="fiz" name="user-type" value="fizicka_osoba" checked>
-                    <label for="fiz" class="segment round">Fizička osoba</label>
-
-                    <input type="radio" id="pra" name="user-type" value="pra">
-                    <label for="pra" class="segment round">Pravna osoba</label>
+                <div class="form-field">
+                    <label>Tip stranke</label>
+                    <div class="segmented-control round" id="user-type-group">
+                        <input type="radio" id="fiz" name="user-type" value="fizicka_osoba" checked>
+                        <label for="fiz" class="segment round">Fizička osoba</label>
+                        <input type="radio" id="pra" name="user-type" value="pra">
+                        <label for="pra" class="segment round">Pravna osoba</label>
+                    </div>
                 </div>
 
                 <!-- Age selector -->
-                <div class="age-input-wrapper" id="age-wrapper">
-                    <input class="round age-input" type="number" name="age" min="1" max="100" placeholder="Broj godina vozača:" required>
+                <div class="form-field age-input-wrapper" id="age-wrapper">
+                    <label for="age-input-field">Broj godina vozača</label>
+                    <input class="round age-input" id="age-input-field" type="number" name="age" min="1" max="100" placeholder="npr. 35" required>
                 </div>
 
-                <input class="round" type="text" name="contact" placeholder="Broj mobitela:" required>
+                <div class="form-field">
+                    <label for="contact-input">Broj mobitela</label>
+                    <input class="round" id="contact-input" type="text" name="contact" placeholder="npr. 091 234 5678" required>
+                </div>
 
                 
                 <!--<div class="h-captcha" data-captcha="true"></div>-->

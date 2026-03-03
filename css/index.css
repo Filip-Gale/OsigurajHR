@@ -9,34 +9,57 @@ h1{
 form{
     display: flex;
     flex-direction: column;
-    padding: 15px;
+    padding: 20px;
     width: 90%;
     max-width: 450px;
     justify-content: center;
-    align-items:center;
-    text-align: center;
+    align-items: stretch;
+    text-align: left;
     margin: 0 auto;
-    gap: 15px;
+    gap: 12px;
+}
+
+.form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 100%;
+}
+
+.form-field > label {
+    font-size: 13px;
+    font-weight: 700;
+    color: #3a2ab0;
+    padding-left: 4px;
+}
+
+.form-field > label small {
+    font-weight: 400;
+    color: #5a4ac0;
+    font-size: 11px;
 }
 
 form input{
-    width: 80%;
+    width: 100%;
+    box-sizing: border-box;
     border: 0;
-    padding: 10px 20px;
+    padding: 12px 16px;
     font-weight: bold;
     color: #573cf9;
-    border: transparent solid 3px;
+    border: transparent solid 2px;
+    font-size: 15px;
 
     -webkit-appearance: none;
     appearance: none;
 }
 
 form input::placeholder{
-    opacity: 0.5;
+    opacity: 0.45;
+    font-weight: normal;
 }
 
 form input:focus::placeholder{
-    opacity: 0.85;
+    opacity: 0.7;
 }
 
 form input:focus{
@@ -357,7 +380,156 @@ details[open] summary::after {
     padding-right: 10px;
 }
 
-@media (min-width: 768px) { 
+/* ===== QUOTE CARD (AS Direct / Generali) ===== */
+
+#quote-result {
+    margin-top: 1rem;
+}
+
+.quote-card {
+    padding: 1.5rem;
+    text-align: center;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+/* Loading state */
+.quote-loading {
+    background: rgba(255, 255, 255, 0.15);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+.quote-spinner {
+    width: 36px;
+    height: 36px;
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    border-top-color: #ffbc27;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Success state */
+.quote-success {
+    background: #fff;
+    color: #573cf9;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+}
+
+.quote-header {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.quote-provider {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: #573cf9;
+}
+
+.quote-type {
+    font-size: 0.85rem;
+    font-weight: normal;
+    color: #666;
+}
+
+.quote-price {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+}
+
+.quote-amount {
+    font-size: 2.2rem;
+    font-weight: 900;
+    color: #573cf9;
+}
+
+.quote-period {
+    font-size: 0.9rem;
+    font-weight: normal;
+    color: #888;
+}
+
+.quote-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    max-width: 320px;
+}
+
+.quote-btn {
+    display: block;
+    padding: 12px 20px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.95rem;
+    transition: opacity 0.2s;
+}
+
+.quote-btn:hover {
+    opacity: 0.85;
+}
+
+.quote-btn-primary {
+    background: #573cf9;
+    color: #fff;
+}
+
+.quote-btn-secondary {
+    background: transparent;
+    color: #573cf9;
+    border: 2px solid #573cf9;
+}
+
+.quote-disclaimer {
+    font-size: 0.72rem;
+    font-weight: normal;
+    color: #999;
+    margin: 0;
+}
+
+/* Error state */
+.quote-error {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    padding: 1rem;
+}
+
+.quote-error p {
+    margin: 0;
+    font-weight: normal;
+}
+
+/* Desktop tweaks */
+@media (min-width: 768px) {
+    .quote-actions {
+        flex-direction: row;
+        justify-content: center;
+        max-width: none;
+    }
+
+    .quote-btn {
+        padding: 12px 28px;
+    }
+}
+
+/* ===== END QUOTE CARD ===== */
+
+@media (min-width: 768px) {
 
     #title-segment{
         height: 400px;
@@ -371,7 +543,7 @@ details[open] summary::after {
     }
 
     form{
-        max-height: 350px;
+        max-height: none;
         margin: 0;
         margin-left: 5%;
     }
