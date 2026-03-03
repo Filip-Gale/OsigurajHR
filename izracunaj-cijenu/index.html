@@ -313,9 +313,24 @@ permalink: /izracunaj-cijenu/
 
         /* ── Bonus banner ── */
         .bonus-banner {
-            background: #fffbea; border: 1.5px solid #fde68a; border-radius: 10px;
+            background: linear-gradient(90deg, #fffbea 0%, #fffbea 100%);
+            background-size: 200% 100%;
+            border: 1.5px solid #fde68a; border-radius: 10px;
             padding: 11px 14px; font-size: 0.84rem; color: #78350f;
             font-weight: normal; margin-bottom: 18px; line-height: 1.5;
+            position: relative; overflow: hidden;
+        }
+        .bonus-banner::after {
+            content: '';
+            position: absolute; top: 0; left: -60%;
+            width: 40%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent);
+            transform: skewX(-15deg);
+            animation: bonus-shine 2.6s ease-in-out infinite;
+        }
+        @keyframes bonus-shine {
+            0%   { left: -60%; }
+            60%, 100% { left: 120%; }
         }
         .bonus-banner strong { color: #92400e; font-weight: 800; }
 
