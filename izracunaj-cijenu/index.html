@@ -418,6 +418,12 @@ permalink: /izracunaj-cijenu/
         /* ── Confetti canvas ── */
         #confetti-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9999; }
 
+        /* ── Embed mode (iframe on homepage) ── */
+        .embed-mode body { background: transparent !important; }
+        .embed-mode nav, .embed-mode .nav-spacer, .embed-mode .hero,
+        .embed-mode footer, .embed-mode #wapp { display: none !important; }
+        .embed-mode .wizard-card { margin: 0; border-radius: 18px; }
+
         /* ── Generali call-only card ── */
         .generali-logo { height: 44px; width: auto; max-width: 170px; object-fit: contain; display: block; }
         .generali-note { font-size: 0.88rem; font-weight: normal; color: #555; margin: 0 0 12px; line-height: 1.5; }
@@ -652,6 +658,17 @@ permalink: /izracunaj-cijenu/
 {% include footer.html %}
 
 <script>
+/* ── Embed mode ── */
+var isEmbed = new URLSearchParams(location.search).has('embed');
+if (isEmbed) document.documentElement.classList.add('embed-mode');
+
+function notifyHeight() {
+  if (!isEmbed) return;
+  var h = document.querySelector('.wizard-card').offsetHeight;
+  parent.postMessage({ type: 'wizardHeight', height: h }, '*');
+}
+window.addEventListener('load', function() { setTimeout(notifyHeight, 100); });
+
 /* ── State ── */
 var S = { reg:'', kw:0, yr:null, tip:'F', dob:0, oib:'' };
 var aoBase = 0;
@@ -744,8 +761,13 @@ function go(n, dir) {
     l.className = 'progress-lbl'+(i<n?' done':i===n?' active':'');
     if (i<3) document.getElementById('ln'+i).className = 'progress-line'+(i<n?' done':'');
   });
-  var card = document.querySelector('.wizard-card');
-  if (card) card.scrollIntoView({behavior:'smooth', block:'start'});
+  if (isEmbed) {
+    parent.postMessage({ type: 'scrollToWizard' }, '*');
+  } else {
+    var card = document.querySelector('.wizard-card');
+    if (card) card.scrollIntoView({behavior:'smooth', block:'start'});
+  }
+  setTimeout(notifyHeight, 350);
 }
 
 /* ── Registration typing indicator ── */
@@ -898,6 +920,7 @@ function showOk(d) {
   });
   if (html) { document.getElementById('pkg-list').innerHTML = html; document.getElementById('pkg-wrap').style.display = 'block'; }
   if (typeof gtag === 'function') gtag('event','quote_success',{event_category:'quote',value:d.ao_cijena_s_porezom});
+  setTimeout(notifyHeight, 400);
 }
 
 /* ── Package toggle — updates main price ── */

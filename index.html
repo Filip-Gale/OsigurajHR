@@ -181,7 +181,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
         <div id="title-segment" class="row-pc width-container-1000">
             <div class="text-yellow">
-                <h1 >
+                <h1>
                     Usporedi i saznaj najpovoljniji izračun cijene za auto osiguranje u samo par koraka!
                 </h1>
                 <p class="desktop-only">
@@ -190,62 +190,29 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     ⟶
                 </p>
             </div>
-            
 
-                        <!-- 1. Change action & add hidden field with your email -->
-           <form action="https://api.web3forms.com/submit" method="POST" class="background-yellow round" id="contact-form">
-
-                <input type="hidden" name="access_key" value="3cf56deb-78e0-4c88-8bc2-d73a20b78a80">
-                <input type="hidden" name="subject" value="Nova registracijska upit - {{username}}">
-                <input type="hidden" name="from_name" value="{{username}} - {{user-type}}">
-
-                 <input type="hidden" name="Registracija" value="{{username}}">
-                <input type="hidden" name="Tip_korisnika" value="{{user-type}}">
-                <input type="hidden" name="Dob" value="{{age}}">
-                <input type="hidden" name="Kontakt" value="{{contact}}">
-               <input type="hidden" name="WhatsApp_Link" id="whatsapp_link">
-
-                <input class="round" type="text" name="username" id="registracija-input" placeholder="Registracijska oznaka vozila:" required>
-
-                <input class="round" type="number" name="snagaMotora" id="snagaMotora-input" min="1" max="1000" placeholder="Snaga motora u kW (prometna, P.2)" required>
-
-                <div class="segmented-control round" id="user-type-group">
-                    <input type="radio" id="fiz" name="user-type" value="fizicka_osoba" checked>
-                    <label for="fiz" class="segment round">Fizička osoba</label>
-                    <input type="radio" id="pra" name="user-type" value="pra">
-                    <label for="pra" class="segment round">Pravna osoba</label>
-                </div>
-
-                <!-- Age selector -->
-                <div class="age-input-wrapper" id="age-wrapper">
-                    <input class="round age-input" type="number" name="age" min="1" max="100" placeholder="Broj godina vozača" required>
-                </div>
-
-                <input class="round" type="text" name="contact" placeholder="Broj mobitela" required>
-
-                
-                <!--<div class="h-captcha" data-captcha="true"></div>-->
-
-                <!-- Optional honeypot (good extra layer) -->
-                <input type="checkbox" name="botcheck" style="display:none;" tabindex="-1" autocomplete="off">
-
-                <div class="row-pc">
-                   <input id="saznaj" type="submit" value="Saznaj cijenu" class="round background-purple text-white" onclick="return gtagSendEvent();">
-                    <p id="disclaimer" class="desktop-only">
-                        Naš agent vam se javlja u kratkom
-                        roku s <strong>najpovoljnijim cijenama naših osiguravajućih partnera</strong>.
-                    </p>
-                </div>
-            </form>
-
-            <!-- Important: Add this script before </body> (or in head) -->
-            <script src="https://web3forms.com/client/script.js" async defer></script>
+            <iframe
+                id="wizard-frame"
+                src="/izracunaj-cijenu/?embed=1"
+                frameborder="0"
+                scrolling="no"
+                allowtransparency="true"
+                style="width:100%; border:none; display:block; min-height:460px; border-radius:18px; overflow:hidden;"
+            ></iframe>
         </div>
-        <div id="quote-result" class="round width-container-700" style="display:none;"></div>
 
-        <div id="form-result" class="round width-container-700">
-
-        </div>
+        <script>
+        window.addEventListener('message', function(e) {
+            if (!e.data || e.data.type !== 'wizardHeight') return;
+            var f = document.getElementById('wizard-frame');
+            if (f) f.style.height = (e.data.height + 20) + 'px';
+        });
+        window.addEventListener('message', function(e) {
+            if (!e.data || e.data.type !== 'scrollToWizard') return;
+            var f = document.getElementById('wizard-frame');
+            if (f) f.scrollIntoView({behavior:'smooth', block:'start'});
+        });
+        </script>
 
         <div class="column">
             <div class="row-pc width-container-1000">
