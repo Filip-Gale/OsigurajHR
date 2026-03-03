@@ -512,8 +512,9 @@ details[open] summary::after {
 @media (min-width: 768px) {
 
     #title-segment{
-        height: 400px;
+        min-height: 400px;
         padding-top: 50px;
+        padding-bottom: 40px;
     }
 
     h1{
