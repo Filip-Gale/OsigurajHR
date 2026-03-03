@@ -1,0 +1,14 @@
+name = "osiguraj-proxy"
+main = "index.js"
+compatibility_date = "2026-03-03"
+account_id = "18fe17e199081ab7d6dda74b083290cd"
+
+# Route: osiguraj.hr/api/quote → ovaj Worker
+# Postaviti u Cloudflare dashboard → Workers → Triggers → Routes
+# route = "osiguraj.hr/api/quote"
+# zone_name = "osiguraj.hr"
+
+# Tajni podaci (nikad u ovom fajlu — koristiti `wrangler secret put`):
+#   wrangler secret put ASDIRECT_USERNAME
+#   wrangler secret put ASDIRECT_PASSWORD
+#   wrangler secret put ASDIRECT_POSREDNIK
