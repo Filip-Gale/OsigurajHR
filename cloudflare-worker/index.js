@@ -1,18 +1,15 @@
 /**
  * Cloudflare Worker — AS Direct (Generali) proxy
  *
- * Route: POST osiguraj.hr/api/quote
- *
- * Drži kredencijale kao Worker Secrets:
+ * Worker Secrets:
  *   ASDIRECT_USERNAME  = "maksimiro"
  *   ASDIRECT_PASSWORD  = "c6VWecZZmAiV"
- *   ASDIRECT_POSREDNIK = "[kod od Generalija]"  (test fallback: "411111")
+ *   ASDIRECT_POSREDNIK = "413106"
  *
- * Request body (od fronta):
- *   { registracija, snagaMotora, godinaRodjenja, tipStranke }
+ * Request body:
+ *   { registracija, snagaMotora, godinaRodjenja, tipStranke, godinaProizvodnje?, demo? }
  *
- * Response nazad frontu:
- *   { ao_cijena_s_porezom, paketi, ps_ao }
+ * Pošalji demo:true za testni prikaz UI-ja bez Generali API-ja.
  */
 
 const ASDIRECT_URL =
@@ -21,14 +18,12 @@ const ASDIRECT_URL =
 const ALLOWED_ORIGINS = [
   'https://www.osiguraj.hr',
   'https://osiguraj.hr',
-  'http://localhost:4000', // lokalni razvoj
+  'http://localhost:4000',
   'http://127.0.0.1:4000',
 ];
 
 function corsHeaders(origin) {
-  const allowed = ALLOWED_ORIGINS.includes(origin)
-    ? origin
-    : ALLOWED_ORIGINS[0];
+  const allowed = ALLOWED_ORIGINS.includes(origin) ? origin : ALLOWED_ORIGINS[0];
   return {
     'Access-Control-Allow-Origin': allowed,
     'Access-Control-Allow-Methods': 'POST, OPTIONS',
@@ -40,21 +35,62 @@ function corsHeaders(origin) {
 function getTomorrow() {
   const d = new Date();
   d.setDate(d.getDate() + 1);
-  // Format: YYYY-MM-DD
   return d.toISOString().split('T')[0];
 }
 
-/**
- * Izračunava AO cijenu s porezom iz AS Direct odgovora.
- * Format odgovora per dokumentacija: premijaAOBezPoreza + porez (%)
- * Primjer: premijaAOBezPoreza=539.67, porez=15 → 539.67 * 1.15 = 620.62
- */
 function extractAoCijena(data) {
-  if (data?.premijaAOBezPoreza != null) {
+  if (data?.premijaAOBezPoreza != null && data.premijaAOBezPoreza > 0) {
     const porez = data.porez ?? 0;
     return Math.round(data.premijaAOBezPoreza * (1 + porez / 100) * 100) / 100;
   }
   return null;
+}
+
+/**
+ * Gruba procjena AO premije za HR tržište (kad Generali API nije dostupan).
+ * Bazira se na kW kao glavnom faktoru, uz korekciju za dob vozača.
+ * NIJE prava Generali cijena — koristi se samo kao fallback prikaz.
+ */
+function estimateAoCijena(snagaMotora, godinaRodjenja) {
+  const kw = Number(snagaMotora) || 80;
+  const dob = new Date().getFullYear() - Number(godinaRodjenja || 1980);
+
+  // Osnova po kW razredima (EUR, bez poreza)
+  let base;
+  if (kw <= 55)       base = 280;
+  else if (kw <= 75)  base = 340;
+  else if (kw <= 100) base = 420;
+  else if (kw <= 130) base = 520;
+  else if (kw <= 160) base = 660;
+  else                base = 800;
+
+  // Dob koeficijent (mladi i stariji vozači plaćaju više)
+  let dobFactor = 1.0;
+  if (dob < 25)       dobFactor = 1.30;
+  else if (dob < 30)  dobFactor = 1.10;
+  else if (dob > 65)  dobFactor = 1.15;
+
+  const bezPoreza = base * dobFactor;
+  const sPorezom  = Math.round(bezPoreza * 1.15 * 100) / 100; // 15% porez
+  return sPorezom;
+}
+
+/** Demo response — realistični podaci za testiranje UI-ja */
+function makeDemoResponse(snagaMotora, godinaRodjenja) {
+  const cijena = estimateAoCijena(snagaMotora, godinaRodjenja);
+  return {
+    ao_cijena_s_porezom: cijena,
+    demo: true,
+    paketi: [
+      { code: 'AO_PLUS',   premijaBezPoreza: cijena * 0.03, premium: 'perc', porez: 0 },
+      { code: 'ASIST_HR',  premijaBezPoreza: 16,  premium: 'fix', porez: 0 },
+      { code: 'ASIST_SVE', premijaBezPoreza: 32,  premium: 'fix', porez: 0 },
+      { code: 'NEZGODA',   premijaBezPoreza: 8,   premium: 'fix', porez: 0 },
+      { code: 'DIVLJAC',   premijaBezPoreza: 46,  premium: 'fix', porez: 10 },
+      { code: 'STAKLA',    premijaBezPoreza: 50,  premium: 'fix', porez: 10 },
+    ],
+    ps_ao: 10,
+  };
 }
 
 export default {
@@ -62,16 +98,13 @@ export default {
     const origin = request.headers.get('Origin') || '';
     const headers = corsHeaders(origin);
 
-    // CORS preflight
     if (request.method === 'OPTIONS') {
       return new Response(null, { status: 204, headers });
     }
-
     if (request.method !== 'POST') {
       return json({ error: 'Method not allowed' }, 405, headers);
     }
 
-    // Parsiraj tijelo zahtjeva
     let body;
     try {
       body = await request.json();
@@ -79,7 +112,7 @@ export default {
       return json({ error: 'Neispravan JSON' }, 400, headers);
     }
 
-    const { registracija, snagaMotora, godinaRodjenja, tipStranke, godinaProizvodnje } = body;
+    const { registracija, snagaMotora, godinaRodjenja, tipStranke, godinaProizvodnje, demo } = body;
 
     if (!registracija || !snagaMotora || !godinaRodjenja || !tipStranke) {
       return json(
@@ -89,16 +122,13 @@ export default {
       );
     }
 
-    // Izvuci registarsku zonu (prve 2 slova, npr. "ZG" iz "ZG1234AA")
-    const zona = registracija
-      .replace(/[^A-Za-z]/g, '')
-      .substring(0, 2)
-      .toUpperCase();
+    // Demo mode — testni odgovor bez poziva Generaliju
+    if (demo === true) {
+      return json(makeDemoResponse(snagaMotora, godinaRodjenja), 200, headers);
+    }
 
-    // Basic Auth header
-    const credentials = btoa(
-      `${env.ASDIRECT_USERNAME}:${env.ASDIRECT_PASSWORD}`
-    );
+    const zona = registracija.replace(/[^A-Za-z]/g, '').substring(0, 2).toUpperCase();
+    const credentials = btoa(`${env.ASDIRECT_USERNAME}:${env.ASDIRECT_PASSWORD}`);
 
     const payload = {
       vozilo: {
@@ -119,7 +149,6 @@ export default {
       pausalnoOsiguranjeDodatneOpreme: false,
     };
 
-    // Pozovi AS Direct API
     let asdirectRes;
     try {
       asdirectRes = await fetch(ASDIRECT_URL, {
@@ -131,11 +160,7 @@ export default {
         body: JSON.stringify(payload),
       });
     } catch (err) {
-      return json(
-        { error: 'Greška pri komunikaciji s Generali AS Direct API-jem' },
-        502,
-        headers
-      );
+      return json({ error: 'Greška pri komunikaciji s Generali API-jem' }, 502, headers);
     }
 
     const rawText = await asdirectRes.text();
@@ -152,31 +177,31 @@ export default {
     try {
       data = JSON.parse(rawText);
     } catch {
+      return json({ error: 'Nevaljani JSON od osiguravatelja', details: rawText }, 502, headers);
+    }
+
+    const cijena = extractAoCijena(data);
+
+    // Ako Generali nije vratio cijenu (config bug), vrati grešku s detaljima
+    if (!cijena) {
       return json(
-        { error: 'Osiguravatelj vratio nevaljani JSON', details: rawText },
+        { error: 'Osiguravatelj nije vratio cijenu', details: data },
         502,
         headers
       );
     }
 
-    const result = {
-      ao_cijena_s_porezom: extractAoCijena(data),
+    return json({
+      ao_cijena_s_porezom: cijena,
       paketi: data?.paketi ?? [],
       ps_ao: data?.ps_AO ?? 10,
-      // Ostavi i sirovi odgovor za debug (ukloniti u produkciji)
-      _raw: data,
-    };
-
-    return json(result, 200, headers);
+    }, 200, headers);
   },
 };
 
 function json(body, status, extraHeaders = {}) {
   return new Response(JSON.stringify(body), {
     status,
-    headers: {
-      'Content-Type': 'application/json',
-      ...extraHeaders,
-    },
+    headers: { 'Content-Type': 'application/json', ...extraHeaders },
   });
 }

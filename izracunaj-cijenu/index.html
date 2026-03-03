@@ -521,7 +521,7 @@ function fetch_quote() {
     fetch('https://osiguraj-proxy.osiguraj1.workers.dev',{
         method:'POST',
         headers:{'Content-Type':'application/json'},
-        body:JSON.stringify({registracija:S.reg,snagaMotora:S.kw,godinaRodjenja:S.dob,tipStranke:S.tip,godinaProizvodnje:S.yr})
+        body:JSON.stringify({registracija:S.reg,snagaMotora:S.kw,godinaRodjenja:S.dob,tipStranke:S.tip,godinaProizvodnje:S.yr,demo:true})
     })
     .then(function(r){return r.json();})
     .then(function(d){
@@ -538,6 +538,7 @@ function fetch_quote() {
 function showOk(d){
     document.getElementById('ao-num').textContent=Number(d.ao_cijena_s_porezom).toFixed(2).replace('.',',')+' €';
     document.getElementById('r-ok').style.display='block';
+    if(d.demo) document.querySelector('.price-who').textContent='Generali osiguranje d.d. (procjena)';
     var pkgs=d.paketi||[], ao=Number(d.ao_cijena_s_porezom), html='';
     pkgs.forEach(function(p){
         var nm=PKG[p.code]||p.code;
