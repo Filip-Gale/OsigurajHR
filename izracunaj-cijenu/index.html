@@ -78,9 +78,16 @@ permalink: /izracunaj-cijenu/
         .finput           { border-color: rgba(0,0,0,0.12) !important; }
         .finput:focus     { border-color: #573cf9 !important; }
         .err-note         { color: rgba(0,0,0,0.5) !important; }
+        .pkg-row          { background: white !important; border-color: rgba(0,0,0,0.1) !important; }
+        .pkg-row.on       { background: #f4f2ff !important; border-color: #573cf9 !important; }
+        .pkg-row:hover    { border-color: #c4bbff !important; }
+        .pkgs-lbl         { color: rgba(0,0,0,0.5) !important; }
+        .pkg-name         { color: #1a1033 !important; }
+        .pkg-check        { border-color: rgba(0,0,0,0.18) !important; }
+        .total-row        { color: rgba(0,0,0,0.55) !important; }
 
         /* ── Progress ── */
-        .progress-bar { display: flex; align-items: center; margin-bottom: 32px; }
+        .progress-bar { display: flex; align-items: center; margin-bottom: 32px; justify-content: center; gap: 0; }
         .progress-step { display: flex; flex-direction: column; align-items: center; gap: 5px; }
         .progress-dot {
             width: 32px; height: 32px; border-radius: 50%;
@@ -104,8 +111,8 @@ permalink: /izracunaj-cijenu/
         .progress-lbl.active { color: #573cf9; }
         .progress-lbl.done   { color: #22c55e; }
         .progress-line {
-            flex: 1; height: 3px; background: #ebebeb;
-            max-width: 55px; min-width: 15px; margin-bottom: 18px;
+            flex: none; width: 44px; height: 3px; background: #ebebeb;
+            margin-bottom: 18px;
             position: relative; overflow: hidden; border-radius: 2px;
         }
         .progress-line::after {
@@ -168,14 +175,17 @@ permalink: /izracunaj-cijenu/
             border: 2px solid #e5e5e5; border-radius: 12px; cursor: pointer;
             transition: all 0.2s; text-align: center;
         }
-        .tip-card .t-ico { font-size: 1.4rem; }
+        .tip-card .t-ico { display: flex; align-items: center; justify-content: center; }
+        .tip-card .t-ico svg { stroke: #aaa; transition: stroke 0.2s; }
         .tip-card .t-lbl { font-size: 0.8rem; font-weight: 700; color: #888; transition: color 0.2s; }
         .tip-card-wrap input:checked + .tip-card {
-            border-color: #573cf9; background: #f4f2ff;
+            border-color: #573cf9; background: white;
             box-shadow: 0 0 0 3px rgba(87,60,249,0.15);
         }
         .tip-card-wrap input:checked + .tip-card .t-lbl { color: #573cf9; }
+        .tip-card-wrap input:checked + .tip-card svg { stroke: #573cf9; }
         .tip-card:hover { border-color: #c4bbff; }
+        .tip-card:hover svg { stroke: #573cf9; }
 
         /* ── Expandable year ── */
         .opt-toggle {
@@ -436,13 +446,23 @@ permalink: /izracunaj-cijenu/
                     <div class="tip-card-wrap">
                         <input type="radio" name="tip" id="tip-f" value="F" checked>
                         <label class="tip-card" for="tip-f">
-                            <span class="t-ico">👤</span><span class="t-lbl">Fizička osoba</span>
+                            <span class="t-ico">
+                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#573cf9" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+                                </svg>
+                            </span>
+                            <span class="t-lbl">Fizička osoba</span>
                         </label>
                     </div>
                     <div class="tip-card-wrap">
                         <input type="radio" name="tip" id="tip-p" value="P">
                         <label class="tip-card" for="tip-p">
-                            <span class="t-ico">🏢</span><span class="t-lbl">Pravna osoba</span>
+                            <span class="t-ico">
+                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#573cf9" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="3" y="9" width="18" height="13" rx="1"/><path d="M8 9V7a4 4 0 0 1 8 0v2"/><line x1="12" y1="13" x2="12" y2="17"/>
+                                </svg>
+                            </span>
+                            <span class="t-lbl">Pravna osoba</span>
                         </label>
                     </div>
                 </div>
@@ -453,7 +473,7 @@ permalink: /izracunaj-cijenu/
                 <div class="ferror" id="e-dob">Unesite vašu godinu rođenja.</div>
             </div>
             <div>
-                <label class="flabel" for="oib">OIB <span style="text-transform:none;font-size:0.7rem;color:#bbb">(obvezan — za točnu cijenu)</span></label>
+                <label class="flabel" for="oib">OIB</label>
                 <input class="finput" id="oib" type="text" placeholder="12345678901" maxlength="11" inputmode="numeric" autocomplete="off">
                 <div class="fhint">Dohvaćamo vaš premijski stupanj iz registra osiguranja.</div>
                 <div class="ferror" id="e-oib">Unesite OIB (11 znamenki).</div>
