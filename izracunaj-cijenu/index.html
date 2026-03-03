@@ -329,9 +329,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="fields">
             <div>
                 <div class="flabel">Registracijska oznaka</div>
-                <input class="finput" id="reg" type="text" placeholder="ZG, ST, RI, OS, KA..." maxlength="10"
+                <input class="finput" id="reg" type="text" placeholder="ZG6426IB" maxlength="10"
                        autocomplete="off" autocapitalize="characters" spellcheck="false">
-                <div class="fhint">Unesite zonu (prve 2 slova) ili punu tablicu.</div>
+                <div class="fhint">Unesite punu registracijsku oznaku ili samo zonu (npr. ZG).</div>
                 <div class="ferror" id="e-reg">Unesite registracijsku oznaku.</div>
             </div>
             <div>
@@ -375,6 +375,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <div class="flabel">Godina rođenja</div>
                 <input class="finput" id="dob" type="number" placeholder="1985" min="1920" max="2007" inputmode="numeric">
                 <div class="ferror" id="e-dob">Unesite vašu godinu rođenja.</div>
+            </div>
+            <div>
+                <div class="flabel">OIB <span style="text-transform:none;font-size:0.7rem;color:#bbb">(neobavezno — za točniju cijenu)</span></div>
+                <input class="finput" id="oib" type="text" placeholder="12345678901" maxlength="11" inputmode="numeric" autocomplete="off">
+                <div class="fhint">OIB nam omogućuje dohvat vašeg premijskog stupnja i točniju cijenu.</div>
             </div>
         </div>
         <div class="btn-stack">
@@ -438,7 +443,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 {% include footer.html %}
 
 <script>
-var S = { reg:'', kw:0, yr:null, tip:'F', dob:0 };
+var S = { reg:'', kw:0, yr:null, tip:'F', dob:0, oib:'' };
 
 var PKG = {
     'AO_PLUS':'AO Plus zaštita','ASIST_HR':'Asistencija (Hrvatska)',
@@ -482,7 +487,7 @@ function next1() {
     if(!k||+k<1){document.getElementById('e-kw').style.display='block';document.getElementById('kw').classList.add('err');ok=false;}
     else{document.getElementById('e-kw').style.display='none';document.getElementById('kw').classList.remove('err');}
     if(!ok)return;
-    S.reg=r.replace(/[^A-Za-z]/g,'').substring(0,2).toUpperCase();
+    S.reg=r.toUpperCase();
     S.kw=+k;
     var y=document.getElementById('yr').value.trim();
     S.yr=y?+y:null;
@@ -504,6 +509,8 @@ function fetch_quote() {
         S.dob=+d;
     } else { S.dob=1970; }
 
+    S.oib=document.getElementById('oib').value.trim();
+
     var tipLabel=tip==='F'?'Fizička osoba':tip==='P'?'Pravna osoba':'Obrt';
     var cs=[S.reg,S.kw+' kW',tip==='F'?(S.dob+'. god.'):tipLabel];
     if(S.yr)cs.push(S.yr+'. god.');
@@ -522,7 +529,7 @@ function fetch_quote() {
     fetch('https://osiguraj-proxy.osiguraj1.workers.dev',{
         method:'POST',
         headers:{'Content-Type':'application/json'},
-        body:JSON.stringify({registracija:S.reg,snagaMotora:S.kw,godinaRodjenja:S.dob,tipStranke:S.tip,godinaProizvodnje:S.yr})
+        body:JSON.stringify({registracija:S.reg,snagaMotora:S.kw,godinaRodjenja:S.dob,tipStranke:S.tip,godinaProizvodnje:S.yr,oib:S.oib||null})
     })
     .then(function(r){return r.json();})
     .then(function(d){

@@ -7,13 +7,20 @@
  *   ASDIRECT_POSREDNIK = "413106"
  *
  * Request body:
- *   { registracija, snagaMotora, godinaRodjenja, tipStranke, godinaProizvodnje?, demo? }
+ *   { registracija, snagaMotora, godinaRodjenja, tipStranke, godinaProizvodnje?, oib? }
  *
- * Pošalji demo:true za testni prikaz UI-ja bez Generali API-ja.
+ * Logika:
+ *   1. Ako je dostavljan OIB → HUOMTR GetPodaci → pravi premijski stupanj
+ *   2. Inače → PS 10 (novi vozač)
+ *   3. Uvijek aplicira AS_DIRE_1(10%) + AS_DOBR_1(10%) = ukupno −19%
  */
 
-const ASDIRECT_URL =
-  'https://asdirectprod.generali.hr:8080/TestAutoOsiguranje/api/as/v1/GetQuote';
+const BASE_URL_TEST = 'https://asdirectprod.generali.hr:8080/TestAutoOsiguranje';
+const GETQUOTE_URL  = BASE_URL_TEST + '/api/as/v1/GetQuote';
+const HUOMTR_URL    = BASE_URL_TEST + '/api/huomtr/v1/GetPodaci';
+
+// Ukupni multiplikator popusta: AS_DIRE_1(−10%) × AS_DOBR_1(−10%) = 0.81
+const DISCOUNT = 0.81;
 
 const ALLOWED_ORIGINS = [
   'https://www.osiguraj.hr',
@@ -38,59 +45,33 @@ function getTomorrow() {
   return d.toISOString().split('T')[0];
 }
 
-function extractAoCijena(data) {
-  if (data?.premijaAOBezPoreza != null && data.premijaAOBezPoreza > 0) {
-    const porez = data.porez ?? 0;
-    return Math.round(data.premijaAOBezPoreza * (1 + porez / 100) * 100) / 100;
+/** Dohvati premijski stupanj iz HUOMTR servisa. Fallback: PS 10. */
+async function fetchPremijskiStupanj(oib, godinaRodjenja, credentials) {
+  if (!oib) return 10;
+  try {
+    const res = await fetch(HUOMTR_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Basic ${credentials}`,
+      },
+      body: JSON.stringify({
+        oib: String(oib),
+        godinaRodjenja: Number(godinaRodjenja),
+      }),
+    });
+    if (!res.ok) return 10;
+    const data = await res.json();
+    return data?.premijskiStupanj ?? 10;
+  } catch {
+    return 10;
   }
-  return null;
 }
 
-/**
- * Gruba procjena AO premije za HR tržište (kad Generali API nije dostupan).
- * Bazira se na kW kao glavnom faktoru, uz korekciju za dob vozača.
- * NIJE prava Generali cijena — koristi se samo kao fallback prikaz.
- */
-function estimateAoCijena(snagaMotora, godinaRodjenja) {
-  const kw = Number(snagaMotora) || 80;
-  const dob = new Date().getFullYear() - Number(godinaRodjenja || 1980);
-
-  // Osnova po kW razredima (EUR, bez poreza)
-  let base;
-  if (kw <= 55)       base = 280;
-  else if (kw <= 75)  base = 340;
-  else if (kw <= 100) base = 420;
-  else if (kw <= 130) base = 520;
-  else if (kw <= 160) base = 660;
-  else                base = 800;
-
-  // Dob koeficijent (mladi i stariji vozači plaćaju više)
-  let dobFactor = 1.0;
-  if (dob < 25)       dobFactor = 1.30;
-  else if (dob < 30)  dobFactor = 1.10;
-  else if (dob > 65)  dobFactor = 1.15;
-
-  const bezPoreza = base * dobFactor;
-  const sPorezom  = Math.round(bezPoreza * 1.15 * 100) / 100; // 15% porez
-  return sPorezom;
-}
-
-/** Demo response — realistični podaci za testiranje UI-ja */
-function makeDemoResponse(snagaMotora, godinaRodjenja) {
-  const cijena = estimateAoCijena(snagaMotora, godinaRodjenja);
-  return {
-    ao_cijena_s_porezom: cijena,
-    demo: true,
-    paketi: [
-      { code: 'AO_PLUS',   premijaBezPoreza: cijena * 0.03, premium: 'perc', porez: 0 },
-      { code: 'ASIST_HR',  premijaBezPoreza: 16,  premium: 'fix', porez: 0 },
-      { code: 'ASIST_SVE', premijaBezPoreza: 32,  premium: 'fix', porez: 0 },
-      { code: 'NEZGODA',   premijaBezPoreza: 8,   premium: 'fix', porez: 0 },
-      { code: 'DIVLJAC',   premijaBezPoreza: 46,  premium: 'fix', porez: 10 },
-      { code: 'STAKLA',    premijaBezPoreza: 50,  premium: 'fix', porez: 10 },
-    ],
-    ps_ao: 10,
-  };
+/** Primijeni popust i porez na premiju bez poreza. */
+function izracunajCijenu(premijaBezPoreza, porezPct, applyDiscount = true) {
+  const base = applyDiscount ? premijaBezPoreza * DISCOUNT : premijaBezPoreza;
+  return Math.round(base * (1 + porezPct / 100) * 100) / 100;
 }
 
 export default {
@@ -112,29 +93,27 @@ export default {
       return json({ error: 'Neispravan JSON' }, 400, headers);
     }
 
-    const { registracija, snagaMotora, godinaRodjenja, tipStranke, godinaProizvodnje, demo } = body;
+    const { registracija, snagaMotora, godinaRodjenja, tipStranke, godinaProizvodnje, oib } = body;
 
     if (!registracija || !snagaMotora || !godinaRodjenja || !tipStranke) {
       return json(
-        { error: 'Nedostaju obavezni parametri (registracija, snagaMotora, godinaRodjenja, tipStranke)' },
-        400,
-        headers
+        { error: 'Nedostaju obavezni parametri' },
+        400, headers
       );
     }
 
-    // Demo mode — testni odgovor bez poziva Generaliju
-    if (demo === true) {
-      return json(makeDemoResponse(snagaMotora, godinaRodjenja), 200, headers);
-    }
-
+    // Registarska zona (prve 2 slova)
     const zona = registracija.replace(/[^A-Za-z]/g, '').substring(0, 2).toUpperCase();
+
     const credentials = btoa(`${env.ASDIRECT_USERNAME}:${env.ASDIRECT_PASSWORD}`);
 
-    // godinaProizvodnje je tehnički opcionalna po docs, ali API baca NullPointerException
-    // bez nje jer ne može dohvatiti TehnickaKarakteristikaAO. Koristimo fallback: 5 god. staro vozilo.
+    // Godina vozila — obavezna za API (TehnickaKarakteristikaAO), fallback: 5 god. staro
     const godinaVozila = godinaProizvodnje
       ? Number(godinaProizvodnje)
       : new Date().getFullYear() - 5;
+
+    // Dohvati pravi premijski stupanj iz HUOMTR-a (ako ima OIB)
+    const ps = await fetchPremijskiStupanj(oib, godinaRodjenja, credentials);
 
     const payload = {
       vozilo: {
@@ -148,16 +127,16 @@ export default {
         tipStranke: String(tipStranke),
       },
       datumPocetkaOsiguranja: getTomorrow(),
-      premijskiStupanjAo: 10,
+      premijskiStupanjAo: ps,
       premijskiStupanjAk: 2,
       brojPoliceZaObnovu: null,
-      posrednik: env.ASDIRECT_POSREDNIK || '411111',
+      posrednik: env.ASDIRECT_POSREDNIK || '413106',
       pausalnoOsiguranjeDodatneOpreme: false,
     };
 
     let asdirectRes;
     try {
-      asdirectRes = await fetch(ASDIRECT_URL, {
+      asdirectRes = await fetch(GETQUOTE_URL, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -165,42 +144,44 @@ export default {
         },
         body: JSON.stringify(payload),
       });
-    } catch (err) {
+    } catch {
       return json({ error: 'Greška pri komunikaciji s Generali API-jem' }, 502, headers);
     }
 
     const rawText = await asdirectRes.text();
 
     if (!asdirectRes.ok) {
-      return json(
-        { error: 'Osiguravatelj nije vratio valjanu ponudu', details: rawText },
-        502,
-        headers
-      );
+      return json({ error: 'Generali nije vratio valjanu ponudu', details: rawText }, 502, headers);
     }
 
     let data;
     try {
       data = JSON.parse(rawText);
     } catch {
-      return json({ error: 'Nevaljani JSON od osiguravatelja', details: rawText }, 502, headers);
+      return json({ error: 'Nevaljani JSON od Generalija', details: rawText }, 502, headers);
     }
 
-    const cijena = extractAoCijena(data);
+    const premijaBezPoreza = data?.premijaAOBezPoreza;
+    const porez = data?.porez ?? 0;
 
-    // Ako Generali nije vratio cijenu (config bug), vrati grešku s detaljima
-    if (!cijena) {
-      return json(
-        { error: 'Osiguravatelj nije vratio cijenu', details: data },
-        502,
-        headers
-      );
+    if (!premijaBezPoreza || premijaBezPoreza <= 0) {
+      return json({ error: 'Generali nije vratio cijenu' }, 502, headers);
     }
+
+    // Primijeni popuste na AO i na sve pakete
+    const aoSPorezom = izracunajCijenu(premijaBezPoreza, porez);
+
+    const paketi = (data.paketi ?? []).map(p => ({
+      ...p,
+      premijaBezPoreza: Math.round(p.premijaBezPoreza * DISCOUNT * 100) / 100,
+    }));
 
     return json({
-      ao_cijena_s_porezom: cijena,
-      paketi: data?.paketi ?? [],
-      ps_ao: data?.ps_AO ?? 10,
+      ao_cijena_s_porezom: aoSPorezom,
+      paketi,
+      ps_ao: ps,
+      ps_lookup: oib ? 'huomtr' : 'default',
+      popust_primijenjen: true,
     }, 200, headers);
   },
 };
