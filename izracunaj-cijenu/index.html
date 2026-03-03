@@ -72,6 +72,8 @@ permalink: /izracunaj-cijenu/
         .progress-line    { background: rgba(0,0,0,0.12) !important; }
         .loader-road      { background: repeating-linear-gradient(90deg,#573cf9 0,#573cf9 8px,rgba(0,0,0,0.1) 8px,rgba(0,0,0,0.1) 16px) !important; }
         .encourage        { background: rgba(255,255,255,0.4) !important; }
+        .bonus-banner     { background: rgba(255,255,255,0.5) !important; border-color: rgba(0,0,0,0.12) !important; color: rgba(0,0,0,0.7) !important; }
+        .bonus-banner strong { color: rgba(0,0,0,0.85) !important; }
         .tip-card         { border-color: rgba(0,0,0,0.12) !important; background: rgba(255,255,255,0.55) !important; }
         .tip-card:hover   { border-color: rgba(87,60,249,0.5) !important; }
         .tip-card-wrap input:checked + .tip-card { background: white !important; border-color: #573cf9 !important; }
@@ -274,7 +276,7 @@ permalink: /izracunaj-cijenu/
             padding: 18px 20px; gap: 10px;
         }
         .provider-logo-box img {
-            height: 36px; max-width: 130px;
+            height: 52px; max-width: 170px;
             object-fit: contain; display: block;
         }
         .provider-price-col { text-align: right; flex-shrink: 0; }
@@ -283,8 +285,36 @@ permalink: /izracunaj-cijenu/
         .provider-divider { height: 1px; background: #f0f0f0; }
         .included-section { padding: 12px 20px 16px; }
         .included-lbl { font-size: 0.64rem; text-transform: uppercase; letter-spacing: 0.9px; color: #bbb; font-weight: 700; margin-bottom: 9px; }
-        .included-item { display: flex; align-items: center; gap: 7px; font-size: 0.88rem; color: #444; font-weight: normal; }
+        .included-item { display: flex; align-items: center; gap: 7px; font-size: 0.88rem; color: #444; font-weight: normal; position: relative; }
+        .included-info-btn {
+            background: none; width: 17px; height: 17px; border-radius: 50%;
+            border: 1.5px solid #c4bbff; color: #573cf9; font-size: 0.62rem; font-weight: 800;
+            cursor: pointer; display: inline-flex; align-items: center; justify-content: center;
+            flex-shrink: 0; font-family: inherit; line-height: 1; transition: border-color 0.2s;
+        }
+        .included-info-btn:hover { border-color: #573cf9; }
+        .included-popover {
+            position: absolute; bottom: calc(100% + 8px); left: 0; right: 0;
+            background: #1c1533; color: white; border-radius: 10px;
+            padding: 11px 13px; font-size: 0.79rem; font-weight: normal; line-height: 1.55;
+            z-index: 100; box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+            opacity: 0; pointer-events: none; transform: translateY(6px);
+            transition: opacity 0.2s, transform 0.2s;
+        }
+        .included-popover.show { opacity: 1; pointer-events: all; transform: translateY(0); }
+        .included-popover::after {
+            content: ''; position: absolute; top: 100%; left: 18px;
+            border: 6px solid transparent; border-top-color: #1c1533;
+        }
         .price-base { font-size: 0.76rem; color: #bbb; font-weight: normal; margin-top: 8px; padding-left: 22px; }
+
+        /* ── Bonus banner ── */
+        .bonus-banner {
+            background: #fffbea; border: 1.5px solid #fde68a; border-radius: 10px;
+            padding: 11px 14px; font-size: 0.84rem; color: #78350f;
+            font-weight: normal; margin-bottom: 18px; line-height: 1.5;
+        }
+        .bonus-banner strong { color: #92400e; font-weight: 800; }
 
         .pkgs-lbl { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px; color: #aaa; margin: 18px 0 8px; }
         .pkg-row {
@@ -415,7 +445,6 @@ permalink: /izracunaj-cijenu/
                         <div class="reg-dot"></div><span>Provjeravam...</span>
                     </div>
                 </div>
-                <div class="fhint">Npr. ZG6426IB ili samo zona: ZG, ST, RI...</div>
                 <div class="ferror" id="e-reg">Unesite registracijsku oznaku.</div>
             </div>
             <div>
@@ -446,6 +475,9 @@ permalink: /izracunaj-cijenu/
     <div class="step-panel" id="s2">
         <h2 class="step-title">Podaci o vozaču</h2>
         <p class="step-sub">Još 2 podatka i odmah vidite cijenu.</p>
+        <div class="bonus-banner">
+            🎁 <strong>Bonus dobrodošlice!</strong> Novi korisnici Osiguraj.hr ostvaruju povoljniju ponudu pri prvom ugovaranju — agent je primjenjuje automatski.
+        </div>
         <div class="fields">
             <div>
                 <label class="flabel">Tip osobe</label>
@@ -535,6 +567,8 @@ permalink: /izracunaj-cijenu/
                     <div class="included-item">
                         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#573cf9" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
                         <span id="price-lbl">Obvezno auto osiguranje</span>
+                        <button class="included-info-btn" onclick="togglePop(event,'ao-pop')" type="button">i</button>
+                        <div class="included-popover" id="ao-pop">Štiti te od odgovornosti ako tvojim vozilom prouzročiš štetu drugima — tjelesne ozljede ili oštećenje imovine. Zakonski obvezno za sva vozila.</div>
                     </div>
                     <div class="price-base" id="price-base" style="display:none">Samo AO: <span id="ao-base-num"></span></div>
                 </div>
