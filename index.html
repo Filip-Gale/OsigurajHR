@@ -691,34 +691,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
         });
 
-        // Pure JS - no dependencies
-        document.addEventListener('DOMContentLoaded', () => {
-            const userTypeRadios = document.querySelectorAll('input[name="user-type"]');
-            const ageWrapper    = document.getElementById('age-wrapper');
-
-            function updateAgeVisibility() {
-                const isPravna = document.getElementById('pra').checked;
-
-                if (isPravna) {
-                    ageWrapper.classList.add('hidden');
-                    // Optional: clear the value when switching to pravna osoba
-                    // ageWrapper.querySelector('input').value = '';
-                } else {
-                    ageWrapper.classList.remove('hidden');
-                }
-            }
-
-            // Run once on page load (sets correct initial state)
-            updateAgeVisibility();
-
-            // Listen for radio changes
-            userTypeRadios.forEach(radio => {
-                radio.addEventListener('change', updateAgeVisibility);
-            });
-        });
-
-        
-        document.getElementById("contact-form").addEventListener("submit", function(e) {
+        // REMOVED: old contact-form submit handler (form replaced by wizard iframe)
+        if (false) { document.getElementById("contact-form").addEventListener("submit", function(e) {
             e.preventDefault();
 
             const form = this;
@@ -864,7 +838,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 resultDiv.style.background = "#fee2e2";
                 resultDiv.style.color = "#991b1b";
             });
-        });
+        }); } // end if(false)
     </script>
     <div style="opacity: 0; height: 0; width: 0; overflow: hidden; pointer-events: none;">
     <a href="https://www.osiguraj.hr/izracunaj-cijenu/">Izračunaj cijenu</a>
