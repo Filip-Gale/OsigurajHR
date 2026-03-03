@@ -79,6 +79,7 @@ permalink: /izracunaj-cijenu/
         .tip-card-wrap input:checked + .tip-card { background: white !important; border-color: #573cf9 !important; }
         .finput           { border-color: rgba(0,0,0,0.12) !important; }
         .finput:focus     { border-color: #573cf9 !important; }
+        .finput.ok        { border-color: #22c55e !important; }
         .err-note         { color: rgba(0,0,0,0.5) !important; }
         .pkg-row          { background: white !important; border-color: rgba(0,0,0,0.1) !important; }
         .pkg-row.on       { background: #f4f2ff !important; border-color: #573cf9 !important; }
@@ -150,6 +151,7 @@ permalink: /izracunaj-cijenu/
         .finput:focus { outline: none; border-color: #573cf9; box-shadow: 0 0 0 4px rgba(87,60,249,0.12); }
         .finput::placeholder { font-weight: normal; color: #ccc; }
 .finput.err { border-color: #ef4444; box-shadow: 0 0 0 4px rgba(239,68,68,0.1); }
+        .finput.ok  { border-color: #22c55e; box-shadow: 0 0 0 4px rgba(34,197,94,0.12); }
         .fhint  { font-size: 0.76rem; color: #bbb; font-weight: normal; margin-top: 5px; }
         .ferror { font-size: 0.76rem; color: #ef4444; font-weight: normal; margin-top: 5px; display: none; }
 
@@ -456,7 +458,7 @@ permalink: /izracunaj-cijenu/
             <div>
                 <label class="flabel" for="reg">Registracijska oznaka</label>
                 <div class="reg-wrap">
-                    <input class="finput" id="reg" type="text" placeholder="ZG6426IB" maxlength="10"
+                    <input class="finput" id="reg" type="text" placeholder="ZG1234AB" maxlength="10"
                            autocomplete="off" autocapitalize="characters" spellcheck="false">
                     <div class="reg-ind" id="reg-ind">
                         <div class="reg-dot"></div><span>Provjeravam...</span>
@@ -606,7 +608,7 @@ permalink: /izracunaj-cijenu/
                 </a>
                 <a href="tel:+38598813221" class="btn-tel">📞 Nazovi agenta: 098 813 221</a>
             </div>
-            <p class="disclaimer">Okvirna cijena. Konačna cijena potvrđuje se pri ugovaranju.<br>Posrednik: Maksi Miro d.o.o. • Generali osiguranje d.d.</p>
+            <p class="disclaimer">Okvirna cijena. Konačna cijena potvrđuje se pri ugovaranju.<br>Posrednik: Maksi Miro d.o.o.</p>
         </div>
 
         <div id="r-err" style="display:none">
@@ -698,6 +700,17 @@ function animateCount(el, from, to, dur) {
   }
   requestAnimationFrame(step);
 }
+
+/* ── Green ok border on filled inputs ── */
+document.querySelectorAll('.finput').forEach(function(inp) {
+  inp.addEventListener('blur', function() {
+    if (this.value.trim()) this.classList.add('ok');
+    else this.classList.remove('ok');
+  });
+  inp.addEventListener('focus', function() {
+    this.classList.remove('ok');
+  });
+});
 
 /* ── Step navigation with slide animations ── */
 function go(n, dir) {
