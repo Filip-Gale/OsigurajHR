@@ -45,14 +45,39 @@ permalink: /izracunaj-cijenu/
 
         /* ── Card ── */
         .wizard-card {
-            background: white; border-radius: 24px;
+            background: #ffbc27; border-radius: 24px;
             max-width: 500px; width: 92%;
             margin: 28px auto 80px;
             padding: 30px 24px 34px;
-            box-shadow: 0 32px 80px rgba(87,60,249,0.35), 0 8px 24px rgba(0,0,0,0.15);
+            box-shadow: 0 32px 80px rgba(255,188,39,0.4), 0 8px 24px rgba(0,0,0,0.2);
             overflow: hidden; position: relative;
         }
         @media (min-width: 600px) { .wizard-card { padding: 38px 42px 42px; } }
+
+        /* ── Yellow card text overrides ── */
+        .step-title { color: #1a1033 !important; }
+        .step-sub   { color: rgba(0,0,0,0.52) !important; }
+        .flabel     { color: rgba(0,0,0,0.58) !important; }
+        .fhint      { color: rgba(0,0,0,0.38) !important; }
+        .btn-back   { color: rgba(0,0,0,0.4) !important; }
+        .btn-back:hover { color: #573cf9 !important; }
+        .disclaimer { color: rgba(0,0,0,0.38) !important; }
+        .r-loading p { color: rgba(0,0,0,0.45) !important; }
+        .progress-dot     { background: rgba(0,0,0,0.12) !important; color: rgba(0,0,0,0.35) !important; }
+        .progress-dot.active { background: #573cf9 !important; color: white !important; box-shadow: 0 0 0 5px rgba(87,60,249,0.25) !important; }
+        .progress-dot.done   { background: #22c55e !important; color: white !important; }
+        .progress-lbl     { color: rgba(0,0,0,0.38) !important; }
+        .progress-lbl.active { color: #573cf9 !important; }
+        .progress-lbl.done   { color: #22c55e !important; }
+        .progress-line    { background: rgba(0,0,0,0.12) !important; }
+        .loader-road      { background: repeating-linear-gradient(90deg,#573cf9 0,#573cf9 8px,rgba(0,0,0,0.1) 8px,rgba(0,0,0,0.1) 16px) !important; }
+        .encourage        { background: rgba(255,255,255,0.4) !important; }
+        .tip-card         { border-color: rgba(0,0,0,0.12) !important; background: rgba(255,255,255,0.55) !important; }
+        .tip-card:hover   { border-color: rgba(87,60,249,0.5) !important; }
+        .tip-card-wrap input:checked + .tip-card { background: white !important; border-color: #573cf9 !important; }
+        .finput           { border-color: rgba(0,0,0,0.12) !important; }
+        .finput:focus     { border-color: #573cf9 !important; }
+        .err-note         { color: rgba(0,0,0,0.5) !important; }
 
         /* ── Progress ── */
         .progress-bar { display: flex; align-items: center; margin-bottom: 32px; }
@@ -125,9 +150,12 @@ permalink: /izracunaj-cijenu/
             position: absolute; right: 14px; top: 50%; transform: translateY(-50%);
             font-size: 0.72rem; color: #573cf9; font-weight: 600;
             display: none; align-items: center; gap: 5px; pointer-events: none;
+            transition: color 0.3s;
         }
         .reg-ind.show { display: flex; }
-        .reg-dot { width: 6px; height: 6px; border-radius: 50%; background: #573cf9; animation: pdot 1s infinite; }
+        .reg-ind.ok   { color: #16a34a; }
+        .reg-dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; animation: pdot 1s infinite; transition: all 0.3s; }
+        .reg-ind.ok .reg-dot { animation: none; width: 16px; height: 16px; border-radius: 50%; background: #22c55e; }
         @keyframes pdot { 0%,100%{opacity:1;transform:scale(1);} 50%{opacity:0.35;transform:scale(0.65);} }
 
         /* ── Tip cards ── */
@@ -408,19 +436,13 @@ permalink: /izracunaj-cijenu/
                     <div class="tip-card-wrap">
                         <input type="radio" name="tip" id="tip-f" value="F" checked>
                         <label class="tip-card" for="tip-f">
-                            <span class="t-ico">👤</span><span class="t-lbl">Fizička</span>
+                            <span class="t-ico">👤</span><span class="t-lbl">Fizička osoba</span>
                         </label>
                     </div>
                     <div class="tip-card-wrap">
                         <input type="radio" name="tip" id="tip-p" value="P">
                         <label class="tip-card" for="tip-p">
-                            <span class="t-ico">🏢</span><span class="t-lbl">Pravna</span>
-                        </label>
-                    </div>
-                    <div class="tip-card-wrap">
-                        <input type="radio" name="tip" id="tip-o" value="O">
-                        <label class="tip-card" for="tip-o">
-                            <span class="t-ico">🔧</span><span class="t-lbl">Obrt</span>
+                            <span class="t-ico">🏢</span><span class="t-lbl">Pravna osoba</span>
                         </label>
                     </div>
                 </div>
@@ -472,7 +494,7 @@ permalink: /izracunaj-cijenu/
         <div id="r-ok" style="display:none">
             <div class="price-box">
                 <div class="provider-logo">
-                    <img src="/img/asdirect-logo.svg" alt="AS Direct" style="height:28px;max-width:130px;object-fit:contain;display:block;margin:0 auto 10px;">
+                    <img src="/img/asdirect-logo.svg" alt="AS Direct" style="height:44px;max-width:180px;object-fit:contain;display:block;margin:0 auto 12px;">
                 </div>
                 <div class="price-lbl" id="price-lbl">AO Osiguranje — vaša cijena</div>
                 <div class="price-num" id="ao-num">—</div>
@@ -604,13 +626,21 @@ function go(n, dir) {
 }
 
 /* ── Registration typing indicator ── */
-var regTimer;
+var regTimer, regHideTimer;
 document.getElementById('reg').addEventListener('input', function() {
   var ind = document.getElementById('reg-ind');
-  clearTimeout(regTimer);
+  var dot = ind.querySelector('.reg-dot');
+  var txt = ind.querySelector('span');
+  clearTimeout(regTimer); clearTimeout(regHideTimer);
+  ind.classList.remove('ok');
   if (this.value.length >= 2) {
+    dot.textContent = ''; txt.textContent = 'Provjeravam...';
     ind.classList.add('show');
-    regTimer = setTimeout(function(){ ind.classList.remove('show'); }, 1300);
+    regTimer = setTimeout(function() {
+      ind.classList.add('ok');
+      dot.textContent = '✓'; txt.textContent = 'Zona prepoznata';
+      regHideTimer = setTimeout(function(){ ind.classList.remove('show','ok'); }, 2200);
+    }, 900);
   } else { ind.classList.remove('show'); }
 });
 
