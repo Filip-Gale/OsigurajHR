@@ -1016,6 +1016,14 @@ function toggleTriglavPkg(el, price) {
 }
 
 /* ── Triglav zone lookup (registracijska oznaka → [zona_idx 0-6, bazna_cijena]) ── */
+/* Flat cjenik autokuće — s porezom, po razredu snage */
+var TRIGLAV_FLAT = [[33,164.45],[44,164.45],[55,164.45],[66,165.60],[84,172.50],[110,204.70],[150,254.15],[200,293.25],[Infinity,334.65]];
+function triglavFlatPrice(kw) {
+  var k = Number(kw);
+  for (var i=0; i<TRIGLAV_FLAT.length; i++) { if (k<=TRIGLAV_FLAT[i][0]) return TRIGLAV_FLAT[i][1]; }
+  return TRIGLAV_FLAT[TRIGLAV_FLAT.length-1][1];
+}
+
 var TRIGLAV_ZONES = {
   'DA':[0,233],'DE':[1,232],'KŽ':[1,240],'NA':[1,239],'PŽ':[1,227],'SL':[1,239],'VU':[1,240],
   'BM':[2,251],'DJ':[2,246],'DU':[2,273],'MA':[2,275],'OG':[2,237],'ŠI':[2,248],
@@ -1161,18 +1169,16 @@ function showOk(d) {
   var triglavAge = new Date().getFullYear() - Number(S.dob);
   var tPrice = null;
   if (S.tip === 'F') {
+    var tPriceCalc;
     if (triglavAge <= 24) {
-      tPrice = triglavPrice(S.kw, S.dob);
+      tPriceCalc = triglavPrice(S.kw, S.dob);
     } else {
-      tPrice = triglavPrice25(S.reg, S.kw, S.dob);
+      tPriceCalc = triglavPrice25(S.reg, S.kw, S.dob);
     }
+    tPrice = (tPriceCalc !== null) ? Math.min(tPriceCalc, triglavFlatPrice(S.kw)) : triglavFlatPrice(S.kw);
   } else {
     var tPriceZone = triglavPrice25(S.reg, S.kw, null);
-    var _poFlat = [[33,164.45],[44,164.45],[55,164.45],[66,165.60],[84,172.50],[110,204.70],[150,254.15],[200,293.25],[Infinity,334.65]];
-    var _k = Number(S.kw);
-    var tPriceFlat = _poFlat[_poFlat.length-1][1];
-    for (var _i=0; _i<_poFlat.length; _i++) { if (_k<=_poFlat[_i][0]) { tPriceFlat=_poFlat[_i][1]; break; } }
-    tPrice = (tPriceZone !== null) ? Math.min(tPriceZone, tPriceFlat) : tPriceFlat;
+    tPrice = (tPriceZone !== null) ? Math.min(tPriceZone, triglavFlatPrice(S.kw)) : triglavFlatPrice(S.kw);
   }
   if (tPrice !== null) {
     triglavBase = tPrice;
