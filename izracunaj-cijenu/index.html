@@ -605,6 +605,26 @@ permalink: /izracunaj-cijenu/
                     <div class="price-base" id="price-base" style="display:none">Samo AO: <span id="ao-base-num"></span></div>
                 </div>
             </div>
+            <div class="provider-card" id="triglav-card" style="display:none">
+                <div class="provider-card-top">
+                    <div class="provider-logo-box">
+                        <img src="/img/triglav-logo.svg" alt="Triglav" style="height:40px;width:auto;max-width:140px;">
+                    </div>
+                    <div class="provider-price-col">
+                        <div class="price-num" id="triglav-num">—</div>
+                        <div class="price-per">/ godišnje s PDV-om</div>
+                    </div>
+                </div>
+                <div class="provider-divider"></div>
+                <div class="included-section">
+                    <div class="included-lbl">Uključeno u cijenu</div>
+                    <div class="included-item">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#573cf9" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                        <span>Obvezno auto osiguranje</span>
+                    </div>
+                </div>
+            </div>
+
             <div class="provider-card">
                 <div class="provider-card-top">
                     <div class="provider-logo-box">
@@ -841,6 +861,23 @@ function startLoader() {
 }
 function stopLoader() { clearInterval(loaderInt); }
 
+/* ── Triglav price calculation ── */
+function triglavPrice(kw, dob) {
+  var k = Number(kw);
+  var table = [
+    [33,  164.45], [44,  164.45], [55,  164.45],
+    [66,  165.50], [84,  172.50], [110, 204.70],
+    [150, 254.15], [200, 293.25], [Infinity, 334.65]
+  ];
+  var base = 334.65;
+  for (var i = 0; i < table.length; i++) {
+    if (k <= table[i][0]) { base = table[i][1]; break; }
+  }
+  var age = new Date().getFullYear() - Number(dob);
+  if (age <= 24) base = Math.round(base * 1.30 * 100) / 100;
+  return base;
+}
+
 /* ── Fetch quote ── */
 function fetch_quote() {
   var tip = document.querySelector('input[name=tip]:checked').value;
@@ -905,6 +942,18 @@ function showOk(d) {
   document.getElementById('r-ok').style.display = 'block';
   setTimeout(function(){ animateCount(el, 0, aoBase, 950); }, 80);
   setTimeout(launchConfetti, 180);
+
+  var triglavCard = document.getElementById('triglav-card');
+  var triglavAge = new Date().getFullYear() - Number(S.dob);
+  if (S.tip === 'F' && triglavAge <= 24) {
+    var tPrice = triglavPrice(S.kw, S.dob);
+    var tEl = document.getElementById('triglav-num');
+    tEl.textContent = '0,00 €';
+    triglavCard.style.display = 'block';
+    setTimeout(function(){ animateCount(tEl, 0, tPrice, 950); }, 120);
+  } else {
+    triglavCard.style.display = 'none';
+  }
 
   var pkgs = d.paketi || [], html = '';
   pkgs.forEach(function(p, idx) {
