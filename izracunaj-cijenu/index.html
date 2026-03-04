@@ -459,22 +459,31 @@ permalink: /izracunaj-cijenu/
             margin: 0 auto; background: white; border-radius: 20px 20px 0 0;
             padding: 24px 20px 32px; z-index: 1000;
             transform: translateY(100%); transition: transform 0.3s cubic-bezier(0.32,0.72,0,1);
+            box-shadow: 0 -4px 40px rgba(0,0,0,0.18);
         }
         .odaberi-sheet.show { transform: translateY(0); }
-        .odaberi-sheet-handle { width: 40px; height: 4px; background: #e0e0e0; border-radius: 2px; margin: 0 auto 20px; }
-        .odaberi-sheet-title { font-size: 0.8rem; color: #888; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px; }
+        .odaberi-sheet-handle { width: 36px; height: 4px; background: #e0e0e0; border-radius: 2px; margin: 0 auto 20px; }
+        .odaberi-sheet-title { font-size: 0.72rem; color: #aaa; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px; }
         .odaberi-sheet-provider { font-size: 1.1rem; font-weight: 800; color: #1c1533; margin-bottom: 20px; }
         .odaberi-option {
             display: flex; align-items: center; gap: 14px;
-            padding: 16px; border: 2px solid #e5e5e5; border-radius: 14px;
-            margin-bottom: 10px; cursor: pointer; text-decoration: none;
-            transition: border-color 0.2s, background 0.2s;
+            padding: 14px 16px; border: 1.5px solid #eeeeee; border-radius: 16px;
+            margin-bottom: 10px; cursor: pointer; text-decoration: none; color: inherit;
+            background: #fafafa; transition: border-color 0.15s, background 0.15s, transform 0.1s;
         }
-        .odaberi-option:hover { border-color: #c4bbff; background: #f9f8ff; }
-        .odaberi-option-icon { font-size: 1.4rem; flex-shrink: 0; }
+        .odaberi-option:active { transform: scale(0.98); }
+        .odaberi-option:hover { border-color: #c4bbff; background: #f4f0ff; }
+        .odaberi-option-icon {
+            width: 44px; height: 44px; border-radius: 12px;
+            display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+        }
+        .odaberi-icon-callback { background: #ede9ff; }
+        .odaberi-icon-call { background: #1c1533; }
+        .odaberi-icon-wa { background: #dcfce7; }
         .odaberi-option-text { flex: 1; }
         .odaberi-option-title { font-size: 0.95rem; font-weight: 800; color: #1c1533; }
-        .odaberi-option-sub { font-size: 0.8rem; color: #888; margin-top: 2px; }
+        .odaberi-option-sub { font-size: 0.78rem; color: #999; margin-top: 2px; }
+        .odaberi-chevron { flex-shrink: 0; }
         /* Phone input panel */
         .odaberi-phone-panel { display: none; margin-top: 10px; }
         .odaberi-phone-panel.show { display: block; }
@@ -1302,11 +1311,14 @@ function submitNazovMe() {
 
   <!-- Opcija 1: Nazovi me -->
   <div class="odaberi-option" onclick="toggleNazovMe()" id="odaberi-opt-callback">
-    <div class="odaberi-option-icon">📞</div>
+    <div class="odaberi-option-icon odaberi-icon-callback">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#573cf9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.5 12 19.79 19.79 0 0 1 1.15 3.37a2 2 0 0 1 1.99-2.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+    </div>
     <div class="odaberi-option-text">
       <div class="odaberi-option-title">Nek me agent nazove</div>
       <div class="odaberi-option-sub">Unesite broj — javimo se u roku 15 min</div>
     </div>
+    <svg class="odaberi-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ccc" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
   </div>
   <div class="odaberi-phone-panel" id="odaberi-phone-panel">
     <input class="odaberi-phone-input" id="odaberi-phone" type="tel" placeholder="09x xxx xxxx" inputmode="tel">
@@ -1316,20 +1328,26 @@ function submitNazovMe() {
 
   <!-- Opcija 2: Nazovi -->
   <a class="odaberi-option" href="tel:+38598813221">
-    <div class="odaberi-option-icon">📱</div>
+    <div class="odaberi-option-icon odaberi-icon-call">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.5 12 19.79 19.79 0 0 1 1.15 3.37a2 2 0 0 1 1.99-2.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+    </div>
     <div class="odaberi-option-text">
       <div class="odaberi-option-title">Nazovi agenta</div>
       <div class="odaberi-option-sub">098 813 221 — odmah dostupni</div>
     </div>
+    <svg class="odaberi-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ccc" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
   </a>
 
   <!-- Opcija 3: WhatsApp -->
   <a class="odaberi-option" id="odaberi-wa" href="#" target="_blank">
-    <div class="odaberi-option-icon" style="color:#22c55e">💬</div>
+    <div class="odaberi-option-icon odaberi-icon-wa">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="#16a34a"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.004 2C6.478 2 2 6.478 2 12.004c0 1.832.49 3.545 1.345 5.025L2 22l5.09-1.335A9.945 9.945 0 0 0 12.004 22C17.528 22 22 17.524 22 12.004 22 6.478 17.528 2 12.004 2zm0 18.084a8.064 8.064 0 0 1-4.105-1.12l-.294-.175-3.046.798.814-2.968-.192-.305a8.049 8.049 0 0 1-1.237-4.314c0-4.454 3.624-8.076 8.076-8.076 4.45 0 8.073 3.622 8.073 8.076 0 4.452-3.623 8.084-8.089 8.084z"/></svg>
+    </div>
     <div class="odaberi-option-text">
       <div class="odaberi-option-title">WhatsApp</div>
       <div class="odaberi-option-sub">Pišite nam — odgovaramo brzo</div>
     </div>
+    <svg class="odaberi-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ccc" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
   </a>
 </div>
 </body>
