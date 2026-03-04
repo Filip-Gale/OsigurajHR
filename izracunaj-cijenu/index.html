@@ -1180,13 +1180,11 @@ function showOk(d) {
       pkgsHtml += '<div class="pkg-row" id="tpkg-asist-eu" onclick="toggleTriglavPkg(this,20)" data-price="20">'
         + '<div class="pkg-left"><div class="pkg-check"><span class="pkg-check-icon">✓</span></div><span class="pkg-name">Asistencija (Europa)</span></div>'
         + '<span class="pkg-price">+ 20 €/god</span></div>';
-      var dobrodoslicaPrice = Math.round((15 + bpPrice) * 100) / 100;
-      var dobPriceStr = dobrodoslicaPrice.toFixed(2).replace('.', ',');
-      pkgsHtml += '<div class="pkg-row pkg-row-gold" id="tpkg-dobrodoslica" onclick="toggleTriglavPkg(this,' + dobrodoslicaPrice + ')" data-price="' + dobrodoslicaPrice + '">'
+      pkgsHtml += '<div class="pkg-row pkg-row-gold" id="tpkg-dobrodoslica" onclick="toggleTriglavPkg(this,15)" data-price="15">'
         + '<div class="pkg-left"><div class="pkg-check"><span class="pkg-check-icon">✓</span></div><span class="pkg-name">Paket dobrodošlice</span>'
         + '<button class="pkg-info-btn" onclick="togglePop(event,\'pop-tdob\')" type="button">i</button>'
         + '<div class="pkg-popover" id="pop-tdob">Uključuje: Osiguranje vozača i putnika s isplatom mjesečne rente u slučaju nezgode i nemogućnosti rada + Bonus Protect (zaštita bonusa pri vlastitoj krivnji, + ' + bpPriceStr + ' €/god).</div>'
-        + '</div><span class="pkg-price">+ ' + dobPriceStr + ' €/god</span></div>';
+        + '</div><span class="pkg-price">+ 15 €/god</span></div>';
     }
     document.getElementById('triglav-pkgs-list').innerHTML = pkgsHtml;
     var rOk = document.getElementById('r-ok');
