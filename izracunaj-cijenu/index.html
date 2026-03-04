@@ -576,7 +576,8 @@ permalink: /izracunaj-cijenu/
                 <label class="flabel" for="reg">Registracijska oznaka</label>
                 <div class="reg-wrap">
                     <input class="finput" id="reg" type="text" placeholder="ZG1234AB" maxlength="10"
-                           autocomplete="off" autocapitalize="characters" spellcheck="false">
+                           autocomplete="off" autocapitalize="characters" spellcheck="false"
+                           oninput="fireFormStart()">
                     <div class="reg-ind" id="reg-ind">
                         <div class="reg-dot"></div><span>Provjeravam...</span>
                     </div>
@@ -585,7 +586,7 @@ permalink: /izracunaj-cijenu/
             </div>
             <div>
                 <label class="flabel" for="kw">Snaga motora (kW)</label>
-                <input class="finput" id="kw" type="number" placeholder="85" min="1" max="2000" inputmode="numeric">
+                <input class="finput" id="kw" type="number" placeholder="85" min="1" max="2000" inputmode="numeric" oninput="fireFormStart()">
                 <div class="fhint">Prometna dozvola — redak P.2.</div>
                 <div class="ferror" id="e-kw">Unesite snagu motora u kW.</div>
             </div>
@@ -977,6 +978,7 @@ function next1() {
   S.reg = r.toUpperCase(); S.kw = +k;
   var y = document.getElementById('yr').value.trim();
   S.yr = y ? +y : null;
+  if (typeof gtag === 'function') gtag('event', 'vozilo_submit', {kw: S.kw, zona: S.reg.replace(/[0-9]/g,'').trim()});
   go(2);
 }
 
@@ -1114,6 +1116,11 @@ function fetch_quote() {
   else { setErr('oib',false); S.oib = oibVal; }
   if (!ok) return;
 
+  var _tipGa = tip==='F' ? 'fizicka' : tip==='P' ? 'pravna' : 'obrt';
+  var _dobRange = '';
+  if (tip === 'F') { var _ga = new Date().getFullYear()-S.dob; _dobRange = _ga<=24?'do24':_ga<=28?'25-28':_ga<=34?'29-34':_ga<=48?'35-48':'49plus'; }
+  if (typeof gtag === 'function') gtag('event', 'vozac_submit', {tip_osobe: _tipGa, dob_range: _dobRange || 'n/a'});
+
   var tipLabel = tip==='F' ? 'Fizička osoba' : tip==='P' ? 'Pravna osoba' : 'Obrt';
   var cs = [S.reg, S.kw+' kW', tip==='F' ? (S.dob+'. god.') : tipLabel];
   if (S.yr) cs.push(S.yr+'. god.');
@@ -1242,7 +1249,10 @@ function showOk(d) {
           + '<span class="pkg-price">+ '+price+' €/god</span></div>';
   });
   if (html) { document.getElementById('pkg-list').innerHTML = html; document.getElementById('pkg-wrap').style.display = 'block'; }
-  if (typeof gtag === 'function') gtag('event','quote_success',{event_category:'quote',value:d.ao_cijena_s_porezom});
+  if (typeof gtag === 'function') {
+    var _najjeftiniji = (tPrice !== null && tPrice < aoBase) ? 'Triglav' : 'AS Direct';
+    gtag('event', 'prikazane_cijene', {triglav_cijena: tPrice ? Math.round(tPrice) : null, asdirect_cijena: Math.round(aoBase), najjeftiniji: _najjeftiniji});
+  }
   setTimeout(notifyHeight, 400);
 }
 
@@ -1287,6 +1297,14 @@ function showErr(msg) {
   document.getElementById('r-err').style.display = 'block';
 }
 
+/* ── GA4 form_start (fires once) ── */
+var _formStartFired = false;
+function fireFormStart() {
+  if (_formStartFired) return;
+  _formStartFired = true;
+  if (typeof gtag === 'function') gtag('event', 'form_start');
+}
+
 /* ── Odaberi modal ── */
 var _odaberiProvider = '', _odaberiPrice = '', _odaberiAddons = [];
 
@@ -1309,6 +1327,7 @@ function openOdaberi(provider, priceElId, btn) {
   var priceText = priceEl ? priceEl.textContent.trim() : '';
   _odaberiPrice = priceText;
   document.getElementById('odaberi-provider-label').textContent = provider + ' — ' + priceText;
+  if (typeof gtag === 'function') gtag('event', 'kliknuo_odaberi', {provider: provider, cijena: priceText});
 
   _odaberiAddons = [];
   if (provider === 'AS Direct') {
@@ -1374,6 +1393,7 @@ function submitNazovMe() {
   fd.append('subject', 'Zahtjev za poziv — ' + _odaberiProvider + ' | ' + S.reg);
   fd.append('message', 'Korisnik traži povratni poziv.\nTelefon: ' + phone + '\n\n' + _buildLeadInfo());
   fetch('https://api.web3forms.com/submit', { method:'POST', body: fd });
+  if (typeof gtag === 'function') gtag('event', 'ostavio_telefon', {provider: _odaberiProvider, cijena: _odaberiPrice});
   document.getElementById('odaberi-success').style.display = 'block';
   document.querySelectorAll('#odaberi-phone-panel .odaberi-submit').forEach(function(b){ b.style.display = 'none'; });
 }
@@ -1391,6 +1411,7 @@ function submitEmail() {
   fd.append('subject', 'Zahtjev za ponudu mailom — ' + _odaberiProvider + ' | ' + S.reg);
   fd.append('message', 'Korisnik traži ponudu na e-mail.\nE-mail: ' + email + '\n\n' + _buildLeadInfo());
   fetch('https://api.web3forms.com/submit', { method:'POST', body: fd });
+  if (typeof gtag === 'function') gtag('event', 'ostavio_email', {provider: _odaberiProvider, cijena: _odaberiPrice});
   document.getElementById('odaberi-email-success').style.display = 'block';
   document.querySelectorAll('#odaberi-email-panel .odaberi-submit').forEach(function(b){ b.style.display = 'none'; });
 }
@@ -1420,7 +1441,7 @@ function submitEmail() {
   </div>
 
   <!-- Opcija 2: Nazovi -->
-  <a class="odaberi-option" href="tel:+38598813221">
+  <a class="odaberi-option" href="tel:+38598813221" onclick="if(typeof gtag==='function')gtag('event','nazvao_agenta',{provider:_odaberiProvider})">
     <div class="odaberi-option-icon odaberi-icon-call">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.5 12 19.79 19.79 0 0 1 1.15 3.37a2 2 0 0 1 1.99-2.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
     </div>
@@ -1449,7 +1470,7 @@ function submitEmail() {
   </div>
 
   <!-- Opcija 4: WhatsApp -->
-  <a class="odaberi-option" id="odaberi-wa" href="#" target="_blank">
+  <a class="odaberi-option" id="odaberi-wa" href="#" target="_blank" onclick="if(typeof gtag==='function')gtag('event','otvorio_whatsapp',{provider:_odaberiProvider,cijena:_odaberiPrice})">
     <div class="odaberi-option-icon odaberi-icon-wa">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="#16a34a"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.004 2C6.478 2 2 6.478 2 12.004c0 1.832.49 3.545 1.345 5.025L2 22l5.09-1.335A9.945 9.945 0 0 0 12.004 22C17.528 22 22 17.524 22 12.004 22 6.478 17.528 2 12.004 2zm0 18.084a8.064 8.064 0 0 1-4.105-1.12l-.294-.175-3.046.798.814-2.968-.192-.305a8.049 8.049 0 0 1-1.237-4.314c0-4.454 3.624-8.076 8.076-8.076 4.45 0 8.073 3.622 8.073 8.076 0 4.452-3.623 8.084-8.089 8.084z"/></svg>
     </div>
