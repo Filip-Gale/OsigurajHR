@@ -1167,7 +1167,7 @@ function showOk(d) {
 
   var triglavCard = document.getElementById('triglav-card');
   var triglavAge = new Date().getFullYear() - Number(S.dob);
-  var tPrice = null;
+  var tPrice = null, tIsFlat = false;
   if (S.tip === 'F') {
     var tPriceCalc;
     if (triglavAge <= 24) {
@@ -1175,10 +1175,14 @@ function showOk(d) {
     } else {
       tPriceCalc = triglavPrice25(S.reg, S.kw, S.dob);
     }
-    tPrice = (tPriceCalc !== null) ? Math.min(tPriceCalc, triglavFlatPrice(S.kw)) : triglavFlatPrice(S.kw);
+    var tPriceF = triglavFlatPrice(S.kw);
+    if (tPriceCalc !== null && tPriceCalc <= tPriceF) { tPrice = tPriceCalc; tIsFlat = false; }
+    else { tPrice = tPriceF; tIsFlat = true; }
   } else {
     var tPriceZone = triglavPrice25(S.reg, S.kw, null);
-    tPrice = (tPriceZone !== null) ? Math.min(tPriceZone, triglavFlatPrice(S.kw)) : triglavFlatPrice(S.kw);
+    var tPriceF = triglavFlatPrice(S.kw);
+    if (tPriceZone !== null && tPriceZone <= tPriceF) { tPrice = tPriceZone; tIsFlat = false; }
+    else { tPrice = tPriceF; tIsFlat = true; }
   }
   if (tPrice !== null) {
     triglavBase = tPrice;
@@ -1189,9 +1193,9 @@ function showOk(d) {
     triglavCard.style.display = 'block';
     setTimeout(function(){ animateCount(tEl, 0, tPrice, 950); }, 120);
 
-    // Popuni add-one ovisno o dobi / vrsti osobe
+    // Paketi: flat cjenik → Nezgoda + Asist.Europa; zona → Asist.HR + Asist.EU + Paket dobrodošlice
     var pkgsHtml = '';
-    if (triglavAge <= 24) {
+    if (tIsFlat) {
       pkgsHtml += '<div class="pkg-row" id="tpkg-nezgoda" onclick="toggleTriglavPkg(this,7.44)" data-price="7.44">'
         + '<div class="pkg-left"><div class="pkg-check"><span class="pkg-check-icon">✓</span></div><span class="pkg-name">Nezgoda putnika</span></div>'
         + '<span class="pkg-price">+ 7,44 €/god</span></div>';
@@ -1199,8 +1203,6 @@ function showOk(d) {
         + '<div class="pkg-left"><div class="pkg-check"><span class="pkg-check-icon">✓</span></div><span class="pkg-name">Asistencija (Europa)</span></div>'
         + '<span class="pkg-price">+ 20 €/god</span></div>';
     } else {
-      var bpPrice = Math.round(tPrice * 0.065 * 100) / 100;
-      var bpPriceStr = bpPrice.toFixed(2).replace('.', ',');
       pkgsHtml += '<div class="pkg-row" id="tpkg-asist-hr" onclick="toggleTriglavPkg(this,15)" data-price="15">'
         + '<div class="pkg-left"><div class="pkg-check"><span class="pkg-check-icon">✓</span></div><span class="pkg-name">Asistencija (Hrvatska)</span></div>'
         + '<span class="pkg-price">+ 15 €/god</span></div>';
