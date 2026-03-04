@@ -1185,7 +1185,7 @@ function showOk(d) {
 
     // Popuni add-one ovisno o dobi / vrsti osobe
     var pkgsHtml = '';
-    if (triglavAge <= 24 || S.tip !== 'F') {
+    if (triglavAge <= 24) {
       pkgsHtml += '<div class="pkg-row" id="tpkg-nezgoda" onclick="toggleTriglavPkg(this,7.44)" data-price="7.44">'
         + '<div class="pkg-left"><div class="pkg-check"><span class="pkg-check-icon">✓</span></div><span class="pkg-name">Nezgoda putnika</span></div>'
         + '<span class="pkg-price">+ 7,44 €/god</span></div>';
