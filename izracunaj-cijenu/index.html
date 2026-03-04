@@ -1167,7 +1167,12 @@ function showOk(d) {
       tPrice = triglavPrice25(S.reg, S.kw, S.dob);
     }
   } else {
-    tPrice = triglavPrice25(S.reg, S.kw, null); // pravna osoba / obrt — bez dobnog faktora
+    var tPriceZone = triglavPrice25(S.reg, S.kw, null);
+    var _poFlat = [[33,164.45],[44,164.45],[55,164.45],[66,165.60],[84,172.50],[110,204.70],[150,254.15],[200,293.25],[Infinity,334.65]];
+    var _k = Number(S.kw);
+    var tPriceFlat = _poFlat[_poFlat.length-1][1];
+    for (var _i=0; _i<_poFlat.length; _i++) { if (_k<=_poFlat[_i][0]) { tPriceFlat=_poFlat[_i][1]; break; } }
+    tPrice = (tPriceZone !== null) ? Math.min(tPriceZone, tPriceFlat) : tPriceFlat;
   }
   if (tPrice !== null) {
     triglavBase = tPrice;
@@ -1178,9 +1183,9 @@ function showOk(d) {
     triglavCard.style.display = 'block';
     setTimeout(function(){ animateCount(tEl, 0, tPrice, 950); }, 120);
 
-    // Popuni add-one ovisno o dobi
+    // Popuni add-one ovisno o dobi / vrsti osobe
     var pkgsHtml = '';
-    if (triglavAge <= 24) {
+    if (triglavAge <= 24 || S.tip !== 'F') {
       pkgsHtml += '<div class="pkg-row" id="tpkg-nezgoda" onclick="toggleTriglavPkg(this,7.44)" data-price="7.44">'
         + '<div class="pkg-left"><div class="pkg-check"><span class="pkg-check-icon">✓</span></div><span class="pkg-name">Nezgoda putnika</span></div>'
         + '<span class="pkg-price">+ 7,44 €/god</span></div>';
