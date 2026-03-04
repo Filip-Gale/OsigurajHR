@@ -1327,7 +1327,7 @@ function openOdaberi(provider, priceElId, btn) {
     + 'Snaga: ' + S.kw + ' kW\n'
     + (S.tip === 'F' ? 'God. rođenja: ' + S.dob + '\n' : '')
     + 'Cijena: ' + priceText + '\n'
-    + (addons.length ? 'Dodaci: ' + addons.join(', ') + '\n' : '')
+    + (_odaberiAddons.length ? 'Dodaci: ' + _odaberiAddons.join(', ') + '\n' : '')
     + 'Molim potvrdu i ugovaranje.';
   document.getElementById('odaberi-wa').href = 'https://wa.me/38598813221?text=' + encodeURIComponent(msg);
 
