@@ -608,7 +608,10 @@ permalink: /izracunaj-cijenu/
 
     <!-- Step 2: Vozač -->
     <div class="step-panel" id="s2">
-        <h2 class="step-title">Podaci o vozaču</h2>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
+            <h2 class="step-title" style="margin-bottom:0">Podaci o vozaču</h2>
+            <button class="btn-back-top" onclick="go(1,'back')" type="button">← Natrag</button>
+        </div>
         <p class="step-sub">Još 2 podatka i odmah vidite cijenu.</p>
         <div class="bonus-banner">
             🎁 <strong>Bonus dobrodošlice!</strong> Novi korisnici Osiguraj.hr ostvaruju 15€ popusta pri prvom ugovaranju — agent je primjenjuje automatski.
@@ -650,7 +653,6 @@ permalink: /izracunaj-cijenu/
         </div>
         <div class="btn-stack">
             <button class="btn-main" onclick="fetch_quote()" type="button">Saznaj cijenu →</button>
-            <button class="btn-back" onclick="go(1,'back')" type="button">← Natrag</button>
         </div>
     </div>
 
