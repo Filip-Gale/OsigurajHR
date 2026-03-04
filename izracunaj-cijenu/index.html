@@ -435,6 +435,61 @@ permalink: /izracunaj-cijenu/
             box-shadow: 0 5px 0 #3b20d4; transition: transform 0.08s, box-shadow 0.08s;
         }
         .btn-generali:active { transform: translateY(4px); box-shadow: 0 1px 0 #3b20d4; }
+
+        /* Odaberi gumb */
+        .btn-odaberi {
+            display: block; width: calc(100% - 40px); margin: 0 20px 20px;
+            padding: 14px; background: #573cf9; color: white; border: none;
+            border-radius: 12px; font-size: 1rem; font-family: inherit;
+            font-weight: 800; cursor: pointer; text-align: center;
+            box-shadow: 0 5px 0 #3b20d4; transition: transform 0.08s, box-shadow 0.08s;
+        }
+        .btn-odaberi:active { transform: translateY(4px); box-shadow: 0 1px 0 #3b20d4; }
+
+        /* Bottom-sheet overlay */
+        .odaberi-overlay {
+            position: fixed; inset: 0; background: rgba(0,0,0,0.45);
+            z-index: 999; opacity: 0; pointer-events: none; transition: opacity 0.25s;
+        }
+        .odaberi-overlay.show { opacity: 1; pointer-events: all; }
+
+        /* Bottom-sheet panel */
+        .odaberi-sheet {
+            position: fixed; bottom: 0; left: 0; right: 0; max-width: 480px;
+            margin: 0 auto; background: white; border-radius: 20px 20px 0 0;
+            padding: 24px 20px 32px; z-index: 1000;
+            transform: translateY(100%); transition: transform 0.3s cubic-bezier(0.32,0.72,0,1);
+        }
+        .odaberi-sheet.show { transform: translateY(0); }
+        .odaberi-sheet-handle { width: 40px; height: 4px; background: #e0e0e0; border-radius: 2px; margin: 0 auto 20px; }
+        .odaberi-sheet-title { font-size: 0.8rem; color: #888; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px; }
+        .odaberi-sheet-provider { font-size: 1.1rem; font-weight: 800; color: #1c1533; margin-bottom: 20px; }
+        .odaberi-option {
+            display: flex; align-items: center; gap: 14px;
+            padding: 16px; border: 2px solid #e5e5e5; border-radius: 14px;
+            margin-bottom: 10px; cursor: pointer; text-decoration: none;
+            transition: border-color 0.2s, background 0.2s;
+        }
+        .odaberi-option:hover { border-color: #c4bbff; background: #f9f8ff; }
+        .odaberi-option-icon { font-size: 1.4rem; flex-shrink: 0; }
+        .odaberi-option-text { flex: 1; }
+        .odaberi-option-title { font-size: 0.95rem; font-weight: 800; color: #1c1533; }
+        .odaberi-option-sub { font-size: 0.8rem; color: #888; margin-top: 2px; }
+        /* Phone input panel */
+        .odaberi-phone-panel { display: none; margin-top: 10px; }
+        .odaberi-phone-panel.show { display: block; }
+        .odaberi-phone-input {
+            width: 100%; padding: 13px 14px; border: 2px solid #e5e5e5; border-radius: 11px;
+            font-size: 1rem; font-family: inherit; box-sizing: border-box; outline: none;
+            transition: border-color 0.2s; margin-bottom: 10px;
+        }
+        .odaberi-phone-input:focus { border-color: #573cf9; }
+        .odaberi-submit {
+            display: block; width: 100%; padding: 13px; background: #573cf9; color: white;
+            border: none; border-radius: 11px; font-size: 0.97rem; font-family: inherit;
+            font-weight: 800; cursor: pointer;
+        }
+        .odaberi-success { color: #16a34a; font-weight: 700; text-align: center; padding: 10px 0; display: none; }
     </style>
 </head>
 <body>
@@ -608,6 +663,7 @@ permalink: /izracunaj-cijenu/
                     <div class="pkgs-lbl">Dodajte po želji</div>
                     <div id="pkg-list"></div>
                 </div>
+                <button class="btn-odaberi" onclick="openOdaberi('AS Direct','ao-num')" type="button">Odaberi</button>
             </div>
             <div class="provider-card" id="triglav-card" style="display:none">
                 <div class="provider-card-top">
@@ -632,6 +688,7 @@ permalink: /izracunaj-cijenu/
                     <div class="pkgs-lbl" style="margin-top:12px;">Dodajte po želji</div>
                     <div id="triglav-pkgs-list"></div>
                 </div>
+                <button class="btn-odaberi" onclick="openOdaberi('Triglav','triglav-num')" type="button">Odaberi</button>
             </div>
 
             <div class="provider-card">
@@ -1170,6 +1227,110 @@ function showErr(msg) {
   document.getElementById('err-msg').textContent = msg;
   document.getElementById('r-err').style.display = 'block';
 }
+
+/* ── Odaberi modal ── */
+var _odaberiProvider = '';
+
+function openOdaberi(provider, priceElId) {
+  _odaberiProvider = provider;
+  var priceEl = document.getElementById(priceElId);
+  var priceText = priceEl ? priceEl.textContent.trim() : '';
+  document.getElementById('odaberi-provider-label').textContent = provider + ' — ' + priceText;
+
+  var addons = [];
+  if (provider === 'AS Direct') {
+    Object.keys(selectedPkgs).forEach(function(k) {
+      var el = document.getElementById(k);
+      if (el) addons.push(el.querySelector('.pkg-name').textContent);
+    });
+  } else {
+    Object.keys(selectedTriglavPkgs).forEach(function(k) {
+      var el = document.getElementById(k);
+      if (el) addons.push(el.querySelector('.pkg-name').textContent);
+    });
+  }
+  var msg = 'Zanima me ' + provider + ' AO osiguranje\n'
+    + 'Tablica: ' + S.reg + '\n'
+    + 'Snaga: ' + S.kw + ' kW\n'
+    + (S.tip === 'F' ? 'God. rođenja: ' + S.dob + '\n' : '')
+    + 'Cijena: ' + priceText + '\n'
+    + (addons.length ? 'Dodaci: ' + addons.join(', ') + '\n' : '')
+    + 'Molim potvrdu i ugovaranje.';
+  document.getElementById('odaberi-wa').href = 'https://wa.me/38598813221?text=' + encodeURIComponent(msg);
+
+  document.getElementById('odaberi-phone-panel').classList.remove('show');
+  document.getElementById('odaberi-phone').value = '';
+  document.getElementById('odaberi-success').style.display = 'none';
+  var submitBtn = document.querySelector('.odaberi-submit');
+  if (submitBtn) submitBtn.style.display = 'block';
+
+  document.getElementById('odaberi-overlay').classList.add('show');
+  document.getElementById('odaberi-sheet').classList.add('show');
+  setTimeout(notifyHeight, 350);
+}
+
+function closeOdaberi() {
+  document.getElementById('odaberi-overlay').classList.remove('show');
+  document.getElementById('odaberi-sheet').classList.remove('show');
+}
+
+function toggleNazovMe() {
+  document.getElementById('odaberi-phone-panel').classList.toggle('show');
+}
+
+function submitNazovMe() {
+  var phone = document.getElementById('odaberi-phone').value.trim();
+  if (!phone) { document.getElementById('odaberi-phone').focus(); return; }
+  var fd = new FormData();
+  fd.append('access_key', '3cf56deb-78e0-4c88-8bc2-d73a20b78a80');
+  fd.append('subject', 'Zahtjev za poziv — ' + _odaberiProvider);
+  fd.append('message', 'Korisnik traži povratni poziv.\nTelefon: ' + phone
+    + '\nOsiguranje: ' + _odaberiProvider
+    + '\nTablica: ' + S.reg + ' | ' + S.kw + ' kW'
+    + (S.tip === 'F' ? ' | god. ' + S.dob : ''));
+  fetch('https://api.web3forms.com/submit', { method:'POST', body: fd });
+  document.getElementById('odaberi-success').style.display = 'block';
+  document.querySelector('.odaberi-submit').style.display = 'none';
+}
 </script>
+
+<div class="odaberi-overlay" id="odaberi-overlay" onclick="closeOdaberi()"></div>
+<div class="odaberi-sheet" id="odaberi-sheet">
+  <div class="odaberi-sheet-handle"></div>
+  <div class="odaberi-sheet-title">Odabrano osiguranje</div>
+  <div class="odaberi-sheet-provider" id="odaberi-provider-label"></div>
+
+  <!-- Opcija 1: Nazovi me -->
+  <div class="odaberi-option" onclick="toggleNazovMe()" id="odaberi-opt-callback">
+    <div class="odaberi-option-icon">📞</div>
+    <div class="odaberi-option-text">
+      <div class="odaberi-option-title">Nek me agent nazove</div>
+      <div class="odaberi-option-sub">Unesite broj — javimo se u roku 15 min</div>
+    </div>
+  </div>
+  <div class="odaberi-phone-panel" id="odaberi-phone-panel">
+    <input class="odaberi-phone-input" id="odaberi-phone" type="tel" placeholder="09x xxx xxxx" inputmode="tel">
+    <button class="odaberi-submit" onclick="submitNazovMe()" type="button">Pošalji zahtjev</button>
+    <div class="odaberi-success" id="odaberi-success">✓ Zahtjev poslan! Agent vas naziva uskoro.</div>
+  </div>
+
+  <!-- Opcija 2: Nazovi -->
+  <a class="odaberi-option" href="tel:+38598813221">
+    <div class="odaberi-option-icon">📱</div>
+    <div class="odaberi-option-text">
+      <div class="odaberi-option-title">Nazovi agenta</div>
+      <div class="odaberi-option-sub">098 813 221 — odmah dostupni</div>
+    </div>
+  </a>
+
+  <!-- Opcija 3: WhatsApp -->
+  <a class="odaberi-option" id="odaberi-wa" href="#" target="_blank">
+    <div class="odaberi-option-icon" style="color:#22c55e">💬</div>
+    <div class="odaberi-option-text">
+      <div class="odaberi-option-title">WhatsApp</div>
+      <div class="odaberi-option-sub">Pišite nam — odgovaramo brzo</div>
+    </div>
+  </a>
+</div>
 </body>
 </html>
