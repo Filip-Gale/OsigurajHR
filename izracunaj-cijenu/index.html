@@ -583,7 +583,7 @@ permalink: /izracunaj-cijenu/
         </div>
 
         <div id="r-ok" style="display:none">
-            <div class="provider-card">
+            <div class="provider-card" id="asdirect-card">
                 <div class="provider-card-top">
                     <div class="provider-logo-box">
                         <img src="/img/asdirect-logo.svg" alt="AS Direct">
@@ -991,8 +991,17 @@ function showOk(d) {
     tEl.textContent = '0,00 €';
     triglavCard.style.display = 'block';
     setTimeout(function(){ animateCount(tEl, 0, tPrice, 950); }, 120);
+    if (tPrice < aoBase) {
+      var rOk = document.getElementById('r-ok');
+      rOk.insertBefore(triglavCard, document.getElementById('asdirect-card'));
+    } else {
+      var rOk = document.getElementById('r-ok');
+      rOk.insertBefore(document.getElementById('asdirect-card'), triglavCard);
+    }
   } else {
     triglavCard.style.display = 'none';
+    var rOk = document.getElementById('r-ok');
+    rOk.insertBefore(document.getElementById('asdirect-card'), rOk.firstChild);
   }
 
   var pkgs = d.paketi || [], html = '';
