@@ -393,7 +393,15 @@ permalink: /izracunaj-cijenu/
         .total-row { text-align: center; margin: 4px 0 14px; font-size: 0.82rem; color: #999; font-weight: normal; }
         .total-row strong { color: #573cf9; font-weight: 900; font-variant-numeric: tabular-nums; }
 
-        .chips { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 20px; }
+        .chips-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+        .chips { display: flex; flex-wrap: wrap; gap: 5px; flex: 1; }
+        .btn-back-top {
+            background: none; border: 1.5px solid #e5e5e5; border-radius: 20px;
+            color: #999; font-size: 0.78rem; font-family: inherit; font-weight: 700;
+            cursor: pointer; padding: 4px 12px; white-space: nowrap; flex-shrink: 0;
+            transition: border-color 0.2s, color 0.2s; margin-left: 8px;
+        }
+        .btn-back-top:hover { border-color: #573cf9; color: #573cf9; }
         .chip {
             background: #f4f2ff; color: #573cf9;
             font-size: 0.75rem; padding: 4px 11px; border-radius: 20px; font-weight: 700;
@@ -648,7 +656,10 @@ permalink: /izracunaj-cijenu/
 
     <!-- Step 3: Rezultati -->
     <div class="step-panel" id="s3">
-        <div class="chips" id="chips"></div>
+        <div class="chips-row">
+            <div class="chips" id="chips"></div>
+            <button class="btn-back-top" onclick="go(2,'back')" type="button">← Izmijeni</button>
+        </div>
 
         <div id="r-load" class="r-loading">
             <div class="loader-car-wrap">
@@ -786,9 +797,6 @@ permalink: /izracunaj-cijenu/
             </div>
         </div>
 
-        <div style="margin-top:14px;text-align:center">
-            <button class="btn-back" onclick="go(2,'back')" type="button">← Izmijeni podatke</button>
-        </div>
     </div>
 
     </div><!-- /steps-wrapper -->
