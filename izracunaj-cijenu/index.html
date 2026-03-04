@@ -343,6 +343,20 @@ permalink: /izracunaj-cijenu/
         }
         .pkg-row:hover { border-color: #c4bbff; transform: translateY(-1px); }
         .pkg-row.on   { border-color: #573cf9; background: #f4f2ff; }
+        /* Zlatni shimmer za Paket dobrodošlice */
+        @keyframes goldShimmer {
+            0%   { background-position: 200% center; }
+            100% { background-position: -200% center; }
+        }
+        .pkg-row-gold {
+            background: linear-gradient(90deg, #fffbe8, #fff0a0, #ffd84d, #fff0a0, #fffbe8) !important;
+            background-size: 200% auto !important;
+            animation: goldShimmer 2.8s linear infinite;
+            border-color: #e6b800 !important;
+        }
+        .pkg-row-gold:hover { border-color: #c99c00 !important; transform: translateY(-1px); }
+        .pkg-row-gold.on { background: linear-gradient(90deg, #fff3b0, #ffe44d, #ffc200, #ffe44d, #fff3b0) !important; border-color: #c99c00 !important; }
+        .pkg-row-gold .pkg-price { color: #9a6c00; }
         .pkg-left { display: flex; align-items: center; gap: 8px; }
         .pkg-check {
             width: 20px; height: 20px; border-radius: 50%; flex-shrink: 0;
@@ -1160,20 +1174,19 @@ function showOk(d) {
     } else {
       var bpPrice = Math.round(tPrice * 0.065 * 100) / 100;
       var bpPriceStr = bpPrice.toFixed(2).replace('.', ',');
-      pkgsHtml += '<div class="pkg-row" id="tpkg-bp" onclick="toggleTriglavPkg(this,' + bpPrice + ')" data-price="' + bpPrice + '">'
-        + '<div class="pkg-left"><div class="pkg-check"><span class="pkg-check-icon">✓</span></div><span class="pkg-name">Bonus Protect</span></div>'
-        + '<span class="pkg-price">+ ' + bpPriceStr + ' €/god</span></div>';
       pkgsHtml += '<div class="pkg-row" id="tpkg-asist-hr" onclick="toggleTriglavPkg(this,15)" data-price="15">'
         + '<div class="pkg-left"><div class="pkg-check"><span class="pkg-check-icon">✓</span></div><span class="pkg-name">Asistencija (Hrvatska)</span></div>'
         + '<span class="pkg-price">+ 15 €/god</span></div>';
       pkgsHtml += '<div class="pkg-row" id="tpkg-asist-eu" onclick="toggleTriglavPkg(this,20)" data-price="20">'
         + '<div class="pkg-left"><div class="pkg-check"><span class="pkg-check-icon">✓</span></div><span class="pkg-name">Asistencija (Europa)</span></div>'
         + '<span class="pkg-price">+ 20 €/god</span></div>';
-      pkgsHtml += '<div class="pkg-row" id="tpkg-dobrodoslica" onclick="toggleTriglavPkg(this,15)" data-price="15">'
+      var dobrodoslicaPrice = Math.round((15 + bpPrice) * 100) / 100;
+      var dobPriceStr = dobrodoslicaPrice.toFixed(2).replace('.', ',');
+      pkgsHtml += '<div class="pkg-row pkg-row-gold" id="tpkg-dobrodoslica" onclick="toggleTriglavPkg(this,' + dobrodoslicaPrice + ')" data-price="' + dobrodoslicaPrice + '">'
         + '<div class="pkg-left"><div class="pkg-check"><span class="pkg-check-icon">✓</span></div><span class="pkg-name">Paket dobrodošlice</span>'
         + '<button class="pkg-info-btn" onclick="togglePop(event,\'pop-tdob\')" type="button">i</button>'
-        + '<div class="pkg-popover" id="pop-tdob">Osiguranje vozača i putnika s isplatom mjesečne rente u slučaju nezgode i nemogućnosti rada.</div>'
-        + '</div><span class="pkg-price">+ 15 €/god</span></div>';
+        + '<div class="pkg-popover" id="pop-tdob">Uključuje: Osiguranje vozača i putnika s isplatom mjesečne rente u slučaju nezgode i nemogućnosti rada + Bonus Protect (zaštita bonusa pri vlastitoj krivnji, + ' + bpPriceStr + ' €/god).</div>'
+        + '</div><span class="pkg-price">+ ' + dobPriceStr + ' €/god</span></div>';
     }
     document.getElementById('triglav-pkgs-list').innerHTML = pkgsHtml;
     var rOk = document.getElementById('r-ok');
