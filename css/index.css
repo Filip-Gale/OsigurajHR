@@ -287,15 +287,21 @@ input[type="radio"] {
 }
 
 .feature-icon-wrap {
-    width: 80px;
-    height: 80px;
+    width: 84px;
+    height: 84px;
     border-radius: 22px;
-    background: white;
-    box-shadow: 0 8px 28px rgba(87, 60, 249, 0.22), 0 0 0 1.5px rgba(87, 60, 249, 0.12);
+    background: linear-gradient(145deg, #ffffff 0%, #f5f2ff 100%);
+    box-shadow: 0 8px 28px rgba(87, 60, 249, 0.2), 0 0 0 1.5px rgba(87, 60, 249, 0.18);
     display: flex;
     align-items: center;
     justify-content: center;
     margin: 0 auto 28px;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.feature-card:hover .feature-icon-wrap {
+    transform: scale(1.06);
+    box-shadow: 0 12px 36px rgba(87, 60, 249, 0.3), 0 0 0 2px rgba(87, 60, 249, 0.3);
 }
 
 .feature-icon-wrap img {
