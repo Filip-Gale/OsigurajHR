@@ -289,21 +289,20 @@ input[type="radio"] {
 .feature-icon-wrap {
     width: 80px;
     height: 80px;
-    border-radius: 20px;
-    background: linear-gradient(135deg, #573cf9 0%, #7c5cff 100%);
-    box-shadow: 0 8px 24px rgba(87, 60, 249, 0.35);
+    border-radius: 22px;
+    background: white;
+    box-shadow: 0 8px 28px rgba(87, 60, 249, 0.22), 0 0 0 1.5px rgba(87, 60, 249, 0.12);
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0 auto 26px;
+    margin: 0 auto 28px;
 }
 
 .feature-icon-wrap img {
-    width: 38px !important;
-    height: 38px !important;
-    border-radius: 0 !important;
+    width: 44px !important;
+    height: 44px !important;
+    border-radius: 10px !important;
     background: transparent !important;
-    filter: brightness(0) invert(1);
 }
 
 .feature-title {
