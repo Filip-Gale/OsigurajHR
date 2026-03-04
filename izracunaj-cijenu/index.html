@@ -1288,24 +1288,38 @@ function showErr(msg) {
 }
 
 /* ── Odaberi modal ── */
-var _odaberiProvider = '';
+var _odaberiProvider = '', _odaberiPrice = '', _odaberiAddons = [];
+
+function _buildLeadInfo() {
+  var tipLabel = S.tip === 'F' ? 'Fizička osoba' : S.tip === 'P' ? 'Pravna osoba' : 'Obrt';
+  return 'Osiguranje: ' + _odaberiProvider + '\n'
+    + 'Cijena: ' + _odaberiPrice + '\n'
+    + 'Tablica: ' + S.reg + '\n'
+    + 'Snaga: ' + S.kw + ' kW\n'
+    + 'Vrsta osobe: ' + tipLabel + '\n'
+    + (S.tip === 'F' ? 'God. rođenja: ' + S.dob + '.\n' : '')
+    + 'OIB: ' + (S.oib || '—') + '\n'
+    + (S.yr ? 'God. vozila: ' + S.yr + '. (kasko)\n' : '')
+    + (_odaberiAddons.length ? 'Dodaci: ' + _odaberiAddons.join(', ') + '\n' : '');
+}
 
 function openOdaberi(provider, priceElId, btn) {
   _odaberiProvider = provider;
   var priceEl = document.getElementById(priceElId);
   var priceText = priceEl ? priceEl.textContent.trim() : '';
+  _odaberiPrice = priceText;
   document.getElementById('odaberi-provider-label').textContent = provider + ' — ' + priceText;
 
-  var addons = [];
+  _odaberiAddons = [];
   if (provider === 'AS Direct') {
     Object.keys(selectedPkgs).forEach(function(k) {
       var el = document.getElementById(k);
-      if (el) addons.push(el.querySelector('.pkg-name').textContent);
+      if (el) _odaberiAddons.push(el.querySelector('.pkg-name').textContent);
     });
   } else {
     Object.keys(selectedTriglavPkgs).forEach(function(k) {
       var el = document.getElementById(k);
-      if (el) addons.push(el.querySelector('.pkg-name').textContent);
+      if (el) _odaberiAddons.push(el.querySelector('.pkg-name').textContent);
     });
   }
   var msg = 'Zanima me ' + provider + ' AO osiguranje\n'
@@ -1357,11 +1371,8 @@ function submitNazovMe() {
   if (!phone) { document.getElementById('odaberi-phone').focus(); return; }
   var fd = new FormData();
   fd.append('access_key', '3cf56deb-78e0-4c88-8bc2-d73a20b78a80');
-  fd.append('subject', 'Zahtjev za poziv — ' + _odaberiProvider);
-  fd.append('message', 'Korisnik traži povratni poziv.\nTelefon: ' + phone
-    + '\nOsiguranje: ' + _odaberiProvider
-    + '\nTablica: ' + S.reg + ' | ' + S.kw + ' kW'
-    + (S.tip === 'F' ? ' | god. ' + S.dob : ''));
+  fd.append('subject', 'Zahtjev za poziv — ' + _odaberiProvider + ' | ' + S.reg);
+  fd.append('message', 'Korisnik traži povratni poziv.\nTelefon: ' + phone + '\n\n' + _buildLeadInfo());
   fetch('https://api.web3forms.com/submit', { method:'POST', body: fd });
   document.getElementById('odaberi-success').style.display = 'block';
   document.querySelectorAll('#odaberi-phone-panel .odaberi-submit').forEach(function(b){ b.style.display = 'none'; });
@@ -1377,11 +1388,8 @@ function submitEmail() {
   if (!email || !email.includes('@')) { document.getElementById('odaberi-email').focus(); return; }
   var fd = new FormData();
   fd.append('access_key', '3cf56deb-78e0-4c88-8bc2-d73a20b78a80');
-  fd.append('subject', 'Zahtjev za ponudu mailom — ' + _odaberiProvider);
-  fd.append('message', 'Korisnik traži ponudu na e-mail.\nE-mail: ' + email
-    + '\nOsiguranje: ' + _odaberiProvider
-    + '\nTablica: ' + S.reg + ' | ' + S.kw + ' kW'
-    + (S.tip === 'F' ? ' | god. ' + S.dob : ''));
+  fd.append('subject', 'Zahtjev za ponudu mailom — ' + _odaberiProvider + ' | ' + S.reg);
+  fd.append('message', 'Korisnik traži ponudu na e-mail.\nE-mail: ' + email + '\n\n' + _buildLeadInfo());
   fetch('https://api.web3forms.com/submit', { method:'POST', body: fd });
   document.getElementById('odaberi-email-success').style.display = 'block';
   document.querySelectorAll('#odaberi-email-panel .odaberi-submit').forEach(function(b){ b.style.display = 'none'; });
