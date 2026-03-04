@@ -446,16 +446,17 @@ permalink: /izracunaj-cijenu/
         }
         .btn-odaberi:active { transform: translateY(4px); box-shadow: 0 1px 0 #3b20d4; }
 
-        /* Bottom-sheet overlay */
+        /* Overlay — absolute covers full iframe doc height */
         .odaberi-overlay {
-            position: fixed; inset: 0; background: rgba(0,0,0,0.45);
+            position: absolute; top: 0; left: 0; right: 0; bottom: 0; min-height: 100%;
+            background: rgba(0,0,0,0.45);
             z-index: 999; opacity: 0; pointer-events: none; transition: opacity 0.25s;
         }
         .odaberi-overlay.show { opacity: 1; pointer-events: all; }
 
-        /* Modal panel */
+        /* Modal panel — absolute, positioned near button via JS */
         .odaberi-sheet {
-            position: fixed; left: 50%; max-width: 420px; width: calc(100% - 32px);
+            position: absolute; left: 50%; max-width: 420px; width: calc(100% - 32px);
             background: white; border-radius: 20px;
             padding: 24px 20px 20px; z-index: 1000;
             transform: translateX(-50%) scale(0.94); opacity: 0; pointer-events: none;
@@ -509,7 +510,7 @@ permalink: /izracunaj-cijenu/
         .odaberi-success { color: #16a34a; font-weight: 700; text-align: center; padding: 10px 0; display: none; }
     </style>
 </head>
-<body>
+<body style="position:relative">
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TPNZZVZ5" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <canvas id="confetti-canvas"></canvas>
 
@@ -1281,19 +1282,22 @@ function openOdaberi(provider, priceElId, btn) {
   var submitBtn = document.querySelector('.odaberi-submit');
   if (submitBtn) submitBtn.style.display = 'block';
 
-  // Position modal near the clicked button
+  // Position modal near clicked button using document (not viewport) coordinates
   var sheet = document.getElementById('odaberi-sheet');
-  var vh = window.innerHeight;
-  var sheetH = sheet.offsetHeight || 380;
-  var btnRect = btn ? btn.getBoundingClientRect() : { top: vh/2, bottom: vh/2, height: 0 };
-  var top = btnRect.top - sheetH - 12;
-  if (top < 60) top = btnRect.bottom + 12;
-  if (top + sheetH > vh - 12) top = Math.max(60, vh/2 - sheetH/2);
-  sheet.style.top = Math.round(top) + 'px';
+  var sheetH = 380;
+  var scrollY = window.pageYOffset;
+  var btnDocTop = btn ? (btn.getBoundingClientRect().top + scrollY) : scrollY;
+  var btnH = btn ? btn.offsetHeight : 0;
+  var top = btnDocTop - sheetH - 12;
+  if (top < 10) top = btnDocTop + btnH + 12;
+  sheet.style.top = Math.max(10, top) + 'px';
 
   document.getElementById('odaberi-overlay').classList.add('show');
   document.getElementById('odaberi-sheet').classList.add('show');
-  setTimeout(notifyHeight, 350);
+  setTimeout(function() {
+    sheet.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    notifyHeight();
+  }, 50);
 }
 
 function closeOdaberi() {
