@@ -622,6 +622,16 @@ permalink: /izracunaj-cijenu/
                         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#573cf9" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
                         <span>Obvezno auto osiguranje</span>
                     </div>
+                    <div class="price-base" id="triglav-base" style="display:none">Samo AO: <span id="triglav-base-num"></span></div>
+                </div>
+                <div class="pkgs-lbl" style="margin-top:12px;">Dodajte po želji</div>
+                <div class="pkg-row" id="tpkg-nezgoda" onclick="toggleTriglavPkg(this,7.44)" data-price="7.44">
+                    <div class="pkg-left"><div class="pkg-check"><span class="pkg-check-icon">✓</span></div><span class="pkg-name">Nezgoda putnika</span></div>
+                    <span class="pkg-price">+ 7,44 €/god</span>
+                </div>
+                <div class="pkg-row" id="tpkg-asist" onclick="toggleTriglavPkg(this,20)" data-price="20">
+                    <div class="pkg-left"><div class="pkg-check"><span class="pkg-check-icon">✓</span></div><span class="pkg-name">Asistencija (Europa)</span></div>
+                    <span class="pkg-price">+ 20 €/god</span>
                 </div>
             </div>
 
@@ -693,6 +703,8 @@ window.addEventListener('load', function() { setTimeout(notifyHeight, 100); });
 var S = { reg:'', kw:0, yr:null, tip:'F', dob:0, oib:'' };
 var aoBase = 0;
 var selectedPkgs = {};
+var triglavBase = 0;
+var selectedTriglavPkgs = {};
 
 /* ── Package descriptions ── */
 var PKG = {
@@ -861,6 +873,28 @@ function startLoader() {
 }
 function stopLoader() { clearInterval(loaderInt); }
 
+/* ── Triglav addon toggle — updates Triglav price ── */
+function toggleTriglavPkg(el, price) {
+  el.classList.toggle('on');
+  if (el.classList.contains('on')) selectedTriglavPkgs[el.id] = +price;
+  else delete selectedTriglavPkgs[el.id];
+  var extra = Object.values(selectedTriglavPkgs).reduce(function(a,b){ return a+b; }, 0);
+  var total = triglavBase + extra;
+  var tEl = document.getElementById('triglav-num');
+  var curText = tEl.textContent.replace(',','.').replace(' €','').replace(/[^\d.]/g,'');
+  var prev = parseFloat(curText) || triglavBase;
+  animateCount(tEl, prev, total, 380);
+  var base = document.getElementById('triglav-base');
+  var baseNum = document.getElementById('triglav-base-num');
+  if (extra > 0) {
+    base.style.display = 'block';
+    baseNum.textContent = triglavBase.toFixed(2).replace('.',',') + ' €';
+  } else {
+    base.style.display = 'none';
+  }
+  setTimeout(notifyHeight, 200);
+}
+
 /* ── Triglav price calculation ── */
 function triglavPrice(kw, dob) {
   var k = Number(kw);
@@ -906,6 +940,8 @@ function fetch_quote() {
   document.getElementById('wa-err').href = wa;
 
   selectedPkgs = {};
+  selectedTriglavPkgs = {};
+  document.querySelectorAll('#tpkg-nezgoda,#tpkg-asist').forEach(function(el){ el.classList.remove('on'); });
   go(3);
   document.getElementById('r-load').style.display = 'flex';
   document.getElementById('r-ok').style.display = 'none';
@@ -947,6 +983,8 @@ function showOk(d) {
   var triglavAge = new Date().getFullYear() - Number(S.dob);
   if (S.tip === 'F' && triglavAge <= 24) {
     var tPrice = triglavPrice(S.kw, S.dob);
+    triglavBase = tPrice;
+    document.getElementById('triglav-base').style.display = 'none';
     var tEl = document.getElementById('triglav-num');
     tEl.textContent = '0,00 €';
     triglavCard.style.display = 'block';

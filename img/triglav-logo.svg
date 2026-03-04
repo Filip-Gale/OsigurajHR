@@ -1,9 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 140 44" width="140" height="44">
-  <!-- Shield shape -->
-  <path d="M22 4 L6 10 L6 26 C6 34 14 40 22 43 C30 40 38 34 38 26 L38 10 Z" fill="#0032A0"/>
-  <!-- Triglav mountain shape inside shield (white) -->
-  <polygon points="22,11 14,27 30,27" fill="white"/>
-  <polygon points="17,22 11,30 23,30" fill="white" opacity="0.6"/>
-  <!-- TRIGLAV text -->
-  <text x="46" y="30" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" fill="#0032A0" letter-spacing="1">TRIGLAV</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 44" width="160" height="44">
+  <!-- Red shield/square background -->
+  <rect x="0" y="2" width="40" height="40" rx="4" fill="#C8102E"/>
+  <!-- White stylized G / triglav mountain inside -->
+  <path d="M20 8 L10 28 L16 28 L20 18 L24 28 L30 28 Z" fill="white"/>
+  <path d="M13 28 L27 28 L27 32 L22 32 L22 30 L18 30 L18 32 L13 32 Z" fill="white" opacity="0.85"/>
+  <!-- triglav text -->
+  <text x="48" y="29" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700" fill="#1A1A40" letter-spacing="0.5">triglav</text>
 </svg>
