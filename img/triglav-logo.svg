@@ -1,9 +1,15 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 44" width="160" height="44">
-  <!-- Red shield/square background -->
-  <rect x="0" y="2" width="40" height="40" rx="4" fill="#C8102E"/>
-  <!-- White stylized G / triglav mountain inside -->
-  <path d="M20 8 L10 28 L16 28 L20 18 L24 28 L30 28 Z" fill="white"/>
-  <path d="M13 28 L27 28 L27 32 L22 32 L22 30 L18 30 L18 32 L13 32 Z" fill="white" opacity="0.85"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 158 42" width="158" height="42">
+  <!-- Red background square -->
+  <rect x="0" y="0" width="42" height="42" rx="3" fill="#ED1C24"/>
+  <!-- White G icon (from triglav.hr, original viewBox 0 0 23.634 50)
+       Scale: 0.68 → 16.07w x 34h; center in 42x42: tx=12.97, ty=4 -->
+  <g transform="translate(13, 4) scale(0.68)">
+    <path fill="#FFFFFF" d="M15.812,25c0-6.82,2.79-12.866,7.44-17.206c0.775-0.775-0.154-2.171-1.085-1.706
+      C15.036,9.499,10.231,16.629,10.231,25c0,8.371,4.805,15.502,11.936,18.912c1.085,0.465,2.016-0.93,1.085-1.705
+      C18.757,37.866,15.812,31.821,15.812,25z"/>
+    <path fill="#FFFFFF" d="M4.495,25c0-8.681,2.48-16.587,6.666-23.407c0.62-1.085-0.775-2.17-1.705-1.24C3.565,6.863,0,15.543,0,25
+      s3.565,18.137,9.456,24.647c0.775,0.931,2.325-0.154,1.705-1.24C6.976,41.586,4.495,33.526,4.495,25z"/>
+  </g>
   <!-- triglav text -->
-  <text x="48" y="29" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700" fill="#1A1A40" letter-spacing="0.5">triglav</text>
+  <text x="50" y="29" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="700" fill="#4C4C4C" letter-spacing="-0.2">triglav</text>
 </svg>
