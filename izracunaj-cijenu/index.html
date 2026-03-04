@@ -1074,12 +1074,16 @@ function triglavPrice25(reg, kw, dob) {
   }
   var kwFactor = TRIGLAV_KW[kwIdx][zoneIdx];
 
-  var age = new Date().getFullYear() - Number(dob);
   var ageFactor;
-  if      (age <= 28) ageFactor = 1.20;
-  else if (age <= 34) ageFactor = 0.99;
-  else if (age <= 48) ageFactor = 0.96;
-  else                ageFactor = 0.90;
+  if (dob === null) {
+    ageFactor = 1.0; // pravna osoba / obrt — bez dobnog faktora
+  } else {
+    var age = new Date().getFullYear() - Number(dob);
+    if      (age <= 28) ageFactor = 1.20;
+    else if (age <= 34) ageFactor = 0.99;
+    else if (age <= 48) ageFactor = 0.96;
+    else                ageFactor = 0.90;
+  }
 
   // baza × RD(1.4) × dob × kW × Bonus50%(0.5) × HRVI(-15%) × kom.popust(-40%) × PDV(15%)
   var price = basePrice * 1.4 * ageFactor * kwFactor * 0.5 * 0.85 * 0.6 * 1.15;
@@ -1162,6 +1166,8 @@ function showOk(d) {
     } else {
       tPrice = triglavPrice25(S.reg, S.kw, S.dob);
     }
+  } else {
+    tPrice = triglavPrice25(S.reg, S.kw, null); // pravna osoba / obrt — bez dobnog faktora
   }
   if (tPrice !== null) {
     triglavBase = tPrice;
