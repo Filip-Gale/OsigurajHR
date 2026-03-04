@@ -1274,6 +1274,8 @@ function openOdaberi(provider, priceElId) {
   var submitBtn = document.querySelector('.odaberi-submit');
   if (submitBtn) submitBtn.style.display = 'block';
 
+  window.scrollTo({ top: 0, behavior: 'instant' });
+  document.body.style.overflow = 'hidden';
   document.getElementById('odaberi-overlay').classList.add('show');
   document.getElementById('odaberi-sheet').classList.add('show');
   setTimeout(notifyHeight, 350);
@@ -1282,6 +1284,7 @@ function openOdaberi(provider, priceElId) {
 function closeOdaberi() {
   document.getElementById('odaberi-overlay').classList.remove('show');
   document.getElementById('odaberi-sheet').classList.remove('show');
+  document.body.style.overflow = '';
 }
 
 function toggleNazovMe() {
