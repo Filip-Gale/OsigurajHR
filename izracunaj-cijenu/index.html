@@ -1066,7 +1066,7 @@ function go(n, dir) {
   });
   // Show below-wizard section on steps 2 and 3
   var bw = document.getElementById('below-wizard');
-  if (bw) bw.style.display = (n === 2 || n === 3) ? 'block' : 'none';
+  if (bw) bw.style.display = (!isEmbed && (n === 2 || n === 3)) ? 'block' : 'none';
 
   if (isEmbed) {
     parent.postMessage({ type: 'scrollToWizard' }, '*');
