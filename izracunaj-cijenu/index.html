@@ -550,6 +550,37 @@ permalink: /izracunaj-cijenu/
             font-weight: 800; cursor: pointer;
         }
         .odaberi-success { color: #16a34a; font-weight: 700; text-align: center; padding: 10px 0; display: none; }
+
+        /* ── Payment trust bar ── */
+        #payment-bar {
+            position: fixed;
+            bottom: 0; left: 0; right: 0;
+            z-index: 200;
+            background: #0d0825;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding: 13px 20px calc(13px + env(safe-area-inset-bottom));
+            transform: translateY(100%);
+            transition: transform 0.42s cubic-bezier(0.22, 1, 0.36, 1);
+            box-shadow: 0 -6px 30px rgba(0,0,0,0.45);
+        }
+        #payment-bar.visible { transform: translateY(0); }
+        .pay-bar-inner { max-width: 460px; margin: 0 auto; position: relative; }
+        .pay-logos-row {
+            display: flex; align-items: center; gap: 7px;
+            flex-wrap: wrap; margin-bottom: 8px;
+        }
+        .pay-logo-badge { height: 26px; border-radius: 4px; display: block; }
+        .pay-bar-text {
+            font-size: 0.68rem; color: rgba(255,255,255,0.48);
+            line-height: 1.5; margin: 0;
+        }
+        .pay-bar-close {
+            position: absolute; top: -3px; right: 0;
+            background: none; border: none;
+            color: rgba(255,255,255,0.3); font-size: 20px;
+            cursor: pointer; padding: 0 2px; line-height: 1;
+        }
+        .pay-bar-close:hover { color: rgba(255,255,255,0.65); }
     </style>
 </head>
 <body style="position:relative">
@@ -835,6 +866,54 @@ permalink: /izracunaj-cijenu/
     </div><!-- /steps-wrapper -->
 </div><!-- /wizard-card -->
 
+<!-- Payment trust bar (visible on Step 3) -->
+<div id="payment-bar">
+    <div class="pay-bar-inner">
+        <button class="pay-bar-close" onclick="document.getElementById('payment-bar').classList.remove('visible')" type="button">&times;</button>
+        <div class="pay-logos-row">
+            <!-- Aircash -->
+            <svg class="pay-logo-badge" width="66" height="26" viewBox="0 0 66 26">
+                <rect width="66" height="26" rx="4" fill="#111"/>
+                <text x="33" y="18" font-family="Arial,sans-serif" font-weight="bold" font-size="11.5" fill="#e30613" text-anchor="middle">aircash</text>
+            </svg>
+            <!-- Diners Club International -->
+            <svg class="pay-logo-badge" width="70" height="26" viewBox="0 0 70 26">
+                <rect width="70" height="26" rx="4" fill="#003e7e"/>
+                <circle cx="22" cy="13" r="8.5" fill="none" stroke="white" stroke-width="1.4"/>
+                <circle cx="29" cy="13" r="8.5" fill="none" stroke="white" stroke-width="1.4"/>
+                <text x="51" y="10" font-family="Arial,sans-serif" font-weight="bold" font-size="4.8" fill="white" text-anchor="middle">Diners Club</text>
+                <text x="51" y="16" font-family="Arial,sans-serif" font-size="3.8" fill="white" text-anchor="middle">INTERNATIONAL</text>
+            </svg>
+            <!-- KEKS Pay -->
+            <svg class="pay-logo-badge" width="56" height="26" viewBox="0 0 56 26">
+                <rect width="56" height="26" rx="4" fill="#1a1a1a"/>
+                <text x="28" y="12" font-family="Arial,sans-serif" font-weight="bold" font-size="8.5" fill="#00a651" text-anchor="middle">KEKS</text>
+                <text x="28" y="22" font-family="Arial,sans-serif" font-size="7" fill="white" text-anchor="middle">PAY</text>
+            </svg>
+            <!-- Mastercard -->
+            <svg class="pay-logo-badge" width="48" height="26" viewBox="0 0 48 26">
+                <rect width="48" height="26" rx="4" fill="#252525"/>
+                <circle cx="17" cy="13" r="8.5" fill="#eb001b"/>
+                <circle cx="31" cy="13" r="8.5" fill="#f79e1b"/>
+                <path d="M24 5.7C26.3 7.6 27.8 10 27.8 13C27.8 16 26.3 18.4 24 20.3C21.7 18.4 20.2 16 20.2 13C20.2 10 21.7 7.6 24 5.7Z" fill="#ff5f00"/>
+            </svg>
+            <!-- Maestro -->
+            <svg class="pay-logo-badge" width="48" height="26" viewBox="0 0 48 26">
+                <rect width="48" height="26" rx="4" fill="#252525"/>
+                <circle cx="17" cy="13" r="8.5" fill="#0099df"/>
+                <circle cx="31" cy="13" r="8.5" fill="#ff5f00"/>
+                <path d="M24 5.7C26.3 7.6 27.8 10 27.8 13C27.8 16 26.3 18.4 24 20.3C21.7 18.4 20.2 16 20.2 13C20.2 10 21.7 7.6 24 5.7Z" fill="#7e2f8e" opacity="0.75"/>
+            </svg>
+            <!-- Visa -->
+            <svg class="pay-logo-badge" width="48" height="26" viewBox="0 0 48 26">
+                <rect width="48" height="26" rx="4" fill="#1a1f71"/>
+                <text x="24" y="18.5" font-family="Arial,Helvetica,sans-serif" font-weight="900" font-size="14" fill="white" text-anchor="middle" letter-spacing="1">VISA</text>
+            </svg>
+        </div>
+        <p class="pay-bar-text">Plaćanje karticama do 12 rata bez kamata, jednokratno uplatom na račun, KEKSpay ili Aircash aplikacijom</p>
+    </div>
+</div>
+
 {% include wapp.html %}
 {% include footer.html %}
 
@@ -944,6 +1023,10 @@ function go(n, dir) {
     l.className = 'progress-lbl'+(i<n?' done':i===n?' active':'');
     if (i<3) document.getElementById('ln'+i).className = 'progress-line'+(i<n?' done':'');
   });
+  // Show payment bar only on step 3
+  var pb = document.getElementById('payment-bar');
+  if (pb) pb.classList.toggle('visible', n === 3);
+
   if (isEmbed) {
     parent.postMessage({ type: 'scrollToWizard' }, '*');
   } else {
