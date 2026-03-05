@@ -552,6 +552,12 @@ permalink: /izracunaj-cijenu/
         }
         .odaberi-success { color: #16a34a; font-weight: 700; text-align: center; padding: 10px 0; display: none; }
 
+        @media (max-width: 420px) {
+            .price-discount-badge { font-size: 0.58rem; padding: 2px 5px; }
+            .price-num { font-size: 1.55rem; }
+            .provider-card-top { padding: 14px 14px; }
+        }
+
         /* ── Below-wizard section (payment + trust cards) ── */
         #below-wizard {
             display: none;
@@ -919,10 +925,7 @@ permalink: /izracunaj-cijenu/
                 <path d="M21.5 5.8C23.8 7.7 25.3 10.2 25.3 13S23.8 18.3 21.5 20.2C19.2 18.3 17.7 15.8 17.7 13S19.2 7.7 21.5 5.8Z" fill="#7e2f8e" opacity="0.7"/>
             </svg>
             <!-- Visa -->
-            <svg class="pay-logo-badge" width="48" height="26" viewBox="0 0 48 26">
-                <rect width="48" height="26" rx="4" fill="#1a1f71"/>
-                <text x="24" y="18" font-family="Arial,Helvetica,sans-serif" font-weight="900" font-size="14" fill="white" text-anchor="middle" letter-spacing="0.5">VISA</text>
-            </svg>
+            <img src="/img/visa.png" class="pay-logo-badge" style="background:white;padding:2px 5px;border-radius:5px;" alt="VISA">
         </div>
         <p class="pay-bar-text">Plaćanje karticama do 12 rata bez kamata, jednokratno uplatom na račun, KEKSpay ili Aircash aplikacijom</p>
     </div>
