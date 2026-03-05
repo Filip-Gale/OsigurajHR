@@ -1,6 +1,7 @@
 /* ── Base overrides ── */
+/* Brand colors: #573cf9 (primary), #bfc3ff (light purple), #ffbc27 (yellow) */
 body {
-    background-color: #f8f7ff;
+    background-color: #f5f4ff;
 }
 
 p, h1, h2 {
@@ -110,12 +111,23 @@ a {
 .on-stat-icon {
     width: 50px;
     height: 50px;
-    background: #f0eeff;
+    background: #ebe6ff;
     border-radius: 14px;
     display: flex;
     align-items: center;
     justify-content: center;
     margin-bottom: 2px;
+}
+
+.on-stat-pre {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #bfc3ff;
+    margin-bottom: -4px;
+    pointer-events: none;
+    user-select: none;
 }
 
 .on-stat-num {
@@ -129,7 +141,7 @@ a {
 .on-stat-label {
     font-size: 0.74rem;
     font-weight: 600;
-    color: #6b7280;
+    color: #5a5270;
     line-height: 1.35;
     pointer-events: none;
     user-select: none;
@@ -138,7 +150,7 @@ a {
 /* ── WHO WE ARE ── */
 .on-who-section {
     padding: 80px 5% 70px;
-    background: #f8f7ff;
+    background: #f5f4ff;
 }
 
 .on-who-inner {
@@ -171,7 +183,7 @@ a {
 .on-section-title {
     font-size: clamp(1.35rem, 3vw, 2rem);
     font-weight: 900;
-    color: #1c1533;
+    color: #120d2e;
     line-height: 1.25;
     margin-bottom: 20px;
     letter-spacing: -0.02em;
@@ -190,14 +202,14 @@ a {
 .on-body-text {
     font-size: 0.93rem;
     font-weight: 400;
-    color: #4b5563;
+    color: #3d2f6e;
     line-height: 1.8;
 }
 
 /* ── VISUAL CARDS (who section) ── */
 .on-visual-card {
     background: white;
-    border: 1.5px solid #e8e4ff;
+    border: 1.5px solid #d4cfff;
     border-radius: 18px;
     padding: 20px 22px;
     display: flex;
@@ -216,7 +228,7 @@ a {
     flex-shrink: 0;
     width: 54px;
     height: 54px;
-    background: #f0eeff;
+    background: #ebe6ff;
     border-radius: 14px;
     display: flex;
     align-items: center;
@@ -230,7 +242,7 @@ a {
 .on-visual-title {
     font-size: 0.92rem;
     font-weight: 800;
-    color: #1c1533;
+    color: #120d2e;
     margin-bottom: 4px;
     pointer-events: none;
     user-select: none;
@@ -241,7 +253,7 @@ a {
 .on-visual-sub {
     font-size: 0.78rem;
     font-weight: 400;
-    color: #6b7280;
+    color: #5a5270;
     line-height: 1.4;
     pointer-events: none;
     user-select: none;
@@ -251,7 +263,7 @@ a {
 
 /* ── HOW IT WORKS ── */
 .on-how-section {
-    background: #1c1533;
+    background: #120d2e;
     padding: 80px 5%;
 }
 
@@ -312,10 +324,10 @@ a {
 }
 
 .on-trust-card {
-    background: #faf9ff;
+    background: #f5f4ff;
     border-radius: 18px;
     padding: 22px 16px;
-    border: 1.5px solid #ede9ff;
+    border: 1.5px solid #e0dbff;
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -338,14 +350,14 @@ a {
     flex-shrink: 0;
 }
 
-.on-icon-purple { background: #f0eeff; }
-.on-icon-yellow { background: #fff8e0; }
+.on-icon-purple { background: #ebe6ff; }
+.on-icon-yellow { background: #fff5d4; }
 .on-icon-wa     { background: #dcfce7; }
 
 .on-trust-title {
     font-size: 0.88rem;
     font-weight: 800;
-    color: #1c1533;
+    color: #120d2e;
     pointer-events: none;
     user-select: none;
     line-height: 1.3;
@@ -354,7 +366,7 @@ a {
 .on-trust-desc {
     font-size: 0.76rem;
     font-weight: 400;
-    color: #6b7280;
+    color: #5a5270;
     line-height: 1.6;
     pointer-events: none;
     user-select: none;
@@ -410,12 +422,12 @@ a {
 /* ── HANFA ── */
 .on-hanfa-section {
     padding: 50px 5%;
-    background: #f8f7ff;
+    background: #f5f4ff;
 }
 
 .on-hanfa-inner {
     background: white;
-    border: 1.5px solid #e8e4ff;
+    border: 1.5px solid #d4cfff;
     border-radius: 22px;
     padding: 32px 36px;
     box-shadow: 0 2px 12px rgba(87,60,249,0.06);
@@ -425,7 +437,7 @@ a {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    background: #f0eeff;
+    background: #ebe6ff;
     color: #573cf9;
     font-size: 0.72rem;
     font-weight: 800;
@@ -441,7 +453,7 @@ a {
 .on-hanfa-text {
     font-size: 0.87rem;
     font-weight: 400;
-    color: #4b5563;
+    color: #3d2f6e;
     line-height: 1.65;
     pointer-events: none;
     user-select: none;
@@ -471,7 +483,7 @@ a {
     text-align: center;
     font-size: 0.93rem;
     font-weight: 400;
-    color: #6b7280;
+    color: #5a5270;
     margin-top: 10px;
     margin-bottom: 40px;
     pointer-events: none;
@@ -487,11 +499,11 @@ a {
 }
 
 .on-contact-card {
-    background: #faf9ff;
+    background: #f5f4ff;
     border-radius: 20px;
     padding: 30px 20px;
     text-align: center;
-    border: 1.5px solid #e8e4ff;
+    border: 1.5px solid #d4cfff;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -512,7 +524,7 @@ a {
     font-weight: 700;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: #9ca3af;
+    color: #8875b8;
     pointer-events: none;
     user-select: none;
 }
@@ -520,7 +532,7 @@ a {
 .on-contact-value {
     font-size: 0.88rem;
     font-weight: 800;
-    color: #1c1533;
+    color: #120d2e;
     pointer-events: none;
     user-select: none;
 }
