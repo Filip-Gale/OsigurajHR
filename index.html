@@ -234,6 +234,36 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           </div>
         </div>
 
+        <!-- Partner logo marquee -->
+        <style>
+        .hp-partners-wrap { max-width:500px; width:92%; margin:0 auto 20px; }
+        .hp-partners-label { font-size:0.68rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:rgba(255,255,255,0.4); text-align:center; margin-bottom:10px; }
+        .hp-partners-track-outer { overflow:hidden; }
+        .hp-partners-track { display:flex; align-items:center; gap:20px; width:max-content; animation:partnersScroll 14s linear infinite; }
+        .hp-partners-track:hover { animation-play-state:paused; }
+        @keyframes partnersScroll {
+            0%   { transform:translateX(0); }
+            100% { transform:translateX(-50%); }
+        }
+        .hp-partner-logo { height:32px; width:auto; max-width:110px; object-fit:contain; background:white; border-radius:8px; padding:5px 10px; box-sizing:border-box; flex-shrink:0; display:block; }
+        </style>
+        <div class="hp-partners-wrap">
+            <div class="hp-partners-label">Naši partneri</div>
+            <div class="hp-partners-track-outer">
+                <div class="hp-partners-track">
+                    <img class="hp-partner-logo" src="/img/triglav-logo.svg" alt="Triglav osiguranje">
+                    <img class="hp-partner-logo" src="/img/generali-logo.svg" alt="Generali osiguranje">
+                    <img class="hp-partner-logo" src="/img/groupama-logo.svg" alt="Groupama osiguranje">
+                    <img class="hp-partner-logo" src="/img/asdirect-logo.svg" alt="AS Direct">
+                    <!-- duplicate for seamless loop -->
+                    <img class="hp-partner-logo" src="/img/triglav-logo.svg" alt="Triglav osiguranje">
+                    <img class="hp-partner-logo" src="/img/generali-logo.svg" alt="Generali osiguranje">
+                    <img class="hp-partner-logo" src="/img/groupama-logo.svg" alt="Groupama osiguranje">
+                    <img class="hp-partner-logo" src="/img/asdirect-logo.svg" alt="AS Direct">
+                </div>
+            </div>
+        </div>
+
         <div class="column">
             <div class="row-pc width-container-1000">
                 <div class="after-form-panel background-purple-light text-purple round row" style="flex:1;">
