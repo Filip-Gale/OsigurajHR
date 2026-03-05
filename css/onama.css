@@ -25,10 +25,8 @@ a {
 .on-hero::before {
     content: '';
     position: absolute;
-    top: -40%;
-    left: -15%;
-    width: 55%;
-    height: 180%;
+    top: -40%; left: -15%;
+    width: 55%; height: 180%;
     background: radial-gradient(ellipse, rgba(139,117,243,0.28) 0%, transparent 70%);
     pointer-events: none;
 }
@@ -36,11 +34,9 @@ a {
 .on-hero::after {
     content: '';
     position: absolute;
-    bottom: -20%;
-    right: -5%;
-    width: 45%;
-    height: 120%;
-    background: radial-gradient(ellipse, rgba(255,188,39,0.09) 0%, transparent 65%);
+    bottom: -20%; right: -5%;
+    width: 45%; height: 120%;
+    background: radial-gradient(ellipse, rgba(255,188,39,0.12) 0%, transparent 65%);
     pointer-events: none;
 }
 
@@ -123,7 +119,7 @@ a {
 }
 
 .on-stat-num {
-    font-size: 2.1rem;
+    font-size: 2rem;
     font-weight: 900;
     color: #573cf9;
     line-height: 1;
@@ -131,7 +127,7 @@ a {
 }
 
 .on-stat-label {
-    font-size: 0.76rem;
+    font-size: 0.74rem;
     font-weight: 600;
     color: #6b7280;
     line-height: 1.35;
@@ -151,10 +147,7 @@ a {
     align-items: center;
 }
 
-.on-who-text {
-    flex: 1.3;
-}
-
+.on-who-text { flex: 1.3; }
 .on-who-visual {
     flex: 0.7;
     display: flex;
@@ -173,9 +166,7 @@ a {
     user-select: none;
 }
 
-.on-label-light {
-    color: #8875f3;
-}
+.on-label-light { color: #bfc3ff; }
 
 .on-section-title {
     font-size: clamp(1.35rem, 3vw, 2rem);
@@ -203,6 +194,7 @@ a {
     line-height: 1.8;
 }
 
+/* ── VISUAL CARDS (who section) ── */
 .on-visual-card {
     background: white;
     border: 1.5px solid #e8e4ff;
@@ -222,8 +214,8 @@ a {
 
 .on-visual-icon {
     flex-shrink: 0;
-    width: 56px;
-    height: 56px;
+    width: 54px;
+    height: 54px;
     background: #f0eeff;
     border-radius: 14px;
     display: flex;
@@ -244,9 +236,7 @@ a {
     user-select: none;
 }
 
-.on-visual-title-white {
-    color: white !important;
-}
+.on-visual-title-white { color: white !important; }
 
 .on-visual-sub {
     font-size: 0.78rem;
@@ -257,9 +247,7 @@ a {
     user-select: none;
 }
 
-.on-visual-sub-white {
-    color: rgba(255,255,255,0.72) !important;
-}
+.on-visual-sub-white { color: rgba(255,255,255,0.72) !important; }
 
 /* ── HOW IT WORKS ── */
 .on-how-section {
@@ -284,9 +272,7 @@ a {
     transition: background 0.2s;
 }
 
-.on-step:hover {
-    background: rgba(255,255,255,0.08);
-}
+.on-step:hover { background: rgba(255,255,255,0.08); }
 
 .on-step-num {
     flex-shrink: 0;
@@ -341,7 +327,8 @@ a {
     box-shadow: 0 10px 28px rgba(87,60,249,0.13);
 }
 
-.on-trust-icon {
+/* Icon color variants — only site palette */
+.on-trust-icon, .on-contact-icon {
     width: 44px;
     height: 44px;
     border-radius: 12px;
@@ -350,6 +337,10 @@ a {
     justify-content: center;
     flex-shrink: 0;
 }
+
+.on-icon-purple { background: #f0eeff; }
+.on-icon-yellow { background: #fff8e0; }
+.on-icon-wa     { background: #dcfce7; }
 
 .on-trust-title {
     font-size: 0.88rem;
@@ -371,7 +362,7 @@ a {
 
 /* ── OUR GOAL ── */
 .on-goal-section {
-    background: linear-gradient(140deg, #3d27cc 0%, #573cf9 60%, #7c5cf9 100%);
+    background: linear-gradient(140deg, #2914a8 0%, #573cf9 60%, #7c5cf9 100%);
     padding: 90px 5%;
     text-align: center;
     position: relative;
@@ -382,19 +373,16 @@ a {
     content: '';
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
-    background: radial-gradient(ellipse at 25% 60%, rgba(255,188,39,0.13) 0%, transparent 55%);
+    background: radial-gradient(ellipse at 25% 60%, rgba(255,188,39,0.15) 0%, transparent 55%);
     pointer-events: none;
 }
 
-.on-goal-inner {
-    position: relative;
-    z-index: 1;
-}
+.on-goal-inner { position: relative; z-index: 1; }
 
 .on-goal-quote {
     font-size: 6rem;
     line-height: 0.5;
-    color: rgba(255,255,255,0.18);
+    color: rgba(255,255,255,0.15);
     font-weight: 900;
     margin-bottom: 20px;
     pointer-events: none;
@@ -437,11 +425,11 @@ a {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    background: #ede9ff;
+    background: #f0eeff;
     color: #573cf9;
-    font-size: 0.75rem;
+    font-size: 0.72rem;
     font-weight: 800;
-    letter-spacing: 0.06em;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
     padding: 6px 14px;
     border-radius: 100px;
@@ -471,9 +459,7 @@ a {
     pointer-events: all;
 }
 
-.on-hanfa-link:hover {
-    opacity: 0.7;
-}
+.on-hanfa-link:hover { opacity: 0.7; }
 
 /* ── CONTACT ── */
 .on-contact-section {
@@ -521,15 +507,6 @@ a {
     box-shadow: 0 10px 28px rgba(87,60,249,0.13);
 }
 
-.on-contact-icon {
-    width: 52px;
-    height: 52px;
-    border-radius: 14px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
 .on-contact-label {
     font-size: 0.7rem;
     font-weight: 700;
@@ -550,38 +527,25 @@ a {
 
 /* ── RESPONSIVE ── */
 @media (max-width: 767px) {
-    .on-hero {
-        padding: 60px 5% 72px;
-    }
+    .on-hero { padding: 60px 5% 72px; }
 
     .on-stats-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 12px;
     }
 
-    .on-stats-section {
-        margin-top: -36px;
-    }
+    .on-stats-section { margin-top: -36px; }
 
-    .on-who-section,
-    .on-trust-section,
-    .on-contact-section {
-        padding: 56px 5%;
-    }
+    .on-who-section, .on-trust-section, .on-contact-section { padding: 56px 5%; }
 
     .on-who-inner {
         flex-direction: column;
         gap: 32px;
     }
 
-    .on-who-visual {
-        width: 100%;
-    }
+    .on-who-visual { width: 100%; }
 
-    .on-how-section,
-    .on-goal-section {
-        padding: 56px 5%;
-    }
+    .on-how-section, .on-goal-section { padding: 56px 5%; }
 
     .on-steps-grid {
         grid-template-columns: 1fr;
@@ -593,20 +557,14 @@ a {
         gap: 12px;
     }
 
-    .on-trust-grid .on-trust-card:last-child {
-        grid-column: 1 / -1;
-    }
+    .on-trust-grid .on-trust-card:last-child { grid-column: 1 / -1; }
 
     .on-contact-grid {
         grid-template-columns: 1fr;
         max-width: 300px;
     }
 
-    .on-hanfa-inner {
-        padding: 24px 20px;
-    }
+    .on-hanfa-inner { padding: 24px 20px; }
 
-    .on-goal-quote {
-        font-size: 4rem;
-    }
+    .on-goal-quote { font-size: 4rem; }
 }
