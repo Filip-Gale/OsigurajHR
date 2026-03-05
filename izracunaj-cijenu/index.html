@@ -1422,7 +1422,12 @@ function showOk(d) {
       pkgsHtml += '<div class="pkg-row" id="tpkg-asist-eu" onclick="toggleTriglavPkg(this,20)" data-price="20">'
         + '<div class="pkg-left"><div class="pkg-check"><span class="pkg-check-icon">✓</span></div><span class="pkg-name">Asistencija (Europa)</span></div>'
         + '<span class="pkg-price">+ 20 €/god</span></div>';
-      // Paket dobrodošlice je prikazan kao auto-applied popust (-20€) na cijeni, ne kao addon
+      pkgsHtml += '<div class="pkg-row pkg-row-gold" id="tpkg-promo" onclick="toggleTriglavPkg(this,15)" data-price="15">'
+        + '<div class="pkg-left"><div class="pkg-check"><span class="pkg-check-icon">✓</span></div><span class="pkg-name">Paket promo</span>'
+        + '<button class="pkg-info-btn" onclick="togglePop(event,\'tpop-promo\')" type="button">i</button>'
+        + '<div class="pkg-popover" id="tpop-promo">Bonus protect · Osiguranje od nezgode za vozača · Renta · Liječenje</div>'
+        + '</div>'
+        + '<span class="pkg-price">+ 15 €/god</span></div>';
     }
     document.getElementById('triglav-pkgs-list').innerHTML = pkgsHtml;
     var rOk = document.getElementById('r-ok');
