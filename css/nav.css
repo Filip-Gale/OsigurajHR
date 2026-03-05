@@ -9,6 +9,7 @@ nav{
     left: 0;
     right: 0;
     z-index: 1000;
+    box-shadow: 0 1px 0 rgba(0,0,0,0.07), 0 2px 12px rgba(0,0,0,0.05);
 }
 
 nav span{
@@ -24,34 +25,63 @@ nav span{
     position: fixed;
 }
 
-#phone-number{
+.nav-onama {
+    display: inline-flex;
+    align-items: center;
+    height: 36px;
+    padding: 0 16px;
+    border-radius: 100px;
+    border: 1.5px solid #573cf9;
+    color: #573cf9 !important;
+    background: transparent;
+    font-size: 0.85rem;
+    font-weight: 700;
+    transition: background 0.2s, color 0.2s;
+    white-space: nowrap;
+}
+
+.nav-onama:hover {
+    background: #573cf9;
+    color: white !important;
+}
+
+#phone-number {
     display: flex;
     flex-direction: row;
-    background-color: #573cf9;
-    color: white;
-    height: 35px;
-    border-radius: 25px;
     align-items: center;
-    width: 150px;
-    gap: 8px;
+    gap: 7px;
+    background: #573cf9;
+    color: white;
+    height: 38px;
+    border-radius: 100px;
+    padding: 0 16px 0 12px;
     margin-right: 15px;
-    padding: 0 0 0 10px;
-    min-width: 140px;
     white-space: nowrap;
+    font-size: 0.88rem;
+    font-weight: 700;
+    letter-spacing: 0.01em;
     font-feature-settings: "tnum";
-    font-size: 14px;
+    box-shadow: 0 2px 10px rgba(87,60,249,0.3);
+    transition: box-shadow 0.2s, transform 0.15s;
+}
+
+#phone-number:hover {
+    box-shadow: 0 4px 16px rgba(87,60,249,0.45);
+    transform: translateY(-1px);
 }
 
 #green-dot {
-    width: 10px;
-    height: 10px;
+    width: 8px;
+    height: 8px;
     border-radius: 50%;
-    background-color: #4db964;
-    
-    min-width: 10px;
-    min-height: 10px;
-    display: inline-block;
+    background: #4ade80;
     flex-shrink: 0;
+    animation: greenPulse 2.2s ease-in-out infinite;
+}
+
+@keyframes greenPulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(74,222,128,0.7); }
+    50%       { box-shadow: 0 0 0 5px rgba(74,222,128,0); }
 }
 
 #logo{
