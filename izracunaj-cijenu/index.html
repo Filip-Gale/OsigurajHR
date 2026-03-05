@@ -552,6 +552,12 @@ permalink: /izracunaj-cijenu/
         }
         .odaberi-success { color: #16a34a; font-weight: 700; text-align: center; padding: 10px 0; display: none; }
 
+        @media (max-width: 480px) {
+            .provider-card-top { flex-direction: column; align-items: flex-start; padding: 14px 14px; gap: 6px; }
+            .provider-price-col { text-align: left; width: 100%; }
+            .price-num { font-size: 1.65rem; }
+        }
+
         /* ── Below-wizard section (payment + trust cards) ── */
         #below-wizard {
             display: none;
