@@ -643,7 +643,7 @@ permalink: /izracunaj-cijenu/
     <!-- Step 1: Vozilo -->
     <div class="step-panel active" id="s1">
         <h2 class="step-title">Vaše vozilo</h2>
-        <p class="step-sub">Samo 2 podatka za trenutni izračun.</p>
+        <p class="step-sub">Samo 1 podatak za trenutni izračun.</p>
         <div class="fields">
             <div>
                 <label class="flabel" for="reg">Registracijska oznaka</label>
@@ -656,12 +656,6 @@ permalink: /izracunaj-cijenu/
                     </div>
                 </div>
                 <div class="ferror" id="e-reg">Unesite registracijsku oznaku.</div>
-            </div>
-            <div>
-                <label class="flabel" for="kw">Snaga motora (kW)</label>
-                <input class="finput" id="kw" type="number" placeholder="85" min="1" max="2000" inputmode="numeric" oninput="fireFormStart()">
-                <div class="fhint">Prometna dozvola — redak P.2.</div>
-                <div class="ferror" id="e-kw">Unesite snagu motora u kW.</div>
             </div>
             <div>
                 <button class="opt-toggle" id="opt-btn" onclick="toggleYear()" type="button">
@@ -687,7 +681,7 @@ permalink: /izracunaj-cijenu/
             <h2 class="step-title" style="margin-bottom:0">Podaci o vozaču</h2>
             <button class="btn-back-top" onclick="go(1,'back')" type="button">← Natrag</button>
         </div>
-        <p class="step-sub">Još 2 podatka i odmah vidite cijenu.</p>
+        <p class="step-sub">Još 3 podatka i odmah vidite cijenu.</p>
         <div class="bonus-banner">
             🎁 <strong>Paket dobrodošlice −20€!</strong> Kao novi korisnik automatski ostvaruješ popust od 20€ — vidjet ćeš ga odmah na cijeni.
         </div>
@@ -710,6 +704,12 @@ permalink: /izracunaj-cijenu/
                         </label>
                     </div>
                 </div>
+            </div>
+            <div>
+                <label class="flabel" for="kw">Snaga motora (kW)</label>
+                <input class="finput" id="kw" type="number" placeholder="85" min="1" max="2000" inputmode="numeric">
+                <div class="fhint">Prometna dozvola — redak P.2.</div>
+                <div class="ferror" id="e-kw">Unesite snagu motora u kW.</div>
             </div>
             <div id="dob-row">
                 <label class="flabel" for="dob">Godina rođenja</label>
@@ -1130,15 +1130,11 @@ function setErr(id, on) {
 /* ── Step 1 → Step 2 ── */
 function next1() {
   var r = document.getElementById('reg').value.trim();
-  var k = document.getElementById('kw').value.trim();
-  var ok = true;
-  if (!r) { setErr('reg',true); ok=false; } else { setErr('reg',false); }
-  if (!k || +k<1) { setErr('kw',true); ok=false; } else { setErr('kw',false); }
-  if (!ok) return;
-  S.reg = r.toUpperCase(); S.kw = +k;
+  if (!r) { setErr('reg',true); return; } else { setErr('reg',false); }
+  S.reg = r.toUpperCase();
   var y = document.getElementById('yr').value.trim();
   S.yr = y ? +y : null;
-  if (typeof gtag === 'function') gtag('event', 'vozilo_submit', {kw: S.kw, zona: S.reg.replace(/[0-9]/g,'').trim()});
+  if (typeof gtag === 'function') gtag('event', 'vozilo_submit', {zona: S.reg.replace(/[0-9]/g,'').trim()});
   go(2);
 }
 
@@ -1294,6 +1290,8 @@ function triglavPrice25(reg, kw, dob) {
 
 /* ── Fetch quote ── */
 function fetch_quote() {
+  var k = document.getElementById('kw').value.trim();
+  if (!k || +k<1) { setErr('kw',true); return; } else { setErr('kw',false); S.kw = +k; }
   var tip = document.querySelector('input[name=tip]:checked').value;
   S.tip = tip;
   var ok = true;
@@ -1310,7 +1308,7 @@ function fetch_quote() {
   var _tipGa = tip==='F' ? 'fizicka' : tip==='P' ? 'pravna' : 'obrt';
   var _dobRange = '';
   if (tip === 'F') { var _ga = new Date().getFullYear()-S.dob; _dobRange = _ga<=24?'do24':_ga<=28?'25-28':_ga<=34?'29-34':_ga<=48?'35-48':'49plus'; }
-  if (typeof gtag === 'function') gtag('event', 'vozac_submit', {tip_osobe: _tipGa, dob_range: _dobRange || 'n/a'});
+  if (typeof gtag === 'function') gtag('event', 'vozac_submit', {tip_osobe: _tipGa, dob_range: _dobRange || 'n/a', kw: S.kw});
 
   var tipLabel = tip==='F' ? 'Fizička osoba' : tip==='P' ? 'Pravna osoba' : 'Obrt';
   var cs = [S.reg, S.kw+' kW', tip==='F' ? (S.dob+'. god.') : tipLabel];
