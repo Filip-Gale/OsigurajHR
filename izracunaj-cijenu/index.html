@@ -1629,36 +1629,19 @@ function submitEmail() {
   <div class="odaberi-sheet-title">Odabrano osiguranje</div>
   <div class="odaberi-sheet-provider" id="odaberi-provider-label"></div>
 
-  <!-- Opcija 1: Nazovi me -->
-  <div class="odaberi-option" onclick="toggleNazovMe()" id="odaberi-opt-callback">
-    <div class="odaberi-option-icon odaberi-icon-callback">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#573cf9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.5 12 19.79 19.79 0 0 1 1.15 3.37a2 2 0 0 1 1.99-2.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+  <!-- Opcija 1: WhatsApp -->
+  <a class="odaberi-option" id="odaberi-wa" href="#" target="_blank" onclick="if(typeof gtag==='function')gtag('event','otvorio_whatsapp',{provider:_odaberiProvider,cijena:_odaberiPrice})">
+    <div class="odaberi-option-icon odaberi-icon-wa">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="#16a34a"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.004 2C6.478 2 2 6.478 2 12.004c0 1.832.49 3.545 1.345 5.025L2 22l5.09-1.335A9.945 9.945 0 0 0 12.004 22C17.528 22 22 17.524 22 12.004 22 6.478 17.528 2 12.004 2zm0 18.084a8.064 8.064 0 0 1-4.105-1.12l-.294-.175-3.046.798.814-2.968-.192-.305a8.049 8.049 0 0 1-1.237-4.314c0-4.454 3.624-8.076 8.076-8.076 4.45 0 8.073 3.622 8.073 8.076 0 4.452-3.623 8.084-8.089 8.084z"/></svg>
     </div>
     <div class="odaberi-option-text">
-      <div class="odaberi-option-title">Nek me agent nazove</div>
-      <div class="odaberi-option-sub">Unesite broj — zovemo vas u najkraćem roku</div>
-    </div>
-    <svg class="odaberi-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ccc" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
-  </div>
-  <div class="odaberi-phone-panel" id="odaberi-phone-panel">
-    <input class="odaberi-phone-input" id="odaberi-phone" type="tel" placeholder="09x xxx xxxx" inputmode="tel">
-    <button class="odaberi-submit" onclick="submitNazovMe()" type="button">Pošalji zahtjev</button>
-    <div class="odaberi-success" id="odaberi-success">✓ Zahtjev poslan! Agent vas naziva uskoro.</div>
-  </div>
-
-  <!-- Opcija 2: Nazovi -->
-  <a class="odaberi-option" href="tel:+38598813221" onclick="if(typeof gtag==='function')gtag('event','nazvao_agenta',{provider:_odaberiProvider})">
-    <div class="odaberi-option-icon odaberi-icon-call">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.5 12 19.79 19.79 0 0 1 1.15 3.37a2 2 0 0 1 1.99-2.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-    </div>
-    <div class="odaberi-option-text">
-      <div class="odaberi-option-title">Nazovi agenta</div>
-      <div class="odaberi-option-sub">098 813 221 — odmah dostupni</div>
+      <div class="odaberi-option-title">WhatsApp</div>
+      <div class="odaberi-option-sub">Ponuda, predračun i polica — sve WhatsApp-om</div>
     </div>
     <svg class="odaberi-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ccc" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
   </a>
 
-  <!-- Opcija 3: E-mail -->
+  <!-- Opcija 2: E-mail -->
   <div class="odaberi-option" onclick="toggleEmail()" id="odaberi-opt-email">
     <div class="odaberi-option-icon odaberi-icon-email">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg>
@@ -1675,14 +1658,31 @@ function submitEmail() {
     <div class="odaberi-success" id="odaberi-email-success">✓ Zahtjev poslan! Šaljemo ponudu uskoro.</div>
   </div>
 
-  <!-- Opcija 4: WhatsApp -->
-  <a class="odaberi-option" id="odaberi-wa" href="#" target="_blank" onclick="if(typeof gtag==='function')gtag('event','otvorio_whatsapp',{provider:_odaberiProvider,cijena:_odaberiPrice})">
-    <div class="odaberi-option-icon odaberi-icon-wa">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="#16a34a"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.004 2C6.478 2 2 6.478 2 12.004c0 1.832.49 3.545 1.345 5.025L2 22l5.09-1.335A9.945 9.945 0 0 0 12.004 22C17.528 22 22 17.524 22 12.004 22 6.478 17.528 2 12.004 2zm0 18.084a8.064 8.064 0 0 1-4.105-1.12l-.294-.175-3.046.798.814-2.968-.192-.305a8.049 8.049 0 0 1-1.237-4.314c0-4.454 3.624-8.076 8.076-8.076 4.45 0 8.073 3.622 8.073 8.076 0 4.452-3.623 8.084-8.089 8.084z"/></svg>
+  <!-- Opcija 3: Nek me agent nazove -->
+  <div class="odaberi-option" onclick="toggleNazovMe()" id="odaberi-opt-callback">
+    <div class="odaberi-option-icon odaberi-icon-callback">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#573cf9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.5 12 19.79 19.79 0 0 1 1.15 3.37a2 2 0 0 1 1.99-2.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
     </div>
     <div class="odaberi-option-text">
-      <div class="odaberi-option-title">WhatsApp</div>
-      <div class="odaberi-option-sub">Ponuda, predračun i polica — sve WhatsApp-om</div>
+      <div class="odaberi-option-title">Nek me agent nazove</div>
+      <div class="odaberi-option-sub">Unesite broj — zovemo vas u najkraćem roku</div>
+    </div>
+    <svg class="odaberi-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ccc" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+  </div>
+  <div class="odaberi-phone-panel" id="odaberi-phone-panel">
+    <input class="odaberi-phone-input" id="odaberi-phone" type="tel" placeholder="09x xxx xxxx" inputmode="tel">
+    <button class="odaberi-submit" onclick="submitNazovMe()" type="button">Pošalji zahtjev</button>
+    <div class="odaberi-success" id="odaberi-success">✓ Zahtjev poslan! Agent vas naziva uskoro.</div>
+  </div>
+
+  <!-- Opcija 4: Nazovi agenta -->
+  <a class="odaberi-option" href="tel:+38598813221" onclick="if(typeof gtag==='function')gtag('event','nazvao_agenta',{provider:_odaberiProvider})">
+    <div class="odaberi-option-icon odaberi-icon-call">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.5 12 19.79 19.79 0 0 1 1.15 3.37a2 2 0 0 1 1.99-2.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+    </div>
+    <div class="odaberi-option-text">
+      <div class="odaberi-option-title">Nazovi agenta</div>
+      <div class="odaberi-option-sub">098 813 221 — odmah dostupni</div>
     </div>
     <svg class="odaberi-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ccc" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
   </a>
