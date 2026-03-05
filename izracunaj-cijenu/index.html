@@ -555,22 +555,23 @@ permalink: /izracunaj-cijenu/
         #below-wizard {
             display: none;
             max-width: 500px; width: 92%;
-            margin: 0 auto 60px;
+            margin: 0 auto 100px;
         }
         .pay-section {
             background: #0d111c;
             border-radius: 20px;
-            padding: 22px 24px;
+            padding: 18px 20px;
             margin-bottom: 14px;
         }
         .pay-logos-row {
-            display: flex; align-items: center; gap: 8px;
-            flex-wrap: wrap; margin-bottom: 12px;
+            display: flex; align-items: center; gap: 6px;
+            flex-wrap: nowrap; margin-bottom: 10px;
+            overflow: hidden;
         }
-        .pay-logo-badge { height: 36px; border-radius: 6px; display: block; }
+        .pay-logo-badge { height: 26px; border-radius: 5px; display: block; flex-shrink: 0; }
         .pay-bar-text {
-            font-size: 0.76rem; color: rgba(255,255,255,0.6);
-            line-height: 1.55; margin: 0;
+            font-size: 0.74rem; color: rgba(255,255,255,0.6);
+            line-height: 1.5; margin: 0;
         }
         /* trust cards row */
         .trust-cards {
@@ -886,42 +887,42 @@ permalink: /izracunaj-cijenu/
     <div class="pay-section">
         <div class="pay-logos-row">
             <!-- Aircash -->
-            <svg class="pay-logo-badge" width="68" height="28" viewBox="0 0 68 28">
-                <rect width="68" height="28" rx="5" fill="#111111"/>
-                <text x="34" y="19.5" font-family="Arial,sans-serif" font-weight="800" font-size="12" fill="#e8000d" text-anchor="middle" letter-spacing="-0.3">aircash</text>
+            <svg class="pay-logo-badge" width="63" height="26" viewBox="0 0 63 26">
+                <rect width="63" height="26" rx="4" fill="#111111"/>
+                <text x="31.5" y="18" font-family="Arial,sans-serif" font-weight="800" font-size="11" fill="#e8000d" text-anchor="middle" letter-spacing="-0.3">aircash</text>
             </svg>
             <!-- Diners Club International -->
-            <svg class="pay-logo-badge" width="72" height="28" viewBox="0 0 72 28">
-                <rect width="72" height="28" rx="5" fill="#003e7e"/>
-                <circle cx="22" cy="14" r="9" fill="none" stroke="white" stroke-width="1.5"/>
-                <circle cx="30" cy="14" r="9" fill="none" stroke="white" stroke-width="1.5"/>
-                <text x="52" y="11" font-family="Arial,sans-serif" font-weight="700" font-size="5" fill="white" text-anchor="middle">Diners Club</text>
-                <text x="52" y="17.5" font-family="Arial,sans-serif" font-size="3.8" fill="white" text-anchor="middle">INTERNATIONAL</text>
+            <svg class="pay-logo-badge" width="66" height="26" viewBox="0 0 66 26">
+                <rect width="66" height="26" rx="4" fill="#003e7e"/>
+                <circle cx="20" cy="13" r="8" fill="none" stroke="white" stroke-width="1.4"/>
+                <circle cx="27" cy="13" r="8" fill="none" stroke="white" stroke-width="1.4"/>
+                <text x="48" y="10.5" font-family="Arial,sans-serif" font-weight="700" font-size="4.5" fill="white" text-anchor="middle">Diners Club</text>
+                <text x="48" y="16.5" font-family="Arial,sans-serif" font-size="3.5" fill="white" text-anchor="middle">INTERNATIONAL</text>
             </svg>
             <!-- KEKS Pay -->
-            <svg class="pay-logo-badge" width="60" height="28" viewBox="0 0 60 28">
-                <rect width="60" height="28" rx="5" fill="#1a1a1a"/>
-                <text x="30" y="13" font-family="Arial,sans-serif" font-weight="800" font-size="9" fill="#00a651" text-anchor="middle" letter-spacing="0.5">KEKS</text>
-                <text x="30" y="23" font-family="Arial,sans-serif" font-size="7.5" fill="white" text-anchor="middle" letter-spacing="1">PAY</text>
+            <svg class="pay-logo-badge" width="55" height="26" viewBox="0 0 55 26">
+                <rect width="55" height="26" rx="4" fill="#1a1a1a"/>
+                <text x="27.5" y="12" font-family="Arial,sans-serif" font-weight="800" font-size="8.5" fill="#00a651" text-anchor="middle" letter-spacing="0.5">KEKS</text>
+                <text x="27.5" y="22" font-family="Arial,sans-serif" font-size="7" fill="white" text-anchor="middle" letter-spacing="1">PAY</text>
             </svg>
             <!-- Mastercard -->
-            <svg class="pay-logo-badge" width="46" height="28" viewBox="0 0 46 28">
-                <rect width="46" height="28" rx="5" fill="#252525"/>
-                <circle cx="16" cy="14" r="9" fill="#eb001b"/>
-                <circle cx="30" cy="14" r="9" fill="#f79e1b"/>
-                <path d="M23 6.2C25.5 8.2 27.2 10.9 27.2 14S25.5 19.8 23 21.8C20.5 19.8 18.8 17.1 18.8 14S20.5 8.2 23 6.2Z" fill="#ff5f00"/>
+            <svg class="pay-logo-badge" width="43" height="26" viewBox="0 0 43 26">
+                <rect width="43" height="26" rx="4" fill="#252525"/>
+                <circle cx="15" cy="13" r="8.5" fill="#eb001b"/>
+                <circle cx="28" cy="13" r="8.5" fill="#f79e1b"/>
+                <path d="M21.5 5.8C23.8 7.7 25.3 10.2 25.3 13S23.8 18.3 21.5 20.2C19.2 18.3 17.7 15.8 17.7 13S19.2 7.7 21.5 5.8Z" fill="#ff5f00"/>
             </svg>
             <!-- Maestro -->
-            <svg class="pay-logo-badge" width="46" height="28" viewBox="0 0 46 28">
-                <rect width="46" height="28" rx="5" fill="#252525"/>
-                <circle cx="16" cy="14" r="9" fill="#0099df"/>
-                <circle cx="30" cy="14" r="9" fill="#ff5f00"/>
-                <path d="M23 6.2C25.5 8.2 27.2 10.9 27.2 14S25.5 19.8 23 21.8C20.5 19.8 18.8 17.1 18.8 14S20.5 8.2 23 6.2Z" fill="#7e2f8e" opacity="0.7"/>
+            <svg class="pay-logo-badge" width="43" height="26" viewBox="0 0 43 26">
+                <rect width="43" height="26" rx="4" fill="#252525"/>
+                <circle cx="15" cy="13" r="8.5" fill="#0099df"/>
+                <circle cx="28" cy="13" r="8.5" fill="#ff5f00"/>
+                <path d="M21.5 5.8C23.8 7.7 25.3 10.2 25.3 13S23.8 18.3 21.5 20.2C19.2 18.3 17.7 15.8 17.7 13S19.2 7.7 21.5 5.8Z" fill="#7e2f8e" opacity="0.7"/>
             </svg>
             <!-- Visa -->
-            <svg class="pay-logo-badge" width="52" height="28" viewBox="0 0 52 28">
-                <rect width="52" height="28" rx="5" fill="#1a1f71"/>
-                <text x="26" y="19.5" font-family="Arial,Helvetica,sans-serif" font-weight="900" font-size="15" fill="white" text-anchor="middle" letter-spacing="0.5">VISA</text>
+            <svg class="pay-logo-badge" width="48" height="26" viewBox="0 0 48 26">
+                <rect width="48" height="26" rx="4" fill="#1a1f71"/>
+                <text x="24" y="18" font-family="Arial,Helvetica,sans-serif" font-weight="900" font-size="14" fill="white" text-anchor="middle" letter-spacing="0.5">VISA</text>
             </svg>
         </div>
         <p class="pay-bar-text">Plaćanje karticama do 12 rata bez kamata, jednokratno uplatom na račun, KEKSpay ili Aircash aplikacijom</p>
