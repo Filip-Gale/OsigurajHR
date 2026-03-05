@@ -243,14 +243,48 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     </p>
                 </div>
 
-                <div class="after-form-panel background-purple-light text-purple round row">
-                    <img src="img/car-crash.jpg" alt="car">
-                    <p>
-                        Dogodila vam se nezgoda? Mi preuzimamo brigu!
-                        <br>
-                        <br>
-                        Vodimo te kroz cijeli proces prijave štete - brzo, jednostavno i bez troškova!
-                    </p>
+                <style>
+                .guar-card {
+                    position: relative; overflow: hidden;
+                    background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 40%, #fde68a 100%);
+                    border: 1.5px solid #f59e0b;
+                    border-radius: 20px;
+                    padding: 16px 18px;
+                    display: flex; align-items: center; gap: 16px;
+                }
+                .guar-card::after {
+                    content: '';
+                    position: absolute; top: 0; left: -60%;
+                    width: 40%; height: 100%;
+                    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.75), transparent);
+                    transform: skewX(-15deg);
+                    animation: guar-shine 3.2s ease-in-out infinite;
+                }
+                @keyframes guar-shine {
+                    0%   { left: -60%; }
+                    65%, 100% { left: 120%; }
+                }
+                .guar-title { font-size: 0.97rem; font-weight: 800; color: #78350f; margin: 0 0 4px; }
+                .guar-sub   { font-size: 0.82rem; color: #92400e; margin: 0; line-height: 1.45; }
+                </style>
+                <div class="guar-card">
+                    <svg width="54" height="66" viewBox="0 0 54 66" style="flex-shrink:0;" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="mg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#fde68a"/><stop offset="100%" stop-color="#f59e0b"/></linearGradient>
+                            <linearGradient id="mo" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#f59e0b"/><stop offset="100%" stop-color="#d97706"/></linearGradient>
+                        </defs>
+                        <path d="M8 2 L22 2 L17 26 L3 26 Z" fill="#ef4444"/>
+                        <path d="M8 2 L22 2 L17 26 L3 26 Z" fill="#dc2626" opacity="0.3"/>
+                        <path d="M32 2 L46 2 L51 26 L37 26 Z" fill="#ef4444"/>
+                        <path d="M32 2 L46 2 L51 26 L37 26 Z" fill="#dc2626" opacity="0.3"/>
+                        <circle cx="27" cy="44" r="22" fill="url(#mo)"/>
+                        <circle cx="27" cy="44" r="18" fill="url(#mg)"/>
+                        <polygon points="27,30 30.2,39.5 40,39.5 32.4,45.2 35,55 27,49.5 19,55 21.6,45.2 14,39.5 23.8,39.5" fill="white" opacity="0.95"/>
+                    </svg>
+                    <div>
+                        <p class="guar-title">Garantiramo najpovoljniju ponudu</p>
+                        <p class="guar-sub">Uspoređujemo sve osiguravatelje i pronalazimo najnižu cijenu prilagođenu baš vašem profilu.</p>
+                    </div>
                 </div>
             </div>
 
