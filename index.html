@@ -208,15 +208,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             var f = document.getElementById('wizard-frame');
             if (f) f.scrollIntoView({behavior:'smooth', block:'start'});
         });
-        window.addEventListener('message', function(e) {
-            if (!e.data || e.data.type !== 'wizardStep') return;
-            var bw = document.getElementById('hp-below-wizard');
-            if (bw) bw.style.display = e.data.step >= 2 ? 'block' : 'none';
-        });
         </script>
-
-        <!-- Trust section (hidden until wizard step 2) -->
-        <div id="hp-below-wizard" style="display:none;">
 
         <!-- Kompare-style payment bar -->
         <style>
@@ -296,8 +288,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     </div>
                 </div>
             </div>
-
-        </div><!-- /hp-below-wizard -->
 
             <div class="margin-top-50 desktop-only"></div>
 

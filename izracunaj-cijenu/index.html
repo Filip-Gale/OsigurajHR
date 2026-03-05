@@ -1077,7 +1077,6 @@ function go(n, dir) {
 
   if (isEmbed) {
     parent.postMessage({ type: 'scrollToWizard' }, '*');
-    parent.postMessage({ type: 'wizardStep', step: n }, '*');
   } else {
     var card = document.querySelector('.wizard-card');
     if (card) card.scrollIntoView({behavior:'smooth', block:'start'});
