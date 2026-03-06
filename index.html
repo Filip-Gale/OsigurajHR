@@ -225,6 +225,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             swapTop.innerHTML = swapRight.innerHTML;
             swapRight.innerHTML = tmp;
         });
+        // Relay GA4 events from iframe (bypasses iframe tracking blocks)
+        window.addEventListener('message', function(e) {
+            if (!e.data || e.data.type !== 'ga4event') return;
+            if (typeof gtag === 'function') {
+                gtag('event', e.data.name, e.data.params || {});
+            }
+        });
         </script>
 
         <!-- 1. Garantiramo najpovoljniju ponudu -->

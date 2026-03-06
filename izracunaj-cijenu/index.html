@@ -1504,14 +1504,21 @@ function showErr(msg) {
   document.getElementById('r-err').style.display = 'block';
 }
 
-/* ── GA4 helper — works even if gtag isn't loaded yet ── */
+/* ── GA4 helper — fires locally + relays to parent via postMessage ── */
 function sendEvent(name, params) {
+  // Fire directly if gtag available
   window.dataLayer = window.dataLayer || [];
   if (typeof gtag === 'function') {
     gtag('event', name, params || {});
   } else {
     dataLayer.push(Object.assign({'event': name}, params || {}));
   }
+  // Also relay to parent page (handles iframe GA4 blocking)
+  try {
+    if (window.parent && window.parent !== window) {
+      window.parent.postMessage({ type: 'ga4event', name: name, params: params || {} }, '*');
+    }
+  } catch(e) {}
 }
 
 /* ── GA4 form_start (fires once) ── */
