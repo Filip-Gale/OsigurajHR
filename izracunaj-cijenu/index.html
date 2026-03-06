@@ -1129,6 +1129,7 @@ function next1() {
   var y = document.getElementById('yr').value.trim();
   S.yr = y ? +y : null;
   if (typeof gtag === 'function') gtag('event', 'vozilo_submit', {zona: S.reg.replace(/[0-9]/g,'').trim()});
+  parent.postMessage({ type: 'wizardStep2' }, '*');
   go(2);
 }
 

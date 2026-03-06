@@ -208,6 +208,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             var f = document.getElementById('wizard-frame');
             if (f) f.scrollIntoView({behavior:'smooth', block:'start'});
         });
+        window.addEventListener('message', function(e) {
+            if (!e.data || e.data.type !== 'wizardStep2') return;
+            var swapTop = document.getElementById('guar-wrap');
+            var swapRight = document.getElementById('swap-right');
+            if (!swapTop || !swapRight) return;
+            var tmp = swapTop.innerHTML;
+            swapTop.innerHTML = swapRight.innerHTML;
+            swapRight.innerHTML = tmp;
+        });
         </script>
 
         <!-- 1. Garantiramo najpovoljniju ponudu -->
@@ -236,7 +245,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         .guar-title { font-size: 0.97rem; font-weight: 800; color: #78350f; margin: 0 0 4px; }
         .guar-sub   { font-size: 0.82rem; color: #92400e; margin: 0; line-height: 1.45; }
         </style>
-        <div class="guar-wrap">
+        <div class="guar-wrap" id="guar-wrap">
             <div class="guar-card">
                 <svg width="54" height="66" viewBox="0 0 54 66" style="flex-shrink:0;" xmlns="http://www.w3.org/2000/svg">
                     <defs>
@@ -308,7 +317,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     Digitalna polica odmah je dostupna te je automatski vidljiva na svim stranicama za tehnički pregled u Hrvatskoj.
                 </p>
             </div>
-            <div style="flex:1;">
+            <div id="swap-right" style="flex:1;">
               <div class="hp-pay-section">
                 <div class="hp-pay-logos-row">
                   <svg class="hp-pay-logo-badge" width="63" height="26" viewBox="0 0 63 26"><rect width="63" height="26" rx="4" fill="#111111"/><text x="31.5" y="18" font-family="Arial,sans-serif" font-weight="800" font-size="11" fill="#e8000d" text-anchor="middle" letter-spacing="-0.3">aircash</text></svg>
