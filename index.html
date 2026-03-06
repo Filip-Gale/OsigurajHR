@@ -210,31 +210,55 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         });
         </script>
 
-        <!-- Kompare-style payment bar -->
+        <!-- 1. Garantiramo najpovoljniju ponudu -->
         <style>
-        .hp-pay-wrap { max-width:500px; width:92%; margin:0 auto 20px; }
-        .hp-pay-section { background:#0d111c; border-radius:20px; padding:16px; }
-        .hp-pay-logos-row { display:flex; align-items:center; justify-content:center; gap:10px; flex-wrap:wrap; margin-bottom:10px; }
-        .hp-pay-logo-badge { height:26px; border-radius:5px; display:block; flex-shrink:0; }
-        .hp-pay-bar-text { font-size:0.74rem; color:rgba(255,255,255,0.6); line-height:1.5; margin:0 0 8px; }
-        .hp-pay-disclaimer { font-size:0.68rem; color:rgba(255,255,255,0.35); line-height:1.4; margin:0; }
+        .guar-wrap { max-width:500px; width:92%; margin:0 auto 20px; }
+        .guar-card {
+            position: relative; overflow: hidden;
+            background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 40%, #fde68a 100%);
+            border: 1.5px solid #f59e0b;
+            border-radius: 20px;
+            padding: 16px 18px;
+            display: flex; align-items: center; gap: 16px;
+        }
+        .guar-card::after {
+            content: '';
+            position: absolute; top: 0; left: -60%;
+            width: 40%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.75), transparent);
+            transform: skewX(-15deg);
+            animation: guar-shine 3.2s ease-in-out infinite;
+        }
+        @keyframes guar-shine {
+            0%   { left: -60%; }
+            65%, 100% { left: 120%; }
+        }
+        .guar-title { font-size: 0.97rem; font-weight: 800; color: #78350f; margin: 0 0 4px; }
+        .guar-sub   { font-size: 0.82rem; color: #92400e; margin: 0; line-height: 1.45; }
         </style>
-        <div class="hp-pay-wrap">
-          <div class="hp-pay-section">
-            <div class="hp-pay-logos-row">
-              <svg class="hp-pay-logo-badge" width="63" height="26" viewBox="0 0 63 26"><rect width="63" height="26" rx="4" fill="#111111"/><text x="31.5" y="18" font-family="Arial,sans-serif" font-weight="800" font-size="11" fill="#e8000d" text-anchor="middle" letter-spacing="-0.3">aircash</text></svg>
-              <svg class="hp-pay-logo-badge" width="40" height="26" viewBox="0 0 40 26"><rect width="40" height="26" rx="4" fill="#003e7e"/><circle cx="15" cy="13" r="8" fill="none" stroke="white" stroke-width="1.6"/><circle cx="25" cy="13" r="8" fill="none" stroke="white" stroke-width="1.6"/></svg>
-              <svg class="hp-pay-logo-badge" width="55" height="26" viewBox="0 0 55 26"><rect width="55" height="26" rx="4" fill="#1a1a1a"/><text x="27.5" y="12" font-family="Arial,sans-serif" font-weight="800" font-size="8.5" fill="#00a651" text-anchor="middle" letter-spacing="0.5">KEKS</text><text x="27.5" y="22" font-family="Arial,sans-serif" font-size="7" fill="white" text-anchor="middle" letter-spacing="1">PAY</text></svg>
-              <svg class="hp-pay-logo-badge" width="43" height="26" viewBox="0 0 43 26"><rect width="43" height="26" rx="4" fill="#252525"/><circle cx="15" cy="13" r="8.5" fill="#eb001b"/><circle cx="28" cy="13" r="8.5" fill="#f79e1b"/><path d="M21.5 5.8C23.8 7.7 25.3 10.2 25.3 13S23.8 18.3 21.5 20.2C19.2 18.3 17.7 15.8 17.7 13S19.2 7.7 21.5 5.8Z" fill="#ff5f00"/></svg>
-              <svg class="hp-pay-logo-badge" width="43" height="26" viewBox="0 0 43 26"><rect width="43" height="26" rx="4" fill="#252525"/><circle cx="15" cy="13" r="8.5" fill="#0099df"/><circle cx="28" cy="13" r="8.5" fill="#ff5f00"/><path d="M21.5 5.8C23.8 7.7 25.3 10.2 25.3 13S23.8 18.3 21.5 20.2C19.2 18.3 17.7 15.8 17.7 13S19.2 7.7 21.5 5.8Z" fill="#7e2f8e" opacity="0.7"/></svg>
-              <svg class="hp-pay-logo-badge" width="48" height="26" viewBox="0 0 48 26"><rect width="48" height="26" rx="4" fill="#1a1f71"/><text x="24" y="18" font-family="Arial,Helvetica,sans-serif" font-weight="900" font-size="14" fill="white" text-anchor="middle" letter-spacing="0.5">VISA</text></svg>
+        <div class="guar-wrap">
+            <div class="guar-card">
+                <svg width="54" height="66" viewBox="0 0 54 66" style="flex-shrink:0;" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="mg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#fde68a"/><stop offset="100%" stop-color="#f59e0b"/></linearGradient>
+                        <linearGradient id="mo" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#f59e0b"/><stop offset="100%" stop-color="#d97706"/></linearGradient>
+                    </defs>
+                    <path d="M8 2 L22 2 L17 26 L3 26 Z" fill="#ef4444"/>
+                    <path d="M8 2 L22 2 L17 26 L3 26 Z" fill="#dc2626" opacity="0.3"/>
+                    <path d="M32 2 L46 2 L51 26 L37 26 Z" fill="#ef4444"/>
+                    <path d="M32 2 L46 2 L51 26 L37 26 Z" fill="#dc2626" opacity="0.3"/>
+                    <circle cx="27" cy="44" r="22" fill="url(#mo)"/>
+                    <circle cx="27" cy="44" r="18" fill="url(#mg)"/>
+                    <polygon points="27,30 30.2,39.5 40,39.5 32.4,45.2 35,55 27,49.5 19,55 21.6,45.2 14,39.5 23.8,39.5" fill="white" opacity="0.95"/>
+                </svg>
+                <div>
+                    <p class="guar-title">Garantiramo najpovoljniju ponudu</p>
+                    <p class="guar-sub">Uspoređujemo sve dostupne osiguravatelje i pronalazimo najnižu cijenu prilagođenu baš vašem vozilu i profilu.</p>
+                </div>
             </div>
-            <p class="hp-pay-bar-text">Plaćanje karticama do 12 rata bez kamata, jednokratno uplatom na račun, KEKSpay ili Aircash aplikacijom</p>
-            <p class="hp-pay-disclaimer">Distribuciju osiguranja omogućuje posrednik u osiguranju Maksi Miro d.o.o za zastupanje u osiguranju.</p>
-          </div>
         </div>
 
-        <!-- Partner logo marquee -->
+        <!-- 2. Partner logo marquee -->
         <style>
         .hp-partners-wrap { max-width:500px; width:92%; margin:0 auto 20px; }
         .hp-partners-label { display:none; }
@@ -269,61 +293,41 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </div>
         </div>
 
-        <div class="column">
-            <div class="row-pc width-container-1000">
-                <div class="after-form-panel background-purple-light text-purple round row" style="flex:1;">
-                    <img src="img/policy-purple.jpg" alt="phone_bubble">
-                    <p>
-                        Digitalna polica odmah je dostupna te je automatski vidljiva na svim stranicama za tehnički pregled u Hrvatskoj.
-                    </p>
-                </div>
-
-                <style>
-                .guar-card {
-                    position: relative; overflow: hidden;
-                    background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 40%, #fde68a 100%);
-                    border: 1.5px solid #f59e0b;
-                    border-radius: 20px;
-                    padding: 16px 18px;
-                    display: flex; align-items: center; gap: 16px;
-                    flex: 1;
-                }
-                .guar-card::after {
-                    content: '';
-                    position: absolute; top: 0; left: -60%;
-                    width: 40%; height: 100%;
-                    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.75), transparent);
-                    transform: skewX(-15deg);
-                    animation: guar-shine 3.2s ease-in-out infinite;
-                }
-                @keyframes guar-shine {
-                    0%   { left: -60%; }
-                    65%, 100% { left: 120%; }
-                }
-                .guar-title { font-size: 0.97rem; font-weight: 800; color: #78350f; margin: 0 0 4px; }
-                .guar-sub   { font-size: 0.82rem; color: #92400e; margin: 0; line-height: 1.45; }
-                </style>
-                <div class="guar-card">
-                    <svg width="54" height="66" viewBox="0 0 54 66" style="flex-shrink:0;" xmlns="http://www.w3.org/2000/svg">
-                        <defs>
-                            <linearGradient id="mg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#fde68a"/><stop offset="100%" stop-color="#f59e0b"/></linearGradient>
-                            <linearGradient id="mo" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#f59e0b"/><stop offset="100%" stop-color="#d97706"/></linearGradient>
-                        </defs>
-                        <path d="M8 2 L22 2 L17 26 L3 26 Z" fill="#ef4444"/>
-                        <path d="M8 2 L22 2 L17 26 L3 26 Z" fill="#dc2626" opacity="0.3"/>
-                        <path d="M32 2 L46 2 L51 26 L37 26 Z" fill="#ef4444"/>
-                        <path d="M32 2 L46 2 L51 26 L37 26 Z" fill="#dc2626" opacity="0.3"/>
-                        <circle cx="27" cy="44" r="22" fill="url(#mo)"/>
-                        <circle cx="27" cy="44" r="18" fill="url(#mg)"/>
-                        <polygon points="27,30 30.2,39.5 40,39.5 32.4,45.2 35,55 27,49.5 19,55 21.6,45.2 14,39.5 23.8,39.5" fill="white" opacity="0.95"/>
-                    </svg>
-                    <div>
-                        <p class="guar-title">Garantiramo najpovoljniju ponudu</p>
-                        <p class="guar-sub">Uspoređujemo sve dostupne osiguravatelje i pronalazimo najnižu cijenu prilagođenu baš vašem vozilu i profilu.</p>
-                    </div>
-                </div>
+        <!-- 3. Digitalna polica -->
+        <div style="max-width:500px;width:92%;margin:0 auto 20px;">
+            <div class="after-form-panel background-purple-light text-purple round row">
+                <img src="img/policy-purple.jpg" alt="phone_bubble">
+                <p>
+                    Digitalna polica odmah je dostupna te je automatski vidljiva na svim stranicama za tehnički pregled u Hrvatskoj.
+                </p>
             </div>
+        </div>
 
+        <!-- 4. Kartice (payment bar) -->
+        <style>
+        .hp-pay-wrap { max-width:500px; width:92%; margin:0 auto 20px; }
+        .hp-pay-section { background:#0d111c; border-radius:20px; padding:16px; }
+        .hp-pay-logos-row { display:flex; align-items:center; justify-content:center; gap:10px; flex-wrap:wrap; margin-bottom:10px; }
+        .hp-pay-logo-badge { height:26px; border-radius:5px; display:block; flex-shrink:0; }
+        .hp-pay-bar-text { font-size:0.74rem; color:rgba(255,255,255,0.6); line-height:1.5; margin:0 0 8px; }
+        .hp-pay-disclaimer { font-size:0.68rem; color:rgba(255,255,255,0.35); line-height:1.4; margin:0; }
+        </style>
+        <div class="hp-pay-wrap">
+          <div class="hp-pay-section">
+            <div class="hp-pay-logos-row">
+              <svg class="hp-pay-logo-badge" width="63" height="26" viewBox="0 0 63 26"><rect width="63" height="26" rx="4" fill="#111111"/><text x="31.5" y="18" font-family="Arial,sans-serif" font-weight="800" font-size="11" fill="#e8000d" text-anchor="middle" letter-spacing="-0.3">aircash</text></svg>
+              <svg class="hp-pay-logo-badge" width="40" height="26" viewBox="0 0 40 26"><rect width="40" height="26" rx="4" fill="#003e7e"/><circle cx="15" cy="13" r="8" fill="none" stroke="white" stroke-width="1.6"/><circle cx="25" cy="13" r="8" fill="none" stroke="white" stroke-width="1.6"/></svg>
+              <svg class="hp-pay-logo-badge" width="55" height="26" viewBox="0 0 55 26"><rect width="55" height="26" rx="4" fill="#1a1a1a"/><text x="27.5" y="12" font-family="Arial,sans-serif" font-weight="800" font-size="8.5" fill="#00a651" text-anchor="middle" letter-spacing="0.5">KEKS</text><text x="27.5" y="22" font-family="Arial,sans-serif" font-size="7" fill="white" text-anchor="middle" letter-spacing="1">PAY</text></svg>
+              <svg class="hp-pay-logo-badge" width="43" height="26" viewBox="0 0 43 26"><rect width="43" height="26" rx="4" fill="#252525"/><circle cx="15" cy="13" r="8.5" fill="#eb001b"/><circle cx="28" cy="13" r="8.5" fill="#f79e1b"/><path d="M21.5 5.8C23.8 7.7 25.3 10.2 25.3 13S23.8 18.3 21.5 20.2C19.2 18.3 17.7 15.8 17.7 13S19.2 7.7 21.5 5.8Z" fill="#ff5f00"/></svg>
+              <svg class="hp-pay-logo-badge" width="43" height="26" viewBox="0 0 43 26"><rect width="43" height="26" rx="4" fill="#252525"/><circle cx="15" cy="13" r="8.5" fill="#0099df"/><circle cx="28" cy="13" r="8.5" fill="#ff5f00"/><path d="M21.5 5.8C23.8 7.7 25.3 10.2 25.3 13S23.8 18.3 21.5 20.2C19.2 18.3 17.7 15.8 17.7 13S19.2 7.7 21.5 5.8Z" fill="#7e2f8e" opacity="0.7"/></svg>
+              <svg class="hp-pay-logo-badge" width="48" height="26" viewBox="0 0 48 26"><rect width="48" height="26" rx="4" fill="#1a1f71"/><text x="24" y="18" font-family="Arial,Helvetica,sans-serif" font-weight="900" font-size="14" fill="white" text-anchor="middle" letter-spacing="0.5">VISA</text></svg>
+            </div>
+            <p class="hp-pay-bar-text">Plaćanje karticama do 12 rata bez kamata, jednokratno uplatom na račun, KEKSpay ili Aircash aplikacijom</p>
+            <p class="hp-pay-disclaimer">Distribuciju osiguranja omogućuje posrednik u osiguranju Maksi Miro d.o.o za zastupanje u osiguranju.</p>
+          </div>
+        </div>
+
+        <div class="column">
             <div class="margin-top-50 desktop-only"></div>
 
             <div id="phone-preview" class="text-yellow row-pc-reverse width-container-1000 fade-in">
