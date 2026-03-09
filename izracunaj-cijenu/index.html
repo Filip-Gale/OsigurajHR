@@ -223,7 +223,19 @@ permalink: /izracunaj-cijenu/
             overflow: hidden; max-height: 0; opacity: 0;
             transition: max-height 0.35s cubic-bezier(0.4,0,0.2,1), opacity 0.25s ease;
         }
-        .opt-field.open { max-height: 130px; opacity: 1; }
+        .opt-field.open { max-height: 160px; opacity: 1; }
+
+        .kasko-upload-zone {
+          display: flex; align-items: center; gap: 12px;
+          border: 2px dashed rgba(87,60,249,0.35); border-radius: 12px;
+          padding: 14px 16px; cursor: pointer; background: rgba(87,60,249,0.04);
+          transition: border-color 0.2s, background 0.2s;
+        }
+        .kasko-upload-zone:hover { border-color: #573cf9; background: rgba(87,60,249,0.09); }
+        .kasko-upload-zone.has-file { border-color: #22c55e; background: rgba(34,197,94,0.07); }
+        .kasko-upload-icon { font-size: 1.4rem; flex-shrink: 0; }
+        .kasko-upload-text { font-size: 0.8rem; color: #444; line-height: 1.4; }
+        .kasko-upload-text small { opacity: 0.65; }
 
         /* ── Buttons ── */
         .btn-main {
@@ -684,15 +696,20 @@ permalink: /izracunaj-cijenu/
                 <div class="ferror" id="e-reg">Unesite registracijsku oznaku.</div>
             </div>
             <div>
-                <button class="opt-toggle" id="opt-btn" onclick="toggleYear()" type="button">
+                <button class="opt-toggle" id="opt-btn" onclick="toggleKasko()" type="button">
                     <span class="opt-icon">+</span>
-                    <span id="opt-lbl">Dodajte godinu vozila (za kasko ponudu)</span>
+                    <span id="opt-lbl">Želim i kasko 🛡️</span>
                 </button>
                 <div class="opt-field" id="opt-field">
                     <div style="height:12px"></div>
-                    <label class="flabel" for="yr">Godina proizvodnje</label>
-                    <input class="finput" id="yr" type="number" placeholder="2019" min="1990" max="2026" inputmode="numeric">
-                    <div class="fhint">Vozila starija od 12 god. nemaju kasko.</div>
+                    <div class="kasko-upload-zone" id="kasko-drop" onclick="document.getElementById('kasko-file').click()">
+                        <span class="kasko-upload-icon" id="kasko-upload-icon">📸</span>
+                        <span class="kasko-upload-text" id="kasko-upload-text">
+                            Priloži prometnu ili staru policu<br>
+                            <small>(nije obavezno, ali ubrzava izradu ponude)</small>
+                        </span>
+                    </div>
+                    <input type="file" id="kasko-file" name="attachment" accept="image/*,.pdf" style="display:none" onchange="onKaskoFile(this)">
                 </div>
             </div>
         </div>
@@ -1018,7 +1035,7 @@ window.addEventListener('load', function() {
 });
 
 /* ── State ── */
-var S = { reg:'', kw:0, yr:null, tip:'F', dob:0, dobFull:'', oib:'' };
+var S = { reg:'', kw:0, tip:'F', dob:0, dobFull:'', oib:'', wantsKasko: false };
 var aoBase = 0;
 var selectedPkgs = {};
 var triglavBase = 0;
@@ -1156,12 +1173,27 @@ document.querySelectorAll('input[name=tip]').forEach(function(r) {
 });
 
 
-/* ── Expandable year section ── */
-function toggleYear() {
+/* ── Kasko opt-in ── */
+function toggleKasko() {
   var f = document.getElementById('opt-field'), b = document.getElementById('opt-btn');
   var open = f.classList.toggle('open');
   b.classList.toggle('open', open);
-  document.getElementById('opt-lbl').textContent = open ? 'Sakrij godinu vozila' : 'Dodajte godinu vozila (za kasko ponudu)';
+  document.getElementById('opt-lbl').textContent = open ? 'Sakrij kasko ponudu' : 'Želim i kasko 🛡️';
+  S.wantsKasko = open;
+  if (!open) {
+    document.getElementById('kasko-file').value = '';
+    document.getElementById('kasko-drop').classList.remove('has-file');
+    document.getElementById('kasko-upload-icon').textContent = '📸';
+    document.getElementById('kasko-upload-text').innerHTML = 'Priloži prometnu ili staru policu<br><small>(nije obavezno, ali ubrzava izradu ponude)</small>';
+  }
+}
+
+function onKaskoFile(input) {
+  var f = input.files[0];
+  if (!f) return;
+  document.getElementById('kasko-drop').classList.add('has-file');
+  document.getElementById('kasko-upload-icon').textContent = '✅';
+  document.getElementById('kasko-upload-text').innerHTML = '<strong>' + f.name + '</strong><br><small>Priloženo ✓</small>';
 }
 
 /* ── Field error helpers ── */
@@ -1177,8 +1209,7 @@ function next1() {
   var r = document.getElementById('reg').value.trim();
   if (!r) { setErr('reg',true); return; } else { setErr('reg',false); }
   S.reg = r.toUpperCase();
-  var y = document.getElementById('yr').value.trim();
-  S.yr = y ? +y : null;
+  /* S.yr uklonjen — kasko se šalje kao attachment */
   sendEvent('vozilo_submit', {zona: S.reg.replace(/[0-9]/g,'').trim()});
   parent.postMessage({ type: 'wizardStep2' }, '*');
   go(2);
@@ -1624,7 +1655,7 @@ function _buildLeadInfo() {
     + 'Vrsta osobe: ' + tipLabel + '\n'
     + (S.tip === 'F' ? 'Datum rođenja: ' + formatDob(S.dobFull) + '\n' : '')
     + 'OIB: ' + (S.oib || '—') + '\n'
-    + (S.yr ? 'God. vozila: ' + S.yr + '. (kasko)\n' : '')
+    + (S.wantsKasko ? 'Želi kasko ponudu: DA\n' : '')
     + (_odaberiAddons.length ? 'Dodaci: ' + _odaberiAddons.join(', ') + '\n' : '');
 }
 
@@ -1718,6 +1749,8 @@ function submitNazovMe() {
   fd.append('access_key', '3cf56deb-78e0-4c88-8bc2-d73a20b78a80');
   fd.append('subject', 'Zahtjev za poziv — ' + _odaberiProvider + ' | ' + S.reg);
   fd.append('message', 'Korisnik traži povratni poziv.\nTelefon: ' + phone + '\n\n' + _buildLeadInfo());
+  var kaskoFile = document.getElementById('kasko-file');
+  if (kaskoFile && kaskoFile.files[0]) fd.append('attachment', kaskoFile.files[0]);
   fetch('https://api.web3forms.com/submit', { method:'POST', body: fd });
   sendEvent('ostavio_telefon', {provider: _odaberiProvider, cijena: _odaberiPrice});
   document.getElementById('odaberi-success').style.display = 'block';
@@ -1738,6 +1771,8 @@ function submitEmail() {
   fd.append('access_key', '3cf56deb-78e0-4c88-8bc2-d73a20b78a80');
   fd.append('subject', 'Zahtjev za ponudu mailom — ' + _odaberiProvider + ' | ' + S.reg);
   fd.append('message', 'Korisnik traži ponudu na e-mail.\nE-mail: ' + email + '\n\n' + _buildLeadInfo());
+  var kaskoFile = document.getElementById('kasko-file');
+  if (kaskoFile && kaskoFile.files[0]) fd.append('attachment', kaskoFile.files[0]);
   fetch('https://api.web3forms.com/submit', { method:'POST', body: fd });
   sendEvent('ostavio_email', {provider: _odaberiProvider, cijena: _odaberiPrice});
   document.getElementById('odaberi-email-success').style.display = 'block';
