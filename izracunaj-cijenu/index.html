@@ -213,12 +213,13 @@ permalink: /izracunaj-cijenu/
         .opt-toggle:hover { opacity: 0.75; }
         .opt-icon {
             display: inline-flex; align-items: center; justify-content: center;
-            width: 18px; height: 18px; border-radius: 50%;
-            background: #573cf9; color: white;
-            font-size: 1rem; font-weight: 900; line-height: 1;
-            transition: transform 0.25s;
+            width: 18px; height: 18px; border-radius: 4px; flex-shrink: 0;
+            border: 2px solid #573cf9; background: white; color: white;
+            font-size: 0.7rem; font-weight: 900; line-height: 1;
+            transition: background 0.2s, border-color 0.2s;
         }
-        .opt-toggle.open .opt-icon { transform: rotate(45deg); }
+        .opt-toggle.open .opt-icon { background: #573cf9; }
+        .opt-toggle.open .opt-icon::after { content: '✓'; }
         .opt-field {
             overflow: hidden; max-height: 0; opacity: 0;
             transition: max-height 0.35s cubic-bezier(0.4,0,0.2,1), opacity 0.25s ease;
@@ -697,8 +698,8 @@ permalink: /izracunaj-cijenu/
             </div>
             <div>
                 <button class="opt-toggle" id="opt-btn" onclick="toggleKasko()" type="button">
-                    <span class="opt-icon">+</span>
-                    <span id="opt-lbl">Želim i kasko 🛡️</span>
+                    <span class="opt-icon"></span>
+                    <span id="opt-lbl">Želim i Kasko</span>
                 </button>
                 <div class="opt-field" id="opt-field">
                     <div style="height:12px"></div>
@@ -1178,7 +1179,7 @@ function toggleKasko() {
   var f = document.getElementById('opt-field'), b = document.getElementById('opt-btn');
   var open = f.classList.toggle('open');
   b.classList.toggle('open', open);
-  document.getElementById('opt-lbl').textContent = open ? 'Sakrij kasko ponudu' : 'Želim i kasko 🛡️';
+  document.getElementById('opt-lbl').textContent = open ? 'Kasko odabran' : 'Želim i Kasko';
   S.wantsKasko = open;
   if (!open) {
     document.getElementById('kasko-file').value = '';
