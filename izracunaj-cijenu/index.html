@@ -218,7 +218,8 @@ permalink: /izracunaj-cijenu/
             display: inline-flex; align-items: center; justify-content: center;
             font-size: 0.7rem; font-weight: 900; transition: all 0.18s;
         }
-        .opt-toggle.open .opt-icon { background: #573cf9; border-color: #573cf9; color: white; }
+        .opt-toggle.open { color: #16a34a; }
+        .opt-toggle.open .opt-icon { background: #16a34a; border-color: #16a34a; color: white; }
         .opt-toggle.open .opt-icon::after { content: '✓'; }
         .opt-field {
             overflow: hidden; max-height: 0; opacity: 0;
@@ -1702,6 +1703,7 @@ function handleWaClick() {
     + 'OIB: ' + (S.oib || '—') + '\n'
     + 'Cijena: ' + _odaberiPrice + '\n'
     + (_odaberiAddons.length ? 'Dodaci: ' + _odaberiAddons.join(', ') + '\n' : '')
+    + (S.wantsKasko ? 'Želi kasko ponudu: DA\n' : '')
     + 'Molim potvrdu i ugovaranje.';
   sendEvent('otvorio_whatsapp', {provider: _odaberiProvider, cijena: _odaberiPrice});
   window.open('https://wa.me/38598813221?text=' + encodeURIComponent(msg), '_blank');
