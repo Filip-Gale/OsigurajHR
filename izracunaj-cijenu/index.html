@@ -737,7 +737,7 @@ permalink: /izracunaj-cijenu/
             </div>
             <div id="dob-row">
                 <label class="flabel" for="dob">Datum rođenja</label>
-                <input class="finput" id="dob" type="date" min="1920-01-01">
+                <input class="finput" id="dob" type="text" inputmode="numeric" placeholder="DD.MM.GGGG" maxlength="10" autocomplete="bday">
                 <div class="ferror" id="e-dob">Unesite vaš datum rođenja.</div>
             </div>
             <div>
@@ -997,9 +997,14 @@ function notifyHeight() {
 }
 window.addEventListener('load', function() {
   setTimeout(notifyHeight, 100);
-  var maxD = new Date();
-  maxD.setFullYear(maxD.getFullYear() - 17);
-  document.getElementById('dob').max = maxD.toISOString().split('T')[0];
+
+  document.getElementById('dob').addEventListener('input', function() {
+    var digits = this.value.replace(/\D/g, '').slice(0, 8);
+    var out = digits.slice(0, 2);
+    if (digits.length > 2) out += '.' + digits.slice(2, 4);
+    if (digits.length > 4) out += '.' + digits.slice(4, 8);
+    this.value = out;
+  });
 
   ['odaberi-ime','odaberi-prezime','odaberi-adresa'].forEach(function(id) {
     document.getElementById(id).addEventListener('input', function() {
@@ -1331,12 +1336,19 @@ function fetch_quote() {
   var ok = true;
   if (tip === 'F') {
     var d = document.getElementById('dob').value.trim();
-    if (!d) { setErr('dob',true); ok=false; }
+    var dobParts = d.split('.');
+    var dobOk = dobParts.length === 3 && dobParts[2].length === 4;
+    if (dobOk) {
+      var dobDay = parseInt(dobParts[0],10), dobMonth = parseInt(dobParts[1],10), dobYear = parseInt(dobParts[2],10);
+      var dobDate = new Date(dobYear, dobMonth-1, dobDay);
+      dobOk = !isNaN(dobDate.getTime()) && dobDate.getDate()===dobDay && dobDate.getMonth()===dobMonth-1
+              && dobYear >= 1920 && (new Date().getFullYear() - dobYear) >= 17;
+    }
+    if (!dobOk) { setErr('dob',true); ok=false; }
     else {
-      var dobYear = new Date(d).getFullYear();
-      var dobAge = new Date().getFullYear() - dobYear;
-      if (dobYear < 1920 || dobAge < 17) { setErr('dob',true); ok=false; }
-      else { setErr('dob',false); S.dob = dobYear; S.dobFull = d; }
+      setErr('dob',false);
+      S.dob = parseInt(dobParts[2],10);
+      S.dobFull = dobParts[2]+'-'+dobParts[1].padStart(2,'0')+'-'+dobParts[0].padStart(2,'0');
     }
   } else { S.dob = 1970; }
   var oibVal = document.getElementById('oib').value.trim();
