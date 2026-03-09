@@ -1181,6 +1181,7 @@ function toggleKasko() {
   b.classList.toggle('open', open);
   document.getElementById('opt-lbl').textContent = open ? 'Kasko odabran ✓' : 'Želim ugovoriti i Kasko';
   S.wantsKasko = open;
+  setTimeout(notifyHeight, 380);
   if (!open) {
     document.getElementById('kasko-file').value = '';
     document.getElementById('kasko-drop').classList.remove('has-file');
