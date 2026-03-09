@@ -553,6 +553,15 @@ permalink: /izracunaj-cijenu/
             transition: border-color 0.2s; margin-bottom: 10px;
         }
         .odaberi-phone-input:focus { border-color: #573cf9; }
+        .odaberi-info-label { font-size: 0.7rem; color: #aaa; text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 8px; }
+        .odaberi-info-row { display: flex; gap: 8px; margin-bottom: 8px; }
+        .odaberi-info-input {
+            width: 100%; box-sizing: border-box;
+            padding: 11px 14px; border: 1.5px solid #e5e5e5; border-radius: 11px;
+            font-size: 0.9rem; font-family: inherit; outline: none; color: #1c1533;
+            transition: border-color 0.2s;
+        }
+        .odaberi-info-input:focus { border-color: #573cf9; }
         .odaberi-submit {
             display: block; width: 100%; padding: 13px; background: #573cf9; color: white;
             border: none; border-radius: 11px; font-size: 0.97rem; font-family: inherit;
@@ -1544,8 +1553,13 @@ var _odaberiProvider = '', _odaberiPrice = '', _odaberiAddons = [];
 
 function _buildLeadInfo() {
   var tipLabel = S.tip === 'F' ? 'Fizička osoba' : S.tip === 'P' ? 'Pravna osoba' : 'Obrt';
+  var ime = document.getElementById('odaberi-ime').value.trim();
+  var prezime = document.getElementById('odaberi-prezime').value.trim();
+  var adresa = document.getElementById('odaberi-adresa').value.trim();
   return 'Osiguranje: ' + _odaberiProvider + '\n'
     + 'Cijena: ' + _odaberiPrice + '\n'
+    + (ime || prezime ? 'Ime i prezime: ' + (ime + ' ' + prezime).trim() + '\n' : '')
+    + (adresa ? 'Adresa: ' + adresa + '\n' : '')
     + 'Tablica: ' + S.reg + '\n'
     + 'Snaga: ' + S.kw + ' kW\n'
     + 'Vrsta osobe: ' + tipLabel + '\n'
@@ -1553,6 +1567,27 @@ function _buildLeadInfo() {
     + 'OIB: ' + (S.oib || '—') + '\n'
     + (S.yr ? 'God. vozila: ' + S.yr + '. (kasko)\n' : '')
     + (_odaberiAddons.length ? 'Dodaci: ' + _odaberiAddons.join(', ') + '\n' : '');
+}
+
+function handleWaClick() {
+  var ime = document.getElementById('odaberi-ime').value.trim();
+  var prezime = document.getElementById('odaberi-prezime').value.trim();
+  var adresa = document.getElementById('odaberi-adresa').value.trim();
+  var tipLabel = S.tip === 'F' ? 'Fizička osoba' : S.tip === 'P' ? 'Pravna osoba' : 'Obrt';
+  var msg = 'Zanima me ' + _odaberiProvider + ' AO osiguranje\n'
+    + (ime || prezime ? 'Ime: ' + (ime + ' ' + prezime).trim() + '\n' : '')
+    + (adresa ? 'Adresa: ' + adresa + '\n' : '')
+    + 'Tablica: ' + S.reg + '\n'
+    + 'Snaga: ' + S.kw + ' kW\n'
+    + 'Vrsta: ' + tipLabel + '\n'
+    + (S.tip === 'F' ? 'God. rođenja: ' + S.dob + '\n' : '')
+    + 'OIB: ' + (S.oib || '—') + '\n'
+    + 'Cijena: ' + _odaberiPrice + '\n'
+    + (_odaberiAddons.length ? 'Dodaci: ' + _odaberiAddons.join(', ') + '\n' : '')
+    + 'Molim potvrdu i ugovaranje.';
+  sendEvent('otvorio_whatsapp', {provider: _odaberiProvider, cijena: _odaberiPrice});
+  window.open('https://wa.me/38598813221?text=' + encodeURIComponent(msg), '_blank');
+  return false;
 }
 
 function openOdaberi(provider, priceElId, btn) {
@@ -1575,15 +1610,10 @@ function openOdaberi(provider, priceElId, btn) {
       if (el) _odaberiAddons.push(el.querySelector('.pkg-name').textContent);
     });
   }
-  var msg = 'Zanima me ' + provider + ' AO osiguranje\n'
-    + 'Tablica: ' + S.reg + '\n'
-    + 'Snaga: ' + S.kw + ' kW\n'
-    + (S.tip === 'F' ? 'God. rođenja: ' + S.dob + '\n' : '')
-    + 'Cijena: ' + priceText + '\n'
-    + (_odaberiAddons.length ? 'Dodaci: ' + _odaberiAddons.join(', ') + '\n' : '')
-    + 'Molim potvrdu i ugovaranje.';
-  document.getElementById('odaberi-wa').href = 'https://wa.me/38598813221?text=' + encodeURIComponent(msg);
 
+  document.getElementById('odaberi-ime').value = '';
+  document.getElementById('odaberi-prezime').value = '';
+  document.getElementById('odaberi-adresa').value = '';
   document.getElementById('odaberi-phone-panel').classList.remove('show');
   document.getElementById('odaberi-phone').value = '';
   document.getElementById('odaberi-success').style.display = 'none';
@@ -1594,7 +1624,7 @@ function openOdaberi(provider, priceElId, btn) {
 
   // Position modal near clicked button using document (not viewport) coordinates
   var sheet = document.getElementById('odaberi-sheet');
-  var sheetH = 380;
+  var sheetH = 540;
   var scrollY = window.pageYOffset;
   var btnDocTop = btn ? (btn.getBoundingClientRect().top + scrollY) : scrollY;
   var btnH = btn ? btn.offsetHeight : 0;
@@ -1657,8 +1687,16 @@ function submitEmail() {
   <div class="odaberi-sheet-title">Odabrano osiguranje</div>
   <div class="odaberi-sheet-provider" id="odaberi-provider-label"></div>
 
+  <!-- Podaci o korisniku -->
+  <div class="odaberi-info-label">Vaši podaci</div>
+  <div class="odaberi-info-row">
+    <input class="odaberi-info-input" id="odaberi-ime" type="text" placeholder="Ime" autocomplete="given-name">
+    <input class="odaberi-info-input" id="odaberi-prezime" type="text" placeholder="Prezime" autocomplete="family-name">
+  </div>
+  <input class="odaberi-info-input" id="odaberi-adresa" type="text" placeholder="Adresa i grad (npr. Ilica 10, Zagreb)" autocomplete="street-address" style="margin-bottom:16px;width:100%;box-sizing:border-box;">
+
   <!-- Opcija 1: WhatsApp -->
-  <a class="odaberi-option" id="odaberi-wa" href="#" target="_blank" onclick="sendEvent('otvorio_whatsapp',{provider:_odaberiProvider,cijena:_odaberiPrice})">
+  <a class="odaberi-option" id="odaberi-wa" href="#" target="_blank" onclick="return handleWaClick()">
     <div class="odaberi-option-icon odaberi-icon-wa">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="#16a34a"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.004 2C6.478 2 2 6.478 2 12.004c0 1.832.49 3.545 1.345 5.025L2 22l5.09-1.335A9.945 9.945 0 0 0 12.004 22C17.528 22 22 17.524 22 12.004 22 6.478 17.528 2 12.004 2zm0 18.084a8.064 8.064 0 0 1-4.105-1.12l-.294-.175-3.046.798.814-2.968-.192-.305a8.049 8.049 0 0 1-1.237-4.314c0-4.454 3.624-8.076 8.076-8.076 4.45 0 8.073 3.622 8.073 8.076 0 4.452-3.623 8.084-8.089 8.084z"/></svg>
     </div>
