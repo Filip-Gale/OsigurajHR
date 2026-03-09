@@ -59,7 +59,7 @@ permalink: /izracunaj-cijenu/
             margin: 28px auto 24px;
             padding: 30px 24px 34px;
             box-shadow: 0 32px 80px rgba(255,188,39,0.4), 0 8px 24px rgba(0,0,0,0.2);
-            overflow: hidden; position: relative;
+            overflow: visible; position: relative;
         }
         @media (min-width: 600px) { .wizard-card { padding: 38px 42px 42px; } }
 
@@ -203,22 +203,25 @@ permalink: /izracunaj-cijenu/
         .tip-card:hover { border-color: #c4bbff; }
         .tip-card:hover svg { stroke: #573cf9; }
 
-        /* ── Expandable year ── */
+        /* ── Kasko opt-in toggle ── */
         .opt-toggle {
-            display: flex; align-items: center; gap: 7px;
-            font-size: 0.82rem; color: #573cf9; cursor: pointer;
-            font-weight: 700; background: none; border: none;
-            padding: 0; font-family: inherit; transition: opacity 0.2s;
+            display: inline-flex; align-items: center; gap: 9px;
+            font-size: 0.88rem; font-weight: 700; cursor: pointer;
+            background: rgba(255,255,255,0.6); border: 2px solid rgba(87,60,249,0.3);
+            border-radius: 50px; padding: 9px 16px 9px 10px;
+            color: #573cf9; font-family: inherit;
+            transition: all 0.22s cubic-bezier(0.34,1.56,0.64,1);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.07);
         }
-        .opt-toggle:hover { opacity: 0.75; }
+        .opt-toggle:hover { background: white; border-color: #573cf9; box-shadow: 0 3px 10px rgba(87,60,249,0.18); }
+        .opt-toggle.open { background: #573cf9; border-color: #573cf9; color: white; box-shadow: 0 4px 14px rgba(87,60,249,0.45); }
         .opt-icon {
+            width: 18px; height: 18px; border-radius: 50%; flex-shrink: 0;
+            border: 2px solid currentColor; background: transparent;
             display: inline-flex; align-items: center; justify-content: center;
-            width: 18px; height: 18px; border-radius: 4px; flex-shrink: 0;
-            border: 2px solid #573cf9; background: white; color: white;
-            font-size: 0.7rem; font-weight: 900; line-height: 1;
-            transition: background 0.2s, border-color 0.2s;
+            font-size: 0.65rem; font-weight: 900; transition: all 0.2s;
         }
-        .opt-toggle.open .opt-icon { background: #573cf9; }
+        .opt-toggle.open .opt-icon { background: white; color: #573cf9; border-color: white; }
         .opt-toggle.open .opt-icon::after { content: '✓'; }
         .opt-field {
             overflow: hidden; max-height: 0; opacity: 0;
