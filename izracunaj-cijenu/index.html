@@ -718,9 +718,9 @@ permalink: /izracunaj-cijenu/
                 <div class="ferror" id="e-kw">Unesite snagu motora u kW.</div>
             </div>
             <div id="dob-row">
-                <label class="flabel" for="dob">Godina rođenja</label>
-                <input class="finput" id="dob" type="number" placeholder="1985" min="1920" max="2007" inputmode="numeric">
-                <div class="ferror" id="e-dob">Unesite vašu godinu rođenja.</div>
+                <label class="flabel" for="dob">Datum rođenja</label>
+                <input class="finput" id="dob" type="date" min="1920-01-01">
+                <div class="ferror" id="e-dob">Unesite vaš datum rođenja.</div>
             </div>
             <div>
                 <label class="flabel" for="oib">OIB</label>
@@ -977,7 +977,12 @@ function notifyHeight() {
   var h = document.querySelector('.wizard-card').offsetHeight;
   parent.postMessage({ type: 'wizardHeight', height: h }, '*');
 }
-window.addEventListener('load', function() { setTimeout(notifyHeight, 100); });
+window.addEventListener('load', function() {
+  setTimeout(notifyHeight, 100);
+  var maxD = new Date();
+  maxD.setFullYear(maxD.getFullYear() - 17);
+  document.getElementById('dob').max = maxD.toISOString().split('T')[0];
+});
 
 /* ── State ── */
 var S = { reg:'', kw:0, yr:null, tip:'F', dob:0, oib:'' };
@@ -1300,8 +1305,13 @@ function fetch_quote() {
   var ok = true;
   if (tip === 'F') {
     var d = document.getElementById('dob').value.trim();
-    if (!d || +d<1920 || +d>new Date().getFullYear()-17) { setErr('dob',true); ok=false; }
-    else { setErr('dob',false); S.dob = +d; }
+    if (!d) { setErr('dob',true); ok=false; }
+    else {
+      var dobYear = new Date(d).getFullYear();
+      var dobAge = new Date().getFullYear() - dobYear;
+      if (dobYear < 1920 || dobAge < 17) { setErr('dob',true); ok=false; }
+      else { setErr('dob',false); S.dob = dobYear; }
+    }
   } else { S.dob = 1970; }
   var oibVal = document.getElementById('oib').value.trim();
   if (!oibVal || oibVal.length !== 11) { setErr('oib',true); ok=false; }
