@@ -207,21 +207,18 @@ permalink: /izracunaj-cijenu/
         .opt-toggle {
             display: inline-flex; align-items: center; gap: 9px;
             font-size: 0.88rem; font-weight: 700; cursor: pointer;
-            background: rgba(255,255,255,0.6); border: 2px solid rgba(87,60,249,0.3);
-            border-radius: 50px; padding: 9px 16px 9px 10px;
+            background: none; border: none; padding: 4px 0;
             color: #573cf9; font-family: inherit;
-            transition: all 0.22s cubic-bezier(0.34,1.56,0.64,1);
-            box-shadow: 0 2px 6px rgba(0,0,0,0.07);
+            transition: opacity 0.15s;
         }
-        .opt-toggle:hover { background: white; border-color: #573cf9; box-shadow: 0 3px 10px rgba(87,60,249,0.18); }
-        .opt-toggle.open { background: #573cf9; border-color: #573cf9; color: white; box-shadow: 0 4px 14px rgba(87,60,249,0.45); }
+        .opt-toggle:hover { opacity: 0.75; }
         .opt-icon {
-            width: 18px; height: 18px; border-radius: 50%; flex-shrink: 0;
-            border: 2px solid currentColor; background: transparent;
+            width: 20px; height: 20px; border-radius: 6px; flex-shrink: 0;
+            border: 2.5px solid #573cf9; background: white;
             display: inline-flex; align-items: center; justify-content: center;
-            font-size: 0.65rem; font-weight: 900; transition: all 0.2s;
+            font-size: 0.7rem; font-weight: 900; transition: all 0.18s;
         }
-        .opt-toggle.open .opt-icon { background: white; color: #573cf9; border-color: white; }
+        .opt-toggle.open .opt-icon { background: #573cf9; border-color: #573cf9; color: white; }
         .opt-toggle.open .opt-icon::after { content: '✓'; }
         .opt-field {
             overflow: hidden; max-height: 0; opacity: 0;
@@ -702,7 +699,7 @@ permalink: /izracunaj-cijenu/
             <div>
                 <button class="opt-toggle" id="opt-btn" onclick="toggleKasko()" type="button">
                     <span class="opt-icon"></span>
-                    <span id="opt-lbl">Želim i Kasko</span>
+                    <span id="opt-lbl">Želim ugovoriti i Kasko</span>
                 </button>
                 <div class="opt-field" id="opt-field">
                     <div style="height:12px"></div>
@@ -1182,7 +1179,7 @@ function toggleKasko() {
   var f = document.getElementById('opt-field'), b = document.getElementById('opt-btn');
   var open = f.classList.toggle('open');
   b.classList.toggle('open', open);
-  document.getElementById('opt-lbl').textContent = open ? 'Kasko odabran' : 'Želim i Kasko';
+  document.getElementById('opt-lbl').textContent = open ? 'Kasko odabran ✓' : 'Želim ugovoriti i Kasko';
   S.wantsKasko = open;
   if (!open) {
     document.getElementById('kasko-file').value = '';
