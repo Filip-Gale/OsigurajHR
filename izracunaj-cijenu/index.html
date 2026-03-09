@@ -1770,24 +1770,28 @@ function toggleNazovMe() {
   document.getElementById('odaberi-phone-panel').classList.toggle('show');
 }
 
-function submitNazovMe() {
-  if (!validateOdaberiInfo()) return;
-  var phone = document.getElementById('odaberi-phone').value.trim();
-  if (!phone) { document.getElementById('odaberi-phone').focus(); return; }
+function _uploadKaskoFile() {
+  var input = document.getElementById('kasko-file');
+  if (!input || !input.files[0]) return Promise.resolve(null);
   var fd = new FormData();
-  fd.append('subject', 'Zahtjev za poziv — ' + _odaberiProvider + ' | ' + S.reg);
-  fd.append('message', 'Korisnik traži povratni poziv.\nTelefon: ' + phone + '\n\n' + _buildLeadInfo());
-  var kaskoFile = document.getElementById('kasko-file');
-  if (kaskoFile && kaskoFile.files[0]) fd.append('attachment', kaskoFile.files[0]);
-  var btns = document.querySelectorAll('#odaberi-phone-panel .odaberi-submit');
-  btns.forEach(function(b){ b.disabled = true; b.textContent = 'Slanje...'; });
-  fetch('https://osiguraj-mail.osiguraj1.workers.dev', { method:'POST', body: fd })
+  fd.append('file', input.files[0]);
+  fd.append('upload_preset', 'osiguraj.hr');
+  return fetch('https://api.cloudinary.com/v1_1/dmnkstx0n/upload', { method: 'POST', body: fd })
+    .then(function(r){ return r.json(); })
+    .then(function(d){ return d.secure_url || null; })
+    .catch(function(){ return null; });
+}
+
+function _submitToWeb3forms(subject, message, btns, successCb) {
+  var fd = new FormData();
+  fd.append('access_key', '3cf56deb-78e0-4c88-8bc2-d73a20b78a80');
+  fd.append('subject', subject);
+  fd.append('message', message);
+  fetch('https://api.web3forms.com/submit', { method: 'POST', body: fd })
     .then(function(r){ return r.json(); })
     .then(function(data) {
       if (data.success) {
-        sendEvent('ostavio_telefon', {provider: _odaberiProvider, cijena: _odaberiPrice});
-        document.getElementById('odaberi-success').style.display = 'block';
-        btns.forEach(function(b){ b.style.display = 'none'; });
+        successCb();
       } else {
         btns.forEach(function(b){ b.disabled = false; b.textContent = 'Pošalji'; });
         alert('Greška pri slanju. Molimo nazovite nas: 098 813 221');
@@ -1797,6 +1801,27 @@ function submitNazovMe() {
       btns.forEach(function(b){ b.disabled = false; b.textContent = 'Pošalji'; });
       alert('Greška pri slanju. Molimo nazovite nas: 098 813 221');
     });
+}
+
+function submitNazovMe() {
+  if (!validateOdaberiInfo()) return;
+  var phone = document.getElementById('odaberi-phone').value.trim();
+  if (!phone) { document.getElementById('odaberi-phone').focus(); return; }
+  var btns = document.querySelectorAll('#odaberi-phone-panel .odaberi-submit');
+  btns.forEach(function(b){ b.disabled = true; b.textContent = 'Slanje...'; });
+  _uploadKaskoFile().then(function(imgUrl) {
+    var msg = 'Korisnik traži povratni poziv.\nTelefon: ' + phone + '\n\n' + _buildLeadInfo();
+    if (imgUrl) msg += '\nPrivitak (prometna/polica): ' + imgUrl;
+    _submitToWeb3forms(
+      'Zahtjev za poziv — ' + _odaberiProvider + ' | ' + S.reg,
+      msg, btns,
+      function() {
+        sendEvent('ostavio_telefon', {provider: _odaberiProvider, cijena: _odaberiPrice});
+        document.getElementById('odaberi-success').style.display = 'block';
+        btns.forEach(function(b){ b.style.display = 'none'; });
+      }
+    );
+  });
 }
 
 function toggleEmail() {
@@ -1809,29 +1834,21 @@ function submitEmail() {
   if (!validateOdaberiInfo()) return;
   var email = document.getElementById('odaberi-email').value.trim();
   if (!email || !email.includes('@')) { document.getElementById('odaberi-email').focus(); return; }
-  var fd = new FormData();
-  fd.append('subject', 'Zahtjev za ponudu mailom — ' + _odaberiProvider + ' | ' + S.reg);
-  fd.append('message', 'Korisnik traži ponudu na e-mail.\nE-mail: ' + email + '\n\n' + _buildLeadInfo());
-  var kaskoFile = document.getElementById('kasko-file');
-  if (kaskoFile && kaskoFile.files[0]) fd.append('attachment', kaskoFile.files[0]);
   var btns = document.querySelectorAll('#odaberi-email-panel .odaberi-submit');
   btns.forEach(function(b){ b.disabled = true; b.textContent = 'Slanje...'; });
-  fetch('https://osiguraj-mail.osiguraj1.workers.dev', { method:'POST', body: fd })
-    .then(function(r){ return r.json(); })
-    .then(function(data) {
-      if (data.success) {
+  _uploadKaskoFile().then(function(imgUrl) {
+    var msg = 'Korisnik traži ponudu na e-mail.\nE-mail: ' + email + '\n\n' + _buildLeadInfo();
+    if (imgUrl) msg += '\nPrivitak (prometna/polica): ' + imgUrl;
+    _submitToWeb3forms(
+      'Zahtjev za ponudu mailom — ' + _odaberiProvider + ' | ' + S.reg,
+      msg, btns,
+      function() {
         sendEvent('ostavio_email', {provider: _odaberiProvider, cijena: _odaberiPrice});
         document.getElementById('odaberi-email-success').style.display = 'block';
         btns.forEach(function(b){ b.style.display = 'none'; });
-      } else {
-        btns.forEach(function(b){ b.disabled = false; b.textContent = 'Pošalji'; });
-        alert('Greška pri slanju. Molimo nazovite nas: 098 813 221');
       }
-    })
-    .catch(function() {
-      btns.forEach(function(b){ b.disabled = false; b.textContent = 'Pošalji'; });
-      alert('Greška pri slanju. Molimo nazovite nas: 098 813 221');
-    });
+    );
+  });
 }
 </script>
 
