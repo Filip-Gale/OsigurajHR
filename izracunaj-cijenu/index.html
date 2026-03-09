@@ -1377,15 +1377,15 @@ function showOk(d) {
   var triglavAge = new Date().getFullYear() - Number(S.dob);
   var tPrice = null, tIsFlat = false;
   if (S.tip === 'F') {
-    var tPriceCalc;
     if (triglavAge <= 24) {
-      tPriceCalc = triglavPrice(S.kw, S.dob);
+      tPrice = triglavFlatPrice(S.kw, S.dob);
+      tIsFlat = true;
     } else {
-      tPriceCalc = triglavPrice25(S.reg, S.kw, S.dob);
+      var tPriceCalc = triglavPrice25(S.reg, S.kw, S.dob);
+      var tPriceF = triglavFlatPrice(S.kw, S.dob);
+      if (tPriceCalc !== null && tPriceCalc <= tPriceF) { tPrice = tPriceCalc; tIsFlat = false; }
+      else { tPrice = tPriceF; tIsFlat = true; }
     }
-    var tPriceF = triglavFlatPrice(S.kw, S.dob);
-    if (tPriceCalc !== null && tPriceCalc <= tPriceF) { tPrice = tPriceCalc; tIsFlat = false; }
-    else { tPrice = tPriceF; tIsFlat = true; }
   } else {
     var tPriceZone = triglavPrice25(S.reg, S.kw, null);
     var tPriceF = triglavFlatPrice(S.kw, null);
