@@ -562,6 +562,14 @@ permalink: /izracunaj-cijenu/
             transition: border-color 0.2s;
         }
         .odaberi-info-input:focus { border-color: #573cf9; }
+        .odaberi-info-input.valid { border-color: #22c55e; background: #f0fdf4; }
+        .odaberi-info-input.invalid { border-color: #ef4444; background: #fef2f2; }
+        @keyframes odaberiShake {
+            0%,100% { transform: translateX(0); }
+            20%,60% { transform: translateX(-5px); }
+            40%,80% { transform: translateX(5px); }
+        }
+        .odaberi-info-input.shake { animation: odaberiShake 0.35s ease; }
         .odaberi-submit {
             display: block; width: 100%; padding: 13px; background: #573cf9; color: white;
             border: none; border-radius: 11px; font-size: 0.97rem; font-family: inherit;
@@ -991,10 +999,18 @@ window.addEventListener('load', function() {
   var maxD = new Date();
   maxD.setFullYear(maxD.getFullYear() - 17);
   document.getElementById('dob').max = maxD.toISOString().split('T')[0];
+
+  ['odaberi-ime','odaberi-prezime','odaberi-adresa'].forEach(function(id) {
+    document.getElementById(id).addEventListener('input', function() {
+      var filled = this.value.trim().length > 0;
+      this.classList.toggle('valid', filled);
+      this.classList.toggle('invalid', false);
+    });
+  });
 });
 
 /* ── State ── */
-var S = { reg:'', kw:0, yr:null, tip:'F', dob:0, oib:'' };
+var S = { reg:'', kw:0, yr:null, tip:'F', dob:0, dobFull:'', oib:'' };
 var aoBase = 0;
 var selectedPkgs = {};
 var triglavBase = 0;
@@ -1319,7 +1335,7 @@ function fetch_quote() {
       var dobYear = new Date(d).getFullYear();
       var dobAge = new Date().getFullYear() - dobYear;
       if (dobYear < 1920 || dobAge < 17) { setErr('dob',true); ok=false; }
-      else { setErr('dob',false); S.dob = dobYear; }
+      else { setErr('dob',false); S.dob = dobYear; S.dobFull = d; }
     }
   } else { S.dob = 1970; }
   var oibVal = document.getElementById('oib').value.trim();
@@ -1551,6 +1567,29 @@ function fireFormStart() {
 /* ── Odaberi modal ── */
 var _odaberiProvider = '', _odaberiPrice = '', _odaberiAddons = [];
 
+function formatDob(iso) {
+  if (!iso) return '';
+  var p = iso.split('-');
+  return p.length === 3 ? p[2]+'.'+p[1]+'.'+p[0]+'.' : iso;
+}
+
+function validateOdaberiInfo() {
+  var ids = ['odaberi-ime','odaberi-prezime','odaberi-adresa'];
+  var ok = true;
+  ids.forEach(function(id) {
+    var el = document.getElementById(id);
+    if (!el.value.trim()) {
+      el.classList.remove('valid','shake');
+      el.classList.add('invalid');
+      void el.offsetWidth; // reflow za restart animacije
+      el.classList.add('shake');
+      setTimeout(function(){ el.classList.remove('shake'); }, 380);
+      if (ok) { el.focus(); ok = false; }
+    }
+  });
+  return ok;
+}
+
 function _buildLeadInfo() {
   var tipLabel = S.tip === 'F' ? 'Fizička osoba' : S.tip === 'P' ? 'Pravna osoba' : 'Obrt';
   var ime = document.getElementById('odaberi-ime').value.trim();
@@ -1563,13 +1602,14 @@ function _buildLeadInfo() {
     + 'Tablica: ' + S.reg + '\n'
     + 'Snaga: ' + S.kw + ' kW\n'
     + 'Vrsta osobe: ' + tipLabel + '\n'
-    + (S.tip === 'F' ? 'God. rođenja: ' + S.dob + '.\n' : '')
+    + (S.tip === 'F' ? 'Datum rođenja: ' + formatDob(S.dobFull) + '\n' : '')
     + 'OIB: ' + (S.oib || '—') + '\n'
     + (S.yr ? 'God. vozila: ' + S.yr + '. (kasko)\n' : '')
     + (_odaberiAddons.length ? 'Dodaci: ' + _odaberiAddons.join(', ') + '\n' : '');
 }
 
 function handleWaClick() {
+  if (!validateOdaberiInfo()) return false;
   var ime = document.getElementById('odaberi-ime').value.trim();
   var prezime = document.getElementById('odaberi-prezime').value.trim();
   var adresa = document.getElementById('odaberi-adresa').value.trim();
@@ -1580,7 +1620,7 @@ function handleWaClick() {
     + 'Tablica: ' + S.reg + '\n'
     + 'Snaga: ' + S.kw + ' kW\n'
     + 'Vrsta: ' + tipLabel + '\n'
-    + (S.tip === 'F' ? 'God. rođenja: ' + S.dob + '\n' : '')
+    + (S.tip === 'F' ? 'Datum rođenja: ' + formatDob(S.dobFull) + '\n' : '')
     + 'OIB: ' + (S.oib || '—') + '\n'
     + 'Cijena: ' + _odaberiPrice + '\n'
     + (_odaberiAddons.length ? 'Dodaci: ' + _odaberiAddons.join(', ') + '\n' : '')
@@ -1646,6 +1686,7 @@ function closeOdaberi() {
 }
 
 function toggleNazovMe() {
+  if (!validateOdaberiInfo()) return;
   document.getElementById('odaberi-phone-panel').classList.toggle('show');
 }
 
@@ -1663,6 +1704,7 @@ function submitNazovMe() {
 }
 
 function toggleEmail() {
+  if (!validateOdaberiInfo()) return;
   document.getElementById('odaberi-email-panel').classList.toggle('show');
   document.getElementById('odaberi-phone-panel').classList.remove('show');
 }
