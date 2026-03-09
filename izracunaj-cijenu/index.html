@@ -174,9 +174,11 @@ permalink: /izracunaj-cijenu/
             transition: color 0.3s;
         }
         .reg-ind.show { display: flex; }
-        .reg-ind.ok   { color: #16a34a; }
+        .reg-ind.ok      { color: #16a34a; }
+        .reg-ind.unknown { color: #f97316; }
         .reg-dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; animation: pdot 1s infinite; transition: all 0.3s; }
-        .reg-ind.ok .reg-dot { animation: none; width: 16px; height: 16px; border-radius: 50%; background: #22c55e; }
+        .reg-ind.ok .reg-dot      { animation: none; width: 16px; height: 16px; border-radius: 50%; background: #22c55e; }
+        .reg-ind.unknown .reg-dot { animation: none; width: 16px; height: 16px; border-radius: 50%; background: #f97316; }
         @keyframes pdot { 0%,100%{opacity:1;transform:scale(1);} 50%{opacity:0.35;transform:scale(0.65);} }
 
         /* ── Tip cards ── */
@@ -1133,10 +1135,15 @@ document.getElementById('reg').addEventListener('input', function() {
   if (this.value.length >= 2) {
     dot.textContent = ''; txt.textContent = 'Provjeravam...';
     ind.classList.add('show');
+    var regVal = this.value;
     regTimer = setTimeout(function() {
-      ind.classList.add('ok');
-      dot.textContent = '✓'; txt.textContent = 'Zona prepoznata';
-      regHideTimer = setTimeout(function(){ ind.classList.remove('show','ok'); }, 2200);
+      var prefix = regVal.toUpperCase().replace(/[^A-ZČĆĐŠŽ]/g,'').slice(0,2);
+      var known = TRIGLAV_ZONES.hasOwnProperty(prefix);
+      ind.classList.toggle('ok', known);
+      ind.classList.toggle('unknown', !known);
+      dot.textContent = known ? '✓' : '✗';
+      txt.textContent = known ? 'Zona prepoznata' : 'Zona nepoznata';
+      regHideTimer = setTimeout(function(){ ind.classList.remove('show','ok','unknown'); }, 2200);
     }, 900);
   } else { ind.classList.remove('show'); }
 });
