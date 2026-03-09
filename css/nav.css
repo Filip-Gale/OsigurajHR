@@ -143,3 +143,37 @@ nav span{
 
 @media (min-width: 768px) {
 }
+
+@media (max-width: 767px) {
+    /* Vertikalno centriranje logo linka */
+    #main-nav .width-container > a {
+        display: inline-flex;
+        align-items: center;
+    }
+
+    /* Logo malo veći */
+    #logo {
+        height: 44px;
+        width: auto;
+    }
+
+    /* O nama i broj gumb malo manji */
+    .nav-onama {
+        height: 30px;
+        font-size: 0.75rem;
+        padding: 0 11px;
+    }
+
+    #phone-number {
+        height: 32px;
+        font-size: 0.78rem;
+        padding: 0 11px 0 9px;
+        margin-right: 12px;
+    }
+
+    /* Horizontalni razmak + logo lijevo, gumbi desno */
+    #main-nav .width-container {
+        padding: 0 12px;
+        justify-content: space-between;
+    }
+}
