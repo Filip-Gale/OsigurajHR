@@ -1453,23 +1453,8 @@ function fetch_quote() {
   });
 }
 
-/* ── Show results ── */
-function showOk(d) {
-  aoBase = Number(d.ao_cijena_s_porezom);
-  var el = document.getElementById('ao-num');
-  el.textContent = '0,00 €';
-  document.getElementById('r-ok').style.display = 'block';
-  // Fake original price za AS Direct
-  var aoOrigRow = document.getElementById('ao-original-row');
-  var aoOrigNum = document.getElementById('ao-original-num');
-  if (aoOrigRow && aoOrigNum) {
-    aoOrigNum.textContent = (aoBase + 20).toFixed(2).replace('.',',') + ' €';
-    aoOrigRow.style.display = 'flex';
-  }
-  startAoCountdown();
-  setTimeout(function(){ animateCount(el, 0, aoBase, 950); }, 80);
-  setTimeout(launchConfetti, 180);
-
+/* ── Triglav card render — radi i bez AS Direct ── */
+function renderTriglav(aoBaseVal) {
   var triglavCard = document.getElementById('triglav-card');
   var triglavAge = new Date().getFullYear() - Number(S.dob);
   var tPrice = null, tIsFlat = false;
@@ -1496,7 +1481,6 @@ function showOk(d) {
     var tEl = document.getElementById('triglav-num');
     tEl.textContent = '0,00 €';
     triglavCard.style.display = 'block';
-    // Fake original price = stvarna cijena + 20€
     var origRow = document.getElementById('triglav-original-row');
     var origNum = document.getElementById('triglav-original-num');
     if (origRow && origNum) {
@@ -1505,8 +1489,6 @@ function showOk(d) {
     }
     startTriglavCountdown();
     setTimeout(function(){ animateCount(tEl, 0, tPrice, 950); }, 120);
-
-    // Paketi: flat cjenik → Nezgoda + Asist.Europa; zona → Asist.HR + Asist.EU + Paket dobrodošlice
     var pkgsHtml = '';
     if (tIsFlat) {
       pkgsHtml += '<div class="pkg-row" id="tpkg-nezgoda" onclick="toggleTriglavPkg(this,7.44)" data-price="7.44">'
@@ -1531,13 +1513,38 @@ function showOk(d) {
     }
     document.getElementById('triglav-pkgs-list').innerHTML = pkgsHtml;
     var rOk = document.getElementById('r-ok');
-    if (tPrice < aoBase) {
-      rOk.insertBefore(triglavCard, document.getElementById('asdirect-card'));
+    var asdCard = document.getElementById('asdirect-card');
+    if (aoBaseVal !== null && tPrice < aoBaseVal) {
+      rOk.insertBefore(triglavCard, asdCard);
     } else {
-      rOk.insertBefore(document.getElementById('asdirect-card'), triglavCard);
+      rOk.insertBefore(asdCard, triglavCard);
     }
   } else {
     triglavCard.style.display = 'none';
+  }
+  return tPrice;
+}
+
+/* ── Show results ── */
+function showOk(d) {
+  aoBase = Number(d.ao_cijena_s_porezom);
+  var el = document.getElementById('ao-num');
+  el.textContent = '0,00 €';
+  document.getElementById('r-ok').style.display = 'block';
+  // Fake original price za AS Direct
+  var aoOrigRow = document.getElementById('ao-original-row');
+  var aoOrigNum = document.getElementById('ao-original-num');
+  if (aoOrigRow && aoOrigNum) {
+    aoOrigNum.textContent = (aoBase + 20).toFixed(2).replace('.',',') + ' €';
+    aoOrigRow.style.display = 'flex';
+  }
+  startAoCountdown();
+  setTimeout(function(){ animateCount(el, 0, aoBase, 950); }, 80);
+  setTimeout(launchConfetti, 180);
+
+  document.getElementById('asdirect-card').style.display = 'block';
+  var tPrice = renderTriglav(aoBase);
+  if (tPrice === null) {
     var rOk = document.getElementById('r-ok');
     rOk.insertBefore(document.getElementById('asdirect-card'), rOk.firstChild);
   }
@@ -1597,8 +1604,17 @@ document.addEventListener('click', function() {
 
 /* ── Error ── */
 function showErr(msg) {
-  document.getElementById('err-msg').textContent = msg;
-  document.getElementById('r-err').style.display = 'block';
+  document.getElementById('asdirect-card').style.display = 'none';
+  var tPrice = renderTriglav(null);
+  if (tPrice !== null) {
+    document.getElementById('r-ok').style.display = 'block';
+    launchConfetti();
+    setTimeout(notifyHeight, 400);
+  } else {
+    document.getElementById('err-msg').textContent = msg;
+    document.getElementById('r-err').style.display = 'block';
+    setTimeout(notifyHeight, 400);
+  }
 }
 
 /* ── GA4 helper — fires locally + relays to parent via postMessage ── */
