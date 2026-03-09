@@ -1,0 +1,6 @@
+name = "osiguraj-mail"
+main = "index.js"
+compatibility_date = "2026-03-03"
+account_id = "18fe17e199081ab7d6dda74b083290cd"
+
+# Secret: wrangler secret put RESEND_API_KEY
