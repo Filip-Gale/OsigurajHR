@@ -1711,6 +1711,7 @@ function toggleNazovMe() {
 }
 
 function submitNazovMe() {
+  if (!validateOdaberiInfo()) return;
   var phone = document.getElementById('odaberi-phone').value.trim();
   if (!phone) { document.getElementById('odaberi-phone').focus(); return; }
   var fd = new FormData();
@@ -1730,6 +1731,7 @@ function toggleEmail() {
 }
 
 function submitEmail() {
+  if (!validateOdaberiInfo()) return;
   var email = document.getElementById('odaberi-email').value.trim();
   if (!email || !email.includes('@')) { document.getElementById('odaberi-email').focus(); return; }
   var fd = new FormData();
