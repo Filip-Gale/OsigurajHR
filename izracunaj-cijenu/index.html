@@ -224,7 +224,7 @@ permalink: /izracunaj-cijenu/
             overflow: hidden; max-height: 0; opacity: 0;
             transition: max-height 0.35s cubic-bezier(0.4,0,0.2,1), opacity 0.25s ease;
         }
-        .opt-field.open { max-height: 160px; opacity: 1; }
+        .opt-field.open { max-height: 340px; opacity: 1; }
 
         .kasko-upload-zone {
           display: flex; align-items: center; gap: 12px;
@@ -237,6 +237,9 @@ permalink: /izracunaj-cijenu/
         .kasko-upload-icon { font-size: 1.4rem; flex-shrink: 0; }
         .kasko-upload-text { font-size: 0.8rem; color: #444; line-height: 1.4; }
         .kasko-upload-text small { opacity: 0.65; }
+        .kasko-hints { list-style: none; padding: 8px 2px 4px; margin: 0; display: flex; flex-direction: column; gap: 6px; }
+        .kasko-hints li { font-size: 0.8rem; color: rgba(0,0,0,0.6); font-weight: 600; display: flex; align-items: center; gap: 7px; }
+        .kasko-hints li::before { content: '✓'; color: #16a34a; font-weight: 900; font-size: 0.85rem; flex-shrink: 0; }
 
         /* ── Buttons ── */
         .btn-main {
@@ -711,6 +714,12 @@ permalink: /izracunaj-cijenu/
                         </span>
                     </div>
                     <input type="file" id="kasko-file" name="attachment" accept="image/*,.pdf" style="display:none" onchange="onKaskoFile(this)">
+                    <ul class="kasko-hints">
+                        <li>Pokriva štetu i kad ste vi krivi</li>
+                        <li>Krađa, tuča, požar — sve uključeno</li>
+                        <li>Zaštita vrijednosti vašeg vozila</li>
+                        <li>Preporučujemo za automobile do 10 godina starosti</li>
+                    </ul>
                 </div>
             </div>
         </div>
