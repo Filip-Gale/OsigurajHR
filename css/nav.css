@@ -84,21 +84,13 @@ nav span{
     50%       { box-shadow: 0 0 0 5px rgba(74,222,128,0); }
 }
 
-#logo {
-    height: 38px;
-    width: auto;
+#logo{
+    max-height: 60px;
     max-width: 200px;
-    display: block;
 }
 
-#main-nav .width-container {
-    justify-content: space-between;
-    padding: 0 16px;
-}
-
-#main-nav .width-container > a {
-    display: inline-flex;
-    align-items: center;
+.row{
+    justify-content: space-around;
 }
 
 /* POP UP */
