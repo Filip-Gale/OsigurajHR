@@ -171,9 +171,8 @@ nav span{
         margin-right: 12px;
     }
 
-    /* Horizontalni razmak + logo lijevo, gumbi desno */
+    /* Logo lijevo, gumbi desno */
     #main-nav .width-container {
-        padding: 0 12px;
         justify-content: space-between;
     }
 }
