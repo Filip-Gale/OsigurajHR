@@ -227,6 +227,68 @@ permalink: /izracunaj-cijenu/
         }
         .opt-field.open { max-height: 340px; opacity: 1; }
 
+        /* ── Kasko info button & tooltip ── */
+        .kasko-row {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+        }
+        .kasko-info-wrap {
+          position: relative;
+          display: inline-flex;
+          align-items: center;
+          flex-shrink: 0;
+        }
+        .kasko-info-btn {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          width: 26px;
+          height: 26px;
+          border-radius: 50%;
+          border: 1.5px solid rgba(87,60,249,0.4);
+          color: #573cf9;
+          font-size: 0.95rem;
+          text-decoration: none;
+          background: none;
+          transition: background 0.15s, border-color 0.15s;
+          line-height: 1;
+        }
+        .kasko-info-btn:hover {
+          background: rgba(87,60,249,0.08);
+          border-color: #573cf9;
+        }
+        .kasko-tooltip {
+          position: absolute;
+          bottom: calc(100% + 8px);
+          left: 50%;
+          transform: translateX(-50%);
+          background: #1c1533;
+          color: #fff;
+          font-size: 0.75rem;
+          font-weight: 600;
+          white-space: nowrap;
+          padding: 6px 12px;
+          border-radius: 8px;
+          pointer-events: none;
+          opacity: 0;
+          transition: opacity 0.15s;
+          z-index: 10;
+        }
+        .kasko-tooltip::after {
+          content: '';
+          position: absolute;
+          top: 100%;
+          left: 50%;
+          transform: translateX(-50%);
+          border: 5px solid transparent;
+          border-top-color: #1c1533;
+        }
+        .kasko-info-wrap:hover .kasko-tooltip,
+        .kasko-info-btn:focus + .kasko-tooltip {
+          opacity: 1;
+        }
+
         .kasko-upload-zone {
           display: flex; align-items: center; gap: 12px;
           border: 2px dashed rgba(87,60,249,0.35); border-radius: 12px;
@@ -701,10 +763,16 @@ permalink: /izracunaj-cijenu/
                 <div class="ferror" id="e-reg">Unesite registracijsku oznaku.</div>
             </div>
             <div>
-                <button class="opt-toggle" id="opt-btn" onclick="toggleKasko()" type="button">
+                <div class="kasko-row">
+                  <button class="opt-toggle" id="opt-btn" onclick="toggleKasko()" type="button">
                     <span class="opt-icon"></span>
                     <span id="opt-lbl">Želim ugovoriti i Kasko</span>
-                </button>
+                  </button>
+                  <div class="kasko-info-wrap">
+                    <a class="kasko-info-btn" href="/kasko/" aria-label="Saznaj više o kasko osiguranju">ⓘ</a>
+                    <div class="kasko-tooltip">Saznaj više o kasko osiguranju</div>
+                  </div>
+                </div>
                 <div class="opt-field" id="opt-field">
                     <div style="height:12px"></div>
                     <div class="kasko-upload-zone" id="kasko-drop" onclick="document.getElementById('kasko-file').click()">
