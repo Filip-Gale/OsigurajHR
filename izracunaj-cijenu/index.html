@@ -1533,13 +1533,6 @@ function renderTriglav(aoBaseVal) {
         + '<span class="pkg-price">+ 15 €/god</span></div>';
     }
     document.getElementById('triglav-pkgs-list').innerHTML = pkgsHtml;
-    var rOk = document.getElementById('r-ok');
-    var asdCard = document.getElementById('asdirect-card');
-    if (aoBaseVal !== null && tPrice < aoBaseVal) {
-      rOk.insertBefore(triglavCard, asdCard);
-    } else {
-      rOk.insertBefore(asdCard, triglavCard);
-    }
   } else {
     triglavCard.style.display = 'none';
   }
@@ -1589,6 +1582,22 @@ function toggleGeneraliPkg(el, price) {
   document.getElementById('generali-num').textContent = total.toFixed(2).replace('.',',') + ' €';
 }
 
+function sortProviderCards() {
+  var rOk = document.getElementById('r-ok');
+  var cards = [
+    { id: 'asdirect-card', price: aoBase },
+    { id: 'triglav-card',  price: triglavBase },
+    { id: 'generali-card', price: generaliBase },
+  ];
+  // Sort descending; inserting before firstChild each time means last inserted = first shown
+  // → cheapest ends up at the top
+  cards.sort(function(a, b) { return b.price - a.price; });
+  cards.forEach(function(c) {
+    var el = document.getElementById(c.id);
+    if (el && el.style.display !== 'none') rOk.insertBefore(el, rOk.firstChild);
+  });
+}
+
 /* ── Show results ── */
 function showOk(d) {
   aoBase = Number(d.ao_cijena_s_porezom);
@@ -1609,10 +1618,7 @@ function showOk(d) {
   document.getElementById('asdirect-card').style.display = 'block';
   var tPrice = renderTriglav(aoBase);
   renderGenerali(tPrice);
-  if (tPrice === null) {
-    var rOk = document.getElementById('r-ok');
-    rOk.insertBefore(document.getElementById('asdirect-card'), rOk.firstChild);
-  }
+  sortProviderCards();
 
   var pkgs = d.paketi || [], html = '';
   pkgs.forEach(function(p, idx) {
@@ -1675,6 +1681,7 @@ function showErr(msg) {
     document.getElementById('r-ok').style.display = 'block';
     launchConfetti();
     renderGenerali(tPrice);
+    sortProviderCards();
     setTimeout(notifyHeight, 400);
   } else {
     document.getElementById('err-msg').textContent = msg;
