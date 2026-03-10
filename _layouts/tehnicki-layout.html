@@ -41,29 +41,34 @@
     }
     </script>
 
-    {% if page.grad == "Zagreb" %}
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "FAQPage",
       "mainEntity": [{
         "@type": "Question",
-        "name": "Koliko košta tehnički pregled u Zagrebu?",
+        "name": "Koliko košta tehnički pregled za {{ page.grad }}?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Cijena tehničkog pregleda u Zagrebu ovisi o snazi motora i vrsti vozila. Naš kalkulator nudi preciznu procjenu svih naknada za 2026. godinu."
+          "text": "Cijena tehničkog pregleda za {{ page.grad }} ovisi o snazi motora (kW) i kategoriji vozila. Koristite naš kalkulator za točan izračun svih naknada za 2026. godinu."
         }
       }, {
         "@type": "Question",
-        "name": "Gdje je najbolje obaviti tehnički u Zagrebu?",
+        "name": "Koji dokumenti su potrebni za tehnički pregled za {{ page.grad }}?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Najpoznatije stanice su u Sigetu, Dubravi i Remetincu. Preporučuje se zakazivanje termina online zbog velikih gužvi."
+          "text": "Potrebna vam je prometna dozvola, važeća polica obveznog auto osiguranja i osobna iskaznica vlasnika vozila."
+        }
+      }, {
+        "@type": "Question",
+        "name": "Mogu li uštediti na auto osiguranju za {{ page.grad }}?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Da — usporedba ponuda osiguravatelja može smanjiti trošak police i do 50%. Na Osiguraj.hr možete besplatno usporediti cijene za {{ page.grad }} za 30 sekundi."
         }
       }]
     }
     </script>
-    {% endif %}
 
     <style>
         .post-content h2, .post-content h3 { color: #ffbc27 !important; margin-top: 35px; font-weight: 700; }
