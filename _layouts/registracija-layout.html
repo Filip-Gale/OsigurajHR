@@ -65,15 +65,65 @@
         }
         .btn-saznaj:active { transform: translateY(4px); box-shadow: 0 4px 0 #27ae60; }
 
-        .process-container { display: flex; justify-content: space-between; margin: 50px 0; gap: 20px; }
-        .step { background: rgba(255, 255, 255, 0.05); padding: 25px; border-radius: 20px; text-align: center; flex: 1; border: 1px solid rgba(255, 188, 39, 0.2); }
-        .step-num { background: #ffbc27; color: #573cf9; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 900; margin: 0 auto 15px auto; }
+        .year-tag {
+            display: inline-block;
+            background: #ffbc27;
+            color: #573cf9;
+            padding: 5px 16px;
+            border-radius: 50px;
+            font-weight: 800;
+            font-size: 0.75rem;
+            letter-spacing: 0.06em;
+            margin-bottom: 18px;
+            text-transform: uppercase;
+        }
 
-        .badge-bar { display: flex; justify-content: center; gap: 15px; margin: 20px 0; flex-wrap: wrap; }
-        .badge { background: white; color: #573cf9; padding: 8px 18px; border-radius: 10px; font-size: 0.85rem; font-weight: 800; border: 2px solid #ffbc27; display: flex; align-items: center; gap: 5px; }
+        .trust-badge-container {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin: 20px 0 0;
+        }
+        .trust-badge {
+            font-size: 0.78rem;
+            background: rgba(255,255,255,0.12);
+            color: rgba(255,255,255,0.9);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
 
-        .city-link { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.9rem; transition: 0.2s; }
-        .city-link:hover { color: #ffbc27; }
+        .process-container { display: flex; justify-content: space-between; margin: 36px 0; gap: 12px; }
+        .step {
+            background: rgba(0,0,0,0.2);
+            padding: 22px 16px;
+            border-radius: 16px;
+            text-align: center;
+            flex: 1;
+            border: 1px solid rgba(255,188,39,0.15);
+        }
+        .step h4 { margin: 0 0 4px; font-size: 0.95rem; }
+        .step p { margin: 0; font-size: 0.82rem; opacity: 0.7; }
+        .step-num { background: #ffbc27; color: #573cf9; width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 1rem; margin: 0 auto 12px auto; }
+
+        .city-pills { display: flex; flex-wrap: wrap; gap: 8px; }
+        .city-pill {
+            background: rgba(255,255,255,0.08);
+            color: rgba(255,255,255,0.9) !important;
+            font-size: 0.88rem;
+            font-weight: 600;
+            padding: 7px 14px;
+            border-radius: 20px;
+            text-decoration: none !important;
+            border: 1px solid rgba(255,255,255,0.12);
+            transition: background 0.15s, color 0.15s;
+        }
+        .city-pill:hover { background: #ffbc27; color: #1c1533 !important; border-color: #ffbc27; }
 
         /* NOVO: Okvir za čitljivost teksta */
         .content-wrapper {
@@ -186,18 +236,15 @@
 
     <main class="width-container-1000 text-white pad round" style="background-color: #573cf9; box-shadow: 0 30px 60px rgba(0,0,0,0.4);">
         
-        <header style="text-align: center; padding-bottom: 50px; border-bottom: 1px solid rgba(255,255,255,0.1);">
-            <div style="background: #ffbc27; color: #573cf9; display: inline-block; padding: 5px 20px; border-radius: 50px; font-weight: 900; font-size: 0.8rem; margin-bottom: 20px;">
-                VODIČ ZA REGISTRACIJU 2026.
-            </div>
-            <h1 style="font-size: clamp(1.6rem, 5vw, 3.5rem); color: #ffbc27; line-height: 1.1; margin-bottom: 20px;">
-                Registracija vozila {{ page.grad }}
+        <header style="text-align: center; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 40px; margin-bottom: 40px;">
+            <div class="year-tag">VODIČ ZA REGISTRACIJU 2026.</div>
+            <h1 style="font-size: clamp(1.6rem, 5vw, 3.2rem); color: #ffbc27; margin-bottom: 20px; line-height: 1.1;">
+                {{ page.title | split: ' |' | first }}
             </h1>
-            
-            <div class="badge-bar">
-                <div class="badge">✅ PROVJERENE CIJENE</div>
-                <div class="badge">✅ SVE STP LOKACIJE</div>
-                <div class="badge">✅ ONLINE UŠTEDA</div>
+            <div class="trust-badge-container">
+                <div class="trust-badge"><span>✅</span> PROVJERENE CIJENE</div>
+                <div class="trust-badge"><span>✅</span> SVE STP LOKACIJE</div>
+                <div class="trust-badge"><span>✅</span> ONLINE UŠTEDA</div>
             </div>
         </header>
 
@@ -263,10 +310,10 @@
         {% endif %}
 
         <div style="margin-top: 60px; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.1);">
-            <p style="font-weight: bold; color: #ffbc27; margin-bottom: 20px; text-transform: uppercase; font-size: 0.8rem;">Ostali gradovi:</p>
-            <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px;">
-                {% for p in site.registracija limit:12 %}
-                    <a href="{{ p.url }}" class="city-link">🚗 {{ p.grad }}</a>
+            <p style="font-weight: bold; color: rgba(255,255,255,0.5); margin-bottom: 14px; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.06em;">Ostali gradovi</p>
+            <div class="city-pills">
+                {% for p in site.registracija limit:18 %}
+                    <a href="{{ p.url }}" class="city-pill">{{ p.grad }}</a>
                 {% endfor %}
             </div>
         </div>
