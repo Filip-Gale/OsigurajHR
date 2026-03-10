@@ -22,14 +22,20 @@ Ukupni trošak registracije za VŽ registracijsko područje ovisi o snazi motora
 
 ## FAQ – Često postavljana pitanja o tehničkom u Varaždinu
 
-**1. Mogu li u Varaždinu obaviti tehnički za laka priključna vozila (prikolice)?**
-Da, varaždinske stanice su opremljene za pregled svih kategorija vozila, uključujući i lake prikolice koje su česte u ovoj regiji.
-
-**2. Treba li mi termin za tehnički pregled?**
-Preporučuje se najava ili rezervacija termina putem web stranica pojedinih stanica kako biste osigurali minimalno čekanje, iako se pregledi obavljaju i redovnim redoslijedom dolaska.
-
-**3. Što ako moje vozilo ne zadovolji na pregledu?**
-Kao i u ostatku države, imate rok od 15 radnih dana da otklonite nedostatke. Ponovljeni pregled u tom roku u istoj stanici obično se fokusira samo na ispravljene nedostatke.
+<div class="tp-faq">
+  <div class="tp-faq-item">
+    <div class="tp-faq-q">Mogu li u Varaždinu obaviti tehnički za laka priključna vozila (prikolice)?</div>
+    <p class="tp-faq-a">Da, varaždinske stanice su opremljene za pregled svih kategorija vozila, uključujući i lake prikolice koje su česte u ovoj regiji.</p>
+  </div>
+  <div class="tp-faq-item">
+    <div class="tp-faq-q">Treba li mi termin za tehnički pregled?</div>
+    <p class="tp-faq-a">Preporučuje se najava ili rezervacija termina putem web stranica pojedinih stanica kako biste osigurali minimalno čekanje, iako se pregledi obavljaju i redovnim redoslijedom dolaska.</p>
+  </div>
+  <div class="tp-faq-item">
+    <div class="tp-faq-q">Što ako moje vozilo ne zadovolji na pregledu?</div>
+    <p class="tp-faq-a">Kao i u ostatku države, imate rok od 15 radnih dana da otklonite nedostatke. Ponovljeni pregled u tom roku u istoj stanici obično se fokusira samo na ispravljene nedostatke.</p>
+  </div>
+</div>
 
 ---
 

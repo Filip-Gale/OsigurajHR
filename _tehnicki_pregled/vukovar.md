@@ -22,14 +22,20 @@ Ukupni trošak registracije za VU registracijsko područje ovisi o snazi motora 
 
 ## FAQ – Često postavljana pitanja o tehničkom u Vukovaru
 
-**1. Što ako mi je vozilo registrirano izvan Vukovara?**
-Bez obzira na to što imate npr. ZG ili OS tablice, tehnički pregled i produženje registracije možete bez problema obaviti u bilo kojoj stanici u Vukovaru.
-
-**2. Koja mi je dokumentacija potrebna?**
-Ponesite prometnu dozvolu, važeću policu obveznog auto osiguranja i osobnu iskaznicu. Ako je vozilo u vlasništvu pravne osobe, poželjno je imati i ovlaštenje za zastupanje.
-
-**3. Jesu li redovi u vukovarskim stanicama dugi?**
-Vukovarske stanice su poznate po dobroj organizaciji, pa prosječan pregled s prijavom na šalteru traje između 30 i 45 minuta, ovisno o trenutnom broju vozila.
+<div class="tp-faq">
+  <div class="tp-faq-item">
+    <div class="tp-faq-q">Što ako mi je vozilo registrirano izvan Vukovara?</div>
+    <p class="tp-faq-a">Bez obzira na to što imate npr. ZG ili OS tablice, tehnički pregled i produženje registracije možete bez problema obaviti u bilo kojoj stanici u Vukovaru.</p>
+  </div>
+  <div class="tp-faq-item">
+    <div class="tp-faq-q">Koja mi je dokumentacija potrebna?</div>
+    <p class="tp-faq-a">Ponesite prometnu dozvolu, važeću policu obveznog auto osiguranja i osobnu iskaznicu. Ako je vozilo u vlasništvu pravne osobe, poželjno je imati i ovlaštenje za zastupanje.</p>
+  </div>
+  <div class="tp-faq-item">
+    <div class="tp-faq-q">Jesu li redovi u vukovarskim stanicama dugi?</div>
+    <p class="tp-faq-a">Vukovarske stanice su poznate po dobroj organizaciji, pa prosječan pregled s prijavom na šalteru traje između 30 i 45 minuta, ovisno o trenutnom broju vozila.</p>
+  </div>
+</div>
 
 ---
 

@@ -22,14 +22,20 @@ Ukupni trošak tehničkog pregleda i registracije za SB registracijsko područje
 
 ## FAQ – Često postavljana pitanja o tehničkom u Slavonskom Brodu
 
-**1. Što ako mi je istekla prometna dozvola?**
-Postupak tehničkog pregleda u Slavonskom Brodu je isti, ali vozilo ne smijete sami dovesti u stanicu ako registracija nije važeća. Koristite vučnu službu ili izvadite privremene (probne) tablice.
-
-**2. Koliko vremena trebam odvojiti za pregled u Brodu?**
-U uobičajenim okolnostima, cijeli proces od prijave na šalteru do završetka pregleda na liniji traje između 30 i 50 minuta.
-
-**3. Mogu li obaviti tehnički pregled subotom?**
-Da, većina stanica u Slavonskom Brodu radi subotom, najčešće u prijepodnevnom terminu (do 12:00 ili 13:00 sati). Zbog popularnosti ovog termina, preporučuje se dolazak što ranije.
+<div class="tp-faq">
+  <div class="tp-faq-item">
+    <div class="tp-faq-q">Što ako mi je istekla prometna dozvola?</div>
+    <p class="tp-faq-a">Postupak tehničkog pregleda u Slavonskom Brodu je isti, ali vozilo ne smijete sami dovesti u stanicu ako registracija nije važeća. Koristite vučnu službu ili izvadite privremene (probne) tablice.</p>
+  </div>
+  <div class="tp-faq-item">
+    <div class="tp-faq-q">Koliko vremena trebam odvojiti za pregled u Brodu?</div>
+    <p class="tp-faq-a">U uobičajenim okolnostima, cijeli proces od prijave na šalteru do završetka pregleda na liniji traje između 30 i 50 minuta.</p>
+  </div>
+  <div class="tp-faq-item">
+    <div class="tp-faq-q">Mogu li obaviti tehnički pregled subotom?</div>
+    <p class="tp-faq-a">Da, većina stanica u Slavonskom Brodu radi subotom, najčešće u prijepodnevnom terminu (do 12:00 ili 13:00 sati). Zbog popularnosti ovog termina, preporučuje se dolazak što ranije.</p>
+  </div>
+</div>
 
 ---
 

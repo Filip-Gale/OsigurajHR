@@ -22,14 +22,20 @@ Ukupni trošak tehničkog pregleda i registracije za KC registracijsko područje
 
 ## FAQ – Često postavljana pitanja o tehničkom u Koprivnici
 
-**1. Trebam li pripremiti prvu pomoć za tehnički u Koprivnici?**
-Da, kutija prve pomoći je obavezan dio opreme. Pripazite na rok trajanja koji je otisnut na kutiji; ako je rok istekao, to se smatra tehničkom neispravnošću opreme.
-
-**2. Može li se u Koprivnici obaviti tehnički pregled za traktore?**
-Naravno, s obzirom na poljoprivredni značaj regije, stanice u Koprivnici su potpuno opremljene za pregled traktora i priključnih vozila, uključujući provjeru rotacijskih svjetala.
-
-**3. Što ako izgubim prometnu dozvolu prije pregleda?**
-U tom slučaju prvo morate prijaviti gubitak nadležnoj policijskoj upravi i izvaditi novu dozvolu (ili privremenu potvrdu) kako biste mogli pristupiti tehničkom pregledu.
+<div class="tp-faq">
+  <div class="tp-faq-item">
+    <div class="tp-faq-q">Trebam li pripremiti prvu pomoć za tehnički u Koprivnici?</div>
+    <p class="tp-faq-a">Da, kutija prve pomoći je obavezan dio opreme. Pripazite na rok trajanja koji je otisnut na kutiji; ako je rok istekao, to se smatra tehničkom neispravnošću opreme.</p>
+  </div>
+  <div class="tp-faq-item">
+    <div class="tp-faq-q">Može li se u Koprivnici obaviti tehnički pregled za traktore?</div>
+    <p class="tp-faq-a">Naravno, s obzirom na poljoprivredni značaj regije, stanice u Koprivnici su potpuno opremljene za pregled traktora i priključnih vozila, uključujući provjeru rotacijskih svjetala.</p>
+  </div>
+  <div class="tp-faq-item">
+    <div class="tp-faq-q">Što ako izgubim prometnu dozvolu prije pregleda?</div>
+    <p class="tp-faq-a">U tom slučaju prvo morate prijaviti gubitak nadležnoj policijskoj upravi i izvaditi novu dozvolu (ili privremenu potvrdu) kako biste mogli pristupiti tehničkom pregledu.</p>
+  </div>
+</div>
 
 ---
 

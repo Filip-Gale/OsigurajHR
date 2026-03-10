@@ -22,14 +22,20 @@ Ukupni trošak za NG registracijsko područje ovisi o snazi vašeg motora (kW) i
 
 ## FAQ – Često postavljana pitanja o tehničkom u Novoj Gradiški
 
-**1. Mogu li obaviti tehnički pregled subotom u Novoj Gradiški?**
-Da, većina stanica radi subotom prijepodne, no imajte na umu da su tada gužve obično veće jer mnogi vozači koriste vikend za rješavanje administracije.
-
-**2. Trebam li donijeti dokaz o homologaciji za novo vozilo?**
-Ako se radi o prvoj registraciji vozila koje je uvezeno ili prvi put stavljeno na tržište, obavezno ponesite potvrdu o sukladnosti (homologaciju).
-
-**3. Što ako izgubim registarske pločice?**
-Gubitak pločica morate prijaviti policiji, nakon čega s potvrdom u stanici za tehnički pregled možete zatražiti izdavanje novih pločica i nove prometne dozvole.
+<div class="tp-faq">
+  <div class="tp-faq-item">
+    <div class="tp-faq-q">Mogu li obaviti tehnički pregled subotom u Novoj Gradiški?</div>
+    <p class="tp-faq-a">Da, većina stanica radi subotom prijepodne, no imajte na umu da su tada gužve obično veće jer mnogi vozači koriste vikend za rješavanje administracije.</p>
+  </div>
+  <div class="tp-faq-item">
+    <div class="tp-faq-q">Trebam li donijeti dokaz o homologaciji za novo vozilo?</div>
+    <p class="tp-faq-a">Ako se radi o prvoj registraciji vozila koje je uvezeno ili prvi put stavljeno na tržište, obavezno ponesite potvrdu o sukladnosti (homologaciju).</p>
+  </div>
+  <div class="tp-faq-item">
+    <div class="tp-faq-q">Što ako izgubim registarske pločice?</div>
+    <p class="tp-faq-a">Gubitak pločica morate prijaviti policiji, nakon čega s potvrdom u stanici za tehnički pregled možete zatražiti izdavanje novih pločica i nove prometne dozvole.</p>
+  </div>
+</div>
 
 ---
 

@@ -22,14 +22,20 @@ Ukupni trošak za DJ registracijsko područje ovisi o snazi vašeg motora (kW) i
 
 ## FAQ – Često postavljana pitanja o tehničkom u Đakovu
 
-**1. Mogu li u Đakovu obaviti tehnički za laka priključna vozila?**
-Da, sve stanice u Đakovu opremljene su za pregled lakih prikolica, koje su vrlo česte u ovom dijelu Slavonije.
-
-**2. Je li potrebna najava za tehnički pregled?**
-Iako nije strogo obavezna, najava putem telefona može vam osigurati brži prolazak, posebno u terminima kada je potražnja povećana (npr. krajem mjeseca).
-
-**3. Što ako vozilo ne prođe eko-test zbog čađe?**
-Savjetuje se da prije dolaska na tehnički pregled vozilo "propušete" na otvorenoj cesti (npr. prema Osijeku) kako bi motor postigao radnu temperaturu i izbacio nakupljene čestice, što često pomaže na eko-testu.
+<div class="tp-faq">
+  <div class="tp-faq-item">
+    <div class="tp-faq-q">Mogu li u Đakovu obaviti tehnički za laka priključna vozila?</div>
+    <p class="tp-faq-a">Da, sve stanice u Đakovu opremljene su za pregled lakih prikolica, koje su vrlo česte u ovom dijelu Slavonije.</p>
+  </div>
+  <div class="tp-faq-item">
+    <div class="tp-faq-q">Je li potrebna najava za tehnički pregled?</div>
+    <p class="tp-faq-a">Iako nije strogo obavezna, najava putem telefona može vam osigurati brži prolazak, posebno u terminima kada je potražnja povećana (npr. krajem mjeseca).</p>
+  </div>
+  <div class="tp-faq-item">
+    <div class="tp-faq-q">Što ako vozilo ne prođe eko-test zbog čađe?</div>
+    <p class="tp-faq-a">Savjetuje se da prije dolaska na tehnički pregled vozilo "propušete" na otvorenoj cesti (npr. prema Osijeku) kako bi motor postigao radnu temperaturu i izbacio nakupljene čestice, što često pomaže na eko-testu.</p>
+  </div>
+</div>
 
 ---
 

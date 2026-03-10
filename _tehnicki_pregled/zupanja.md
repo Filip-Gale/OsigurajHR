@@ -22,14 +22,20 @@ Ukupni trošak za ŽU registracijsko područje ovisi o snazi vašeg motora (kW) 
 
 ## FAQ – Često postavljana pitanja o tehničkom u Županji
 
-**1. Mogu li obaviti tehnički pregled za vozilo s drugim tablicama (npr. ZG ili VK)?**
-Da, tehnički pregled možete obaviti u bilo kojoj stanici u Županji, bez obzira na to koje registracijske oznake nosi vaše vozilo ili gdje imate prebivalište.
-
-**2. Koliko traje eko-test za dizelska vozila?**
-Eko-test je standardiziran proces koji obično traje 10 do 15 minuta. Važno je da motor bude zagrijan na radnu temperaturu kako bi rezultati bili precizni.
-
-**3. Trebam li donijeti dokaz o plaćenom porezu na cestovna vozila?**
-Porez se obično plaća prilikom same registracije u stanici, osim ako je vozilo starije od 10 godina (kada se porez više ne plaća). Naš kalkulator će vam pokazati sve stavke koje trebate podmiriti.
+<div class="tp-faq">
+  <div class="tp-faq-item">
+    <div class="tp-faq-q">Mogu li obaviti tehnički pregled za vozilo s drugim tablicama (npr. ZG ili VK)?</div>
+    <p class="tp-faq-a">Da, tehnički pregled možete obaviti u bilo kojoj stanici u Županji, bez obzira na to koje registracijske oznake nosi vaše vozilo ili gdje imate prebivalište.</p>
+  </div>
+  <div class="tp-faq-item">
+    <div class="tp-faq-q">Koliko traje eko-test za dizelska vozila?</div>
+    <p class="tp-faq-a">Eko-test je standardiziran proces koji obično traje 10 do 15 minuta. Važno je da motor bude zagrijan na radnu temperaturu kako bi rezultati bili precizni.</p>
+  </div>
+  <div class="tp-faq-item">
+    <div class="tp-faq-q">Trebam li donijeti dokaz o plaćenom porezu na cestovna vozila?</div>
+    <p class="tp-faq-a">Porez se obično plaća prilikom same registracije u stanici, osim ako je vozilo starije od 10 godina (kada se porez više ne plaća). Naš kalkulator će vam pokazati sve stavke koje trebate podmiriti.</p>
+  </div>
+</div>
 
 ---
 

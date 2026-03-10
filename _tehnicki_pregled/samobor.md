@@ -22,14 +22,20 @@ Iako Samobor pripada zagrebačkom registracijskom području (ZG), troškovi ovis
 
 ## FAQ – Često postavljana pitanja o tehničkom u Samoboru
 
-**1. Trebam li se naručiti unaprijed?**
-Nije obavezno, ali preporučuje se provjeriti popunjenost termina putem telefona ili weba, posebno ako planirate dolazak subotom prijepodne.
-
-**2. Može li se obaviti tehnički za motocikle u Samoboru?**
-Da, stanice u Samoboru su potpuno opremljene za pregled svih kategorija vozila, uključujući motocikle i mopede, što je popularno s obzirom na veliki broj bajkera u ovoj regiji.
-
-**3. Što ako vozilo ne prođe eko-test?**
-Kao i u ostatku Hrvatske, imate 15 radnih dana za otklanjanje kvara i besplatni (ili sniženi) ponovljeni pregled u istoj stanici.
+<div class="tp-faq">
+  <div class="tp-faq-item">
+    <div class="tp-faq-q">Trebam li se naručiti unaprijed?</div>
+    <p class="tp-faq-a">Nije obavezno, ali preporučuje se provjeriti popunjenost termina putem telefona ili weba, posebno ako planirate dolazak subotom prijepodne.</p>
+  </div>
+  <div class="tp-faq-item">
+    <div class="tp-faq-q">Može li se obaviti tehnički za motocikle u Samoboru?</div>
+    <p class="tp-faq-a">Da, stanice u Samoboru su potpuno opremljene za pregled svih kategorija vozila, uključujući motocikle i mopede, što je popularno s obzirom na veliki broj bajkera u ovoj regiji.</p>
+  </div>
+  <div class="tp-faq-item">
+    <div class="tp-faq-q">Što ako vozilo ne prođe eko-test?</div>
+    <p class="tp-faq-a">Kao i u ostatku Hrvatske, imate 15 radnih dana za otklanjanje kvara i besplatni (ili sniženi) ponovljeni pregled u istoj stanici.</p>
+  </div>
+</div>
 
 ---
 

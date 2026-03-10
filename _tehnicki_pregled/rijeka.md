@@ -22,14 +22,20 @@ Ukupni trošak registracije za RI registracijsko područje ovisi o snazi vašeg 
 
 ## FAQ – Često postavljana pitanja o tehničkom u Rijeci
 
-**1. Radi li tehnički u Rijeci subotom?**
-Većina stanica u Rijeci radi subotom, obično u skraćenom radnom vremenu do 13:00 ili 14:00 sati. To je popularan termin, pa se preporučuje raniji dolazak.
-
-**2. Trebam li donijeti dokaz o uplaćenom osiguranju?**
-Da, polica osiguranja je obavezan dokument. Ako je nemate, većina stanica nudi mogućnost uplate na licu mjesta, ali tada ne možete birati najpovoljniju opciju koju biste pronašli online usporedbom.
-
-**3. Što se događa ako padnem na eko-testu u Rijeci?**
-Ako vozilo ne zadovolji eko-test, imate 15 radnih dana da otklonite kvar i vratite se na ponovljeni pregled u istu stanicu bez ponovnog plaćanja pune cijene tehničkog pregleda.
+<div class="tp-faq">
+  <div class="tp-faq-item">
+    <div class="tp-faq-q">Radi li tehnički u Rijeci subotom?</div>
+    <p class="tp-faq-a">Većina stanica u Rijeci radi subotom, obično u skraćenom radnom vremenu do 13:00 ili 14:00 sati. To je popularan termin, pa se preporučuje raniji dolazak.</p>
+  </div>
+  <div class="tp-faq-item">
+    <div class="tp-faq-q">Trebam li donijeti dokaz o uplaćenom osiguranju?</div>
+    <p class="tp-faq-a">Da, polica osiguranja je obavezan dokument. Ako je nemate, većina stanica nudi mogućnost uplate na licu mjesta, ali tada ne možete birati najpovoljniju opciju koju biste pronašli online usporedbom.</p>
+  </div>
+  <div class="tp-faq-item">
+    <div class="tp-faq-q">Što se događa ako padnem na eko-testu u Rijeci?</div>
+    <p class="tp-faq-a">Ako vozilo ne zadovolji eko-test, imate 15 radnih dana da otklonite kvar i vratite se na ponovljeni pregled u istu stanicu bez ponovnog plaćanja pune cijene tehničkog pregleda.</p>
+  </div>
+</div>
 
 ---
 

@@ -22,14 +22,20 @@ Ukupni trošak za NA registracijsko područje ovisi o snazi vašeg motora (kW) i
 
 ## FAQ – Često postavljana pitanja o tehničkom u Našicama
 
-**1. Mogu li u Našicama obaviti tehnički pregled za teške kamione?**
-Da, stanice u Našicama su opremljene najmodernijom opremom za provjeru ispravnosti teških teretnih vozila, što je ključno za brojne prijevoznike u ovoj regiji.
-
-**2. Koja dokumentacija je potrebna za produženje registracije?**
-Ponesite prometnu dozvolu, važeću policu obveznog auto osiguranja i osobnu iskaznicu vlasnika vozila.
-
-**3. Što ako na vozilu imam ugrađenu kuku?**
-Ako je kuka naknadno ugrađena, ona mora biti atestirana i upisana u prometnu dozvolu. U stanicama u Našicama možete provjeriti je li vaša dokumentacija ispravna prije samog pregleda.
+<div class="tp-faq">
+  <div class="tp-faq-item">
+    <div class="tp-faq-q">Mogu li u Našicama obaviti tehnički pregled za teške kamione?</div>
+    <p class="tp-faq-a">Da, stanice u Našicama su opremljene najmodernijom opremom za provjeru ispravnosti teških teretnih vozila, što je ključno za brojne prijevoznike u ovoj regiji.</p>
+  </div>
+  <div class="tp-faq-item">
+    <div class="tp-faq-q">Koja dokumentacija je potrebna za produženje registracije?</div>
+    <p class="tp-faq-a">Ponesite prometnu dozvolu, važeću policu obveznog auto osiguranja i osobnu iskaznicu vlasnika vozila.</p>
+  </div>
+  <div class="tp-faq-item">
+    <div class="tp-faq-q">Što ako na vozilu imam ugrađenu kuku?</div>
+    <p class="tp-faq-a">Ako je kuka naknadno ugrađena, ona mora biti atestirana i upisana u prometnu dozvolu. U stanicama u Našicama možete provjeriti je li vaša dokumentacija ispravna prije samog pregleda.</p>
+  </div>
+</div>
 
 ---
 

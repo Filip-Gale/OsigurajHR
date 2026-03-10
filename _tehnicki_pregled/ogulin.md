@@ -22,14 +22,20 @@ Ukupni trošak za OG registracijsko područje ovisi o snazi vašeg motora (kW) i
 
 ## FAQ – Često postavljana pitanja o tehničkom u Ogulinu
 
-**1. Mogu li obaviti tehnički pregled za 4x4 vozila u Ogulinu?**
-Naravno. S obzirom na veliki broj terenskih vozila u ovom kraju, stanice u Ogulinu opremljene su valjcima koji podržavaju ispitivanje kočnica na vozilima s pogonom na sva četiri kotača.
-
-**2. Koliko traje ponovljeni pregled ako ne prođem iz prve?**
-Ako otklonite kvar i vratite se u roku od 15 radnih dana, ponovljeni pregled se obavlja brzo jer se provjerava samo prethodno neispravna stavka.
-
-**3. Trebam li imati vatrogasni aparat?**
-Vatrogasni aparat je obavezan za teretna vozila, dok za osobna vozila (kategorije M1) u privatnom vlasništvu po zakonu nije obavezan, ali je izuzetno preporučljiv, posebno za duža putovanja kroz planinske predjele.
+<div class="tp-faq">
+  <div class="tp-faq-item">
+    <div class="tp-faq-q">Mogu li obaviti tehnički pregled za 4x4 vozila u Ogulinu?</div>
+    <p class="tp-faq-a">Naravno. S obzirom na veliki broj terenskih vozila u ovom kraju, stanice u Ogulinu opremljene su valjcima koji podržavaju ispitivanje kočnica na vozilima s pogonom na sva četiri kotača.</p>
+  </div>
+  <div class="tp-faq-item">
+    <div class="tp-faq-q">Koliko traje ponovljeni pregled ako ne prođem iz prve?</div>
+    <p class="tp-faq-a">Ako otklonite kvar i vratite se u roku od 15 radnih dana, ponovljeni pregled se obavlja brzo jer se provjerava samo prethodno neispravna stavka.</p>
+  </div>
+  <div class="tp-faq-item">
+    <div class="tp-faq-q">Trebam li imati vatrogasni aparat?</div>
+    <p class="tp-faq-a">Vatrogasni aparat je obavezan za teretna vozila, dok za osobna vozila (kategorije M1) u privatnom vlasništvu po zakonu nije obavezan, ali je izuzetno preporučljiv, posebno za duža putovanja kroz planinske predjele.</p>
+  </div>
+</div>
 
 ---
 

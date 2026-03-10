@@ -22,14 +22,20 @@ Ukupni trošak tehničkog pregleda i registracije za PŽ registracijsko područj
 
 ## FAQ – Često postavljana pitanja o tehničkom u Požegi
 
-**1. Mogu li u Požegi obaviti tehnički pregled za traktor?**
-Da, stanice u Požegi su potpuno opremljene za pregled poljoprivredne mehanizacije, uključujući provjeru svjetlosne signalizacije i kočionih sustava na priključnim vozilima.
-
-**2. Koliko traje postupak tehničkog pregleda?**
-Sam pregled na liniji obično traje oko 30 minuta, no s prijavom na šalteru i administrativnim dijelom, preporučuje se odvojiti oko 45 do 60 minuta.
-
-**3. Što ako mi je vozilo registrirano u drugom gradu?**
-Bez obzira na tablice koje nosite (npr. ZG, OS, ST), tehnički pregled i produženje prometne dozvole možete bez ikakvih prepreka obaviti u bilo kojoj stanici u Požegi.
+<div class="tp-faq">
+  <div class="tp-faq-item">
+    <div class="tp-faq-q">Mogu li u Požegi obaviti tehnički pregled za traktor?</div>
+    <p class="tp-faq-a">Da, stanice u Požegi su potpuno opremljene za pregled poljoprivredne mehanizacije, uključujući provjeru svjetlosne signalizacije i kočionih sustava na priključnim vozilima.</p>
+  </div>
+  <div class="tp-faq-item">
+    <div class="tp-faq-q">Koliko traje postupak tehničkog pregleda?</div>
+    <p class="tp-faq-a">Sam pregled na liniji obično traje oko 30 minuta, no s prijavom na šalteru i administrativnim dijelom, preporučuje se odvojiti oko 45 do 60 minuta.</p>
+  </div>
+  <div class="tp-faq-item">
+    <div class="tp-faq-q">Što ako mi je vozilo registrirano u drugom gradu?</div>
+    <p class="tp-faq-a">Bez obzira na tablice koje nosite (npr. ZG, OS, ST), tehnički pregled i produženje prometne dozvole možete bez ikakvih prepreka obaviti u bilo kojoj stanici u Požegi.</p>
+  </div>
+</div>
 
 ---
 

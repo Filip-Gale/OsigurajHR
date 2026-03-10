@@ -22,14 +22,20 @@ Ukupni trošak za DA registracijsko područje ovisi o snazi vašeg motora (kW) i
 
 ## FAQ – Često postavljana pitanja o tehničkom u Daruvaru
 
-**1. Zašto su DA tablice popularne u cijeloj Hrvatskoj?**
-Daruvar se nalazi u najpovoljnijem premijskom stupnju za auto osiguranje. Iako tehnički pregled košta isto, polica osiguranja za DA područje je često značajno jeftinija nego u drugim gradovima.
-
-**2. Mogu li u Daruvaru obaviti tehnički za radne strojeve?**
-Da, stanice u Daruvaru su opremljene za pregled traktora, kombajna i ostalih poljoprivrednih strojeva, što je ključno za ovaj poljoprivredni kraj.
-
-**3. Trebam li donijeti staru policu osiguranja?**
-Poželjno je imati staru policu radi provjere bonusa (popusta), no danas većina sustava automatski povlači vaše podatke iz baze čim predate prometnu dozvolu.
+<div class="tp-faq">
+  <div class="tp-faq-item">
+    <div class="tp-faq-q">Zašto su DA tablice popularne u cijeloj Hrvatskoj?</div>
+    <p class="tp-faq-a">Daruvar se nalazi u najpovoljnijem premijskom stupnju za auto osiguranje. Iako tehnički pregled košta isto, polica osiguranja za DA područje je često značajno jeftinija nego u drugim gradovima.</p>
+  </div>
+  <div class="tp-faq-item">
+    <div class="tp-faq-q">Mogu li u Daruvaru obaviti tehnički za radne strojeve?</div>
+    <p class="tp-faq-a">Da, stanice u Daruvaru su opremljene za pregled traktora, kombajna i ostalih poljoprivrednih strojeva, što je ključno za ovaj poljoprivredni kraj.</p>
+  </div>
+  <div class="tp-faq-item">
+    <div class="tp-faq-q">Trebam li donijeti staru policu osiguranja?</div>
+    <p class="tp-faq-a">Poželjno je imati staru policu radi provjere bonusa (popusta), no danas većina sustava automatski povlači vaše podatke iz baze čim predate prometnu dozvolu.</p>
+  </div>
+</div>
 
 ---
 

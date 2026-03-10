@@ -22,14 +22,20 @@ Ukupni trošak registracije za SK registracijsko područje ovisi o snazi vašeg 
 
 ## FAQ – Često postavljana pitanja o tehničkom u Sisku
 
-**1. Trebam li se naručiti za tehnički pregled u Sisku?**
-Iako narudžba nije obavezna, preporučuje se provjeriti dostupnost termina online ili telefonski kako biste izbjegli duže čekanje, osobito krajem mjeseca kada istječe najviše registracija.
-
-**2. Što ako mi vozilo padne na tehničkom u Sisku?**
-Imate zakonski rok od 15 radnih dana da uklonite kvarove i obavite ponovljeni pregled u istoj stanici bez ponovnog plaćanja pune cijene tehničkog pregleda.
-
-**3. Mogu li obaviti tehnički pregled s vozilom na plin u Sisku?**
-Da, stanice u Sisku su opremljene za pregled vozila s ugrađenim sustavom na tekući naftni plin (LPG), uz provjeru važenja atesta spremnika i nepropusnosti sustava.
+<div class="tp-faq">
+  <div class="tp-faq-item">
+    <div class="tp-faq-q">Trebam li se naručiti za tehnički pregled u Sisku?</div>
+    <p class="tp-faq-a">Iako narudžba nije obavezna, preporučuje se provjeriti dostupnost termina online ili telefonski kako biste izbjegli duže čekanje, osobito krajem mjeseca kada istječe najviše registracija.</p>
+  </div>
+  <div class="tp-faq-item">
+    <div class="tp-faq-q">Što ako mi vozilo padne na tehničkom u Sisku?</div>
+    <p class="tp-faq-a">Imate zakonski rok od 15 radnih dana da uklonite kvarove i obavite ponovljeni pregled u istoj stanici bez ponovnog plaćanja pune cijene tehničkog pregleda.</p>
+  </div>
+  <div class="tp-faq-item">
+    <div class="tp-faq-q">Mogu li obaviti tehnički pregled s vozilom na plin u Sisku?</div>
+    <p class="tp-faq-a">Da, stanice u Sisku su opremljene za pregled vozila s ugrađenim sustavom na tekući naftni plin (LPG), uz provjeru važenja atesta spremnika i nepropusnosti sustava.</p>
+  </div>
+</div>
 
 ---
 

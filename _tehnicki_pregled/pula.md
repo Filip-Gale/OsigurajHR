@@ -22,14 +22,20 @@ Ukupni trošak registracije za PU registracijsko područje ovisi o snazi vašeg 
 
 ## FAQ – Često postavljana pitanja o tehničkom u Puli
 
-**1. Što ako mi je vozilo na plin (LPG)?**
-U pulskim stanicama možete obaviti tehnički pregled za vozila na plin, ali imajte na umu da se tada plaća dodatna naknada za ispitivanje sustava, a sam pregled traje nešto duže.
-
-**2. Trebam li prati podvozje prije tehničkog u Puli?**
-Nije obavezno, ali se preporučuje, posebno nakon zimskih mjeseci. Čisto podvozje omogućuje kontroloru brži i precizniji pregled, što smanjuje mogućnost nesporazuma.
-
-**3. Mogu li produžiti registraciju ako nisam vlasnik vozila?**
-Da, ali morate imati osobnu iskaznicu vlasnika vozila ili ovjerenu punomoć kojom vas vlasnik ovlašćuje za taj postupak.
+<div class="tp-faq">
+  <div class="tp-faq-item">
+    <div class="tp-faq-q">Što ako mi je vozilo na plin (LPG)?</div>
+    <p class="tp-faq-a">U pulskim stanicama možete obaviti tehnički pregled za vozila na plin, ali imajte na umu da se tada plaća dodatna naknada za ispitivanje sustava, a sam pregled traje nešto duže.</p>
+  </div>
+  <div class="tp-faq-item">
+    <div class="tp-faq-q">Trebam li prati podvozje prije tehničkog u Puli?</div>
+    <p class="tp-faq-a">Nije obavezno, ali se preporučuje, posebno nakon zimskih mjeseci. Čisto podvozje omogućuje kontroloru brži i precizniji pregled, što smanjuje mogućnost nesporazuma.</p>
+  </div>
+  <div class="tp-faq-item">
+    <div class="tp-faq-q">Mogu li produžiti registraciju ako nisam vlasnik vozila?</div>
+    <p class="tp-faq-a">Da, ali morate imati osobnu iskaznicu vlasnika vozila ili ovjerenu punomoć kojom vas vlasnik ovlašćuje za taj postupak.</p>
+  </div>
+</div>
 
 ---
 

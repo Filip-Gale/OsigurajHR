@@ -22,14 +22,20 @@ Ukupni trošak registracije za DU registracijsko područje ovisi o snazi vašeg 
 
 ## FAQ – Često postavljana pitanja o tehničkom u Dubrovniku
 
-**1. Što mi je potrebno od opreme za prolazak tehničkog u Dubrovniku?**
-Kao i svugdje u Hrvatskoj, morate imati kutiju prve pomoći, rezervne žarulje (ako vozilo nema LED/Xenon), sigurnosni trokut i reflektirajući prsluk.
-
-**2. Može li se tehnički pregled obaviti dok traje turistička sezona?**
-Naravno, stanice rade cijele godine. Ipak, zbog povećanog prometa u gradu, savjetujemo da na pregled krenete ranije nego inače kako biste izbjegli kašnjenje na svoj termin.
-
-**3. Što ako mi je vozilo registrirano na firmu?**
-Procedura je ista, ali uz prometnu dozvolu i osiguranje, ponesite i potvrdu o ovlaštenju za zastupanje tvrtke ili pečat ako je to interna politika vašeg poduzeća.
+<div class="tp-faq">
+  <div class="tp-faq-item">
+    <div class="tp-faq-q">Što mi je potrebno od opreme za prolazak tehničkog u Dubrovniku?</div>
+    <p class="tp-faq-a">Kao i svugdje u Hrvatskoj, morate imati kutiju prve pomoći, rezervne žarulje (ako vozilo nema LED/Xenon), sigurnosni trokut i reflektirajući prsluk.</p>
+  </div>
+  <div class="tp-faq-item">
+    <div class="tp-faq-q">Može li se tehnički pregled obaviti dok traje turistička sezona?</div>
+    <p class="tp-faq-a">Naravno, stanice rade cijele godine. Ipak, zbog povećanog prometa u gradu, savjetujemo da na pregled krenete ranije nego inače kako biste izbjegli kašnjenje na svoj termin.</p>
+  </div>
+  <div class="tp-faq-item">
+    <div class="tp-faq-q">Što ako mi je vozilo registrirano na firmu?</div>
+    <p class="tp-faq-a">Procedura je ista, ali uz prometnu dozvolu i osiguranje, ponesite i potvrdu o ovlaštenju za zastupanje tvrtke ili pečat ako je to interna politika vašeg poduzeća.</p>
+  </div>
+</div>
 
 ---
 

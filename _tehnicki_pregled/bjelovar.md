@@ -22,14 +22,20 @@ Ukupni trošak tehničkog pregleda i registracije za BJ registracijsko područje
 
 ## FAQ – Često postavljana pitanja o tehničkom u Bjelovaru
 
-**1. Trebam li se naručiti za tehnički pregled u Bjelovaru?**
-Većina stanica prima vozila po redoslijedu dolaska, ali rezervacija termina putem telefona ili weba može vam značajno skratiti vrijeme čekanja, osobito u jeku poljoprivrednih sezona.
-
-**2. Koja je dokumentacija potrebna za produljenje registracije?**
-Potrebni su vam: prometna dozvola, važeća polica osiguranja i osobna iskaznica vlasnika. Ako je vlasnik spriječen, osoba koja dovodi vozilo mora imati valjanu punomoć ili dokument vlasnika.
-
-**3. Što ako mi je vozilo na plin?**
-Stanice u Bjelovaru su opremljene za pregled vozila s LPG sustavom. Pripazite da vam atest spremnika nije istekao, jer bez važećeg atesta nećete moći produžiti registraciju.
+<div class="tp-faq">
+  <div class="tp-faq-item">
+    <div class="tp-faq-q">Trebam li se naručiti za tehnički pregled u Bjelovaru?</div>
+    <p class="tp-faq-a">Većina stanica prima vozila po redoslijedu dolaska, ali rezervacija termina putem telefona ili weba može vam značajno skratiti vrijeme čekanja, osobito u jeku poljoprivrednih sezona.</p>
+  </div>
+  <div class="tp-faq-item">
+    <div class="tp-faq-q">Koja je dokumentacija potrebna za produljenje registracije?</div>
+    <p class="tp-faq-a">Potrebni su vam: prometna dozvola, važeća polica osiguranja i osobna iskaznica vlasnika. Ako je vlasnik spriječen, osoba koja dovodi vozilo mora imati valjanu punomoć ili dokument vlasnika.</p>
+  </div>
+  <div class="tp-faq-item">
+    <div class="tp-faq-q">Što ako mi je vozilo na plin?</div>
+    <p class="tp-faq-a">Stanice u Bjelovaru su opremljene za pregled vozila s LPG sustavom. Pripazite da vam atest spremnika nije istekao, jer bez važećeg atesta nećete moći produžiti registraciju.</p>
+  </div>
+</div>
 
 ---
 

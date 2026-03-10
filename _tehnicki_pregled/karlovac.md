@@ -22,14 +22,20 @@ Ukupni trošak tehničkog pregleda i registracije za KA registracijsko područje
 
 ## FAQ – Često postavljana pitanja o tehničkom u Karlovcu
 
-**1. Trebam li prati podvozje vozila prije tehničkog u Karlovcu?**
-Nakon zimskih mjeseci i soljenja cesta, toplo se preporučuje pranje podvozja. Osim što štiti vozilo od korozije, čisto podvozje olakšava kontroloru pregled vitalnih dijelova ovjesa i kočnica.
-
-**2. Može li se u Karlovcu obaviti tehnički za traktore i poljoprivredna vozila?**
-Da, stanice u Karlovcu su potpuno opremljene za pregled poljoprivredne mehanizacije, što je vrlo važno za vozače iz okolnih ruralnih područja županije.
-
-**3. Što ako mi je istekla osobna iskaznica pri registraciji?**
-Za produženje registracije u Karlovcu morate imati važeći identifikacijski dokument (osobnu iskaznicu ili putovnicu). Ako je dokument istekao, MUP-ova aplikacija neće dopustiti dovršetak procesa registracije.
+<div class="tp-faq">
+  <div class="tp-faq-item">
+    <div class="tp-faq-q">Trebam li prati podvozje vozila prije tehničkog u Karlovcu?</div>
+    <p class="tp-faq-a">Nakon zimskih mjeseci i soljenja cesta, toplo se preporučuje pranje podvozja. Osim što štiti vozilo od korozije, čisto podvozje olakšava kontroloru pregled vitalnih dijelova ovjesa i kočnica.</p>
+  </div>
+  <div class="tp-faq-item">
+    <div class="tp-faq-q">Može li se u Karlovcu obaviti tehnički za traktore i poljoprivredna vozila?</div>
+    <p class="tp-faq-a">Da, stanice u Karlovcu su potpuno opremljene za pregled poljoprivredne mehanizacije, što je vrlo važno za vozače iz okolnih ruralnih područja županije.</p>
+  </div>
+  <div class="tp-faq-item">
+    <div class="tp-faq-q">Što ako mi je istekla osobna iskaznica pri registraciji?</div>
+    <p class="tp-faq-a">Za produženje registracije u Karlovcu morate imati važeći identifikacijski dokument (osobnu iskaznicu ili putovnicu). Ako je dokument istekao, MUP-ova aplikacija neće dopustiti dovršetak procesa registracije.</p>
+  </div>
+</div>
 
 ---
 

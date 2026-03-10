@@ -22,14 +22,20 @@ Ukupni trošak tehničkog pregleda i registracije za splitsko područje ovisi o 
 
 ## FAQ – Često postavljana pitanja o tehničkom u Splitu
 
-**1. Trebam li se naručiti za tehnički pregled u Splitu?**
-Iako većina stanica prima vozila bez najave, toplo se preporučuje online rezervacija termina. Time izbjegavate čekanje u redovima koji, ovisno o dobu dana, mogu biti prilično dugi.
-
-**2. Koju dokumentaciju moram imati sa sobom?**
-Za uspješno obavljanje pregleda u bilo kojoj splitskoj stanici potrebni su vam: prometna dozvola, važeća polica obveznog osiguranja i osobna iskaznica.
-
-**3. Što ako vozilo ne prođe tehnički pregled?**
-Imate rok od 15 radnih dana za otklanjanje neispravnosti. Ako se u tom roku vratite u istu stanicu, ponovljeni pregled dijelova koji su bili neispravni se u pravilu ne naplaćuje.
+<div class="tp-faq">
+  <div class="tp-faq-item">
+    <div class="tp-faq-q">Trebam li se naručiti za tehnički pregled u Splitu?</div>
+    <p class="tp-faq-a">Iako većina stanica prima vozila bez najave, toplo se preporučuje online rezervacija termina. Time izbjegavate čekanje u redovima koji, ovisno o dobu dana, mogu biti prilično dugi.</p>
+  </div>
+  <div class="tp-faq-item">
+    <div class="tp-faq-q">Koju dokumentaciju moram imati sa sobom?</div>
+    <p class="tp-faq-a">Za uspješno obavljanje pregleda u bilo kojoj splitskoj stanici potrebni su vam: prometna dozvola, važeća polica obveznog osiguranja i osobna iskaznica.</p>
+  </div>
+  <div class="tp-faq-item">
+    <div class="tp-faq-q">Što ako vozilo ne prođe tehnički pregled?</div>
+    <p class="tp-faq-a">Imate rok od 15 radnih dana za otklanjanje neispravnosti. Ako se u tom roku vratite u istu stanicu, ponovljeni pregled dijelova koji su bili neispravni se u pravilu ne naplaćuje.</p>
+  </div>
+</div>
 
 ---
 

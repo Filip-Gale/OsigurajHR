@@ -22,14 +22,20 @@ Ukupni trošak za SL registracijsko područje ovisi o snazi vašeg motora (kW) i
 
 ## FAQ – Često postavljana pitanja o tehničkom u Slatini
 
-**1. Mogu li obaviti tehnički pregled za laku prikolicu u Slatini?**
-Da, stanice u Slatini su potpuno opremljene za pregled lakih prikolica (do 750 kg) koje se u ovom kraju masovno koriste.
-
-**2. Koja je dokumentacija potrebna za prvu registraciju rabljenog vozila?**
-Trebat će vam inozemna prometna dozvola, dokaz o vlasništvu (račun ili kupoprodajni ugovor), potvrda o homologaciji i dokaz o plaćenim porezima.
-
-**3. Što ako mi vozilo padne na tehničkom pregledu?**
-Imate rok od 15 radnih dana da otklonite kvar. Ako se u tom roku vratite u istu stanicu u Slatini, ponovljeni pregled plaćate po znatno nižoj tarifi ili je on besplatan, ovisno o vrsti kvara.
+<div class="tp-faq">
+  <div class="tp-faq-item">
+    <div class="tp-faq-q">Mogu li obaviti tehnički pregled za laku prikolicu u Slatini?</div>
+    <p class="tp-faq-a">Da, stanice u Slatini su potpuno opremljene za pregled lakih prikolica (do 750 kg) koje se u ovom kraju masovno koriste.</p>
+  </div>
+  <div class="tp-faq-item">
+    <div class="tp-faq-q">Koja je dokumentacija potrebna za prvu registraciju rabljenog vozila?</div>
+    <p class="tp-faq-a">Trebat će vam inozemna prometna dozvola, dokaz o vlasništvu (račun ili kupoprodajni ugovor), potvrda o homologaciji i dokaz o plaćenim porezima.</p>
+  </div>
+  <div class="tp-faq-item">
+    <div class="tp-faq-q">Što ako mi vozilo padne na tehničkom pregledu?</div>
+    <p class="tp-faq-a">Imate rok od 15 radnih dana da otklonite kvar. Ako se u tom roku vratite u istu stanicu u Slatini, ponovljeni pregled plaćate po znatno nižoj tarifi ili je on besplatan, ovisno o vrsti kvara.</p>
+  </div>
+</div>
 
 ---
 

@@ -22,14 +22,20 @@ Iako Zaprešić koristi ZG registracijske oznake, cijena tehničkog pregleda ovi
 
 ## FAQ – Često postavljana pitanja o tehničkom u Zaprešiću
 
-**1. Trebam li se naručiti za tehnički pregled u Zaprešiću?**
-Nije obavezno, ali je preporučljivo provjeriti stanje putem telefona ili online termina ako stanica to nudi, kako biste skratili vrijeme čekanja.
-
-**2. Mogu li obaviti tehnički ako mi je vozilo registrirano na drugu zonu (npr. KR ili KA)?**
-Da, tehnički pregled i produženje prometne dozvole možete obaviti u bilo kojoj stanici u Zaprešiću, bez obzira na tablice koje imate na automobilu.
-
-**3. Što ako ne prođem tehnički pregled?**
-Kao i svugdje u RH, imate rok od 15 radnih dana za besplatni ili sniženi ponovljeni pregled u istoj stanici nakon što otklonite kvar.
+<div class="tp-faq">
+  <div class="tp-faq-item">
+    <div class="tp-faq-q">Trebam li se naručiti za tehnički pregled u Zaprešiću?</div>
+    <p class="tp-faq-a">Nije obavezno, ali je preporučljivo provjeriti stanje putem telefona ili online termina ako stanica to nudi, kako biste skratili vrijeme čekanja.</p>
+  </div>
+  <div class="tp-faq-item">
+    <div class="tp-faq-q">Mogu li obaviti tehnički ako mi je vozilo registrirano na drugu zonu (npr. KR ili KA)?</div>
+    <p class="tp-faq-a">Da, tehnički pregled i produženje prometne dozvole možete obaviti u bilo kojoj stanici u Zaprešiću, bez obzira na tablice koje imate na automobilu.</p>
+  </div>
+  <div class="tp-faq-item">
+    <div class="tp-faq-q">Što ako ne prođem tehnički pregled?</div>
+    <p class="tp-faq-a">Kao i svugdje u RH, imate rok od 15 radnih dana za besplatni ili sniženi ponovljeni pregled u istoj stanici nakon što otklonite kvar.</p>
+  </div>
+</div>
 
 ---
 

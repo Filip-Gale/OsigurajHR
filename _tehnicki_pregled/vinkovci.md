@@ -22,14 +22,20 @@ Ukupni trošak tehničkog pregleda i registracije za VK registracijsko područje
 
 ## FAQ – Često postavljana pitanja o tehničkom u Vinkovcima
 
-**1. Trebam li prati vozilo prije tehničkog u Vinkovcima?**
-Vozilo ne mora biti "izložbeno" čisto, ali mora biti u stanju koje omogućuje kontroloru nesmetan pregled broja šasije, motora i svih svjetlosnih elemenata. Čisto vozilo olakšava i ubrzava proces.
-
-**2. Koja dokumentacija mi treba za prvu registraciju rabljenog vozila?**
-Ako ste vozilo uvezli ili kupili, uz standardnu prometnu i osiguranje, trebat će vam dokaz o vlasništvu (račun ili ugovor) te potvrda o plaćenim davanjima (homologacija i PPMV).
-
-**3. Rade li stanice u Vinkovcima dvokratno?**
-Većina stanica u Vinkovcima radi kontinuirano tijekom cijelog dana (obično od 07:00 do 20:00), što vozačima omogućuje da pregled obave nakon radnog vremena.
+<div class="tp-faq">
+  <div class="tp-faq-item">
+    <div class="tp-faq-q">Trebam li prati vozilo prije tehničkog u Vinkovcima?</div>
+    <p class="tp-faq-a">Vozilo ne mora biti "izložbeno" čisto, ali mora biti u stanju koje omogućuje kontroloru nesmetan pregled broja šasije, motora i svih svjetlosnih elemenata. Čisto vozilo olakšava i ubrzava proces.</p>
+  </div>
+  <div class="tp-faq-item">
+    <div class="tp-faq-q">Koja dokumentacija mi treba za prvu registraciju rabljenog vozila?</div>
+    <p class="tp-faq-a">Ako ste vozilo uvezli ili kupili, uz standardnu prometnu i osiguranje, trebat će vam dokaz o vlasništvu (račun ili ugovor) te potvrda o plaćenim davanjima (homologacija i PPMV).</p>
+  </div>
+  <div class="tp-faq-item">
+    <div class="tp-faq-q">Rade li stanice u Vinkovcima dvokratno?</div>
+    <p class="tp-faq-a">Većina stanica u Vinkovcima radi kontinuirano tijekom cijelog dana (obično od 07:00 do 20:00), što vozačima omogućuje da pregled obave nakon radnog vremena.</p>
+  </div>
+</div>
 
 ---
 

@@ -22,14 +22,20 @@ Ukupni trošak registracije za ŠI registracijsko područje ovisi o snazi vašeg
 
 ## FAQ – Često postavljana pitanja o tehničkom u Šibeniku
 
-**1. Trebam li prati motor prije tehničkog pregleda u Šibeniku?**
-Nije obavezno, no motor ne smije biti pretjerano zaprljan uljem kako bi kontrolor mogao jasno vidjeti sve sklopove i broj šasije. Čist motor ostavlja bolji dojam o održavanju vozila.
-
-**2. Koliko traje tehnički pregled prikolice za čamac?**
-Sam postupak je relativno brz, ali je ključno provjeriti ispravnost svjetlosne signalizacije i kočnica (ako ih prikolica ima) prije dolaska, jer su to najčešće točke pada za prikolice.
-
-**3. Mogu li produžiti registraciju u Šibeniku ako imam druge tablice?**
-Naravno. Tehnički pregled i produljenje registracije možete obaviti u bilo kojoj stanici u Hrvatskoj, bez obzira na to što su vam na vozilu npr. ZG ili ST tablice.
+<div class="tp-faq">
+  <div class="tp-faq-item">
+    <div class="tp-faq-q">Trebam li prati motor prije tehničkog pregleda u Šibeniku?</div>
+    <p class="tp-faq-a">Nije obavezno, no motor ne smije biti pretjerano zaprljan uljem kako bi kontrolor mogao jasno vidjeti sve sklopove i broj šasije. Čist motor ostavlja bolji dojam o održavanju vozila.</p>
+  </div>
+  <div class="tp-faq-item">
+    <div class="tp-faq-q">Koliko traje tehnički pregled prikolice za čamac?</div>
+    <p class="tp-faq-a">Sam postupak je relativno brz, ali je ključno provjeriti ispravnost svjetlosne signalizacije i kočnica (ako ih prikolica ima) prije dolaska, jer su to najčešće točke pada za prikolice.</p>
+  </div>
+  <div class="tp-faq-item">
+    <div class="tp-faq-q">Mogu li produžiti registraciju u Šibeniku ako imam druge tablice?</div>
+    <p class="tp-faq-a">Naravno. Tehnički pregled i produljenje registracije možete obaviti u bilo kojoj stanici u Hrvatskoj, bez obzira na to što su vam na vozilu npr. ZG ili ST tablice.</p>
+  </div>
+</div>
 
 ---
 

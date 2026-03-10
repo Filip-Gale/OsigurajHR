@@ -22,14 +22,20 @@ Ukupni trošak tehničkog pregleda i registracije za ČK registracijsko područj
 
 ## FAQ – Često postavljana pitanja o tehničkom u Čakovcu
 
-**1. Trebam li imati rezervne žarulje za tehnički u Čakovcu?**
-Da, osim ako vaše vozilo nije tvornički opremljeno LED ili ksenon svjetlima. Posjedovanje seta rezervnih žarulja je zakonska obveza i dio obvezne opreme vozila.
-
-**2. Koliko traje ponovljeni tehnički pregled ako padnem?**
-Ako ste otklonili nedostatke i vratili se u roku od 15 radnih dana, ponovljeni pregled traje znatno kraće jer se provjeravaju samo prethodno neispravni elementi.
-
-**3. Mogu li produžiti registraciju u Čakovcu ako je vozilo na firmu?**
-Da, uz prometnu dozvolu i važeću policu osiguranja, preporučuje se imati ovlaštenje za zastupanje ili pečat tvrtke, ovisno o internim pravilima stanice i načinu plaćanja.
+<div class="tp-faq">
+  <div class="tp-faq-item">
+    <div class="tp-faq-q">Trebam li imati rezervne žarulje za tehnički u Čakovcu?</div>
+    <p class="tp-faq-a">Da, osim ako vaše vozilo nije tvornički opremljeno LED ili ksenon svjetlima. Posjedovanje seta rezervnih žarulja je zakonska obveza i dio obvezne opreme vozila.</p>
+  </div>
+  <div class="tp-faq-item">
+    <div class="tp-faq-q">Koliko traje ponovljeni tehnički pregled ako padnem?</div>
+    <p class="tp-faq-a">Ako ste otklonili nedostatke i vratili se u roku od 15 radnih dana, ponovljeni pregled traje znatno kraće jer se provjeravaju samo prethodno neispravni elementi.</p>
+  </div>
+  <div class="tp-faq-item">
+    <div class="tp-faq-q">Mogu li produžiti registraciju u Čakovcu ako je vozilo na firmu?</div>
+    <p class="tp-faq-a">Da, uz prometnu dozvolu i važeću policu osiguranja, preporučuje se imati ovlaštenje za zastupanje ili pečat tvrtke, ovisno o internim pravilima stanice i načinu plaćanja.</p>
+  </div>
+</div>
 
 ---
 

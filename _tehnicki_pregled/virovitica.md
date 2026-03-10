@@ -22,14 +22,20 @@ Ukupni trošak registracije za VT registracijsko područje ovisi o snazi vašeg 
 
 ## FAQ – Često postavljana pitanja o tehničkom u Virovitici
 
-**1. Što ako mi vozilo nije ispravno na tehničkom u Virovitici?**
-Imate rok od 15 radnih dana da popravite kvar i vratite se na ponovljeni pregled. U tom slučaju plaćate samo manji dio naknade, a ne punu cijenu tehničkog pregleda.
-
-**2. Trebam li donijeti dokaz o vlasništvu?**
-Ako ste već upisani u prometnu dozvolu, dovoljna je samo ona i vaša osobna iskaznica. Ako ste tek kupili vozilo, ponesite kupoprodajni ugovor ili račun.
-
-**3. Mogu li obaviti tehnički pregled za traktor u Virovitici?**
-Da, stanice u Virovitici su potpuno opremljene za pregled poljoprivredne mehanizacije, što je iznimno važno za ovaj poljoprivredni kraj.
+<div class="tp-faq">
+  <div class="tp-faq-item">
+    <div class="tp-faq-q">Što ako mi vozilo nije ispravno na tehničkom u Virovitici?</div>
+    <p class="tp-faq-a">Imate rok od 15 radnih dana da popravite kvar i vratite se na ponovljeni pregled. U tom slučaju plaćate samo manji dio naknade, a ne punu cijenu tehničkog pregleda.</p>
+  </div>
+  <div class="tp-faq-item">
+    <div class="tp-faq-q">Trebam li donijeti dokaz o vlasništvu?</div>
+    <p class="tp-faq-a">Ako ste već upisani u prometnu dozvolu, dovoljna je samo ona i vaša osobna iskaznica. Ako ste tek kupili vozilo, ponesite kupoprodajni ugovor ili račun.</p>
+  </div>
+  <div class="tp-faq-item">
+    <div class="tp-faq-q">Mogu li obaviti tehnički pregled za traktor u Virovitici?</div>
+    <p class="tp-faq-a">Da, stanice u Virovitici su potpuno opremljene za pregled poljoprivredne mehanizacije, što je iznimno važno za ovaj poljoprivredni kraj.</p>
+  </div>
+</div>
 
 ---
 

@@ -22,14 +22,20 @@ Ukupni trošak za IM registracijsko područje ovisi o snazi vašeg motora (kW) i
 
 ## FAQ – Često postavljana pitanja o tehničkom u Imotskom
 
-**1. Mogu li obaviti tehnički pregled ako mi je vozilo na firmu?**
-Da, tehnički pregled možete obaviti uz predočenje prometne dozvole i osiguranja, a poželjno je imati i ovlaštenje za zastupanje ako niste vlasnik obrta ili direktor tvrtke.
-
-**2. Koliko traje eko-test u Imotskom?**
-Eko-test je sastavni dio tehničkog pregleda i obično traje 10-15 minuta, ovisno o vrsti goriva i stanju motora vašeg vozila.
-
-**3. Što ako je vozilo uvezeno?**
-Za prvu registraciju uvoznog vozila u Imotskom trebat će vam i potvrda o sukladnosti (homologacija) te dokaz o plaćenom posebnom porezu (PPMV).
+<div class="tp-faq">
+  <div class="tp-faq-item">
+    <div class="tp-faq-q">Mogu li obaviti tehnički pregled ako mi je vozilo na firmu?</div>
+    <p class="tp-faq-a">Da, tehnički pregled možete obaviti uz predočenje prometne dozvole i osiguranja, a poželjno je imati i ovlaštenje za zastupanje ako niste vlasnik obrta ili direktor tvrtke.</p>
+  </div>
+  <div class="tp-faq-item">
+    <div class="tp-faq-q">Koliko traje eko-test u Imotskom?</div>
+    <p class="tp-faq-a">Eko-test je sastavni dio tehničkog pregleda i obično traje 10-15 minuta, ovisno o vrsti goriva i stanju motora vašeg vozila.</p>
+  </div>
+  <div class="tp-faq-item">
+    <div class="tp-faq-q">Što ako je vozilo uvezeno?</div>
+    <p class="tp-faq-a">Za prvu registraciju uvoznog vozila u Imotskom trebat će vam i potvrda o sukladnosti (homologacija) te dokaz o plaćenom posebnom porezu (PPMV).</p>
+  </div>
+</div>
 
 ---
 

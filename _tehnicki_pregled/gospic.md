@@ -22,14 +22,20 @@ Ukupni trošak za GS registracijsko područje ovisi o snazi vašeg motora (kW) i
 
 ## FAQ – Često postavljana pitanja o tehničkom u Gospiću
 
-**1. Mogu li u Gospiću obaviti tehnički za 4x4 vozila?**
-Da, stanice u Gospiću su opremljene posebnim valjcima za testiranje kočnica na vozilima s pogonom na sva četiri kotača, što je iznimno važno za brojne vlasnike SUV-ova i terenaca u Lici.
-
-**2. Trebam li prati podvozje prije pregleda?**
-Toplo se preporučuje temeljito pranje podvozja, posebno nakon zimskog perioda, kako bi kontrolor mogao jasno vidjeti stanje kočionih vodova i ovjesa bez naslaga soli i blata.
-
-**3. Što ako mi je vozilo registrirano u drugom gradu?**
-Bez obzira imate li ZG, ST ili RI tablice, tehnički pregled i produženje registracije možete obaviti u bilo kojoj stanici u Gospiću bez ikakvih dodatnih troškova.
+<div class="tp-faq">
+  <div class="tp-faq-item">
+    <div class="tp-faq-q">Mogu li u Gospiću obaviti tehnički za 4x4 vozila?</div>
+    <p class="tp-faq-a">Da, stanice u Gospiću su opremljene posebnim valjcima za testiranje kočnica na vozilima s pogonom na sva četiri kotača, što je iznimno važno za brojne vlasnike SUV-ova i terenaca u Lici.</p>
+  </div>
+  <div class="tp-faq-item">
+    <div class="tp-faq-q">Trebam li prati podvozje prije pregleda?</div>
+    <p class="tp-faq-a">Toplo se preporučuje temeljito pranje podvozja, posebno nakon zimskog perioda, kako bi kontrolor mogao jasno vidjeti stanje kočionih vodova i ovjesa bez naslaga soli i blata.</p>
+  </div>
+  <div class="tp-faq-item">
+    <div class="tp-faq-q">Što ako mi je vozilo registrirano u drugom gradu?</div>
+    <p class="tp-faq-a">Bez obzira imate li ZG, ST ili RI tablice, tehnički pregled i produženje registracije možete obaviti u bilo kojoj stanici u Gospiću bez ikakvih dodatnih troškova.</p>
+  </div>
+</div>
 
 ---
 

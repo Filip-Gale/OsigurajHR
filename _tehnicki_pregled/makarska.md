@@ -22,14 +22,20 @@ Ukupni trošak za MA registracijsko područje ovisi o snazi vašeg motora (kW), 
 
 ## FAQ – Često postavljana pitanja o tehničkom u Makarskoj
 
-**1. Mogu li u Makarskoj obaviti tehnički za motocikle i skutere?**
-Da, s obzirom na veliku popularnost dvokotača na obali, stanice u Makarskoj su izvrsno opremljene za pregled svih kategorija motocikala i mopeda.
-
-**2. Koliko traje postupak produženja prometne dozvole?**
-Cijeli proces, uključujući tehnički pregled, eko-test i administrativni dio na šalteru, obično traje između 40 i 60 minuta, ovisno o trenutnoj gužvi.
-
-**3. Što ako moje vozilo ne prođe tehnički pregled?**
-Imate rok od 15 radnih dana za otklanjanje neispravnosti. Ako se vratite unutar tog roka u istu stanicu, plaćate samo naknadu za ponovljeni pregled (koja je znatno niža od pune cijene).
+<div class="tp-faq">
+  <div class="tp-faq-item">
+    <div class="tp-faq-q">Mogu li u Makarskoj obaviti tehnički za motocikle i skutere?</div>
+    <p class="tp-faq-a">Da, s obzirom na veliku popularnost dvokotača na obali, stanice u Makarskoj su izvrsno opremljene za pregled svih kategorija motocikala i mopeda.</p>
+  </div>
+  <div class="tp-faq-item">
+    <div class="tp-faq-q">Koliko traje postupak produženja prometne dozvole?</div>
+    <p class="tp-faq-a">Cijeli proces, uključujući tehnički pregled, eko-test i administrativni dio na šalteru, obično traje između 40 i 60 minuta, ovisno o trenutnoj gužvi.</p>
+  </div>
+  <div class="tp-faq-item">
+    <div class="tp-faq-q">Što ako moje vozilo ne prođe tehnički pregled?</div>
+    <p class="tp-faq-a">Imate rok od 15 radnih dana za otklanjanje neispravnosti. Ako se vratite unutar tog roka u istu stanicu, plaćate samo naknadu za ponovljeni pregled (koja je znatno niža od pune cijene).</p>
+  </div>
+</div>
 
 ---
 

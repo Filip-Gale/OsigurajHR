@@ -49,11 +49,16 @@ Zbog specifičnih uvjeta (sol na cestama, snijeg), prije tehničkog pregleda u D
 
 ### Česta pitanja (FAQ)
 
-**Mogu li u Delnicama registrirati vozilo s drugim tablicama (npr. ZG)?**
-Da, tehnički pregled možete obaviti bilo gdje u Hrvatskoj, pa tako i u Delnicama, bez obzira na registracijsku oznaku.
-
-**Koliko traje ponovljeni tehnički ako padnem?**
-Ako ne prođete iz prve, imate 15 radnih dana za popravak kvara. Ako se vratite u tom roku, ponovljeni pregled je besplatan ili znatno jeftiniji.
+<div class="tp-faq">
+  <div class="tp-faq-item">
+    <div class="tp-faq-q">Mogu li u Delnicama registrirati vozilo s drugim tablicama (npr. ZG)?</div>
+    <p class="tp-faq-a">Da, tehnički pregled možete obaviti bilo gdje u Hrvatskoj, pa tako i u Delnicama, bez obzira na registracijsku oznaku.</p>
+  </div>
+  <div class="tp-faq-item">
+    <div class="tp-faq-q">Koliko traje ponovljeni tehnički ako padnem?</div>
+    <p class="tp-faq-a">Ako ne prođete iz prve, imate 15 radnih dana za popravak kvara. Ako se vratite u tom roku, ponovljeni pregled je besplatan ili znatno jeftiniji.</p>
+  </div>
+</div>
 
 ---
 > **Uštedite na osiguranju:** Iako su naknade u stanici fiksne, polica osiguranja nije. Usporedite cijene za registracijsko područje Delnice i uštedite do 30%!

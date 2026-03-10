@@ -22,14 +22,20 @@ Kao dio zagrebačkog prstena (ZG), Sesvete prate standardne cjenike, no konačni
 
 ## FAQ – Često postavljana pitanja o tehničkom u Sesvetama
 
-**1. Radi li tehnički u Sesvetama nedjeljom?**
-Ne, stanice u Sesvetama rade od ponedjeljka do petka (obično do 20:00 h) te subotom prijepodne.
-
-**2. Mogu li odmah u stanici podići nove registarske pločice?**
-Da, ako prvi put registrirate vozilo ili mijenjate oštećene pločice, u sesvetskim stanicama to možete obaviti odmah nakon tehničkog pregleda.
-
-**3. Koliko se čeka na red u Sesvetama?**
-Prosječno vrijeme čekanja je 30-60 minuta, ali tijekom udarnih termina (kraj mjeseca) može trajati i duže.
+<div class="tp-faq">
+  <div class="tp-faq-item">
+    <div class="tp-faq-q">Radi li tehnički u Sesvetama nedjeljom?</div>
+    <p class="tp-faq-a">Ne, stanice u Sesvetama rade od ponedjeljka do petka (obično do 20:00 h) te subotom prijepodne.</p>
+  </div>
+  <div class="tp-faq-item">
+    <div class="tp-faq-q">Mogu li odmah u stanici podići nove registarske pločice?</div>
+    <p class="tp-faq-a">Da, ako prvi put registrirate vozilo ili mijenjate oštećene pločice, u sesvetskim stanicama to možete obaviti odmah nakon tehničkog pregleda.</p>
+  </div>
+  <div class="tp-faq-item">
+    <div class="tp-faq-q">Koliko se čeka na red u Sesvetama?</div>
+    <p class="tp-faq-a">Prosječno vrijeme čekanja je 30-60 minuta, ali tijekom udarnih termina (kraj mjeseca) može trajati i duže.</p>
+  </div>
+</div>
 
 ---
 

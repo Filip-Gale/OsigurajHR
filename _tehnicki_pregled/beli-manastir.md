@@ -22,14 +22,20 @@ Ukupni trošak za BM registracijsko područje ovisi o snazi vašeg motora (kW) i
 
 ## FAQ – Često postavljana pitanja o tehničkom u Belom Manastiru
 
-**1. Mogu li u Belom Manastiru obaviti tehnički za vozila s OS tablicama?**
-Naravno. Bez obzira imate li OS, ZG ili bilo koje druge tablice, tehnički pregled i produženje valjanosti prometne dozvole možete obaviti u Belom Manastiru bez ikakvih ograničenja.
-
-**2. Koja je procedura za prvu registraciju novog vozila?**
-Za novo vozilo kupljeno u Hrvatskoj ne idete na liniju tehničkog pregleda (prvi pregled je obično nakon dvije godine), ali u stanici u Belom Manastiru obavljate svu administraciju i preuzimate registarske pločice.
-
-**3. Što trebam ponijeti za eko-test?**
-Za eko-test nije potrebna posebna dokumentacija osim prometne dozvole. Važno je samo da je motor vozila zagrijan na radnu temperaturu kako bi mjerenja bila ispravna.
+<div class="tp-faq">
+  <div class="tp-faq-item">
+    <div class="tp-faq-q">Mogu li u Belom Manastiru obaviti tehnički za vozila s OS tablicama?</div>
+    <p class="tp-faq-a">Naravno. Bez obzira imate li OS, ZG ili bilo koje druge tablice, tehnički pregled i produženje valjanosti prometne dozvole možete obaviti u Belom Manastiru bez ikakvih ograničenja.</p>
+  </div>
+  <div class="tp-faq-item">
+    <div class="tp-faq-q">Koja je procedura za prvu registraciju novog vozila?</div>
+    <p class="tp-faq-a">Za novo vozilo kupljeno u Hrvatskoj ne idete na liniju tehničkog pregleda (prvi pregled je obično nakon dvije godine), ali u stanici u Belom Manastiru obavljate svu administraciju i preuzimate registarske pločice.</p>
+  </div>
+  <div class="tp-faq-item">
+    <div class="tp-faq-q">Što trebam ponijeti za eko-test?</div>
+    <p class="tp-faq-a">Za eko-test nije potrebna posebna dokumentacija osim prometne dozvole. Važno je samo da je motor vozila zagrijan na radnu temperaturu kako bi mjerenja bila ispravna.</p>
+  </div>
+</div>
 
 ---
 

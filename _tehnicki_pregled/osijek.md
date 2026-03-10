@@ -22,14 +22,20 @@ Ukupni trošak registracije za OS registracijsko područje ovisi o snazi vašeg 
 
 ## FAQ – Često postavljana pitanja o tehničkom u Osijeku
 
-**1. Što mi je sve potrebno za tehnički pregled u Osijeku?**
-Sa sobom ponesite prometnu dozvolu vozila, važeću policu obveznog auto osiguranja i osobnu iskaznicu vlasnika (ili opunomoćene osobe).
-
-**2. Koliko dugo traje pregled u osječkim stanicama?**
-Sam postupak pregleda obično traje između 30 i 45 minuta, pod uvjetom da ste vozilo pripremili i da nema većih zastoja u stanici.
-
-**3. Mogu li obaviti tehnički ako mi je registracija već istekla?**
-Da, možete obaviti tehnički pregled, ali imajte na umu da vozilo s isteklom registracijom ne smije sudjelovati u prometu. Preporučuje se prijevoz vozila do stanice vučnom službom ili vađenje probnih tablica.
+<div class="tp-faq">
+  <div class="tp-faq-item">
+    <div class="tp-faq-q">Što mi je sve potrebno za tehnički pregled u Osijeku?</div>
+    <p class="tp-faq-a">Sa sobom ponesite prometnu dozvolu vozila, važeću policu obveznog auto osiguranja i osobnu iskaznicu vlasnika (ili opunomoćene osobe).</p>
+  </div>
+  <div class="tp-faq-item">
+    <div class="tp-faq-q">Koliko dugo traje pregled u osječkim stanicama?</div>
+    <p class="tp-faq-a">Sam postupak pregleda obično traje između 30 i 45 minuta, pod uvjetom da ste vozilo pripremili i da nema većih zastoja u stanici.</p>
+  </div>
+  <div class="tp-faq-item">
+    <div class="tp-faq-q">Mogu li obaviti tehnički ako mi je registracija već istekla?</div>
+    <p class="tp-faq-a">Da, možete obaviti tehnički pregled, ali imajte na umu da vozilo s isteklom registracijom ne smije sudjelovati u prometu. Preporučuje se prijevoz vozila do stanice vučnom službom ili vađenje probnih tablica.</p>
+  </div>
+</div>
 
 ---
 

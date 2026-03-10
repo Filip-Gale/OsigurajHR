@@ -22,14 +22,20 @@ Ukupni trošak za KR registracijsko područje ovisi o snazi motora (kW) i godiš
 
 ## FAQ – Često postavljana pitanja o tehničkom u Krapini
 
-**1. Mogu li u Krapini obaviti tehnički pregled za traktore?**
-Da, s obzirom na velik broj poljoprivrednih gospodarstava u okolici, krapinske stanice su potpuno opremljene za pregled traktora i radnih strojeva.
-
-**2. Koliko vrijedi eko-test u Krapini?**
-Eko-test se obavlja prilikom svakog redovnog tehničkog pregleda i njegova cijena je uključena u ukupni trošak koji vam izbacuje naš kalkulator.
-
-**3. Što ako mi je istekla prometna dozvola?**
-Ako je prometna dozvola istekla, vozilo ne smijete sudjelovati u prometu. Preporučuje se dovoz vozila na prikolici ili vađenje privremenih pločica kako biste legalno stigli do stanice u Krapini.
+<div class="tp-faq">
+  <div class="tp-faq-item">
+    <div class="tp-faq-q">Mogu li u Krapini obaviti tehnički pregled za traktore?</div>
+    <p class="tp-faq-a">Da, s obzirom na velik broj poljoprivrednih gospodarstava u okolici, krapinske stanice su potpuno opremljene za pregled traktora i radnih strojeva.</p>
+  </div>
+  <div class="tp-faq-item">
+    <div class="tp-faq-q">Koliko vrijedi eko-test u Krapini?</div>
+    <p class="tp-faq-a">Eko-test se obavlja prilikom svakog redovnog tehničkog pregleda i njegova cijena je uključena u ukupni trošak koji vam izbacuje naš kalkulator.</p>
+  </div>
+  <div class="tp-faq-item">
+    <div class="tp-faq-q">Što ako mi je istekla prometna dozvola?</div>
+    <p class="tp-faq-a">Ako je prometna dozvola istekla, vozilo ne smijete sudjelovati u prometu. Preporučuje se dovoz vozila na prikolici ili vađenje privremenih pločica kako biste legalno stigli do stanice u Krapini.</p>
+  </div>
+</div>
 
 ---
 
