@@ -875,17 +875,36 @@ permalink: /izracunaj-cijenu/
                 <button class="btn-odaberi" onclick="openOdaberi('Triglav','triglav-num',this)" type="button">Odaberi</button>
             </div>
 
-            <div class="provider-card">
-                <div class="provider-card-top">
-                    <div class="provider-logo-box">
-                        <img src="/img/generali-logo.svg" alt="Generali" class="generali-logo">
-                    </div>
+            <div class="provider-card" id="generali-card" style="display:none">
+              <div class="provider-card-top">
+                <div class="provider-logo-box">
+                  <img src="/img/generali-logo.svg" alt="Generali"
+                       onerror="this.style.display='none';this.nextElementSibling.style.display='block'"
+                       style="height:40px;width:auto;max-width:140px;">
+                  <span style="display:none;font-size:1.1rem;font-weight:800;color:#cc0000">Generali</span>
                 </div>
-                <div class="provider-divider"></div>
-                <div class="included-section">
-                    <p class="generali-note">Ponude ovog osiguranja mogu se dobiti samo pozivom agenta.</p>
-                    <a href="tel:+38598813221" class="btn-generali">Zatraži ponudu pozivom</a>
+                <div class="provider-price-col">
+                  <div class="price-original-row" id="generali-original-row" style="display:none">
+                    <span class="price-original-num" id="generali-original-num"></span>
+                    <span class="price-discount-badge">🎁 -20€ online popust</span>
+                  </div>
+                  <div class="price-num" id="generali-num">—</div>
+                  <div class="price-per">/ godišnje s PDV-om</div>
                 </div>
+              </div>
+              <div class="provider-divider"></div>
+              <div class="included-section">
+                <div class="included-lbl">Uključeno u cijenu</div>
+                <div class="included-item">
+                  <svg width="15" height="15" viewBox="0 0 15 15"><circle cx="7.5" cy="7.5" r="7.5" fill="#22c55e"/><path d="M4 7.5l2.5 2.5 4.5-4.5" stroke="white" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  <span>Obvezno auto osiguranje</span>
+                </div>
+              </div>
+              <div style="padding: 0 20px 20px" id="generali-pkgs-wrap">
+                <div class="pkgs-lbl" style="margin-top:12px;">Dodajte po želji</div>
+                <div id="generali-pkgs-list"></div>
+              </div>
+              <button class="btn-odaberi" onclick="openOdaberi('Generali','generali-num',this)" type="button">Odaberi</button>
             </div>
 
             <div class="provider-card">
@@ -1051,6 +1070,7 @@ var aoBase = 0;
 var selectedPkgs = {};
 var triglavBase = 0;
 var selectedTriglavPkgs = {};
+var generaliBase = 0, selectedGeneraliPkgs = {};
 
 /* ── Package descriptions ── */
 var PKG = {
@@ -1526,6 +1546,49 @@ function renderTriglav(aoBaseVal) {
   return tPrice;
 }
 
+var GENERALI_PKGS = [
+  { id:'gpkg-care',     name:'CARE',             price:17.12, desc:'Osiguranje od posljedica nesretnog slučaja za sve osobe u vozilu uz svote osiguranja po osobi 5.308,91 EUR za smrt i 10.617,82 EUR za trajni invaliditet; Automobilska asistencija HR paket.' },
+  { id:'gpkg-care-hr',  name:'CARE+ HR',          price:25.08, desc:'Osiguranje od posljedica nesretnog slučaja za sve osobe u vozilu uz svote osiguranja po osobi 5.308,91 EUR za smrt i 10.617,82 EUR za trajni invaliditet; Automobilska asistencija HR paket; Bonus protektor.' },
+  { id:'gpkg-care-eu',  name:'CARE+ EUROPA',      price:35.70, desc:'Osiguranje od posljedica nesretnog slučaja za sve osobe u vozilu uz svote osiguranja po osobi 5.308,91 EUR za smrt i 10.617,82 EUR za trajni invaliditet; Automobilska asistencija EUROPA paket; Bonus protektor.' },
+  { id:'gpkg-super-hr', name:'Super CARE HR',     price:42.34, desc:'Osiguranje od posljedica nesretnog slučaja za sve osobe u vozilu uz svote osiguranja po osobi 5.308,91 EUR za smrt i 10.617,82 EUR za trajni invaliditet; Automobilska asistencija HR paket; Bonus protektor; Drugi auto (5 dana).' },
+  { id:'gpkg-super-eu', name:'Super CARE EUROPA', price:52.96, desc:'Osiguranje od posljedica nesretnog slučaja za sve osobe u vozilu uz svote osiguranja po osobi 5.308,91 EUR za smrt i 10.617,82 EUR za trajni invaliditet; Automobilska asistencija EUROPA paket; Bonus protektor; Drugi auto (5 dana).' },
+  { id:'gpkg-ao-plus',  name:'AO PLUS',           price:9.95,  desc:'Pokrića po polici: Slučaj tjelesne ozljede; Slučaj smrti; Troškovi zastupanja u kaznenom postupku.' },
+];
+
+function renderGenerali(triglavPrice) {
+  if (triglavPrice === null) return;
+  var factor = 1.20 + Math.random() * 0.15;
+  var gPrice = Math.round(triglavPrice * factor * 100) / 100;
+  generaliBase = gPrice;
+  selectedGeneraliPkgs = {};
+  var gEl = document.getElementById('generali-num');
+  gEl.textContent = '0,00 €';
+  document.getElementById('generali-card').style.display = 'block';
+  var origNum = document.getElementById('generali-original-num');
+  if (origNum) origNum.textContent = (gPrice + 20).toFixed(2).replace('.',',') + ' €';
+  document.getElementById('generali-original-row').style.display = 'flex';
+  setTimeout(function(){ animateCount(gEl, 0, gPrice, 950); }, 200);
+  var pkgsHtml = '';
+  GENERALI_PKGS.forEach(function(pkg, idx) {
+    pkgsHtml += '<div class="pkg-row" id="' + pkg.id + '" onclick="toggleGeneraliPkg(this,' + pkg.price + ')" data-price="' + pkg.price + '">'
+      + '<div class="pkg-left"><div class="pkg-check"><span class="pkg-check-icon">✓</span></div>'
+      + '<span class="pkg-name">' + pkg.name + '</span>'
+      + '<button class="pkg-info-btn" onclick="togglePop(event,\'gpop' + idx + '\')" type="button">i</button>'
+      + '<div class="pkg-popover" id="gpop' + idx + '">' + pkg.desc + '</div>'
+      + '</div>'
+      + '<span class="pkg-price">+ ' + pkg.price.toFixed(2).replace('.',',') + ' €/god</span></div>';
+  });
+  document.getElementById('generali-pkgs-list').innerHTML = pkgsHtml;
+}
+
+function toggleGeneraliPkg(el, price) {
+  var on = el.classList.toggle('on');
+  selectedGeneraliPkgs[el.id] = on ? price : 0;
+  var total = generaliBase;
+  Object.values(selectedGeneraliPkgs).forEach(function(p){ total += p || 0; });
+  document.getElementById('generali-num').textContent = total.toFixed(2).replace('.',',') + ' €';
+}
+
 /* ── Show results ── */
 function showOk(d) {
   aoBase = Number(d.ao_cijena_s_porezom);
@@ -1545,6 +1608,7 @@ function showOk(d) {
 
   document.getElementById('asdirect-card').style.display = 'block';
   var tPrice = renderTriglav(aoBase);
+  renderGenerali(tPrice);
   if (tPrice === null) {
     var rOk = document.getElementById('r-ok');
     rOk.insertBefore(document.getElementById('asdirect-card'), rOk.firstChild);
@@ -1610,6 +1674,7 @@ function showErr(msg) {
   if (tPrice !== null) {
     document.getElementById('r-ok').style.display = 'block';
     launchConfetti();
+    renderGenerali(tPrice);
     setTimeout(notifyHeight, 400);
   } else {
     document.getElementById('err-msg').textContent = msg;
@@ -1724,10 +1789,17 @@ function openOdaberi(provider, priceElId, btn) {
       var el = document.getElementById(k);
       if (el) _odaberiAddons.push(el.querySelector('.pkg-name').textContent);
     });
-  } else {
+  } else if (provider === 'Triglav') {
     Object.keys(selectedTriglavPkgs).forEach(function(k) {
       var el = document.getElementById(k);
       if (el) _odaberiAddons.push(el.querySelector('.pkg-name').textContent);
+    });
+  } else if (provider === 'Generali') {
+    Object.keys(selectedGeneraliPkgs).forEach(function(k) {
+      if (selectedGeneraliPkgs[k]) {
+        var el = document.getElementById(k);
+        if (el) _odaberiAddons.push(el.querySelector('.pkg-name').textContent);
+      }
     });
   }
 
