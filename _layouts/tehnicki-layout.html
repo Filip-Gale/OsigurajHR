@@ -276,55 +276,6 @@
             #wapp { bottom: 90px !important; }
         }
 
-        /* ── Floating pill (desktop) ── */
-        .floating-pill {
-            display: none;
-            position: fixed;
-            bottom: 32px;
-            left: 50%;
-            transform: translateX(-50%) translateY(16px);
-            background: #1c1533;
-            border-radius: 50px;
-            padding: 12px 14px 12px 20px;
-            align-items: center;
-            gap: 16px;
-            z-index: 999;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.28);
-            white-space: nowrap;
-            opacity: 0;
-            transition: opacity 0.35s ease, transform 0.35s ease;
-        }
-        .floating-pill.visible {
-            opacity: 1;
-            transform: translateX(-50%) translateY(0);
-        }
-        .floating-pill-text {
-            font-size: 0.88rem;
-            font-weight: 600;
-            color: rgba(255,255,255,0.9);
-        }
-        .floating-pill-text strong {
-            color: #ffbc27;
-            font-weight: 800;
-        }
-        .floating-pill-btn {
-            display: inline-block;
-            background: #ffbc27;
-            color: #1c1533 !important;
-            font-size: 0.85rem;
-            font-weight: 800;
-            padding: 9px 18px;
-            border-radius: 50px;
-            text-decoration: none !important;
-            transition: background 0.15s, transform 0.15s;
-        }
-        .floating-pill-btn:hover {
-            background: #e6a800;
-            transform: translateY(-1px);
-        }
-        @media (min-width: 769px) {
-            .floating-pill { display: flex; }
-        }
     </style>
 </head>
 <body>
@@ -430,12 +381,6 @@
 
     <div class="margin-top-100"> </div>
 
-    <!-- Floating pill — desktop -->
-    <div class="floating-pill" id="floating-pill">
-        <div class="floating-pill-text">Za tehnički treba vam <strong>važeća polica AO</strong></div>
-        <a href="/izracunaj-cijenu/" class="floating-pill-btn">Usporedi cijene →</a>
-    </div>
-
     <!-- Sticky AO bar — mobile -->
     <div class="sticky-ao-bar">
         <div class="sticky-ao-bar-text">
@@ -449,19 +394,6 @@
     {% include footer.html %}
 
     <script>
-    // Floating pill — show after scroll
-    (function() {
-        var pill = document.getElementById('floating-pill');
-        if (!pill) return;
-        window.addEventListener('scroll', function() {
-            if (window.scrollY > 200) {
-                pill.classList.add('visible');
-            } else {
-                pill.classList.remove('visible');
-            }
-        }, { passive: true });
-    })();
-
     function izracunaj() {
         const osnovica = parseFloat(document.getElementById('kategorija').value);
         const kw = parseFloat(document.getElementById('kw').value) || 0;
