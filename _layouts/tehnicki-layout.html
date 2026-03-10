@@ -171,6 +171,104 @@
             transition: color 0.2s;
         }
         .city-grid a:hover { color: #ffbc27; }
+
+        /* ── Polica nudge banner ── */
+        .polica-nudge {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            background: #ffbc27;
+            border-radius: 16px;
+            padding: 16px 22px;
+            margin-bottom: 32px;
+            flex-wrap: wrap;
+        }
+        .polica-nudge-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex: 1;
+            min-width: 200px;
+        }
+        .polica-nudge-icon {
+            font-size: 1.6rem;
+            flex-shrink: 0;
+        }
+        .polica-nudge-text {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #1c1533;
+            line-height: 1.4;
+        }
+        .polica-nudge-text span {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: #4b3a00;
+            margin-top: 2px;
+        }
+        .polica-nudge-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: #573cf9;
+            color: #fff !important;
+            font-size: 0.88rem;
+            font-weight: 800;
+            padding: 11px 20px;
+            border-radius: 10px;
+            text-decoration: none !important;
+            white-space: nowrap;
+            transition: background 0.15s, transform 0.15s;
+            flex-shrink: 0;
+        }
+        .polica-nudge-btn:hover {
+            background: #3b20d4;
+            transform: translateY(-1px);
+        }
+
+        /* ── Sticky bottom bar (mobile) ── */
+        .sticky-ao-bar {
+            display: none;
+            position: fixed;
+            bottom: 0; left: 0; right: 0;
+            background: #ffbc27;
+            z-index: 999;
+            padding: 12px 20px;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            box-shadow: 0 -4px 20px rgba(0,0,0,0.18);
+        }
+        .sticky-ao-bar-text {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #1c1533;
+            line-height: 1.3;
+        }
+        .sticky-ao-bar-text small {
+            display: block;
+            font-weight: 500;
+            font-size: 0.75rem;
+            color: #4b3a00;
+        }
+        .sticky-ao-bar-btn {
+            display: inline-block;
+            background: #573cf9;
+            color: #fff !important;
+            font-size: 0.82rem;
+            font-weight: 800;
+            padding: 9px 16px;
+            border-radius: 9px;
+            text-decoration: none !important;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+        @media (max-width: 768px) {
+            .sticky-ao-bar { display: flex; }
+            body { padding-bottom: 64px; }
+        }
     </style>
 </head>
 <body>
@@ -197,6 +295,20 @@
                 {{ page.opis }}
             </p>
         </header>
+
+        <!-- Polica nudge — uvijek vidljivo, prije kalkulatora -->
+        <div class="polica-nudge">
+            <div class="polica-nudge-left">
+                <div class="polica-nudge-icon">📋</div>
+                <div class="polica-nudge-text">
+                    Za tehnički pregled potrebna vam je važeća polica AO osiguranja
+                    <span>Usporedite cijene i uštedite do 50% — izračun za 30 sekundi</span>
+                </div>
+            </div>
+            <a href="/izracunaj-cijenu/" class="polica-nudge-btn">
+                Usporedi cijene →
+            </a>
+        </div>
 
         <div class="calc-card">
             <h2 style="margin-top:0; text-align:center; color: #ffbc27; font-size: 2rem;">📊 Kalkulator troškova registracije</h2>
@@ -261,6 +373,15 @@
     </main>
 
     <div class="margin-top-100"> </div>
+
+    <!-- Sticky AO bar — mobile -->
+    <div class="sticky-ao-bar">
+        <div class="sticky-ao-bar-text">
+            Trebate policu za tehnički?
+            <small>Usporedite cijene za {{ page.grad }}</small>
+        </div>
+        <a href="/izracunaj-cijenu/" class="sticky-ao-bar-btn">Izračunaj odmah →</a>
+    </div>
 
     {% include wapp.html %}
     {% include footer.html %}

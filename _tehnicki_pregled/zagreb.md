@@ -27,7 +27,7 @@ Cijena tehničkog pregleda u Zagrebu ovisi o snazi vašeg motora (kW) i kategori
 Iako nije zakonski obavezno, u Zagrebu se toplo preporučuje rezervacija termina putem web stranica STP-a kako biste izbjegli čekanje koje može trajati i do 3 sata tijekom popodnevnih gužvi.
 
 **2. Koji su dokumenti potrebni za tehnički u Zagrebu?**
-Potrebna vam je prometna dozvola, važeća polica obveznog auto osiguranja i osobna iskaznica vlasnika vozila.
+Potrebna vam je prometna dozvola, [važeća polica obveznog auto osiguranja](/izracunaj-cijenu/) i osobna iskaznica vlasnika vozila.
 
 **3. Što ako moje vozilo ne prođe tehnički pregled?**
 Ako se utvrde nedostaci, imate rok od 15 radnih dana da ih otklonite i obavite ponovljeni pregled u istoj stanici, što je u većini slučajeva besplatno ako se radi o manjim kvarovima.

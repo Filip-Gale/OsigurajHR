@@ -29,7 +29,7 @@ Da, tehnički pregled i produženje valjanosti prometne dozvole možete obaviti 
 Razlika je prvenstveno u cijeni eko-testa, koji je nešto skuplji za dizelska vozila. Naš kalkulator iznad će vam točno izračunati tu razliku na temelju vašeg unosa.
 
 **3. Trebam li donijeti dokaz o plaćenom osiguranju?**
-Da, polica obveznog auto osiguranja je nužan dokument. Ako je niste ugovorili unaprijed, to možete učiniti i u samoj stanici, ali online usporedba vam obično donosi bolju cijenu.
+Da, [polica obveznog auto osiguranja](/izracunaj-cijenu/) je nužan dokument. Ako je niste ugovorili unaprijed, to možete učiniti i u samoj stanici, ali online usporedba vam obično donosi bolju cijenu.
 
 ---
 

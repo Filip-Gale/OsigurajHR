@@ -23,7 +23,7 @@ Ukupni trošak registracije za ZD registracijsko područje ovisi o snazi vašeg 
 ## FAQ – Često postavljana pitanja o tehničkom u Zadru
 
 **1. Koji su dokumenti potrebni za tehnički u Zadru?**
-Potrebni su vam: prometna dozvola, važeća polica obveznog auto osiguranja i osobna iskaznica vlasnika vozila (ili osobe koja obavlja pregled uz punomoć).
+Potrebni su vam: prometna dozvola, [važeća polica obveznog auto osiguranja](/izracunaj-cijenu/) i osobna iskaznica vlasnika vozila (ili osobe koja obavlja pregled uz punomoć).
 
 **2. Koliko traje postupak tehničkog pregleda?**
 U prosjeku, sam pregled traje oko 30 do 45 minuta. Ako ste unaprijed provjerili ispravnost svjetala i osnovne opreme, proces će teći glatko.
