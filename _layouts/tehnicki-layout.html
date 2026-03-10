@@ -210,6 +210,55 @@
             color: rgba(255,255,255,0.9);
         }
 
+        /* ── City region grid (index page) ── */
+        .city-region-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin: 28px 0 40px;
+        }
+        .city-region {
+            background: rgba(0,0,0,0.2);
+            border-radius: 14px;
+            padding: 16px 20px;
+        }
+        .city-region--highlight {
+            background: rgba(255,188,39,0.1);
+            border: 1.5px solid rgba(255,188,39,0.3);
+        }
+        .city-region-label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: rgba(255,255,255,0.5);
+            margin-bottom: 12px;
+        }
+        .city-region--highlight .city-region-label {
+            color: rgba(255,188,39,0.8);
+        }
+        .city-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .city-pill {
+            background: rgba(255,255,255,0.08);
+            color: rgba(255,255,255,0.9) !important;
+            font-size: 0.88rem;
+            font-weight: 600;
+            padding: 7px 14px;
+            border-radius: 20px;
+            text-decoration: none !important;
+            transition: background 0.15s, color 0.15s;
+            border: 1px solid rgba(255,255,255,0.12);
+        }
+        .city-pill:hover {
+            background: #ffbc27;
+            color: #1c1533 !important;
+            border-color: #ffbc27;
+        }
+
         /* ── Cross-link card ── */
         .cross-link-card {
             display: flex;
