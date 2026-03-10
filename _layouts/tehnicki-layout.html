@@ -452,6 +452,7 @@
             </p>
         </header>
 
+        {% if page.grad %}
         <!-- Polica nudge — uvijek vidljivo, prije kalkulatora -->
         <div class="polica-nudge">
             <div class="polica-nudge-left">
@@ -505,11 +506,13 @@
                 </div>
             </div>
         </div>
+        {% endif %}
 
         <article class="post-content" style="line-height: 1.9; font-size: 1.2rem;">
             {{ content }}
         </article>
 
+        {% if page.grad %}
         <div style="margin-top: 80px; padding: 65px 35px; background: rgba(0,0,0,0.35); border-radius: 40px; text-align: center; border: 4px solid #ffbc27;">
             <h2 style="color: #ffbc27 !important; margin-top: 0; font-size: 2.8rem;">Trebaš i povoljno auto osiguranje?</h2>
             <p style="margin-bottom: 45px; font-size: 1.4rem; opacity: 0.9;">
@@ -517,6 +520,7 @@
             </p>
             <a href="/izracunaj-cijenu/" class="btn-saznaj">SAZNAJ CIJENU ODMAH →</a>
         </div>
+        {% endif %}
 
         {% assign city_slug = page.url | split: '/' %}
         {% assign city_slug = city_slug[2] %}
@@ -530,6 +534,18 @@
                 <div class="cross-link-sub">Usporedite ponude osiguravatelja i uštedite do 30% na polici</div>
             </div>
             <a href="{{ ao_url }}" class="cross-link-btn">Usporedi ponude →</a>
+        </div>
+        {% endif %}
+
+        {% assign reg_page = site.registracija | where: "grad", page.grad | first %}
+        {% if reg_page %}
+        <div class="cross-link-card">
+            <div class="cross-link-icon">📄</div>
+            <div class="cross-link-body">
+                <div class="cross-link-title">Registracija vozila {{ page.grad }}</div>
+                <div class="cross-link-sub">Vodič, dokumentacija i svi troškovi registracije za {{ page.grad }}</div>
+            </div>
+            <a href="{{ reg_page.url }}" class="cross-link-btn">Pogledaj vodič →</a>
         </div>
         {% endif %}
 

@@ -111,6 +111,20 @@
         .step p { margin: 0; font-size: 0.82rem; opacity: 0.7; }
         .step-num { background: #ffbc27; color: #573cf9; width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 1rem; margin: 0 auto 12px auto; }
 
+        /* ── City region grid ── */
+        .city-region-grid { display: flex; flex-direction: column; gap: 10px; margin: 20px 0 36px; }
+        .city-region { background: rgba(0,0,0,0.2); border-radius: 14px; padding: 16px 20px; }
+        .city-region--highlight { background: rgba(255,188,39,0.1); border: 1.5px solid rgba(255,188,39,0.3); }
+        .city-region-label { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: rgba(255,255,255,0.5); margin-bottom: 12px; }
+        .city-region--highlight .city-region-label { color: rgba(255,188,39,0.8); }
+
+        /* ── FAQ kartice ── */
+        .tp-faq { display: flex; flex-direction: column; gap: 12px; margin: 8px 0 28px; }
+        .tp-faq-item { background: rgba(0,0,0,0.22); border-radius: 14px; padding: 18px 20px; border-left: 3px solid rgba(255,188,39,0.5); }
+        .tp-faq-q { font-size: 1rem; font-weight: 700; color: #ffbc27; margin-bottom: 8px; }
+        .tp-faq-a { font-size: 0.95rem; color: rgba(255,255,255,0.85); line-height: 1.65; margin: 0; }
+        .tp-faq-a a { color: #ffbc27 !important; }
+
         .city-pills { display: flex; flex-wrap: wrap; gap: 8px; }
         .city-pill {
             background: rgba(255,255,255,0.08);
@@ -260,6 +274,7 @@
             <a href="/izracunaj-cijenu/" class="polica-nudge-btn">Usporedi cijene →</a>
         </div>
 
+        {% if page.grad %}
         <div class="process-container">
             <div class="step">
                 <div class="step-num">1</div>
@@ -277,18 +292,22 @@
                 <p style="font-size: 0.9rem">Produži papire na licu mjesta</p>
             </div>
         </div>
+        {% endif %}
 
         <div class="content-wrapper">
             <article class="post-content">
                 {{ content }}
             </article>
 
+            {% if page.stp_lokacije_opis %}
             <div style="background: rgba(255,188,39,0.1); border-left: 5px solid #ffbc27; padding: 30px; margin-top: 50px; border-radius: 0 20px 20px 0;">
                 <h3 style="margin-top: 0; color: #ffbc27 !important;">📍 STP Lokacije: {{ page.grad }}</h3>
                 <p>{{ page.stp_lokacije_opis }}</p>
             </div>
+            {% endif %}
         </div>
 
+        {% if page.grad %}
         <div style="margin-top: 80px; padding: 60px 40px; background: linear-gradient(145deg, rgba(0,0,0,0.4), rgba(0,0,0,0.2)); border-radius: 40px; text-align: center; border: 4px solid #ffbc27;">
             <h2 style="color: #ffbc27 !important; margin-top: 0; font-size: 2.5rem;">Smanji trošak registracije!</h2>
             <p style="margin-bottom: 40px; font-size: 1.4rem; opacity: 0.9;">
@@ -313,10 +332,13 @@
             <p style="font-weight: bold; color: rgba(255,255,255,0.5); margin-bottom: 14px; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.06em;">Ostali gradovi</p>
             <div class="city-pills">
                 {% for p in site.registracija limit:18 %}
+                    {% unless p.grad == blank %}
                     <a href="{{ p.url }}" class="city-pill">{{ p.grad }}</a>
+                    {% endunless %}
                 {% endfor %}
             </div>
         </div>
+        {% endif %}
     </main>
 
     <!-- Sticky bottom bar (mobile) -->

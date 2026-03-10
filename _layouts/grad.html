@@ -194,6 +194,18 @@
         </div>
         {% endif %}
 
+        {% assign reg_page = site.registracija | where: "grad", page.grad_ime | first %}
+        {% if reg_page %}
+        <div class="cross-link-card">
+            <div class="cross-link-icon">📄</div>
+            <div class="cross-link-body">
+                <div class="cross-link-title">Registracija vozila {{ page.grad_ime }}</div>
+                <div class="cross-link-sub">Vodič, dokumentacija i kalkulator troškova registracije za {{ page.grad_ime }}</div>
+            </div>
+            <a href="{{ reg_page.url }}" class="cross-link-btn">Pogledaj →</a>
+        </div>
+        {% endif %}
+
         <div style="margin-top: 70px; padding: 55px 30px; background: rgba(0,0,0,0.25); border-radius: 40px; text-align: center; border: 3px solid #ffbc27;">
             <h2 style="color: #ffbc27 !important; margin-bottom: 15px; margin-top: 0; font-size: 2.4rem;">Uštedite do 30% u gradu: {{ page.grad_ime }}</h2>
             <p style="margin-bottom: 40px; font-size: 1.25rem; opacity: 0.9;">Usporedite sve osiguravajuće kuće u Hrvatskoj i preuzmite ponudu na mail.</p>
