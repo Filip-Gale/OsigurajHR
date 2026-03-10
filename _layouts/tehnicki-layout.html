@@ -169,6 +169,46 @@
             color: rgba(255,255,255,0.9);
         }
 
+        /* ── Cross-link card ── */
+        .cross-link-card {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            background: rgba(0,0,0,0.2);
+            border: 1.5px solid rgba(255,188,39,0.35);
+            border-radius: 16px;
+            padding: 18px 22px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+        .cross-link-icon { font-size: 1.8rem; flex-shrink: 0; }
+        .cross-link-body { flex: 1; min-width: 160px; }
+        .cross-link-title {
+            font-size: 0.95rem;
+            font-weight: 800;
+            color: #ffbc27;
+            margin-bottom: 3px;
+        }
+        .cross-link-sub {
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.65);
+        }
+        .cross-link-btn {
+            display: inline-block;
+            background: rgba(255,188,39,0.15);
+            border: 1.5px solid #ffbc27;
+            color: #ffbc27 !important;
+            font-size: 0.82rem;
+            font-weight: 700;
+            padding: 8px 16px;
+            border-radius: 9px;
+            text-decoration: none !important;
+            white-space: nowrap;
+            flex-shrink: 0;
+            transition: background 0.15s;
+        }
+        .cross-link-btn:hover { background: rgba(255,188,39,0.25); }
+
         .city-grid a {
             color: rgba(255,255,255,0.8);
             text-decoration: none;
@@ -368,6 +408,21 @@
             </p>
             <a href="/izracunaj-cijenu/" class="btn-saznaj">SAZNAJ CIJENU ODMAH →</a>
         </div>
+
+        {% assign city_slug = page.url | split: '/' %}
+        {% assign city_slug = city_slug[2] %}
+        {% assign ao_url = '/auto-osiguranje/' | append: city_slug | append: '/' %}
+        {% assign ao_page = site.pages | where: "permalink", ao_url | first %}
+        {% if ao_page %}
+        <div class="cross-link-card">
+            <div class="cross-link-icon">🛡️</div>
+            <div class="cross-link-body">
+                <div class="cross-link-title">Auto osiguranje za {{ page.grad }}</div>
+                <div class="cross-link-sub">Usporedite ponude osiguravatelja i uštedite do 30% na polici</div>
+            </div>
+            <a href="{{ ao_url }}" class="cross-link-btn">Usporedi ponude →</a>
+        </div>
+        {% endif %}
 
         <div style="margin-top: 60px; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.1);">
             <p style="font-weight: bold; color: #ffbc27; margin-bottom: 20px; text-transform: uppercase; font-size: 0.9rem;">Tehnički pregled u ostalim gradovima:</p>

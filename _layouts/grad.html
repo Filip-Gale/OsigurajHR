@@ -115,6 +115,46 @@
 
         .post-content li { margin-bottom: 15px; }
         .post-content p { margin-bottom: 20px; }
+
+        /* ── Cross-link card ── */
+        .cross-link-card {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            background: rgba(0,0,0,0.2);
+            border: 1.5px solid rgba(255,188,39,0.35);
+            border-radius: 16px;
+            padding: 18px 22px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+        .cross-link-icon { font-size: 1.8rem; flex-shrink: 0; }
+        .cross-link-body { flex: 1; min-width: 160px; }
+        .cross-link-title {
+            font-size: 0.95rem;
+            font-weight: 800;
+            color: #ffbc27;
+            margin-bottom: 3px;
+        }
+        .cross-link-sub {
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.65);
+        }
+        .cross-link-btn {
+            display: inline-block;
+            background: rgba(255,188,39,0.15);
+            border: 1.5px solid #ffbc27;
+            color: #ffbc27 !important;
+            font-size: 0.82rem;
+            font-weight: 700;
+            padding: 8px 16px;
+            border-radius: 9px;
+            text-decoration: none !important;
+            white-space: nowrap;
+            flex-shrink: 0;
+            transition: background 0.15s;
+        }
+        .cross-link-btn:hover { background: rgba(255,188,39,0.25); }
     </style>
 </head>
 <body>
@@ -142,6 +182,19 @@
         <article class="post-content" style="color: white; line-height: 1.9; font-size: 1.15rem;">
             {{ content }}
         </article>
+
+        {% assign city_slug = page.grad_ime | downcase | replace: ' ', '-' %}
+        {% assign tp_page = site.tehnicki_pregled | where: "grad", page.grad_ime | first %}
+        {% if tp_page %}
+        <div class="cross-link-card">
+            <div class="cross-link-icon">🔧</div>
+            <div class="cross-link-body">
+                <div class="cross-link-title">Tehnički pregled za {{ page.grad_ime }}</div>
+                <div class="cross-link-sub">Cijene, kalkulator troškova registracije i stanice za {{ page.grad_ime }}</div>
+            </div>
+            <a href="/tehnicki-pregled/{{ city_slug }}/" class="cross-link-btn">Saznaj više →</a>
+        </div>
+        {% endif %}
 
         <div style="margin-top: 70px; padding: 55px 30px; background: rgba(0,0,0,0.25); border-radius: 40px; text-align: center; border: 3px solid #ffbc27;">
             <h2 style="color: #ffbc27 !important; margin-bottom: 15px; margin-top: 0; font-size: 2.4rem;">Uštedite do 30% u gradu: {{ page.grad_ime }}</h2>
