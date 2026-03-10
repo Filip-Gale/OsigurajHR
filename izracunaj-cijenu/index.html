@@ -231,8 +231,9 @@ permalink: /izracunaj-cijenu/
         .kasko-row {
           display: flex;
           align-items: center;
-          gap: 10px;
+          gap: 8px;
         }
+        .opt-toggle { flex: 1; }
         .kasko-info-wrap {
           position: relative;
           display: inline-flex;
@@ -243,32 +244,34 @@ permalink: /izracunaj-cijenu/
           display: inline-flex;
           align-items: center;
           justify-content: center;
-          width: 26px;
-          height: 26px;
-          border-radius: 50%;
-          border: 1.5px solid rgba(87,60,249,0.4);
+          width: 28px;
+          height: 28px;
+          border-radius: 8px;
+          background: rgba(87,60,249,0.08);
           color: #573cf9;
-          font-size: 0.95rem;
           text-decoration: none;
-          background: none;
-          transition: background 0.15s, border-color 0.15s;
-          line-height: 1;
+          border: none;
+          transition: background 0.15s;
+          flex-shrink: 0;
         }
         .kasko-info-btn:hover {
-          background: rgba(87,60,249,0.08);
-          border-color: #573cf9;
+          background: rgba(87,60,249,0.16);
+        }
+        .kasko-info-btn svg {
+          width: 15px;
+          height: 15px;
+          display: block;
         }
         .kasko-tooltip {
           position: absolute;
           bottom: calc(100% + 8px);
-          left: 50%;
-          transform: translateX(-50%);
+          right: 0;
           background: #1c1533;
           color: #fff;
-          font-size: 0.75rem;
+          font-size: 0.73rem;
           font-weight: 600;
           white-space: nowrap;
-          padding: 6px 12px;
+          padding: 6px 11px;
           border-radius: 8px;
           pointer-events: none;
           opacity: 0;
@@ -279,13 +282,11 @@ permalink: /izracunaj-cijenu/
           content: '';
           position: absolute;
           top: 100%;
-          left: 50%;
-          transform: translateX(-50%);
+          right: 10px;
           border: 5px solid transparent;
           border-top-color: #1c1533;
         }
-        .kasko-info-wrap:hover .kasko-tooltip,
-        .kasko-info-btn:focus + .kasko-tooltip {
+        .kasko-info-wrap:hover .kasko-tooltip {
           opacity: 1;
         }
 
@@ -769,7 +770,13 @@ permalink: /izracunaj-cijenu/
                     <span id="opt-lbl">Želim ugovoriti i Kasko</span>
                   </button>
                   <div class="kasko-info-wrap">
-                    <a class="kasko-info-btn" href="/kasko/" aria-label="Saznaj više o kasko osiguranju">ⓘ</a>
+                    <a class="kasko-info-btn" href="/kasko/" aria-label="Saznaj više o kasko osiguranju">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"/>
+                        <circle cx="12" cy="8.5" r="0.5" fill="currentColor" stroke="none"/>
+                        <line x1="12" y1="11.5" x2="12" y2="16.5"/>
+                      </svg>
+                    </a>
                     <div class="kasko-tooltip">Saznaj više o kasko osiguranju</div>
                   </div>
                 </div>
