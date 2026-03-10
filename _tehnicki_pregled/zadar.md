@@ -22,14 +22,20 @@ Ukupni trošak registracije za ZD registracijsko područje ovisi o snazi vašeg 
 
 ## FAQ – Često postavljana pitanja o tehničkom u Zadru
 
-**1. Koji su dokumenti potrebni za tehnički u Zadru?**
-Potrebni su vam: prometna dozvola, [važeća polica obveznog auto osiguranja](/izracunaj-cijenu/) i osobna iskaznica vlasnika vozila (ili osobe koja obavlja pregled uz punomoć).
-
-**2. Koliko traje postupak tehničkog pregleda?**
-U prosjeku, sam pregled traje oko 30 do 45 minuta. Ako ste unaprijed provjerili ispravnost svjetala i osnovne opreme, proces će teći glatko.
-
-**3. Mogu li obaviti tehnički u Zadru ako imam druge registracijske oznake?**
-Da, tehnički pregled možete obaviti u bilo kojoj stanici u Hrvatskoj bez obzira na grad na vašim tablicama. Registraciju (produženje dozvole) također možete riješiti na istom mjestu uz važeću policu.
+<div class="tp-faq">
+  <div class="tp-faq-item">
+    <div class="tp-faq-q">Koji su dokumenti potrebni za tehnički u Zadru?</div>
+    <p class="tp-faq-a">Potrebni su vam: prometna dozvola, <a href="/izracunaj-cijenu/">važeća polica obveznog auto osiguranja</a> i osobna iskaznica vlasnika vozila (ili osobe koja obavlja pregled uz punomoć).</p>
+  </div>
+  <div class="tp-faq-item">
+    <div class="tp-faq-q">Koliko traje postupak tehničkog pregleda?</div>
+    <p class="tp-faq-a">U prosjeku, sam pregled traje oko 30 do 45 minuta. Ako ste unaprijed provjerili ispravnost svjetala i osnovne opreme, proces će teći glatko.</p>
+  </div>
+  <div class="tp-faq-item">
+    <div class="tp-faq-q">Mogu li obaviti tehnički u Zadru ako imam druge registracijske oznake?</div>
+    <p class="tp-faq-a">Da, tehnički pregled možete obaviti u bilo kojoj stanici u Hrvatskoj bez obzira na grad na vašim tablicama. Registraciju (produženje dozvole) također možete riješiti na istom mjestu uz važeću policu.</p>
+  </div>
+</div>
 
 ---
 

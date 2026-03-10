@@ -22,14 +22,20 @@ Ukupni trošak tehničkog pregleda i registracije za KT registracijsko područje
 
 ## FAQ – Često postavljana pitanja o tehničkom u Kutini
 
-**1. Mogu li obaviti tehnički pregled ako nemam prebivalište u Kutini?**
-Da, tehnički pregled i produženje valjanosti prometne dozvole možete obaviti u bilo kojoj stanici u Hrvatskoj, bez obzira na grad prebivališta ili tablice koje imate na vozilu.
-
-**2. Koja je razlika u cijeni tehničkog za dizelaše i benzince?**
-Razlika je prvenstveno u cijeni eko-testa, koji je nešto skuplji za dizelska vozila. Naš kalkulator iznad će vam točno izračunati tu razliku na temelju vašeg unosa.
-
-**3. Trebam li donijeti dokaz o plaćenom osiguranju?**
-Da, [polica obveznog auto osiguranja](/izracunaj-cijenu/) je nužan dokument. Ako je niste ugovorili unaprijed, to možete učiniti i u samoj stanici, ali online usporedba vam obično donosi bolju cijenu.
+<div class="tp-faq">
+  <div class="tp-faq-item">
+    <div class="tp-faq-q">Mogu li obaviti tehnički pregled ako nemam prebivalište u Kutini?</div>
+    <p class="tp-faq-a">Da, tehnički pregled i produženje valjanosti prometne dozvole možete obaviti u bilo kojoj stanici u Hrvatskoj, bez obzira na grad prebivališta ili tablice koje imate na vozilu.</p>
+  </div>
+  <div class="tp-faq-item">
+    <div class="tp-faq-q">Koja je razlika u cijeni tehničkog za dizelaše i benzince?</div>
+    <p class="tp-faq-a">Razlika je prvenstveno u cijeni eko-testa, koji je nešto skuplji za dizelska vozila. Naš kalkulator iznad će vam točno izračunati tu razliku na temelju vašeg unosa.</p>
+  </div>
+  <div class="tp-faq-item">
+    <div class="tp-faq-q">Trebam li donijeti dokaz o plaćenom osiguranju?</div>
+    <p class="tp-faq-a">Da, <a href="/izracunaj-cijenu/">polica obveznog auto osiguranja</a> je nužan dokument. Ako je niste ugovorili unaprijed, to možete učiniti i u samoj stanici, ali online usporedba vam obično donosi bolju cijenu.</p>
+  </div>
+</div>
 
 ---
 

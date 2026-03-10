@@ -73,6 +73,47 @@
     <style>
         .post-content h2, .post-content h3 { color: #ffbc27 !important; margin-top: 35px; font-weight: 700; }
         .post-content strong { color: #ffbc27 !important; }
+
+        /* ── Lista kao kartice ── */
+        .post-content ul {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .post-content ul li {
+            background: rgba(0,0,0,0.2);
+            border-left: 3px solid #ffbc27;
+            border-radius: 0 10px 10px 0;
+            padding: 12px 16px;
+            font-size: 1.05rem;
+            line-height: 1.5;
+            color: rgba(255,255,255,0.92);
+        }
+
+        /* ── FAQ kartice ── */
+        .tp-faq { display: flex; flex-direction: column; gap: 12px; margin: 8px 0 28px; }
+        .tp-faq-item {
+            background: rgba(0,0,0,0.22);
+            border-radius: 14px;
+            padding: 18px 20px;
+            border-left: 3px solid rgba(255,188,39,0.5);
+        }
+        .tp-faq-q {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #ffbc27;
+            margin-bottom: 8px;
+        }
+        .tp-faq-a {
+            font-size: 0.95rem;
+            color: rgba(255,255,255,0.85);
+            line-height: 1.65;
+            margin: 0;
+        }
+        .tp-faq-a a { color: #ffbc27 !important; }
         
         .btn-saznaj {
             display: inline-block;
