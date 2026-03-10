@@ -26,6 +26,27 @@
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Tehnički pregled",
+          "item": "https://www.osiguraj.hr/tehnicki-pregled/"
+        }{% if page.grad %},
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "{{ page.grad }}",
+          "item": "https://www.osiguraj.hr{{ page.url }}"
+        }{% endif %}
+      ]
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
       "@type": "Service",
       "name": "Tehnički pregled {{ page.grad }} 2026",
       "description": "{{ page.opis }}",
