@@ -5,283 +5,269 @@ description: "Pronađite najjeftinije auto osiguranje za vaš grad u 2026. ✓ Z
 permalink: /auto-osiguranje/
 ---
 
-<div class="margin-top-100"></div>
-
-<h1 class="text-center" style="margin-bottom: 20px; font-size: clamp(1.6rem, 5vw, 2.8rem);">Auto osiguranje po gradovima 2026</h1>
-<p class="text-center" style="color: #ccc; margin-bottom: 40px; font-size: 1.1rem;">Odaberite grad i usporedite cijene AO osiguranja — izračun za 30 sekundi, bez obveze.</p>
-
-<div style="text-align: center; margin-bottom: 48px;">
-  <a href="/izracunaj-cijenu/" style="background: #ffbc27; color: #1a0050; padding: 16px 32px; border-radius: 50px; font-weight: 700; font-size: 1.1rem; text-decoration: none; display: inline-block;">Izračunaj cijenu odmah →</a>
+<div class="ao-hero">
+<h1 class="ao-hero-title">Auto osiguranje 2026</h1>
+<p class="ao-hero-sub">Usporedite cijene AO osiguranja za vaš grad — izračun za 30 sekundi, bez obveze.</p>
+<a href="/izracunaj-cijenu/" class="ao-cta-btn">Izračunaj cijenu odmah →</a>
 </div>
 
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; padding: 20px 0;">
+<div class="ao-region-grid">
 
-    <a href="{{ '/auto-osiguranje/zagreb/' | relative_url }}" style="text-decoration: none;">
-        <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 25px; border-radius: 20px; text-align: center; transition: 0.3s;">
-            <h2 style="color: #fff; margin: 0; font-size: 1.5rem;">Zagreb</h2>
-            <p style="color: #ccc; margin-top: 10px; font-size: 0.85rem;">Osiguranje za ZG područje</p>
-        </div>
-    </a>
+<div class="ao-region">
+<div class="ao-region-label">🏙️ Zagreb i okolica</div>
+<div class="ao-pills">
+<a href="/auto-osiguranje/zagreb/" class="ao-pill">Zagreb</a>
+<a href="/auto-osiguranje/karlovac/" class="ao-pill">Karlovac</a>
+<a href="/auto-osiguranje/sisak/" class="ao-pill">Sisak</a>
+</div>
+</div>
 
-    <a href="{{ '/auto-osiguranje/split/' | relative_url }}" style="text-decoration: none;">
-        <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 25px; border-radius: 20px; text-align: center; transition: 0.3s;">
-            <h2 style="color: #fff; margin: 0; font-size: 1.5rem;">Split</h2>
-            <p style="color: #ccc; margin-top: 10px; font-size: 0.85rem;">Osiguranje za ST područje</p>
-        </div>
-    </a>
+<div class="ao-region">
+<div class="ao-region-label">🗺️ Središnja Hrvatska</div>
+<div class="ao-pills">
+<a href="/auto-osiguranje/varazdin/" class="ao-pill">Varaždin</a>
+<a href="/auto-osiguranje/koprivnica/" class="ao-pill">Koprivnica</a>
+<a href="/auto-osiguranje/bjelovar/" class="ao-pill">Bjelovar</a>
+<a href="/auto-osiguranje/krapina/" class="ao-pill">Krapina</a>
+<a href="/auto-osiguranje/cakovec/" class="ao-pill">Čakovec</a>
+<a href="/auto-osiguranje/krizevci/" class="ao-pill">Križevci</a>
+<a href="/auto-osiguranje/kutina/" class="ao-pill">Kutina</a>
+<a href="/auto-osiguranje/daruvar/" class="ao-pill">Daruvar</a>
+</div>
+</div>
 
-    <a href="{{ '/auto-osiguranje/rijeka/' | relative_url }}" style="text-decoration: none;">
-        <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 25px; border-radius: 20px; text-align: center; transition: 0.3s;">
-            <h2 style="color: #fff; margin: 0; font-size: 1.5rem;">Rijeka</h2>
-            <p style="color: #ccc; margin-top: 10px; font-size: 0.85rem;">Osiguranje za RI područje</p>
-        </div>
-    </a>
+<div class="ao-region">
+<div class="ao-region-label">🌊 Dalmacija</div>
+<div class="ao-pills">
+<a href="/auto-osiguranje/split/" class="ao-pill">Split</a>
+<a href="/auto-osiguranje/zadar/" class="ao-pill">Zadar</a>
+<a href="/auto-osiguranje/sibenik/" class="ao-pill">Šibenik</a>
+<a href="/auto-osiguranje/dubrovnik/" class="ao-pill">Dubrovnik</a>
+<a href="/auto-osiguranje/makarska/" class="ao-pill">Makarska</a>
+<a href="/auto-osiguranje/imotski/" class="ao-pill">Imotski</a>
+</div>
+</div>
 
-    <a href="{{ '/auto-osiguranje/osijek/' | relative_url }}" style="text-decoration: none;">
-        <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 25px; border-radius: 20px; text-align: center; transition: 0.3s;">
-            <h2 style="color: #fff; margin: 0; font-size: 1.5rem;">Osijek</h2>
-            <p style="color: #ccc; margin-top: 10px; font-size: 0.85rem;">Osiguranje za OS područje</p>
-        </div>
-    </a>
+<div class="ao-region">
+<div class="ao-region-label">🌾 Slavonija i Baranja</div>
+<div class="ao-pills">
+<a href="/auto-osiguranje/osijek/" class="ao-pill">Osijek</a>
+<a href="/auto-osiguranje/slavonski-brod/" class="ao-pill">Slavonski Brod</a>
+<a href="/auto-osiguranje/vinkovci/" class="ao-pill">Vinkovci</a>
+<a href="/auto-osiguranje/vukovar/" class="ao-pill">Vukovar</a>
+<a href="/auto-osiguranje/pozega/" class="ao-pill">Požega</a>
+<a href="/auto-osiguranje/nasice/" class="ao-pill">Našice</a>
+<a href="/auto-osiguranje/nova-gradiska/" class="ao-pill">Nova Gradiška</a>
+<a href="/auto-osiguranje/zupanja/" class="ao-pill">Županja</a>
+<a href="/auto-osiguranje/beli-manastir/" class="ao-pill">Beli Manastir</a>
+<a href="/auto-osiguranje/slatina/" class="ao-pill">Slatina</a>
+<a href="/auto-osiguranje/virovitica/" class="ao-pill">Virovitica</a>
+</div>
+</div>
 
-    <a href="{{ '/auto-osiguranje/zadar/' | relative_url }}" style="text-decoration: none;">
-        <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 25px; border-radius: 20px; text-align: center; transition: 0.3s;">
-            <h2 style="color: #fff; margin: 0; font-size: 1.5rem;">Zadar</h2>
-            <p style="color: #ccc; margin-top: 10px; font-size: 0.85rem;">Osiguranje za ZD područje</p>
-        </div>
-    </a>
+<div class="ao-region">
+<div class="ao-region-label">⚓ Istra i Kvarner</div>
+<div class="ao-pills">
+<a href="/auto-osiguranje/rijeka/" class="ao-pill">Rijeka</a>
+<a href="/auto-osiguranje/pula/" class="ao-pill">Pula</a>
+<a href="/auto-osiguranje/delnice/" class="ao-pill">Delnice</a>
+</div>
+</div>
 
-    <a href="{{ '/auto-osiguranje/pula/' | relative_url }}" style="text-decoration: none;">
-        <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 25px; border-radius: 20px; text-align: center; transition: 0.3s;">
-            <h2 style="color: #fff; margin: 0; font-size: 1.5rem;">Pula</h2>
-            <p style="color: #ccc; margin-top: 10px; font-size: 0.85rem;">Osiguranje za PU područje</p>
-        </div>
-    </a>
-
-    <a href="{{ '/auto-osiguranje/slavonski-brod/' | relative_url }}" style="text-decoration: none;">
-        <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 25px; border-radius: 20px; text-align: center; transition: 0.3s;">
-            <h2 style="color: #fff; margin: 0; font-size: 1.5rem;">Slavonski Brod</h2>
-            <p style="color: #ccc; margin-top: 10px; font-size: 0.85rem;">Osiguranje za SB područje</p>
-        </div>
-    </a>
-
-    <a href="{{ '/auto-osiguranje/karlovac/' | relative_url }}" style="text-decoration: none;">
-        <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 25px; border-radius: 20px; text-align: center; transition: 0.3s;">
-            <h2 style="color: #fff; margin: 0; font-size: 1.5rem;">Karlovac</h2>
-            <p style="color: #ccc; margin-top: 10px; font-size: 0.85rem;">Osiguranje za KA područje</p>
-        </div>
-    </a>
-
-    <a href="{{ '/auto-osiguranje/varazdin/' | relative_url }}" style="text-decoration: none;">
-        <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 25px; border-radius: 20px; text-align: center; transition: 0.3s;">
-            <h2 style="color: #fff; margin: 0; font-size: 1.5rem;">Varaždin</h2>
-            <p style="color: #ccc; margin-top: 10px; font-size: 0.85rem;">Osiguranje za VŽ područje</p>
-        </div>
-    </a>
-
-    <a href="{{ '/auto-osiguranje/sibenik/' | relative_url }}" style="text-decoration: none;">
-        <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 25px; border-radius: 20px; text-align: center; transition: 0.3s;">
-            <h2 style="color: #fff; margin: 0; font-size: 1.5rem;">Šibenik</h2>
-            <p style="color: #ccc; margin-top: 10px; font-size: 0.85rem;">Osiguranje za ŠI područje</p>
-        </div>
-    </a>
-
-    <a href="{{ '/auto-osiguranje/dubrovnik/' | relative_url }}" style="text-decoration: none;">
-        <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 25px; border-radius: 20px; text-align: center; transition: 0.3s;">
-            <h2 style="color: #fff; margin: 0; font-size: 1.5rem;">Dubrovnik</h2>
-            <p style="color: #ccc; margin-top: 10px; font-size: 0.85rem;">Osiguranje za DU područje</p>
-        </div>
-    </a>
-
-    <a href="{{ '/auto-osiguranje/sisak/' | relative_url }}" style="text-decoration: none;">
-        <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 25px; border-radius: 20px; text-align: center; transition: 0.3s;">
-            <h2 style="color: #fff; margin: 0; font-size: 1.5rem;">Sisak</h2>
-            <p style="color: #ccc; margin-top: 10px; font-size: 0.85rem;">Osiguranje za SK područje</p>
-        </div>
-    </a>
-
-    <a href="{{ '/auto-osiguranje/vinkovci/' | relative_url }}" style="text-decoration: none;">
-        <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 25px; border-radius: 20px; text-align: center; transition: 0.3s;">
-            <h2 style="color: #fff; margin: 0; font-size: 1.5rem;">Vinkovci</h2>
-            <p style="color: #ccc; margin-top: 10px; font-size: 0.85rem;">Osiguranje za VK područje</p>
-        </div>
-    </a>
-
-    <a href="{{ '/auto-osiguranje/vukovar/' | relative_url }}" style="text-decoration: none;">
-        <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 25px; border-radius: 20px; text-align: center; transition: 0.3s;">
-            <h2 style="color: #fff; margin: 0; font-size: 1.5rem;">Vukovar</h2>
-            <p style="color: #ccc; margin-top: 10px; font-size: 0.85rem;">Osiguranje za VU područje</p>
-        </div>
-    </a>
-
-    <a href="{{ '/auto-osiguranje/bjelovar/' | relative_url }}" style="text-decoration: none;">
-        <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 25px; border-radius: 20px; text-align: center; transition: 0.3s;">
-            <h2 style="color: #fff; margin: 0; font-size: 1.5rem;">Bjelovar</h2>
-            <p style="color: #ccc; margin-top: 10px; font-size: 0.85rem;">Osiguranje za BJ područje</p>
-        </div>
-    </a>
-
-    <a href="{{ '/auto-osiguranje/koprivnica/' | relative_url }}" style="text-decoration: none;">
-        <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 25px; border-radius: 20px; text-align: center; transition: 0.3s;">
-            <h2 style="color: #fff; margin: 0; font-size: 1.5rem;">Koprivnica</h2>
-            <p style="color: #ccc; margin-top: 10px; font-size: 0.85rem;">Osiguranje za KC područje</p>
-        </div>
-    </a>
-
-    <a href="{{ '/auto-osiguranje/pozega/' | relative_url }}" style="text-decoration: none;">
-        <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 25px; border-radius: 20px; text-align: center; transition: 0.3s;">
-            <h2 style="color: #fff; margin: 0; font-size: 1.5rem;">Požega</h2>
-            <p style="color: #ccc; margin-top: 10px; font-size: 0.85rem;">Osiguranje za PŽ područje</p>
-        </div>
-    </a>
-
-    <a href="{{ '/auto-osiguranje/dakovo/' | relative_url }}" style="text-decoration: none;">
-        <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 25px; border-radius: 20px; text-align: center; transition: 0.3s;">
-            <h2 style="color: #fff; margin: 0; font-size: 1.5rem;">Đakovo</h2>
-            <p style="color: #ccc; margin-top: 10px; font-size: 0.85rem;">Osiguranje za DJ područje</p>
-        </div>
-    </a>
-
-    <a href="{{ '/auto-osiguranje/cakovec/' | relative_url }}" style="text-decoration: none;">
-        <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 25px; border-radius: 20px; text-align: center; transition: 0.3s;">
-            <h2 style="color: #fff; margin: 0; font-size: 1.5rem;">Čakovec</h2>
-            <p style="color: #ccc; margin-top: 10px; font-size: 0.85rem;">Osiguranje za ČK područje</p>
-        </div>
-    </a>
-
-    <a href="{{ '/auto-osiguranje/virovitica/' | relative_url }}" style="text-decoration: none;">
-        <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 25px; border-radius: 20px; text-align: center; transition: 0.3s;">
-            <h2 style="color: #fff; margin: 0; font-size: 1.5rem;">Virovitica</h2>
-            <p style="color: #ccc; margin-top: 10px; font-size: 0.85rem;">Osiguranje za VT područje</p>
-        </div>
-    </a>
-
-    <a href="{{ '/auto-osiguranje/kutina/' | relative_url }}" style="text-decoration: none;">
-        <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 25px; border-radius: 20px; text-align: center; transition: 0.3s;">
-            <h2 style="color: #fff; margin: 0; font-size: 1.5rem;">Kutina</h2>
-            <p style="color: #ccc; margin-top: 10px; font-size: 0.85rem;">Osiguranje za KT područje</p>
-        </div>
-    </a>
-
-    <a href="{{ '/auto-osiguranje/krizevci/' | relative_url }}" style="text-decoration: none;">
-        <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 25px; border-radius: 20px; text-align: center; transition: 0.3s;">
-            <h2 style="color: #fff; margin: 0; font-size: 1.5rem;">Križevci</h2>
-            <p style="color: #ccc; margin-top: 10px; font-size: 0.85rem;">Osiguranje za KŽ područje</p>
-        </div>
-    </a>
-
-    <a href="{{ '/auto-osiguranje/zupanja/' | relative_url }}" style="text-decoration: none;">
-        <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 25px; border-radius: 20px; text-align: center; transition: 0.3s;">
-            <h2 style="color: #fff; margin: 0; font-size: 1.5rem;">Županja</h2>
-            <p style="color: #ccc; margin-top: 10px; font-size: 0.85rem;">Osiguranje za ŽU područje</p>
-        </div>
-    </a>
-
-    <a href="{{ '/auto-osiguranje/nova-gradiska/' | relative_url }}" style="text-decoration: none;">
-        <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 25px; border-radius: 20px; text-align: center; transition: 0.3s;">
-            <h2 style="color: #fff; margin: 0; font-size: 1.5rem;">Nova Gradiška</h2>
-            <p style="color: #ccc; margin-top: 10px; font-size: 0.85rem;">Osiguranje za NG područje</p>
-        </div>
-    </a>
-
-    <a href="{{ '/auto-osiguranje/nasice/' | relative_url }}" style="text-decoration: none;">
-        <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 25px; border-radius: 20px; text-align: center; transition: 0.3s;">
-            <h2 style="color: #fff; margin: 0; font-size: 1.5rem;">Našice</h2>
-            <p style="color: #ccc; margin-top: 10px; font-size: 0.85rem;">Osiguranje za NA područje</p>
-        </div>
-    </a>
-
-    <a href="{{ '/auto-osiguranje/makarska/' | relative_url }}" style="text-decoration: none;">
-        <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 25px; border-radius: 20px; text-align: center; transition: 0.3s;">
-            <h2 style="color: #fff; margin: 0; font-size: 1.5rem;">Makarska</h2>
-            <p style="color: #ccc; margin-top: 10px; font-size: 0.85rem;">Osiguranje za MA područje</p>
-        </div>
-    </a>
-
-    <a href="{{ '/auto-osiguranje/slatina/' | relative_url }}" style="text-decoration: none;">
-        <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 25px; border-radius: 20px; text-align: center; transition: 0.3s;">
-            <h2 style="color: #fff; margin: 0; font-size: 1.5rem;">Slatina</h2>
-            <p style="color: #ccc; margin-top: 10px; font-size: 0.85rem;">Osiguranje za SL područje</p>
-        </div>
-    </a>
-
-    <a href="{{ '/auto-osiguranje/beli-manastir/' | relative_url }}" style="text-decoration: none;">
-        <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 25px; border-radius: 20px; text-align: center; transition: 0.3s;">
-            <h2 style="color: #fff; margin: 0; font-size: 1.5rem;">Beli Manastir</h2>
-            <p style="color: #ccc; margin-top: 10px; font-size: 0.85rem;">Osiguranje za BM područje</p>
-        </div>
-    </a>
-
-    <a href="{{ '/auto-osiguranje/krapina/' | relative_url }}" style="text-decoration: none;">
-        <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 25px; border-radius: 20px; text-align: center; transition: 0.3s;">
-            <h2 style="color: #fff; margin: 0; font-size: 1.5rem;">Krapina</h2>
-            <p style="color: #ccc; margin-top: 10px; font-size: 0.85rem;">Osiguranje za KR područje</p>
-        </div>
-    </a>
-
-    <a href="{{ '/auto-osiguranje/daruvar/' | relative_url }}" style="text-decoration: none;">
-        <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 25px; border-radius: 20px; text-align: center; transition: 0.3s;">
-            <h2 style="color: #fff; margin: 0; font-size: 1.5rem;">Daruvar</h2>
-            <p style="color: #ccc; margin-top: 10px; font-size: 0.85rem;">Osiguranje za DA područje</p>
-        </div>
-    </a>
-
-    <a href="{{ '/auto-osiguranje/ogulin/' | relative_url }}" style="text-decoration: none;">
-        <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 25px; border-radius: 20px; text-align: center; transition: 0.3s;">
-            <h2 style="color: #fff; margin: 0; font-size: 1.5rem;">Ogulin</h2>
-            <p style="color: #ccc; margin-top: 10px; font-size: 0.85rem;">Osiguranje za OG područje</p>
-        </div>
-    </a>
-
-    <a href="{{ '/auto-osiguranje/imotski/' | relative_url }}" style="text-decoration: none;">
-        <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 25px; border-radius: 20px; text-align: center; transition: 0.3s;">
-            <h2 style="color: #fff; margin: 0; font-size: 1.5rem;">Imotski</h2>
-            <p style="color: #ccc; margin-top: 10px; font-size: 0.85rem;">Osiguranje za IM područje</p>
-        </div>
-    </a>
-
-    <a href="{{ '/auto-osiguranje/gospic/' | relative_url }}" style="text-decoration: none;">
-        <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 25px; border-radius: 20px; text-align: center; transition: 0.3s;">
-            <h2 style="color: #fff; margin: 0; font-size: 1.5rem;">Gospić</h2>
-            <p style="color: #ccc; margin-top: 10px; font-size: 0.85rem;">Osiguranje za GS područje</p>
-        </div>
-    </a>
-
-    <a href="{{ '/auto-osiguranje/delnice/' | relative_url }}" style="text-decoration: none;">
-        <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 25px; border-radius: 20px; text-align: center; transition: 0.3s;">
-            <h2 style="color: #fff; margin: 0; font-size: 1.5rem;">Delnice</h2>
-            <p style="color: #ccc; margin-top: 10px; font-size: 0.85rem;">Osiguranje za DE područje</p>
-        </div>
-    </a>
+<div class="ao-region">
+<div class="ao-region-label">🏔️ Lika i Gorski kotar</div>
+<div class="ao-pills">
+<a href="/auto-osiguranje/gospic/" class="ao-pill">Gospić</a>
+<a href="/auto-osiguranje/ogulin/" class="ao-pill">Ogulin</a>
+</div>
+</div>
 
 </div>
 
-<div style="margin-top: 60px;">
-  <h2 style="color: #fff; margin-bottom: 24px;">Često postavljana pitanja</h2>
+<div class="ao-info-section">
 
-  <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 20px; margin-bottom: 16px;">
-    <div style="color: #ffbc27; font-weight: 700; margin-bottom: 8px;">Koliko košta auto osiguranje godišnje?</div>
-    <p style="color: #ccc; margin: 0;">Prosječna cijena obveznog AO osiguranja za osobni automobil kreće se od 80 € do 200 € godišnje, ovisno o zoni, bonusu i starosti vozača. <a href="/izracunaj-cijenu/" style="color: #ffbc27;">Izračunajte točan iznos za vaš profil →</a></p>
-  </div>
-
-  <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 20px; margin-bottom: 16px;">
-    <div style="color: #ffbc27; font-weight: 700; margin-bottom: 8px;">Mogu li promijeniti osiguravatelja?</div>
-    <p style="color: #ccc; margin: 0;">Da — po isteku police slobodni ste promijeniti osiguravatelja bez penala. Bonus se prenosi predočenjem potvrde o bonusu.</p>
-  </div>
-
-  <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 20px; margin-bottom: 16px;">
-    <div style="color: #ffbc27; font-weight: 700; margin-bottom: 8px;">Je li cijena ista u svim gradovima?</div>
-    <p style="color: #ccc; margin: 0;">Ne — Hrvatska ima više osigurательnih zona. Zagreb i Rijeka su skuplje zone, dok su unutrašnjost i Slavonija jeftinije. Odaberite svoj grad iznad za lokalnu usporedbu.</p>
-  </div>
+<div class="ao-faq-item">
+<div class="ao-faq-q">Što određuje cijenu auto osiguranja?</div>
+<p class="ao-faq-a">Cijena AO police ovisi o registracijskoj zoni, bonus/malus razredu, starosti vozača te snazi i starosti vozila. <a href="/izracunaj-cijenu/">Izračunajte svoju cijenu →</a></p>
 </div>
 
-<div style="margin-top: 48px; padding: 24px; background: rgba(255,188,39,0.1); border: 1px solid rgba(255,188,39,0.3); border-radius: 16px;">
-  <div style="color: #ffbc27; font-weight: 700; font-size: 1.1rem; margin-bottom: 8px;">Planirate i tehnički pregled?</div>
-  <p style="color: #ccc; margin: 0 0 16px;">Kombinirajte informacije o tehničkom pregledu i registraciji za potpunu sliku troškova.</p>
-  <div style="display: flex; gap: 12px; flex-wrap: wrap;">
-    <a href="/tehnicki-pregled/" style="color: #ffbc27; font-weight: 600; text-decoration: underline;">Tehnički pregled 2026 →</a>
-    <a href="/registracija/" style="color: #ffbc27; font-weight: 600; text-decoration: underline;">Registracija vozila →</a>
-  </div>
+<div class="ao-faq-item">
+<div class="ao-faq-q">Mogu li promijeniti osiguravatelja?</div>
+<p class="ao-faq-a">Da — po isteku police slobodni ste promijeniti osiguravatelja bez penala. Bonus se prenosi predočenjem potvrde od prethodnog osiguravatelja.</p>
 </div>
 
-<div class="margin-top-100"></div>
+<div class="ao-faq-item">
+<div class="ao-faq-q">Je li cijena ista u svim gradovima?</div>
+<p class="ao-faq-a">Ne — svaki grad pripada drugoj osigurateljnoj zoni. Zagreb i Rijeka su skuplje zone, Slavonija i unutrašnjost su jeftinije.</p>
+</div>
+
+</div>
+
+<div class="ao-cross-links">
+<a href="/tehnicki-pregled/" class="ao-cross-card">
+<span class="ao-cross-title">Tehnički pregled 2026</span>
+<span class="ao-cross-sub">Cijene i kalkulator za sve gradove →</span>
+</a>
+<a href="/registracija/" class="ao-cross-card">
+<span class="ao-cross-title">Registracija vozila</span>
+<span class="ao-cross-sub">Postupak, dokumenti i troškovi →</span>
+</a>
+</div>
+
+<style>
+.ao-hero {
+    text-align: center;
+    padding: 48px 24px 40px;
+}
+.ao-hero-title {
+    color: #ffbc27;
+    font-size: clamp(2rem, 6vw, 3.2rem);
+    font-weight: 800;
+    margin-bottom: 12px;
+    line-height: 1.15;
+    pointer-events: all;
+}
+.ao-hero-sub {
+    color: rgba(255,255,255,0.7);
+    font-size: 1.1rem;
+    margin-bottom: 28px;
+    font-weight: 400;
+    pointer-events: all;
+}
+.ao-cta-btn {
+    display: inline-block;
+    background: #ffbc27;
+    color: #1a0050;
+    font-weight: 800;
+    font-size: 1.05rem;
+    padding: 15px 36px;
+    border-radius: 50px;
+    text-decoration: none;
+    box-shadow: 0 4px 20px rgba(255,188,39,0.35);
+    transition: transform 0.2s, box-shadow 0.2s;
+    pointer-events: all;
+}
+.ao-cta-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 28px rgba(255,188,39,0.5);
+    color: #1a0050;
+    text-decoration: none;
+}
+.ao-region-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    padding: 8px 0 40px;
+}
+.ao-region {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 16px;
+    padding: 20px 24px;
+}
+.ao-region-label {
+    color: rgba(255,255,255,0.5);
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    margin-bottom: 14px;
+    pointer-events: all;
+}
+.ao-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+.ao-pill {
+    display: inline-block;
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
+    color: #fff;
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding: 8px 16px;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: background 0.2s, border-color 0.2s, color 0.2s;
+    pointer-events: all;
+}
+.ao-pill:hover {
+    background: rgba(255,188,39,0.15);
+    border-color: rgba(255,188,39,0.4);
+    color: #ffbc27;
+    text-decoration: none;
+}
+.ao-info-section {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 36px;
+}
+.ao-faq-item {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 14px;
+    padding: 18px 22px;
+}
+.ao-faq-q {
+    color: #ffbc27;
+    font-weight: 700;
+    font-size: 0.95rem;
+    margin-bottom: 6px;
+    pointer-events: all;
+}
+.ao-faq-a {
+    color: rgba(255,255,255,0.65);
+    font-size: 0.9rem;
+    margin: 0;
+    line-height: 1.6;
+    font-weight: 400;
+    pointer-events: all;
+}
+.ao-faq-a a {
+    color: #ffbc27;
+    text-decoration: underline;
+    pointer-events: all;
+}
+.ao-cross-links {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-bottom: 48px;
+}
+.ao-cross-card {
+    display: block;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 14px;
+    padding: 18px 20px;
+    text-decoration: none;
+    transition: background 0.2s, border-color 0.2s, transform 0.2s;
+    pointer-events: all;
+}
+.ao-cross-card:hover {
+    background: rgba(255,188,39,0.07);
+    border-color: rgba(255,188,39,0.25);
+    transform: translateY(-2px);
+    text-decoration: none;
+}
+.ao-cross-title {
+    display: block;
+    color: #fff;
+    font-weight: 700;
+    font-size: 0.95rem;
+    margin-bottom: 4px;
+}
+.ao-cross-sub {
+    display: block;
+    color: rgba(255,255,255,0.45);
+    font-size: 0.8rem;
+    font-weight: 400;
+}
+@media (max-width: 600px) {
+    .ao-cross-links { grid-template-columns: 1fr; }
+    .ao-hero { padding: 32px 16px 28px; }
+    .ao-region { padding: 16px; }
+}
+</style>

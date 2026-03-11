@@ -80,31 +80,23 @@
     color: rgba(255,255,255,0.7);
 }
 
-/* --- Links --- */
-.post-content a {
-    color: #ffbc27 !important;
-    text-decoration: underline !important;
-    font-weight: 700;
+/* --- Links ---
+   SAMO inline text linkovi (unutar p, li, blockquote) dobivaju žutu boju i underline.
+   Block-level linkovi (kartice, gumbi) ne smiju biti zahvaćeni. */
+.post-content p a,
+.post-content li a,
+.post-content blockquote a {
+    color: #ffbc27;
+    text-decoration: underline;
     text-underline-offset: 3px;
+    font-weight: 600;
 }
 
-.post-content a:hover {
-    color: #fff !important;
-    text-decoration: none !important;
-}
-
-/* Kartice i gumbi — bez underlinea */
-.post-content .related-card,
-.post-content .related-card:hover,
-.post-content .cta-btn-yellow,
-.post-content .cta-btn-yellow:hover {
-    text-decoration: none !important;
-}
-
-.post-content .related-card-title,
-.post-content .related-card-sub {
-    text-decoration: none !important;
-    color: inherit;
+.post-content p a:hover,
+.post-content li a:hover,
+.post-content blockquote a:hover {
+    color: #fff;
+    text-decoration: none;
 }
 
 /* --- HR divider --- */
