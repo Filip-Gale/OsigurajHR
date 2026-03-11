@@ -228,5 +228,27 @@
 
     {% include wapp.html %}
     {% include footer.html %}
+
+<script>
+(function(){
+    var items = document.querySelectorAll('.faq-item');
+    if (!items.length) return;
+    var entities = [];
+    items.forEach(function(el){
+        var q = el.querySelector('h4');
+        var a = el.querySelector('p');
+        if (q && a) entities.push({
+            "@type": "Question",
+            "name": q.textContent.trim(),
+            "acceptedAnswer": {"@type": "Answer", "text": a.textContent.trim()}
+        });
+    });
+    if (!entities.length) return;
+    var s = document.createElement('script');
+    s.type = 'application/ld+json';
+    s.text = JSON.stringify({"@context":"https://schema.org","@type":"FAQPage","mainEntity":entities});
+    document.head.appendChild(s);
+})();
+</script>
 </body>
 </html>

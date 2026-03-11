@@ -410,6 +410,34 @@
     font-weight: 400;
 }
 
+/* ========================================
+   AO HUB — city/model index pages
+   ======================================== */
+.ao-hero { text-align: center; padding: 48px 24px 40px; }
+.ao-hero-title { color: #ffbc27; font-size: clamp(2rem, 6vw, 3.2rem); font-weight: 800; margin-bottom: 12px; line-height: 1.15; pointer-events: all; text-align: center !important; }
+.ao-hero-sub { color: rgba(255,255,255,0.7); font-size: 1.1rem; margin-bottom: 28px; font-weight: 400; pointer-events: all; }
+.ao-cta-btn { display: inline-block; background: #ffbc27; color: #1a0050; font-weight: 800; font-size: 1.05rem; padding: 15px 36px; border-radius: 50px; text-decoration: none; box-shadow: 0 4px 20px rgba(255,188,39,0.35); pointer-events: all; }
+.ao-cta-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(255,188,39,0.5); color: #1a0050; text-decoration: none; }
+
+.ao-region-grid { display: flex; flex-direction: column; gap: 20px; padding: 8px 0 40px; }
+.ao-region { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 20px 24px; }
+.ao-region-label { color: rgba(255,255,255,0.5); font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.2px; margin-bottom: 14px; pointer-events: all; }
+.ao-pills { display: flex; flex-wrap: wrap; gap: 8px; }
+.ao-pill { display: inline-block; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12); color: #fff; font-size: 0.9rem; font-weight: 600; padding: 8px 16px; border-radius: 50px; text-decoration: none; pointer-events: all; }
+.ao-pill:hover { background: rgba(255,188,39,0.15); border-color: rgba(255,188,39,0.4); color: #ffbc27; text-decoration: none; }
+
+.ao-info-section { display: flex; flex-direction: column; gap: 12px; margin-bottom: 36px; }
+.ao-faq-item { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; padding: 18px 22px; }
+.ao-faq-q { color: #ffbc27; font-weight: 700; font-size: 0.95rem; margin-bottom: 6px; pointer-events: all; }
+.ao-faq-a { color: rgba(255,255,255,0.65); font-size: 0.9rem; margin: 0; line-height: 1.6; font-weight: 400; pointer-events: all; }
+.ao-faq-a a { color: #ffbc27; text-decoration: underline; pointer-events: all; }
+
+.ao-cross-links { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 48px; }
+.ao-cross-card { display: block; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; padding: 18px 20px; text-decoration: none; pointer-events: all; }
+.ao-cross-card:hover { background: rgba(255,188,39,0.07); border-color: rgba(255,188,39,0.25); transform: translateY(-2px); text-decoration: none; }
+.ao-cross-title { display: block; color: #fff; font-weight: 700; font-size: 0.95rem; margin-bottom: 4px; }
+.ao-cross-sub { display: block; color: rgba(255,255,255,0.45); font-size: 0.8rem; font-weight: 400; }
+
 /* --- Responsive --- */
 @media (max-width: 767px) {
     .post-content h1 { font-size: 1.65rem; }
@@ -425,4 +453,7 @@
     .toc { padding: 18px 20px; }
     .cta-inline { padding: 22px 18px; }
     .related-grid { grid-template-columns: 1fr; }
+    .ao-cross-links { grid-template-columns: 1fr; }
+    .ao-hero { padding: 32px 16px 28px; }
+    .ao-region { padding: 16px; }
 }
