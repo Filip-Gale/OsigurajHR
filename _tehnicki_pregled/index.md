@@ -5,9 +5,22 @@ opis: "Izračunajte točnu cijenu tehničkog pregleda za vaš grad u 2026. ✓ K
 permalink: /tehnicki-pregled/
 ---
 
-Planirate registraciju automobila? Iako su cijene samog tehničkog pregleda i eko-testa regulirane na razini države, ukupni troškovi ovise o **registracijskom području** — cestarine, porezi i zone osiguranja razlikuju se po gradu.
+## Koliko košta tehnički pregled?
 
-Odaberite svoj grad za detaljan izračun troškova i savjete za prolazak na pregledu.
+Cijene tehničkog pregleda propisane su zakonom i jednake su u cijeloj Hrvatskoj — razlika po gradovima je samo u naknadama za ceste i polici osiguranja.
+
+| Stavka | Osobni auto | Motocikl | Teretno vozilo |
+|---|---|---|---|
+| Tehnički pregled | 35,50 € | 18,10 € | 45,20 € |
+| Eko-test (benzin) | 12,50 € | 8,00 € | 12,50 € |
+| Naknada za ceste | od 35,00 € | od 20,00 € | od 45,00 € |
+| Naknada za okoliš | 5,50 € | 3,00 € | 5,50 € |
+| Administrativni troškovi | 15,00 € | 15,00 € | 15,00 € |
+| **Ukupno (bez osiguranja)** | **od 103 €** | **od 64 €** | **od 123 €** |
+
+> Polica AO osiguranja nije uračunata — to je najveća varijabilna stavka. [Usporedite cijene](/izracunaj-cijenu/) i uštedite do 50€.
+
+Planirate registraciju? Odaberite svoj grad za točan izračun svih troškova:
 
 <div class="city-region-grid">
 
@@ -105,6 +118,14 @@ Prilikom produženja registracije u 2026. godini, vaši troškovi se dijele na n
 ## Često postavljana pitanja (FAQ)
 
 <div class="tp-faq">
+  <div class="tp-faq-item">
+    <div class="tp-faq-q">Koliko košta tehnički pregled i registracija zajedno?</div>
+    <p class="tp-faq-a">Za prosječni osobni automobil (80 kW, benzin) ukupni trošak tehničkog pregleda i registracije bez osiguranja iznosi oko 103–130 €, ovisno o registracijskom području. Polica AO osiguranja dodaje još 80–200 € godišnje — <a href="/izracunaj-cijenu/">usporedite cijene ovdje</a> i uštedite do 50 €.</p>
+  </div>
+  <div class="tp-faq-item">
+    <div class="tp-faq-q">Je li cijena tehničkog pregleda ista u svim gradovima?</div>
+    <p class="tp-faq-a">Da — sama naknada za tehnički pregled (35,50 €) i eko-test propisani su zakonom i jednaki su u cijeloj Hrvatskoj. Razlika između gradova nastaje zbog različitih naknada za ceste i zona osiguranja.</p>
+  </div>
   <div class="tp-faq-item">
     <div class="tp-faq-q">Mogu li obaviti tehnički pregled u drugom gradu?</div>
     <p class="tp-faq-a">Da, tehnički pregled možete obaviti u bilo kojoj stanici u Hrvatskoj, bez obzira na vaše prebivalište i registracijsku oznaku — npr. ZG vozilo može na pregled u Splitu.</p>
