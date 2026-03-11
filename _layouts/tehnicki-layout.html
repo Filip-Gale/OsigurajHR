@@ -557,16 +557,27 @@
         </div>
         {% endif %}
 
-        {% assign reg_page = site.registracija | where: "grad", page.grad | first %}
-        {% if reg_page and page.grad %}
-        <div class="cross-link-card">
-            <div class="cross-link-icon">📄</div>
-            <div class="cross-link-body">
-                <div class="cross-link-title">Registracija vozila {{ page.grad }}</div>
-                <div class="cross-link-sub">Vodič, dokumentacija i svi troškovi registracije za {{ page.grad }}</div>
+        {% if page.grad %}
+            {% assign reg_page = site.registracija | where: "grad", page.grad | first %}
+            {% if reg_page %}
+            <div class="cross-link-card">
+                <div class="cross-link-icon">📄</div>
+                <div class="cross-link-body">
+                    <div class="cross-link-title">Registracija vozila {{ page.grad }}</div>
+                    <div class="cross-link-sub">Vodič, dokumentacija i svi troškovi registracije za {{ page.grad }}</div>
+                </div>
+                <a href="{{ reg_page.url }}" class="cross-link-btn">Pogledaj vodič →</a>
             </div>
-            <a href="{{ reg_page.url }}" class="cross-link-btn">Pogledaj vodič →</a>
-        </div>
+            {% endif %}
+        {% else %}
+            <div class="cross-link-card">
+                <div class="cross-link-icon">📄</div>
+                <div class="cross-link-body">
+                    <div class="cross-link-title">Registracija vozila</div>
+                    <div class="cross-link-sub">Vodič, dokumentacija i kalkulator troškova za sve gradove</div>
+                </div>
+                <a href="/registracija/" class="cross-link-btn">Pogledaj vodič →</a>
+            </div>
         {% endif %}
 
         <div style="margin-top: 60px; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.1);">
