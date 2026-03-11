@@ -1,11 +1,18 @@
 ---
 layout: post
-title: Auto osiguranje po gradovima
+title: "Auto osiguranje po gradovima 2026 — Usporedi cijene za svoj grad"
+description: "Pronađite najjeftinije auto osiguranje za vaš grad u 2026. ✓ Zagreb ✓ Split ✓ Rijeka ✓ Osijek i još 30+ gradova — izračun online za 30 sekundi."
+permalink: /auto-osiguranje/
 ---
 
 <div class="margin-top-100"></div>
 
-<h1 class="text-center" style="margin-bottom: 50px;">Auto osiguranje po gradovima</h1>
+<h1 class="text-center" style="margin-bottom: 20px; font-size: clamp(1.6rem, 5vw, 2.8rem);">Auto osiguranje po gradovima 2026</h1>
+<p class="text-center" style="color: #ccc; margin-bottom: 40px; font-size: 1.1rem;">Odaberite grad i usporedite cijene AO osiguranja — izračun za 30 sekundi, bez obveze.</p>
+
+<div style="text-align: center; margin-bottom: 48px;">
+  <a href="/izracunaj-cijenu/" style="background: #ffbc27; color: #1a0050; padding: 16px 32px; border-radius: 50px; font-weight: 700; font-size: 1.1rem; text-decoration: none; display: inline-block;">Izračunaj cijenu odmah →</a>
+</div>
 
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; padding: 20px 0;">
 
@@ -247,6 +254,34 @@ title: Auto osiguranje po gradovima
         </div>
     </a>
 
+</div>
+
+<div style="margin-top: 60px;">
+  <h2 style="color: #fff; margin-bottom: 24px;">Često postavljana pitanja</h2>
+
+  <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 20px; margin-bottom: 16px;">
+    <div style="color: #ffbc27; font-weight: 700; margin-bottom: 8px;">Koliko košta auto osiguranje godišnje?</div>
+    <p style="color: #ccc; margin: 0;">Prosječna cijena obveznog AO osiguranja za osobni automobil kreće se od 80 € do 200 € godišnje, ovisno o zoni, bonusu i starosti vozača. <a href="/izracunaj-cijenu/" style="color: #ffbc27;">Izračunajte točan iznos za vaš profil →</a></p>
+  </div>
+
+  <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 20px; margin-bottom: 16px;">
+    <div style="color: #ffbc27; font-weight: 700; margin-bottom: 8px;">Mogu li promijeniti osiguravatelja?</div>
+    <p style="color: #ccc; margin: 0;">Da — po isteku police slobodni ste promijeniti osiguravatelja bez penala. Bonus se prenosi predočenjem potvrde o bonusu.</p>
+  </div>
+
+  <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 20px; margin-bottom: 16px;">
+    <div style="color: #ffbc27; font-weight: 700; margin-bottom: 8px;">Je li cijena ista u svim gradovima?</div>
+    <p style="color: #ccc; margin: 0;">Ne — Hrvatska ima više osigurательnih zona. Zagreb i Rijeka su skuplje zone, dok su unutrašnjost i Slavonija jeftinije. Odaberite svoj grad iznad za lokalnu usporedbu.</p>
+  </div>
+</div>
+
+<div style="margin-top: 48px; padding: 24px; background: rgba(255,188,39,0.1); border: 1px solid rgba(255,188,39,0.3); border-radius: 16px;">
+  <div style="color: #ffbc27; font-weight: 700; font-size: 1.1rem; margin-bottom: 8px;">Planirate i tehnički pregled?</div>
+  <p style="color: #ccc; margin: 0 0 16px;">Kombinirajte informacije o tehničkom pregledu i registraciji za potpunu sliku troškova.</p>
+  <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+    <a href="/tehnicki-pregled/" style="color: #ffbc27; font-weight: 600; text-decoration: underline;">Tehnički pregled 2026 →</a>
+    <a href="/registracija/" style="color: #ffbc27; font-weight: 600; text-decoration: underline;">Registracija vozila →</a>
+  </div>
 </div>
 
 <div class="margin-top-100"></div>
