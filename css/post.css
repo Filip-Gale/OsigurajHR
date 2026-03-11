@@ -82,6 +82,20 @@
     text-decoration: none !important;
 }
 
+/* Kartice i gumbi — bez underlinea */
+.post-content .related-card,
+.post-content .related-card:hover,
+.post-content .cta-btn-yellow,
+.post-content .cta-btn-yellow:hover {
+    text-decoration: none !important;
+}
+
+.post-content .related-card-title,
+.post-content .related-card-sub {
+    text-decoration: none !important;
+    color: inherit;
+}
+
 /* --- HR divider --- */
 .post-content hr {
     border: none;
@@ -281,7 +295,8 @@
     font-size: 0.95rem;
 }
 
-.cta-btn-yellow {
+.cta-btn-yellow,
+.post-content .cta-btn-yellow {
     background: #ffbc27;
     color: #1a0050 !important;
     padding: 14px 30px;
@@ -294,11 +309,13 @@
     pointer-events: all;
 }
 
-.cta-btn-yellow:hover {
+.cta-btn-yellow:hover,
+.post-content .cta-btn-yellow:hover {
     transform: translateY(-2px);
     box-shadow: 0 8px 28px rgba(255,188,39,0.45);
     color: #1a0050 !important;
     background: #ffd060;
+    text-decoration: none !important;
 }
 
 /* --- Post meta (date/reading time) --- */
