@@ -6,8 +6,8 @@ permalink: /auto-osiguranje/
 ---
 
 <div class="ao-hero">
-<h1 class="ao-hero-title">Auto osiguranje 2026</h1>
-<p class="ao-hero-sub">Usporedite cijene AO osiguranja za vaš grad — izračun za 30 sekundi, bez obveze.</p>
+<h1 class="ao-hero-title">Jeftino auto osiguranje 2026 — Usporedi i uštedi</h1>
+<p class="ao-hero-sub">Usporedite ponude svih osiguravatelja za vaš grad u 30 sekundi — besplatno, bez obveze.</p>
 <a href="/izracunaj-cijenu/" class="ao-cta-btn">Izračunaj cijenu odmah →</a>
 </div>
 
