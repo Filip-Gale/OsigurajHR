@@ -16,11 +16,15 @@
     color: #fff;
     font-size: clamp(1.2rem, 3vw, 1.6rem);
     font-weight: 700;
-    margin-top: 56px;
     margin-bottom: 16px;
+    line-height: 1.3;
+}
+
+/* Border accent SAMO na h2 koji su direktna djeca article-a (iz markdowna, ne iz HTML komponenti) */
+.post-content > h2 {
+    margin-top: 56px;
     padding-left: 16px;
     border-left: 4px solid #ffbc27;
-    line-height: 1.3;
 }
 
 .post-content h3 {
@@ -29,6 +33,13 @@
     font-weight: 700;
     margin-top: 28px;
     margin-bottom: 10px;
+}
+
+/* h3 unutar komponenti neka nema veliki margin */
+.post-content .cta-inline h3,
+.post-content .tip-box h3,
+.post-content .toc h3 {
+    margin-top: 0;
 }
 
 .post-content h4 {

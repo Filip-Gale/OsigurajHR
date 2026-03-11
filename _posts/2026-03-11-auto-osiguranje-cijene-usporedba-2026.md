@@ -8,46 +8,22 @@ image: /img/car.jpg
 
 # Auto osiguranje 2026: Usporedba i kako uštediti do 50%
 
-Koliko ćete platiti obvezno auto osiguranje u 2026. godini? Cijena AO police ovisi o **zoni, bonusu, starosti vozača i snazi motora** — a razlika između najjeftinijeg i najskupljeg osiguravatelja za isti profil može biti i **50–80 €** godišnje. Evo kako pronaći svoju najnižu cijenu.
+Koliko ćete platiti obvezno auto osiguranje u 2026. godini? Cijena AO police ovisi o **zoni, bonusu, starosti vozača i snazi motora** — a razlika između najjeftinijeg i najskupljeg osiguravatelja za isti profil može biti i **50–80 €** godišnje.
 
 <div class="stat-grid">
-  <div class="stat-card">
-    <span class="stat-number">50%</span>
-    <span class="stat-label">Maks. popust uz bonus B10</span>
-  </div>
-  <div class="stat-card">
-    <span class="stat-number">80 €</span>
-    <span class="stat-label">Moguća ušteda usporedbom</span>
-  </div>
-  <div class="stat-card">
-    <span class="stat-number">30 s</span>
-    <span class="stat-label">Online izračun bez obveze</span>
-  </div>
-  <div class="stat-card">
-    <span class="stat-number">5+</span>
-    <span class="stat-label">Osiguravatelja u usporedbi</span>
-  </div>
-</div>
-
-<div class="toc">
-  <span class="toc-label">Sadržaj članka</span>
-  <ol>
-    <li><a href="#faktori">Što određuje cijenu?</a></li>
-    <li><a href="#bonus">Bonus/malus tablica</a></li>
-    <li><a href="#ao-vs-kasko">AO vs. kasko</a></li>
-    <li><a href="#ustedite">Kako uštediti?</a></li>
-    <li><a href="#gradovi">Po gradovima</a></li>
-    <li><a href="#faq">Česta pitanja</a></li>
-  </ol>
+<div class="stat-card"><span class="stat-number">50%</span><span class="stat-label">Maks. popust uz bonus B10</span></div>
+<div class="stat-card"><span class="stat-number">80 €</span><span class="stat-label">Moguća ušteda usporedbom</span></div>
+<div class="stat-card"><span class="stat-number">30 s</span><span class="stat-label">Online izračun bez obveze</span></div>
+<div class="stat-card"><span class="stat-number">5+</span><span class="stat-label">Osiguravatelja u usporedbi</span></div>
 </div>
 
 ---
 
-## Što određuje cijenu AO osiguranja? {#faktori}
+## Što određuje cijenu AO osiguranja?
 
 ### 1. Registracijska zona
 
-Hrvatska je podijeljena u osigurateljne zone prema frekvenciji prometnih nezgoda. Zagreb (ZG) i Rijeka (RI) su skuplje zone — cijena može biti 30–40% viša nego u Slavoniji.
+Hrvatska je podijeljena u osigurateljne zone prema frekvenciji prometnih nezgoda. Zagreb i Rijeka su skuplje zone — cijena može biti 30–40% viša nego u Slavoniji.
 
 ### 2. Bonus/malus sustav
 
@@ -62,14 +38,14 @@ Vozači 18–25 godina plaćaju **30–60% više** od iskusnih vozača. Ako je v
 Viša CC/kW kategorija znači višu premiju kod pojedinih osiguravatelja.
 
 <div class="cta-inline">
-  <h3>Koliko vi plaćate?</h3>
-  <p>Unesite podatke o vozilu i vozaču — kalkulator prikaže sve ponude u 30 sekundi.</p>
-  <a href="/izracunaj-cijenu/" class="cta-btn-yellow">Izračunaj cijenu odmah →</a>
+<h3>Koliko vi plaćate?</h3>
+<p>Unesite podatke o vozilu i vozaču — kalkulator prikaže sve ponude u 30 sekundi.</p>
+<a href="/izracunaj-cijenu/" class="cta-btn-yellow">Izračunaj cijenu odmah →</a>
 </div>
 
 ---
 
-## Bonus/malus tablica {#bonus}
+## Bonus/malus tablica
 
 Svake godine bez prijavljene štete napredujete za 1 stupanj. Svaka prijavljena šteta vraća vas za **2–3 stupnja**.
 
@@ -84,13 +60,13 @@ Svake godine bez prijavljene štete napredujete za 1 stupanj. Svaka prijavljena 
 | M3 | +75% | 3 ili više šteta |
 
 <div class="tip-box">
-  <span class="tip-box-icon">💡</span>
-  <p><strong>Savjet:</strong> Ako je iznos štete manji od kumulativnog doplatka kroz sljedeće 3 godine — isplati se platiti iz džepa i sačuvati bonus razred.</p>
+<span class="tip-box-icon">💡</span>
+<p><strong>Savjet:</strong> Ako je iznos štete manji od kumulativnog doplatka kroz sljedeće 3 godine — isplati se platiti iz džepa i sačuvati bonus razred.</p>
 </div>
 
 ---
 
-## AO vs. kasko — što vam treba? {#ao-vs-kasko}
+## AO vs. kasko — što vam treba?
 
 | | Obvezno (AO) | Kasko |
 |---|---|---|
@@ -106,7 +82,7 @@ Svake godine bez prijavljene štete napredujete za 1 stupanj. Svaka prijavljena 
 
 ---
 
-## 5 načina kako uštediti na auto osiguranju {#ustedite}
+## 5 načina kako uštediti na auto osiguranju
 
 ### 1. Usporedite više osiguravatelja
 
@@ -114,7 +90,7 @@ Za isti profil razlika može biti **50–80 €** godišnje. [Naš kalkulator](/
 
 ### 2. Ne prijavljivajte male štete
 
-Procijenite isplati li se: je li iznos štete manji od kumulativnog doplatka kroz 3 godine? Tada platite sami i sačuvajte bonus.
+Je li iznos štete manji od kumulativnog doplatka kroz 3 godine? Tada platite sami i sačuvajte bonus.
 
 ### 3. Kombinirajte police
 
@@ -126,54 +102,36 @@ Rata plaćanje obično košta **5–10% više** nego jednokratna godišnja uplat
 
 ### 5. Promijenite osiguravatelja po isteku
 
-Ne ostajte iz inercije — po isteku police slobodni ste promijeniti bez penala. Bonus se prenosi s potvrdom.
+Po isteku police slobodni ste promijeniti bez penala. Bonus se prenosi s potvrdom od prethodnog osiguravatelja.
 
 <div class="cta-inline">
-  <h3>Usporedite cijene za vaš profil</h3>
-  <p>Izračun je besplatan i traje 30 sekundi — bez registracije i bez obveze.</p>
-  <a href="/izracunaj-cijenu/" class="cta-btn-yellow">Izračunaj cijenu odmah →</a>
+<h3>Usporedite cijene za vaš profil</h3>
+<p>Izračun je besplatan i traje 30 sekundi — bez registracije i bez obveze.</p>
+<a href="/izracunaj-cijenu/" class="cta-btn-yellow">Izračunaj cijenu odmah →</a>
 </div>
 
 ---
 
-## Auto osiguranje po gradovima {#gradovi}
+## Auto osiguranje po gradovima
 
 <div class="related-grid">
-  <a href="/auto-osiguranje/zagreb/" class="related-card">
-    <span class="related-card-title">Zagreb</span>
-    <span class="related-card-sub">Usporedba za ZG područje</span>
-  </a>
-  <a href="/auto-osiguranje/split/" class="related-card">
-    <span class="related-card-title">Split</span>
-    <span class="related-card-sub">Usporedba za ST područje</span>
-  </a>
-  <a href="/auto-osiguranje/rijeka/" class="related-card">
-    <span class="related-card-title">Rijeka</span>
-    <span class="related-card-sub">Usporedba za RI područje</span>
-  </a>
-  <a href="/auto-osiguranje/osijek/" class="related-card">
-    <span class="related-card-title">Osijek</span>
-    <span class="related-card-sub">Usporedba za OS područje</span>
-  </a>
-  <a href="/auto-osiguranje/zadar/" class="related-card">
-    <span class="related-card-title">Zadar</span>
-    <span class="related-card-sub">Usporedba za ZD područje</span>
-  </a>
-  <a href="/auto-osiguranje/varazdin/" class="related-card">
-    <span class="related-card-title">Varaždin</span>
-    <span class="related-card-sub">Usporedba za VŽ područje</span>
-  </a>
+<a href="/auto-osiguranje/zagreb/" class="related-card"><span class="related-card-title">Zagreb</span><span class="related-card-sub">Usporedba za ZG područje</span></a>
+<a href="/auto-osiguranje/split/" class="related-card"><span class="related-card-title">Split</span><span class="related-card-sub">Usporedba za ST područje</span></a>
+<a href="/auto-osiguranje/rijeka/" class="related-card"><span class="related-card-title">Rijeka</span><span class="related-card-sub">Usporedba za RI područje</span></a>
+<a href="/auto-osiguranje/osijek/" class="related-card"><span class="related-card-title">Osijek</span><span class="related-card-sub">Usporedba za OS područje</span></a>
+<a href="/auto-osiguranje/zadar/" class="related-card"><span class="related-card-title">Zadar</span><span class="related-card-sub">Usporedba za ZD područje</span></a>
+<a href="/auto-osiguranje/varazdin/" class="related-card"><span class="related-card-title">Varaždin</span><span class="related-card-sub">Usporedba za VŽ područje</span></a>
 </div>
 
 [Svi gradovi →](/auto-osiguranje/)
 
 ---
 
-## Česta pitanja {#faq}
+## Česta pitanja
 
 **Što određuje cijenu auto osiguranja?**
 
-Glavne stavke su: registracijska zona, bonus/malus razred, starost i iskustvo vozača, snaga i starost vozila. Razlika između osiguravatelja za isti profil može biti i 50–80 € godišnje.
+Glavne stavke su: registracijska zona, bonus/malus razred, starost i iskustvo vozača te snaga i starost vozila. Razlika između osiguravatelja za isti profil može biti i 50–80 € godišnje.
 
 **Mogu li promijeniti osiguravatelja bez penala?**
 
@@ -196,18 +154,9 @@ Vožnja bez valjane AO police je prekršaj koji može rezultirati kaznom do **1.
 ## Planirate i tehnički pregled?
 
 <div class="related-grid">
-  <a href="/tehnicki-pregled/" class="related-card">
-    <span class="related-card-title">Tehnički pregled 2026</span>
-    <span class="related-card-sub">Cijene, kalkulator i STP stanice za sve gradove</span>
-  </a>
-  <a href="/registracija/" class="related-card">
-    <span class="related-card-title">Registracija vozila</span>
-    <span class="related-card-sub">Postupak, dokumenti i troškovi po gradovima</span>
-  </a>
-  <a href="/izracunaj-cijenu/" class="related-card">
-    <span class="related-card-title">Usporedi osiguranje</span>
-    <span class="related-card-sub">Besplatan kalkulator — rezultati za 30 sekundi</span>
-  </a>
+<a href="/tehnicki-pregled/" class="related-card"><span class="related-card-title">Tehnički pregled 2026</span><span class="related-card-sub">Cijene, kalkulator i STP stanice za sve gradove</span></a>
+<a href="/registracija/" class="related-card"><span class="related-card-title">Registracija vozila</span><span class="related-card-sub">Postupak, dokumenti i troškovi po gradovima</span></a>
+<a href="/izracunaj-cijenu/" class="related-card"><span class="related-card-title">Usporedi osiguranje</span><span class="related-card-sub">Besplatan kalkulator — rezultati za 30 sekundi</span></a>
 </div>
 
 <script type="application/ld+json">
