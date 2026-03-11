@@ -7,7 +7,7 @@ permalink: /auto-osiguranje/
 
 <div class="ao-hero">
 <h1 class="ao-hero-title">Jeftino auto osiguranje 2026 — Usporedi i uštedi</h1>
-<p class="ao-hero-sub">Usporedite ponude svih osiguravatelja za vaš grad u 30 sekundi — besplatno, bez obveze.</p>
+<p class="ao-hero-sub">Usporedite ponude vodećih osiguravatelja za vaš grad u 30 sekundi — besplatno, bez obveze.</p>
 <a href="/izracunaj-cijenu/" class="ao-cta-btn">Izračunaj cijenu odmah →</a>
 </div>
 
@@ -126,6 +126,7 @@ permalink: /auto-osiguranje/
     margin-bottom: 12px;
     line-height: 1.15;
     pointer-events: all;
+    text-align: center;
 }
 .ao-hero-sub {
     color: rgba(255,255,255,0.7);
