@@ -126,7 +126,7 @@ permalink: /auto-osiguranje/
     margin-bottom: 12px;
     line-height: 1.15;
     pointer-events: all;
-    text-align: center;
+    text-align: center !important;
 }
 .ao-hero-sub {
     color: rgba(255,255,255,0.7);
