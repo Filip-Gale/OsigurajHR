@@ -2,7 +2,7 @@
 layout: tehnicki-layout
 title: "Tehnički pregled Velika Gorica 2026: Cijene i stanice"
 grad: "Velika Gorica"
-opis: "Provjerite točne cijene tehničkog pregleda u Velikoj Gorici za 2026. godinu. Izračunajte troškove registracije i uštedite na auto osiguranju."
+opis: "Koliko košta tehnički pregled u Velikoj Gorici 2026.? ✓ Kalkulator troškova ✓ STP stanice ✓ Dokumentacija ✓ Uštedite do 50€ na polici osiguranja."
 ---
 
 ## Gdje obaviti tehnički pregled u Velikoj Gorici?

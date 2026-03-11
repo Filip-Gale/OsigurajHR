@@ -1,8 +1,8 @@
 ---
 layout: tehnicki-layout
-title: "Tehnički pregled Varaždin 2026: Cijene i kalkulator"
+title: "Tehnički pregled Varaždin 2026: Cijena, stanice i kalkulator"
 grad: "Varaždin"
-opis: "Saznajte točne cijene tehničkog pregleda u Varaždinu za 2026. godinu. Izračunajte troškove registracije i uštedite na auto osiguranju u par klikova."
+opis: "Koliko košta tehnički pregled u Varaždinu 2026.? ✓ Kalkulator troškova ✓ STP stanice u Varaždinu ✓ Uštedite do 50€ na polici — izračun za 30 sekundi."
 ---
 
 ## Gdje obaviti tehnički pregled u Varaždinu?

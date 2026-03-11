@@ -1,7 +1,7 @@
 ---
 layout: tehnicki-layout
-title: "Tehnički pregled vozila 2026: Cijene po gradovima u Hrvatskoj"
-opis: "Saznajte točne troškove tehničkog pregleda i registracije u vašem gradu za 2026. godinu. Izračunajte davanja i uštedite na auto osiguranju."
+title: "Tehnički pregled 2026: Cijene i kalkulator za sve gradove"
+opis: "Izračunajte točnu cijenu tehničkog pregleda za vaš grad u 2026. ✓ Kalkulator troškova ✓ Sve STP stanice ✓ Uštedite do 50% na polici osiguranja — besplatno za 30 sekundi."
 permalink: /tehnicki-pregled/
 ---
 

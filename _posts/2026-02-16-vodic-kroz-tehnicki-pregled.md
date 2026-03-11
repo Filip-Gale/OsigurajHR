@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Tehnički pregled vozila 2026: Kompletni vodič, cijene i kako proći iz prve"
-description: "Sve na jednom mjestu: detaljan cjenik tehničkog pregleda u 2026., popis dokumenata, checklista za siguran prolazak i lokacije po gradovima u Hrvatskoj."
+description: "Koliko košta tehnički pregled u 2026.? ✓ Cijene po kategorijama vozila ✓ Popis dokumenata ✓ Checklista za prolazak iz prve ✓ Lokacije STP stanica u svim gradovima."
 image: /img/tehnicki-pregled-2026.jpg
 ---
 

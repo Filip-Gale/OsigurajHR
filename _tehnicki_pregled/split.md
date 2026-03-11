@@ -1,8 +1,8 @@
 ---
 layout: tehnicki-layout
-title: "Tehnički pregled Split 2026: Cijene i kalkulator registracije"
+title: "Tehnički pregled Split 2026: Cijena, STP stanice i kalkulator"
 grad: "Split"
-opis: "Saznajte točne cijene tehničkog pregleda u Splitu za 2026. godinu. Izračunajte troškove registracije i uštedite na auto osiguranju u par klikova."
+opis: "Koliko košta tehnički pregled u Splitu 2026.? ✓ Kalkulator troškova ✓ Lokacije STP stanica ✓ Dokumentacija ✓ Uštedite do 50€ na polici osiguranja."
 ---
 
 ## Gdje obaviti tehnički pregled u Splitu?

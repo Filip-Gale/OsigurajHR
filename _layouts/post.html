@@ -18,6 +18,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <title>{{ page.title }} | Osiguraj.hr</title>
+    {% if page.description %}<meta name="description" content="{{ page.description }}">{% endif %}
+    <link rel="canonical" href="https://www.osiguraj.hr{{ page.url }}">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="{{ page.title }} | Osiguraj.hr">
+    <meta property="og:description" content="{{ page.description }}">
+    <meta property="og:url" content="https://www.osiguraj.hr{{ page.url }}">
+    {% if page.image %}<meta property="og:image" content="https://www.osiguraj.hr{{ page.image }}">{% else %}<meta property="og:image" content="https://www.osiguraj.hr/img/car.jpg">{% endif %}
+    <meta name="twitter:card" content="summary_large_image">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "{{ page.title }}",
+      "description": "{{ page.description }}",
+      "datePublished": "{{ page.date | date: '%Y-%m-%d' }}",
+      "dateModified": "{{ page.date | date: '%Y-%m-%d' }}",
+      "author": { "@type": "Organization", "name": "Osiguraj.hr" },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Osiguraj.hr",
+        "url": "https://www.osiguraj.hr"
+      }
+    }
+    </script>
     <link rel="stylesheet" href="{{ '/css/style.css' | relative_url }}">
     <link rel="stylesheet" href="{{ '/css/post.css' | relative_url }}">
     <link rel="icon" type="image/jpeg" href="{{ '/img/favicon.jpg' | relative_url }}">

@@ -1,8 +1,8 @@
 ---
 layout: tehnicki-layout
-title: "Tehnički pregled Sesvete 2026: Cijene i kalkulator"
+title: "Tehnički pregled Sesvete 2026: Cijena, stanice i kalkulator"
 grad: "Sesvete"
-opis: "Saznajte točne cijene tehničkog pregleda u Sesvetama za 2026. godinu. Izračunajte troškove registracije i uštedite na auto osiguranju u par klikova."
+opis: "Koliko košta tehnički pregled u Sesvetama 2026.? ✓ Kalkulator troškova ✓ STP stanice u Sesvetama ✓ Uštedite do 50€ na polici — izračun za 30 sekundi."
 ---
 
 ## Gdje obaviti tehnički pregled u Sesvetama?

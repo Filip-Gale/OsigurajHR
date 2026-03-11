@@ -2,7 +2,7 @@
 layout: tehnicki-layout
 title: "Tehnički pregled Zagreb 2026: Cijene, stanice i kalkulator"
 grad: "Zagreb"
-opis: "Saznajte točne cijene tehničkog pregleda u Zagrebu za 2026. godinu. Izračunajte troškove registracije i uštedite na auto osiguranju u par klikova."
+opis: "Koliko košta tehnički pregled u Zagrebu 2026.? ✓ Kalkulator troškova ✓ Sve STP stanice (Siget, Dubrava, Remetinec) ✓ Uštedite do 65€ na polici — izračun za 30 sekundi."
 ---
 
 ## Gdje obaviti tehnički pregled u Zagrebu?

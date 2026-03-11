@@ -2,7 +2,7 @@
 layout: tehnicki-layout
 title: "Tehnički pregled Zadar 2026: Cijene i kalkulator registracije"
 grad: "Zadar"
-opis: "Saznajte točne cijene tehničkog pregleda u Zadru za 2026. godinu. Izračunajte troškove registracije i uštedite na auto osiguranju u par klikova."
+opis: "Koliko košta tehnički pregled u Zadru 2026.? ✓ Kalkulator troškova ✓ STP stanice u Zadru ✓ Uštedite do 50€ na polici osiguranja — izračun za 30 sekundi."
 ---
 
 ## Gdje obaviti tehnički pregled u Zadru?
