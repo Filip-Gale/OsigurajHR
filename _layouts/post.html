@@ -47,34 +47,41 @@
     <link rel="icon" type="image/jpeg" href="{{ '/img/favicon.jpg' | relative_url }}">
 
     <style>
-        /* Popravak samo za linkove - ne dira veličinu naslova ni teksta */
-        .post-content a {
-            color: #ffcc00 !important;
-            text-decoration: underline !important;
-            font-weight: bold !important;
+        /* Sve u post-content je klikabilno i selektabilno */
+        .post-content, .post-content * {
+            pointer-events: all;
+            user-select: text;
+            -webkit-user-select: text;
         }
-        .post-content a:hover {
-            color: #ffffff !important;
+        /* Override style.css koji blokira pointer-events na p,h1,h2,h3 */
+        .post-content p, .post-content h1, .post-content h2, .post-content h3 {
+            pointer-events: all;
         }
-        /* Osigurava da su slike responzivne */
-        .post-content img {
-            max-width: 100%;
-            height: auto;
-            display: block;
-            margin: 20px auto;
+        /* Article container padding */
+        .post-article-wrap {
+            padding: 40px 48px;
+        }
+        @media (max-width: 767px) {
+            .post-article-wrap { padding: 28px 20px; }
         }
     </style>
 </head>
 <body>
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TPNZZVZ5"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    
+
     {% include nav.html %}
 
     <div class="margin-top-100"> </div>
 
-    <main class="width-container-1000 text-white pad round">
-        <article class="post-content">
+    <main class="width-container-1000 text-white round" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07);">
+        <article class="post-content post-article-wrap">
+            {% if page.date %}
+            <div class="post-meta">
+                <span>📅 {{ page.date | date: "%d. %m. %Y." }}</span>
+                <span>⏱ {{ page.content | number_of_words | divided_by: 200 | plus: 1 }} min čitanja</span>
+            </div>
+            {% endif %}
             {{ content }}
         </article>
     </main>
