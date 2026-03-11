@@ -18,7 +18,7 @@ Cijene tehničkog pregleda propisane su zakonom i jednake su u cijeloj Hrvatskoj
 | Administrativne pristojbe | ~10 € | ~10 € | ~10 € |
 | **Ukupno (bez osiguranja)** | **od 100 €** | **od 52 €** | **od 137 €** |
 
-> ⚠️ Iznosi su okvirni i informativnog karaktera prema podacima HAK-a — točan iznos ovisi o snazi motora, starosti vozila, ekološkoj normi i registracijskom području. Za precizne podatke koristite [HAK kalkulator](https://www.hak.hr/kalkulator-tpr/){:target="_blank"}. Polica AO osiguranja nije uračunata — [usporedite cijene](/izracunaj-cijenu/) i uštedite do 50€.
+<p style="background: rgba(255,188,39,0.1); border-left: 3px solid #ffbc27; padding: 12px 16px; border-radius: 0 8px 8px 0; font-size: 0.9rem; color: rgba(255,255,255,0.85);">⚠️ Iznosi su okvirni i informativnog karaktera prema podacima HAK-a — točan iznos ovisi o snazi motora, starosti vozila i registracijskom području. Za precizne podatke koristite <a href="https://www.hak.hr/kalkulator-tpr/" target="_blank">HAK kalkulator</a>. Polica AO osiguranja nije uračunata — <a href="/izracunaj-cijenu/">usporedite cijene</a> i uštedite do 50€.</p>
 
 Planirate registraciju? Odaberite svoj grad za točan izračun svih troškova:
 
