@@ -11,14 +11,14 @@ Cijene tehničkog pregleda propisane su zakonom i jednake su u cijeloj Hrvatskoj
 
 | Stavka | Osobni auto | Motocikl | Teretno vozilo |
 |---|---|---|---|
-| Tehnički pregled | 35,50 € | 18,10 € | 45,20 € |
-| Eko-test (benzin) | 12,50 € | 8,00 € | 12,50 € |
-| Naknada za ceste | od 35,00 € | od 20,00 € | od 45,00 € |
-| Naknada za okoliš | 5,50 € | 3,00 € | 5,50 € |
-| Administrativni troškovi | 15,00 € | 15,00 € | 15,00 € |
-| **Ukupno (bez osiguranja)** | **od 103 €** | **od 64 €** | **od 123 €** |
+| Tehnički pregled | ~35 € | ~18 € | ~45 € |
+| Eko-test | ~12 € | ~8 € | ~12 € |
+| Naknada za ceste | od 35 € | od 20 € | od 45 € |
+| Naknada za okoliš | ~5 € | ~3 € | ~5 € |
+| Administrativni troškovi | ~15 € | ~15 € | ~15 € |
+| **Ukupno (bez osiguranja)** | **od 100 €** | **od 60 €** | **od 120 €** |
 
-> Polica AO osiguranja nije uračunata — to je najveća varijabilna stavka. [Usporedite cijene](/izracunaj-cijenu/) i uštedite do 50€.
+> ⚠️ Cijene su okvirne i informativnog karaktera — točan iznos ovisi o snazi motora, ekološkoj normi i registracijskom području. Koristite kalkulator iznad za precizan izračun. Polica AO osiguranja nije uračunata — [usporedite cijene](/izracunaj-cijenu/) i uštedite do 50€.
 
 Planirate registraciju? Odaberite svoj grad za točan izračun svih troškova:
 
