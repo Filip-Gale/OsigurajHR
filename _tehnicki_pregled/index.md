@@ -9,16 +9,16 @@ permalink: /tehnicki-pregled/
 
 Cijene tehničkog pregleda propisane su zakonom i jednake su u cijeloj Hrvatskoj — razlika po gradovima je samo u naknadama za ceste i polici osiguranja.
 
-| Stavka | Osobni auto | Motocikl | Teretno vozilo |
+| Stavka | Osobni auto (benzin) | Motocikl | Teretno vozilo |
 |---|---|---|---|
-| Tehnički pregled | ~35 € | ~18 € | ~45 € |
-| Eko-test | ~12 € | ~8 € | ~12 € |
-| Naknada za ceste | od 35 € | od 20 € | od 45 € |
-| Naknada za okoliš | ~5 € | ~3 € | ~5 € |
-| Administrativni troškovi | ~15 € | ~15 € | ~15 € |
-| **Ukupno (bez osiguranja)** | **od 100 €** | **od 60 €** | **od 120 €** |
+| Tehnički pregled | ~23 € | ~12 € | ~33 € |
+| Eko-test | ~15 € | ~7 € | ~14 € |
+| Porez na c. mot. vozilo | od 40 € | od 15 € | od 60 € |
+| Naknada za ceste + okoliš | od 12 € | od 8 € | od 20 € |
+| Administrativne pristojbe | ~10 € | ~10 € | ~10 € |
+| **Ukupno (bez osiguranja)** | **od 100 €** | **od 52 €** | **od 137 €** |
 
-> ⚠️ Cijene su okvirne i informativnog karaktera — točan iznos ovisi o snazi motora, ekološkoj normi i registracijskom području. Koristite kalkulator iznad za precizan izračun. Polica AO osiguranja nije uračunata — [usporedite cijene](/izracunaj-cijenu/) i uštedite do 50€.
+> ⚠️ Iznosi su okvirni i informativnog karaktera prema podacima HAK-a — točan iznos ovisi o snazi motora, starosti vozila, ekološkoj normi i registracijskom području. Za precizne podatke koristite [HAK kalkulator](https://www.hak.hr/kalkulator-tpr/){:target="_blank"}. Polica AO osiguranja nije uračunata — [usporedite cijene](/izracunaj-cijenu/) i uštedite do 50€.
 
 Planirate registraciju? Odaberite svoj grad za točan izračun svih troškova:
 
