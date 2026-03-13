@@ -798,7 +798,11 @@ function doKupi() {
   fetch(WORKER+'/gen-policy', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(payload) })
   .then(function(r){ return r.json(); })
   .then(function(d){
-    if (!d.brojPolice) throw new Error(d.error || d.details || JSON.stringify(d));
+    if (!d.brojPolice) {
+      var details = '';
+      try { details = JSON.parse(d.details); details = (details.errors||[]).join(', '); } catch { details = d.details || ''; }
+      throw new Error((details || d.error || JSON.stringify(d)));
+    }
     genPolicyResp = d;
     el('kupi-load-msg').textContent = 'Aktiviram policu (SetPaymentStatus)...';
     return fetch(WORKER+'/set-payment-status', { method:'POST', headers:{'Content-Type':'application/json'},
