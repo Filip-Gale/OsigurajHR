@@ -281,8 +281,13 @@ select.finput{cursor:pointer}
         </div>
         <div>
           <label class="flabel">Broj šasije (VIN) *</label>
-          <input class="finput" id="v-vin" placeholder="npr. WBA3A5C50CF256985" maxlength="17" style="text-transform:uppercase">
-          <div class="fhint">17 znakova — nalazi se u prometnoj dozvoli (rubrika E)</div>
+          <input class="finput" id="v-vin" placeholder="npr. WBA3A5C50CF256985" maxlength="17" style="text-transform:uppercase" oninput="decodeVin(this.value)">
+          <div class="fhint">17 znakova — prometna dozvola, rubrika E</div>
+        </div>
+        <div>
+          <label class="flabel">Marka vozila *</label>
+          <input class="finput" id="v-brand" placeholder="npr. BMW" id="v-brand">
+          <div class="fhint" id="v-brand-hint"></div>
         </div>
         <div>
           <label class="flabel">Ulica *</label>
@@ -529,7 +534,7 @@ function goStep4(){
 
 function goStep5(){
   var required = [
-    ['v-vin','Broj šasije'],['p-ime','Ime'],['p-prezime','Prezime'],['p-oib','OIB'],
+    ['v-vin','Broj šasije'],['v-brand','Marka vozila'],['p-ime','Ime'],['p-prezime','Prezime'],['p-oib','OIB'],
     ['p-dob','Datum rođenja'],['p-ulica','Ulica'],['p-kbr','Kućni broj'],
     ['p-mob','Mobitel'],['p-email','Email']
   ];
@@ -543,7 +548,8 @@ function goStep5(){
   else el('p-mjesto-search').classList.remove('err');
   if(!ok) return;
 
-  S.vin = el('v-vin').value.trim().toUpperCase();
+  S.vin   = el('v-vin').value.trim().toUpperCase();
+  S.brand = val('v-brand');
   S.ugovaratelj = {
     ime:                   val('p-ime'),
     prezime:               val('p-prezime'),
@@ -614,7 +620,7 @@ function doGenPolicy(){
   var payload = {
     vozilo: {
       sasija:            S.vin,
-      proizvodac:        'N/A',
+      proizvodac:        S.brand,
       model:             'N/A',
       registracija:      zona,
       snagaMotora:       S.kw,
@@ -706,6 +712,52 @@ function b64ToBlob(b64, mime){
 function toggleRaw(){
   var box = el('s6-raw');
   box.style.display = box.style.display === 'none' ? 'block' : 'none';
+}
+
+// ── VIN decoder (NHTSA + WMI fallback) ───────────────────────────────────────
+
+var WMI = {
+  'WAU':'Audi','WBA':'BMW','WBS':'BMW','WBY':'BMW','WDB':'Mercedes-Benz','WDC':'Mercedes-Benz',
+  'WDD':'Mercedes-Benz','WF0':'Ford','WVW':'Volkswagen','WV1':'Volkswagen','WV2':'Volkswagen',
+  'VSS':'SEAT','VF1':'Renault','VF3':'Peugeot','VF7':'Citroën','ZAR':'Alfa Romeo','ZFA':'Fiat',
+  'SAJ':'Jaguar','SAL':'Land Rover','SAR':'Rover','TRU':'Audi','TMB':'Škoda','SCC':'Lotus',
+  'VXK':'Opel','W0L':'Opel','JHM':'Honda','JT2':'Toyota','JTD':'Toyota','1HG':'Honda',
+  'YV1':'Volvo','YV4':'Volvo','XTA':'Lada','SUF':'Suzuki','TW1':'Toyota','MAT':'Opel',
+  'NM0':'Ford','AAV':'Volkswagen','AAA':'Volkswagen','VSA':'Honda',
+};
+
+var _vinDecodeTimer = null;
+function decodeVin(vin) {
+  vin = vin.toUpperCase().trim();
+  el('v-vin').value = vin;
+  if (vin.length < 3) return;
+
+  // WMI instant lookup
+  var wmi = vin.substring(0,3);
+  var brand = WMI[wmi] || WMI[vin.substring(0,2)];
+  if (brand && !el('v-brand').value) {
+    el('v-brand').value = brand;
+    el('v-brand-hint').textContent = 'Auto-popunjeno iz VIN-a';
+  }
+
+  // NHTSA API za točan podatak (kad VIN ima 17 znakova)
+  if (vin.length === 17) {
+    clearTimeout(_vinDecodeTimer);
+    _vinDecodeTimer = setTimeout(function() {
+      fetch('https://vpic.nhtsa.dot.gov/api/vehicles/decodevin/' + vin + '?format=json')
+        .then(function(r){ return r.json(); })
+        .then(function(d){
+          var results = d.Results || [];
+          var makeEl = results.find(function(r){ return r.Variable === 'Make'; });
+          if (makeEl && makeEl.Value && makeEl.Value !== 'null') {
+            var make = makeEl.Value.charAt(0).toUpperCase() + makeEl.Value.slice(1).toLowerCase();
+            el('v-brand').value = make;
+            el('v-brand-hint').textContent = 'Dohvaćeno iz VIN baze';
+          }
+        })
+        .catch(function(){});
+    }, 600);
+  }
 }
 
 // Preload mjesta on page load
