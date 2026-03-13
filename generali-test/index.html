@@ -284,11 +284,7 @@ select.finput{cursor:pointer}
           <input class="finput" id="v-vin" placeholder="npr. WBA3A5C50CF256985" maxlength="17" style="text-transform:uppercase" oninput="decodeVin(this.value)">
           <div class="fhint">17 znakova — prometna dozvola, rubrika E</div>
         </div>
-        <div>
-          <label class="flabel">Marka vozila *</label>
-          <input class="finput" id="v-brand" placeholder="npr. BMW" id="v-brand">
-          <div class="fhint" id="v-brand-hint"></div>
-        </div>
+        <input type="hidden" id="v-brand">
         <div>
           <label class="flabel">Ulica *</label>
           <input class="finput" id="p-ulica" placeholder="Ilica">
@@ -534,7 +530,7 @@ function goStep4(){
 
 function goStep5(){
   var required = [
-    ['v-vin','Broj šasije'],['v-brand','Marka vozila'],['p-ime','Ime'],['p-prezime','Prezime'],['p-oib','OIB'],
+    ['v-vin','Broj šasije'],['p-ime','Ime'],['p-prezime','Prezime'],['p-oib','OIB'],
     ['p-dob','Datum rođenja'],['p-ulica','Ulica'],['p-kbr','Kućni broj'],
     ['p-mob','Mobitel'],['p-email','Email']
   ];
@@ -548,8 +544,9 @@ function goStep5(){
   else el('p-mjesto-search').classList.remove('err');
   if(!ok) return;
 
-  S.vin   = el('v-vin').value.trim().toUpperCase();
-  S.brand = val('v-brand');
+  S.vin = el('v-vin').value.trim().toUpperCase();
+  // Uzmi brand iz hidden fielda (dekodiran iz VIN), ili WMI fallback
+  S.brand = el('v-brand').value.trim() || WMI[S.vin.substring(0,3)] || WMI[S.vin.substring(0,2)] || 'Ostalo';
   S.ugovaratelj = {
     ime:                   val('p-ime'),
     prezime:               val('p-prezime'),
