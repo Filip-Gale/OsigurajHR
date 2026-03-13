@@ -181,21 +181,6 @@ select.finput{cursor:pointer}
             <input class="finput" id="v-yr" type="number" min="1990" max="2026" placeholder="2020">
           </div>
         </div>
-        <div>
-          <label class="flabel">Broj šasije (VIN) *</label>
-          <input class="finput" id="v-vin" placeholder="npr. WBA3A5C50CF256985" maxlength="17" style="text-transform:uppercase">
-          <div class="fhint">17 znakova, nalazi se u prometnoj dozvoli</div>
-        </div>
-        <div class="row2">
-          <div>
-            <label class="flabel">Proizvođač</label>
-            <input class="finput" id="v-brand" placeholder="npr. BMW">
-          </div>
-          <div>
-            <label class="flabel">Model</label>
-            <input class="finput" id="v-model" placeholder="npr. 320d">
-          </div>
-        </div>
       </div>
       <button class="btn" onclick="goStep2()">Dalje →</button>
     </div>
@@ -293,6 +278,11 @@ select.finput{cursor:pointer}
               <option value="Z">Ženski</option>
             </select>
           </div>
+        </div>
+        <div>
+          <label class="flabel">Broj šasije (VIN) *</label>
+          <input class="finput" id="v-vin" placeholder="npr. WBA3A5C50CF256985" maxlength="17" style="text-transform:uppercase">
+          <div class="fhint">17 znakova — nalazi se u prometnoj dozvoli (rubrika E)</div>
         </div>
         <div>
           <label class="flabel">Ulica *</label>
@@ -405,17 +395,14 @@ function goTo(n) {
 // ── Step 1 → 2 ───────────────────────────────────────────────────────────────
 
 function goStep2(){
-  var reg = val('v-reg'), kw = val('v-kw'), vin = val('v-vin');
+  var reg = val('v-reg'), kw = val('v-kw');
   if(!reg){ el('v-reg').classList.add('err'); el('v-reg').focus(); return; }
   if(!kw){  el('v-kw').classList.add('err');  el('v-kw').focus();  return; }
-  if(!vin){ el('v-vin').classList.add('err'); el('v-vin').focus(); return; }
-  ['v-reg','v-kw','v-vin'].forEach(function(id){ el(id).classList.remove('err'); });
-  S.reg   = reg;
-  S.kw    = Number(kw);
-  S.yr    = val('v-yr') ? Number(val('v-yr')) : null;
-  S.vin   = val('v-vin').toUpperCase();
-  S.brand = val('v-brand');
-  S.model = val('v-model');
+  el('v-reg').classList.remove('err');
+  el('v-kw').classList.remove('err');
+  S.reg = reg;
+  S.kw  = Number(kw);
+  S.yr  = val('v-yr') ? Number(val('v-yr')) : null;
   goTo(2);
 }
 
@@ -542,7 +529,7 @@ function goStep4(){
 
 function goStep5(){
   var required = [
-    ['p-ime','Ime'],['p-prezime','Prezime'],['p-oib','OIB'],
+    ['v-vin','Broj šasije'],['p-ime','Ime'],['p-prezime','Prezime'],['p-oib','OIB'],
     ['p-dob','Datum rođenja'],['p-ulica','Ulica'],['p-kbr','Kućni broj'],
     ['p-mob','Mobitel'],['p-email','Email']
   ];
@@ -556,6 +543,7 @@ function goStep5(){
   else el('p-mjesto-search').classList.remove('err');
   if(!ok) return;
 
+  S.vin = el('v-vin').value.trim().toUpperCase();
   S.ugovaratelj = {
     ime:                   val('p-ime'),
     prezime:               val('p-prezime'),
@@ -591,8 +579,8 @@ function renderSummary(){
     ['Datum rođenja', u.datumRodjenja],
     ['Adresa', u.ulica + ' ' + u.kucniBroj + ', ' + el('p-mjesto-search').value],
     ['Kontakt', u.mobitel + ' / ' + u.email],
-    ['Vozilo', (S.brand||'') + ' ' + (S.model||'') + ' (' + S.reg + ')'],
-    ['Šasija (VIN)', S.vin],
+    ['Vozilo', S.reg + (S.yr ? ', ' + S.yr + '. god.' : '') + ', ' + S.kw + ' kW'],
+    ['Broj šasije (VIN)', S.vin],
     ['Paketi', pkgNames],
     ['Premijski stupanj AO', quoteData.ps_ao || 10],
   ];
@@ -626,8 +614,8 @@ function doGenPolicy(){
   var payload = {
     vozilo: {
       sasija:            S.vin,
-      proizvodac:        S.brand || 'N/A',
-      model:             S.model || 'N/A',
+      proizvodac:        'N/A',
+      model:             'N/A',
       registracija:      zona,
       snagaMotora:       S.kw,
       godinaProizvodnje: S.yr || new Date().getFullYear() - 5,
