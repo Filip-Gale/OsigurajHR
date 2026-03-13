@@ -6,18 +6,24 @@
  *   ASDIRECT_PASSWORD  = "c6VWecZZmAiV"
  *   ASDIRECT_POSREDNIK = "413106"
  *
- * Request body:
- *   { registracija, snagaMotora, godinaRodjenja, tipStranke, godinaProizvodnje?, oib? }
- *
- * Logika:
- *   1. Ako je dostavljan OIB → HUOMTR GetPodaci → pravi premijski stupanj
- *   2. Inače → PS 10 (novi vozač)
- *   3. Uvijek aplicira AS_DIRE_1(10%) + AS_DOBR_1(10%) = ukupno −19%
+ * Routes:
+ *   POST /                        → GetQuote
+ *   POST /gen-policy              → GenPolicy
+ *   POST /set-payment-status      → SetPaymentStatus
+ *   GET  /get-mjesta              → GetMjesta (IN2 city codes)
+ *   GET  /get-dokumenti?faza=...  → GetDokumenti
  */
 
-const BASE_URL_TEST = 'https://asdirectprod.generali.hr:8080/TestAutoOsiguranje';
-const GETQUOTE_URL  = BASE_URL_TEST + '/api/as/v1/GetQuote';
-const HUOMTR_URL    = BASE_URL_TEST + '/api/huomtr/v1/GetPodaci';
+const BASE_URL = 'https://asdirectprod.generali.hr:8080/TestAutoOsiguranje';
+
+const URLS = {
+  getQuote:          BASE_URL + '/api/as/v1/GetQuote',
+  huomtr:            BASE_URL + '/api/huomtr/v1/GetPodaci',
+  genPolicy:         BASE_URL + '/api/as/v1/GenPolicy',
+  setPaymentStatus:  BASE_URL + '/api/as/v1/SetPaymentStatus',
+  getMjesta:         BASE_URL + '/api/v1/GetMjesta',
+  getDokumenti:      BASE_URL + '/api/dokumentacija/v1/GetDokumenti',
+};
 
 // Ukupni multiplikator popusta: AS_DIRE_1(−10%) × AS_DOBR_1(−10%) = 0.81
 const DISCOUNT = 0.81;
@@ -33,10 +39,17 @@ function corsHeaders(origin) {
   const allowed = ALLOWED_ORIGINS.includes(origin) ? origin : ALLOWED_ORIGINS[0];
   return {
     'Access-Control-Allow-Origin': allowed,
-    'Access-Control-Allow-Methods': 'POST, OPTIONS',
+    'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
     'Access-Control-Allow-Headers': 'Content-Type',
     Vary: 'Origin',
   };
+}
+
+function json(body, status, extraHeaders = {}) {
+  return new Response(JSON.stringify(body), {
+    status,
+    headers: { 'Content-Type': 'application/json', ...extraHeaders },
+  });
 }
 
 function getTomorrow() {
@@ -49,7 +62,7 @@ function getTomorrow() {
 async function fetchPremijskiStupanj(oib, godinaRodjenja, credentials) {
   if (!oib) return 10;
   try {
-    const res = await fetch(HUOMTR_URL, {
+    const res = await fetch(URLS.huomtr, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -74,6 +87,292 @@ function izracunajCijenu(premijaBezPoreza, porezPct, applyDiscount = true) {
   return Math.round(base * (1 + porezPct / 100) * 100) / 100;
 }
 
+// ─── Handlers ───────────────────────────────────────────────────────────────
+
+async function handleGetQuote(body, credentials, env, headers) {
+  const { registracija, snagaMotora, godinaRodjenja, tipStranke, godinaProizvodnje, oib } = body;
+
+  if (!registracija || !snagaMotora || !godinaRodjenja || !tipStranke) {
+    return json({ error: 'Nedostaju obavezni parametri' }, 400, headers);
+  }
+
+  const zona = registracija.replace(/[^A-Za-z]/g, '').substring(0, 2).toUpperCase();
+  const godinaVozila = godinaProizvodnje
+    ? Number(godinaProizvodnje)
+    : new Date().getFullYear() - 5;
+
+  const ps = await fetchPremijskiStupanj(oib, godinaRodjenja, credentials);
+
+  const payload = {
+    vozilo: {
+      registracija: zona,
+      snagaMotora: Number(snagaMotora),
+      godinaProizvodnje: String(godinaVozila),
+      novonabavnaVrijednostVozila: null,
+    },
+    osiguranik: {
+      godinaRodjenja: Number(godinaRodjenja),
+      tipStranke: String(tipStranke),
+    },
+    datumPocetkaOsiguranja: getTomorrow(),
+    premijskiStupanjAo: ps,
+    premijskiStupanjAk: 2,
+    brojPoliceZaObnovu: null,
+    posrednik: env.ASDIRECT_POSREDNIK || '413106',
+    pausalnoOsiguranjeDodatneOpreme: false,
+  };
+
+  let res;
+  try {
+    res = await fetch(URLS.getQuote, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Authorization: `Basic ${credentials}` },
+      body: JSON.stringify(payload),
+    });
+  } catch {
+    return json({ error: 'Greška pri komunikaciji s Generali API-jem' }, 502, headers);
+  }
+
+  const rawText = await res.text();
+  if (!res.ok) {
+    return json({ error: 'Generali nije vratio valjanu ponudu', details: rawText }, 502, headers);
+  }
+
+  let data;
+  try { data = JSON.parse(rawText); } catch {
+    return json({ error: 'Nevaljani JSON od Generalija', details: rawText }, 502, headers);
+  }
+
+  const premijaBezPoreza = data?.premijaAOBezPoreza;
+  const porez = data?.porez ?? 0;
+
+  if (!premijaBezPoreza || premijaBezPoreza <= 0) {
+    return json({ error: 'Generali nije vratio cijenu' }, 502, headers);
+  }
+
+  const aoSPorezom = izracunajCijenu(premijaBezPoreza, porez);
+  const paketi = (data.paketi ?? []).map(p => ({
+    ...p,
+    premijaBezPoreza: Math.round(p.premijaBezPoreza * DISCOUNT * 100) / 100,
+  }));
+
+  return json({
+    ao_cijena_s_porezom: aoSPorezom,
+    paketi,
+    ps_ao: ps,
+    ps_lookup: oib ? 'huomtr' : 'default',
+    popust_primijenjen: true,
+  }, 200, headers);
+}
+
+/** Konvertira mobitel u format 3859xxxxxxx */
+function normalizeMobitel(mob) {
+  if (!mob) return mob;
+  const s = String(mob).replace(/\s/g, '');
+  if (s.startsWith('3859')) return s;
+  if (s.startsWith('+3859')) return s.slice(1);
+  if (s.startsWith('09')) return '385' + s.slice(1);
+  return s;
+}
+
+/** Konvertira boolean u "D"/"N" string za Generali API */
+function boolToChar(val, defaultVal = 'N') {
+  if (val === true || val === 'D' || val === 'Y') return 'D';
+  if (val === false || val === 'N') return 'N';
+  return defaultVal;
+}
+
+function buildStranka(s) {
+  return {
+    ime:                   s.ime,
+    prezime:               s.prezime,
+    naziv:                 s.naziv ?? null,
+    oib:                   String(s.oib),
+    datumRodjenja:         s.datumRodjenja,
+    ulica:                 s.ulica,
+    kucniBroj:             s.kucniBroj,
+    mjesto:                s.mjesto,
+    ulicaNaplate:          s.ulicaNaplate          ?? s.ulica,
+    kucniBrojNaplate:      s.kucniBrojNaplate      ?? s.kucniBroj,
+    mjestoNaplate:         s.mjestoNaplate         ?? s.mjesto,
+    spol:                  s.spol ?? null,
+    mobitel:               normalizeMobitel(s.mobitel),
+    email:                 s.email,
+    tipStranke:            s.tipStranke,
+    marketinskaSuglasnost: boolToChar(s.marketinskaSuglasnost, 'N'),
+    provjeraStranke:       s.provjeraStranke ?? false,
+  };
+}
+
+async function handleGenPolicy(body, credentials, env, headers) {
+  const {
+    vozilo, ugovaratelj, osiguranik, paketi,
+    datumPocetkaOsiguranja, premijskiStupanjAo, premijskiStupanjAk,
+    popusti,
+  } = body;
+
+  if (!vozilo || !ugovaratelj || !paketi) {
+    return json({ error: 'Nedostaju obavezni parametri (vozilo, ugovaratelj, paketi)' }, 400, headers);
+  }
+
+  const payload = {
+    vozilo: {
+      sasija:            vozilo.sasija,
+      proizvodac:        vozilo.proizvodac,
+      model:             vozilo.model,
+      registracija:      vozilo.registracija,
+      snagaMotora:       Number(vozilo.snagaMotora),
+      godinaProizvodnje: String(vozilo.godinaProizvodnje),
+      novonabavnaVrijednostVozila: vozilo.novonabavnaVrijednostVozila ?? null,
+    },
+    ugovaratelj: buildStranka(ugovaratelj),
+    osiguranik:  buildStranka(osiguranik ?? ugovaratelj),
+    paketi,
+    // Koristi popuste iz requesta ili defaultne AS_DIRE_1 + AS_DOBR_1
+    popusti: popusti ?? [
+      { code: 'AS_DIRE_1', stopa: 10 },
+      { code: 'AS_DOBR_1', stopa: 10 },
+    ],
+    datumPocetkaOsiguranja: datumPocetkaOsiguranja ?? getTomorrow(),
+    satOsiguranja:          '00:00',
+    premijskiStupanjAo:     premijskiStupanjAo ?? 10,
+    premijskiStupanjAk:     premijskiStupanjAk ?? 2,
+    leasing:                body.leasing ?? 'N',
+    brojStarePolice:        body.brojStarePolice ?? null,
+    brojPoliceZaObnovu:     body.brojPoliceZaObnovu ?? null,
+    posrednik:              env.ASDIRECT_POSREDNIK || '413106',
+    pausalnoOsiguranjeDodatneOpreme: body.pausalnoOsiguranjeDodatneOpreme ?? false,
+  };
+
+  let res;
+  try {
+    res = await fetch(URLS.genPolicy, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Authorization: `Basic ${credentials}` },
+      body: JSON.stringify(payload),
+    });
+  } catch {
+    return json({ error: 'Greška pri komunikaciji s Generali API-jem' }, 502, headers);
+  }
+
+  const rawText = await res.text();
+  if (!res.ok) {
+    return json({ error: 'GenPolicy greška', status: res.status, details: rawText }, 502, headers);
+  }
+
+  let data;
+  try { data = JSON.parse(rawText); } catch {
+    return json({ error: 'Nevaljani JSON od Generalija', details: rawText }, 502, headers);
+  }
+
+  return json({
+    brojPolice:   data.brojPolice,
+    cijenaPorez:  data.cijenaPorez,
+    PS_AO:        data.premijskiStupanjAo ?? data.PS_AO,
+    PS_AK:        data.premijskiStupanjAk ?? data.PS_AK,
+    raw:          data,
+  }, 200, headers);
+}
+
+async function handleSetPaymentStatus(body, credentials, headers) {
+  const { brojPolice, brojSasije, paid, storno } = body;
+
+  if (!brojPolice || !brojSasije) {
+    return json({ error: 'Nedostaju obavezni parametri (brojPolice, brojSasije)' }, 400, headers);
+  }
+
+  const payload = {
+    brojPolice,
+    brojSasije,
+    paid:   paid   ?? true,
+    storno: storno ?? false,
+  };
+
+  let res;
+  try {
+    res = await fetch(URLS.setPaymentStatus, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Authorization: `Basic ${credentials}` },
+      body: JSON.stringify(payload),
+    });
+  } catch {
+    return json({ error: 'Greška pri komunikaciji s Generali API-jem' }, 502, headers);
+  }
+
+  const rawText = await res.text();
+  if (!res.ok) {
+    return json({ error: 'SetPaymentStatus greška', status: res.status, details: rawText }, 502, headers);
+  }
+
+  let data;
+  try { data = JSON.parse(rawText); } catch {
+    return json({ error: 'Nevaljani JSON od Generalija', details: rawText }, 502, headers);
+  }
+
+  return json({
+    brojPolice: data.brojPolice,
+    polica:     data.polica,   // base64 PDF
+    brojZK:     data.brojZK,
+    ZK:         data.ZK,       // base64 PDF
+    raw:        data,
+  }, 200, headers);
+}
+
+async function handleGetMjesta(credentials, headers) {
+  let res;
+  try {
+    res = await fetch(URLS.getMjesta, {
+      method: 'GET',
+      headers: { Authorization: `Basic ${credentials}` },
+    });
+  } catch {
+    return json({ error: 'Greška pri komunikaciji s Generali API-jem' }, 502, headers);
+  }
+
+  const rawText = await res.text();
+  if (!res.ok) {
+    return json({ error: 'GetMjesta greška', status: res.status, details: rawText }, 502, headers);
+  }
+
+  let data;
+  try { data = JSON.parse(rawText); } catch {
+    return json({ error: 'Nevaljani JSON od Generalija', details: rawText }, 502, headers);
+  }
+
+  return json(data, 200, headers);
+}
+
+async function handleGetDokumenti(faza, credentials, headers) {
+  const payload = { faza: faza || 'predugovorna' };
+
+  let res;
+  try {
+    // Generali zahtijeva GET s JSON bodyjem — koristimo Request objekt da zaobiđemo CF ograničenje
+    const req = new Request(URLS.getDokumenti, {
+      method: 'GET',
+      headers: { 'Content-Type': 'application/json', Authorization: `Basic ${credentials}` },
+      body: JSON.stringify(payload),
+    });
+    res = await fetch(req);
+  } catch {
+    return json({ error: 'Greška pri komunikaciji s Generali API-jem' }, 502, headers);
+  }
+
+  const rawText = await res.text();
+  if (!res.ok) {
+    return json({ error: 'GetDokumenti greška', status: res.status, details: rawText }, 502, headers);
+  }
+
+  let data;
+  try { data = JSON.parse(rawText); } catch {
+    return json({ error: 'Nevaljani JSON od Generalija', details: rawText }, 502, headers);
+  }
+
+  return json(data, 200, headers);
+}
+
+// ─── Main entry point ───────────────────────────────────────────────────────
+
 export default {
   async fetch(request, env) {
     const origin = request.headers.get('Origin') || '';
@@ -82,6 +381,23 @@ export default {
     if (request.method === 'OPTIONS') {
       return new Response(null, { status: 204, headers });
     }
+
+    const url = new URL(request.url);
+    const path = url.pathname;
+    const credentials = btoa(`${env.ASDIRECT_USERNAME}:${env.ASDIRECT_PASSWORD}`);
+
+    // GET /get-mjesta
+    if (path === '/get-mjesta' && request.method === 'GET') {
+      return handleGetMjesta(credentials, headers);
+    }
+
+    // GET /get-dokumenti?faza=predugovorna
+    if (path === '/get-dokumenti' && request.method === 'GET') {
+      const faza = url.searchParams.get('faza') || 'predugovorna';
+      return handleGetDokumenti(faza, credentials, headers);
+    }
+
+    // All remaining routes expect POST
     if (request.method !== 'POST') {
       return json({ error: 'Method not allowed' }, 405, headers);
     }
@@ -93,102 +409,18 @@ export default {
       return json({ error: 'Neispravan JSON' }, 400, headers);
     }
 
-    const { registracija, snagaMotora, godinaRodjenja, tipStranke, godinaProizvodnje, oib } = body;
-
-    if (!registracija || !snagaMotora || !godinaRodjenja || !tipStranke) {
-      return json(
-        { error: 'Nedostaju obavezni parametri' },
-        400, headers
-      );
+    if (path === '/' || path === '') {
+      return handleGetQuote(body, credentials, env, headers);
     }
 
-    // Registarska zona (prve 2 slova)
-    const zona = registracija.replace(/[^A-Za-z]/g, '').substring(0, 2).toUpperCase();
-
-    const credentials = btoa(`${env.ASDIRECT_USERNAME}:${env.ASDIRECT_PASSWORD}`);
-
-    // Godina vozila — obavezna za API (TehnickaKarakteristikaAO), fallback: 5 god. staro
-    const godinaVozila = godinaProizvodnje
-      ? Number(godinaProizvodnje)
-      : new Date().getFullYear() - 5;
-
-    // Dohvati pravi premijski stupanj iz HUOMTR-a (ako ima OIB)
-    const ps = await fetchPremijskiStupanj(oib, godinaRodjenja, credentials);
-
-    const payload = {
-      vozilo: {
-        registracija: zona,
-        snagaMotora: Number(snagaMotora),
-        godinaProizvodnje: String(godinaVozila),
-        novonabavnaVrijednostVozila: null,
-      },
-      osiguranik: {
-        godinaRodjenja: Number(godinaRodjenja),
-        tipStranke: String(tipStranke),
-      },
-      datumPocetkaOsiguranja: getTomorrow(),
-      premijskiStupanjAo: ps,
-      premijskiStupanjAk: 2,
-      brojPoliceZaObnovu: null,
-      posrednik: env.ASDIRECT_POSREDNIK || '413106',
-      pausalnoOsiguranjeDodatneOpreme: false,
-    };
-
-    let asdirectRes;
-    try {
-      asdirectRes = await fetch(GETQUOTE_URL, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Basic ${credentials}`,
-        },
-        body: JSON.stringify(payload),
-      });
-    } catch {
-      return json({ error: 'Greška pri komunikaciji s Generali API-jem' }, 502, headers);
+    if (path === '/gen-policy') {
+      return handleGenPolicy(body, credentials, env, headers);
     }
 
-    const rawText = await asdirectRes.text();
-
-    if (!asdirectRes.ok) {
-      return json({ error: 'Generali nije vratio valjanu ponudu', details: rawText }, 502, headers);
+    if (path === '/set-payment-status') {
+      return handleSetPaymentStatus(body, credentials, headers);
     }
 
-    let data;
-    try {
-      data = JSON.parse(rawText);
-    } catch {
-      return json({ error: 'Nevaljani JSON od Generalija', details: rawText }, 502, headers);
-    }
-
-    const premijaBezPoreza = data?.premijaAOBezPoreza;
-    const porez = data?.porez ?? 0;
-
-    if (!premijaBezPoreza || premijaBezPoreza <= 0) {
-      return json({ error: 'Generali nije vratio cijenu' }, 502, headers);
-    }
-
-    // Primijeni popuste na AO i na sve pakete
-    const aoSPorezom = izracunajCijenu(premijaBezPoreza, porez);
-
-    const paketi = (data.paketi ?? []).map(p => ({
-      ...p,
-      premijaBezPoreza: Math.round(p.premijaBezPoreza * DISCOUNT * 100) / 100,
-    }));
-
-    return json({
-      ao_cijena_s_porezom: aoSPorezom,
-      paketi,
-      ps_ao: ps,
-      ps_lookup: oib ? 'huomtr' : 'default',
-      popust_primijenjen: true,
-    }, 200, headers);
+    return json({ error: 'Not found' }, 404, headers);
   },
 };
-
-function json(body, status, extraHeaders = {}) {
-  return new Response(JSON.stringify(body), {
-    status,
-    headers: { 'Content-Type': 'application/json', ...extraHeaders },
-  });
-}
