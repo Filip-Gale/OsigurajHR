@@ -515,7 +515,7 @@ function filterMjesta(){
   var res = mjesta.filter(function(m){ return (m.naziv||'').toLowerCase().includes(q); }).slice(0,12);
   if(!res.length){ el('city-results').style.display = 'none'; return; }
   el('city-results').innerHTML = res.map(function(m){
-    return '<div class="city-opt" onmousedown="selectMjesto(\''+m.id+'\',\''+m.naziv+'\')">'+m.naziv+' ('+m.id+')</div>';
+    return '<div class="city-opt" onmousedown="selectMjesto(\''+m.mjesto+'\',\''+m.naziv+'\')">'+m.naziv+' ('+m.mjesto+')</div>';
   }).join('');
   el('city-results').style.display = 'block';
 }
@@ -609,12 +609,10 @@ function renderSummary(){
 // ── Step 5: GenPolicy + SetPaymentStatus ─────────────────────────────────────
 
 function buildPaketi(){
-  // AO uvijek uključen
-  var pkts = [{ code: 'AO', selected: true }];
-  Object.keys(selectedPkgs).forEach(function(code){
-    pkts.push({ code: code, selected: true });
+  // Šalji samo odabrane dodatke — AO je uvijek uključen bez koda
+  return Object.keys(selectedPkgs).map(function(code){
+    return { code: code, selected: true };
   });
-  return pkts;
 }
 
 function doGenPolicy(){
