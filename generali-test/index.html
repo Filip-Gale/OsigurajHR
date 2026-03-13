@@ -1,6 +1,6 @@
 ---
 layout: null
-title: Generali — Test ugovaranja | Osiguraj.hr
+title: Generali — Kupi online | Osiguraj.hr
 permalink: /generali-test/
 ---
 <!DOCTYPE html>
@@ -8,756 +8,860 @@ permalink: /generali-test/
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Generali — Test ugovaranja</title>
+<title>Generali — Kupi online | Osiguraj.hr</title>
 <meta name="robots" content="noindex,nofollow">
 <link rel="icon" type="image/jpeg" href="/img/favicon.jpg">
+<link rel="stylesheet" href="/css/style.css">
 <style>
-*,*::before,*::after{box-sizing:border-box}
-body{background:#573cf9;min-height:100vh;margin:0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}
-.wrap{max-width:520px;width:94%;margin:0 auto;padding:32px 0 60px}
-
-/* Header */
-.hdr{text-align:center;color:white;padding:0 0 24px}
-.hdr h1{font-size:1.5rem;color:#ffbc27;margin:0 0 6px}
-.hdr p{font-size:.85rem;opacity:.7;margin:0}
-.test-badge{display:inline-block;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);color:white;font-size:.72rem;font-weight:700;letter-spacing:.8px;padding:3px 10px;border-radius:20px;margin-bottom:10px}
-
+*, *::before, *::after { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+*:not(input):not(textarea):not(select) { -webkit-user-select: none !important; user-select: none !important; }
+body { background: #573cf9; min-height: 100vh; margin: 0; }
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+input[type=number] { -moz-appearance: textfield; }
+.nav-spacer { height: 80px; }
+.hero { text-align: center; padding: 36px 20px 16px; color: white; }
+.hero h1 { font-size: clamp(1.8rem, 5vw, 2.8rem); color: #ffbc27; margin-bottom: 10px; letter-spacing: -0.5px; }
+.hero p { font-size: clamp(0.95rem, 2.5vw, 1.15rem); opacity: 0.82; font-weight: normal; max-width: 480px; margin: 0 auto; }
+.wizard-card {
+    background: #ffbc27; border-radius: 24px;
+    max-width: 500px; width: 92%;
+    margin: 28px auto 24px;
+    padding: 30px 24px 34px;
+    box-shadow: 0 32px 80px rgba(255,188,39,0.4), 0 8px 24px rgba(0,0,0,0.2);
+    overflow: visible; position: relative;
+}
+@media (min-width: 600px) { .wizard-card { padding: 38px 42px 42px; } }
+.step-title { color: #1a1033 !important; }
+.step-sub   { color: rgba(0,0,0,0.52) !important; }
+.flabel     { color: rgba(0,0,0,0.58) !important; }
+.fhint      { color: rgba(0,0,0,0.38) !important; }
+.btn-back   { color: rgba(0,0,0,0.4) !important; }
+.btn-back:hover { color: #573cf9 !important; }
+.disclaimer { color: rgba(0,0,0,0.38) !important; }
+.r-loading p { color: rgba(0,0,0,0.45) !important; }
+.progress-dot     { background: rgba(0,0,0,0.12) !important; color: rgba(0,0,0,0.35) !important; }
+.progress-dot.active { background: #573cf9 !important; color: white !important; box-shadow: 0 0 0 5px rgba(87,60,249,0.25) !important; }
+.progress-dot.done   { background: #22c55e !important; color: white !important; }
+.progress-lbl     { color: rgba(0,0,0,0.38) !important; }
+.progress-lbl.active { color: #573cf9 !important; }
+.progress-lbl.done   { color: #22c55e !important; }
+.progress-line    { background: rgba(0,0,0,0.12) !important; }
+.loader-road      { background: repeating-linear-gradient(90deg,#573cf9 0,#573cf9 8px,rgba(0,0,0,0.1) 8px,rgba(0,0,0,0.1) 16px) !important; }
+.encourage        { background: #16a34a !important; color: white !important; }
+.bonus-banner     { background: rgba(255,255,255,0.5) !important; border-color: rgba(0,0,0,0.12) !important; color: rgba(0,0,0,0.7) !important; }
+.bonus-banner strong { color: rgba(0,0,0,0.85) !important; }
+.tip-card         { border-color: rgba(0,0,0,0.12) !important; background: rgba(255,255,255,0.55) !important; }
+.tip-card:hover   { border-color: rgba(87,60,249,0.5) !important; }
+.tip-card-wrap input:checked + .tip-card { background: white !important; border-color: #573cf9 !important; }
+.finput           { border-color: rgba(0,0,0,0.12) !important; }
+.finput:focus     { border-color: #573cf9 !important; }
+.finput.ok        { border-color: #22c55e !important; }
+.err-note         { color: rgba(0,0,0,0.5) !important; }
+.pkg-row          { background: white !important; border-color: rgba(0,0,0,0.1) !important; }
+.pkg-row.on       { background: #f4f2ff !important; border-color: #573cf9 !important; }
+.pkg-row:hover    { border-color: #c4bbff !important; }
+.pkgs-lbl         { color: rgba(0,0,0,0.5) !important; }
+.pkg-name         { color: #1a1033 !important; }
+.pkg-check        { border-color: rgba(0,0,0,0.18) !important; }
+.total-row        { color: rgba(0,0,0,0.55) !important; }
 /* Progress */
-.progress{display:flex;align-items:center;justify-content:center;gap:0;margin-bottom:28px}
-.p-step{display:flex;flex-direction:column;align-items:center;gap:4px}
-.p-dot{width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,.2);color:rgba(255,255,255,.5);font-size:.72rem;font-weight:800;display:flex;align-items:center;justify-content:center;transition:all .3s}
-.p-dot.active{background:#ffbc27;color:#1a1033;transform:scale(1.1)}
-.p-dot.done{background:#22c55e;color:white;font-size:0}
-.p-dot.done::after{content:'✓';font-size:.8rem}
-.p-lbl{font-size:.6rem;color:rgba(255,255,255,.45);font-weight:700;text-transform:uppercase;letter-spacing:.3px;white-space:nowrap;transition:color .3s}
-.p-lbl.active{color:#ffbc27}
-.p-lbl.done{color:#22c55e}
-.p-line{width:32px;height:3px;background:rgba(255,255,255,.2);margin-bottom:18px;border-radius:2px;position:relative;overflow:hidden}
-.p-line::after{content:'';position:absolute;left:0;top:0;height:100%;width:0;background:#22c55e;transition:width .4s;border-radius:2px}
-.p-line.done::after{width:100%}
-
-/* Card */
-.card{background:#ffbc27;border-radius:20px;padding:28px 24px 32px;box-shadow:0 24px 64px rgba(255,188,39,.4),0 8px 24px rgba(0,0,0,.2)}
-@media(min-width:540px){.card{padding:36px 40px 40px}}
-
+.progress-bar { display: flex; align-items: center; margin-bottom: 32px; justify-content: center; gap: 0; }
+.progress-step { display: flex; flex-direction: column; align-items: center; gap: 5px; }
+.progress-dot { width: 32px; height: 32px; border-radius: 50%; background: #ebebeb; color: #bbb; font-size: 0.78rem; font-weight: 800; display: flex; align-items: center; justify-content: center; transition: all 0.35s cubic-bezier(0.34,1.56,0.64,1); }
+.progress-dot.active { background: #573cf9; color: white; box-shadow: 0 0 0 5px rgba(87,60,249,0.2); transform: scale(1.1); }
+.progress-dot.done { background: #22c55e; color: white; font-size: 0; }
+.progress-dot.done::after { content: '✓'; font-size: 0.85rem; }
+.progress-lbl { font-size: 0.68rem; color: #bbb; font-weight: 700; text-transform: uppercase; letter-spacing: 0.4px; white-space: nowrap; transition: color 0.3s; }
+.progress-lbl.active { color: #573cf9; }
+.progress-lbl.done   { color: #22c55e; }
+.progress-line { flex: none; width: 44px; height: 3px; background: #ebebeb; margin-bottom: 18px; position: relative; overflow: hidden; border-radius: 2px; }
+.progress-line::after { content: ''; position: absolute; left: 0; top: 0; height: 100%; width: 0; background: #22c55e; transition: width 0.5s cubic-bezier(0.65,0,0.35,1); border-radius: 2px; }
+.progress-line.done::after { width: 100%; }
 /* Steps */
-.step{display:none}
-.step.active{display:block}
-
-.step-title{font-size:1.25rem;font-weight:800;color:#1a1033;margin:0 0 4px}
-.step-sub{font-size:.85rem;color:rgba(0,0,0,.5);margin:0 0 22px}
-
+.steps-wrapper { position: relative; }
+.step-panel { display: none; animation-duration: 0.32s; animation-timing-function: cubic-bezier(0.22,1,0.36,1); animation-fill-mode: both; }
+.step-panel.active { display: block; }
+.step-panel.slide-in-right { animation-name: slideInRight; }
+.step-panel.slide-in-left  { animation-name: slideInLeft; }
+@keyframes slideInRight { from { opacity:0; transform:translateX(36px); } to { opacity:1; transform:translateX(0); } }
+@keyframes slideInLeft  { from { opacity:0; transform:translateX(-36px); } to { opacity:1; transform:translateX(0); } }
+.step-title { font-size: 1.35rem; color: #111; margin-bottom: 4px; }
+.step-sub   { font-size: 0.88rem; color: #999; font-weight: normal; margin-bottom: 22px; }
 /* Fields */
-.fields{display:flex;flex-direction:column;gap:14px;margin-bottom:20px}
-.row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.flabel{font-size:.72rem;text-transform:uppercase;letter-spacing:.5px;color:rgba(0,0,0,.55);display:block;margin-bottom:5px;font-weight:700}
-.finput{width:100%;padding:12px 14px;border:2px solid rgba(0,0,0,.12);border-radius:10px;font-size:.95rem;font-family:inherit;font-weight:600;color:#573cf9;background:white;-webkit-appearance:none;transition:border-color .2s}
-.finput:focus{outline:none;border-color:#573cf9;box-shadow:0 0 0 4px rgba(87,60,249,.1)}
-.finput.err{border-color:#ef4444}
-select.finput{cursor:pointer}
-.fhint{font-size:.73rem;color:rgba(0,0,0,.4);margin-top:4px}
-
+.fields { display: flex; flex-direction: column; gap: 16px; margin-bottom: 22px; }
+.flabel { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px; color: #666; margin-bottom: 6px; display: block; }
+.finput { width: 100%; padding: 14px 16px; border: 2px solid #e5e5e5; border-radius: 12px; font-size: 1rem; font-family: inherit; font-weight: 600; color: #573cf9; -webkit-appearance: none; appearance: none; background: white; transition: border-color 0.2s, box-shadow 0.2s; box-sizing: border-box; min-height: 52px; }
+.finput:focus { outline: none; border-color: #573cf9; box-shadow: 0 0 0 4px rgba(87,60,249,0.12); }
+.finput::placeholder { font-weight: normal; color: #ccc; }
+.finput.err { border-color: #ef4444; box-shadow: 0 0 0 4px rgba(239,68,68,0.1); }
+.fhint  { font-size: 0.76rem; color: #bbb; font-weight: normal; margin-top: 5px; }
+.ferror { font-size: 0.76rem; color: #ef4444; font-weight: normal; margin-top: 5px; display: none; }
 /* Tip cards */
-.tip-cards{display:flex;gap:8px}
-.tip-wrap{flex:1}
-.tip-wrap input[type=radio]{position:absolute;opacity:0;width:0;height:0}
-.tip-card{display:flex;flex-direction:column;align-items:center;gap:3px;padding:10px 6px;border:2px solid rgba(0,0,0,.12);border-radius:10px;cursor:pointer;transition:all .2s;text-align:center;background:white}
-.tip-card .t-lbl{font-size:.78rem;font-weight:700;color:#888}
-.tip-wrap input:checked+.tip-card{border-color:#573cf9;box-shadow:0 0 0 3px rgba(87,60,249,.15)}
-.tip-wrap input:checked+.tip-card .t-lbl{color:#573cf9}
-
+.tip-cards { display: flex; gap: 8px; }
+.tip-card-wrap { flex: 1; }
+.tip-card-wrap input[type=radio] { position: absolute; opacity: 0; width: 0; height: 0; }
+.tip-card { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; padding: 12px 6px; border: 2px solid #e5e5e5; border-radius: 12px; cursor: pointer; transition: all 0.2s; text-align: center; }
+.tip-card .t-ico { display: flex; align-items: center; justify-content: center; }
+.tip-card .t-ico svg { stroke: #aaa; transition: stroke 0.2s; }
+.tip-card .t-lbl { font-size: 0.8rem; font-weight: 700; color: #888; transition: color 0.2s; }
+.tip-card-wrap input:checked + .tip-card { border-color: #573cf9; background: white; box-shadow: 0 0 0 3px rgba(87,60,249,0.15); }
+.tip-card-wrap input:checked + .tip-card .t-lbl { color: #573cf9; }
+.tip-card-wrap input:checked + .tip-card svg { stroke: #573cf9; }
 /* Buttons */
-.btn{display:block;width:100%;padding:14px;background:#573cf9;color:white;border:none;border-radius:12px;font-size:.95rem;font-family:inherit;font-weight:800;cursor:pointer;transition:opacity .15s,transform .1s}
-.btn:hover{opacity:.9}
-.btn:active{transform:scale(.98)}
-.btn:disabled{opacity:.5;cursor:not-allowed}
-.btn-back{background:none;border:none;font-size:.83rem;color:rgba(0,0,0,.4);font-family:inherit;font-weight:700;cursor:pointer;padding:0;margin-bottom:14px}
-.btn-back:hover{color:#573cf9}
-
-/* Quote results */
-.quote-result{background:white;border-radius:12px;padding:16px;margin-bottom:14px;border:2px solid rgba(87,60,249,.15)}
-.quote-provider{font-size:.72rem;font-weight:800;color:rgba(0,0,0,.4);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px}
-.quote-price{font-size:1.8rem;font-weight:900;color:#573cf9}
-.quote-price span{font-size:.85rem;font-weight:600;color:rgba(0,0,0,.4)}
-
-/* Packages */
-.pkgs-title{font-size:.72rem;font-weight:800;color:rgba(0,0,0,.45);text-transform:uppercase;letter-spacing:.5px;margin:14px 0 8px}
-.pkg-row{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border:2px solid rgba(0,0,0,.1);border-radius:10px;cursor:pointer;background:white;margin-bottom:6px;transition:all .2s}
-.pkg-row:hover{border-color:rgba(87,60,249,.4)}
-.pkg-row.on{border-color:#573cf9;background:#f4f2ff}
-.pkg-left{display:flex;align-items:center;gap:8px}
-.pkg-chk{width:18px;height:18px;border-radius:5px;border:2px solid rgba(0,0,0,.2);display:flex;align-items:center;justify-content:center;font-size:.7rem;color:transparent;transition:all .2s}
-.pkg-row.on .pkg-chk{background:#573cf9;border-color:#573cf9;color:white}
-.pkg-name{font-size:.85rem;font-weight:700;color:#1a1033}
-.pkg-price{font-size:.82rem;font-weight:700;color:#573cf9;white-space:nowrap}
-
-/* Summary */
-.summary-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid rgba(0,0,0,.08);font-size:.88rem}
-.summary-row:last-child{border-bottom:none}
-.summary-lbl{color:rgba(0,0,0,.55);font-weight:600}
-.summary-val{font-weight:800;color:#1a1033}
-.summary-total{font-size:1.1rem;color:#573cf9}
-.summary-total .summary-val{color:#573cf9;font-size:1.2rem}
-
-/* Payment box */
-.pay-box{background:rgba(87,60,249,.08);border:2px solid rgba(87,60,249,.2);border-radius:12px;padding:16px;margin-bottom:16px;text-align:center}
-.pay-box p{font-size:.82rem;color:rgba(0,0,0,.55);margin:0 0 4px}
-.pay-box .pay-amount{font-size:1.6rem;font-weight:900;color:#573cf9}
-.test-note{background:rgba(255,255,255,.6);border-radius:10px;padding:10px 14px;font-size:.78rem;color:rgba(0,0,0,.6);margin-bottom:14px;line-height:1.5}
-.test-note strong{color:#1a1033}
-
-/* Loading */
-.loader{text-align:center;padding:20px 0}
-.spinner{width:36px;height:36px;border:3px solid rgba(87,60,249,.2);border-top-color:#573cf9;border-radius:50%;animation:spin .7s linear infinite;margin:0 auto 12px}
-@keyframes spin{to{transform:rotate(360deg)}}
-.loader p{font-size:.88rem;color:rgba(0,0,0,.55);font-weight:600;margin:0}
-
-/* Success */
-.success-box{text-align:center;padding:10px 0}
-.success-icon{font-size:3rem;margin-bottom:12px}
-.success-title{font-size:1.3rem;font-weight:900;color:#16a34a;margin-bottom:8px}
-.success-sub{font-size:.88rem;color:rgba(0,0,0,.55);margin-bottom:20px;line-height:1.5}
-.police-num{font-size:1.4rem;font-weight:900;color:#573cf9;background:rgba(87,60,249,.08);border:2px solid rgba(87,60,249,.2);border-radius:10px;padding:12px;margin-bottom:16px;letter-spacing:.5px}
-.pdf-btn{display:inline-flex;align-items:center;gap:8px;padding:12px 20px;background:#16a34a;color:white;border-radius:10px;font-weight:800;font-size:.9rem;text-decoration:none;margin-bottom:8px;cursor:pointer;border:none;font-family:inherit;width:100%;justify-content:center}
-.pdf-btn:hover{opacity:.9}
-.pdf-btn.disabled{opacity:.4;cursor:not-allowed}
-.raw-toggle{font-size:.75rem;color:rgba(0,0,0,.4);background:none;border:none;cursor:pointer;padding:4px 0;font-family:inherit;margin-top:8px}
-.raw-box{background:rgba(0,0,0,.06);border-radius:8px;padding:12px;font-size:.72rem;font-family:monospace;white-space:pre-wrap;word-break:break-all;max-height:200px;overflow-y:auto;margin-top:8px;display:none;text-align:left}
-
+.btn-main { display: block; width: 100%; padding: 15px; background: #573cf9; color: white; border: none; border-radius: 12px; font-size: 1rem; font-family: inherit; font-weight: 800; cursor: pointer; text-align: center; position: relative; overflow: hidden; box-shadow: 0 5px 0 #3b20d4; transition: transform 0.08s, box-shadow 0.08s; }
+.btn-main:hover { opacity: 0.95; }
+.btn-main:active { transform: translateY(4px); box-shadow: 0 1px 0 #3b20d4; }
+.btn-main::after { content: ''; position: absolute; top: -50%; left: -75%; width: 50%; height: 200%; background: linear-gradient(90deg,transparent,rgba(255,255,255,0.22),transparent); transform: skewX(-15deg); animation: shine 2.8s infinite; }
+@keyframes shine { 0%{left:-75%;} 45%,100%{left:130%;} }
+.btn-back { background: none; border: none; color: #bbb; font-size: 0.88rem; cursor: pointer; padding: 10px 0; font-family: inherit; font-weight: 600; transition: color 0.2s; }
+.btn-back:hover { color: #573cf9; }
+.btn-stack { display: flex; flex-direction: column; gap: 8px; }
+/* Encourage */
+.encourage { background: #22c55e; border-radius: 10px; padding: 11px 14px; font-size: 0.82rem; color: white; font-weight: 700; display: flex; align-items: center; gap: 8px; }
+/* Loader */
+.r-loading { display: flex; flex-direction: column; align-items: center; gap: 16px; padding: 24px 0; text-align: center; }
+.loader-car-wrap { animation: carbounce 0.45s ease-in-out infinite alternate; }
+@keyframes carbounce { from{transform:translateY(0);} to{transform:translateY(-4px);} }
+.loader-road { width: 110px; height: 3px; border-radius: 2px; background: repeating-linear-gradient(90deg,#573cf9 0,#573cf9 8px,#e5e5e5 8px,#e5e5e5 16px); animation: roadscroll 0.4s linear infinite; }
+@keyframes roadscroll { from{background-position:0;} to{background-position:-16px;} }
+.r-loading p { color: #999; font-weight: normal; font-size: 0.92rem; }
+/* Bonus banner */
+.bonus-banner { background: linear-gradient(90deg,#fffbea,#fffbea); border: 1.5px solid #fde68a; border-radius: 10px; padding: 11px 14px; font-size: 0.84rem; color: #78350f; font-weight: normal; margin-bottom: 18px; line-height: 1.5; position: relative; overflow: hidden; }
+.bonus-banner strong { color: #92400e; font-weight: 800; }
+/* Results */
+.provider-card { background: white; border-radius: 14px; overflow: hidden; margin-bottom: 16px; box-shadow: 0 2px 18px rgba(0,0,0,0.1); }
+.provider-card-top { display: flex; align-items: center; justify-content: space-between; padding: 18px 20px; gap: 10px; }
+.provider-logo-box img { height: 52px; max-width: 170px; object-fit: contain; display: block; }
+.provider-price-col { text-align: right; flex-shrink: 0; }
+.price-num { font-size: 1.9rem; font-weight: 900; color: #573cf9; line-height: 1; font-variant-numeric: tabular-nums; }
+.price-per { font-size: 0.74rem; color: #aaa; font-weight: normal; margin-top: 3px; }
+.price-original-row { display: flex; align-items: center; gap: 8px; margin-bottom: 1px; }
+.price-original-num { font-size: 1rem; color: #b0b0b0; text-decoration: line-through; font-weight: 500; }
+.price-discount-badge { background: linear-gradient(90deg,#fff3b0,#ffe44d); color: #7a5500; font-size: 0.7rem; font-weight: 800; padding: 2px 8px; border-radius: 99px; white-space: nowrap; border: 1px solid #e6c200; }
+.price-countdown { font-size: 0.72rem; color: #dc2626; font-weight: 600; margin-top: 3px; }
+.provider-divider { height: 1px; background: #f0f0f0; }
+.included-section { padding: 12px 20px 16px; }
+.included-lbl { font-size: 0.64rem; text-transform: uppercase; letter-spacing: 0.9px; color: #bbb; font-weight: 700; margin-bottom: 9px; }
+.included-item { display: flex; align-items: center; gap: 7px; font-size: 0.88rem; color: #444; font-weight: normal; }
+.pkgs-lbl { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px; color: #aaa; margin: 18px 0 8px; }
+.pkg-row { display: flex; justify-content: space-between; align-items: center; padding: 11px 14px; border: 2px solid #e5e5e5; border-radius: 11px; margin-bottom: 7px; cursor: pointer; transition: border-color 0.2s, background 0.2s; }
+.pkg-row:hover { border-color: #c4bbff; }
+.pkg-row.on { border-color: #573cf9; background: #f4f2ff; }
+.pkg-left { display: flex; align-items: center; gap: 8px; }
+.pkg-check { width: 20px; height: 20px; border-radius: 50%; flex-shrink: 0; border: 2px solid #e5e5e5; display: flex; align-items: center; justify-content: center; transition: all 0.22s; }
+.pkg-row.on .pkg-check { background: #573cf9; border-color: #573cf9; }
+.pkg-check-icon { color: white; font-size: 0.65rem; opacity: 0; transform: scale(0); transition: all 0.22s; }
+.pkg-row.on .pkg-check-icon { opacity: 1; transform: scale(1); }
+.pkg-name { font-size: 0.88rem; color: #222; }
+.pkg-price { font-size: 0.88rem; color: #573cf9; font-weight: 800; white-space: nowrap; }
+.total-row { text-align: center; margin: 4px 0 14px; font-size: 0.82rem; color: #999; font-weight: normal; }
+.total-row strong { color: #573cf9; font-weight: 900; font-variant-numeric: tabular-nums; }
+.chips-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+.chips { display: flex; flex-wrap: wrap; gap: 5px; flex: 1; }
+.chip { background: #f4f2ff; color: #573cf9; font-size: 0.75rem; padding: 4px 11px; border-radius: 20px; font-weight: 700; animation: chippop 0.3s cubic-bezier(0.34,1.56,0.64,1) both; }
+@keyframes chippop { from{opacity:0;transform:scale(0.65);} to{opacity:1;transform:scale(1);} }
+.btn-back-top { background: none; border: 1.5px solid #e5e5e5; border-radius: 20px; color: #999; font-size: 0.78rem; font-family: inherit; font-weight: 700; cursor: pointer; padding: 4px 12px; white-space: nowrap; flex-shrink: 0; transition: border-color 0.2s, color 0.2s; margin-left: 8px; }
+.btn-back-top:hover { border-color: #573cf9; color: #573cf9; }
+/* Kupi gumb */
+.btn-kupi { display: block; width: calc(100% - 40px); margin: 0 20px 20px; padding: 14px; background: #22c55e; color: white; border: none; border-radius: 12px; font-size: 1rem; font-family: inherit; font-weight: 800; cursor: pointer; text-align: center; box-shadow: 0 5px 0 #15803d; transition: transform 0.08s, box-shadow 0.08s; }
+.btn-kupi:active { transform: translateY(4px); box-shadow: 0 1px 0 #15803d; }
 /* Error */
-.err-box{background:rgba(239,68,68,.08);border:2px solid rgba(239,68,68,.2);border-radius:12px;padding:14px;margin-bottom:14px;font-size:.85rem;color:#dc2626}
-.err-box strong{display:block;margin-bottom:4px}
+.err-box { background: #fff5f5; border-radius: 12px; padding: 18px; text-align: center; margin-bottom: 18px; }
+.err-box .ico { font-size: 1.8rem; margin-bottom: 6px; }
+.err-box p { color: #dc2626; font-size: 0.88rem; font-weight: normal; margin: 0; }
+.err-note { font-size: 0.88rem; color: #666; text-align: center; font-weight: normal; margin-bottom: 14px; line-height: 1.6; }
+.disclaimer { font-size: 0.7rem; color: #ccc; font-weight: normal; text-align: center; margin-top: 12px; line-height: 1.5; }
+/* Confetti */
+#confetti-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9999; }
 
-/* City search */
-.city-wrap{position:relative}
-.city-results{position:absolute;top:100%;left:0;right:0;background:white;border:2px solid #573cf9;border-radius:0 0 10px 10px;max-height:180px;overflow-y:auto;z-index:100;display:none}
-.city-opt{padding:9px 14px;cursor:pointer;font-size:.88rem;font-weight:600;color:#573cf9;transition:background .15s}
-.city-opt:hover{background:#f4f2ff}
+/* ── Kupi sheet (modal) ── */
+.kupi-overlay { position: absolute; top: 0; left: 0; right: 0; bottom: 0; min-height: 100%; background: rgba(0,0,0,0.45); z-index: 999; opacity: 0; pointer-events: none; transition: opacity 0.25s; }
+.kupi-overlay.show { opacity: 1; pointer-events: all; }
+.kupi-sheet { position: absolute; left: 50%; max-width: 440px; width: calc(100% - 32px); background: white; border-radius: 20px; padding: 24px 22px 22px; z-index: 1000; transform: translateX(-50%) scale(0.94); opacity: 0; pointer-events: none; transition: transform 0.2s cubic-bezier(0.34,1.3,0.64,1), opacity 0.16s; box-shadow: 0 8px 48px rgba(0,0,0,0.22); }
+.kupi-sheet.show { transform: translateX(-50%) scale(1); opacity: 1; pointer-events: all; }
+.kupi-close { position: absolute; top: 14px; right: 14px; width: 28px; height: 28px; background: #f0f0f0; border: none; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1rem; color: #888; }
+.kupi-close:hover { background: #e0e0e0; }
+.kupi-title { font-size: 0.72rem; color: #aaa; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 4px; }
+.kupi-provider { font-size: 1.1rem; font-weight: 800; color: #1c1533; margin-bottom: 18px; }
+.kupi-fields { display: flex; flex-direction: column; gap: 12px; margin-bottom: 14px; }
+.kupi-row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.kupi-label { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.5px; color: #888; display: block; margin-bottom: 5px; font-weight: 700; }
+.kupi-input { width: 100%; padding: 12px 14px; border: 1.5px solid #e5e5e5; border-radius: 10px; font-size: 0.92rem; font-family: inherit; font-weight: 600; color: #1c1533; background: #fafafa; outline: none; box-sizing: border-box; transition: border-color 0.2s; }
+.kupi-input:focus { border-color: #573cf9; background: white; }
+.kupi-input.err { border-color: #ef4444; }
+.kupi-hint { font-size: 0.72rem; color: #bbb; margin-top: 4px; }
+.kupi-submit { display: block; width: 100%; padding: 14px; background: #22c55e; color: white; border: none; border-radius: 11px; font-size: 1rem; font-family: inherit; font-weight: 800; cursor: pointer; box-shadow: 0 4px 0 #15803d; transition: transform 0.08s, box-shadow 0.08s; }
+.kupi-submit:active { transform: translateY(3px); box-shadow: 0 1px 0 #15803d; }
+.kupi-submit:disabled { opacity: 0.5; cursor: not-allowed; }
+.kupi-loading { text-align: center; padding: 16px 0; }
+.kupi-spinner { width: 32px; height: 32px; border: 3px solid rgba(87,60,249,.15); border-top-color: #573cf9; border-radius: 50%; animation: spin .7s linear infinite; margin: 0 auto 10px; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.kupi-loading p { font-size: 0.85rem; color: #888; margin: 0; font-weight: 600; }
+.kupi-err { background: #fef2f2; border: 1px solid #fecaca; border-radius: 10px; padding: 10px 14px; font-size: 0.82rem; color: #dc2626; margin-bottom: 12px; display: none; }
+.kupi-city-wrap { position: relative; }
+.kupi-city-results { position: absolute; top: 100%; left: 0; right: 0; background: white; border: 1.5px solid #573cf9; border-top: none; border-radius: 0 0 10px 10px; max-height: 160px; overflow-y: auto; z-index: 100; display: none; box-shadow: 0 8px 20px rgba(0,0,0,.1); }
+.kupi-city-opt { padding: 9px 14px; cursor: pointer; font-size: 0.85rem; font-weight: 600; color: #573cf9; }
+.kupi-city-opt:hover { background: #f4f2ff; }
+
+/* ── Polica (success) ── */
+.polica-box { text-align: center; padding: 8px 0; }
+.polica-icon { font-size: 2.8rem; margin-bottom: 10px; }
+.polica-title { font-size: 1.2rem; font-weight: 900; color: #16a34a; margin-bottom: 6px; }
+.polica-sub { font-size: 0.85rem; color: rgba(0,0,0,.5); margin-bottom: 18px; line-height: 1.5; }
+.polica-num { font-size: 1.3rem; font-weight: 900; color: #573cf9; background: rgba(87,60,249,.07); border: 2px solid rgba(87,60,249,.2); border-radius: 10px; padding: 12px; margin-bottom: 14px; }
+.btn-pdf { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 13px; background: #16a34a; color: white; border: none; border-radius: 11px; font-size: 0.92rem; font-family: inherit; font-weight: 800; cursor: pointer; margin-bottom: 8px; box-shadow: 0 4px 0 #166534; }
+.btn-pdf:disabled { opacity: .4; cursor: not-allowed; box-shadow: none; }
+.btn-pdf-zk { background: #6b7280; box-shadow: 0 4px 0 #4b5563; }
+.raw-toggle { font-size: .73rem; color: rgba(0,0,0,.35); background: none; border: none; cursor: pointer; padding: 4px 0; font-family: inherit; margin-top: 6px; }
+.raw-box { background: rgba(0,0,0,.06); border-radius: 8px; padding: 10px; font-size: .68rem; font-family: monospace; white-space: pre-wrap; word-break: break-all; max-height: 180px; overflow-y: auto; margin-top: 8px; display: none; text-align: left; }
+.test-badge { display: inline-block; background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.25); color: white; font-size: .7rem; font-weight: 700; letter-spacing: .8px; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; }
 </style>
 </head>
-<body>
-<div class="wrap">
+<body style="position:relative">
+<canvas id="confetti-canvas"></canvas>
+{% include nav.html %}
+<div class="nav-spacer"></div>
 
-  <div class="hdr">
-    <div class="test-badge">TEST OKRUŽENJE</div>
-    <h1>Generali — Test ugovaranja</h1>
-    <p>End-to-end test: GetQuote → GenPolicy → SetPaymentStatus</p>
-  </div>
+<div class="hero">
+  <div class="test-badge">TEST OKRUŽENJE</div>
+  <h1>Koliko plaćate<br>auto osiguranje?</h1>
+  <p>Besplatan izračun u sekundi — ugovorite odmah online.</p>
+</div>
+
+<div class="wizard-card selectable" id="wizard">
 
   <!-- Progress bar -->
-  <div class="progress" id="progress">
-    <div class="p-step"><div class="p-dot active" id="d1">1</div><div class="p-lbl active" id="l1">Vozilo</div></div>
-    <div class="p-line" id="ln1"></div>
-    <div class="p-step"><div class="p-dot" id="d2">2</div><div class="p-lbl" id="l2">Vozač</div></div>
-    <div class="p-line" id="ln2"></div>
-    <div class="p-step"><div class="p-dot" id="d3">3</div><div class="p-lbl" id="l3">Cijena</div></div>
-    <div class="p-line" id="ln3"></div>
-    <div class="p-step"><div class="p-dot" id="d4">4</div><div class="p-lbl" id="l4">Podaci</div></div>
-    <div class="p-line" id="ln4"></div>
-    <div class="p-step"><div class="p-dot" id="d5">5</div><div class="p-lbl" id="l5">Plaćanje</div></div>
-    <div class="p-line" id="ln5"></div>
-    <div class="p-step"><div class="p-dot" id="d6">6</div><div class="p-lbl" id="l6">Polica</div></div>
+  <div class="progress-bar">
+    <div class="progress-step">
+      <div class="progress-dot active" id="d1">1</div>
+      <div class="progress-lbl active" id="l1">Vozilo</div>
+    </div>
+    <div class="progress-line" id="ln1"></div>
+    <div class="progress-step">
+      <div class="progress-dot" id="d2">2</div>
+      <div class="progress-lbl" id="l2">Vozač</div>
+    </div>
+    <div class="progress-line" id="ln2"></div>
+    <div class="progress-step">
+      <div class="progress-dot" id="d3">3</div>
+      <div class="progress-lbl" id="l3">Rezultati</div>
+    </div>
   </div>
 
-  <div class="card">
+  <div class="steps-wrapper">
 
-    <!-- STEP 1: Vozilo -->
-    <div class="step active" id="s1">
-      <h2 class="step-title">Podaci o vozilu</h2>
-      <p class="step-sub">Registracija, snaga i godina vozila</p>
-      <div class="fields">
-        <div>
-          <label class="flabel">Registracija *</label>
-          <input class="finput" id="v-reg" placeholder="npr. ZG123AB" maxlength="10">
-          <div class="fhint">Koristi se za određivanje zone</div>
-        </div>
-        <div class="row2">
-          <div>
-            <label class="flabel">Snaga motora (kW) *</label>
-            <input class="finput" id="v-kw" type="number" min="10" max="500" placeholder="85">
-          </div>
-          <div>
-            <label class="flabel">God. proizvodnje</label>
-            <input class="finput" id="v-yr" type="number" min="1990" max="2026" placeholder="2020">
-          </div>
-        </div>
+  <!-- STEP 1: Vozilo -->
+  <div class="step-panel active" id="s1">
+    <div class="fields">
+      <div>
+        <label class="flabel" for="reg">Registracijska oznaka</label>
+        <input class="finput" id="reg" type="text" placeholder="ZG1234AB" maxlength="10"
+               autocomplete="off" autocapitalize="characters" spellcheck="false">
+        <div class="ferror" id="e-reg">Unesite registracijsku oznaku.</div>
       </div>
-      <button class="btn" onclick="goStep2()">Dalje →</button>
     </div>
+    <div class="btn-stack">
+      <button class="btn-main" onclick="next1()" type="button">Usporedi cijene!</button>
+    </div>
+  </div>
 
-    <!-- STEP 2: Vozač -->
-    <div class="step" id="s2">
-      <button class="btn-back" onclick="goTo(1)">← Natrag</button>
-      <h2 class="step-title">Podaci o vozaču</h2>
-      <p class="step-sub">Potrebno za izračun premijskog stupnja</p>
-      <div class="fields">
-        <div>
-          <label class="flabel">Tip stranke *</label>
-          <div class="tip-cards">
-            <label class="tip-wrap">
-              <input type="radio" name="tip" value="F" checked>
-              <div class="tip-card"><div class="t-lbl">Fizička osoba</div></div>
+  <!-- STEP 2: Vozač -->
+  <div class="step-panel" id="s2">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
+      <h2 class="step-title" style="margin-bottom:0">Podaci o vozaču</h2>
+      <button class="btn-back-top" onclick="go(1,'back')" type="button">← Natrag</button>
+    </div>
+    <p class="step-sub">Još 3 podatka i odmah vidite cijenu.</p>
+    <div class="bonus-banner">
+      🎁 <strong>Paket dobrodošlice −20€!</strong> Kao novi korisnik automatski ostvaruješ popust od 20€ — vidjet ćeš ga odmah na cijeni.
+    </div>
+    <div class="fields">
+      <div>
+        <label class="flabel">Tip osobe</label>
+        <div class="tip-cards">
+          <div class="tip-card-wrap">
+            <input type="radio" name="tip" id="tip-f" value="F" checked>
+            <label class="tip-card" for="tip-f">
+              <span class="t-ico" style="font-size:26px;line-height:1">🧑</span>
+              <span class="t-lbl">Fizička osoba</span>
             </label>
-            <label class="tip-wrap">
-              <input type="radio" name="tip" value="P">
-              <div class="tip-card"><div class="t-lbl">Pravna osoba</div></div>
-            </label>
-            <label class="tip-wrap">
-              <input type="radio" name="tip" value="O">
-              <div class="tip-card"><div class="t-lbl">Obrt</div></div>
+          </div>
+          <div class="tip-card-wrap">
+            <input type="radio" name="tip" id="tip-p" value="P">
+            <label class="tip-card" for="tip-p">
+              <span class="t-ico" style="font-size:26px;line-height:1">🏢</span>
+              <span class="t-lbl">Pravna osoba</span>
             </label>
           </div>
         </div>
-        <div id="dob-field">
-          <label class="flabel">Godina rođenja *</label>
-          <input class="finput" id="v-dob" type="number" min="1920" max="2008" placeholder="1985">
-        </div>
-        <div>
-          <label class="flabel">OIB (za premijski stupanj)</label>
-          <input class="finput" id="v-oib" placeholder="12345678901" maxlength="11">
-          <div class="fhint">Nije obavezno — bez OIB-a koristi se PS 10</div>
-        </div>
       </div>
-      <button class="btn" onclick="goStep3()">Dohvati cijenu →</button>
-    </div>
-
-    <!-- STEP 3: Cijena -->
-    <div class="step" id="s3">
-      <button class="btn-back" onclick="goTo(2)">← Izmijeni</button>
-      <div id="s3-load" class="loader">
-        <div class="spinner"></div>
-        <p>Dohvaćam cijenu od Generalija...</p>
+      <div>
+        <label class="flabel" for="kw">Snaga motora (kW)</label>
+        <input class="finput" id="kw" type="number" placeholder="85" min="1" max="2000" inputmode="numeric">
+        <div class="fhint">Prometna dozvola — redak P.2.</div>
+        <div class="ferror" id="e-kw">Unesite snagu motora u kW.</div>
       </div>
-      <div id="s3-ok" style="display:none">
-        <h2 class="step-title">Vaša cijena</h2>
-        <p class="step-sub">Odaberite pakete i nastavite</p>
-        <div class="quote-result">
-          <div class="quote-provider">AS Direct (Generali)</div>
-          <div class="quote-price" id="q-price">— <span>€ / god</span></div>
-          <div style="font-size:.75rem;color:rgba(0,0,0,.4);margin-top:4px" id="q-ps"></div>
-        </div>
-        <div class="pkgs-title">Dodaci (opcionalno)</div>
-        <div id="pkg-list"></div>
-        <button class="btn" style="margin-top:16px" onclick="goStep4()">Ugovoriti →</button>
+      <div id="dob-row">
+        <label class="flabel" for="dob">Datum rođenja</label>
+        <input class="finput" id="dob" type="text" inputmode="numeric" placeholder="DD.MM.GGGG" maxlength="10" autocomplete="bday">
+        <div class="ferror" id="e-dob">Unesite vaš datum rođenja.</div>
       </div>
-      <div id="s3-err" style="display:none">
-        <div class="err-box"><strong>Greška</strong><span id="s3-err-msg"></span></div>
-        <button class="btn" onclick="goStep3()">Pokušaj ponovo</button>
+      <div>
+        <label class="flabel" for="oib">OIB</label>
+        <input class="finput" id="oib" type="text" placeholder="12345678901" maxlength="11" inputmode="numeric" autocomplete="off">
+        <div class="fhint">Dohvaćamo vaš premijski stupanj iz registra osiguranja.</div>
+        <div class="ferror" id="e-oib">Unesite OIB (11 znamenki).</div>
+      </div>
+      <div class="encourage">
+        <span>🎯</span><span>Gotovo! Još malo pa vidite vašu cijenu.</span>
       </div>
     </div>
+    <div class="btn-stack">
+      <button class="btn-main" onclick="fetch_quote()" type="button">Saznaj cijenu →</button>
+    </div>
+  </div>
 
-    <!-- STEP 4: Osobni podaci -->
-    <div class="step" id="s4">
-      <button class="btn-back" onclick="goTo(3)">← Natrag</button>
-      <h2 class="step-title">Podaci ugovaratelja</h2>
-      <p class="step-sub">Osobni podaci za kreiranje police</p>
-      <div class="fields">
-        <div class="row2">
-          <div>
-            <label class="flabel">Ime *</label>
-            <input class="finput" id="p-ime" placeholder="Ivan">
+  <!-- STEP 3: Rezultati -->
+  <div class="step-panel" id="s3">
+    <div class="chips-row">
+      <div class="chips" id="chips"></div>
+      <button class="btn-back-top" onclick="go(2,'back')" type="button">← Izmijeni</button>
+    </div>
+
+    <div id="r-load" class="r-loading">
+      <div class="loader-car-wrap">
+        <svg width="80" height="44" viewBox="0 0 80 44" fill="none">
+          <rect x="5" y="14" width="70" height="22" rx="5" fill="#573cf9"/>
+          <path d="M18 14L27 4H53L62 14" fill="#7b62ff"/>
+          <rect x="29" y="5" width="9" height="9" rx="2" fill="#b8acff" opacity="0.85"/>
+          <rect x="42" y="5" width="9" height="9" rx="2" fill="#b8acff" opacity="0.85"/>
+          <circle cx="22" cy="36" r="7" fill="#1c1533" stroke="#7b62ff" stroke-width="2"/>
+          <circle cx="22" cy="36" r="3" fill="#7b62ff"/>
+          <circle cx="58" cy="36" r="7" fill="#1c1533" stroke="#7b62ff" stroke-width="2"/>
+          <circle cx="58" cy="36" r="3" fill="#7b62ff"/>
+          <rect x="6" y="20" width="9" height="5" rx="2" fill="#ffbc27" opacity="0.9"/>
+          <rect x="65" y="20" width="9" height="5" rx="2" fill="#ff6b6b" opacity="0.9"/>
+        </svg>
+      </div>
+      <div class="loader-road"></div>
+      <p id="loader-msg">Računam vašu cijenu...</p>
+    </div>
+
+    <div id="r-ok" style="display:none">
+      <!-- Generali card -->
+      <div class="provider-card" id="generali-card">
+        <div class="provider-card-top">
+          <div class="provider-logo-box">
+            <img src="/img/asdirect-logo.svg" alt="AS Direct / Generali"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+            <span style="display:none;font-size:1.1rem;font-weight:900;color:#cc0000">Generali</span>
           </div>
-          <div>
-            <label class="flabel">Prezime *</label>
-            <input class="finput" id="p-prezime" placeholder="Horvat">
-          </div>
-        </div>
-        <div>
-          <label class="flabel">OIB *</label>
-          <input class="finput" id="p-oib" placeholder="12345678901" maxlength="11">
-        </div>
-        <div class="row2">
-          <div>
-            <label class="flabel">Datum rođenja *</label>
-            <input class="finput" id="p-dob" type="date" placeholder="1985-01-01">
-          </div>
-          <div>
-            <label class="flabel">Spol</label>
-            <select class="finput" id="p-spol">
-              <option value="M">Muški</option>
-              <option value="Z">Ženski</option>
-            </select>
-          </div>
-        </div>
-        <div>
-          <label class="flabel">Broj šasije (VIN) *</label>
-          <input class="finput" id="v-vin" placeholder="npr. WBA3A5C50CF256985" maxlength="17" style="text-transform:uppercase" oninput="decodeVin(this.value)">
-          <div class="fhint">17 znakova — prometna dozvola, rubrika E</div>
-        </div>
-        <input type="hidden" id="v-brand">
-        <div>
-          <label class="flabel">Ulica *</label>
-          <input class="finput" id="p-ulica" placeholder="Ilica">
-        </div>
-        <div class="row2">
-          <div>
-            <label class="flabel">Kućni broj *</label>
-            <input class="finput" id="p-kbr" placeholder="1">
-          </div>
-          <div>
-            <label class="flabel">Grad *</label>
-            <div class="city-wrap">
-              <input class="finput" id="p-mjesto-search" placeholder="Pretraži grad..." autocomplete="off" oninput="filterMjesta()" onfocus="showMjesta()" onblur="hideMjesta()">
-              <input type="hidden" id="p-mjesto">
-              <div class="city-results" id="city-results"></div>
+          <div class="provider-price-col">
+            <div class="price-original-row" id="ao-orig-row" style="display:none">
+              <span class="price-original-num" id="ao-orig-num"></span>
+              <span class="price-discount-badge">🎁 −20€ online popust</span>
             </div>
+            <div class="price-num" id="ao-num">—</div>
+            <div class="price-per">/ godišnje s PDV-om</div>
+            <div class="price-countdown" id="ao-countdown"></div>
           </div>
         </div>
-        <div>
-          <label class="flabel">Mobitel *</label>
-          <input class="finput" id="p-mob" type="tel" placeholder="091 234 5678">
+        <div class="provider-divider"></div>
+        <div class="included-section">
+          <div class="included-lbl">Uključeno u cijenu</div>
+          <div class="included-item">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#573cf9" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            <span>Obvezno auto osiguranje</span>
+          </div>
         </div>
-        <div>
-          <label class="flabel">Email *</label>
-          <input class="finput" id="p-email" type="email" placeholder="ivan@primjer.hr">
+        <div style="padding: 0 20px 4px" id="pkg-wrap">
+          <div class="pkgs-lbl">Dodajte po želji</div>
+          <div id="pkg-list"></div>
+          <div class="total-row" id="total-row" style="display:none">Ukupno: <strong id="total-num"></strong> / god</div>
         </div>
-        <div>
-          <label class="flabel">Marketinška suglasnost</label>
-          <select class="finput" id="p-mkt">
-            <option value="N">Ne</option>
-            <option value="D">Da</option>
-          </select>
-        </div>
+        <button class="btn-kupi" onclick="openKupi(this)" type="button">Kupi odmah →</button>
       </div>
-      <button class="btn" onclick="goStep5()">Pregled narudžbe →</button>
+
+      <p class="disclaimer">Posrednik: Maksi Miro d.o.o. · Test okruženje</p>
     </div>
 
-    <!-- STEP 5: Plaćanje -->
-    <div class="step" id="s5">
-      <button class="btn-back" onclick="goTo(4)">← Izmijeni podatke</button>
-      <h2 class="step-title">Pregled i plaćanje</h2>
-      <p class="step-sub">Provjerite detalje i potvrdite</p>
-      <div id="s5-summary"></div>
-      <div class="test-note">
-        <strong>TEST OKRUŽENJE</strong> — Ovo je simulacija plaćanja. Klikom na gumb neće biti stvarnog naplaćivanja — direktno se poziva SetPaymentStatus(paid: true).
+    <div id="r-err" style="display:none">
+      <div class="err-box">
+        <div class="ico">⚠️</div>
+        <p id="err-msg">Cijena trenutno nije dostupna online.</p>
       </div>
-      <div id="s5-err" style="display:none;margin-bottom:12px"></div>
-      <div id="s5-load" class="loader" style="display:none">
-        <div class="spinner"></div>
-        <p id="s5-load-msg">Kreiram policu...</p>
-      </div>
-      <button class="btn" id="s5-btn" onclick="doGenPolicy()">Simuliraj plaćanje i ugovori →</button>
+      <p class="err-note">Naš agent javit će vam se s ponudom u najkraćem mogućem roku.</p>
     </div>
+  </div>
 
-    <!-- STEP 6: Polica -->
-    <div class="step" id="s6">
-      <div class="success-box">
-        <div class="success-icon">🎉</div>
-        <div class="success-title">Polica kreirana!</div>
-        <div class="success-sub" id="s6-sub">Vaša polica auto osiguranja je uspješno ugovorena.</div>
-        <div class="police-num" id="s6-police">—</div>
-        <button class="pdf-btn" id="s6-pdf" onclick="downloadPdf('polica')">
-          📄 Preuzmi policu (PDF)
-        </button>
-        <button class="pdf-btn disabled" id="s6-zk" onclick="downloadPdf('zk')" style="background:#6b7280;margin-top:6px">
-          📋 Zelena karta (PDF)
-        </button>
-        <button class="raw-toggle" onclick="toggleRaw()">Prikaži raw API odgovor</button>
-        <pre class="raw-box" id="s6-raw"></pre>
+  <!-- STEP 4: Polica (success) -->
+  <div class="step-panel" id="s4">
+    <div class="polica-box">
+      <div class="polica-icon">🎉</div>
+      <div class="polica-title">Polica kreirana!</div>
+      <div class="polica-sub" id="s4-sub">Vaša polica auto osiguranja je uspješno ugovorena.</div>
+      <div class="polica-num" id="s4-police">—</div>
+      <button class="btn-pdf" id="s4-pdf" onclick="downloadPdf('polica')" disabled>
+        📄 Preuzmi policu (PDF)
+      </button>
+      <button class="btn-pdf btn-pdf-zk" id="s4-zk" onclick="downloadPdf('zk')" disabled>
+        📋 Zelena karta (PDF)
+      </button>
+      <button class="raw-toggle" onclick="document.getElementById('s4-raw').style.display=document.getElementById('s4-raw').style.display==='none'?'block':'none'">Prikaži raw odgovor</button>
+      <pre class="raw-box" id="s4-raw"></pre>
+    </div>
+  </div>
+
+  </div><!-- /steps-wrapper -->
+</div><!-- /wizard-card -->
+
+<!-- Kupi overlay + sheet -->
+<div class="kupi-overlay" id="kupi-overlay" onclick="closeKupi()"></div>
+<div class="kupi-sheet" id="kupi-sheet">
+  <button class="kupi-close" onclick="closeKupi()" type="button">✕</button>
+  <div class="kupi-title">Generali — ugovaranje</div>
+  <div class="kupi-provider" id="kupi-price-lbl"></div>
+
+  <div id="kupi-form-wrap">
+    <div class="kupi-err" id="kupi-err"></div>
+    <div class="kupi-fields">
+      <div class="kupi-row2">
+        <div>
+          <label class="kupi-label">Ime *</label>
+          <input class="kupi-input" id="k-ime" placeholder="Ivan">
+        </div>
+        <div>
+          <label class="kupi-label">Prezime *</label>
+          <input class="kupi-input" id="k-prezime" placeholder="Horvat">
+        </div>
+      </div>
+      <div class="kupi-row2">
+        <div>
+          <label class="kupi-label">OIB *</label>
+          <input class="kupi-input" id="k-oib" placeholder="12345678901" maxlength="11" inputmode="numeric">
+        </div>
+        <div>
+          <label class="kupi-label">Datum rođenja *</label>
+          <input class="kupi-input" id="k-dob" type="date">
+        </div>
+      </div>
+      <div class="kupi-row2">
+        <div>
+          <label class="kupi-label">Ulica *</label>
+          <input class="kupi-input" id="k-ulica" placeholder="Ilica">
+        </div>
+        <div>
+          <label class="kupi-label">Kućni broj *</label>
+          <input class="kupi-input" id="k-kbr" placeholder="1">
+        </div>
+      </div>
+      <div>
+        <label class="kupi-label">Grad *</label>
+        <div class="kupi-city-wrap">
+          <input class="kupi-input" id="k-grad-search" placeholder="Pretraži grad..." autocomplete="off" oninput="filterGrad()" onfocus="showGrad()" onblur="hideGrad()">
+          <input type="hidden" id="k-grad">
+          <div class="kupi-city-results" id="kupi-city-results"></div>
+        </div>
+      </div>
+      <div>
+        <label class="kupi-label">Mobitel *</label>
+        <input class="kupi-input" id="k-mob" type="tel" placeholder="091 234 5678">
+      </div>
+      <div>
+        <label class="kupi-label">Email *</label>
+        <input class="kupi-input" id="k-email" type="email" placeholder="ivan@primjer.hr">
+      </div>
+      <div>
+        <label class="kupi-label">Broj šasije (VIN) *</label>
+        <input class="kupi-input" id="k-vin" placeholder="WBA3A5C50CF256985" maxlength="17"
+               style="text-transform:uppercase" oninput="decodeVin(this.value)">
+        <input type="hidden" id="k-brand">
+        <div class="kupi-hint">17 znakova — prometna dozvola, rubrika E</div>
       </div>
     </div>
+    <button class="kupi-submit" id="kupi-submit" onclick="doKupi()" type="button">
+      Simuliraj plaćanje i ugovori →
+    </button>
+    <div style="font-size:.72rem;color:#bbb;text-align:center;margin-top:10px">
+      TEST okruženje — bez stvarnog naplaćivanja
+    </div>
+  </div>
 
-  </div><!-- /card -->
-</div><!-- /wrap -->
+  <div class="kupi-loading" id="kupi-loading" style="display:none">
+    <div class="kupi-spinner"></div>
+    <p id="kupi-load-msg">Kreiram policu...</p>
+  </div>
+</div>
 
 <script>
 var WORKER = 'https://osiguraj-proxy.osiguraj1.workers.dev';
-
-var S = {};          // vozilo + vozac state
-var quoteData = {};  // GetQuote response
-var mjesta = [];     // GetMjesta cache
+var S = {};
+var quoteData = {};
 var selectedPkgs = {};
-var genPolicyResp = null;
-var setPmtResp = null;
+var mjesta = [];
+var setPmtResp = null, genPolicyResp = null;
 
 // ── Helpers ──────────────────────────────────────────────────────────────────
-
-function val(id){ return document.getElementById(id).value.trim(); }
+function v(id){ return document.getElementById(id).value.trim(); }
 function el(id){ return document.getElementById(id); }
 
-function showErr(boxId, msg){
-  var b = el(boxId);
-  b.innerHTML = '<div class="err-box"><strong>Greška</strong>' + msg + '</div>';
-  b.style.display = 'block';
-}
-
-function goTo(n) {
-  document.querySelectorAll('.step').forEach(function(s){ s.classList.remove('active'); });
-  el('s'+n).classList.add('active');
-  for(var i=1;i<=6;i++){
-    var dot = el('d'+i), lbl = el('l'+i);
-    dot.className = 'p-dot' + (i<n?' done':i===n?' active':'');
-    lbl.className = 'p-lbl'  + (i<n?' done':i===n?' active':'');
-    if(i<6) el('ln'+i).className = 'p-line'+(i<n?' done':'');
+function go(n, dir) {
+  var panels = document.querySelectorAll('.step-panel');
+  var cur = document.querySelector('.step-panel.active');
+  var nxt = el('s'+n);
+  if (!nxt || nxt === cur) return;
+  var anim = dir === 'back' ? 'slide-in-left' : 'slide-in-right';
+  if (cur) cur.classList.remove('active');
+  nxt.classList.add('active', anim);
+  nxt.addEventListener('animationend', function h(){ nxt.classList.remove(anim); nxt.removeEventListener('animationend',h); });
+  for (var i=1; i<=4; i++) {
+    el('d'+i) && (el('d'+i).className = 'progress-dot'+(i<n?' done':i===n?' active':''));
+    el('l'+i) && (el('l'+i).className = 'progress-lbl'+(i<n?' done':i===n?' active':''));
+    if (i<4) el('ln'+i) && (el('ln'+i).className = 'progress-line'+(i<n?' done':''));
   }
   window.scrollTo({top:0, behavior:'smooth'});
 }
 
-// ── Step 1 → 2 ───────────────────────────────────────────────────────────────
-
-function goStep2(){
-  var reg = val('v-reg'), kw = val('v-kw');
-  if(!reg){ el('v-reg').classList.add('err'); el('v-reg').focus(); return; }
-  if(!kw){  el('v-kw').classList.add('err');  el('v-kw').focus();  return; }
-  el('v-reg').classList.remove('err');
-  el('v-kw').classList.remove('err');
-  S.reg = reg;
-  S.kw  = Number(kw);
-  S.yr  = val('v-yr') ? Number(val('v-yr')) : null;
-  goTo(2);
+// ── Step 1 ───────────────────────────────────────────────────────────────────
+function next1() {
+  var reg = v('reg');
+  if (!reg) { el('reg').classList.add('err'); el('e-reg').style.display='block'; el('reg').focus(); return; }
+  el('reg').classList.remove('err'); el('e-reg').style.display='none';
+  S.reg = reg.toUpperCase();
+  go(2);
 }
+el('reg').addEventListener('keydown', function(e){ if(e.key==='Enter') next1(); });
 
+// Tip osobe toggle
 document.querySelectorAll('input[name=tip]').forEach(function(r){
   r.addEventListener('change', function(){
-    el('dob-field').style.display = this.value === 'F' ? 'block' : 'none';
+    el('dob-row').style.display = this.value==='F' ? 'block' : 'none';
   });
 });
 
-// ── Step 2 → 3 (GetQuote) ────────────────────────────────────────────────────
+// DD.MM.GGGG auto-format
+el('dob').addEventListener('input', function(){
+  var v = this.value.replace(/\D/g,'');
+  if (v.length>=3) v = v.slice(0,2)+'.'+v.slice(2);
+  if (v.length>=6) v = v.slice(0,5)+'.'+v.slice(5);
+  this.value = v.slice(0,10);
+});
 
-function goStep3(){
+// ── Step 2 → Quote ───────────────────────────────────────────────────────────
+function fetch_quote() {
+  var kw = v('kw');
+  var dobRaw = v('dob');
   var tip = document.querySelector('input[name=tip]:checked').value;
-  var dob = val('v-dob');
-  if(tip === 'F' && !dob){ el('v-dob').classList.add('err'); el('v-dob').focus(); return; }
-  el('v-dob').classList.remove('err');
+
+  if (!kw) { el('kw').classList.add('err'); el('e-kw').style.display='block'; el('kw').focus(); return; }
+  el('kw').classList.remove('err'); el('e-kw').style.display='none';
+
+  var dobYear = null;
+  if (tip === 'F') {
+    if (!dobRaw || dobRaw.length < 10) { el('dob').classList.add('err'); el('e-dob').style.display='block'; el('dob').focus(); return; }
+    var parts = dobRaw.split('.');
+    dobYear = parseInt(parts[2]);
+    if (!dobYear || dobYear < 1920 || dobYear > 2008) { el('dob').classList.add('err'); el('e-dob').style.display='block'; el('dob').focus(); return; }
+  }
+  el('dob').classList.remove('err'); el('e-dob').style.display='none';
+
+  S.kw  = Number(kw);
   S.tip = tip;
-  S.dob = dob ? Number(dob) : null;
-  S.oib = val('v-oib');
-  goTo(3);
-  el('s3-load').style.display = 'block';
-  el('s3-ok').style.display   = 'none';
-  el('s3-err').style.display  = 'none';
-  fetchQuote();
-  if(!mjesta.length) fetchMjesta();
-}
+  S.dob = dobYear;
+  S.dobFull = dobRaw; // DD.MM.GGGG za kasniji prikaz
+  S.oib = v('oib');
 
-function fetchQuote(){
-  fetch(WORKER, {
-    method:'POST',
-    headers:{'Content-Type':'application/json'},
-    body: JSON.stringify({
-      registracija:      S.reg,
-      snagaMotora:       S.kw,
-      godinaRodjenja:    S.dob,
-      tipStranke:        S.tip,
-      godinaProizvodnje: S.yr,
-      oib:               S.oib || undefined
-    })
-  })
-  .then(function(r){ return r.json(); })
-  .then(function(d){
-    el('s3-load').style.display = 'none';
-    if(!d.ao_cijena_s_porezom || d.ao_cijena_s_porezom <= 0){
-      el('s3-err-msg').textContent = d.error || 'Cijena nije dostupna.';
-      el('s3-err').style.display = 'block';
-      return;
-    }
-    quoteData = d;
-    renderQuote(d);
-    el('s3-ok').style.display = 'block';
-  })
-  .catch(function(e){
-    el('s3-load').style.display = 'none';
-    el('s3-err-msg').textContent = 'Greška pri komunikaciji: ' + e.message;
-    el('s3-err').style.display = 'block';
-  });
-}
+  var chips = [S.reg, S.kw+' kW'];
+  if (tip==='F') chips.push(dobYear+'. god.');
+  else chips.push('Pravna osoba');
+  el('chips').innerHTML = chips.map(function(c,i){
+    return '<span class="chip" style="animation-delay:'+(i*0.07)+'s">'+c+'</span>';
+  }).join('');
 
-function renderQuote(d){
-  el('q-price').innerHTML = d.ao_cijena_s_porezom.toFixed(2).replace('.',',') + ' <span>€ / god s PDV-om</span>';
-  el('q-ps').textContent = 'Premijski stupanj AO: ' + (d.ps_ao || '—') + (d.ps_lookup==='huomtr' ? ' (iz HUOMTR)' : ' (default)');
   selectedPkgs = {};
-  var pkgs = d.paketi || [], html = '';
-  pkgs.forEach(function(p, i){
-    var price = (Number(p.premijaBezPoreza||0) * 1.10).toFixed(2);
-    html += '<div class="pkg-row" id="pkg'+i+'" data-code="'+p.code+'" data-price="'+price+'" onclick="togglePkg(this,'+i+')">'
-      +'<div class="pkg-left"><div class="pkg-chk">✓</div>'
-      +'<span class="pkg-name">'+(p.nazivPaketa||p.code)+'</span></div>'
-      +'<span class="pkg-price">+ '+Number(price).toFixed(2).replace('.',',')+'€/god</span></div>';
-  });
-  el('pkg-list').innerHTML = html || '<p style="font-size:.82rem;color:rgba(0,0,0,.4);margin:0">Nema dostupnih paketa</p>';
-}
+  go(3);
+  el('r-load').style.display = 'flex';
+  el('r-ok').style.display   = 'none';
+  el('r-err').style.display  = 'none';
 
-function togglePkg(row, i){
-  var on = row.classList.toggle('on');
-  var code = row.dataset.code;
-  var price = Number(row.dataset.price);
-  if(on) selectedPkgs[code] = price; else delete selectedPkgs[code];
-  var total = quoteData.ao_cijena_s_porezom;
-  Object.values(selectedPkgs).forEach(function(p){ total += p; });
-  el('q-price').innerHTML = total.toFixed(2).replace('.',',') + ' <span>€ / god s PDV-om</span>';
-}
-
-// ── GetMjesta (za dropdown) ───────────────────────────────────────────────────
-
-function fetchMjesta(){
-  fetch(WORKER+'/get-mjesta')
-  .then(function(r){ return r.json(); })
-  .then(function(d){ mjesta = Array.isArray(d) ? d : (d.mjesta || []); })
-  .catch(function(){});
-}
-
-function filterMjesta(){
-  var q = el('p-mjesto-search').value.toLowerCase();
-  if(q.length < 2){ el('city-results').style.display = 'none'; return; }
-  var res = mjesta.filter(function(m){ return (m.naziv||'').toLowerCase().includes(q); }).slice(0,12);
-  if(!res.length){ el('city-results').style.display = 'none'; return; }
-  el('city-results').innerHTML = res.map(function(m){
-    return '<div class="city-opt" onmousedown="selectMjesto(\''+m.mjesto+'\',\''+m.naziv+'\')">'+m.naziv+' ('+m.mjesto+')</div>';
-  }).join('');
-  el('city-results').style.display = 'block';
-}
-
-function showMjesta(){ if(el('p-mjesto-search').value.length >= 2) filterMjesta(); }
-function hideMjesta(){ setTimeout(function(){ el('city-results').style.display='none'; }, 150); }
-
-function selectMjesto(id, naziv){
-  el('p-mjesto').value = id;
-  el('p-mjesto-search').value = naziv + ' (' + id + ')';
-  el('city-results').style.display = 'none';
-}
-
-// ── Step 3 → 4 ───────────────────────────────────────────────────────────────
-
-function goStep4(){
-  // Pre-fill OIB iz step 2 ako je unesen
-  if(S.oib && !el('p-oib').value) el('p-oib').value = S.oib;
-  if(S.dob && !el('p-dob').value) el('p-dob').value = S.dob + '-01-01';
-  goTo(4);
-}
-
-// ── Step 4 → 5 ───────────────────────────────────────────────────────────────
-
-function goStep5(){
-  var required = [
-    ['v-vin','Broj šasije'],['p-ime','Ime'],['p-prezime','Prezime'],['p-oib','OIB'],
-    ['p-dob','Datum rođenja'],['p-ulica','Ulica'],['p-kbr','Kućni broj'],
-    ['p-mob','Mobitel'],['p-email','Email']
-  ];
-  var ok = true;
-  required.forEach(function(r){
-    var v = val(r[0]);
-    if(!v){ el(r[0]).classList.add('err'); if(ok){ el(r[0]).focus(); ok=false; } }
-    else el(r[0]).classList.remove('err');
-  });
-  if(!el('p-mjesto').value){ el('p-mjesto-search').classList.add('err'); if(ok){ el('p-mjesto-search').focus(); ok=false; } }
-  else el('p-mjesto-search').classList.remove('err');
-  if(!ok) return;
-
-  S.vin = el('v-vin').value.trim().toUpperCase();
-  // Uzmi brand iz hidden fielda (dekodiran iz VIN), ili WMI fallback
-  S.brand = el('v-brand').value.trim() || WMI[S.vin.substring(0,3)] || WMI[S.vin.substring(0,2)] || 'Ostalo';
-  S.ugovaratelj = {
-    ime:                   val('p-ime'),
-    prezime:               val('p-prezime'),
-    oib:                   val('p-oib'),
-    datumRodjenja:         val('p-dob'),
-    ulica:                 val('p-ulica'),
-    kucniBroj:             val('p-kbr'),
-    mjesto:                el('p-mjesto').value,
-    spol:                  val('p-spol'),
-    mobitel:               val('p-mob'),
-    email:                 val('p-email'),
-    tipStranke:            S.tip,
-    marketinskaSuglasnost: val('p-mkt'),
-    provjeraStranke:       false,
-  };
-
-  renderSummary();
-  el('s5-err').style.display = 'none';
-  el('s5-load').style.display = 'none';
-  el('s5-btn').style.display = 'block';
-  goTo(5);
-}
-
-function renderSummary(){
-  var u = S.ugovaratelj;
-  var pkgNames = Object.keys(selectedPkgs).join(', ') || 'Samo AO';
-  var total = quoteData.ao_cijena_s_porezom;
-  Object.values(selectedPkgs).forEach(function(p){ total += p; });
-
-  var rows = [
-    ['Ugovaratelj', u.ime + ' ' + u.prezime],
-    ['OIB', u.oib],
-    ['Datum rođenja', u.datumRodjenja],
-    ['Adresa', u.ulica + ' ' + u.kucniBroj + ', ' + el('p-mjesto-search').value],
-    ['Kontakt', u.mobitel + ' / ' + u.email],
-    ['Vozilo', S.reg + (S.yr ? ', ' + S.yr + '. god.' : '') + ', ' + S.kw + ' kW'],
-    ['Broj šasije (VIN)', S.vin],
-    ['Paketi', pkgNames],
-    ['Premijski stupanj AO', quoteData.ps_ao || 10],
-  ];
-
-  var html = rows.map(function(r){
-    return '<div class="summary-row"><span class="summary-lbl">'+r[0]+'</span><span class="summary-val">'+r[1]+'</span></div>';
-  }).join('');
-
-  html += '<div class="summary-row summary-total"><span class="summary-lbl">Ukupno (godišnje)</span><span class="summary-val">'+total.toFixed(2).replace('.',',')+'€</span></div>';
-
-  el('s5-summary').innerHTML = '<div style="background:white;border-radius:12px;padding:16px;margin-bottom:16px">'+html+'</div>';
-}
-
-// ── Step 5: GenPolicy + SetPaymentStatus ─────────────────────────────────────
-
-function buildPaketi(){
-  // Šalji samo odabrane dodatke — AO je uvijek uključen bez koda
-  return Object.keys(selectedPkgs).map(function(code){
-    return { code: code, selected: true };
-  });
-}
-
-function doGenPolicy(){
-  el('s5-btn').disabled = true;
-  el('s5-err').style.display = 'none';
-  el('s5-load').style.display = 'block';
-  el('s5-load-msg').textContent = 'Kreiram policu (GenPolicy)...';
-
-  var zona = S.reg.replace(/[^A-Za-z]/g,'').substring(0,2).toUpperCase();
-
-  var payload = {
-    vozilo: {
-      sasija:            S.vin,
-      proizvodac:        S.brand,
-      model:             'N/A',
-      registracija:      zona,
-      snagaMotora:       S.kw,
-      godinaProizvodnje: S.yr || new Date().getFullYear() - 5,
-    },
-    ugovaratelj:        S.ugovaratelj,
-    paketi:             buildPaketi(),
-    premijskiStupanjAo: quoteData.ps_ao || 10,
-    premijskiStupanjAk: 2,
-  };
-
-  fetch(WORKER+'/gen-policy', {
+  fetch(WORKER, {
     method: 'POST',
     headers: {'Content-Type':'application/json'},
-    body: JSON.stringify(payload)
+    body: JSON.stringify({registracija:S.reg, snagaMotora:S.kw, godinaRodjenja:S.dob, tipStranke:S.tip, oib:S.oib||undefined})
   })
   .then(function(r){ return r.json(); })
   .then(function(d){
-    if(!d.brojPolice){
-      throw new Error(d.error || d.details || JSON.stringify(d));
-    }
-    genPolicyResp = d;
-    el('s5-load-msg').textContent = 'Aktiviram policu (SetPaymentStatus)...';
-    return fetch(WORKER+'/set-payment-status', {
-      method: 'POST',
-      headers: {'Content-Type':'application/json'},
-      body: JSON.stringify({
-        brojPolice: d.brojPolice,
-        brojSasije: S.vin,
-        paid: true,
-        storno: false
-      })
-    });
+    el('r-load').style.display = 'none';
+    if (d.ao_cijena_s_porezom && d.ao_cijena_s_porezom > 0) showOk(d);
+    else showErr(d.error || 'Cijena trenutno nije dostupna.');
   })
-  .then(function(r){ return r.json(); })
-  .then(function(d){
-    setPmtResp = d;
-    el('s5-load').style.display = 'none';
-    showPolica(d);
-  })
-  .catch(function(e){
-    el('s5-load').style.display = 'none';
-    el('s5-btn').disabled = false;
-    showErr('s5-err', e.message || String(e));
+  .catch(function(){ el('r-load').style.display='none'; showErr('Greška pri dohvaćanju cijene.'); });
+
+  if (!mjesta.length) fetchMjesta();
+}
+
+function animateCount(el_, from, to, dur) {
+  var start = null;
+  function step(ts) {
+    if (!start) start = ts;
+    var p = Math.min((ts-start)/dur, 1);
+    var ep = 1 - Math.pow(1-p, 3);
+    el_.textContent = (from+(to-from)*ep).toFixed(2).replace('.',',') + ' €';
+    if (p < 1) requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+
+var _countdownTimer = null;
+function startCountdown() {
+  var mins = 9, secs = 59;
+  el('ao-countdown').textContent = 'Cijena vrijedi još ' + mins + ':' + (secs<10?'0':'')+secs;
+  _countdownTimer = setInterval(function(){
+    secs--;
+    if (secs < 0) { secs = 59; mins--; }
+    if (mins < 0) { clearInterval(_countdownTimer); el('ao-countdown').textContent = ''; return; }
+    el('ao-countdown').textContent = 'Cijena vrijedi još ' + mins + ':' + (secs<10?'0':'')+secs;
+  }, 1000);
+}
+
+function showOk(d) {
+  quoteData = d;
+  var base = Number(d.ao_cijena_s_porezom);
+  el('ao-orig-num').textContent = (base + 20).toFixed(2).replace('.',',') + ' €';
+  el('ao-orig-row').style.display = 'flex';
+  var numEl = el('ao-num');
+  numEl.textContent = '0,00 €';
+  el('r-ok').style.display = 'block';
+  startCountdown();
+  setTimeout(function(){ animateCount(numEl, 0, base, 950); }, 80);
+  launchConfetti();
+
+  var pkgs = d.paketi || [], html = '';
+  pkgs.forEach(function(p, i){
+    var price = (Number(p.premijaBezPoreza||0) * 1.10);
+    html += '<div class="pkg-row" id="pkg'+i+'" data-code="'+p.code+'" data-price="'+price+'" onclick="togglePkg(this)">'
+      +'<div class="pkg-left"><div class="pkg-check"><span class="pkg-check-icon">✓</span></div>'
+      +'<span class="pkg-name">'+(p.nazivPaketa||p.code)+'</span></div>'
+      +'<span class="pkg-price">+ '+price.toFixed(2).replace('.',',')+'€/god</span></div>';
   });
+  el('pkg-list').innerHTML = html;
+  el('pkg-wrap').style.display = pkgs.length ? 'block' : 'none';
+  updateTotal();
 }
 
-function showPolica(d){
-  var police = d.brojPolice || (genPolicyResp && genPolicyResp.brojPolice) || '—';
-  el('s6-police').textContent = 'Broj police: ' + police;
-  el('s6-sub').textContent = 'Polica ' + police + ' uspješno je ugovorena i aktivirana.';
+function showErr(msg) {
+  el('err-msg').textContent = msg;
+  el('r-err').style.display = 'block';
+}
 
-  if(d.polica){
-    el('s6-pdf').classList.remove('disabled');
-  } else {
-    el('s6-pdf').classList.add('disabled');
-    el('s6-pdf').title = 'PDF nije vraćen od API-ja';
+function togglePkg(row) {
+  row.classList.toggle('on');
+  var code = row.dataset.code, price = Number(row.dataset.price);
+  if (row.classList.contains('on')) selectedPkgs[code] = price;
+  else delete selectedPkgs[code];
+  updateTotal();
+}
+
+function updateTotal() {
+  var total = quoteData.ao_cijena_s_porezom || 0;
+  Object.values(selectedPkgs).forEach(function(p){ total += p; });
+  el('ao-num').textContent = total.toFixed(2).replace('.',',') + ' €';
+  var hasExtras = Object.keys(selectedPkgs).length > 0;
+  el('total-row').style.display = hasExtras ? 'block' : 'none';
+  if (hasExtras) {
+    el('total-num').textContent = total.toFixed(2).replace('.',',') + ' €';
   }
-  if(d.ZK){
-    el('s6-zk').classList.remove('disabled');
-    el('s6-zk').style.background = '#16a34a';
-  }
-
-  el('s6-raw').textContent = JSON.stringify({genPolicy: genPolicyResp, setPayment: d}, null, 2);
-  goTo(6);
 }
 
-function downloadPdf(type){
-  var data = setPmtResp;
-  if(!data) return;
-  var b64 = type === 'zk' ? data.ZK : data.polica;
-  if(!b64){ alert('PDF nije dostupan'); return; }
-  var blob = b64ToBlob(b64, 'application/pdf');
-  var url = URL.createObjectURL(blob);
-  var a = document.createElement('a');
-  a.href = url;
-  a.download = type === 'zk' ? 'zelena-karta.pdf' : 'polica.pdf';
-  a.click();
-  URL.revokeObjectURL(url);
+// ── GetMjesta ─────────────────────────────────────────────────────────────────
+function fetchMjesta() {
+  fetch(WORKER+'/get-mjesta').then(function(r){ return r.json(); })
+  .then(function(d){ mjesta = Array.isArray(d) ? d : []; }).catch(function(){});
+}
+function filterGrad() {
+  var q = el('k-grad-search').value.toLowerCase();
+  if (q.length < 2) { el('kupi-city-results').style.display='none'; return; }
+  var res = mjesta.filter(function(m){ return (m.naziv||'').toLowerCase().includes(q); }).slice(0,10);
+  if (!res.length) { el('kupi-city-results').style.display='none'; return; }
+  el('kupi-city-results').innerHTML = res.map(function(m){
+    return '<div class="kupi-city-opt" onmousedown="selectGrad(\''+m.mjesto+'\',\''+m.naziv+'\')">'+m.naziv+' ('+m.mjesto+')</div>';
+  }).join('');
+  el('kupi-city-results').style.display = 'block';
+}
+function showGrad() { if(el('k-grad-search').value.length>=2) filterGrad(); }
+function hideGrad() { setTimeout(function(){ el('kupi-city-results').style.display='none'; },150); }
+function selectGrad(id, naziv) {
+  el('k-grad').value = id;
+  el('k-grad-search').value = naziv + ' (' + id + ')';
+  el('kupi-city-results').style.display = 'none';
 }
 
-function b64ToBlob(b64, mime){
-  var bytes = atob(b64);
-  var arr = new Uint8Array(bytes.length);
-  for(var i=0;i<bytes.length;i++) arr[i] = bytes.charCodeAt(i);
-  return new Blob([arr], {type: mime});
-}
-
-function toggleRaw(){
-  var box = el('s6-raw');
-  box.style.display = box.style.display === 'none' ? 'block' : 'none';
-}
-
-// ── VIN decoder (NHTSA + WMI fallback) ───────────────────────────────────────
-
-var WMI = {
-  'WAU':'Audi','WBA':'BMW','WBS':'BMW','WBY':'BMW','WDB':'Mercedes-Benz','WDC':'Mercedes-Benz',
-  'WDD':'Mercedes-Benz','WF0':'Ford','WVW':'Volkswagen','WV1':'Volkswagen','WV2':'Volkswagen',
-  'VSS':'SEAT','VF1':'Renault','VF3':'Peugeot','VF7':'Citroën','ZAR':'Alfa Romeo','ZFA':'Fiat',
-  'SAJ':'Jaguar','SAL':'Land Rover','SAR':'Rover','TRU':'Audi','TMB':'Škoda','SCC':'Lotus',
-  'VXK':'Opel','W0L':'Opel','JHM':'Honda','JT2':'Toyota','JTD':'Toyota','1HG':'Honda',
-  'YV1':'Volvo','YV4':'Volvo','XTA':'Lada','SUF':'Suzuki','TW1':'Toyota','MAT':'Opel',
-  'NM0':'Ford','AAV':'Volkswagen','AAA':'Volkswagen','VSA':'Honda',
-};
-
-var _vinDecodeTimer = null;
+// ── VIN decode ────────────────────────────────────────────────────────────────
+var WMI = {'WAU':'Audi','WBA':'BMW','WBS':'BMW','WBY':'BMW','WDB':'Mercedes-Benz','WDC':'Mercedes-Benz','WDD':'Mercedes-Benz','WF0':'Ford','WVW':'Volkswagen','WV1':'Volkswagen','WV2':'Volkswagen','VSS':'SEAT','VF1':'Renault','VF3':'Peugeot','VF7':'Citroen','ZAR':'Alfa Romeo','ZFA':'Fiat','SAJ':'Jaguar','SAL':'Land Rover','TRU':'Audi','TMB':'Skoda','W0L':'Opel','YV1':'Volvo','YV4':'Volvo','SUF':'Suzuki','VSA':'Honda','JHM':'Honda','JT2':'Toyota','JTD':'Toyota'};
+var _vinTimer = null;
 function decodeVin(vin) {
   vin = vin.toUpperCase().trim();
-  el('v-vin').value = vin;
-  if (vin.length < 3) return;
-
-  // WMI instant lookup
-  var wmi = vin.substring(0,3);
-  var brand = WMI[wmi] || WMI[vin.substring(0,2)];
-  if (brand && !el('v-brand').value) {
-    el('v-brand').value = brand;
-    el('v-brand-hint').textContent = 'Auto-popunjeno iz VIN-a';
-  }
-
-  // NHTSA API za točan podatak (kad VIN ima 17 znakova)
+  el('k-vin').value = vin;
+  var wmi = WMI[vin.substring(0,3)] || WMI[vin.substring(0,2)] || '';
+  if (wmi && !el('k-brand').value) el('k-brand').value = wmi;
   if (vin.length === 17) {
-    clearTimeout(_vinDecodeTimer);
-    _vinDecodeTimer = setTimeout(function() {
-      fetch('https://vpic.nhtsa.dot.gov/api/vehicles/decodevin/' + vin + '?format=json')
-        .then(function(r){ return r.json(); })
-        .then(function(d){
-          var results = d.Results || [];
-          var makeEl = results.find(function(r){ return r.Variable === 'Make'; });
-          if (makeEl && makeEl.Value && makeEl.Value !== 'null') {
-            var make = makeEl.Value.charAt(0).toUpperCase() + makeEl.Value.slice(1).toLowerCase();
-            el('v-brand').value = make;
-            el('v-brand-hint').textContent = 'Dohvaćeno iz VIN baze';
-          }
-        })
-        .catch(function(){});
+    clearTimeout(_vinTimer);
+    _vinTimer = setTimeout(function(){
+      fetch('https://vpic.nhtsa.dot.gov/api/vehicles/decodevin/'+vin+'?format=json')
+      .then(function(r){ return r.json(); })
+      .then(function(d){
+        var make = (d.Results||[]).find(function(r){ return r.Variable==='Make'; });
+        if (make && make.Value && make.Value!=='null') {
+          var brand = make.Value.charAt(0).toUpperCase()+make.Value.slice(1).toLowerCase();
+          el('k-brand').value = brand;
+        }
+      }).catch(function(){});
     }, 600);
   }
 }
 
-// Preload mjesta on page load
+// ── Kupi sheet ────────────────────────────────────────────────────────────────
+function openKupi(btn) {
+  var total = quoteData.ao_cijena_s_porezom || 0;
+  Object.values(selectedPkgs).forEach(function(p){ total += p; });
+  el('kupi-price-lbl').textContent = total.toFixed(2).replace('.',',') + ' € / godišnje';
+
+  // Pre-fill OIB iz step 2 ako postoji
+  if (S.oib && !el('k-oib').value) el('k-oib').value = S.oib;
+  // Pre-fill datum iz step 2 (DD.MM.GGGG → YYYY-MM-DD)
+  if (S.dobFull && !el('k-dob').value) {
+    var parts = S.dobFull.split('.');
+    if (parts.length===3) el('k-dob').value = parts[2]+'-'+parts[1]+'-'+parts[0];
+  }
+
+  el('kupi-err').style.display = 'none';
+  el('kupi-form-wrap').style.display = 'block';
+  el('kupi-loading').style.display = 'none';
+  el('kupi-submit').disabled = false;
+
+  var sheet = el('kupi-sheet');
+  var scrollY = window.pageYOffset;
+  var btnTop = btn ? (btn.getBoundingClientRect().top + scrollY) : scrollY;
+  var top = btnTop - 620;
+  if (top < 10) top = btnTop + 60;
+  sheet.style.top = Math.max(10, top) + 'px';
+
+  el('kupi-overlay').classList.add('show');
+  sheet.classList.add('show');
+  setTimeout(function(){ sheet.scrollIntoView({behavior:'smooth',block:'center'}); }, 50);
+}
+
+function closeKupi() {
+  el('kupi-overlay').classList.remove('show');
+  el('kupi-sheet').classList.remove('show');
+}
+
+function doKupi() {
+  var required = [
+    ['k-ime','Ime'],['k-prezime','Prezime'],['k-oib','OIB'],['k-dob','Datum rođenja'],
+    ['k-ulica','Ulica'],['k-kbr','Kućni broj'],['k-mob','Mobitel'],['k-email','Email'],['k-vin','Broj šasije']
+  ];
+  var ok = true;
+  required.forEach(function(r){
+    if (!v(r[0])){ el(r[0]).classList.add('err'); if(ok){el(r[0]).focus(); ok=false;} }
+    else el(r[0]).classList.remove('err');
+  });
+  if (!el('k-grad').value){ el('k-grad-search').classList.add('err'); if(ok){el('k-grad-search').focus(); ok=false;} }
+  else el('k-grad-search').classList.remove('err');
+  if (!ok) return;
+
+  var vin   = el('k-vin').value.trim().toUpperCase();
+  var brand = el('k-brand').value.trim() || WMI[vin.substring(0,3)] || WMI[vin.substring(0,2)] || 'Ostalo';
+  var zona  = S.reg.replace(/[^A-Za-z]/g,'').substring(0,2).toUpperCase();
+
+  el('kupi-err').style.display  = 'none';
+  el('kupi-submit').disabled    = true;
+  el('kupi-form-wrap').style.display = 'none';
+  el('kupi-loading').style.display   = 'block';
+  el('kupi-load-msg').textContent = 'Kreiram policu (GenPolicy)...';
+
+  var payload = {
+    vozilo: { sasija: vin, proizvodac: brand, model: 'N/A', registracija: zona, snagaMotora: S.kw, godinaProizvodnje: S.yr || (new Date().getFullYear()-5) },
+    ugovaratelj: {
+      ime: v('k-ime'), prezime: v('k-prezime'), oib: v('k-oib'),
+      datumRodjenja: v('k-dob'), ulica: v('k-ulica'), kucniBroj: v('k-kbr'),
+      mjesto: el('k-grad').value, spol: 'M',
+      mobitel: v('k-mob'), email: v('k-email'),
+      tipStranke: S.tip, marketinskaSuglasnost: 'N', provjeraStranke: false,
+    },
+    paketi: Object.keys(selectedPkgs).map(function(c){ return {code:c,selected:true}; }),
+    premijskiStupanjAo: quoteData.ps_ao || 10,
+    premijskiStupanjAk: 2,
+  };
+
+  fetch(WORKER+'/gen-policy', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(payload) })
+  .then(function(r){ return r.json(); })
+  .then(function(d){
+    if (!d.brojPolice) throw new Error(d.error || d.details || JSON.stringify(d));
+    genPolicyResp = d;
+    el('kupi-load-msg').textContent = 'Aktiviram policu (SetPaymentStatus)...';
+    return fetch(WORKER+'/set-payment-status', { method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({brojPolice:d.brojPolice, brojSasije:vin, paid:true, storno:false}) });
+  })
+  .then(function(r){ return r.json(); })
+  .then(function(d){
+    setPmtResp = d;
+    closeKupi();
+    showPolica(d);
+  })
+  .catch(function(e){
+    el('kupi-loading').style.display  = 'none';
+    el('kupi-form-wrap').style.display = 'block';
+    el('kupi-submit').disabled = false;
+    el('kupi-err').textContent = 'Greška: ' + (e.message || String(e));
+    el('kupi-err').style.display = 'block';
+  });
+}
+
+// ── Polica ────────────────────────────────────────────────────────────────────
+function showPolica(d) {
+  var police = d.brojPolice || (genPolicyResp && genPolicyResp.brojPolice) || '—';
+  el('s4-police').textContent = 'Broj police: ' + police;
+  el('s4-sub').textContent = 'Polica ' + police + ' uspješno je ugovorena i aktivirana.';
+  if (d.polica) { el('s4-pdf').disabled = false; }
+  if (d.ZK)    { el('s4-zk').disabled  = false; }
+  el('s4-raw').textContent = JSON.stringify({genPolicy:genPolicyResp, setPayment:d}, null, 2);
+  go(4);
+  launchConfetti();
+}
+
+function downloadPdf(type) {
+  var b64 = type==='zk' ? setPmtResp.ZK : setPmtResp.polica;
+  if (!b64) { alert('PDF nije dostupan'); return; }
+  var bytes = atob(b64), arr = new Uint8Array(bytes.length);
+  for (var i=0;i<bytes.length;i++) arr[i]=bytes.charCodeAt(i);
+  var url = URL.createObjectURL(new Blob([arr],{type:'application/pdf'}));
+  var a = document.createElement('a'); a.href=url; a.download=(type==='zk'?'zelena-karta':'polica')+'.pdf'; a.click();
+  URL.revokeObjectURL(url);
+}
+
+// ── Confetti ──────────────────────────────────────────────────────────────────
+function launchConfetti() {
+  var canvas = el('confetti-canvas');
+  var ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+  var pieces = Array.from({length:90},function(){return{x:Math.random()*canvas.width,y:-10,r:Math.random()*6+4,c:['#573cf9','#ffbc27','#22c55e','#f97316','#ec4899'][Math.floor(Math.random()*5)],vx:(Math.random()-0.5)*3,vy:Math.random()*4+2,rot:Math.random()*360,vr:(Math.random()-0.5)*8};});
+  var frame = 0;
+  function draw(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    pieces.forEach(function(p){
+      ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(p.rot*Math.PI/180);
+      ctx.fillStyle=p.c; ctx.fillRect(-p.r,-p.r/2,p.r*2,p.r); ctx.restore();
+      p.x+=p.vx; p.y+=p.vy; p.rot+=p.vr; p.vy+=0.05;
+    });
+    frame++;
+    if(frame<120) requestAnimationFrame(draw);
+    else ctx.clearRect(0,0,canvas.width,canvas.height);
+  }
+  requestAnimationFrame(draw);
+}
+
 fetchMjesta();
 </script>
 </body>
