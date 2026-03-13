@@ -655,9 +655,20 @@ function showErr(msg) {
   el('r-err').style.display = 'block';
 }
 
+var ASIST_MUTEX = ['ASIST_HR', 'ASIST_SVE']; // može samo jedan
 function togglePkg(row) {
-  row.classList.toggle('on');
   var code = row.dataset.code, price = Number(row.dataset.price);
+  var turning_on = !row.classList.contains('on');
+  // Ako uključujemo asistenciju, isključi drugu
+  if (turning_on && ASIST_MUTEX.includes(code)) {
+    ASIST_MUTEX.forEach(function(c) {
+      if (c !== code) {
+        var other = document.querySelector('[data-code="'+c+'"]');
+        if (other) { other.classList.remove('on'); delete selectedPkgs[c]; }
+      }
+    });
+  }
+  row.classList.toggle('on');
   if (row.classList.contains('on')) selectedPkgs[code] = price;
   else delete selectedPkgs[code];
   updateTotal();
@@ -788,7 +799,7 @@ function doKupi() {
       datumRodjenja: v('k-dob'), ulica: v('k-ulica'), kucniBroj: v('k-kbr'),
       mjesto: el('k-grad').value, spol: 'M',
       mobitel: v('k-mob'), email: v('k-email'),
-      tipStranke: S.tip, marketinskaSuglasnost: 'N', provjeraStranke: false,
+      tipStranke: S.tip, marketinskaSuglasnost: 'N', provjeraStranke: true,
     },
     paketi: Object.keys(selectedPkgs).map(function(c){ return {code:c,selected:true}; }),
     premijskiStupanjAo: quoteData.ps_ao || 10,
