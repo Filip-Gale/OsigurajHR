@@ -1,0 +1,791 @@
+---
+layout: null
+title: Uniqa — Kupi online | Osiguraj.hr
+permalink: /uniqa-test/
+---
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Uniqa — Kupi online | Osiguraj.hr</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="icon" type="image/jpeg" href="/img/favicon.jpg">
+<link rel="stylesheet" href="/css/style.css">
+<style>
+*, *::before, *::after { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+*:not(input):not(textarea):not(select) { -webkit-user-select: none !important; user-select: none !important; }
+body { background: #573cf9; min-height: 100vh; margin: 0; }
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+input[type=number] { -moz-appearance: textfield; }
+.nav-spacer { height: 80px; }
+.hero { text-align: center; padding: 36px 20px 16px; color: white; }
+.hero h1 { font-size: clamp(1.8rem, 5vw, 2.8rem); color: #ffbc27; margin-bottom: 10px; letter-spacing: -0.5px; }
+.hero p { font-size: clamp(0.95rem, 2.5vw, 1.15rem); opacity: 0.82; font-weight: normal; max-width: 480px; margin: 0 auto; }
+.wizard-card {
+  background: #ffbc27; border-radius: 24px;
+  max-width: 500px; width: 92%;
+  margin: 28px auto 24px;
+  padding: 30px 24px 34px;
+  box-shadow: 0 32px 80px rgba(255,188,39,0.4), 0 8px 24px rgba(0,0,0,0.2);
+  position: relative;
+}
+@media (min-width: 600px) { .wizard-card { padding: 38px 42px 42px; } }
+.step-title { color: #1a1033 !important; }
+.step-sub   { color: rgba(0,0,0,0.52) !important; }
+.flabel     { color: rgba(0,0,0,0.58) !important; }
+.fhint      { color: rgba(0,0,0,0.38) !important; }
+.btn-back   { color: rgba(0,0,0,0.4) !important; }
+.btn-back:hover { color: #573cf9 !important; }
+.disclaimer { color: rgba(0,0,0,0.38) !important; }
+.r-loading p { color: rgba(0,0,0,0.45) !important; }
+.progress-dot     { background: rgba(0,0,0,0.12) !important; color: rgba(0,0,0,0.35) !important; }
+.progress-dot.active { background: #573cf9 !important; color: white !important; box-shadow: 0 0 0 5px rgba(87,60,249,0.25) !important; }
+.progress-dot.done   { background: #22c55e !important; color: white !important; }
+.progress-lbl     { color: rgba(0,0,0,0.38) !important; }
+.progress-lbl.active { color: #573cf9 !important; }
+.progress-lbl.done   { color: #22c55e !important; }
+.progress-line    { background: rgba(0,0,0,0.12) !important; }
+.loader-road      { background: repeating-linear-gradient(90deg,#573cf9 0,#573cf9 8px,rgba(0,0,0,0.1) 8px,rgba(0,0,0,0.1) 16px) !important; }
+/* Progress */
+.progress-bar { display: flex; align-items: center; margin-bottom: 32px; justify-content: center; gap: 0; }
+.progress-step { display: flex; flex-direction: column; align-items: center; gap: 5px; }
+.progress-dot { width: 32px; height: 32px; border-radius: 50%; background: #ebebeb; color: #bbb; font-size: 0.78rem; font-weight: 800; display: flex; align-items: center; justify-content: center; transition: all 0.35s cubic-bezier(0.34,1.56,0.64,1); }
+.progress-dot.active { background: #573cf9; color: white; box-shadow: 0 0 0 5px rgba(87,60,249,0.2); transform: scale(1.1); }
+.progress-dot.done { background: #22c55e; color: white; font-size: 0; }
+.progress-dot.done::after { content: '✓'; font-size: 0.85rem; }
+.progress-lbl { font-size: 0.68rem; color: #bbb; font-weight: 700; text-transform: uppercase; letter-spacing: 0.4px; white-space: nowrap; transition: color 0.3s; }
+.progress-lbl.active { color: #573cf9; }
+.progress-lbl.done   { color: #22c55e; }
+.progress-line { flex: none; width: 36px; height: 3px; background: #ebebeb; margin-bottom: 18px; position: relative; overflow: hidden; border-radius: 2px; }
+.progress-line::after { content: ''; position: absolute; left: 0; top: 0; height: 100%; width: 0; background: #22c55e; transition: width 0.5s cubic-bezier(0.65,0,0.35,1); border-radius: 2px; }
+.progress-line.done::after { width: 100%; }
+/* Steps */
+.step-panel { display: none; animation-duration: 0.32s; animation-timing-function: cubic-bezier(0.22,1,0.36,1); animation-fill-mode: both; }
+.step-panel.active { display: block; }
+.step-panel.slide-in-right { animation-name: slideInRight; }
+.step-panel.slide-in-left  { animation-name: slideInLeft; }
+@keyframes slideInRight { from { opacity:0; transform:translateX(36px); } to { opacity:1; transform:translateX(0); } }
+@keyframes slideInLeft  { from { opacity:0; transform:translateX(-36px); } to { opacity:1; transform:translateX(0); } }
+.step-title { font-size: 1.35rem; color: #111; margin-bottom: 4px; }
+.step-sub   { font-size: 0.88rem; color: #999; font-weight: normal; margin-bottom: 22px; }
+/* Fields */
+.fields { display: flex; flex-direction: column; gap: 14px; margin-bottom: 22px; }
+.row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.flabel { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px; color: #666; margin-bottom: 6px; display: block; }
+.finput { width: 100%; padding: 13px 15px; border: 2px solid #e5e5e5; border-radius: 12px; font-size: 0.95rem; font-family: inherit; font-weight: 600; color: #573cf9; -webkit-appearance: none; appearance: none; background: white; transition: border-color 0.2s; box-sizing: border-box; min-height: 50px; }
+.finput:focus { outline: none; border-color: #573cf9; box-shadow: 0 0 0 4px rgba(87,60,249,0.12); }
+.finput::placeholder { font-weight: normal; color: #ccc; }
+.finput.err { border-color: #ef4444; }
+.fhint  { font-size: 0.76rem; color: #bbb; font-weight: normal; margin-top: 5px; }
+.ferror { font-size: 0.76rem; color: #ef4444; font-weight: normal; margin-top: 5px; display: none; }
+/* Tip cards */
+.tip-cards { display: flex; gap: 8px; }
+.tip-card-wrap { flex: 1; }
+.tip-card-wrap input[type=radio] { position: absolute; opacity: 0; width: 0; height: 0; }
+.tip-card { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; padding: 12px 6px; border: 2px solid #e5e5e5; border-radius: 12px; cursor: pointer; transition: all 0.2s; text-align: center; background: white; }
+.tip-card .t-lbl { font-size: 0.8rem; font-weight: 700; color: #888; transition: color 0.2s; }
+.tip-card-wrap input:checked + .tip-card { border-color: #573cf9; box-shadow: 0 0 0 3px rgba(87,60,249,0.15); }
+.tip-card-wrap input:checked + .tip-card .t-lbl { color: #573cf9; }
+/* Buttons */
+.btn-main { display: block; width: 100%; padding: 15px; background: #573cf9; color: white; border: none; border-radius: 12px; font-size: 1rem; font-family: inherit; font-weight: 800; cursor: pointer; text-align: center; position: relative; overflow: hidden; box-shadow: 0 5px 0 #3b20d4; transition: transform 0.08s, box-shadow 0.08s; }
+.btn-main:active { transform: translateY(4px); box-shadow: 0 1px 0 #3b20d4; }
+.btn-main::after { content: ''; position: absolute; top: -50%; left: -75%; width: 50%; height: 200%; background: linear-gradient(90deg,transparent,rgba(255,255,255,0.22),transparent); transform: skewX(-15deg); animation: shine 2.8s infinite; }
+@keyframes shine { 0%{left:-75%;} 45%,100%{left:130%;} }
+.btn-back { background: none; border: none; color: #bbb; font-size: 0.88rem; cursor: pointer; padding: 10px 0; font-family: inherit; font-weight: 600; transition: color 0.2s; }
+.btn-back:hover { color: #573cf9; }
+.btn-stack { display: flex; flex-direction: column; gap: 8px; }
+.btn-back-top { background: none; border: 1.5px solid rgba(0,0,0,0.12); border-radius: 20px; color: #999; font-size: 0.78rem; font-family: inherit; font-weight: 700; cursor: pointer; padding: 4px 12px; white-space: nowrap; transition: border-color 0.2s, color 0.2s; }
+.btn-back-top:hover { border-color: #573cf9; color: #573cf9; }
+.btn-test { background: rgba(0,0,0,0.07); border: none; border-radius: 8px; color: rgba(0,0,0,0.45); font-size: 0.75rem; font-family: inherit; font-weight: 700; cursor: pointer; padding: 7px 12px; margin-bottom: 18px; }
+.btn-test:hover { background: rgba(0,0,0,0.12); }
+/* Loader */
+.r-loading { display: flex; flex-direction: column; align-items: center; gap: 16px; padding: 24px 0; text-align: center; }
+.loader-car-wrap { animation: carbounce 0.45s ease-in-out infinite alternate; }
+@keyframes carbounce { from{transform:translateY(0);} to{transform:translateY(-4px);} }
+.loader-road { width: 110px; height: 3px; border-radius: 2px; animation: roadscroll 0.4s linear infinite; }
+@keyframes roadscroll { from{background-position:0;} to{background-position:-16px;} }
+.r-loading p { color: #999; font-weight: normal; font-size: 0.92rem; }
+/* Price result */
+.price-box { background: white; border-radius: 16px; padding: 22px 20px; margin-bottom: 18px; text-align: center; box-shadow: 0 2px 18px rgba(0,0,0,0.08); }
+.price-label { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em; color: #aaa; margin-bottom: 6px; }
+.price-num { font-size: 3rem; font-weight: 900; color: #573cf9; line-height: 1; font-variant-numeric: tabular-nums; }
+.price-period { font-size: 0.82rem; color: #bbb; font-weight: normal; margin-top: 4px; }
+.price-detail { font-size: 0.8rem; color: #888; margin-top: 8px; }
+/* Buy button */
+.btn-kupi { display: block; width: 100%; padding: 15px; background: #22c55e; color: white; border: none; border-radius: 12px; font-size: 1rem; font-family: inherit; font-weight: 800; cursor: pointer; box-shadow: 0 5px 0 #15803d; transition: transform 0.08s, box-shadow 0.08s; margin-bottom: 8px; }
+.btn-kupi:active { transform: translateY(4px); box-shadow: 0 1px 0 #15803d; }
+/* Error */
+.err-box { background: #fff5f5; border-radius: 12px; padding: 16px; text-align: center; margin-bottom: 16px; }
+.err-box p { color: #dc2626; font-size: 0.85rem; font-weight: normal; margin: 0; }
+/* Success */
+.polica-box { text-align: center; padding: 8px 0; }
+.polica-icon { font-size: 2.8rem; margin-bottom: 10px; }
+.polica-title { font-size: 1.2rem; font-weight: 900; color: #16a34a; margin-bottom: 6px; }
+.polica-sub { font-size: 0.85rem; color: rgba(0,0,0,.5); margin-bottom: 18px; line-height: 1.5; }
+.polica-num { font-size: 1.3rem; font-weight: 900; color: #573cf9; background: rgba(87,60,249,.07); border: 2px solid rgba(87,60,249,.2); border-radius: 10px; padding: 12px; margin-bottom: 14px; }
+.btn-pdf { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 13px; background: #16a34a; color: white; border: none; border-radius: 11px; font-size: 0.92rem; font-family: inherit; font-weight: 800; cursor: pointer; margin-bottom: 8px; box-shadow: 0 4px 0 #166534; }
+.btn-pdf:disabled { opacity: .4; cursor: not-allowed; box-shadow: none; }
+.raw-toggle { font-size: .73rem; color: rgba(0,0,0,.35); background: none; border: none; cursor: pointer; padding: 4px 0; font-family: inherit; margin-top: 6px; }
+.raw-box { background: rgba(0,0,0,.06); border-radius: 8px; padding: 10px; font-size: .68rem; font-family: monospace; white-space: pre-wrap; word-break: break-all; max-height: 200px; overflow-y: auto; margin-top: 8px; display: none; text-align: left; }
+.test-badge { display: inline-block; background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.25); color: white; font-size: .7rem; font-weight: 700; letter-spacing: .8px; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; }
+.disclaimer { font-size: 0.7rem; color: #ccc; font-weight: normal; text-align: center; margin-top: 12px; line-height: 1.5; }
+#confetti-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9999; }
+</style>
+</head>
+<body>
+<canvas id="confetti-canvas"></canvas>
+{% include nav.html %}
+<div class="nav-spacer"></div>
+
+<div class="hero">
+  <div class="test-badge">TEST OKRUŽENJE</div>
+  <h1>Koliko plaćate<br>auto osiguranje?</h1>
+  <p>Uniqa AO — izračun i kupnja online.</p>
+</div>
+
+<div class="wizard-card" id="wizard">
+
+  <!-- Progress bar -->
+  <div class="progress-bar">
+    <div class="progress-step">
+      <div class="progress-dot active" id="d1">1</div>
+      <div class="progress-lbl active" id="l1">Vozilo</div>
+    </div>
+    <div class="progress-line" id="ln1"></div>
+    <div class="progress-step">
+      <div class="progress-dot" id="d2">2</div>
+      <div class="progress-lbl" id="l2">Vozač</div>
+    </div>
+    <div class="progress-line" id="ln2"></div>
+    <div class="progress-step">
+      <div class="progress-dot" id="d3">3</div>
+      <div class="progress-lbl" id="l3">Cijena</div>
+    </div>
+    <div class="progress-line" id="ln3"></div>
+    <div class="progress-step">
+      <div class="progress-dot" id="d4">4</div>
+      <div class="progress-lbl" id="l4">Kupnja</div>
+    </div>
+  </div>
+
+  <div class="steps-wrapper">
+
+  <!-- STEP 1: Vozilo -->
+  <div class="step-panel active" id="s1">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
+      <h2 class="step-title" style="margin-bottom:0">Podaci o vozilu</h2>
+    </div>
+    <p class="step-sub">Unesite podatke s prometne dozvole.</p>
+    <button class="btn-test" onclick="fillTestData()" type="button">🧪 Popuni test podatke</button>
+    <div class="fields">
+      <div class="row2">
+        <div>
+          <label class="flabel" for="plateNo">Registracija</label>
+          <input class="finput" id="plateNo" type="text" placeholder="ZG1234AB" autocapitalize="characters">
+          <div class="ferror" id="e-plateNo">Obavezno polje.</div>
+        </div>
+        <div>
+          <label class="flabel" for="plateZone">Zona</label>
+          <select class="finput" id="plateZone">
+            <option value="ZG">ZG</option>
+            <option value="ST">ST</option>
+            <option value="RI">RI</option>
+            <option value="OS">OS</option>
+            <option value="SK">SK</option>
+            <option value="VK">VK</option>
+            <option value="KA">KA</option>
+            <option value="KR">KR</option>
+            <option value="SB">SB</option>
+            <option value="VU">VU</option>
+            <option value="LS">LS</option>
+            <option value="BJ">BJ</option>
+            <option value="CK">CK</option>
+            <option value="DN">DN</option>
+            <option value="DJ">DJ</option>
+            <option value="GS">GS</option>
+            <option value="IM">IM</option>
+            <option value="KT">KT</option>
+            <option value="KZ">KZ</option>
+            <option value="MT">MT</option>
+            <option value="NA">NA</option>
+            <option value="PG">PG</option>
+            <option value="PU">PU</option>
+            <option value="SL">SL</option>
+            <option value="SI">SI</option>
+            <option value="SM">SM</option>
+            <option value="TC">TC</option>
+            <option value="VT">VT</option>
+            <option value="ZD">ZD</option>
+            <option value="ZU">ZU</option>
+          </select>
+        </div>
+      </div>
+      <div>
+        <label class="flabel" for="vinNo">Broj šasije (VIN)</label>
+        <input class="finput" id="vinNo" type="text" placeholder="VF17RBF0A58516588" maxlength="17" autocapitalize="characters">
+        <div class="ferror" id="e-vinNo">Obavezno polje.</div>
+      </div>
+      <div class="row2">
+        <div>
+          <label class="flabel" for="brand">Marka</label>
+          <input class="finput" id="brand" type="text" placeholder="RENAULT" autocapitalize="characters">
+          <div class="ferror" id="e-brand">Obavezno polje.</div>
+        </div>
+        <div>
+          <label class="flabel" for="model">Model</label>
+          <input class="finput" id="model" type="text" placeholder="CLIO" autocapitalize="characters">
+          <div class="ferror" id="e-model">Obavezno polje.</div>
+        </div>
+      </div>
+      <div>
+        <label class="flabel" for="autoModel">Specifikacija motora</label>
+        <input class="finput" id="autoModel" type="text" placeholder="1.5 DCI">
+        <div class="ferror" id="e-autoModel">Obavezno polje.</div>
+      </div>
+      <div class="row2">
+        <div>
+          <label class="flabel" for="year">Godina</label>
+          <input class="finput" id="year" type="number" placeholder="2020" min="1990" max="2026">
+          <div class="ferror" id="e-year">Obavezno polje.</div>
+        </div>
+        <div>
+          <label class="flabel" for="enginePower">Snaga (kW)</label>
+          <input class="finput" id="enginePower" type="number" placeholder="85" min="1" max="1000">
+          <div class="ferror" id="e-enginePower">Obavezno polje.</div>
+        </div>
+      </div>
+      <div>
+        <label class="flabel">Vrsta goriva</label>
+        <div class="tip-cards">
+          <div class="tip-card-wrap">
+            <input type="radio" name="engineType" id="et-otto" value="Otto" checked>
+            <label class="tip-card" for="et-otto">
+              <span style="font-size:22px">⛽</span>
+              <span class="t-lbl">Benzin</span>
+            </label>
+          </div>
+          <div class="tip-card-wrap">
+            <input type="radio" name="engineType" id="et-diesel" value="Diesel">
+            <label class="tip-card" for="et-diesel">
+              <span style="font-size:22px">🛢️</span>
+              <span class="t-lbl">Diesel</span>
+            </label>
+          </div>
+          <div class="tip-card-wrap">
+            <input type="radio" name="engineType" id="et-electric" value="Electric">
+            <label class="tip-card" for="et-electric">
+              <span style="font-size:22px">⚡</span>
+              <span class="t-lbl">Električni</span>
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="btn-stack">
+      <button class="btn-main" onclick="next1()" type="button">Dalje →</button>
+    </div>
+  </div>
+
+  <!-- STEP 2: Vozač -->
+  <div class="step-panel" id="s2">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
+      <h2 class="step-title" style="margin-bottom:0">Podaci o vozaču</h2>
+      <button class="btn-back-top" onclick="go(1,'back')" type="button">← Natrag</button>
+    </div>
+    <p class="step-sub">Još 3 podatka i odmah vidite cijenu.</p>
+    <div class="fields">
+      <div>
+        <label class="flabel">Tip stranke</label>
+        <div class="tip-cards">
+          <div class="tip-card-wrap">
+            <input type="radio" name="customerType" id="ct-person" value="PERSON" checked>
+            <label class="tip-card" for="ct-person">
+              <span style="font-size:22px">🧑</span>
+              <span class="t-lbl">Fizička osoba</span>
+            </label>
+          </div>
+          <div class="tip-card-wrap">
+            <input type="radio" name="customerType" id="ct-company" value="COMPANY">
+            <label class="tip-card" for="ct-company">
+              <span style="font-size:22px">🏢</span>
+              <span class="t-lbl">Pravna osoba</span>
+            </label>
+          </div>
+        </div>
+      </div>
+      <div>
+        <label class="flabel" for="oib">OIB</label>
+        <input class="finput" id="oib" type="text" placeholder="12345678901" maxlength="11" inputmode="numeric">
+        <div class="ferror" id="e-oib">Unesite ispravan OIB (11 znamenki).</div>
+      </div>
+      <div>
+        <label class="flabel" for="birthday">Datum rođenja</label>
+        <input class="finput" id="birthday" type="date" max="2006-01-01">
+        <div class="ferror" id="e-birthday">Unesite datum rođenja.</div>
+      </div>
+    </div>
+    <div class="btn-stack">
+      <button class="btn-main" onclick="next2()" type="button">Izračunaj cijenu</button>
+    </div>
+  </div>
+
+  <!-- STEP 3: Loader + Cijena -->
+  <div class="step-panel" id="s3">
+    <div id="s3-loading" class="r-loading">
+      <div class="loader-car-wrap">
+        <svg width="56" height="32" viewBox="0 0 56 32" fill="none"><rect x="6" y="14" width="44" height="14" rx="5" fill="#573cf9"/><rect x="14" y="8" width="24" height="12" rx="4" fill="#8b6fff"/><circle cx="15" cy="28" r="5" fill="#1a1033"/><circle cx="41" cy="28" r="5" fill="#1a1033"/><circle cx="15" cy="28" r="2.5" fill="#888"/><circle cx="41" cy="28" r="2.5" fill="#888"/></svg>
+      </div>
+      <div class="loader-road"></div>
+      <p>Dohvaćamo cijenu od Uniqa…</p>
+    </div>
+    <div id="s3-result" style="display:none">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
+        <h2 class="step-title" style="margin-bottom:0">Vaša cijena</h2>
+        <button class="btn-back-top" onclick="go(2,'back')" type="button">← Natrag</button>
+      </div>
+      <div class="price-box">
+        <div class="price-label">Auto osiguranje (AO)</div>
+        <div class="price-num" id="price-display">—</div>
+        <div class="price-period">EUR / godišnje</div>
+        <div class="price-detail" id="price-detail"></div>
+      </div>
+      <div id="s3-err" class="err-box" style="display:none">
+        <p id="s3-err-msg"></p>
+      </div>
+      <div class="btn-stack">
+        <button class="btn-kupi" onclick="go(4,'forward')" type="button" id="btn-kupi">Kupi odmah →</button>
+        <p class="disclaimer">Uniqa d.d. · Klasa: AO · Testno okruženje</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 4: Osobni podaci za kupnju -->
+  <div class="step-panel" id="s4">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
+      <h2 class="step-title" style="margin-bottom:0">Vaši podaci</h2>
+      <button class="btn-back-top" onclick="go(3,'back')" type="button">← Natrag</button>
+    </div>
+    <p class="step-sub">Podaci za izradu police.</p>
+    <div class="fields">
+      <div class="row2">
+        <div>
+          <label class="flabel" for="firstName">Ime</label>
+          <input class="finput" id="firstName" type="text" placeholder="Ivan">
+          <div class="ferror" id="e-firstName">Obavezno polje.</div>
+        </div>
+        <div>
+          <label class="flabel" for="lastName">Prezime</label>
+          <input class="finput" id="lastName" type="text" placeholder="Horvat">
+          <div class="ferror" id="e-lastName">Obavezno polje.</div>
+        </div>
+      </div>
+      <div>
+        <label class="flabel" for="email">Email</label>
+        <input class="finput" id="email" type="email" placeholder="ivan@example.com">
+        <div class="ferror" id="e-email">Unesite ispravan email.</div>
+      </div>
+      <div>
+        <label class="flabel" for="phone">Mobitel</label>
+        <input class="finput" id="phone" type="tel" placeholder="0911234567" inputmode="numeric">
+        <div class="ferror" id="e-phone">Obavezno polje.</div>
+      </div>
+      <div class="row2">
+        <div>
+          <label class="flabel" for="street">Ulica</label>
+          <input class="finput" id="street" type="text" placeholder="Ilica">
+          <div class="ferror" id="e-street">Obavezno polje.</div>
+        </div>
+        <div>
+          <label class="flabel" for="streetNo">Broj</label>
+          <input class="finput" id="streetNo" type="text" placeholder="1">
+          <div class="ferror" id="e-streetNo">Obavezno polje.</div>
+        </div>
+      </div>
+      <div class="row2">
+        <div>
+          <label class="flabel" for="zipCode">Poštanski broj</label>
+          <input class="finput" id="zipCode" type="text" placeholder="10000" maxlength="5" inputmode="numeric">
+          <div class="ferror" id="e-zipCode">Obavezno polje.</div>
+        </div>
+        <div>
+          <label class="flabel" for="city">Grad</label>
+          <input class="finput" id="city" type="text" placeholder="Zagreb">
+          <div class="ferror" id="e-city">Obavezno polje.</div>
+        </div>
+      </div>
+    </div>
+    <div id="s4-err" class="err-box" style="display:none">
+      <p id="s4-err-msg"></p>
+    </div>
+    <div class="btn-stack">
+      <button class="btn-main" onclick="kupiti()" type="button" id="btn-kupiti">Potvrdi i izradi policu</button>
+    </div>
+  </div>
+
+  <!-- STEP 5: Obrada (loader) + Success -->
+  <div class="step-panel" id="s5">
+    <div id="s5-loading" class="r-loading">
+      <div class="loader-car-wrap">
+        <svg width="56" height="32" viewBox="0 0 56 32" fill="none"><rect x="6" y="14" width="44" height="14" rx="5" fill="#573cf9"/><rect x="14" y="8" width="24" height="12" rx="4" fill="#8b6fff"/><circle cx="15" cy="28" r="5" fill="#1a1033"/><circle cx="41" cy="28" r="5" fill="#1a1033"/><circle cx="15" cy="28" r="2.5" fill="#888"/><circle cx="41" cy="28" r="2.5" fill="#888"/></svg>
+      </div>
+      <div class="loader-road"></div>
+      <p id="s5-loading-msg">Izrađujemo policu…</p>
+    </div>
+    <div id="s5-success" style="display:none" class="polica-box">
+      <div class="polica-icon">🎉</div>
+      <div class="polica-title">Polica izrađena!</div>
+      <div class="polica-sub">Vaša Uniqa AO polica je uspješno kreirana.</div>
+      <div class="polica-num" id="polica-no"></div>
+      <button class="btn-pdf" onclick="downloadDoc('POLICY')" type="button" id="btn-polica-pdf">
+        📄 Preuzmi policu (PDF)
+      </button>
+      <button class="btn-pdf" onclick="downloadDoc('GREEN_CARD')" type="button" id="btn-zk-pdf" style="background:#6b7280;box-shadow:0 4px 0 #4b5563">
+        🟢 Preuzmi zelenu kartu
+      </button>
+      <button class="btn-pdf" onclick="downloadDoc('INVOICE')" type="button" id="btn-inv-pdf" style="background:#6b7280;box-shadow:0 4px 0 #4b5563">
+        🧾 Preuzmi fakturu
+      </button>
+      <button class="raw-toggle" onclick="toggleRaw()" type="button">Prikaži raw odgovor</button>
+      <div class="raw-box" id="raw-box"></div>
+    </div>
+    <div id="s5-err" class="err-box" style="display:none">
+      <p id="s5-err-msg"></p>
+    </div>
+  </div>
+
+  </div><!-- steps-wrapper -->
+</div><!-- wizard-card -->
+
+<script>
+const API = 'https://uniqa-proxy.osiguraj1.workers.dev';
+
+// State
+let state = {
+  partnerNo: null,
+  premium: null,
+  issuanceNo: null,
+  policyNo: null,
+  startDate: null,
+  endDate: null,
+};
+
+// ─── Navigation ───────────────────────────────────────────────────────────────
+
+function go(step, dir) {
+  const cur = document.querySelector('.step-panel.active');
+  cur.classList.remove('active');
+
+  const next = document.getElementById('s' + step);
+  next.classList.remove('slide-in-right', 'slide-in-left');
+  void next.offsetWidth;
+  next.classList.add(dir === 'forward' ? 'slide-in-right' : 'slide-in-left');
+  next.classList.add('active');
+
+  // Update progress
+  for (let i = 1; i <= 4; i++) {
+    const dot = document.getElementById('d' + i);
+    const lbl = document.getElementById('l' + i);
+    const ln  = document.getElementById('ln' + i);
+    dot.className = 'progress-dot' + (i < step ? ' done' : i === step ? ' active' : '');
+    lbl.className = 'progress-lbl'  + (i < step ? ' done' : i === step ? ' active' : '');
+    if (ln) ln.className = 'progress-line' + (i < step ? ' done' : '');
+  }
+}
+
+// ─── Validation helpers ───────────────────────────────────────────────────────
+
+function req(id) {
+  const el = document.getElementById(id);
+  const v = el.value.trim();
+  const err = document.getElementById('e-' + id);
+  if (!v) {
+    el.classList.add('err');
+    if (err) err.style.display = 'block';
+    return false;
+  }
+  el.classList.remove('err');
+  if (err) err.style.display = 'none';
+  return true;
+}
+
+function val(id) { return document.getElementById(id).value.trim(); }
+
+// ─── Steps ────────────────────────────────────────────────────────────────────
+
+function next1() {
+  const ok = ['plateNo','vinNo','brand','model','autoModel','year','enginePower']
+    .map(req).every(Boolean);
+  if (!ok) return;
+  go(2, 'forward');
+}
+
+function next2() {
+  const oibVal = val('oib');
+  const bdVal  = val('birthday');
+  let ok = true;
+
+  if (!/^\d{11}$/.test(oibVal)) {
+    document.getElementById('oib').classList.add('err');
+    document.getElementById('e-oib').style.display = 'block';
+    ok = false;
+  } else {
+    document.getElementById('oib').classList.remove('err');
+    document.getElementById('e-oib').style.display = 'none';
+  }
+  if (!bdVal) {
+    document.getElementById('birthday').classList.add('err');
+    document.getElementById('e-birthday').style.display = 'block';
+    ok = false;
+  } else {
+    document.getElementById('birthday').classList.remove('err');
+    document.getElementById('e-birthday').style.display = 'none';
+  }
+  if (!ok) return;
+
+  go(3, 'forward');
+  fetchQuote();
+}
+
+async function fetchQuote() {
+  document.getElementById('s3-loading').style.display = 'flex';
+  document.getElementById('s3-result').style.display = 'none';
+  document.getElementById('s3-err').style.display = 'none';
+
+  // Dates: od sutra, godinu dana
+  const start = new Date();
+  start.setDate(start.getDate() + 1);
+  start.setHours(11, 0, 1, 0);
+  const end = new Date(start);
+  end.setFullYear(end.getFullYear() + 1);
+  state.startDate = start.toISOString();
+  state.endDate   = end.toISOString();
+
+  try {
+    const r = await fetch(API + '/ao/quote', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        oib:         val('oib'),
+        birthday:    val('birthday'),
+        customerType: document.querySelector('input[name=customerType]:checked').value,
+        startDate:   state.startDate,
+        endDate:     state.endDate,
+        plateNo:     val('plateNo').toUpperCase(),
+        plateZone:   val('plateZone'),
+        vinNo:       val('vinNo').toUpperCase(),
+        year:        Number(val('year')),
+        enginePower: Number(val('enginePower')),
+        brand:       val('brand').toUpperCase(),
+        model:       val('model').toUpperCase(),
+        autoModel:   val('autoModel'),
+        engineType:  document.querySelector('input[name=engineType]:checked').value,
+      }),
+    });
+    const data = await r.json();
+
+    document.getElementById('s3-loading').style.display = 'none';
+    document.getElementById('s3-result').style.display = 'block';
+
+    if (data.premium) {
+      state.partnerNo = data.partnerNo;
+      state.premium   = data.premium;
+      document.getElementById('price-display').textContent = data.premium + ' €';
+      document.getElementById('price-detail').textContent =
+        'partnerNo: ' + data.partnerNo;
+      document.getElementById('s3-err').style.display = 'none';
+      document.getElementById('btn-kupi').style.display = 'block';
+    } else {
+      const msg = data.raw?.message || data.error || 'Greška pri dohvatu cijene.';
+      document.getElementById('s3-err-msg').textContent = msg;
+      document.getElementById('s3-err').style.display = 'block';
+      document.getElementById('btn-kupi').style.display = 'none';
+    }
+  } catch (e) {
+    document.getElementById('s3-loading').style.display = 'none';
+    document.getElementById('s3-result').style.display = 'block';
+    document.getElementById('s3-err-msg').textContent = e.message;
+    document.getElementById('s3-err').style.display = 'block';
+    document.getElementById('btn-kupi').style.display = 'none';
+  }
+}
+
+function validateStep4() {
+  return ['firstName','lastName','email','phone','street','streetNo','zipCode','city']
+    .map(req).every(Boolean);
+}
+
+async function kupiti() {
+  if (!validateStep4()) return;
+
+  go(5, 'forward');
+  document.getElementById('s5-loading').style.display = 'flex';
+  document.getElementById('s5-success').style.display = 'none';
+  document.getElementById('s5-err').style.display = 'none';
+  document.getElementById('s5-loading-msg').textContent = 'Izrađujemo ponudu…';
+
+  try {
+    // Step 1: create-policy (underwriting)
+    const cRes = await fetch(API + '/ao/create-policy', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        partnerNo:    state.partnerNo,
+        premium:      state.premium,
+        startDate:    state.startDate,
+        endDate:      state.endDate,
+        oib:          val('oib'),
+        birthday:     val('birthday'),
+        customerType: document.querySelector('input[name=customerType]:checked').value,
+        firstName:    val('firstName'),
+        lastName:     val('lastName'),
+        email:        val('email'),
+        phone:        val('phone'),
+        street:       val('street'),
+        streetNo:     val('streetNo'),
+        zipCode:      val('zipCode'),
+        city:         val('city'),
+        plateNo:      val('plateNo').toUpperCase(),
+        plateZone:    val('plateZone'),
+        vinNo:        val('vinNo').toUpperCase(),
+        year:         Number(val('year')),
+        enginePower:  Number(val('enginePower')),
+        brand:        val('brand').toUpperCase(),
+        model:        val('model').toUpperCase(),
+        autoModel:    val('autoModel'),
+        engineType:   document.querySelector('input[name=engineType]:checked').value,
+      }),
+    });
+    const cData = await cRes.json();
+
+    if (!cData.issuanceNo) {
+      throw new Error(cData.raw?.message || cData.error || 'Greška pri kreiranju ponude.');
+    }
+
+    state.issuanceNo = cData.issuanceNo;
+    document.getElementById('s5-loading-msg').textContent = 'Finaliziramo policu…';
+
+    // Step 2: issue-policy (čekaj 3s da sustav obradi)
+    await new Promise(r => setTimeout(r, 3000));
+
+    const iRes = await fetch(API + '/ao/issue-policy', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        partnerNo:  state.partnerNo,
+        issuanceNo: state.issuanceNo,
+      }),
+    });
+    const iData = await iRes.json();
+
+    if (!iData.policyNo) {
+      throw new Error(iData.raw?.message || iData.raw?.msg || iData.error || 'Greška pri finalizaciji police.');
+    }
+
+    state.policyNo = iData.policyNo;
+
+    // Prikaži uspjeh
+    document.getElementById('s5-loading').style.display = 'none';
+    document.getElementById('s5-success').style.display = 'block';
+    document.getElementById('polica-no').textContent = 'Polica br. ' + iData.policyNo;
+    document.getElementById('raw-box').textContent = JSON.stringify(iData, null, 2);
+
+    // Confetti!
+    launchConfetti();
+
+  } catch (e) {
+    document.getElementById('s5-loading').style.display = 'none';
+    document.getElementById('s5-err-msg').textContent = e.message;
+    document.getElementById('s5-err').style.display = 'block';
+  }
+}
+
+async function downloadDoc(type) {
+  const btnMap = { POLICY: 'btn-polica-pdf', GREEN_CARD: 'btn-zk-pdf', INVOICE: 'btn-inv-pdf' };
+  const btn = document.getElementById(btnMap[type]);
+  btn.disabled = true;
+
+  try {
+    const r = await fetch(API + '/ao/documents', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        partnerNo:    state.partnerNo,
+        policyNo:     state.policyNo,
+        documentType: type,
+      }),
+    });
+    const data = await r.json();
+
+    const b64 = data.value?.base64Content || data.base64Content;
+    if (!b64) throw new Error(data.message || 'Dokument nije dostupan.');
+
+    const blob = new Blob([Uint8Array.from(atob(b64), c => c.charCodeAt(0))], { type: 'application/pdf' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = type.toLowerCase() + '_' + state.policyNo + '.pdf';
+    a.click();
+    URL.revokeObjectURL(url);
+  } catch (e) {
+    alert('Greška: ' + e.message);
+  } finally {
+    btn.disabled = false;
+  }
+}
+
+function toggleRaw() {
+  const box = document.getElementById('raw-box');
+  box.style.display = box.style.display === 'none' ? 'block' : 'none';
+}
+
+// ─── Test data ────────────────────────────────────────────────────────────────
+
+function fillTestData() {
+  document.getElementById('plateNo').value   = '4119JF';
+  document.getElementById('plateZone').value = 'ZG';
+  document.getElementById('vinNo').value     = 'VF17RBF0A58516588';
+  document.getElementById('brand').value     = 'RENAULT';
+  document.getElementById('model').value     = 'CLIO';
+  document.getElementById('autoModel').value = '1.5 DCI';
+  document.getElementById('year').value      = '2017';
+  document.getElementById('enginePower').value = '55';
+  document.getElementById('et-diesel').checked = true;
+}
+
+// ─── Confetti ─────────────────────────────────────────────────────────────────
+
+function launchConfetti() {
+  const canvas = document.getElementById('confetti-canvas');
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  const pieces = Array.from({length: 90}, () => ({
+    x: Math.random() * canvas.width,
+    y: Math.random() * -canvas.height,
+    r: Math.random() * 7 + 4,
+    d: Math.random() * 3 + 1,
+    c: ['#573cf9','#ffbc27','#22c55e','#f472b6','#38bdf8'][Math.floor(Math.random()*5)],
+    t: Math.random() * Math.PI * 2,
+  }));
+  let frames = 0;
+  function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    pieces.forEach(p => {
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = p.c;
+      ctx.fill();
+      p.y += p.d;
+      p.x += Math.sin(p.t) * 1.5;
+      p.t += 0.04;
+    });
+    if (++frames < 160) requestAnimationFrame(draw);
+    else ctx.clearRect(0, 0, canvas.width, canvas.height);
+  }
+  draw();
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,4 @@
+name = "uniqa-proxy"
+main = "index.js"
+compatibility_date = "2026-03-14"
+account_id = "18fe17e199081ab7d6dda74b083290cd"
