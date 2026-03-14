@@ -219,29 +219,33 @@ input[type=number] { -moz-appearance: textfield; }
   <div class="modal-sheet" id="modal-sheet">
     <button class="modal-close" onclick="closeModal()" type="button">✕</button>
     <div class="modal-title">Podaci o vozilu</div>
-    <div class="modal-sub">Potrebni su za točan Uniqa izračun.</div>
+    <div class="modal-sub">Sve podatke pronađete u <strong style="color:#573cf9">prometnoj dozvoli</strong> vašeg vozila.</div>
     <div class="modal-fields">
       <div class="row2">
         <div>
           <label class="flabel" for="m-brand">Marka</label>
           <input class="finput" id="m-brand" type="text" placeholder="RENAULT" autocapitalize="characters">
+          <div class="fhint">Prometna dozvola — redak D.1</div>
           <div class="ferror" id="e-m-brand">Obavezno.</div>
         </div>
         <div>
           <label class="flabel" for="m-model">Model</label>
           <input class="finput" id="m-model" type="text" placeholder="CLIO" autocapitalize="characters">
+          <div class="fhint">Prometna dozvola — redak D.3</div>
           <div class="ferror" id="e-m-model">Obavezno.</div>
         </div>
       </div>
       <div>
         <label class="flabel" for="m-automodel">Specifikacija motora</label>
         <input class="finput" id="m-automodel" type="text" placeholder="1.5 DCI">
+        <div class="fhint">Npr. "1.5 DCI", "2.0 TDI" — prometna dozvola redak D.3 ili P.5</div>
         <div class="ferror" id="e-m-automodel">Obavezno.</div>
       </div>
       <div class="row2">
         <div>
           <label class="flabel" for="m-year">Godina</label>
           <input class="finput" id="m-year" type="number" placeholder="2018" min="1990" max="2026" inputmode="numeric">
+          <div class="fhint">Prometna — redak B</div>
           <div class="ferror" id="e-m-year">Obavezno.</div>
         </div>
         <div>
@@ -256,11 +260,13 @@ input[type=number] { -moz-appearance: textfield; }
               🛢️ Diesel
             </label>
           </div>
+          <div class="fhint">Prometna — redak P.3</div>
         </div>
       </div>
       <div>
         <label class="flabel" for="m-vin">Broj šasije (VIN)</label>
         <input class="finput" id="m-vin" type="text" placeholder="VF17RBF0A58516588" maxlength="17" autocapitalize="characters">
+        <div class="fhint">17 znakova — prometna dozvola redak E, ili na karoseriji ispod vjetrobrana</div>
         <div class="ferror" id="e-m-vin">Unesite VIN (17 znakova).</div>
       </div>
     </div>
