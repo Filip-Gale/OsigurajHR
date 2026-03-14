@@ -11,6 +11,32 @@
  */
 
 const BASE_URL = 'https://apim-stg-public-reg.uniqa-see.com/graphene.api';
+const HUOMTR_URL = 'https://asdirectprod.generali.hr:8080/TestAutoOsiguranje/api/huomtr/v1/GetPodaci';
+
+// Hrvatska standardna BM tablica (zakonom propisana, ista za sve osiguravatelje)
+// PS 10 = neutralno (novi vozač, 0%), PS 1 = max bonus (-50%)
+const BM_TABLE = {
+  1: -0.50, 2: -0.45, 3: -0.40, 4: -0.35, 5: -0.30,
+  6: -0.25, 7: -0.20, 8: -0.15, 9: -0.10, 10: 0.00,
+};
+
+/** Dohvati premijski stupanj iz HUO. Fallback: PS 10 (neutralno). */
+async function fetchPS(oib, godinaRodjenja, env) {
+  if (!oib) return 10;
+  try {
+    const credentials = btoa(`${env.ASDIRECT_USERNAME}:${env.ASDIRECT_PASSWORD}`);
+    const res = await fetch(HUOMTR_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Authorization: `Basic ${credentials}` },
+      body: JSON.stringify({ oib: String(oib), godinaRodjenja: Number(godinaRodjenja) }),
+    });
+    if (!res.ok) return 10;
+    const data = await res.json();
+    return data?.premijskiStupanj ?? 10;
+  } catch {
+    return 10;
+  }
+}
 
 const UNIQA_HEADERS = {
   'x-za-tenant': 'uniqahrv',
@@ -64,7 +90,7 @@ async function handleCodebook(key) {
   return json(await r.json());
 }
 
-async function handleQuote(body, headers) {
+async function handleQuote(body, headers, env) {
   const partnerNo = randomPartnerNo();
 
   const payload = {
@@ -114,7 +140,19 @@ async function handleQuote(body, headers) {
   const data = await r.json();
   const premium = data.value?.planSaPremium?.periodFinalPremium;
 
-  return json({ partnerNo, premium, raw: data }, r.status, headers);
+  // BM korekcija — dohvati pravi PS iz HUO i primijeni standardnu tablicu
+  let ps = 10;
+  let correctedPremium = premium;
+  if (premium != null && body.oib) {
+    const birthYear = Array.isArray(body.birthday)
+      ? body.birthday[0]
+      : (typeof body.birthday === 'string' ? parseInt(body.birthday) : null);
+    ps = await fetchPS(body.oib, birthYear, env);
+    const bmFactor = BM_TABLE[ps] ?? 0;
+    correctedPremium = Math.round(parseFloat(premium) * (1 + bmFactor) * 100) / 100;
+  }
+
+  return json({ partnerNo, premium, correctedPremium, ps, raw: data }, r.status, headers);
 }
 
 async function handleCreatePolicy(body, headers) {
@@ -238,7 +276,7 @@ async function handleDocuments(body, headers) {
 // ─── Main entry point ────────────────────────────────────────────────────────
 
 export default {
-  async fetch(request) {
+  async fetch(request, env) {
     const origin = request.headers.get('Origin') || '';
     const headers = corsHeaders(origin);
 
@@ -268,7 +306,7 @@ export default {
 
       const body = await request.json();
 
-      if (path === '/ao/quote')         return handleQuote(body, headers);
+      if (path === '/ao/quote')         return handleQuote(body, headers, env);
       if (path === '/ao/create-policy') return handleCreatePolicy(body, headers);
       if (path === '/ao/issue-policy')  return handleIssuePolicy(body, headers);
       if (path === '/ao/documents')     return handleDocuments(body, headers);

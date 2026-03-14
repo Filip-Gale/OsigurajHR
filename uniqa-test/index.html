@@ -389,6 +389,10 @@ input[type=number] { -moz-appearance: textfield; }
           </div>
           <!-- Unlocked state -->
           <div id="uniqa-unlocked" style="display:none">
+            <div style="display:flex;align-items:center;gap:6px;justify-content:flex-end;flex-wrap:wrap">
+              <div id="uniqa-original-price" style="display:none;font-size:0.85rem;color:#aaa;text-decoration:line-through"></div>
+              <div id="uniqa-bm-badge" style="display:none;background:#22c55e;color:white;font-size:0.65rem;font-weight:700;padding:2px 7px;border-radius:20px"></div>
+            </div>
             <div class="price-num" id="uniqa-price-num">—</div>
             <div class="price-per">/ godišnje s PDV-om</div>
             <div id="uniqa-ps-info" style="font-size:0.72rem;color:#aaa;margin-top:3px;"></div>
@@ -754,9 +758,17 @@ async function submitModal() {
       state.ps               = data.ps;
 
       document.getElementById('uniqa-unlocked').style.display = 'block';
-      document.getElementById('uniqa-price-num').textContent = data.correctedPremium + ' €';
+
+      const fmtEur = n => parseFloat(n).toLocaleString('hr-HR', {minimumFractionDigits:2, maximumFractionDigits:2}) + ' €';
+      document.getElementById('uniqa-price-num').textContent = fmtEur(data.correctedPremium);
+
       if (data.ps != null && data.ps !== 10) {
-        document.getElementById('uniqa-ps-info').textContent = 'PS ' + data.ps + ' · BM korigirano';
+        const bmPct = Math.round((1 - data.correctedPremium / data.premium) * 100);
+        document.getElementById('uniqa-original-price').textContent = fmtEur(data.premium);
+        document.getElementById('uniqa-original-price').style.display = 'block';
+        document.getElementById('uniqa-bm-badge').textContent = '−' + bmPct + '%';
+        document.getElementById('uniqa-bm-badge').style.display = 'inline-block';
+        document.getElementById('uniqa-ps-info').textContent = 'Bonus razred PS ' + data.ps;
       }
 
       const btn = document.getElementById('uniqa-btn');
