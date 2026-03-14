@@ -348,7 +348,7 @@ input[type=number] { -moz-appearance: textfield; }
         <input class="finput" id="dob" type="text" inputmode="numeric" placeholder="DD.MM.GGGG" maxlength="10" autocomplete="bday">
         <div class="ferror" id="e-dob">Unesite datum rođenja.</div>
       </div>
-      <div>
+      <div id="oib-row">
         <label class="flabel" for="oib">OIB</label>
         <input class="finput" id="oib" type="text" placeholder="12345678901" maxlength="11" inputmode="numeric" autocomplete="off">
         <div class="fhint">Dohvaćamo vaš premijski stupanj iz registra osiguranja.</div>
@@ -563,6 +563,16 @@ function validateDob(s) {
   return !isNaN(d.getTime());
 }
 
+// ─── Tip osobe toggle ────────────────────────────────────────────────────────
+
+document.querySelectorAll('input[name=tip]').forEach(function(r) {
+  r.addEventListener('change', function() {
+    const isFizicka = this.value === 'PERSON';
+    document.getElementById('dob-row').style.display = isFizicka ? 'block' : 'none';
+    document.getElementById('oib-row').style.display = isFizicka ? 'block' : 'none';
+  });
+});
+
 // ─── DOB auto-format ──────────────────────────────────────────────────────────
 
 document.getElementById('dob').addEventListener('input', function(e) {
@@ -589,6 +599,7 @@ function next1() {
 }
 
 function next2() {
+  const isFizicka = document.querySelector('input[name=tip]:checked').value === 'PERSON';
   const dobVal = val('dob');
   const oibVal = val('oib');
   const kwVal  = val('kw');
@@ -603,22 +614,24 @@ function next2() {
     document.getElementById('e-kw').style.display = 'none';
   }
 
-  if (!validateDob(dobVal)) {
-    document.getElementById('dob').classList.add('err');
-    document.getElementById('e-dob').style.display = 'block';
-    ok = false;
-  } else {
-    document.getElementById('dob').classList.remove('err');
-    document.getElementById('e-dob').style.display = 'none';
-  }
+  if (isFizicka) {
+    if (!validateDob(dobVal)) {
+      document.getElementById('dob').classList.add('err');
+      document.getElementById('e-dob').style.display = 'block';
+      ok = false;
+    } else {
+      document.getElementById('dob').classList.remove('err');
+      document.getElementById('e-dob').style.display = 'none';
+    }
 
-  if (!/^\d{11}$/.test(oibVal)) {
-    document.getElementById('oib').classList.add('err');
-    document.getElementById('e-oib').style.display = 'block';
-    ok = false;
-  } else {
-    document.getElementById('oib').classList.remove('err');
-    document.getElementById('e-oib').style.display = 'none';
+    if (!/^\d{11}$/.test(oibVal)) {
+      document.getElementById('oib').classList.add('err');
+      document.getElementById('e-oib').style.display = 'block';
+      ok = false;
+    } else {
+      document.getElementById('oib').classList.remove('err');
+      document.getElementById('e-oib').style.display = 'none';
+    }
   }
 
   if (!ok) return;
@@ -628,7 +641,10 @@ function next2() {
   const zona = regVal.replace(/[^A-Za-z]/g, '').substring(0, 2).toUpperCase();
   const chips = document.getElementById('chips');
   chips.innerHTML = '';
-  [regVal, zona + ' zona', kwVal + ' kW', dobVal.split('.')[2] + '. god.'].forEach(txt => {
+  const chipData = [regVal, zona + ' zona', kwVal + ' kW'];
+  if (isFizicka && dobVal) chipData.push(dobVal.split('.')[2] + '. god.');
+  else if (!isFizicka) chipData.push('Pravna osoba');
+  chipData.forEach(txt => {
     const c = document.createElement('span');
     c.className = 'chip'; c.textContent = txt;
     chips.appendChild(c);
@@ -692,9 +708,10 @@ async function submitModal() {
   document.getElementById('uniqa-err').style.display = 'none';
   document.getElementById('uniqa-btn').style.display = 'none';
 
+  const isFizicka = document.querySelector('input[name=tip]:checked').value === 'PERSON';
   const regVal = val('reg').toUpperCase();
   const zona = regVal.replace(/[^A-Za-z]/g, '').substring(0, 2).toUpperCase();
-  const dobIso = parseDob(val('dob')); // YYYY-MM-DD
+  const dobIso = isFizicka ? parseDob(val('dob')) : '1990-01-01';
 
   // Dates
   const start = new Date();
