@@ -3,7 +3,7 @@ layout: post
 title: "Auto osiguranje 2026: Usporedba i kako uštediti do 50%"
 description: "Vodič kroz auto osiguranje 2026. ✓ Što određuje cijenu ✓ Bonus/malus tablica ✓ AO vs. kasko ✓ Kalkulator za 30 sekundi — sve osiguravajuće kuće u HR"
 date: 2026-03-11
-image: /img/car.jpg
+image: /img/blog/pexels-yankrukov-8867276.jpg
 ---
 
 # Auto osiguranje 2026: Usporedba i kako uštediti do 50%
