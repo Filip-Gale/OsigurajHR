@@ -273,6 +273,53 @@ async function handleDocuments(body, headers) {
   return json(await r.json(), r.status, headers);
 }
 
+async function handleExtractPolicy(body, headers, env) {
+  const { image, mimeType } = body;
+  if (!image || !mimeType) {
+    return json({ ok: false, error: 'Missing image or mimeType' }, 400, headers);
+  }
+
+  const prompt = `Ovo je fotografija ili PDF policije auto osiguranja, prometne dozvole ili srodnog dokumenta na hrvatskom jeziku.
+Pronađi i vrati ISKLJUČIVO sljedeći JSON objekt (bez komentara, bez markdown blokova, samo čisti JSON):
+{
+  "registracija": "registracijska oznaka vozila (npr. ZG-123-AB, bez razmaka i crtica)",
+  "kw": (samo broj — snaga motora u kW, integer),
+  "dob": "datum rođenja vlasnika u formatu DD.MM.GGGG",
+  "oib": "OIB — točno 11 znamenki bez razmaka i crtica"
+}
+Za polja koja nisu vidljiva postavi null. Vrati SAMO JSON, ništa drugo.`;
+
+  const r = await fetch(
+    `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${env.GEMINI_API_KEY}`,
+    {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        contents: [{ parts: [{ text: prompt }, { inline_data: { mime_type: mimeType, data: image } }] }],
+        generationConfig: { temperature: 0, maxOutputTokens: 256 },
+      }),
+    }
+  );
+
+  const gemini = await r.json();
+  if (!r.ok) {
+    return json({ ok: false, error: gemini.error?.message || 'Gemini error' }, 500, headers);
+  }
+
+  const text = (gemini.candidates?.[0]?.content?.parts?.[0]?.text || '').trim();
+  try {
+    const clean = text.replace(/^```json\s*/i, '').replace(/^```\s*/i, '').replace(/\s*```$/i, '').trim();
+    const parsed = JSON.parse(clean);
+    // Normalize: strip spaces/dashes from OIB
+    if (parsed.oib) parsed.oib = String(parsed.oib).replace(/[\s\-]/g, '');
+    // Normalize kw to number
+    if (parsed.kw) parsed.kw = parseInt(parsed.kw, 10) || null;
+    return json({ ok: true, ...parsed }, 200, headers);
+  } catch {
+    return json({ ok: false, error: 'Nisam uspio pročitati dokument. Pokušaj s boljom fotografijom.', raw: text }, 500, headers);
+  }
+}
+
 // ─── Main entry point ────────────────────────────────────────────────────────
 
 export default {
@@ -310,6 +357,7 @@ export default {
       if (path === '/ao/create-policy') return handleCreatePolicy(body, headers);
       if (path === '/ao/issue-policy')  return handleIssuePolicy(body, headers);
       if (path === '/ao/documents')     return handleDocuments(body, headers);
+      if (path === '/extract-policy')   return handleExtractPolicy(body, headers, env);
 
       return json({ error: 'Not found' }, 404, headers);
 

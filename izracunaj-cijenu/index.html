@@ -687,46 +687,124 @@ permalink: /izracunaj-cijenu/
 
     <!-- Step 1: Vozilo -->
     <div class="step-panel active" id="s1">
-        <div class="fields">
-            <div>
-                <label class="flabel" for="reg">Registracijska oznaka</label>
-                <div class="reg-wrap">
-                    <input class="finput" id="reg" type="text" placeholder="ZG1234AB" maxlength="10"
-                           autocomplete="off" autocapitalize="characters" spellcheck="false"
-                           oninput="fireFormStart()">
-                    <div class="reg-ind" id="reg-ind">
-                        <div class="reg-dot"></div><span>Provjeravam...</span>
+
+        <!-- Mode tabs -->
+        <div class="mode-tabs">
+            <button class="mode-tab active" id="tab-manual" onclick="switchMode('manual')" type="button">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                Unesi ručno
+            </button>
+            <button class="mode-tab" id="tab-upload" onclick="switchMode('upload')" type="button">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2.5"/><polyline points="8 12 12 8 16 12"/><line x1="12" y1="8" x2="12" y2="16"/></svg>
+                Uploadi staru policu
+            </button>
+        </div>
+
+        <!-- Manual mode panel -->
+        <div id="mode-manual">
+            <div class="fields">
+                <div>
+                    <label class="flabel" for="reg">Registracijska oznaka</label>
+                    <div class="reg-wrap">
+                        <input class="finput" id="reg" type="text" placeholder="ZG1234AB" maxlength="10"
+                               autocomplete="off" autocapitalize="characters" spellcheck="false"
+                               oninput="fireFormStart()">
+                        <div class="reg-ind" id="reg-ind">
+                            <div class="reg-dot"></div><span>Provjeravam...</span>
+                        </div>
+                    </div>
+                    <div class="ferror" id="e-reg">Unesite registracijsku oznaku.</div>
+                </div>
+                <div>
+                    <button class="opt-toggle" id="opt-btn" onclick="toggleKasko()" type="button">
+                        <span class="opt-icon"></span>
+                        <span id="opt-lbl">Želim ugovoriti i Kasko</span>
+                    </button>
+                    <div class="opt-field" id="opt-field">
+                        <div style="height:12px"></div>
+                        <div class="kasko-upload-zone" id="kasko-drop" onclick="document.getElementById('kasko-file').click()">
+                            <span class="kasko-upload-icon" id="kasko-upload-icon">📸</span>
+                            <span class="kasko-upload-text" id="kasko-upload-text">
+                                Priloži prometnu ili staru policu<br>
+                                <small>(nije obavezno, ali ubrzava izradu ponude)</small>
+                            </span>
+                        </div>
+                        <input type="file" id="kasko-file" name="attachment" accept="image/*,.pdf" style="display:none" onchange="onKaskoFile(this)">
+                        <ul class="kasko-hints">
+                            <li>Pokriva štetu i kad ste vi krivi</li>
+                            <li>Krađa, tuča, požar — sve uključeno</li>
+                            <li>Zaštita vrijednosti vašeg vozila</li>
+                            <li>Preporučujemo za automobile do 10 godina starosti</li>
+                        </ul>
                     </div>
                 </div>
-                <div class="ferror" id="e-reg">Unesite registracijsku oznaku.</div>
             </div>
-            <div>
-                <button class="opt-toggle" id="opt-btn" onclick="toggleKasko()" type="button">
-                    <span class="opt-icon"></span>
-                    <span id="opt-lbl">Želim ugovoriti i Kasko</span>
-                </button>
-                <div class="opt-field" id="opt-field">
-                    <div style="height:12px"></div>
-                    <div class="kasko-upload-zone" id="kasko-drop" onclick="document.getElementById('kasko-file').click()">
-                        <span class="kasko-upload-icon" id="kasko-upload-icon">📸</span>
-                        <span class="kasko-upload-text" id="kasko-upload-text">
-                            Priloži prometnu ili staru policu<br>
-                            <small>(nije obavezno, ali ubrzava izradu ponude)</small>
-                        </span>
+            <div class="btn-stack">
+                <button class="btn-main" onclick="next1()" type="button">Usporedi cijene!</button>
+            </div>
+        </div>
+
+        <!-- Upload mode panel -->
+        <div id="mode-upload" style="display:none">
+            <!-- Drop zone state -->
+            <div id="pdz-drop">
+                <div class="policy-drop-zone" id="policy-drop-zone"
+                     onclick="document.getElementById('policy-file').click()"
+                     ondragover="pdzDragOver(event)" ondragleave="pdzDragLeave(event)" ondrop="pdzDrop(event)">
+                    <div class="pdz-inner">
+                        <div class="pdz-icon">
+                            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                <polyline points="14 2 14 8 20 8"/>
+                                <polyline points="8 13 12 9 16 13"/>
+                                <line x1="12" y1="9" x2="12" y2="17"/>
+                            </svg>
+                        </div>
+                        <div class="pdz-title">Povuci policu ovdje</div>
+                        <div class="pdz-cta">📱 Klikni za odabir slike ili PDF-a</div>
+                        <div class="pdz-formats">Stara polica · Prometna dozvola · Zelena karta</div>
                     </div>
-                    <input type="file" id="kasko-file" name="attachment" accept="image/*,.pdf" style="display:none" onchange="onKaskoFile(this)">
-                    <ul class="kasko-hints">
-                        <li>Pokriva štetu i kad ste vi krivi</li>
-                        <li>Krađa, tuča, požar — sve uključeno</li>
-                        <li>Zaštita vrijednosti vašeg vozila</li>
-                        <li>Preporučujemo za automobile do 10 godina starosti</li>
-                    </ul>
+                </div>
+                <input type="file" id="policy-file" accept="image/*,.pdf" style="display:none"
+                       onchange="handlePolicyFile(this.files[0])">
+                <div class="pdz-privacy">🔒 Slika se koristi samo za čitanje podataka i odmah se briše</div>
+            </div>
+            <!-- Loading state -->
+            <div id="pdz-loading" style="display:none">
+                <div class="pdz-state-card">
+                    <div class="pdz-spinner"></div>
+                    <div class="pdz-state-title">Čitamo vašu policu...</div>
+                    <div class="pdz-state-sub">AI traži registraciju, kW, datum i OIB</div>
+                </div>
+            </div>
+            <!-- Success state -->
+            <div id="pdz-success" style="display:none">
+                <div class="pdz-state-card pdz-state-ok">
+                    <div class="pdz-success-row">
+                        <div class="pdz-ok-icon">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                        </div>
+                        <div>
+                            <div class="pdz-state-title" style="color:#166534">Podaci pronađeni!</div>
+                            <div class="pdz-state-sub" style="color:#16a34a">Provjeri i nastavi</div>
+                        </div>
+                    </div>
+                    <div class="pdz-fields-preview" id="pdz-preview"></div>
+                    <button class="btn-main" onclick="proceedWithExtracted()" type="button">Nastavi s ovim podacima →</button>
+                    <button onclick="resetUpload()" type="button" class="pdz-retry-btn">↩ Uploadi drugi dokument</button>
+                </div>
+            </div>
+            <!-- Error state -->
+            <div id="pdz-error" style="display:none">
+                <div class="pdz-state-card pdz-state-err">
+                    <div style="font-size:2rem;margin-bottom:6px">⚠️</div>
+                    <div class="pdz-state-title" style="color:#dc2626">Nisam uspio pročitati dokument</div>
+                    <div class="pdz-state-sub" id="pdz-error-msg">Pokušaj s boljom slikom ili unesi podatke ručno.</div>
+                    <button onclick="resetUpload()" type="button" class="pdz-retry-btn">← Pokušaj ponovo</button>
                 </div>
             </div>
         </div>
-        <div class="btn-stack">
-            <button class="btn-main" onclick="next1()" type="button">Usporedi cijene!</button>
-        </div>
+
     </div>
 
     <!-- Step 2: Vozač -->
@@ -2003,5 +2081,212 @@ function submitEmail() {
     <svg class="odaberi-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ccc" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
   </a>
 </div>
+<style>
+/* ── Mode tabs ── */
+.mode-tabs {
+  display: flex; gap: 5px;
+  background: rgba(0,0,0,0.12);
+  border-radius: 14px; padding: 4px;
+  margin-bottom: 20px;
+}
+.mode-tab {
+  flex: 1; display: flex; align-items: center; justify-content: center; gap: 6px;
+  padding: 10px 6px; border: none; border-radius: 10px;
+  font-size: 0.78rem; font-weight: 700; font-family: inherit; cursor: pointer;
+  background: transparent; color: rgba(0,0,0,0.42);
+  transition: all 0.22s cubic-bezier(0.34,1.56,0.64,1); line-height: 1.2;
+}
+.mode-tab.active {
+  background: white; color: #573cf9;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.14);
+}
+.mode-tab:not(.active):hover { background: rgba(255,255,255,0.45); color: rgba(0,0,0,0.62); }
+
+/* ── Drop zone ── */
+.policy-drop-zone {
+  background: white; border: 2.5px dashed rgba(87,60,249,0.38);
+  border-radius: 16px; cursor: pointer;
+  transition: border-color 0.2s, transform 0.18s;
+}
+.policy-drop-zone:hover { border-color: #573cf9; transform: translateY(-1px); }
+.policy-drop-zone.drag-over { border-color: #573cf9; border-style: solid; transform: scale(1.015); }
+.pdz-inner {
+  display: flex; flex-direction: column; align-items: center; gap: 7px;
+  padding: 28px 16px 24px; text-align: center;
+}
+.pdz-icon {
+  width: 54px; height: 54px; flex-shrink: 0;
+  background: linear-gradient(145deg, #6b4ffb, #4a2fe0);
+  border-radius: 16px; display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 4px 0 #3b20d4, 0 6px 18px rgba(87,60,249,0.38);
+  margin-bottom: 4px; transition: transform 0.18s, box-shadow 0.18s;
+}
+.policy-drop-zone:hover .pdz-icon {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 0 #3b20d4, 0 10px 24px rgba(87,60,249,0.5);
+}
+.pdz-title { font-size: 1rem; font-weight: 800; color: #1a1033; }
+.pdz-cta { font-size: 0.82rem; color: #573cf9; font-weight: 700; }
+.pdz-formats { font-size: 0.7rem; color: #bbb; font-weight: normal; margin-top: 1px; }
+.pdz-privacy {
+  text-align: center; font-size: 0.67rem; color: rgba(0,0,0,0.32);
+  font-weight: normal; margin-top: 8px; padding: 0 4px;
+}
+
+/* ── Shared state card ── */
+.pdz-state-card {
+  background: white; border-radius: 16px;
+  border: 2px solid #e5e5e5; padding: 24px 16px;
+  display: flex; flex-direction: column; align-items: center;
+  gap: 8px; text-align: center;
+}
+.pdz-state-ok { border-color: #22c55e; }
+.pdz-state-err { border-color: #fca5a5; }
+.pdz-spinner {
+  width: 36px; height: 36px;
+  border: 3px solid rgba(87,60,249,0.15); border-top-color: #573cf9;
+  border-radius: 50%; animation: pdzSpin 0.75s linear infinite;
+}
+@keyframes pdzSpin { to { transform: rotate(360deg); } }
+.pdz-state-title { font-size: 0.92rem; font-weight: 800; color: #1a1033; }
+.pdz-state-sub { font-size: 0.76rem; color: #aaa; font-weight: normal; }
+
+/* ── Success ── */
+.pdz-success-row {
+  display: flex; align-items: center; gap: 10px;
+  width: 100%; margin-bottom: 6px; text-align: left;
+}
+.pdz-ok-icon {
+  width: 34px; height: 34px; flex-shrink: 0;
+  background: #22c55e; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+}
+.pdz-fields-preview {
+  width: 100%; display: flex; flex-direction: column; gap: 6px; margin-bottom: 10px;
+}
+.pdz-field-row {
+  display: flex; justify-content: space-between; align-items: center;
+  background: #f0fdf4; border-radius: 9px; padding: 8px 11px;
+}
+.pdz-field-row.missing { background: #fff7ed; }
+.pdz-field-lbl {
+  font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.5px;
+  color: #16a34a; font-weight: 700;
+}
+.pdz-field-row.missing .pdz-field-lbl { color: #c2410c; }
+.pdz-field-val { font-size: 0.88rem; font-weight: 800; color: #1a1033; }
+.pdz-field-row.missing .pdz-field-val { color: #c2410c; font-style: italic; font-weight: 500; }
+.pdz-retry-btn {
+  background: none; border: none; cursor: pointer;
+  font-family: inherit; font-size: 0.8rem; font-weight: 600;
+  color: rgba(0,0,0,0.38); padding: 6px 0; transition: color 0.2s;
+}
+.pdz-retry-btn:hover { color: #573cf9; }
+</style>
+
+<script>
+/* ── Policy Upload ── */
+var currentMode = 'manual';
+var extractedPolicyData = null;
+
+function switchMode(mode) {
+  currentMode = mode;
+  document.getElementById('mode-manual').style.display = mode === 'manual' ? 'block' : 'none';
+  document.getElementById('mode-upload').style.display = mode === 'upload' ? 'block' : 'none';
+  document.getElementById('tab-manual').classList.toggle('active', mode === 'manual');
+  document.getElementById('tab-upload').classList.toggle('active', mode === 'upload');
+  setTimeout(notifyHeight, 120);
+}
+
+function pdzDragOver(e) {
+  e.preventDefault();
+  document.getElementById('policy-drop-zone').classList.add('drag-over');
+}
+function pdzDragLeave() {
+  document.getElementById('policy-drop-zone').classList.remove('drag-over');
+}
+function pdzDrop(e) {
+  e.preventDefault();
+  document.getElementById('policy-drop-zone').classList.remove('drag-over');
+  var file = e.dataTransfer.files[0];
+  if (file) handlePolicyFile(file);
+}
+
+function showPdzState(state) {
+  ['drop','loading','success','error'].forEach(function(s) {
+    var el = document.getElementById('pdz-' + s);
+    if (el) el.style.display = s === state ? 'block' : 'none';
+  });
+  setTimeout(notifyHeight, 120);
+}
+
+function handlePolicyFile(file) {
+  if (!file) return;
+  showPdzState('loading');
+  var reader = new FileReader();
+  reader.onload = function(e) {
+    var base64 = e.target.result.split(',')[1];
+    var mimeType = file.type || 'image/jpeg';
+    fetch('https://uniqa-proxy.osiguraj1.workers.dev/extract-policy', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ image: base64, mimeType: mimeType })
+    })
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+      if (data.ok) {
+        extractedPolicyData = data;
+        renderPdzSuccess(data);
+      } else {
+        document.getElementById('pdz-error-msg').textContent =
+          data.error || 'Pokušaj s boljom slikom ili unesi podatke ručno.';
+        showPdzState('error');
+      }
+    })
+    .catch(function(err) {
+      document.getElementById('pdz-error-msg').textContent = err.message || 'Greška pri čitanju dokumenta.';
+      showPdzState('error');
+    });
+  };
+  reader.readAsDataURL(file);
+}
+
+function renderPdzSuccess(data) {
+  var preview = document.getElementById('pdz-preview');
+  preview.innerHTML = '';
+  var fields = [
+    { lbl: 'Registracija', val: data.registracija },
+    { lbl: 'Snaga motora', val: data.kw ? data.kw + ' kW' : null },
+    { lbl: 'Datum rođenja', val: data.dob },
+    { lbl: 'OIB', val: data.oib }
+  ];
+  fields.forEach(function(f) {
+    var row = document.createElement('div');
+    row.className = 'pdz-field-row' + (f.val ? '' : ' missing');
+    row.innerHTML = '<span class="pdz-field-lbl">' + f.lbl + '</span>' +
+                    '<span class="pdz-field-val">' + (f.val || 'Nije pronađeno') + '</span>';
+    preview.appendChild(row);
+  });
+  showPdzState('success');
+}
+
+function proceedWithExtracted() {
+  if (!extractedPolicyData) return;
+  var d = extractedPolicyData;
+  if (d.registracija) document.getElementById('reg').value = d.registracija;
+  if (d.kw) document.getElementById('kw').value = d.kw;
+  if (d.dob) document.getElementById('dob').value = d.dob;
+  if (d.oib) document.getElementById('oib').value = d.oib;
+  switchMode('manual');
+  next1();
+}
+
+function resetUpload() {
+  extractedPolicyData = null;
+  var fi = document.getElementById('policy-file');
+  if (fi) fi.value = '';
+  showPdzState('drop');
+}
+</script>
 </body>
 </html>
