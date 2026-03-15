@@ -420,17 +420,24 @@ permalink: /izracunaj-cijenu/
             background: #fffbeb; border-radius: 10px; border: 1px solid #fde68a;
             font-size: 0.78rem; color: #92400e; font-weight: 600;
         }
-        .results-trust-footer {
-            display: flex; align-items: center; justify-content: center; gap: 12px;
-            padding: 16px 20px 4px;
-            flex-wrap: wrap;
+        .results-trust-bar {
+            display: flex; align-items: center; gap: 14px;
+            padding: 12px 20px;
+            background: #f9f8ff;
+            border-radius: 14px;
+            margin-bottom: 14px;
         }
-        .results-trust-footer img {
-            height: 28px; width: auto; border-radius: 4px;
+        .results-trust-bar img {
+            height: 32px; width: auto; border-radius: 4px; flex-shrink: 0;
         }
-        .results-trust-footer span {
-            font-size: 0.72rem; color: #aaa; line-height: 1.5;
-            text-align: center;
+        .results-trust-bar-text {
+            display: flex; flex-direction: column; gap: 2px;
+        }
+        .results-trust-bar-text strong {
+            font-size: 0.78rem; color: #1c1533; font-weight: 700;
+        }
+        .results-trust-bar-text span {
+            font-size: 0.71rem; color: #888; line-height: 1.4;
         }
         .pkg-price { font-size: 0.88rem; color: #573cf9; font-weight: 800; white-space: nowrap; }
         .pkg-info-btn {
@@ -908,6 +915,13 @@ permalink: /izracunaj-cijenu/
         </div>
 
         <div id="r-ok" style="display:none">
+            <div class="results-trust-bar">
+                <img src="/img/hanfa-logo-dark.png" alt="HANFA">
+                <div class="results-trust-bar-text">
+                    <strong>Licencirani posrednik pod nadzorom HANFA-e</strong>
+                    <span>Polica odmah vidljiva na tehničkom pregledu · 20+ godina iskustva</span>
+                </div>
+            </div>
             <div class="results-trust-date" id="results-date-bar">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#92400e" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
                 <span id="results-date-text">Cijene za danas</span>
@@ -1041,10 +1055,6 @@ permalink: /izracunaj-cijenu/
                 <a href="#" class="btn-tel" onclick="window.top.location.href='tel:+38598813221'; return false;">📞 Nazovi agenta: 098 813 221</a>
             </div>
             <p class="disclaimer">Posrednik: Maksi Miro d.o.o.</p>
-            <div class="results-trust-footer">
-                <img src="/img/hanfa-logo-dark.png" alt="HANFA">
-                <span>Licencirani posrednik pod nadzorom HANFA-e · Polica odmah vidljiva na tehničkom pregledu</span>
-            </div>
         </div>
 
         <div id="r-err" style="display:none">
