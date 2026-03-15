@@ -385,7 +385,8 @@ permalink: /izracunaj-cijenu/
         .pkg-row-gold:hover { border-color: #c99c00 !important; transform: translateY(-1px); }
         .pkg-row-gold.on { background: linear-gradient(90deg, #fff3b0, #ffe44d, #ffc200, #ffe44d, #fff3b0) !important; border-color: #c99c00 !important; }
         .pkg-row-gold .pkg-price { color: #9a6c00; }
-        .pkg-left { display: flex; align-items: center; gap: 8px; }
+        .pkg-left { display: flex; align-items: center; gap: 8px; flex: 1; min-width: 0; }
+        .pkg-name-group { display: flex; align-items: center; gap: 4px; flex: 1; min-width: 0; }
         .pkg-check {
             width: 20px; height: 20px; border-radius: 50%; flex-shrink: 0;
             border: 2px solid #e5e5e5; display: flex; align-items: center; justify-content: center;
@@ -1639,36 +1640,36 @@ function renderTriglav(aoBaseVal) {
     var pkgsHtml = '';
     if (tIsFlat) {
       pkgsHtml += '<div class="pkg-row" id="tpkg-nezgoda" onclick="toggleTriglavPkg(this,7.44)" data-price="7.44">'
-        + '<div class="pkg-left"><div class="pkg-check"><span class="pkg-check-icon">✓</span></div><span class="pkg-name">Nezgoda putnika</span>'
+        + '<div class="pkg-left"><div class="pkg-check"><span class="pkg-check-icon">✓</span></div>'
+        + '<div class="pkg-name-group"><span class="pkg-name">Nezgoda putnika</span>'
         + '<button class="pkg-info-btn" onclick="togglePop(event,\'tpop-nezgoda\')" type="button">i</button>'
         + '<div class="pkg-popover" id="tpop-nezgoda">Isplaćuje naknadu svim putnicima u vozilu ako dođe do prometne nezgode s tjelesnim ozljedama — neovisno o krivnji.</div>'
-        + '</div>'
-        + '<span class="pkg-price">+ 7,44 €/god</span></div>';
+        + '</div></div><span class="pkg-price">+ 7,44 €/god</span></div>';
       pkgsHtml += '<div class="pkg-row" id="tpkg-asist-eu" onclick="toggleTriglavPkg(this,20)" data-price="20">'
-        + '<div class="pkg-left"><div class="pkg-check"><span class="pkg-check-icon">✓</span></div><span class="pkg-name">Asistencija (Europa)</span>'
+        + '<div class="pkg-left"><div class="pkg-check"><span class="pkg-check-icon">✓</span></div>'
+        + '<div class="pkg-name-group"><span class="pkg-name">Asistencija (Europa)</span>'
         + '<button class="pkg-info-btn" onclick="togglePop(event,\'tpop-asist-eu-flat\')" type="button">i</button>'
         + '<div class="pkg-popover" id="tpop-asist-eu-flat">Sve usluge domaće asistencije proširene na cijelu Europu. Idealno za česte putnike i godišnje odmore u inozemstvu.</div>'
-        + '</div>'
-        + '<span class="pkg-price">+ 20 €/god</span></div>';
+        + '</div></div><span class="pkg-price">+ 20 €/god</span></div>';
     } else {
       pkgsHtml += '<div class="pkg-row" id="tpkg-asist-hr" onclick="toggleTriglavPkg(this,15)" data-price="15">'
-        + '<div class="pkg-left"><div class="pkg-check"><span class="pkg-check-icon">✓</span></div><span class="pkg-name">Asistencija (Hrvatska)</span>'
+        + '<div class="pkg-left"><div class="pkg-check"><span class="pkg-check-icon">✓</span></div>'
+        + '<div class="pkg-name-group"><span class="pkg-name">Asistencija (Hrvatska)</span>'
         + '<button class="pkg-info-btn" onclick="togglePop(event,\'tpop-asist-hr\')" type="button">i</button>'
         + '<div class="pkg-popover" id="tpop-asist-hr">Pomoć na cesti u cijeloj Hrvatskoj: vuča do servisa, zamjenski auto, smještaj ako ostanete bez prijevoza — dostupno 0-24h.</div>'
-        + '</div>'
-        + '<span class="pkg-price">+ 15 €/god</span></div>';
+        + '</div></div><span class="pkg-price">+ 15 €/god</span></div>';
       pkgsHtml += '<div class="pkg-row" id="tpkg-asist-eu" onclick="toggleTriglavPkg(this,20)" data-price="20">'
-        + '<div class="pkg-left"><div class="pkg-check"><span class="pkg-check-icon">✓</span></div><span class="pkg-name">Asistencija (Europa)</span>'
+        + '<div class="pkg-left"><div class="pkg-check"><span class="pkg-check-icon">✓</span></div>'
+        + '<div class="pkg-name-group"><span class="pkg-name">Asistencija (Europa)</span>'
         + '<button class="pkg-info-btn" onclick="togglePop(event,\'tpop-asist-eu\')" type="button">i</button>'
         + '<div class="pkg-popover" id="tpop-asist-eu">Sve usluge domaće asistencije proširene na cijelu Europu. Idealno za česte putnike i godišnje odmore u inozemstvu.</div>'
-        + '</div>'
-        + '<span class="pkg-price">+ 20 €/god</span></div>';
+        + '</div></div><span class="pkg-price">+ 20 €/god</span></div>';
       pkgsHtml += '<div class="pkg-row pkg-row-gold" id="tpkg-promo" onclick="toggleTriglavPkg(this,15)" data-price="15">'
-        + '<div class="pkg-left"><div class="pkg-check"><span class="pkg-check-icon">✓</span></div><span class="pkg-name">Paket promo</span>'
+        + '<div class="pkg-left"><div class="pkg-check"><span class="pkg-check-icon">✓</span></div>'
+        + '<div class="pkg-name-group"><span class="pkg-name">Paket promo</span>'
         + '<button class="pkg-info-btn" onclick="togglePop(event,\'tpop-promo\')" type="button">i</button>'
         + '<div class="pkg-popover" id="tpop-promo">Bonus protect · Osiguranje od nezgode za vozača · Renta · Liječenje</div>'
-        + '</div>'
-        + '<span class="pkg-price">+ 15 €/god</span></div>';
+        + '</div></div><span class="pkg-price">+ 15 €/god</span></div>';
     }
     document.getElementById('triglav-pkgs-list').innerHTML = pkgsHtml;
   } else {
@@ -1703,10 +1704,10 @@ function renderGenerali(triglavPrice) {
   GENERALI_PKGS.forEach(function(pkg, idx) {
     pkgsHtml += '<div class="pkg-row" id="' + pkg.id + '" onclick="toggleGeneraliPkg(this,' + pkg.price + ')" data-price="' + pkg.price + '">'
       + '<div class="pkg-left"><div class="pkg-check"><span class="pkg-check-icon">✓</span></div>'
-      + '<span class="pkg-name">' + pkg.name + '</span>'
+      + '<div class="pkg-name-group"><span class="pkg-name">' + pkg.name + '</span>'
       + '<button class="pkg-info-btn" onclick="togglePop(event,\'gpop' + idx + '\')" type="button">i</button>'
       + '<div class="pkg-popover" id="gpop' + idx + '">' + pkg.desc + '</div>'
-      + '</div>'
+      + '</div></div>'
       + '<span class="pkg-price">+ ' + pkg.price.toFixed(2).replace('.',',') + ' €/god</span></div>';
   });
   document.getElementById('generali-pkgs-list').innerHTML = pkgsHtml;
@@ -1773,7 +1774,7 @@ function showOk(d) {
     var infoBtn = desc ? '<button class="pkg-info-btn" onclick="togglePop(event,\'pop'+idx+'\')" type="button">i</button><div class="pkg-popover" id="pop'+idx+'">'+desc+'</div>' : '';
     html += '<div class="pkg-row" id="pkgr'+idx+'" onclick="togglePkg(this,'+price+')" data-price="'+price+'">'
           + '<div class="pkg-left"><div class="pkg-check"><span class="pkg-check-icon">✓</span></div>'
-          + '<span class="pkg-name">'+nm+'</span>'+infoBtn+'</div>'
+          + '<div class="pkg-name-group"><span class="pkg-name">'+nm+'</span>'+infoBtn+'</div></div>'
           + '<span class="pkg-price">+ '+price+' €/god</span></div>';
   });
   if (html) { document.getElementById('pkg-list').innerHTML = html; document.getElementById('pkg-wrap').style.display = 'block'; }
