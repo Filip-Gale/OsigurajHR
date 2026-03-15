@@ -414,37 +414,23 @@ permalink: /izracunaj-cijenu/
             font-size: 0.72rem; color: #dc2626; font-weight: 600;
             margin-top: 3px; letter-spacing: 0.01em;
         }
-        /* ── Top trust bar ── */
-        .top-trust-bar {
-            display: flex; align-items: center; justify-content: center;
-            flex-wrap: wrap; gap: 0;
-            padding: 10px 20px;
-            background: #f8f7ff;
-            border-bottom: 1px solid #ede9ff;
-            border-radius: 16px 16px 0 0;
-        }
-        .ttb-item {
-            display: flex; align-items: center; gap: 7px;
-            padding: 4px 16px;
-            font-size: 0.76rem; color: #3d2fa0; font-weight: 600;
-            white-space: nowrap;
-        }
-        .ttb-item svg { flex-shrink: 0; opacity: 0.85; }
-        .ttb-divider {
-            width: 1px; height: 20px; background: #ddd8ff; flex-shrink: 0;
-        }
-        .ttb-hanfa-logo {
-            height: 22px; width: auto; opacity: 0.9;
-        }
-        @media (max-width: 480px) {
-            .ttb-item { font-size: 0.7rem; padding: 3px 10px; }
-            .ttb-hanfa-logo { height: 18px; }
-        }
         .results-trust-date {
             display: flex; align-items: center; gap: 6px;
             padding: 7px 14px; margin: 0 0 10px;
             background: #fffbeb; border-radius: 10px; border: 1px solid #fde68a;
             font-size: 0.78rem; color: #92400e; font-weight: 600;
+        }
+        .results-trust-footer {
+            display: flex; align-items: center; justify-content: center; gap: 12px;
+            padding: 16px 20px 4px;
+            flex-wrap: wrap;
+        }
+        .results-trust-footer img {
+            height: 28px; width: auto; border-radius: 4px;
+        }
+        .results-trust-footer span {
+            font-size: 0.72rem; color: #aaa; line-height: 1.5;
+            text-align: center;
         }
         .pkg-price { font-size: 0.88rem; color: #573cf9; font-weight: 800; white-space: nowrap; }
         .pkg-info-btn {
@@ -696,24 +682,6 @@ permalink: /izracunaj-cijenu/
 </div>
 
 <div class="wizard-card selectable">
-
-    <!-- Top trust bar -->
-    <div class="top-trust-bar">
-        <div class="ttb-item">
-            <img src="/img/hanfa-logo.png" alt="HANFA" class="ttb-hanfa-logo">
-            <span>licencirani posrednik</span>
-        </div>
-        <div class="ttb-divider"></div>
-        <div class="ttb-item">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#3d2fa0" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-            <span>20+ godina iskustva</span>
-        </div>
-        <div class="ttb-divider"></div>
-        <div class="ttb-item">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#3d2fa0" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-            <span>Polica vidljiva na tehničkom pregledu</span>
-        </div>
-    </div>
 
     <!-- Progress bar -->
     <div class="progress-bar">
@@ -1073,6 +1041,10 @@ permalink: /izracunaj-cijenu/
                 <a href="#" class="btn-tel" onclick="window.top.location.href='tel:+38598813221'; return false;">📞 Nazovi agenta: 098 813 221</a>
             </div>
             <p class="disclaimer">Posrednik: Maksi Miro d.o.o.</p>
+            <div class="results-trust-footer">
+                <img src="/img/hanfa-logo-dark.png" alt="HANFA">
+                <span>Licencirani posrednik pod nadzorom HANFA-e · Polica odmah vidljiva na tehničkom pregledu</span>
+            </div>
         </div>
 
         <div id="r-err" style="display:none">
