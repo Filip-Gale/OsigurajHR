@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+<meta charset="UTF-8">
+<title>Logo Preview</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f0f0f0; }
+
+  .section-label {
+    text-align: center;
+    font-size: 13px;
+    font-weight: 600;
+    color: #666;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 28px 0 10px;
+  }
+
+  /* NAV */
+  nav {
+    background: #573cf9;
+    padding: 0 24px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 900px;
+    margin: 0 auto 4px;
+    border-radius: 10px;
+  }
+  nav .logo-area { display: flex; align-items: center; gap: 10px; }
+  nav .logo-text { color: white; font-size: 20px; font-weight: 700; }
+  nav .logo-img { height: 36px; }
+  nav .logo-img-sq { height: 40px; border-radius: 8px; }
+  nav .phone { color: white; font-size: 14px; font-weight: 500; opacity: 0.9; }
+
+  /* FAVICON MOCK */
+  .tab-row {
+    display: flex;
+    gap: 6px;
+    padding: 8px 12px;
+    background: #dee1e6;
+    max-width: 900px;
+    margin: 0 auto;
+    border-radius: 10px 10px 0 0;
+  }
+  .tab {
+    background: white;
+    border-radius: 8px 8px 0 0;
+    padding: 8px 14px;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 13px;
+    color: #333;
+    min-width: 200px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  }
+  .tab img { width: 16px; height: 16px; border-radius: 3px; object-fit: cover; }
+  .tab .tab-favicon-sq { width: 16px; height: 16px; border-radius: 3px; object-fit: cover; }
+  .tab-text { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; max-width: 150px; }
+  .tab .x { margin-left: auto; color: #888; font-size: 11px; }
+
+  .variant-wrapper {
+    max-width: 900px;
+    margin: 0 auto 32px;
+    border-radius: 0 0 10px 10px;
+    overflow: hidden;
+    background: white;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  }
+
+  .variant-title {
+    background: #fff;
+    padding: 10px 16px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #573cf9;
+    border-bottom: 1px solid #f0f0f0;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+</style>
+</head>
+<body>
+
+<!-- VARIANT A: Trenutni logo (logo.jpg) -->
+<p class="section-label">A — Trenutni logo (tekst)</p>
+<div class="variant-wrapper">
+  <div class="tab-row">
+    <div class="tab">
+      <img src="/img/favicon.png">
+      <span class="tab-text">Auto Osiguranje 20...</span>
+      <span class="x">✕</span>
+    </div>
+  </div>
+  <div class="variant-title">Nav prikaz</div>
+  <nav>
+    <div class="logo-area">
+      <img src="/img/logo.jpg" class="logo-img" alt="logo">
+    </div>
+    <span class="phone">+385 98 813 221</span>
+  </nav>
+</div>
+
+<!-- VARIANT B: Žuti znak + tekst u navu -->
+<p class="section-label">B — Žuti znak [ ] + tekst "Osiguraj.hr"</p>
+<div class="variant-wrapper">
+  <div class="tab-row">
+    <div class="tab">
+      <img src="/img/znak-zuta.jpg" class="tab-favicon-sq">
+      <span class="tab-text">Auto Osiguranje 20...</span>
+      <span class="x">✕</span>
+    </div>
+  </div>
+  <div class="variant-title">Nav prikaz</div>
+  <nav>
+    <div class="logo-area">
+      <img src="/img/znak-zuta.jpg" class="logo-img-sq" alt="logo">
+      <span class="logo-text">Osiguraj.hr</span>
+    </div>
+    <span class="phone">+385 98 813 221</span>
+  </nav>
+</div>
+
+<!-- VARIANT C: Plavi znak + tekst u navu -->
+<p class="section-label">C — Plavi znak [ ] + tekst "Osiguraj.hr"</p>
+<div class="variant-wrapper">
+  <div class="tab-row">
+    <div class="tab">
+      <img src="/img/znak-plava.jpg" class="tab-favicon-sq">
+      <span class="tab-text">Auto Osiguranje 20...</span>
+      <span class="x">✕</span>
+    </div>
+  </div>
+  <div class="variant-title">Nav prikaz</div>
+  <nav>
+    <div class="logo-area">
+      <img src="/img/znak-plava.jpg" class="logo-img-sq" alt="logo">
+      <span class="logo-text">Osiguraj.hr</span>
+    </div>
+    <span class="phone">+385 98 813 221</span>
+  </nav>
+</div>
+
+<!-- VARIANT D: Samo žuti znak (bez teksta) -->
+<p class="section-label">D — Samo žuti znak (bez teksta)</p>
+<div class="variant-wrapper">
+  <div class="tab-row">
+    <div class="tab">
+      <img src="/img/znak-zuta.jpg" class="tab-favicon-sq">
+      <span class="tab-text">Auto Osiguranje 20...</span>
+      <span class="x">✕</span>
+    </div>
+  </div>
+  <div class="variant-title">Nav prikaz</div>
+  <nav>
+    <div class="logo-area">
+      <img src="/img/znak-zuta.jpg" class="logo-img-sq" style="height:44px;" alt="logo">
+    </div>
+    <span class="phone">+385 98 813 221</span>
+  </nav>
+</div>
+
+</body>
+</html>
