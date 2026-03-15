@@ -422,7 +422,25 @@ permalink: /izracunaj-cijenu/
         .results-trust-bar img { height: 30px; width: auto; flex-shrink: 0; }
         .results-trust-bar-text { display: flex; flex-direction: column; gap: 3px; }
         .results-trust-bar-text strong { font-size: 0.8rem; color: #fff; font-weight: 700; }
-        .results-trust-bar-text span { font-size: 0.7rem; color: rgba(255,255,255,0.55); }
+        .results-trust-bar-text span { font-size: 0.7rem; color: rgba(255,255,255,0.55); display: flex; align-items: center; gap: 5px; }
+        .results-trust-bar-text span::before { content: '✓'; color: #22c55e; font-weight: 800; font-size: 0.75rem; }
+        /* Results heading */
+        .results-heading {
+            display: none; text-align: center;
+            padding: 4px 0 20px; animation: resultsHeadingIn 0.5s cubic-bezier(0.34,1.56,0.64,1) both;
+        }
+        .results-heading.show { display: block; }
+        @keyframes resultsHeadingIn {
+            from { opacity: 0; transform: scale(0.85) translateY(8px); }
+            to   { opacity: 1; transform: scale(1) translateY(0); }
+        }
+        .results-heading h2 {
+            font-size: 1.9rem; font-weight: 900; color: #1c1533;
+            letter-spacing: -0.02em; margin: 0 0 4px;
+        }
+        .results-heading p {
+            font-size: 0.82rem; color: #888; margin: 0;
+        }
         .results-trust-date {
             display: flex; align-items: center; gap: 7px;
             padding: 8px 14px; margin-bottom: 12px;
@@ -680,8 +698,14 @@ permalink: /izracunaj-cijenu/
 
 <div class="wizard-card selectable">
 
+    <!-- Results heading (shown instead of progress bar on step 3) -->
+    <div class="results-heading" id="results-heading">
+        <h2>🎉 Evo vaših cijena!</h2>
+        <p>Pronašli smo najbolje ponude za vaše vozilo</p>
+    </div>
+
     <!-- Progress bar -->
-    <div class="progress-bar">
+    <div class="progress-bar" id="progress-bar">
         <div class="progress-step">
             <div class="progress-dot active" id="d1">1</div>
             <div class="progress-lbl active" id="l1">Vozilo</div>
@@ -1626,7 +1650,10 @@ function renderTriglav(aoBaseVal) {
         + '<span class="pkg-price">+ 20 €/god</span></div>';
     } else {
       pkgsHtml += '<div class="pkg-row" id="tpkg-asist-hr" onclick="toggleTriglavPkg(this,15)" data-price="15">'
-        + '<div class="pkg-left"><div class="pkg-check"><span class="pkg-check-icon">✓</span></div><span class="pkg-name">Asistencija (Hrvatska)</span></div>'
+        + '<div class="pkg-left"><div class="pkg-check"><span class="pkg-check-icon">✓</span></div><span class="pkg-name">Asistencija (Hrvatska)</span>'
+        + '<button class="pkg-info-btn" onclick="togglePop(event,\'tpop-asist-hr\')" type="button">i</button>'
+        + '<div class="pkg-popover" id="tpop-asist-hr">Pomoć na cesti u cijeloj Hrvatskoj: vuča do servisa, zamjenski auto, smještaj ako ostanete bez prijevoza — dostupno 0-24h.</div>'
+        + '</div>'
         + '<span class="pkg-price">+ 15 €/god</span></div>';
       pkgsHtml += '<div class="pkg-row" id="tpkg-asist-eu" onclick="toggleTriglavPkg(this,20)" data-price="20">'
         + '<div class="pkg-left"><div class="pkg-check"><span class="pkg-check-icon">✓</span></div><span class="pkg-name">Asistencija (Europa)</span>'
@@ -1715,6 +1742,10 @@ function showOk(d) {
   document.getElementById('r-ok').style.display = 'block';
   var _tb = document.getElementById('results-trust-bar');
   if (_tb) _tb.style.display = 'flex';
+  var _pb = document.getElementById('progress-bar');
+  if (_pb) _pb.style.display = 'none';
+  var _rh = document.getElementById('results-heading');
+  if (_rh) _rh.classList.add('show');
   // Fake original price za AS Direct
   var aoOrigRow = document.getElementById('ao-original-row');
   var aoOrigNum = document.getElementById('ao-original-num');
@@ -1798,6 +1829,10 @@ function showErr(msg) {
     document.getElementById('r-ok').style.display = 'block';
     var _tb2 = document.getElementById('results-trust-bar');
     if (_tb2) _tb2.style.display = 'flex';
+    var _pb2 = document.getElementById('progress-bar');
+    if (_pb2) _pb2.style.display = 'none';
+    var _rh2 = document.getElementById('results-heading');
+    if (_rh2) _rh2.classList.add('show');
     launchConfetti();
     renderGenerali(tPrice);
     sortProviderCards();
