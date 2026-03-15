@@ -1,3 +1,5 @@
 start-jekyll.bat
 /_site
 .env
+node_modules/
+.playwright-mcp/
