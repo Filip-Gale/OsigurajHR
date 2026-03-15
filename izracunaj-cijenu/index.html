@@ -441,7 +441,17 @@ permalink: /izracunaj-cijenu/
             letter-spacing: -0.02em; margin: 0 0 4px;
         }
         .results-heading p {
-            font-size: 0.82rem; color: #888; margin: 0;
+            font-size: 1.05rem; font-weight: 700; margin: 0;
+            background: linear-gradient(90deg, #f59e0b, #ef4444, #a855f7, #3b82f6, #10b981, #f59e0b);
+            background-size: 300% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmerText 2.8s linear infinite;
+        }
+        @keyframes shimmerText {
+            0%   { background-position: 0% center; }
+            100% { background-position: 300% center; }
         }
         .results-trust-date {
             display: flex; align-items: center; gap: 7px;
