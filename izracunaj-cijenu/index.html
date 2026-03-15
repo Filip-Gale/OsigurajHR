@@ -880,6 +880,13 @@ permalink: /izracunaj-cijenu/
 
     <!-- Step 3: Rezultati -->
     <div class="step-panel" id="s3">
+        <div class="results-trust-bar" id="results-trust-bar" style="display:none">
+            <img src="/img/hanfa-logo-dark.png" alt="HANFA">
+            <div class="results-trust-bar-text">
+                <strong>Licencirani posrednik pod nadzorom HANFA-e</strong>
+                <span>Polica odmah vidljiva na tehničkom pregledu</span>
+            </div>
+        </div>
         <div class="chips-row">
             <div class="chips" id="chips"></div>
             <button class="btn-back-top" onclick="go(2,'back')" type="button">← Izmijeni</button>
@@ -905,17 +912,6 @@ permalink: /izracunaj-cijenu/
         </div>
 
         <div id="r-ok" style="display:none">
-            <div class="results-trust-bar">
-                <img src="/img/hanfa-logo-dark.png" alt="HANFA">
-                <div class="results-trust-bar-text">
-                    <strong>Licencirani posrednik pod nadzorom HANFA-e</strong>
-                    <span>Polica odmah vidljiva na tehničkom pregledu &nbsp;·&nbsp; 20+ godina iskustva</span>
-                </div>
-            </div>
-            <div class="results-trust-date" id="results-date-bar">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#92400e" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-                <span id="results-date-text">Cijene za danas</span>
-            </div>
             <div class="provider-card" id="asdirect-card">
                 <div class="provider-card-top">
                     <div class="provider-logo-box">
@@ -1717,6 +1713,8 @@ function showOk(d) {
   var el = document.getElementById('ao-num');
   el.textContent = '0,00 €';
   document.getElementById('r-ok').style.display = 'block';
+  var _tb = document.getElementById('results-trust-bar');
+  if (_tb) _tb.style.display = 'flex';
   // Fake original price za AS Direct
   var aoOrigRow = document.getElementById('ao-original-row');
   var aoOrigNum = document.getElementById('ao-original-num');
@@ -1798,6 +1796,8 @@ function showErr(msg) {
   var tPrice = renderTriglav(null);
   if (tPrice !== null) {
     document.getElementById('r-ok').style.display = 'block';
+    var _tb2 = document.getElementById('results-trust-bar');
+    if (_tb2) _tb2.style.display = 'flex';
     launchConfetti();
     renderGenerali(tPrice);
     sortProviderCards();
