@@ -608,8 +608,8 @@ const API = 'https://uniqa-proxy.osiguraj1.workers.dev';
 function fillTestData(preset) {
   const presets = {
     renault:  { reg:'ZG1234AA', kw:'55',  dob:'25.04.1976', oib:'17342130754', brand:'RENAULT',  model:'CLIO',   spec:'1.5 DCI', year:'2017', vin:'VF17RBF0A58516588', fuel:'Diesel' },
-    subaru:   { reg:'ZG1234AA', kw:'172', dob:'25.04.1976', oib:'17342130754', brand:'SUBARU',   model:'BRZ',    spec:'2.4',    year:'2022', vin:'JF1ZD8L81PG006453', fuel:'Otto'   },
-    hyundai:  { reg:'ZG1234AA', kw:'110', dob:'25.04.1976', oib:'17342130754', brand:'HYUNDAI',  model:'TUCSON', spec:'1.6 T',  year:'2023', vin:'TMAJC81BAPJ393308', fuel:'Otto'   },
+    subaru:   { reg:'ZG1234AB', kw:'172', dob:'02.08.1993', oib:'24332844535', brand:'SUBARU',   model:'BRZ',    spec:'2.4',    year:'2022', vin:'JF1ZD8L81PG006453', fuel:'Otto'   },
+    hyundai:  { reg:'ZG1234AC', kw:'110', dob:'15.06.1985', oib:'91612982872', brand:'HYUNDAI',  model:'TUCSON', spec:'1.6 T',  year:'2023', vin:'TMAJC81BAPJ393308', fuel:'Otto'   },
   };
   const p = presets[preset] || presets.renault;
   document.getElementById('reg').value = p.reg;
@@ -949,7 +949,11 @@ async function kupiti() {
       }),
     });
     const cData = await cRes.json();
-    if (!cData.issuanceNo) throw new Error(cData.raw?.message || cData.error || 'Greška pri kreiranju ponude.');
+    if (!cData.issuanceNo) {
+      const code = cData.raw?.code || '';
+      if (code === 'ISSUANCE_REPEAT') throw new Error('Polica za ovo vozilo već postoji u sustavu. Pokušaj s drugim testnim podacima (drugi preset).');
+      throw new Error(cData.raw?.message || cData.error || 'Greška pri kreiranju ponude.');
+    }
     state.issuanceNo = cData.issuanceNo;
 
     document.getElementById('s5-msg').textContent = 'Finaliziramo policu…';
