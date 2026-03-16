@@ -305,6 +305,7 @@ input[type=number] { -moz-appearance: textfield; }
     </div>
     <div class="btn-stack">
       <button class="btn-main" onclick="next1()" type="button">Dalje →</button>
+      <button type="button" onclick="fillTestData()" style="background:none;border:1px dashed #c4b8ff;color:#7c5cfc;font-size:0.78rem;padding:8px 14px;border-radius:8px;cursor:pointer;margin-top:4px">🧪 Popuni testnim podacima (Lamborghini Gallardo)</button>
     </div>
   </div>
 
@@ -594,6 +595,26 @@ input[type=number] { -moz-appearance: textfield; }
 
 <script>
 const API = 'https://uniqa-proxy.osiguraj1.workers.dev';
+
+// ─── Test data prefill ────────────────────────────────────────────────────────
+function fillTestData() {
+  // Step 1
+  document.getElementById('reg').value = 'ZG1234AA';
+  // Step 2
+  document.getElementById('kw').value = '200';
+  document.getElementById('dob').value = '01.01.2001';
+  document.getElementById('oib').value = '17342130754';
+  // Modal vehicle fields
+  document.getElementById('m-brand').value = 'LAMBORGHINI';
+  document.getElementById('m-model').value = 'GALLARDO';
+  document.getElementById('m-automodel').value = '5.0 V10';
+  document.getElementById('m-year').value = '2004';
+  document.getElementById('m-vin').value = 'VF17RBF0A58516588';
+  document.getElementById('m-otto').checked = true;
+  updateFuelLabels();
+  // Navigate to step 2 so user can verify and continue
+  go(2, 'forward');
+}
 
 let state = {
   partnerNo: null, premium: null,
