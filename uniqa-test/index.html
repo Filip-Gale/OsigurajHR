@@ -596,7 +596,7 @@ input[type=number] { -moz-appearance: textfield; }
 const API = 'https://uniqa-proxy.osiguraj1.workers.dev';
 
 let state = {
-  partnerNo: null, premium: null, correctedPremium: null, ps: null,
+  partnerNo: null, premium: null,
   startDate: null, endDate: null, issuanceNo: null, policyNo: null,
 };
 
@@ -836,25 +836,14 @@ async function submitModal() {
 
     document.getElementById('uniqa-loading').style.display = 'none';
 
-    if (data.correctedPremium != null) {
-      state.partnerNo        = data.partnerNo;
-      state.premium          = data.premium;
-      state.correctedPremium = data.correctedPremium;
-      state.ps               = data.ps;
+    if (data.premium != null) {
+      state.partnerNo = data.partnerNo;
+      state.premium   = data.premium;
 
       document.getElementById('uniqa-unlocked').style.display = 'block';
 
       const fmtEur = n => parseFloat(n).toLocaleString('hr-HR', {minimumFractionDigits:2, maximumFractionDigits:2}) + ' €';
-      document.getElementById('uniqa-price-num').textContent = fmtEur(data.correctedPremium);
-
-      if (data.ps != null && data.ps !== 10) {
-        const bmPct = Math.round((1 - data.correctedPremium / data.premium) * 100);
-        document.getElementById('uniqa-original-price').textContent = fmtEur(data.premium);
-        document.getElementById('uniqa-original-price').style.display = 'block';
-        document.getElementById('uniqa-bm-badge').textContent = '−' + bmPct + '%';
-        document.getElementById('uniqa-bm-badge').style.display = 'inline-block';
-        document.getElementById('uniqa-ps-info').textContent = 'Bonus razred PS ' + data.ps;
-      }
+      document.getElementById('uniqa-price-num').textContent = fmtEur(data.premium);
 
       const btn = document.getElementById('uniqa-btn');
       btn.textContent = 'Kupi odmah →';
