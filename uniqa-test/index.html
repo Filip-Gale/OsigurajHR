@@ -305,7 +305,11 @@ input[type=number] { -moz-appearance: textfield; }
     </div>
     <div class="btn-stack">
       <button class="btn-main" onclick="next1()" type="button">Dalje →</button>
-      <button type="button" onclick="fillTestData()" style="background:none;border:1px dashed #c4b8ff;color:#7c5cfc;font-size:0.78rem;padding:8px 14px;border-radius:8px;cursor:pointer;margin-top:4px">🧪 Popuni testnim podacima (Lamborghini Gallardo)</button>
+      <div style="display:flex;gap:6px;margin-top:4px;flex-wrap:wrap">
+        <button type="button" onclick="fillTestData('renault')" style="background:none;border:1px dashed #c4b8ff;color:#7c5cfc;font-size:0.75rem;padding:6px 12px;border-radius:8px;cursor:pointer">🧪 Renault Clio</button>
+        <button type="button" onclick="fillTestData('subaru')" style="background:none;border:1px dashed #c4b8ff;color:#7c5cfc;font-size:0.75rem;padding:6px 12px;border-radius:8px;cursor:pointer">🧪 Subaru BRZ</button>
+        <button type="button" onclick="fillTestData('hyundai')" style="background:none;border:1px dashed #c4b8ff;color:#7c5cfc;font-size:0.75rem;padding:6px 12px;border-radius:8px;cursor:pointer">🧪 Hyundai Tucson</button>
+      </div>
     </div>
   </div>
 
@@ -597,22 +601,28 @@ input[type=number] { -moz-appearance: textfield; }
 const API = 'https://uniqa-proxy.osiguraj1.workers.dev';
 
 // ─── Test data prefill ────────────────────────────────────────────────────────
-function fillTestData() {
-  // Step 1
-  document.getElementById('reg').value = 'ZG1234AA';
-  // Step 2
-  document.getElementById('kw').value = '200';
-  document.getElementById('dob').value = '01.01.2001';
-  document.getElementById('oib').value = '17342130754';
-  // Modal vehicle fields
-  document.getElementById('m-brand').value = 'LAMBORGHINI';
-  document.getElementById('m-model').value = 'GALLARDO';
-  document.getElementById('m-automodel').value = '5.0 V10';
-  document.getElementById('m-year').value = '2004';
-  document.getElementById('m-vin').value = 'VF17RBF0A58516588';
-  document.getElementById('m-otto').checked = true;
+// UAT ima samo 3 pre-loadana test VIN-a:
+// VF17RBF0A58516588 — Renault Clio 2017 55kW Diesel
+// JF1ZD8L81PG006453 — Subaru BRZ 2022 172kW Otto
+// TMAJC81BAPJ393308 — Hyundai Tucson 2023 110kW Otto
+function fillTestData(preset) {
+  const presets = {
+    renault:  { reg:'ZG1234AA', kw:'55',  dob:'25.04.1976', oib:'17342130754', brand:'RENAULT',  model:'CLIO',   spec:'1.5 DCI', year:'2017', vin:'VF17RBF0A58516588', fuel:'Diesel' },
+    subaru:   { reg:'ZG1234AA', kw:'172', dob:'25.04.1976', oib:'17342130754', brand:'SUBARU',   model:'BRZ',    spec:'2.4',    year:'2022', vin:'JF1ZD8L81PG006453', fuel:'Otto'   },
+    hyundai:  { reg:'ZG1234AA', kw:'110', dob:'25.04.1976', oib:'17342130754', brand:'HYUNDAI',  model:'TUCSON', spec:'1.6 T',  year:'2023', vin:'TMAJC81BAPJ393308', fuel:'Otto'   },
+  };
+  const p = presets[preset] || presets.renault;
+  document.getElementById('reg').value = p.reg;
+  document.getElementById('kw').value = p.kw;
+  document.getElementById('dob').value = p.dob;
+  document.getElementById('oib').value = p.oib;
+  document.getElementById('m-brand').value = p.brand;
+  document.getElementById('m-model').value = p.model;
+  document.getElementById('m-automodel').value = p.spec;
+  document.getElementById('m-year').value = p.year;
+  document.getElementById('m-vin').value = p.vin;
+  document.getElementById(p.fuel === 'Diesel' ? 'm-diesel' : 'm-otto').checked = true;
   updateFuelLabels();
-  // Navigate to step 2 so user can verify and continue
   go(2, 'forward');
 }
 
