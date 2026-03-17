@@ -194,27 +194,21 @@ input[type="radio"] {
 
 /* ── Features Section ── */
 .features-section {
-    background:
-        radial-gradient(ellipse 80% 55% at 50% -5%, rgba(87, 60, 249, 0.13) 0%, transparent 65%),
-        radial-gradient(ellipse 45% 50% at 92% 105%, rgba(124, 92, 255, 0.09) 0%, transparent 55%),
-        linear-gradient(160deg, #ece9ff 0%, #e8e4ff 40%, #ede8ff 100%);
+    background: white;
     padding: 100px 20px;
     text-align: center;
 }
 
 .features-intro {
     max-width: 620px;
-    margin: 0 auto 72px;
+    margin: 0 auto 56px;
     position: relative;
 }
 
 .features-title {
     font-size: 2.4rem;
     font-weight: 900;
-    background: linear-gradient(125deg, #3520c8 0%, #573cf9 55%, #7c5cff 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: #573cf9;
     margin-bottom: 28px;
     line-height: 1.15;
     position: relative;
@@ -229,13 +223,13 @@ input[type="radio"] {
     transform: translateX(-50%);
     width: 52px;
     height: 4px;
-    background: linear-gradient(90deg, #573cf9, #a78bfa);
+    background: #ffbc27;
     border-radius: 2px;
 }
 
 .features-subtitle {
     font-size: 1.05rem;
-    color: #5a5478;
+    color: #5a5270;
     line-height: 1.65;
     font-weight: 400;
     margin: 0;
@@ -245,82 +239,53 @@ input[type="radio"] {
 .features-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 22px;
+    gap: 18px;
     max-width: 1100px;
     margin: 0 auto;
 }
 
 .feature-card {
-    background: linear-gradient(160deg, #fdfcff 0%, #f5f2ff 100%);
+    background: #f5f4ff;
     border-radius: 22px;
-    padding: 44px 28px 38px;
+    padding: 40px 24px 36px;
     text-align: center;
-    box-shadow: 0 2px 16px rgba(87, 60, 249, 0.08), 0 0 0 1px rgba(139, 111, 245, 0.2);
-    border-top: 3px solid transparent;
-    background-clip: padding-box;
-    position: relative;
-    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
-}
-
-.feature-card::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border-radius: 22px;
-    padding: 3px 0 0 0;
-    background: linear-gradient(90deg, #573cf9, #9b7dff) border-box;
-    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-    pointer-events: none;
-    opacity: 0;
-    transition: opacity 0.25s ease;
+    border: 2px solid #e0dbff;
+    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
 }
 
 .feature-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 20px 48px rgba(87, 60, 249, 0.18), 0 0 0 1px rgba(139, 111, 245, 0.45);
-}
-
-.feature-card:hover::before {
-    opacity: 1;
+    transform: translateY(-4px);
+    box-shadow: 0 10px 28px rgba(87, 60, 249, 0.13);
+    border-color: #573cf9;
 }
 
 .feature-icon-wrap {
-    width: 84px;
-    height: 84px;
-    border-radius: 22px;
-    background: linear-gradient(145deg, #ffffff 0%, #f5f2ff 100%);
-    box-shadow: 0 8px 28px rgba(87, 60, 249, 0.2), 0 0 0 1.5px rgba(87, 60, 249, 0.18);
+    width: 80px;
+    height: 80px;
+    border-radius: 20px;
+    background: #bfc3ff;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0 auto 28px;
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
-
-.feature-card:hover .feature-icon-wrap {
-    transform: scale(1.06);
-    box-shadow: 0 12px 36px rgba(87, 60, 249, 0.3), 0 0 0 2px rgba(87, 60, 249, 0.3);
+    margin: 0 auto 24px;
 }
 
 .feature-icon-wrap img {
     width: 44px !important;
     height: 44px !important;
     border-radius: 10px !important;
-    background: transparent !important;
 }
 
 .feature-title {
     font-size: 1.05rem;
     font-weight: 800;
-    color: #1c1533;
+    color: #573cf9;
     margin-bottom: 12px;
 }
 
 .feature-desc {
     font-size: 0.875rem;
-    color: #6b7280;
+    color: #5a5270;
     line-height: 1.6;
     font-weight: 400;
     margin: 0;
