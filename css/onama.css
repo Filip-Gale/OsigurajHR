@@ -78,7 +78,7 @@ a { pointer-events: all; text-decoration: none; }
 
 .on-stat-icon {
     width: 50px; height: 50px;
-    background: #ebe6ff;
+    background: #ffbc27;
     border-radius: 14px;
     display: flex; align-items: center; justify-content: center;
     margin-bottom: 2px;
@@ -105,7 +105,7 @@ a { pointer-events: all; text-decoration: none; }
 /* ── WHO WE ARE ── */
 .on-who-section {
     padding: 80px 5% 70px;
-    background: white;
+    background: #f5f4ff;
 }
 
 .on-who-inner {
@@ -156,7 +156,7 @@ a { pointer-events: all; text-decoration: none; }
 
 .on-visual-icon {
     flex-shrink: 0; width: 54px; height: 54px;
-    background: #ebe6ff; border-radius: 14px;
+    background: #ffbc27; border-radius: 14px;
     display: flex; align-items: center; justify-content: center;
 }
 
@@ -216,7 +216,7 @@ a { pointer-events: all; text-decoration: none; }
 /* ── WHY TRUST US ── */
 .on-trust-section {
     padding: 80px 5%;
-    background: #bfc3ff;
+    background: white;
 }
 
 .on-trust-grid {
@@ -226,16 +226,17 @@ a { pointer-events: all; text-decoration: none; }
 }
 
 .on-trust-card {
-    background: white;
+    background: #f5f4ff;
     border-radius: 18px; padding: 22px 16px;
-    border: none;
+    border: 2px solid #e0dbff;
     display: flex; flex-direction: column; gap: 10px;
     transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .on-trust-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 10px 28px rgba(87,60,249,0.18);
+    box-shadow: 0 10px 28px rgba(87,60,249,0.15);
+    border-color: #573cf9;
 }
 
 .on-trust-icon, .on-contact-icon {
@@ -243,8 +244,8 @@ a { pointer-events: all; text-decoration: none; }
     display: flex; align-items: center; justify-content: center; flex-shrink: 0;
 }
 
-.on-icon-purple { background: #ebe6ff; }
-.on-icon-yellow { background: #fff5d4; }
+.on-icon-purple { background: #bfc3ff; }
+.on-icon-yellow { background: #ffbc27; }
 .on-icon-wa     { background: #dcfce7; }
 
 .on-trust-title {
@@ -266,22 +267,18 @@ a { pointer-events: all; text-decoration: none; }
 
 .on-goal-inner { position: relative; z-index: 1; }
 
-.on-goal-quote {
-    font-size: 6rem; line-height: 0.5;
-    color: rgba(87,60,249,0.15);
-    font-weight: 900; margin-bottom: 20px;
-    pointer-events: none; user-select: none;
-}
+.on-goal-quote { display: none; }
 
 .on-goal-text {
-    font-size: clamp(1.25rem, 3vw, 1.85rem);
-    font-weight: 800; color: #573cf9;
-    line-height: 1.4; margin-bottom: 20px; letter-spacing: -0.02em;
+    font-size: clamp(1.4rem, 3.5vw, 2.1rem);
+    font-weight: 900; color: #573cf9;
+    line-height: 1.35; margin-bottom: 20px; letter-spacing: -0.03em;
 }
 
 .on-goal-sub {
-    font-size: 0.95rem; color: rgba(87,60,249,0.75);
-    line-height: 1.75; max-width: 580px; margin: 0 auto;
+    font-size: 0.95rem; color: rgba(87,60,249,0.8);
+    font-weight: 500;
+    line-height: 1.75; max-width: 560px; margin: 0 auto;
 }
 
 /* ── HANFA ── */
