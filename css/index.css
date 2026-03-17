@@ -245,41 +245,44 @@ input[type="radio"] {
 }
 
 .feature-card {
-    background: #f5f4ff;
+    background: white;
     border-radius: 22px;
-    padding: 40px 24px 36px;
+    padding: 36px 24px 32px;
     text-align: center;
-    border: 2px solid #e0dbff;
-    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+    box-shadow: 0 4px 28px rgba(87,60,249,0.11), 0 1px 4px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .feature-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 10px 28px rgba(87, 60, 249, 0.13);
-    border-color: #573cf9;
+    box-shadow: 0 12px 36px rgba(87,60,249,0.18);
 }
 
 .feature-icon-wrap {
-    width: 80px;
-    height: 80px;
-    border-radius: 20px;
-    background: #bfc3ff;
+    width: 64px;
+    height: 64px;
+    border-radius: 16px;
+    background: #ffbc27;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0 auto 24px;
+    margin-bottom: 6px;
+    flex-shrink: 0;
 }
 
-
 .feature-title {
-    font-size: 1.05rem;
+    font-size: 1rem;
     font-weight: 800;
     color: #573cf9;
-    margin-bottom: 12px;
+    margin: 0;
 }
 
 .feature-desc {
-    font-size: 0.875rem;
+    font-size: 0.82rem;
     color: #5a5270;
     line-height: 1.6;
     font-weight: 400;
