@@ -688,3 +688,124 @@ details[open] summary::after {
         padding: 15px 10px;
     }
 }
+
+/* ── Vrste auto osiguranja ── */
+.vao-section {
+    background: #573cf9;
+    padding: 80px 5%;
+    text-align: center;
+}
+
+.vao-intro {
+    max-width: 640px;
+    margin: 0 auto 48px;
+}
+
+.vao-label {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #ffbc27;
+    margin-bottom: 14px;
+}
+
+.vao-title {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 900;
+    color: white;
+    line-height: 1.25;
+    margin: 0;
+    letter-spacing: -0.02em;
+}
+
+.vao-category-label {
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #ffbc27;
+    margin: 32px auto 16px;
+    max-width: 1000px;
+    text-align: left;
+    padding: 0 10px;
+}
+
+.vao-grid {
+    display: grid;
+    gap: 16px;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 10px;
+}
+
+.vao-grid-2 { grid-template-columns: repeat(2, 1fr); }
+.vao-grid-3 { grid-template-columns: repeat(3, 1fr); }
+
+.vao-card {
+    background: white;
+    border-radius: 20px;
+    padding: 24px 22px;
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    text-align: left;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.vao-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.18);
+}
+
+.vao-icon-wrap {
+    flex-shrink: 0;
+    width: 54px;
+    height: 54px;
+    border-radius: 14px;
+    background: #ffbc27;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.vao-card-body { flex: 1; min-width: 0; }
+
+.vao-card-title {
+    font-size: 0.95rem;
+    font-weight: 800;
+    color: #573cf9;
+    margin: 0 0 6px;
+}
+
+.vao-card-desc {
+    font-size: 0.8rem;
+    color: #5a5270;
+    line-height: 1.6;
+    margin: 0;
+    font-weight: 400;
+}
+
+.vao-footer-note {
+    max-width: 640px;
+    margin: 32px auto 0;
+    font-size: 0.82rem;
+    color: rgba(191, 195, 255, 0.9);
+    line-height: 1.7;
+    font-weight: 400;
+}
+
+.vao-footer-note strong {
+    color: white;
+    font-weight: 700;
+}
+
+@media (max-width: 767px) {
+    .vao-section { padding: 56px 5%; }
+    .vao-grid-2,
+    .vao-grid-3 { grid-template-columns: 1fr; }
+    .vao-category-label { padding: 0; }
+    .vao-grid { padding: 0; }
+}
