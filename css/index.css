@@ -692,18 +692,18 @@ details[open] summary::after {
 /* ── Vrste auto osiguranja ── */
 .vao-section {
     background: #573cf9;
-    padding: 80px 5%;
+    padding: 72px 5% 80px;
     text-align: center;
 }
 
 .vao-intro {
     max-width: 640px;
-    margin: 0 auto 48px;
+    margin: 0 auto 40px;
 }
 
 .vao-label {
     display: inline-block;
-    font-size: 0.72rem;
+    font-size: 0.7rem;
     font-weight: 800;
     letter-spacing: 0.15em;
     text-transform: uppercase;
@@ -712,32 +712,42 @@ details[open] summary::after {
 }
 
 .vao-title {
-    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-size: clamp(1.6rem, 3vw, 2.1rem);
     font-weight: 900;
     color: white;
-    line-height: 1.25;
-    margin: 0;
-    letter-spacing: -0.02em;
+    line-height: 1.2;
+    margin: 0 0 14px;
+    letter-spacing: -0.025em;
 }
 
-.vao-category-label {
-    font-size: 0.78rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
+.vao-subtitle {
+    font-size: 0.93rem;
+    color: rgba(191,195,255,0.85);
+    line-height: 1.65;
+    margin: 0;
+    font-weight: 400;
+}
+
+.vao-category-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #ffbc27;
+    color: #3a2abf;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: #ffbc27;
-    margin: 32px auto 16px;
-    max-width: 1000px;
-    text-align: left;
-    padding: 0 10px;
+    padding: 6px 16px;
+    border-radius: 100px;
+    margin: 32px auto 18px;
 }
 
 .vao-grid {
     display: grid;
-    gap: 16px;
+    gap: 14px;
     max-width: 1000px;
     margin: 0 auto;
-    padding: 0 10px;
 }
 
 .vao-grid-2 { grid-template-columns: repeat(2, 1fr); }
@@ -746,55 +756,67 @@ details[open] summary::after {
 .vao-card {
     background: white;
     border-radius: 20px;
-    padding: 24px 22px;
+    padding: 22px 20px;
     display: flex;
+    flex-direction: column;
     align-items: flex-start;
-    gap: 16px;
+    gap: 12px;
     text-align: left;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+    box-shadow: 0 6px 24px rgba(0,0,0,0.14);
     transition: transform 0.2s, box-shadow 0.2s;
+    border-top: 3px solid #ffbc27;
 }
 
 .vao-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.18);
+    transform: translateY(-4px);
+    box-shadow: 0 14px 36px rgba(0,0,0,0.22);
+}
+
+.vao-card-top {
+    display: flex;
+    align-items: center;
+    gap: 14px;
 }
 
 .vao-icon-wrap {
     flex-shrink: 0;
-    width: 54px;
-    height: 54px;
-    border-radius: 14px;
-    background: #ffbc27;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: #fff5d4;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.vao-card-body { flex: 1; min-width: 0; }
-
 .vao-card-title {
     font-size: 0.95rem;
     font-weight: 800;
     color: #573cf9;
-    margin: 0 0 6px;
+    margin: 0;
+    line-height: 1.25;
 }
 
 .vao-card-desc {
-    font-size: 0.8rem;
+    font-size: 0.79rem;
     color: #5a5270;
-    line-height: 1.6;
+    line-height: 1.65;
     margin: 0;
     font-weight: 400;
+    padding-top: 0;
 }
 
 .vao-footer-note {
-    max-width: 640px;
-    margin: 32px auto 0;
+    max-width: 660px;
+    margin: 36px auto 0;
     font-size: 0.82rem;
-    color: rgba(191, 195, 255, 0.9);
-    line-height: 1.7;
+    color: rgba(191, 195, 255, 0.85);
+    line-height: 1.75;
     font-weight: 400;
+    background: rgba(255,255,255,0.08);
+    border-radius: 14px;
+    padding: 16px 24px;
+    text-align: left;
 }
 
 .vao-footer-note strong {
@@ -806,6 +828,4 @@ details[open] summary::after {
     .vao-section { padding: 56px 5%; }
     .vao-grid-2,
     .vao-grid-3 { grid-template-columns: 1fr; }
-    .vao-category-label { padding: 0; }
-    .vao-grid { padding: 0; }
 }
