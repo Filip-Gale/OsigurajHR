@@ -1168,18 +1168,20 @@ permalink: /izracunaj-cijenu/
 var isEmbed = new URLSearchParams(location.search).has('embed');
 if (isEmbed) document.documentElement.classList.add('embed-mode');
 
-/* U embed modu: sakrij stepper (Vozilo/Vozač/Rezultati), vrati ga čim korisnik počne tipkati reg. oznaku */
+/* U embed modu: sakrij stepper na koraku 1, prikaži ga tek kad se aktivira korak 2 */
 if (isEmbed) {
   var _pb0 = document.getElementById('progress-bar');
   if (_pb0) _pb0.style.display = 'none';
-  var _regEl = document.getElementById('reg');
-  if (_regEl) {
-    function _revealStepper() {
-      var _pb = document.getElementById('progress-bar');
-      if (_pb) _pb.style.display = 'flex';
-      _regEl.removeEventListener('input', _revealStepper);
-    }
-    _regEl.addEventListener('input', _revealStepper);
+  var _s2el = document.getElementById('s2');
+  if (_s2el) {
+    var _stepObs = new MutationObserver(function() {
+      if (_s2el.classList.contains('active')) {
+        var _pb = document.getElementById('progress-bar');
+        if (_pb) _pb.style.display = 'flex';
+        _stepObs.disconnect();
+      }
+    });
+    _stepObs.observe(_s2el, { attributes: true, attributeFilter: ['class'] });
   }
 }
 
