@@ -36,7 +36,7 @@ a { pointer-events: all; text-decoration: none; }
 .on-hero-title {
     font-size: clamp(1.7rem, 5vw, 2.9rem);
     font-weight: 900;
-    color: #ffbc27;
+    color: white;
     line-height: 1.18;
     margin-bottom: 18px;
     letter-spacing: -0.025em;
