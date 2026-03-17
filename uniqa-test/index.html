@@ -606,10 +606,11 @@ const API = 'https://uniqa-proxy.osiguraj1.workers.dev';
 // JF1ZD8L81PG006453 — Subaru BRZ 2022 172kW Otto
 // TMAJC81BAPJ393308 — Hyundai Tucson 2023 110kW Otto
 function fillTestData(preset) {
+  const rndVin = () => 'TEST' + Math.random().toString(36).substring(2, 15).toUpperCase();
   const presets = {
-    renault:  { reg:'ZG1234AA', kw:'55',  dob:'25.04.1976', oib:'17342130754', brand:'RENAULT',  model:'CLIO',   spec:'1.5 DCI', year:'2017', vin:'VF17RBF0A58516588', fuel:'Diesel' },
-    subaru:   { reg:'ZG1234AB', kw:'172', dob:'02.08.1993', oib:'24332844535', brand:'SUBARU',   model:'BRZ',    spec:'2.4',    year:'2022', vin:'JF1ZD8L81PG006453', fuel:'Otto'   },
-    hyundai:  { reg:'ZG1234AC', kw:'110', dob:'15.06.1985', oib:'91612982872', brand:'HYUNDAI',  model:'TUCSON', spec:'1.6 T',  year:'2023', vin:'TMAJC81BAPJ393308', fuel:'Otto'   },
+    renault:  { reg:'ZG1234AA', kw:'55',  dob:'25.04.1976', oib:'17342130754', brand:'RENAULT',  model:'CLIO',   spec:'1.5 DCI', year:'2017', vin:rndVin(), fuel:'Diesel' },
+    subaru:   { reg:'ZG1234AB', kw:'172', dob:'02.08.1993', oib:'24332844535', brand:'SUBARU',   model:'BRZ',    spec:'2.4',    year:'2022', vin:rndVin(), fuel:'Otto'   },
+    hyundai:  { reg:'ZG1234AC', kw:'110', dob:'15.06.1985', oib:'91612982872', brand:'HYUNDAI',  model:'TUCSON', spec:'1.6 T',  year:'2023', vin:rndVin(), fuel:'Otto'   },
   };
   const p = presets[preset] || presets.renault;
   document.getElementById('reg').value = p.reg;
@@ -957,7 +958,7 @@ async function kupiti() {
     state.issuanceNo = cData.issuanceNo;
 
     document.getElementById('s5-msg').textContent = 'Finaliziramo policu…';
-    await new Promise(r => setTimeout(r, 3000));
+    await new Promise(r => setTimeout(r, 6000));
 
     const iRes = await fetch(API + '/ao/issue-policy', {
       method: 'POST',
