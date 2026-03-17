@@ -270,11 +270,6 @@ input[type="radio"] {
     margin: 0 auto 24px;
 }
 
-.feature-icon-wrap img {
-    width: 44px !important;
-    height: 44px !important;
-    border-radius: 10px !important;
-}
 
 .feature-title {
     font-size: 1.05rem;
