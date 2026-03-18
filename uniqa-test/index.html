@@ -205,13 +205,13 @@ input[type=number] { -moz-appearance: textfield; }
   background: linear-gradient(135deg, #7c5cfc, #573cf9);
   border: none;
   border-radius: 9px;
-  width: 36px;
-  height: 36px;
+  width: 30px;
+  height: 30px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  font-size: 17px;
+  font-size: 14px;
   line-height: 1;
   animation: sparklePulse 2s ease-in-out infinite;
 }
@@ -422,15 +422,14 @@ input[type=number] { -moz-appearance: textfield; }
       <div>
         <label class="flabel" for="reg">Registracija</label>
         <div style="position:relative;">
-          <input class="finput" id="reg" type="text" placeholder="ZG1234AB" maxlength="10" autocapitalize="characters" spellcheck="false" style="text-transform:uppercase; padding-right:52px;">
-          <button type="button" class="scan-sparkle-btn" onclick="openScanModal()" title="Automatski ispuni iz stare police">✨</button>
+          <input class="finput" id="reg" type="text" placeholder="ZG1234AB" maxlength="10" autocapitalize="characters" spellcheck="false" style="text-transform:uppercase;">
         </div>
         <div class="ferror" id="e-reg">Unesite registracijsku oznaku.</div>
       </div>
     </div>
     <div class="btn-stack">
       <button class="btn-main" onclick="next1()" type="button">Dalje →</button>
-      <button type="button" onclick="openScanModal()" style="background:none;border:none;cursor:pointer;text-align:center;color:#7c5cfc;font-size:0.92rem;font-weight:700;padding:10px 0 2px;letter-spacing:0.01em;opacity:0.85;transition:opacity 0.2s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.85'">✨ Ispuni automatski iz stare police</button>
+      <button type="button" onclick="openScanModal()" style="background:none;border:none;cursor:pointer;text-align:center;color:#7c5cfc;font-size:0.92rem;font-weight:700;padding:10px 0 2px;letter-spacing:0.01em;opacity:0.85;transition:opacity 0.2s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.85'">✨ Automatski ispuni sve podatke</button>
       <div style="display:flex;gap:6px;margin-top:4px;flex-wrap:wrap">
         <button type="button" onclick="fillTestData('renault')" style="background:none;border:1px dashed #c4b8ff;color:#7c5cfc;font-size:0.75rem;padding:6px 12px;border-radius:8px;cursor:pointer">🧪 Renault Clio</button>
         <button type="button" onclick="fillTestData('subaru')" style="background:none;border:1px dashed #c4b8ff;color:#7c5cfc;font-size:0.75rem;padding:6px 12px;border-radius:8px;cursor:pointer">🧪 Subaru BRZ</button>
@@ -495,7 +494,7 @@ input[type=number] { -moz-appearance: textfield; }
     </div>
     <div class="btn-stack">
       <button class="btn-main" onclick="next2()" type="button">Saznaj cijenu →</button>
-      <button type="button" onclick="openScanModal()" style="background:none;border:none;cursor:pointer;text-align:center;color:#7c5cfc;font-size:0.92rem;font-weight:700;padding:10px 0 2px;letter-spacing:0.01em;opacity:0.85;transition:opacity 0.2s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.85'">✨ Ispuni automatski iz stare police</button>
+      <button type="button" onclick="openScanModal()" style="background:none;border:none;cursor:pointer;text-align:center;color:#7c5cfc;font-size:0.92rem;font-weight:700;padding:10px 0 2px;letter-spacing:0.01em;opacity:0.85;transition:opacity 0.2s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.85'">✨ Automatski ispuni sve podatke</button>
     </div>
   </div>
 
