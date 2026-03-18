@@ -197,13 +197,20 @@ input[type=number] { -moz-appearance: textfield; }
 #confetti-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9999; }
 
 /* ── AI sparkle button ── */
-#scan-btn {
-  animation: scanGlow 2.4s ease-in-out infinite;
+.scan-trigger-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #7c5cfc;
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 0;
 }
-@keyframes scanGlow {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(124,92,252,0); }
-  50%       { box-shadow: 0 0 0 7px rgba(124,92,252,0.28), 0 0 14px rgba(124,92,252,0.18); }
-}
+.scan-trigger-btn:hover { opacity: 0.75; }
 
 /* ── Field fill states ── */
 .ai-filling {
@@ -408,7 +415,7 @@ input[type=number] { -moz-appearance: textfield; }
         <label class="flabel" for="reg">Registracija</label>
         <div style="position:relative;">
           <input class="finput" id="reg" type="text" placeholder="ZG1234AB" maxlength="10" autocapitalize="characters" spellcheck="false" style="text-transform:uppercase; padding-right:52px;">
-          <button type="button" id="scan-btn" onclick="openScanModal()" title="Automatski ispuni sve podatke iz stare police" style="position:absolute;right:8px;top:50%;transform:translateY(-50%);background:linear-gradient(135deg,#7c5cfc,#573cf9);border:none;border-radius:9px;width:36px;height:36px;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;font-size:17px;line-height:1;">✨</button>
+          <button type="button" onclick="openScanModal()" title="Automatski ispuni sve podatke iz stare police" style="position:absolute;right:8px;top:50%;transform:translateY(-50%);background:linear-gradient(135deg,#7c5cfc,#573cf9);border:none;border-radius:9px;width:36px;height:36px;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;font-size:17px;line-height:1;">✨</button>
         </div>
         <div class="ferror" id="e-reg">Unesite registracijsku oznaku.</div>
       </div>
@@ -470,6 +477,9 @@ input[type=number] { -moz-appearance: textfield; }
     </div>
     <div class="btn-stack">
       <button class="btn-main" onclick="next2()" type="button">Saznaj cijenu →</button>
+      <button type="button" class="scan-trigger-btn" onclick="openScanModal()" style="justify-content:center;margin-top:2px;">
+        ✨ Ispuni automatski iz stare police
+      </button>
     </div>
   </div>
 
