@@ -269,7 +269,7 @@ input[type=number] { -moz-appearance: textfield; }
   font-size: 1rem; color: #888; display: flex; align-items: center; justify-content: center;
 }
 .scan-modal-title { font-size: 1.1rem; font-weight: 800; color: #1c1533; margin-bottom: 4px; }
-.scan-modal-sub { font-size: 0.82rem; color: #888; font-weight: normal; margin-bottom: 20px; }
+.scan-modal-sub { font-size: 0.82rem; color: #888; font-weight: normal; margin-bottom: 20px; text-align: center; }
 
 /* Drop zone */
 #scan-dropzone {
@@ -1180,7 +1180,7 @@ function launchConfetti() {
 <div id="scan-modal-overlay" onclick="closeScanIfOutside(event)">
   <div id="scan-modal">
     <button id="scan-modal-close" onclick="closeScanModal()">✕</button>
-    <p class="scan-modal-title">Automatski ispuni podatke</p>
+    <p class="scan-modal-title">Automatski ispuni sve podatke</p>
     <p class="scan-modal-sub">Slikaj ili priloži staru policu i preskočite unos podataka.</p>
 
     <!-- Drop zone -->
