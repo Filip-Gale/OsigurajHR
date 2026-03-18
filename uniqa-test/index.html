@@ -202,8 +202,8 @@ input[type=number] { -moz-appearance: textfield; }
   right: 8px;
   top: 50%;
   transform: translateY(-50%);
-  background: linear-gradient(135deg, #7c5cfc, #573cf9);
-  border: none;
+  background: white;
+  border: 2px solid #7c5cfc;
   border-radius: 9px;
   width: 36px;
   height: 36px;
@@ -217,7 +217,7 @@ input[type=number] { -moz-appearance: textfield; }
 }
 @keyframes sparklePulse {
   0%, 100% { transform: translateY(-50%) scale(1);    box-shadow: 0 0 0 0 rgba(124,92,252,0); }
-  50%       { transform: translateY(-50%) scale(1.08); box-shadow: 0 0 0 6px rgba(124,92,252,0.25); }
+  50%       { transform: translateY(-50%) scale(1.08); box-shadow: 0 0 0 5px rgba(124,92,252,0.22); }
 }
 
 /* ── Field fill states ── */
@@ -430,6 +430,7 @@ input[type=number] { -moz-appearance: textfield; }
     </div>
     <div class="btn-stack">
       <button class="btn-main" onclick="next1()" type="button">Dalje →</button>
+      <button type="button" onclick="openScanModal()" style="background:none;border:none;cursor:pointer;text-align:center;color:#7c5cfc;font-size:0.92rem;font-weight:700;padding:10px 0 2px;letter-spacing:0.01em;opacity:0.85;transition:opacity 0.2s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.85'">✨ Ispuni automatski iz stare police</button>
       <div style="display:flex;gap:6px;margin-top:4px;flex-wrap:wrap">
         <button type="button" onclick="fillTestData('renault')" style="background:none;border:1px dashed #c4b8ff;color:#7c5cfc;font-size:0.75rem;padding:6px 12px;border-radius:8px;cursor:pointer">🧪 Renault Clio</button>
         <button type="button" onclick="fillTestData('subaru')" style="background:none;border:1px dashed #c4b8ff;color:#7c5cfc;font-size:0.75rem;padding:6px 12px;border-radius:8px;cursor:pointer">🧪 Subaru BRZ</button>
