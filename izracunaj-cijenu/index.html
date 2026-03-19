@@ -2583,14 +2583,16 @@ var scanData = null;
 var SCAN_API = 'https://uniqa-proxy.osiguraj1.workers.dev';
 
 function openScanModal() {
+  if (window.parent !== window) {
+    window.parent.postMessage({ type: 'openScanModal' }, '*');
+    return;
+  }
   document.getElementById('scan-modal-overlay').classList.add('show');
   resetScanModal();
-  try { window.parent.postMessage({ type: 'scanModalOpen' }, '*'); } catch(e) {}
 }
 
 function closeScanModal() {
   document.getElementById('scan-modal-overlay').classList.remove('show');
-  try { window.parent.postMessage({ type: 'scanModalClose' }, '*'); } catch(e) {}
 }
 
 function closeScanIfOutside(e) {
@@ -2711,6 +2713,12 @@ async function scanTypeInto(el_, value, charDelay) {
   await scanSleep(180);
   el_.classList.remove('ai-filled');
 }
+
+window.addEventListener('message', function(e) {
+  if (!e.data || e.data.type !== 'scanResult') return;
+  scanData = e.data.data;
+  confirmScanData();
+});
 
 async function confirmScanData() {
   if (!scanData) return;

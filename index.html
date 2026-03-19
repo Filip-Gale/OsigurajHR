@@ -48,6 +48,38 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <link rel="icon" type="image/png" href="img/favicon.jpg">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/index.css">
+    <style>
+    #hp-scan-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.55);z-index:9999;display:flex;align-items:center;justify-content:center;padding:16px;opacity:0;pointer-events:none;transition:opacity 0.2s;}
+    #hp-scan-overlay.show{opacity:1;pointer-events:all;}
+    #hp-scan-modal{background:white;border-radius:22px;padding:28px 24px 24px;width:100%;max-width:400px;transform:scale(0.92);opacity:0;transition:transform 0.22s cubic-bezier(0.34,1.3,0.64,1),opacity 0.16s;position:relative;}
+    #hp-scan-overlay.show #hp-scan-modal{transform:scale(1);opacity:1;}
+    #hp-scan-close{position:absolute;top:14px;right:14px;width:30px;height:30px;background:#f0f0f0;border:none;border-radius:50%;cursor:pointer;font-size:1rem;color:#888;display:flex;align-items:center;justify-content:center;}
+    .hp-scan-title{font-size:1.1rem;font-weight:800;color:#1c1533;margin-bottom:4px;text-align:center;}
+    .hp-scan-sub{font-size:0.82rem;color:#888;font-weight:normal;margin-bottom:20px;text-align:center;}
+    #hp-scan-dropzone{border:2px dashed #bfc3ff;border-radius:16px;padding:32px 20px;text-align:center;cursor:pointer;transition:border-color 0.2s,background 0.2s;background:#f8f7ff;}
+    #hp-scan-dropzone.drag-over{border-color:#573cf9;background:#eeeeff;}
+    #hp-scan-dropzone input[type=file]{display:none;}
+    .hp-scan-dz-text{font-size:0.9rem;font-weight:700;color:#573cf9;margin-bottom:4px;}
+    .hp-scan-dz-sub{font-size:0.76rem;color:#aaa;font-weight:normal;}
+    .hp-scan-dz-sep{font-size:0.72rem;color:#ccc;margin:12px 0;}
+    .hp-scan-cam-btn{background:#573cf9;color:white;border:none;border-radius:10px;padding:10px 20px;font-size:0.85rem;font-weight:700;font-family:inherit;cursor:pointer;display:inline-flex;align-items:center;gap:7px;}
+    #hp-scan-loading{display:none;text-align:center;padding:24px 0;}
+    #hp-scan-loading p{font-size:0.88rem;color:#888;font-weight:normal;margin-top:14px;}
+    .hp-scan-spinner{width:40px;height:40px;border:4px solid #e8e8ff;border-top-color:#573cf9;border-radius:50%;animation:hpScanSpin 0.75s linear infinite;margin:0 auto;}
+    @keyframes hpScanSpin{to{transform:rotate(360deg);}}
+    #hp-scan-success{display:none;}
+    .hp-scan-success-title{font-size:1rem;font-weight:800;color:#16a34a;margin-bottom:14px;display:flex;align-items:center;gap:8px;}
+    .hp-scan-fields-preview{background:#f8f7ff;border-radius:12px;padding:14px 16px;margin-bottom:16px;display:flex;flex-direction:column;gap:8px;}
+    .hp-scan-field-row{display:flex;justify-content:space-between;align-items:center;font-size:0.84rem;}
+    .hp-scan-field-lbl{color:#888;font-weight:normal;}
+    .hp-scan-field-val{font-weight:800;color:#573cf9;}
+    .hp-scan-field-val.missing{color:#ef4444;font-weight:normal;font-style:italic;}
+    .hp-scan-confirm-btn{display:block;width:100%;padding:14px;background:#573cf9;color:white;border:none;border-radius:12px;font-size:1rem;font-family:inherit;font-weight:800;cursor:pointer;box-shadow:0 5px 0 #3b20d4;transition:transform 0.08s,box-shadow 0.08s;}
+    .hp-scan-confirm-btn:active{transform:translateY(4px);box-shadow:0 1px 0 #3b20d4;}
+    .hp-scan-retry-btn{display:block;width:100%;padding:10px;background:none;color:#888;border:1.5px solid #e5e5e5;border-radius:12px;font-size:0.85rem;font-family:inherit;font-weight:700;cursor:pointer;margin-top:8px;}
+    #hp-scan-error{display:none;text-align:center;padding:16px 0;}
+    #hp-scan-error p{font-size:0.85rem;color:#dc2626;font-weight:normal;margin-bottom:14px;}
+    </style>
     <link rel="canonical" href="https://www.osiguraj.hr/" />
 
     <title>Auto Osiguranje 2026 — Usporedi cijene i uštedi do 50% | Osiguraj.hr</title>
@@ -211,24 +243,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             if (f) f.style.height = (e.data.height + 20) + 'px';
         });
         window.addEventListener('message', function(e) {
-            if (!e.data) return;
-            var f = document.getElementById('wizard-frame');
-            if (!f) return;
-            if (e.data.type === 'scanModalOpen') {
-                f._savedStyle = f.getAttribute('style');
-                var sp = document.createElement('div');
-                sp.id = 'hp-scan-spacer';
-                sp.style.cssText = 'height:' + f.offsetHeight + 'px;width:100%;display:block;';
-                f.parentNode.insertBefore(sp, f.nextSibling);
-                f.style.cssText = 'position:fixed;inset:0;width:100%;height:100%;max-width:none;z-index:9999;border:none;border-radius:0;margin:0;display:block;background:transparent;';
-                document.body.style.overflow = 'hidden';
-            }
-            if (e.data.type === 'scanModalClose') {
-                var sp = document.getElementById('hp-scan-spacer');
-                if (sp) sp.parentNode.removeChild(sp);
-                if (f._savedStyle !== undefined) f.setAttribute('style', f._savedStyle);
-                document.body.style.overflow = '';
-            }
+            if (!e.data || e.data.type !== 'openScanModal') return;
+            hpOpenScanModal();
         });
         window.addEventListener('message', function(e) {
             if (!e.data || e.data.type !== 'scrollToWizard') return;
@@ -1027,6 +1043,131 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <a href="https://www.osiguraj.hr/kasko/">Kasko osiguranje</a>
     <a href="https://www.osiguraj.hr/kontakt/">Obvezno auto osiguranje</a>
 </div>
+
+<!-- ── HP Scan Modal ── -->
+<div id="hp-scan-overlay" onclick="hpCloseScanIfOutside(event)">
+  <div id="hp-scan-modal">
+    <button id="hp-scan-close" onclick="hpCloseScanModal()">✕</button>
+    <p class="hp-scan-title">✨ Automatski ispuni sve podatke ✨</p>
+    <p class="hp-scan-sub">Slikaj ili priloži staru policu i preskoči unos podataka.</p>
+    <div id="hp-scan-dropzone" onclick="document.getElementById('hp-scan-file-input').click()" ondragover="hpScanDragOver(event)" ondragleave="hpScanDragLeave(event)" ondrop="hpScanDrop(event)">
+      <input type="file" id="hp-scan-file-input" accept="image/*,application/pdf" onchange="hpHandleScanFile(this.files[0])">
+      <div style="margin-bottom:12px">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#bfc3ff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+      </div>
+      <p class="hp-scan-dz-text">Klikni ili povuci policu ovdje</p>
+      <p class="hp-scan-dz-sub">Podržano: JPG, PNG, PDF</p>
+      <div class="hp-scan-dz-sep">ili</div>
+      <button class="hp-scan-cam-btn" type="button" onclick="event.stopPropagation(); document.getElementById('hp-scan-cam-input').click()">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+        Fotografiraj policu
+      </button>
+      <input type="file" id="hp-scan-cam-input" accept="image/*" capture="environment" onchange="hpHandleScanFile(this.files[0])" style="display:none">
+    </div>
+    <div id="hp-scan-loading"><div class="hp-scan-spinner"></div><p>Čitam policu…</p></div>
+    <div id="hp-scan-success">
+      <p class="hp-scan-success-title">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        Podaci pronađeni!
+      </p>
+      <div class="hp-scan-fields-preview" id="hp-scan-preview"></div>
+      <button class="hp-scan-confirm-btn" onclick="hpConfirmScanData()">Nastavi s ovim podacima →</button>
+      <button class="hp-scan-retry-btn" onclick="hpResetScanModal()">Pokušaj s drugom fotografijom</button>
+    </div>
+    <div id="hp-scan-error">
+      <p id="hp-scan-error-msg">Nisam uspio pročitati dokument.</p>
+      <button class="hp-scan-confirm-btn" onclick="hpResetScanModal()" style="background:#ef4444;box-shadow:0 5px 0 #b91c1c;">Pokušaj ponovo</button>
+    </div>
+  </div>
+</div>
+
+<script>
+var hpScanData = null;
+var HP_SCAN_API = 'https://uniqa-proxy.osiguraj1.workers.dev';
+
+function hpOpenScanModal() {
+  document.getElementById('hp-scan-overlay').classList.add('show');
+  document.body.style.overflow = 'hidden';
+  hpResetScanModal();
+}
+function hpCloseScanModal() {
+  document.getElementById('hp-scan-overlay').classList.remove('show');
+  document.body.style.overflow = '';
+}
+function hpCloseScanIfOutside(e) {
+  if (e.target === document.getElementById('hp-scan-overlay')) hpCloseScanModal();
+}
+function hpResetScanModal() {
+  hpScanData = null;
+  document.getElementById('hp-scan-dropzone').style.display = '';
+  document.getElementById('hp-scan-loading').style.display = 'none';
+  document.getElementById('hp-scan-success').style.display = 'none';
+  document.getElementById('hp-scan-error').style.display = 'none';
+  document.getElementById('hp-scan-file-input').value = '';
+  document.getElementById('hp-scan-cam-input').value = '';
+}
+function hpScanDragOver(e) { e.preventDefault(); document.getElementById('hp-scan-dropzone').classList.add('drag-over'); }
+function hpScanDragLeave(e) { document.getElementById('hp-scan-dropzone').classList.remove('drag-over'); }
+function hpScanDrop(e) {
+  e.preventDefault();
+  document.getElementById('hp-scan-dropzone').classList.remove('drag-over');
+  var file = e.dataTransfer.files[0];
+  if (file) hpHandleScanFile(file);
+}
+function hpScanFileToBase64(file) {
+  return new Promise(function(resolve, reject) {
+    var reader = new FileReader();
+    reader.onload = function() { resolve(reader.result.split(',')[1]); };
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+}
+async function hpHandleScanFile(file) {
+  if (!file) return;
+  document.getElementById('hp-scan-dropzone').style.display = 'none';
+  document.getElementById('hp-scan-loading').style.display = 'block';
+  document.getElementById('hp-scan-success').style.display = 'none';
+  document.getElementById('hp-scan-error').style.display = 'none';
+  try {
+    var base64 = await hpScanFileToBase64(file);
+    var mimeType = file.type || 'image/jpeg';
+    var res = await fetch(HP_SCAN_API + '/extract-policy', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ image: base64, mimeType: mimeType })
+    });
+    var data = await res.json();
+    document.getElementById('hp-scan-loading').style.display = 'none';
+    if (!data.ok) throw new Error(data.error || 'Greška pri čitanju');
+    hpScanData = data;
+    hpRenderScanPreview(data);
+    document.getElementById('hp-scan-success').style.display = 'block';
+  } catch (err) {
+    document.getElementById('hp-scan-loading').style.display = 'none';
+    document.getElementById('hp-scan-error-msg').textContent = err.message || 'Nisam uspio pročitati dokument. Pokušaj s boljom fotografijom.';
+    document.getElementById('hp-scan-error').style.display = 'block';
+  }
+}
+function hpRenderScanPreview(d) {
+  var rows = [
+    { lbl: 'Registracija', val: d.registracija },
+    { lbl: 'kW', val: d.kw ? d.kw + ' kW' : null },
+    { lbl: 'Datum rođenja', val: d.dob },
+    { lbl: 'OIB', val: d.oib },
+  ];
+  document.getElementById('hp-scan-preview').innerHTML = rows.map(function(r) {
+    return '<div class="hp-scan-field-row"><span class="hp-scan-field-lbl">' + r.lbl + '</span>'
+      + '<span class="hp-scan-field-val' + (r.val ? '' : ' missing') + '">' + (r.val || 'nije pronađeno') + '</span></div>';
+  }).join('');
+}
+function hpConfirmScanData() {
+  if (!hpScanData) return;
+  hpCloseScanModal();
+  var f = document.getElementById('wizard-frame');
+  if (f && f.contentWindow) {
+    f.contentWindow.postMessage({ type: 'scanResult', data: hpScanData }, '*');
+  }
+}
+</script>
 </body>
 
 </html>
