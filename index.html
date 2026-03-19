@@ -216,10 +216,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             if (!f) return;
             if (e.data.type === 'scanModalOpen') {
                 f._savedStyle = f.getAttribute('style');
+                var sp = document.createElement('div');
+                sp.id = 'hp-scan-spacer';
+                sp.style.cssText = 'height:' + f.offsetHeight + 'px;width:100%;display:block;';
+                f.parentNode.insertBefore(sp, f.nextSibling);
                 f.style.cssText = 'position:fixed;inset:0;width:100%;height:100%;max-width:none;z-index:9999;border:none;border-radius:0;margin:0;display:block;background:transparent;';
                 document.body.style.overflow = 'hidden';
             }
             if (e.data.type === 'scanModalClose') {
+                var sp = document.getElementById('hp-scan-spacer');
+                if (sp) sp.parentNode.removeChild(sp);
                 if (f._savedStyle !== undefined) f.setAttribute('style', f._savedStyle);
                 document.body.style.overflow = '';
             }
