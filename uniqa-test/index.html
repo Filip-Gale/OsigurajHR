@@ -344,27 +344,39 @@ input[type=number] { -moz-appearance: textfield; }
       <div class="row2">
         <div>
           <label class="flabel" for="m-brand">Marka</label>
-          <input class="finput" id="m-brand" type="text" placeholder="RENAULT" autocapitalize="characters">
+          <div style="position:relative;">
+            <input class="finput" id="m-brand" type="text" placeholder="RENAULT" autocapitalize="characters" style="padding-right:44px;">
+            <button type="button" class="scan-sparkle-btn" onclick="openScanModal()">✨</button>
+          </div>
           <div class="fhint">Prometna dozvola — redak D.1</div>
           <div class="ferror" id="e-m-brand">Obavezno.</div>
         </div>
         <div>
           <label class="flabel" for="m-model">Model</label>
-          <input class="finput" id="m-model" type="text" placeholder="CLIO" autocapitalize="characters">
+          <div style="position:relative;">
+            <input class="finput" id="m-model" type="text" placeholder="CLIO" autocapitalize="characters" style="padding-right:44px;">
+            <button type="button" class="scan-sparkle-btn" onclick="openScanModal()">✨</button>
+          </div>
           <div class="fhint">Prometna dozvola — redak D.3</div>
           <div class="ferror" id="e-m-model">Obavezno.</div>
         </div>
       </div>
       <div>
         <label class="flabel" for="m-automodel">Specifikacija motora</label>
-        <input class="finput" id="m-automodel" type="text" placeholder="1.5 DCI">
+        <div style="position:relative;">
+          <input class="finput" id="m-automodel" type="text" placeholder="1.5 DCI" style="padding-right:44px;">
+          <button type="button" class="scan-sparkle-btn" onclick="openScanModal()">✨</button>
+        </div>
         <div class="fhint">Npr. "1.5 DCI", "2.0 TDI" — prometna dozvola redak D.3 ili P.5</div>
         <div class="ferror" id="e-m-automodel">Obavezno.</div>
       </div>
       <div class="row2">
         <div>
           <label class="flabel" for="m-year">Godina</label>
-          <input class="finput" id="m-year" type="number" placeholder="2018" min="1990" max="2026" inputmode="numeric">
+          <div style="position:relative;">
+            <input class="finput" id="m-year" type="number" placeholder="2018" min="1990" max="2026" inputmode="numeric" style="padding-right:44px;">
+            <button type="button" class="scan-sparkle-btn" onclick="openScanModal()">✨</button>
+          </div>
           <div class="fhint">Prometna — redak B</div>
           <div class="ferror" id="e-m-year">Obavezno.</div>
         </div>
@@ -385,13 +397,17 @@ input[type=number] { -moz-appearance: textfield; }
       </div>
       <div>
         <label class="flabel" for="m-vin">Broj šasije (VIN)</label>
-        <input class="finput" id="m-vin" type="text" placeholder="VF17RBF0A58516588" maxlength="17" autocapitalize="characters">
+        <div style="position:relative;">
+          <input class="finput" id="m-vin" type="text" placeholder="VF17RBF0A58516588" maxlength="17" autocapitalize="characters" style="padding-right:44px;">
+          <button type="button" class="scan-sparkle-btn" onclick="openScanModal()">✨</button>
+        </div>
         <div class="fhint">17 znakova — prometna dozvola redak E, ili na karoseriji ispod vjetrobrana</div>
         <div class="ferror" id="e-m-vin">Unesite VIN (17 znakova).</div>
       </div>
     </div>
     <div id="modal-err" class="err-box" style="display:none"><p id="modal-err-msg"></p></div>
     <button class="btn-main" onclick="submitModal()" type="button" id="modal-submit-btn">Izračunaj Uniqa cijenu →</button>
+    <button type="button" onclick="openScanModal()" style="background:none;border:none;cursor:pointer;text-align:center;color:#573cf9;font-size:0.92rem;font-weight:700;padding:10px 0 2px;letter-spacing:0.01em;opacity:0.85;transition:opacity 0.2s;display:flex;align-items:center;justify-content:center;gap:7px;width:100%;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.85'"><span style="background:linear-gradient(135deg,#7c5cfc,#573cf9);border-radius:7px;width:24px;height:24px;display:inline-flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;">✨</span>Automatski ispuni sve podatke</button>
   </div>
 
   <!-- Progress bar (3 steps) -->
