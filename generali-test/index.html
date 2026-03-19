@@ -777,18 +777,28 @@ function fetch_quote() {
   el('r-ok').style.display   = 'none';
   el('r-err').style.display  = 'none';
 
+  var _qPayload = {registracija:S.reg, snagaMotora:S.kw, godinaRodjenja:S.dob, tipStranke:S.tip, oib:S.oib||undefined};
+  console.log('[Generali] GetQuote payload:', JSON.stringify(_qPayload));
   fetch(WORKER, {
     method: 'POST',
     headers: {'Content-Type':'application/json'},
-    body: JSON.stringify({registracija:S.reg, snagaMotora:S.kw, godinaRodjenja:S.dob, tipStranke:S.tip, oib:S.oib||undefined})
+    body: JSON.stringify(_qPayload)
   })
-  .then(function(r){ return r.json(); })
+  .then(function(r){
+    console.log('[Generali] HTTP status:', r.status);
+    return r.json();
+  })
   .then(function(d){
+    console.log('[Generali] Response:', JSON.stringify(d));
     el('r-load').style.display = 'none';
     if (d.ao_cijena_s_porezom && d.ao_cijena_s_porezom > 0) showOk(d);
-    else showErr(d.error || 'Cijena trenutno nije dostupna.');
+    else showErr((d.error || 'Cijena trenutno nije dostupna.') + (d.details ? ' | ' + d.details : ''));
   })
-  .catch(function(){ el('r-load').style.display='none'; showErr('Greška pri dohvaćanju cijene.'); });
+  .catch(function(err){
+    console.error('[Generali] Fetch error:', err);
+    el('r-load').style.display='none';
+    showErr('Greška pri dohvaćanju cijene. (' + (err && err.message ? err.message : 'network error') + ')');
+  });
 
   if (!mjesta.length) fetchMjesta();
 }
