@@ -1324,6 +1324,9 @@ function renderScanPreview(d) {
     { lbl: 'VIN',            val: d.vin },
     { lbl: 'Datum rođenja',  val: d.dob },
     { lbl: 'OIB',            val: d.oib },
+    { lbl: 'Ime',            val: d.ime },
+    { lbl: 'Prezime',        val: d.prezime },
+    { lbl: 'Adresa',         val: d.adresa },
   ];
   document.getElementById('scan-preview').innerHTML = rows.map(r => `
     <div class="scan-field-row">
@@ -1381,7 +1384,10 @@ async function confirmScanData() {
     { id: 'm-vin',   val: scanData.vin || null, delay: 40 },
     { id: 'kw',      val: scanData.kw ? String(scanData.kw) : null, delay: 100 },
     { id: 'dob',     val: scanData.dob || null, delay: 65 },
-    { id: 'oib',     val: scanData.oib || null, delay: 55 },
+    { id: 'oib',     val: scanData.oib     || null, delay: 55 },
+    { id: 'ime',     val: scanData.ime     || null, delay: 60 },
+    { id: 'prezime', val: scanData.prezime || null, delay: 60 },
+    { id: 'adresa',  val: scanData.adresa  || null, delay: 50 },
   ];
 
   // Set fuel radio
