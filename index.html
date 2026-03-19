@@ -204,8 +204,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             allowtransparency="true"
             style="width:100%; max-width:500px; display:block; margin:12px auto 0; border:none; min-height:200px; border-radius:18px;"
         ></iframe>
-        <div id="hp-scan-overlay" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.55); z-index:9999;"></div>
-
         <script>
         window.addEventListener('message', function(e) {
             if (!e.data || e.data.type !== 'wizardHeight') return;
@@ -214,10 +212,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         });
         window.addEventListener('message', function(e) {
             if (!e.data) return;
-            var ov = document.getElementById('hp-scan-overlay');
-            if (!ov) return;
-            if (e.data.type === 'scanModalOpen') ov.style.display = 'block';
-            if (e.data.type === 'scanModalClose') ov.style.display = 'none';
+            var f = document.getElementById('wizard-frame');
+            if (!f) return;
+            if (e.data.type === 'scanModalOpen') {
+                f._savedStyle = f.getAttribute('style');
+                f.style.cssText = 'position:fixed;inset:0;width:100%;height:100%;max-width:none;z-index:9999;border:none;border-radius:0;margin:0;display:block;background:transparent;';
+                document.body.style.overflow = 'hidden';
+            }
+            if (e.data.type === 'scanModalClose') {
+                if (f._savedStyle !== undefined) f.setAttribute('style', f._savedStyle);
+                document.body.style.overflow = '';
+            }
         });
         window.addEventListener('message', function(e) {
             if (!e.data || e.data.type !== 'scrollToWizard') return;
