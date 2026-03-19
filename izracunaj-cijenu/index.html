@@ -2585,10 +2585,12 @@ var SCAN_API = 'https://uniqa-proxy.osiguraj1.workers.dev';
 function openScanModal() {
   document.getElementById('scan-modal-overlay').classList.add('show');
   resetScanModal();
+  try { window.parent.postMessage({ type: 'scanModalOpen' }, '*'); } catch(e) {}
 }
 
 function closeScanModal() {
   document.getElementById('scan-modal-overlay').classList.remove('show');
+  try { window.parent.postMessage({ type: 'scanModalClose' }, '*'); } catch(e) {}
 }
 
 function closeScanIfOutside(e) {

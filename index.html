@@ -204,12 +204,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             allowtransparency="true"
             style="width:100%; max-width:500px; display:block; margin:12px auto 0; border:none; min-height:200px; border-radius:18px;"
         ></iframe>
+        <div id="hp-scan-overlay" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.55); z-index:9999;"></div>
 
         <script>
         window.addEventListener('message', function(e) {
             if (!e.data || e.data.type !== 'wizardHeight') return;
             var f = document.getElementById('wizard-frame');
             if (f) f.style.height = (e.data.height + 20) + 'px';
+        });
+        window.addEventListener('message', function(e) {
+            if (!e.data) return;
+            var ov = document.getElementById('hp-scan-overlay');
+            if (!ov) return;
+            if (e.data.type === 'scanModalOpen') ov.style.display = 'block';
+            if (e.data.type === 'scanModalClose') ov.style.display = 'none';
         });
         window.addEventListener('message', function(e) {
             if (!e.data || e.data.type !== 'scrollToWizard') return;
