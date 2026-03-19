@@ -1451,6 +1451,22 @@ function go(n, dir) {
     if (card) card.scrollIntoView({behavior:'smooth', block:'start'});
   }
   setTimeout(notifyHeight, 350);
+
+  // Magic fill Vozač fields when arriving at step 2
+  if (n === 2 && scanData) {
+    var s2fills = [
+      { id: 'dob', val: scanData.dob || null, delay: 40 },
+      { id: 'oib', val: scanData.oib || null, delay: 35 },
+    ];
+    var s2delay = 500;
+    s2fills.forEach(function(f) {
+      if (!f.val) return;
+      var el = document.getElementById(f.id);
+      if (!el || el.value) return; // skip if already filled
+      setTimeout(function() { scanTypeInto(el, f.val, f.delay); }, s2delay);
+      s2delay += f.val.length * (f.delay + 15) + 300;
+    });
+  }
 }
 
 /* ── Registration typing indicator ── */
@@ -2747,8 +2763,6 @@ async function confirmScanData() {
   var fills = [
     { id: 'reg', val: scanData.registracija ? scanData.registracija.toUpperCase() : null, delay: 35 },
     { id: 'kw',  val: scanData.kw ? String(scanData.kw) : null, delay: 35 },
-    { id: 'dob', val: scanData.dob || null, delay: 40 },
-    { id: 'oib', val: scanData.oib || null, delay: 35 },
   ];
 
   for (var i = 0; i < fills.length; i++) {
