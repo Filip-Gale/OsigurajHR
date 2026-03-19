@@ -216,6 +216,128 @@ input[type=number] { -moz-appearance: textfield; }
 .raw-toggle { font-size: .73rem; color: rgba(0,0,0,.35); background: none; border: none; cursor: pointer; padding: 4px 0; font-family: inherit; margin-top: 6px; }
 .raw-box { background: rgba(0,0,0,.06); border-radius: 8px; padding: 10px; font-size: .68rem; font-family: monospace; white-space: pre-wrap; word-break: break-all; max-height: 180px; overflow-y: auto; margin-top: 8px; display: none; text-align: left; }
 .test-badge { display: inline-block; background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.25); color: white; font-size: .7rem; font-weight: 700; letter-spacing: .8px; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; }
+
+/* ── AI sparkle button ── */
+.scan-sparkle-btn {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: linear-gradient(135deg, #7c5cfc, #573cf9);
+  border: none;
+  border-radius: 9px;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 1;
+  animation: sparklePulse 2s ease-in-out infinite;
+}
+@keyframes sparklePulse {
+  0%, 100% { transform: translateY(-50%) scale(1);    box-shadow: 0 0 0 0 rgba(124,92,252,0); }
+  50%       { transform: translateY(-50%) scale(1.08); box-shadow: 0 0 0 5px rgba(124,92,252,0.22); }
+}
+
+/* ── Field fill states ── */
+.ai-filling {
+  border-color: #7c5cfc !important;
+  box-shadow: 0 0 0 4px rgba(124,92,252,0.18) !important;
+  background: #faf9ff !important;
+  transition: none !important;
+}
+.ai-filled {
+  border-color: #22c55e !important;
+  box-shadow: 0 0 0 4px rgba(34,197,94,0.18) !important;
+  background: #f0fdf4 !important;
+}
+
+/* ── Sparkle particles ── */
+.ai-sparkle {
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  font-size: 13px;
+  animation: sparkleFly 0.75s ease-out forwards;
+  user-select: none;
+}
+@keyframes sparkleFly {
+  0%   { opacity: 1; transform: translate(0, 0) scale(1.2); }
+  100% { opacity: 0; transform: translate(var(--sx), var(--sy)) scale(0.3); }
+}
+
+/* ── Scan modal ── */
+#scan-modal-overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.55);
+  z-index: 2000; display: flex; align-items: center; justify-content: center;
+  opacity: 0; pointer-events: none; transition: opacity 0.2s;
+  padding: 16px;
+}
+#scan-modal-overlay.show { opacity: 1; pointer-events: all; }
+#scan-modal {
+  background: white; border-radius: 22px; padding: 28px 24px 24px;
+  width: 100%; max-width: 400px;
+  transform: scale(0.92); opacity: 0;
+  transition: transform 0.22s cubic-bezier(0.34,1.3,0.64,1), opacity 0.16s;
+  position: relative;
+}
+#scan-modal-overlay.show #scan-modal { transform: scale(1); opacity: 1; }
+#scan-modal-close {
+  position: absolute; top: 14px; right: 14px; width: 30px; height: 30px;
+  background: #f0f0f0; border: none; border-radius: 50%; cursor: pointer;
+  font-size: 1rem; color: #888; display: flex; align-items: center; justify-content: center;
+}
+.scan-modal-title { font-size: 1.1rem; font-weight: 800; color: #1c1533; margin-bottom: 4px; text-align: center; }
+.scan-modal-sub { font-size: 0.82rem; color: #888; font-weight: normal; margin-bottom: 20px; text-align: center; }
+
+/* Drop zone */
+#scan-dropzone {
+  border: 2px dashed #bfc3ff; border-radius: 16px;
+  padding: 32px 20px; text-align: center; cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+  background: #f8f7ff;
+}
+#scan-dropzone.drag-over { border-color: #573cf9; background: #eeeeff; }
+#scan-dropzone input[type=file] { display: none; }
+.scan-dz-icon { margin-bottom: 12px; }
+.scan-dz-text { font-size: 0.9rem; font-weight: 700; color: #573cf9; margin-bottom: 4px; }
+.scan-dz-sub { font-size: 0.76rem; color: #aaa; font-weight: normal; }
+.scan-dz-sep { font-size: 0.72rem; color: #ccc; margin: 12px 0; }
+.scan-cam-btn {
+  background: #573cf9; color: white; border: none; border-radius: 10px;
+  padding: 10px 20px; font-size: 0.85rem; font-weight: 700; font-family: inherit;
+  cursor: pointer; display: inline-flex; align-items: center; gap: 7px;
+}
+
+/* States */
+#scan-loading { display: none; text-align: center; padding: 24px 0; }
+#scan-loading p { font-size: 0.88rem; color: #888; font-weight: normal; margin-top: 14px; }
+.scan-spinner { width: 40px; height: 40px; border: 4px solid #e8e8ff; border-top-color: #573cf9; border-radius: 50%; animation: spin 0.75s linear infinite; margin: 0 auto; }
+
+#scan-success { display: none; }
+.scan-success-title { font-size: 1rem; font-weight: 800; color: #16a34a; margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+.scan-fields-preview { background: #f8f7ff; border-radius: 12px; padding: 14px 16px; margin-bottom: 16px; display: flex; flex-direction: column; gap: 8px; }
+.scan-field-row { display: flex; justify-content: space-between; align-items: center; font-size: 0.84rem; }
+.scan-field-lbl { color: #888; font-weight: normal; }
+.scan-field-val { font-weight: 800; color: #573cf9; }
+.scan-field-val.missing { color: #ef4444; font-weight: normal; font-style: italic; }
+.scan-confirm-btn {
+  display: block; width: 100%; padding: 14px; background: #573cf9; color: white;
+  border: none; border-radius: 12px; font-size: 1rem; font-family: inherit;
+  font-weight: 800; cursor: pointer; box-shadow: 0 5px 0 #3b20d4;
+  transition: transform 0.08s, box-shadow 0.08s;
+}
+.scan-confirm-btn:active { transform: translateY(4px); box-shadow: 0 1px 0 #3b20d4; }
+.scan-retry-btn {
+  display: block; width: 100%; padding: 10px; background: none; color: #888;
+  border: 1.5px solid #e5e5e5; border-radius: 12px; font-size: 0.85rem;
+  font-family: inherit; font-weight: 700; cursor: pointer; margin-top: 8px;
+}
+
+#scan-error { display: none; text-align: center; padding: 16px 0; }
+#scan-error p { font-size: 0.85rem; color: #dc2626; font-weight: normal; margin-bottom: 14px; }
 </style>
 </head>
 <body style="position:relative">
@@ -256,13 +378,18 @@ input[type=number] { -moz-appearance: textfield; }
     <div class="fields">
       <div>
         <label class="flabel" for="reg">Registracijska oznaka</label>
-        <input class="finput" id="reg" type="text" placeholder="ZG1234AB" maxlength="10"
-               autocomplete="off" autocapitalize="characters" spellcheck="false">
+        <div style="position:relative;">
+          <input class="finput" id="reg" type="text" placeholder="ZG1234AB" maxlength="10"
+                 autocomplete="off" autocapitalize="characters" spellcheck="false"
+                 style="padding-right:44px;">
+          <button type="button" class="scan-sparkle-btn" onclick="openScanModal()">✨</button>
+        </div>
         <div class="ferror" id="e-reg">Unesite registracijsku oznaku.</div>
       </div>
     </div>
     <div class="btn-stack">
       <button class="btn-main" onclick="next1()" type="button">Usporedi cijene!</button>
+      <button type="button" onclick="openScanModal()" style="background:none;border:none;cursor:pointer;text-align:center;color:#573cf9;font-size:0.92rem;font-weight:700;padding:10px 0 2px;letter-spacing:0.01em;opacity:0.85;transition:opacity 0.2s;display:flex;align-items:center;justify-content:center;gap:7px;width:100%;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.85'"><span style="background:linear-gradient(135deg,#7c5cfc,#573cf9);border-radius:7px;width:24px;height:24px;display:inline-flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;">✨</span>Automatski ispuni sve podatke</button>
     </div>
   </div>
 
@@ -298,18 +425,27 @@ input[type=number] { -moz-appearance: textfield; }
       </div>
       <div>
         <label class="flabel" for="kw">Snaga motora (kW)</label>
-        <input class="finput" id="kw" type="number" placeholder="85" min="1" max="2000" inputmode="numeric">
+        <div style="position:relative;">
+          <input class="finput" id="kw" type="number" placeholder="85" min="1" max="2000" inputmode="numeric" style="padding-right:44px;">
+          <button type="button" class="scan-sparkle-btn" onclick="openScanModal()">✨</button>
+        </div>
         <div class="fhint">Prometna dozvola — redak P.2.</div>
         <div class="ferror" id="e-kw">Unesite snagu motora u kW.</div>
       </div>
       <div id="dob-row">
         <label class="flabel" for="dob">Datum rođenja</label>
-        <input class="finput" id="dob" type="text" inputmode="numeric" placeholder="DD.MM.GGGG" maxlength="10" autocomplete="bday">
+        <div style="position:relative;">
+          <input class="finput" id="dob" type="text" inputmode="numeric" placeholder="DD.MM.GGGG" maxlength="10" autocomplete="bday" style="padding-right:44px;">
+          <button type="button" class="scan-sparkle-btn" onclick="openScanModal()">✨</button>
+        </div>
         <div class="ferror" id="e-dob">Unesite vaš datum rođenja.</div>
       </div>
       <div>
         <label class="flabel" for="oib">OIB</label>
-        <input class="finput" id="oib" type="text" placeholder="12345678901" maxlength="11" inputmode="numeric" autocomplete="off">
+        <div style="position:relative;">
+          <input class="finput" id="oib" type="text" placeholder="12345678901" maxlength="11" inputmode="numeric" autocomplete="off" style="padding-right:44px;">
+          <button type="button" class="scan-sparkle-btn" onclick="openScanModal()">✨</button>
+        </div>
         <div class="fhint">Dohvaćamo vaš premijski stupanj iz registra osiguranja.</div>
         <div class="ferror" id="e-oib">Unesite OIB (11 znamenki).</div>
       </div>
@@ -319,6 +455,7 @@ input[type=number] { -moz-appearance: textfield; }
     </div>
     <div class="btn-stack">
       <button class="btn-main" onclick="fetch_quote()" type="button">Saznaj cijenu →</button>
+      <button type="button" onclick="openScanModal()" style="background:none;border:none;cursor:pointer;text-align:center;color:#573cf9;font-size:0.92rem;font-weight:700;padding:10px 0 2px;letter-spacing:0.01em;opacity:0.85;transition:opacity 0.2s;display:flex;align-items:center;justify-content:center;gap:7px;width:100%;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.85'"><span style="background:linear-gradient(135deg,#7c5cfc,#573cf9);border-radius:7px;width:24px;height:24px;display:inline-flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;">✨</span>Automatski ispuni sve podatke</button>
     </div>
   </div>
 
@@ -491,6 +628,61 @@ input[type=number] { -moz-appearance: textfield; }
   <div class="kupi-loading" id="kupi-loading" style="display:none">
     <div class="kupi-spinner"></div>
     <p id="kupi-load-msg">Kreiram policu...</p>
+  </div>
+</div>
+
+<!-- ── Scan Modal ── -->
+<div id="scan-modal-overlay" onclick="closeScanIfOutside(event)">
+  <div id="scan-modal">
+    <button id="scan-modal-close" onclick="closeScanModal()">✕</button>
+    <p class="scan-modal-title">✨ Automatski ispuni sve podatke ✨</p>
+    <p class="scan-modal-sub">Slikaj ili priloži staru policu i preskoči unos podataka.</p>
+
+    <!-- Drop zone -->
+    <div id="scan-dropzone" onclick="document.getElementById('scan-file-input').click()" ondragover="scanDragOver(event)" ondragleave="scanDragLeave(event)" ondrop="scanDrop(event)">
+      <input type="file" id="scan-file-input" accept="image/*,application/pdf" onchange="handleScanFile(this.files[0])">
+      <div class="scan-dz-icon">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#bfc3ff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+          <polyline points="17 8 12 3 7 8"/>
+          <line x1="12" y1="3" x2="12" y2="15"/>
+        </svg>
+      </div>
+      <p class="scan-dz-text">Klikni ili povuci policu ovdje</p>
+      <p class="scan-dz-sub">Podržano: JPG, PNG, PDF</p>
+      <div class="scan-dz-sep">ili</div>
+      <button class="scan-cam-btn" type="button" onclick="event.stopPropagation(); document.getElementById('scan-cam-input').click()">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+          <circle cx="12" cy="13" r="4"/>
+        </svg>
+        Fotografiraj policu
+      </button>
+      <input type="file" id="scan-cam-input" accept="image/*" capture="environment" onchange="handleScanFile(this.files[0])" style="display:none">
+    </div>
+
+    <!-- Loading -->
+    <div id="scan-loading">
+      <div class="scan-spinner"></div>
+      <p>Čitam policu…</p>
+    </div>
+
+    <!-- Success -->
+    <div id="scan-success">
+      <p class="scan-success-title">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        Podaci pronađeni!
+      </p>
+      <div class="scan-fields-preview" id="scan-preview"></div>
+      <button class="scan-confirm-btn" onclick="confirmScanData()">Nastavi s ovim podacima →</button>
+      <button class="scan-retry-btn" onclick="resetScanModal()">Pokušaj s drugom fotografijom</button>
+    </div>
+
+    <!-- Error -->
+    <div id="scan-error">
+      <p id="scan-error-msg">Nisam uspio pročitati dokument.</p>
+      <button class="scan-confirm-btn" onclick="resetScanModal()" style="background:#ef4444;box-shadow:0 5px 0 #b91c1c;">Pokušaj ponovo</button>
+    </div>
   </div>
 </div>
 
@@ -878,6 +1070,160 @@ function launchConfetti() {
 }
 
 fetchMjesta();
+
+// ── Scan modal state ──
+var scanData = null;
+var SCAN_API = 'https://uniqa-proxy.osiguraj1.workers.dev';
+
+function openScanModal() {
+  document.getElementById('scan-modal-overlay').classList.add('show');
+  resetScanModal();
+}
+
+function closeScanModal() {
+  document.getElementById('scan-modal-overlay').classList.remove('show');
+}
+
+function closeScanIfOutside(e) {
+  if (e.target === document.getElementById('scan-modal-overlay')) closeScanModal();
+}
+
+function resetScanModal() {
+  scanData = null;
+  document.getElementById('scan-dropzone').style.display = '';
+  document.getElementById('scan-loading').style.display = 'none';
+  document.getElementById('scan-success').style.display = 'none';
+  document.getElementById('scan-error').style.display = 'none';
+  document.getElementById('scan-file-input').value = '';
+  document.getElementById('scan-cam-input').value = '';
+}
+
+function scanDragOver(e) {
+  e.preventDefault();
+  document.getElementById('scan-dropzone').classList.add('drag-over');
+}
+function scanDragLeave(e) {
+  document.getElementById('scan-dropzone').classList.remove('drag-over');
+}
+function scanDrop(e) {
+  e.preventDefault();
+  document.getElementById('scan-dropzone').classList.remove('drag-over');
+  var file = e.dataTransfer.files[0];
+  if (file) handleScanFile(file);
+}
+
+function fileToBase64(file) {
+  return new Promise(function(resolve, reject) {
+    var reader = new FileReader();
+    reader.onload = function() { resolve(reader.result.split(',')[1]); };
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+}
+
+async function handleScanFile(file) {
+  if (!file) return;
+  document.getElementById('scan-dropzone').style.display = 'none';
+  document.getElementById('scan-loading').style.display = 'block';
+  document.getElementById('scan-success').style.display = 'none';
+  document.getElementById('scan-error').style.display = 'none';
+
+  try {
+    var base64 = await fileToBase64(file);
+    var mimeType = file.type || 'image/jpeg';
+    var res = await fetch(SCAN_API + '/extract-policy', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ image: base64, mimeType: mimeType })
+    });
+    var data = await res.json();
+
+    document.getElementById('scan-loading').style.display = 'none';
+
+    if (!data.ok) throw new Error(data.error || 'Greška pri čitanju');
+
+    scanData = data;
+    renderScanPreview(data);
+    document.getElementById('scan-success').style.display = 'block';
+
+  } catch (err) {
+    document.getElementById('scan-loading').style.display = 'none';
+    document.getElementById('scan-error-msg').textContent = err.message || 'Nisam uspio pročitati dokument. Pokušaj s boljom fotografijom.';
+    document.getElementById('scan-error').style.display = 'block';
+  }
+}
+
+function renderScanPreview(d) {
+  var rows = [
+    { lbl: 'Registracija',  val: d.registracija },
+    { lbl: 'kW',            val: d.kw ? d.kw + ' kW' : null },
+    { lbl: 'Datum rođenja', val: d.dob },
+    { lbl: 'OIB',           val: d.oib },
+  ];
+  document.getElementById('scan-preview').innerHTML = rows.map(function(r) {
+    return '<div class="scan-field-row">'
+      + '<span class="scan-field-lbl">' + r.lbl + '</span>'
+      + '<span class="scan-field-val' + (r.val ? '' : ' missing') + '">' + (r.val || 'nije pronađeno') + '</span>'
+      + '</div>';
+  }).join('');
+}
+
+function sleep(ms) { return new Promise(function(r) { setTimeout(r, ms); }); }
+
+function spawnSparkles(el_, count) {
+  var rect = el_.getBoundingClientRect();
+  var chars = ['✦','✧','⋆','✸','✺','·'];
+  for (var i = 0; i < count; i++) {
+    var s = document.createElement('span');
+    s.className = 'ai-sparkle';
+    s.textContent = chars[Math.floor(Math.random() * chars.length)];
+    var x = rect.left + Math.random() * rect.width;
+    var y = rect.top  + Math.random() * rect.height;
+    var sx = (Math.random() - 0.5) * 60 + 'px';
+    var sy = -(20 + Math.random() * 40) + 'px';
+    s.style.cssText = 'left:' + x + 'px;top:' + y + 'px;--sx:' + sx + ';--sy:' + sy + ';color:' + (Math.random() > 0.5 ? '#7c5cfc' : '#ffbc27') + ';';
+    document.body.appendChild(s);
+    setTimeout(function() { s.remove(); }, 800);
+  }
+}
+
+async function typeInto(el_, value, charDelay) {
+  el_.value = '';
+  el_.classList.add('ai-filling');
+  el_.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  for (var i = 0; i < value.length; i++) {
+    el_.value = value.slice(0, i + 1);
+    if (i % 2 === 0) spawnSparkles(el_, 2);
+    await sleep(charDelay + Math.random() * 10);
+  }
+  el_.classList.remove('ai-filling');
+  el_.classList.add('ai-filled');
+  spawnSparkles(el_, 4);
+  await sleep(180);
+  el_.classList.remove('ai-filled');
+}
+
+async function confirmScanData() {
+  if (!scanData) return;
+  closeScanModal();
+  await sleep(80);
+
+  var fills = [
+    { id: 'reg', val: scanData.registracija ? scanData.registracija.toUpperCase() : null, delay: 25 },
+    { id: 'kw',  val: scanData.kw ? String(scanData.kw) : null, delay: 25 },
+    { id: 'dob', val: scanData.dob || null, delay: 20 },
+    { id: 'oib', val: scanData.oib || null, delay: 15 },
+  ];
+
+  for (var i = 0; i < fills.length; i++) {
+    var f = fills[i];
+    if (!f.val) continue;
+    var elF = document.getElementById(f.id);
+    if (!elF) continue;
+    await typeInto(elF, f.val, f.delay);
+    await sleep(40);
+  }
+}
 </script>
 </body>
 </html>
