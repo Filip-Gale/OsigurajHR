@@ -1315,10 +1315,15 @@ function fileToBase64(file) {
 
 function renderScanPreview(d) {
   const rows = [
-    { lbl: 'Registracija', val: d.registracija },
-    { lbl: 'Snaga motora', val: d.kw ? d.kw + ' kW' : null },
-    { lbl: 'Datum rođenja', val: d.dob },
-    { lbl: 'OIB', val: d.oib },
+    { lbl: 'Registracija',   val: d.registracija },
+    { lbl: 'Marka',          val: d.marka },
+    { lbl: 'Model',          val: d.model },
+    { lbl: 'Godina',         val: d.godina ? String(d.godina) : null },
+    { lbl: 'Gorivo',         val: d.gorivo === 'Otto' ? 'Benzin' : d.gorivo === 'Diesel' ? 'Diesel' : null },
+    { lbl: 'Snaga motora',   val: d.kw ? d.kw + ' kW' : null },
+    { lbl: 'VIN',            val: d.vin },
+    { lbl: 'Datum rođenja',  val: d.dob },
+    { lbl: 'OIB',            val: d.oib },
   ];
   document.getElementById('scan-preview').innerHTML = rows.map(r => `
     <div class="scan-field-row">
@@ -1369,11 +1374,21 @@ async function confirmScanData() {
   await sleep(250);
 
   const fills = [
-    { id: 'reg', val: scanData.registracija ? scanData.registracija.toUpperCase() : null, delay: 80 },
-    { id: 'kw',  val: scanData.kw  ? String(scanData.kw) : null, delay: 100 },
-    { id: 'dob', val: scanData.dob || null, delay: 65 },
-    { id: 'oib', val: scanData.oib || null, delay: 55 },
+    { id: 'reg',     val: scanData.registracija ? scanData.registracija.toUpperCase() : null, delay: 80 },
+    { id: 'm-brand', val: scanData.marka || null, delay: 70 },
+    { id: 'm-model', val: scanData.model || null, delay: 70 },
+    { id: 'm-year',  val: scanData.godina ? String(scanData.godina) : null, delay: 60 },
+    { id: 'm-vin',   val: scanData.vin || null, delay: 40 },
+    { id: 'kw',      val: scanData.kw ? String(scanData.kw) : null, delay: 100 },
+    { id: 'dob',     val: scanData.dob || null, delay: 65 },
+    { id: 'oib',     val: scanData.oib || null, delay: 55 },
   ];
+
+  // Set fuel radio
+  if (scanData.gorivo) {
+    const radio = document.getElementById(scanData.gorivo === 'Diesel' ? 'm-diesel' : 'm-otto');
+    if (radio) { radio.checked = true; if (typeof updateFuelLabels === 'function') updateFuelLabels(); }
+  }
 
   for (const f of fills) {
     if (!f.val) continue;
