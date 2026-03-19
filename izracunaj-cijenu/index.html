@@ -2124,6 +2124,16 @@ function openOdaberi(provider, priceElId, btn) {
   document.getElementById('odaberi-ime').value = '';
   document.getElementById('odaberi-prezime').value = '';
   document.getElementById('odaberi-adresa').value = '';
+  // Auto-fill from scan if available
+  if (scanData) {
+    var adresaDijelovi = [scanData.ulica, scanData.kucni_broj].filter(Boolean).join(' ');
+    if (scanData.postanski_broj || scanData.grad) adresaDijelovi += (adresaDijelovi ? ', ' : '') + [scanData.postanski_broj, scanData.grad].filter(Boolean).join(' ');
+    setTimeout(function() {
+      if (scanData.ime)     scanTypeInto(document.getElementById('odaberi-ime'), scanData.ime, 35);
+      if (scanData.prezime) setTimeout(function() { scanTypeInto(document.getElementById('odaberi-prezime'), scanData.prezime, 35); }, (scanData.ime ? scanData.ime.length * 45 + 200 : 0));
+      if (adresaDijelovi)   setTimeout(function() { scanTypeInto(document.getElementById('odaberi-adresa'), adresaDijelovi, 30); }, ((scanData.ime ? scanData.ime.length * 45 + 200 : 0) + (scanData.prezime ? scanData.prezime.length * 45 + 200 : 0)));
+    }, 300);
+  }
   document.getElementById('odaberi-phone-panel').classList.remove('show');
   document.getElementById('odaberi-phone').value = '';
   document.getElementById('odaberi-success').style.display = 'none';
@@ -2735,10 +2745,10 @@ async function confirmScanData() {
   await scanSleep(80);
 
   var fills = [
-    { id: 'reg', val: scanData.registracija ? scanData.registracija.toUpperCase() : null, delay: 25 },
-    { id: 'kw',  val: scanData.kw ? String(scanData.kw) : null, delay: 25 },
-    { id: 'dob', val: scanData.dob || null, delay: 20 },
-    { id: 'oib', val: scanData.oib || null, delay: 15 },
+    { id: 'reg', val: scanData.registracija ? scanData.registracija.toUpperCase() : null, delay: 35 },
+    { id: 'kw',  val: scanData.kw ? String(scanData.kw) : null, delay: 35 },
+    { id: 'dob', val: scanData.dob || null, delay: 40 },
+    { id: 'oib', val: scanData.oib || null, delay: 35 },
   ];
 
   for (var i = 0; i < fills.length; i++) {

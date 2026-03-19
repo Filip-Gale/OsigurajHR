@@ -1405,21 +1405,21 @@ async function confirmScanData() {
   await sleep(80);
 
   const fills = [
-    { id: 'reg',        val: scanData.registracija ? scanData.registracija.toUpperCase() : null, delay: 25 },
-    { id: 'm-brand',    val: scanData.marka       || null, delay: 20 },
-    { id: 'm-model',    val: scanData.model       || null, delay: 20 },
-    { id: 'm-automodel',val: scanData.spec_motora || null, delay: 18 },
-    { id: 'm-year',     val: scanData.godina ? String(scanData.godina) : null, delay: 18 },
-    { id: 'm-vin',      val: scanData.vin         || null, delay: 12 },
-    { id: 'kw',         val: scanData.kw ? String(scanData.kw) : null, delay: 25 },
-    { id: 'dob',        val: scanData.dob         || null, delay: 20 },
-    { id: 'oib',        val: scanData.oib         || null, delay: 15 },
-    { id: 'firstName',  val: scanData.ime         || null, delay: 20 },
-    { id: 'lastName',   val: scanData.prezime     || null, delay: 20 },
-    { id: 'street',     val: scanData.ulica       || null, delay: 18 },
-    { id: 'streetNo',   val: scanData.kucni_broj  || null, delay: 18 },
-    { id: 'zipCode',    val: scanData.postanski_broj || null, delay: 15 },
-    { id: 'city',       val: scanData.grad        || null, delay: 18 },
+    { id: 'reg',        val: scanData.registracija ? scanData.registracija.toUpperCase() : null, delay: 35 },
+    { id: 'm-brand',    val: scanData.marka       || null, delay: 30 },
+    { id: 'm-model',    val: scanData.model       || null, delay: 30 },
+    { id: 'm-automodel',val: scanData.spec_motora || null, delay: 28 },
+    { id: 'm-year',     val: scanData.godina ? String(scanData.godina) : null, delay: 30 },
+    { id: 'm-vin',      val: scanData.vin         || null, delay: 22 },
+    { id: 'kw',         val: scanData.kw ? String(scanData.kw) : null, delay: 35 },
+    { id: 'dob',        val: scanData.dob         || null, delay: 40 },
+    { id: 'oib',        val: scanData.oib         || null, delay: 35 },
+    { id: 'firstName',  val: scanData.ime         || null, delay: 35 },
+    { id: 'lastName',   val: scanData.prezime     || null, delay: 35 },
+    { id: 'street',     val: scanData.ulica       || null, delay: 30 },
+    { id: 'streetNo',   val: scanData.kucni_broj  || null, delay: 30 },
+    { id: 'zipCode',    val: scanData.postanski_broj || null, delay: 28 },
+    { id: 'city',       val: scanData.grad        || null, delay: 30 },
   ];
 
   // Set fuel radio
