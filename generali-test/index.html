@@ -1143,8 +1143,9 @@ async function handleScanFile(file) {
     if (!data.ok) throw new Error(data.error || 'Greška pri čitanju');
 
     scanData = data;
-    renderScanPreview(data);
-    document.getElementById('scan-success').style.display = 'block';
+    closeScanModal();
+    showScanToast('✅ Podaci pronađeni!');
+    setTimeout(() => confirmScanData(), 400);
 
   } catch (err) {
     document.getElementById('scan-loading').style.display = 'none';
@@ -1203,17 +1204,38 @@ async function typeInto(el_, value, charDelay) {
   el_.classList.remove('ai-filled');
 }
 
+function showScanToast(msg) {
+  var t = document.getElementById('scan-toast');
+  if (!t) return;
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(function() { t.classList.remove('show'); }, 3500);
+}
+
 async function confirmScanData() {
   if (!scanData) return;
-  closeScanModal();
   await sleep(80);
 
   var fills = [
-    { id: 'reg', val: scanData.registracija ? scanData.registracija.toUpperCase() : null, delay: 25 },
-    { id: 'kw',  val: scanData.kw ? String(scanData.kw) : null, delay: 25 },
-    { id: 'dob', val: scanData.dob || null, delay: 20 },
-    { id: 'oib', val: scanData.oib || null, delay: 15 },
+    { id: 'reg',      val: scanData.registracija ? scanData.registracija.toUpperCase() : null, delay: 25 },
+    { id: 'kw',       val: scanData.kw ? String(scanData.kw) : null, delay: 25 },
+    { id: 'dob',      val: scanData.dob || null, delay: 20 },
+    { id: 'oib',      val: scanData.oib || null, delay: 15 },
+    { id: 'k-ime',    val: scanData.ime || null, delay: 20 },
+    { id: 'k-prezime',val: scanData.prezime || null, delay: 20 },
+    { id: 'k-oib',    val: scanData.oib || null, delay: 15 },
+    { id: 'k-ulica',  val: scanData.ulica || null, delay: 18 },
+    { id: 'k-kbr',    val: scanData.kucni_broj || null, delay: 18 },
   ];
+
+  // k-dob is type="date", needs YYYY-MM-DD
+  if (scanData.dob) {
+    var dp = scanData.dob.split('.');
+    if (dp.length === 3) {
+      var kdob = document.getElementById('k-dob');
+      if (kdob) kdob.value = dp[2] + '-' + dp[1].padStart(2,'0') + '-' + dp[0].padStart(2,'0');
+    }
+  }
 
   for (var i = 0; i < fills.length; i++) {
     var f = fills[i];
@@ -1223,7 +1245,17 @@ async function confirmScanData() {
     await typeInto(elF, f.val, f.delay);
     await sleep(40);
   }
+
+  // City: set both search field and hidden value
+  if (scanData.grad) {
+    var gradSearch = document.getElementById('k-grad-search');
+    var gradHidden = document.getElementById('k-grad');
+    if (gradSearch) await typeInto(gradSearch, scanData.grad, 18);
+    if (gradHidden) gradHidden.value = scanData.grad;
+  }
 }
 </script>
+<div id="scan-toast" style="position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#16a34a;color:white;padding:13px 24px;border-radius:100px;font-weight:700;font-size:0.9rem;font-family:inherit;z-index:20000;opacity:0;transition:opacity 0.3s;pointer-events:none;white-space:nowrap;"></div>
+<style>#scan-toast.show{opacity:1;}</style>
 </body>
 </html>

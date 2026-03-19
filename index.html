@@ -1044,6 +1044,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <a href="https://www.osiguraj.hr/kontakt/">Obvezno auto osiguranje</a>
 </div>
 
+<div id="hp-scan-toast" style="position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#16a34a;color:white;padding:13px 24px;border-radius:100px;font-weight:700;font-size:0.9rem;font-family:inherit;z-index:20000;opacity:0;transition:opacity 0.3s;pointer-events:none;white-space:nowrap;"></div>
+<style>#hp-scan-toast.show{opacity:1;}</style>
+
 <!-- ── HP Scan Modal ── -->
 <div id="hp-scan-overlay" onclick="hpCloseScanIfOutside(event)">
   <div id="hp-scan-modal">
@@ -1139,8 +1142,9 @@ async function hpHandleScanFile(file) {
     document.getElementById('hp-scan-loading').style.display = 'none';
     if (!data.ok) throw new Error(data.error || 'Greška pri čitanju');
     hpScanData = data;
-    hpRenderScanPreview(data);
-    document.getElementById('hp-scan-success').style.display = 'block';
+    hpCloseScanModal();
+    hpShowScanToast('✅ Podaci pronađeni!');
+    setTimeout(function() { hpConfirmScanData(); }, 400);
   } catch (err) {
     document.getElementById('hp-scan-loading').style.display = 'none';
     document.getElementById('hp-scan-error-msg').textContent = err.message || 'Nisam uspio pročitati dokument. Pokušaj s boljom fotografijom.';
@@ -1159,9 +1163,16 @@ function hpRenderScanPreview(d) {
       + '<span class="hp-scan-field-val' + (r.val ? '' : ' missing') + '">' + (r.val || 'nije pronađeno') + '</span></div>';
   }).join('');
 }
+function hpShowScanToast(msg) {
+  var t = document.getElementById('hp-scan-toast');
+  if (!t) return;
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(function() { t.classList.remove('show'); }, 3500);
+}
+
 function hpConfirmScanData() {
   if (!hpScanData) return;
-  hpCloseScanModal();
   var f = document.getElementById('wizard-frame');
   if (f && f.contentWindow) {
     f.contentWindow.postMessage({ type: 'scanResult', data: hpScanData }, '*');

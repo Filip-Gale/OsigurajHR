@@ -2654,8 +2654,9 @@ async function handleScanFile(file) {
     if (!data.ok) throw new Error(data.error || 'Greška pri čitanju');
 
     scanData = data;
-    renderScanPreview(data);
-    document.getElementById('scan-success').style.display = 'block';
+    closeScanModal();
+    showScanToast('✅ Podaci pronađeni!');
+    setTimeout(function() { confirmScanData(); }, 400);
 
   } catch (err) {
     document.getElementById('scan-loading').style.display = 'none';
@@ -2680,6 +2681,14 @@ function renderScanPreview(d) {
 }
 
 function scanSleep(ms) { return new Promise(function(r) { setTimeout(r, ms); }); }
+
+function showScanToast(msg) {
+  var t = document.getElementById('scan-toast');
+  if (!t) return;
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(function() { t.classList.remove('show'); }, 3500);
+}
 
 function spawnScanSparkles(el_, count) {
   var rect = el_.getBoundingClientRect();
@@ -2742,5 +2751,7 @@ async function confirmScanData() {
   }
 }
 </script>
+<div id="scan-toast" style="position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#16a34a;color:white;padding:13px 24px;border-radius:100px;font-weight:700;font-size:0.9rem;font-family:inherit;z-index:20000;opacity:0;transition:opacity 0.3s;pointer-events:none;white-space:nowrap;"></div>
+<style>#scan-toast.show{opacity:1;}</style>
 </body>
 </html>
