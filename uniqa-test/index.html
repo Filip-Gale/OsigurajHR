@@ -1365,36 +1365,36 @@ async function typeInto(el, value, charDelay) {
   for (let i = 0; i < value.length; i++) {
     el.value = value.slice(0, i + 1);
     if (i % 2 === 0) spawnSparkles(el, 2);
-    await sleep(charDelay + Math.random() * 30);
+    await sleep(charDelay + Math.random() * 10);
   }
   el.classList.remove('ai-filling');
   el.classList.add('ai-filled');
-  spawnSparkles(el, 6);
-  await sleep(420);
+  spawnSparkles(el, 4);
+  await sleep(180);
   el.classList.remove('ai-filled');
 }
 
 async function confirmScanData() {
   if (!scanData) return;
   closeScanModal();
-  await sleep(250);
+  await sleep(80);
 
   const fills = [
-    { id: 'reg',     val: scanData.registracija ? scanData.registracija.toUpperCase() : null, delay: 80 },
-    { id: 'm-brand',    val: scanData.marka      || null, delay: 70 },
-    { id: 'm-model',    val: scanData.model      || null, delay: 70 },
-    { id: 'm-automodel',val: scanData.spec_motora|| null, delay: 60 },
-    { id: 'm-year',     val: scanData.godina ? String(scanData.godina) : null, delay: 60 },
-    { id: 'm-vin',      val: scanData.vin        || null, delay: 40 },
-    { id: 'kw',         val: scanData.kw ? String(scanData.kw) : null, delay: 100 },
-    { id: 'dob',        val: scanData.dob        || null, delay: 65 },
-    { id: 'oib',        val: scanData.oib        || null, delay: 55 },
-    { id: 'firstName',  val: scanData.ime        || null, delay: 60 },
-    { id: 'lastName',   val: scanData.prezime    || null, delay: 60 },
-    { id: 'street',     val: scanData.ulica      || null, delay: 55 },
-    { id: 'streetNo',   val: scanData.kucni_broj || null, delay: 50 },
-    { id: 'zipCode',    val: scanData.postanski_broj || null, delay: 50 },
-    { id: 'city',       val: scanData.grad       || null, delay: 55 },
+    { id: 'reg',        val: scanData.registracija ? scanData.registracija.toUpperCase() : null, delay: 25 },
+    { id: 'm-brand',    val: scanData.marka       || null, delay: 20 },
+    { id: 'm-model',    val: scanData.model       || null, delay: 20 },
+    { id: 'm-automodel',val: scanData.spec_motora || null, delay: 18 },
+    { id: 'm-year',     val: scanData.godina ? String(scanData.godina) : null, delay: 18 },
+    { id: 'm-vin',      val: scanData.vin         || null, delay: 12 },
+    { id: 'kw',         val: scanData.kw ? String(scanData.kw) : null, delay: 25 },
+    { id: 'dob',        val: scanData.dob         || null, delay: 20 },
+    { id: 'oib',        val: scanData.oib         || null, delay: 15 },
+    { id: 'firstName',  val: scanData.ime         || null, delay: 20 },
+    { id: 'lastName',   val: scanData.prezime     || null, delay: 20 },
+    { id: 'street',     val: scanData.ulica       || null, delay: 18 },
+    { id: 'streetNo',   val: scanData.kucni_broj  || null, delay: 18 },
+    { id: 'zipCode',    val: scanData.postanski_broj || null, delay: 15 },
+    { id: 'city',       val: scanData.grad        || null, delay: 18 },
   ];
 
   // Set fuel radio
@@ -1408,7 +1408,7 @@ async function confirmScanData() {
     const el = document.getElementById(f.id);
     if (!el) continue;
     await typeInto(el, f.val, f.delay);
-    await sleep(120);
+    await sleep(40);
   }
 }
 </script>
