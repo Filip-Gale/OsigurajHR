@@ -1316,17 +1316,20 @@ function fileToBase64(file) {
 function renderScanPreview(d) {
   const rows = [
     { lbl: 'Registracija',   val: d.registracija },
+    { lbl: 'Registracija',   val: d.registracija },
     { lbl: 'Marka',          val: d.marka },
     { lbl: 'Model',          val: d.model },
+    { lbl: 'Specifikacija',  val: d.spec_motora },
     { lbl: 'Godina',         val: d.godina ? String(d.godina) : null },
     { lbl: 'Gorivo',         val: d.gorivo === 'Otto' ? 'Benzin' : d.gorivo === 'Diesel' ? 'Diesel' : null },
-    { lbl: 'Snaga motora',   val: d.kw ? d.kw + ' kW' : null },
+    { lbl: 'kW',             val: d.kw ? d.kw + ' kW' : null },
     { lbl: 'VIN',            val: d.vin },
     { lbl: 'Datum rođenja',  val: d.dob },
     { lbl: 'OIB',            val: d.oib },
     { lbl: 'Ime',            val: d.ime },
     { lbl: 'Prezime',        val: d.prezime },
-    { lbl: 'Adresa',         val: d.adresa },
+    { lbl: 'Adresa',         val: [d.ulica, d.kucni_broj].filter(Boolean).join(' ') || null },
+    { lbl: 'Grad',           val: [d.postanski_broj, d.grad].filter(Boolean).join(' ') || null },
   ];
   document.getElementById('scan-preview').innerHTML = rows.map(r => `
     <div class="scan-field-row">
@@ -1378,16 +1381,20 @@ async function confirmScanData() {
 
   const fills = [
     { id: 'reg',     val: scanData.registracija ? scanData.registracija.toUpperCase() : null, delay: 80 },
-    { id: 'm-brand', val: scanData.marka || null, delay: 70 },
-    { id: 'm-model', val: scanData.model || null, delay: 70 },
-    { id: 'm-year',  val: scanData.godina ? String(scanData.godina) : null, delay: 60 },
-    { id: 'm-vin',   val: scanData.vin || null, delay: 40 },
-    { id: 'kw',      val: scanData.kw ? String(scanData.kw) : null, delay: 100 },
-    { id: 'dob',     val: scanData.dob || null, delay: 65 },
-    { id: 'oib',     val: scanData.oib     || null, delay: 55 },
-    { id: 'ime',     val: scanData.ime     || null, delay: 60 },
-    { id: 'prezime', val: scanData.prezime || null, delay: 60 },
-    { id: 'adresa',  val: scanData.adresa  || null, delay: 50 },
+    { id: 'm-brand',    val: scanData.marka      || null, delay: 70 },
+    { id: 'm-model',    val: scanData.model      || null, delay: 70 },
+    { id: 'm-automodel',val: scanData.spec_motora|| null, delay: 60 },
+    { id: 'm-year',     val: scanData.godina ? String(scanData.godina) : null, delay: 60 },
+    { id: 'm-vin',      val: scanData.vin        || null, delay: 40 },
+    { id: 'kw',         val: scanData.kw ? String(scanData.kw) : null, delay: 100 },
+    { id: 'dob',        val: scanData.dob        || null, delay: 65 },
+    { id: 'oib',        val: scanData.oib        || null, delay: 55 },
+    { id: 'firstName',  val: scanData.ime        || null, delay: 60 },
+    { id: 'lastName',   val: scanData.prezime    || null, delay: 60 },
+    { id: 'street',     val: scanData.ulica      || null, delay: 55 },
+    { id: 'streetNo',   val: scanData.kucni_broj || null, delay: 50 },
+    { id: 'zipCode',    val: scanData.postanski_broj || null, delay: 50 },
+    { id: 'city',       val: scanData.grad       || null, delay: 55 },
   ];
 
   // Set fuel radio
