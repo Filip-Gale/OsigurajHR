@@ -812,7 +812,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </section>
 
     <section class="fade-in" style="background:#573cf9; padding:72px 20px;">
-        <div style="max-width:1000px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:start;">
+        <div id="ao-info-grid" style="max-width:1000px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:start;">
 
             <!-- Left: editorial text -->
             <div style="color:white;">
@@ -842,7 +842,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
         <style>
         @media(max-width:700px){
-            #ao-info-grid { grid-template-columns:1fr !important; gap:32px !important; }
+            #ao-info-grid { grid-template-columns:1fr !important; gap:28px !important; }
+            #ao-info-grid > div:first-child { text-align:left; }
         }
         </style>
     </section>
