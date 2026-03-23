@@ -27,6 +27,57 @@
     <meta property="og:url" content="https://www.osiguraj.hr{{ page.url }}">
     <meta property="og:image" content="https://www.osiguraj.hr/img/car.jpg">
     <meta name="twitter:card" content="summary_large_image">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Auto osiguranje",
+              "item": "https://www.osiguraj.hr/auto-osiguranje/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "{{ page.grad_ime }}",
+              "item": "https://www.osiguraj.hr{{ page.url }}"
+            }
+          ]
+        },
+        {
+          "@type": "Service",
+          "name": "Auto osiguranje {{ page.grad_ime }}",
+          "description": "{{ page.description }}",
+          "serviceType": "Usporedba auto osiguranja",
+          "areaServed": {
+            "@type": "City",
+            "name": "{{ page.grad_ime }}",
+            "containedInPlace": {
+              "@type": "Country",
+              "name": "Croatia"
+            }
+          },
+          "provider": {
+            "@type": "InsuranceAgency",
+            "@id": "https://www.osiguraj.hr/#organization",
+            "name": "Osiguraj.hr",
+            "url": "https://www.osiguraj.hr"
+          },
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "EUR",
+            "description": "Besplatna usporedba cijena auto osiguranja"
+          },
+          "url": "https://www.osiguraj.hr{{ page.url }}"
+        }
+      ]
+    }
+    </script>
     <link rel="stylesheet" href="{{ '/css/style.css' | relative_url }}">
     <link rel="stylesheet" href="{{ '/css/post.css' | relative_url }}">
     <link rel="icon" type="image/jpeg" href="{{ '/img/favicon.jpg' | relative_url }}">

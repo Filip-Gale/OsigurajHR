@@ -34,19 +34,41 @@
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      "itemListElement": [
+      "@graph": [
         {
-          "@type": "ListItem",
-          "position": 1,
-          "name": "Registracija vozila",
-          "item": "https://www.osiguraj.hr/registracija/"
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Registracija vozila",
+              "item": "https://www.osiguraj.hr/registracija/"
+            }{% if page.grad %},
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "{{ page.grad }}",
+              "item": "https://www.osiguraj.hr{{ page.url }}"
+            }{% endif %}
+          ]
         }{% if page.grad %},
         {
-          "@type": "ListItem",
-          "position": 2,
-          "name": "{{ page.grad }}",
-          "item": "https://www.osiguraj.hr{{ page.url }}"
+          "@type": "Service",
+          "name": "Registracija vozila {{ page.grad }}",
+          "description": "{{ page.stp_lokacije_opis | default: page.description }}",
+          "serviceType": "Registracija vozila",
+          "areaServed": {
+            "@type": "City",
+            "name": "{{ page.grad }}",
+            "containedInPlace": { "@type": "Country", "name": "Croatia" }
+          },
+          "provider": {
+            "@type": "InsuranceAgency",
+            "@id": "https://www.osiguraj.hr/#organization",
+            "name": "Osiguraj.hr",
+            "url": "https://www.osiguraj.hr"
+          },
+          "url": "https://www.osiguraj.hr{{ page.url }}"
         }{% endif %}
       ]
     }

@@ -104,105 +104,160 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "InsuranceAgency",
-  "@id": "https://www.osiguraj.hr/#organization",
-  "name": "Osiguraj.hr",
-  "alternateName": "Osiguraj HR",
-  "legalName": "MAKSI MIRO d.o.o. za zastupanje u osiguranju",
-  "url": "https://www.osiguraj.hr",
-  "logo": "https://www.osiguraj.hr/img/favicon.jpg",
-  "description": "Besplatno usporedi auto osiguranje vodećih kuća na jednom mjestu. ✓ brzi izračun ✓ Bonus i asistencija ✓ Obvezno i kasko online. » Saznaj cijenu",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "Božidarevićeva ulica 13",
-    "addressLocality": "Zagreb",
-    "postalCode": "10000",
-    "addressCountry": "HR"
-  },
-  "contactPoint": {
-    "@type": "ContactPoint",
-    "telephone": "+385 98 813 220",
-    "contactType": "customer service",
-    "areaServed": "HR",
-    "availableLanguage": "Croatian"
-  },
-  "sameAs": [
-    "https://web.facebook.com/profile.php?id=61586831552294",
-    "https://www.instagram.com/osiguraj_hr",
-    "https://www.tiktok.com/@osiguraj.hr",
-    "https://www.linkedin.com/company/osigurajhr/"
-  ],
-  "memberOf": {
-    "@type": "Organization",
-    "name": "HANFA",
-    "url": "https://www.hanfa.hr/registri/trziste-osiguranja/drustva-za-zastupanje-u-osiguranju/"
-  },
-  "award": "HANFA Datum dozvole za rad 20.07.2006., Klasa dozvole za rad UP/I-453-06/06-02/455"
-}
-</script>
-
-<!-- FAQPage schema -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
+  "@graph": [
     {
-      "@type": "Question",
-      "name": "Je li usluga Osiguraj.hr besplatna?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Da. Naša usluga je u potpunosti besplatna za korisnike. Ne naplaćujemo izradu ponude, savjetovanje niti pomoć pri ugovaranju police. Naš rad financira se kroz proviziju koju nam isplaćuju osiguravajuće kuće."
+      "@type": "InsuranceAgency",
+      "@id": "https://www.osiguraj.hr/#organization",
+      "name": "Osiguraj.hr",
+      "alternateName": "Osiguraj HR",
+      "legalName": "MAKSI MIRO d.o.o. za zastupanje u osiguranju",
+      "url": "https://www.osiguraj.hr",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.osiguraj.hr/img/logo.jpg",
+        "width": 200,
+        "height": 60
+      },
+      "image": "https://www.osiguraj.hr/img/logo.jpg",
+      "description": "Besplatna usporedba auto osiguranja u Hrvatskoj — izračun za 30 sekundi, osobni agent, digitalna polica odmah. HANFA licencirani posrednik od 2006.",
+      "priceRange": "110€ - 450€",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Božidarevićeva ulica 13",
+        "addressLocality": "Zagreb",
+        "postalCode": "10000",
+        "addressCountry": "HR"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 45.8150,
+        "longitude": 15.9819
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+38598813221",
+        "contactType": "customer service",
+        "areaServed": "HR",
+        "availableLanguage": "Croatian",
+        "contactOption": "TollFree"
+      },
+      "sameAs": [
+        "https://web.facebook.com/profile.php?id=61586831552294",
+        "https://www.instagram.com/osiguraj_hr",
+        "https://www.tiktok.com/@osiguraj.hr",
+        "https://www.linkedin.com/company/osigurajhr/"
+      ],
+      "memberOf": {
+        "@type": "Organization",
+        "name": "HANFA",
+        "url": "https://www.hanfa.hr/registri/trziste-osiguranja/drustva-za-zastupanje-u-osiguranju/"
+      },
+      "foundingDate": "2006",
+      "areaServed": {
+        "@type": "Country",
+        "name": "Croatia"
+      },
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Auto osiguranje",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Obvezno auto osiguranje (AO)",
+              "description": "Zakonski obavezno osiguranje od automobilske odgovornosti za sva vozila u prometu u Hrvatskoj."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Kasko osiguranje",
+              "description": "Sveobuhvatna zaštita vozila od sudara, krađe, tuče i požara bez obzira na krivnju."
+            }
+          }
+        ]
       }
     },
     {
-      "@type": "Question",
-      "name": "Kako se određuje cijena premije za auto osiguranje?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Cijena premije ovisi o više faktora, uključujući tehničke karakteristike vozila, registarsku zonu, dob vozača te bonus ili popuste na koje ostvarujete pravo."
-      }
+      "@type": "WebSite",
+      "@id": "https://www.osiguraj.hr/#website",
+      "name": "Osiguraj.hr",
+      "url": "https://www.osiguraj.hr",
+      "inLanguage": "hr-HR",
+      "publisher": { "@id": "https://www.osiguraj.hr/#organization" }
     },
     {
-      "@type": "Question",
-      "name": "Što se događa s mojom policom kada prodam vozilo?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Kod prodaje vozila, polica ostaje uz vozilo i prelazi na novog vlasnika. Važno je obavijestiti osiguravatelja o promjeni vlasništva. Bonus koji ste ostvarili ostaje vama i ne gubi se."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Gdje dobivam policu osiguranja?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Policu dobivate odmah nakon ugovaranja na WhatsApp i e-mail. Elektronička polica automatski je vidljiva na svim stanicama za tehnički pregled u Hrvatskoj."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Koliko brzo mogu dobiti policu?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Ponude šaljemo u roku od nekoliko minuta do nekoliko sati. Naš cilj je da što prije imate važeću policu u digitalnom obliku."
-      }
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Je li usluga Osiguraj.hr besplatna?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Da. Naša usluga je u potpunosti besplatna za korisnike. Ne naplaćujemo izradu ponude, savjetovanje niti pomoć pri ugovaranju police. Naš rad financira se kroz proviziju koju nam isplaćuju osiguravajuće kuće."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Kako se određuje cijena premije za auto osiguranje?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Cijena premije ovisi o registracijskoj zoni, snazi motora (kW), bonus/malus razredu i starosti vozača. Usporedba više osiguravatelja može uštedjeti 50–80 € godišnje."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Zašto surađivati s Osiguraj.hr umjesto direktno s osiguravateljem?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Osiguraj.hr uspoređuje ponude više osiguravajućih kuća odjednom i pronalazi najnižu cijenu za vaš profil — bez potrebe da sami kontaktirate svaku kuću. Usluga je besplatna, a policu dobivate odmah digitalno."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Što pokriva obvezno auto osiguranje?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Obvezno AO osiguranje pokriva štetu koju vaše vozilo nanese trećim osobama — tjelesne ozljede i materijalnu štetu do 1.300.000 € po nezgodi. Ne pokriva štetu na vašem vozilu."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Koliko brzo mogu dobiti policu?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Polica je dostupna odmah nakon ugovaranja — digitalno, na WhatsApp i e-mail. Elektronička polica automatski je vidljiva na svim STP stanicama u Hrvatskoj."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Mogu li platiti auto osiguranje na rate?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Da. Osiguraj.hr nudi plaćanje do 12 rata bez kamata karticom, jednokratno uplatom na račun, KEKSpay ili Aircash aplikacijom."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Hoćete li me podsjetiti na istek osiguranja?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Da. Podsjetimo vas 14 dana prije isteka police — ne morate sami pratiti rokove."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Što se događa s mojom policom kada prodam vozilo?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Kod prodaje vozila polica ostaje uz vozilo i prelazi na novog vlasnika. Bonus koji ste ostvarili ostaje vama i ne gubi se."
+          }
+        }
+      ]
     }
   ]
-}
-</script>
-
-<!-- WebSite schema -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": "Osiguraj.hr",
-  "url": "https://www.osiguraj.hr",
-  "potentialAction": {
-    "@type": "SearchAction",
-    "target": "https://www.osiguraj.hr/search?q={search_term_string}",
-    "query-input": "required name=search_term_string"
-  }
 }
 </script>
 
