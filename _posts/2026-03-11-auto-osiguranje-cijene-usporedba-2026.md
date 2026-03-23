@@ -106,7 +106,7 @@ Po isteku police slobodni ste promijeniti bez penala. Bonus se prenosi s potvrdo
 
 <div class="cta-inline">
 <h3>Usporedite cijene za vaš profil</h3>
-<p>Izračun je besplatan i traje 30 sekundi — bez registracije i bez obveze.</p>
+<p>Izračun je besplatan i traje 30 sekundi — bez obveze.</p>
 <a href="/izracunaj-cijenu/" class="cta-btn-yellow">Izračunaj cijenu odmah →</a>
 </div>
 
