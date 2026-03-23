@@ -39,6 +39,7 @@ layout: null
   {% for post in site.posts %}
   <url>
     <loc>https://www.osiguraj.hr{{ post.url }}</loc>
+    <lastmod>{% if post.modified %}{{ post.modified }}T00:00:00+01:00{% else %}{{ post.date | date_to_xmlschema }}{% endif %}</lastmod>
     <priority>0.7</priority>
   </url>
   {% endfor %}
