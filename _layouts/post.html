@@ -188,12 +188,12 @@
             {{ content }}
         </article>
 
-        {% assign related_posts = site.posts | where_exp: "p", "p.url != page.url" | limit: 3 %}
+        {% assign related_posts = site.posts | where_exp: "p", "p.url != page.url" %}
         {% if related_posts.size > 0 %}
         <div class="post-related" style="padding: 0 48px 50px;">
             <h3 style="color: #ffbc27; font-size: 1.1rem; font-weight: 700; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 0.5px;">Pročitaj i ovo</h3>
             <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px;">
-                {% for p in related_posts %}
+                {% for p in related_posts limit:3 %}
                 <a href="{{ p.url }}" style="display:block; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 16px 18px; text-decoration: none; transition: background 0.15s;">
                     <div style="font-size: 0.78rem; color: rgba(255,255,255,0.45); margin-bottom: 6px;">{{ p.date | date: "%d. %m. %Y." }}</div>
                     <div style="font-size: 0.92rem; font-weight: 600; color: #fff; line-height: 1.4;">{{ p.title }}</div>
