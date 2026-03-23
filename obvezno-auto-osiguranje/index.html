@@ -150,6 +150,8 @@ layout: null
         .ao-content h3 { color: #ffbc27 !important; font-size: 1.15rem; margin-top: 28px; margin-bottom: 10px; font-weight: 700; }
         .ao-content strong { color: #ffbc27 !important; }
         .ao-content a { color: #ffbc27 !important; text-decoration: underline !important; font-weight: 700; }
+        .ao-content .cta-btn-yellow,
+        .ao-content .cta-btn-yellow:hover { color: #1a0a4f !important; text-decoration: none !important; }
         .ao-content table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 0.95rem; }
         .ao-content th { background: rgba(255,188,39,0.15); color: #ffbc27; padding: 10px 14px; text-align: left; font-weight: 700; }
         .ao-content td { padding: 10px 14px; border-bottom: 1px solid rgba(255,255,255,0.08); }
@@ -166,6 +168,61 @@ layout: null
         .faq-item { margin-bottom: 24px; background: rgba(255,255,255,0.03); padding: 20px; border-radius: 14px; border-left: 4px solid #ffbc27; }
         .faq-item h4 { color: #ffbc27 !important; font-size: 1.05rem; margin: 0 0 10px; font-weight: 700; }
         .faq-item p { margin: 0; opacity: 0.9; line-height: 1.6; font-size: 0.95rem; }
+        /* Sticky CTA pill */
+        #stickyCtaAo {
+            position: fixed;
+            top: 72px;
+            left: 50%;
+            transform: translateX(-50%) translateY(-140px);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s ease, visibility 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 14px;
+            padding: 8px 8px 8px 22px;
+            background: rgba(20, 8, 60, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.18);
+            border-radius: 100px;
+            box-shadow: 0 8px 40px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,188,39,0.12);
+            white-space: nowrap;
+        }
+        #stickyCtaAo.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
+        }
+        #stickyCtaAo .sticky-label {
+            color: rgba(255,255,255,0.75);
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+        #stickyCtaAo .sticky-btn {
+            display: inline-flex;
+            align-items: center;
+            background: #ffbc27;
+            color: #1a0a4f !important;
+            font-weight: 800;
+            font-size: 0.9rem;
+            padding: 11px 22px;
+            border-radius: 100px;
+            text-decoration: none !important;
+            box-shadow: 0 2px 16px rgba(255,188,39,0.5);
+            transition: background 0.15s, box-shadow 0.15s;
+        }
+        #stickyCtaAo .sticky-btn:hover {
+            background: #ffd166;
+            box-shadow: 0 4px 24px rgba(255,188,39,0.65);
+            color: #1a0a4f !important;
+        }
+        @media (max-width: 480px) {
+            #stickyCtaAo { padding: 8px 8px 8px 16px; gap: 10px; }
+            #stickyCtaAo .sticky-label { font-size: 0.78rem; }
+            #stickyCtaAo .sticky-btn { font-size: 0.82rem; padding: 10px 16px; }
+        }
     </style>
 </head>
 <body>
@@ -283,48 +340,17 @@ layout: null
     {% include wapp.html %}
     {% include footer.html %}
 
-    <div id="stickyCtaAo" style="
-        position: fixed;
-        top: 72px;
-        left: 50%;
-        transform: translateX(-50%) translateY(-140px);
-        z-index: 999;
-        opacity: 0;
-        visibility: hidden;
-        transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s ease, visibility 0.3s ease;
-        display: inline-flex;
-        align-items: center;
-        gap: 14px;
-        padding: 8px 8px 8px 22px;
-        background: rgba(20, 8, 60, 0.92);
-        backdrop-filter: blur(16px);
-        -webkit-backdrop-filter: blur(16px);
-        border: 1px solid rgba(255,255,255,0.15);
-        border-radius: 100px;
-        box-shadow: 0 8px 40px rgba(0,0,0,0.5);
-        white-space: nowrap;
-    ">
-        <span style="color: rgba(255,255,255,0.75); font-size: 0.875rem; font-weight: 500;">Usporedi cijene za 30 sek</span>
-        <a href="/izracunaj-cijenu/" style="
-            display: inline-flex;
-            align-items: center;
-            background: #ffbc27;
-            color: #1a0a4f;
-            font-weight: 800;
-            font-size: 0.9rem;
-            padding: 11px 22px;
-            border-radius: 100px;
-            text-decoration: none;
-            box-shadow: 0 2px 12px rgba(255,188,39,0.45);
-        ">Izračunaj cijenu →</a>
+    <div id="stickyCtaAo">
+        <span class="sticky-label">Usporedi cijene za 30 sek</span>
+        <a href="/izracunaj-cijenu/" class="sticky-btn">Izračunaj cijenu →</a>
     </div>
     <script>
     (function(){
         var bar = document.getElementById('stickyCtaAo');
         var shown = false;
         window.addEventListener('scroll', function() {
-            if (window.scrollY > 400 && !shown) { shown = true; bar.style.transform = 'translateX(-50%) translateY(0)'; bar.style.opacity = '1'; bar.style.visibility = 'visible'; }
-            else if (window.scrollY < 200 && shown) { shown = false; bar.style.transform = 'translateX(-50%) translateY(-140px)'; bar.style.opacity = '0'; bar.style.visibility = 'hidden'; }
+            if (window.scrollY > 400 && !shown) { shown = true; bar.classList.add('show'); }
+            else if (window.scrollY < 200 && shown) { shown = false; bar.classList.remove('show'); }
         }, { passive: true });
     })();
     </script>
