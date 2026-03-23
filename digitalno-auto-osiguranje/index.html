@@ -1,14 +1,199 @@
+---
+layout: null
+---
 <!DOCTYPE html>
 <html lang="hr">
 <head>
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-TPNZZVZ5');</script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MSDQSXE6EG"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-MSDQSXE6EG');
+    </script>
     <meta charset="UTF-8">
-    <title>Često postavljena pitanja o osiguranju</title>
-    <meta name="description" content="Sve što trebaš znati o bonusima, štetama i ugovaranju police na jednom mjestu.">
-    
-    <meta http-equiv="refresh" content="0; url=https://www.osiguraj.hr/#faq">
-    <link rel="canonical" href="https://www.osiguraj.hr/"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digitalno auto osiguranje — polica odmah na mail | Osiguraj.hr</title>
+    <meta name="description" content="Kupi auto osiguranje online — polica stiže odmah na e-mail i vidljiva je na svim STP stanicama. Bez papira, bez čekanja, bez odlaska u poslovnicu.">
+    <link rel="canonical" href="https://www.osiguraj.hr/digitalno-auto-osiguranje/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Digitalno auto osiguranje — polica odmah na mail | Osiguraj.hr">
+    <meta property="og:description" content="Kupi auto osiguranje online — polica stiže odmah na e-mail i vidljiva je na svim STP stanicama.">
+    <meta property="og:url" content="https://www.osiguraj.hr/digitalno-auto-osiguranje/">
+    <meta property="og:image" content="https://www.osiguraj.hr/img/favicon.jpg">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Početna", "item": "https://www.osiguraj.hr/" },
+            { "@type": "ListItem", "position": 2, "name": "Digitalno auto osiguranje", "item": "https://www.osiguraj.hr/digitalno-auto-osiguranje/" }
+          ]
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "Je li digitalna polica valjana na tehničkom pregledu?",
+              "acceptedAnswer": { "@type": "Answer", "text": "Da — digitalna polica odmah je vidljiva u sustavu MUP-a i prihvaćena na svim STP stanicama u Hrvatskoj." }
+            },
+            {
+              "@type": "Question",
+              "name": "Kada dobivam policu nakon plaćanja?",
+              "acceptedAnswer": { "@type": "Answer", "text": "Odmah — polica stiže na vaš e-mail u PDF formatu u roku nekoliko minuta od potvrde plaćanja." }
+            },
+            {
+              "@type": "Question",
+              "name": "Mogu li kupiti auto osiguranje online karticom?",
+              "acceptedAnswer": { "@type": "Answer", "text": "Da, plaćanje karticom dostupno je direktno na stranici. Podržane su sve glavne kartice (Visa, Mastercard)." }
+            }
+          ]
+        }
+      ]
+    }
+    </script>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/post.css">
+    <link rel="icon" type="image/jpeg" href="/img/favicon.jpg">
+    <style>
+        .digi-hero {
+            text-align: center;
+            padding: 60px 40px 50px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .digi-hero h1 {
+            font-size: clamp(1.9rem, 4vw, 2.8rem);
+            color: #ffbc27;
+            margin-bottom: 16px;
+            letter-spacing: -0.5px;
+            line-height: 1.15;
+        }
+        .digi-hero p {
+            font-size: 1.15rem;
+            opacity: 0.85;
+            max-width: 620px;
+            margin: 0 auto 36px;
+            line-height: 1.65;
+        }
+        .btn-saznaj {
+            display: inline-block;
+            background: #2ecc71;
+            color: white !important;
+            padding: 16px 40px;
+            text-decoration: none !important;
+            border-radius: 12px;
+            font-weight: 800;
+            font-size: 1.2rem;
+            box-shadow: 0 8px 0 #27ae60;
+            transition: all 0.1s;
+            text-transform: uppercase;
+        }
+        .btn-saznaj:active { transform: translateY(4px); box-shadow: 0 4px 0 #27ae60; }
+        .digi-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            padding: 50px 48px;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+        @media (max-width: 767px) { .digi-steps { padding: 36px 20px; } .digi-hero { padding: 40px 20px 36px; } }
+        .digi-step {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.09);
+            border-radius: 16px;
+            padding: 28px 24px;
+            text-align: center;
+        }
+        .digi-step-num {
+            width: 40px; height: 40px;
+            border-radius: 50%;
+            background: #ffbc27;
+            color: #1a0a4f;
+            font-weight: 900;
+            font-size: 1.1rem;
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 14px;
+        }
+        .digi-step h3 { font-size: 1rem; font-weight: 700; color: #fff; margin-bottom: 8px; }
+        .digi-step p { font-size: 0.88rem; opacity: 0.65; line-height: 1.5; margin: 0; }
+        .digi-faq { padding: 50px 48px 60px; }
+        @media (max-width: 767px) { .digi-faq { padding: 36px 20px 48px; } }
+        .digi-faq h2 { color: #ffbc27; font-size: 1.5rem; margin-bottom: 28px; }
+        .faq-item { margin-bottom: 24px; background: rgba(255,255,255,0.03); padding: 20px; border-radius: 14px; border-left: 4px solid #ffbc27; }
+        .faq-item h4 { color: #ffbc27 !important; font-size: 1.05rem; margin: 0 0 10px; }
+        .faq-item p { margin: 0; opacity: 0.85; line-height: 1.6; font-size: 0.95rem; }
+    </style>
 </head>
 <body>
-    Preusmjeravanje na Često postavljena pitanja...
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TPNZZVZ5"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+    {% include nav.html %}
+    <div class="margin-top-100"></div>
+
+    <main class="width-container-1000 text-white round" style="background-color: #573cf9; box-shadow: 0 20px 40px rgba(0,0,0,0.2);">
+
+        <div class="digi-hero">
+            <h1>Digitalno auto osiguranje —<br>polica odmah na e-mail</h1>
+            <p>Bez odlaska u poslovnicu, bez papirologije. Unesite registraciju, usporedite ponude i kupite policu karticom — u roku od 5 minuta.</p>
+            <a href="/izracunaj-cijenu/" class="btn-saznaj">Izračunaj cijenu →</a>
+        </div>
+
+        <div class="digi-steps">
+            <div class="digi-step">
+                <div class="digi-step-num">1</div>
+                <h3>Unesite podatke</h3>
+                <p>Registracijska oznaka, godište, snaga motora — brzo i jednostavno.</p>
+            </div>
+            <div class="digi-step">
+                <div class="digi-step-num">2</div>
+                <h3>Usporedite ponude</h3>
+                <p>Sustav u 30 sekundi prikazuje ponude svih partnera — odaberite najnižu.</p>
+            </div>
+            <div class="digi-step">
+                <div class="digi-step-num">3</div>
+                <h3>Platite karticom</h3>
+                <p>Sigurno plaćanje online. Podržane sve kartice — do 12 rata bez kamata.</p>
+            </div>
+            <div class="digi-step">
+                <div class="digi-step-num">4</div>
+                <h3>Polica odmah</h3>
+                <p>PDF polica stiže na mail. Odmah vidljiva na svim STP stanicama u HR.</p>
+            </div>
+        </div>
+
+        <div class="digi-faq">
+            <h2>Česta pitanja</h2>
+            <div class="faq-item">
+                <h4>Je li digitalna polica valjana na tehničkom pregledu?</h4>
+                <p>Da — digitalna polica odmah je vidljiva u sustavu MUP-a i prihvaćena na svim STP stanicama u Hrvatskoj bez iznimke.</p>
+            </div>
+            <div class="faq-item">
+                <h4>Kada dobivam policu nakon plaćanja?</h4>
+                <p>Odmah — polica stiže na vaš e-mail u PDF formatu u roku nekoliko minuta od potvrde plaćanja.</p>
+            </div>
+            <div class="faq-item">
+                <h4>Mogu li kupiti auto osiguranje online karticom?</h4>
+                <p>Da, plaćanje karticom dostupno je direktno na stranici. Podržane su Visa i Mastercard, s mogućnošću plaćanja na do 12 rata bez kamata.</p>
+            </div>
+            <div class="faq-item">
+                <h4>Je li Osiguraj.hr legalan posrednik?</h4>
+                <p>Da — HANFA licencirani posrednik u osiguranju od 20.07.2006. (20+ godina iskustva). Polica je potpuno legalna i valjana.</p>
+            </div>
+        </div>
+
+    </main>
+
+    <div class="margin-top-100"></div>
+    {% include wapp.html %}
+    {% include footer.html %}
 </body>
 </html>

@@ -1,24 +1,177 @@
----
-# Ispravak 3/5 - AO/Kontakt s linkovima za bota
----
 <!DOCTYPE html>
 <html lang="hr">
 <head>
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-TPNZZVZ5');</script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MSDQSXE6EG"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-MSDQSXE6EG');
+    </script>
     <meta charset="UTF-8">
-    <title>Obvezno auto osiguranje (AO) | Osiguraj.hr</title>
-    <meta name="description" content="Digitalna polica auto osiguranja koja stiže odmah na tvoj e-mail ili WhatsApp. Bez papira i čekanja u redovima uz uštedu do 30%.">
-    
-    <meta http-equiv="refresh" content="0; url=https://www.osiguraj.hr/">
-    <link rel="canonical" href="https://www.osiguraj.hr/kontakt/"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kontakt | Osiguraj.hr</title>
+    <meta name="description" content="Kontaktirajte Osiguraj.hr — osobni agent dostupan 24/7 za sve upite o auto osiguranju. Pozovite, pišite na WhatsApp ili e-mail.">
+    <link rel="canonical" href="https://www.osiguraj.hr/kontakt/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Kontakt | Osiguraj.hr">
+    <meta property="og:description" content="Kontaktirajte Osiguraj.hr — osobni agent dostupan 24/7 za sve upite o auto osiguranju.">
+    <meta property="og:url" content="https://www.osiguraj.hr/kontakt/">
+    <meta property="og:image" content="https://www.osiguraj.hr/img/favicon.jpg">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ContactPage",
+      "name": "Kontakt — Osiguraj.hr",
+      "url": "https://www.osiguraj.hr/kontakt/",
+      "mainEntity": {
+        "@type": "InsuranceAgency",
+        "@id": "https://www.osiguraj.hr/#organization",
+        "name": "Osiguraj.hr",
+        "telephone": "+38598813221",
+        "email": "info@osiguraj.hr",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Božidarevićeva ulica 13",
+          "addressLocality": "Zagreb",
+          "postalCode": "10000",
+          "addressCountry": "HR"
+        }
+      }
+    }
+    </script>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/post.css">
+    <link rel="icon" type="image/jpeg" href="/img/favicon.jpg">
+    <style>
+        .kontakt-wrap {
+            padding: 60px 48px;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        @media (max-width: 767px) {
+            .kontakt-wrap { padding: 40px 24px; }
+        }
+        .kontakt-wrap h1 {
+            font-size: clamp(1.8rem, 4vw, 2.4rem);
+            color: #ffbc27;
+            margin-bottom: 12px;
+        }
+        .kontakt-wrap > p {
+            font-size: 1.1rem;
+            opacity: 0.85;
+            margin-bottom: 48px;
+            line-height: 1.6;
+        }
+        .kontakt-cards {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 48px;
+        }
+        @media (max-width: 600px) {
+            .kontakt-cards { grid-template-columns: 1fr; }
+        }
+        .kontakt-card {
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 16px;
+            padding: 28px 24px;
+            text-decoration: none;
+            display: block;
+            transition: background 0.15s, transform 0.15s;
+        }
+        .kontakt-card:hover {
+            background: rgba(255,255,255,0.1);
+            transform: translateY(-2px);
+            text-decoration: none;
+        }
+        .kontakt-card-icon { font-size: 2rem; margin-bottom: 12px; }
+        .kontakt-card-label {
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: rgba(255,255,255,0.5);
+            margin-bottom: 6px;
+        }
+        .kontakt-card-value {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: #fff;
+        }
+        .kontakt-card-sub {
+            font-size: 0.82rem;
+            color: rgba(255,255,255,0.5);
+            margin-top: 4px;
+        }
+        .kontakt-info {
+            background: rgba(255,188,39,0.08);
+            border: 1px solid rgba(255,188,39,0.25);
+            border-radius: 12px;
+            padding: 20px 24px;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: rgba(255,255,255,0.8);
+        }
+        .kontakt-info strong { color: #ffbc27; }
+    </style>
 </head>
 <body>
-    <p>Preusmjeravanje... Ako se ništa ne dogodi, <a href="https://www.osiguraj.hr/">kliknite ovdje</a>.</p>
-    
-    <div style="display:none;">
-        <a href="https://www.osiguraj.hr/">Početna stranica</a>
-        <a href="https://www.osiguraj.hr/izracunaj-cijenu/">Izračun cijene</a>
-        <a href="https://www.osiguraj.hr/kasko/">Kasko osiguranje</a>
-        <a href="https://www.osiguraj.hr/auto-osiguranje/zagreb/">Osiguranje u Zagrebu</a>
-    </div>
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TPNZZVZ5"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+    {% include nav.html %}
+
+    <div class="margin-top-100"></div>
+
+    <main class="width-container-1000 text-white round" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07);">
+        <div class="kontakt-wrap">
+            <h1>Kontaktirajte nas</h1>
+            <p>Osobni agent dostupan 24/7 — nazovite, pišite na WhatsApp ili e-mail. Odgovaramo u roku od par minuta.</p>
+
+            <div class="kontakt-cards">
+                <a href="tel:+38598813221" class="kontakt-card">
+                    <div class="kontakt-card-icon">📞</div>
+                    <div class="kontakt-card-label">Telefon</div>
+                    <div class="kontakt-card-value">+385 98 813 221</div>
+                    <div class="kontakt-card-sub">Pon–Pet 8–20h, Sub 9–14h</div>
+                </a>
+                <a href="https://wa.me/38598813221" target="_blank" rel="noopener" class="kontakt-card">
+                    <div class="kontakt-card-icon">💬</div>
+                    <div class="kontakt-card-label">WhatsApp</div>
+                    <div class="kontakt-card-value">+385 98 813 221</div>
+                    <div class="kontakt-card-sub">Odgovaramo 24/7</div>
+                </a>
+                <a href="mailto:info@osiguraj.hr" class="kontakt-card">
+                    <div class="kontakt-card-icon">✉️</div>
+                    <div class="kontakt-card-label">E-mail</div>
+                    <div class="kontakt-card-value">info@osiguraj.hr</div>
+                    <div class="kontakt-card-sub">Odgovaramo u roku 2h</div>
+                </a>
+                <a href="https://maps.google.com/?q=Božidarevićeva+ulica+13,10000+Zagreb" target="_blank" rel="noopener" class="kontakt-card">
+                    <div class="kontakt-card-icon">📍</div>
+                    <div class="kontakt-card-label">Adresa</div>
+                    <div class="kontakt-card-value">Božidarevićeva 13</div>
+                    <div class="kontakt-card-sub">10000 Zagreb</div>
+                </a>
+            </div>
+
+            <div class="kontakt-info">
+                <strong>MAKSI MIRO d.o.o.</strong> — posrednik u osiguranju, licenca HANFA od 20.07.2006.<br>
+                OIB: dostupan na zahtjev · Klasa UP/I-453-02/06-37/11
+            </div>
+        </div>
+    </main>
+
+    <div class="margin-top-100"></div>
+
+    {% include wapp.html %}
+    {% include footer.html %}
 </body>
 </html>
