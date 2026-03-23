@@ -1776,6 +1776,7 @@ function renderTriglav(aoBaseVal) {
   var triglavCard = document.getElementById('triglav-card');
   var triglavAge = new Date().getFullYear() - Number(S.dob);
   var tPrice = null, tIsFlat = false;
+  _triglavIsFlat = false;
   if (S.tip === 'F') {
     if (triglavAge <= 24) {
       tPrice = triglavFlatPrice(S.kw, S.dob);
@@ -1841,6 +1842,7 @@ function renderTriglav(aoBaseVal) {
         + '<div class="pkg-popover" id="tpop-promo">Bonus protect · Osiguranje od nezgode za vozača · Renta · Liječenje</div>'
         + '</div></div><span class="pkg-price">+ 15 €/god</span></div>';
     }
+    _triglavIsFlat = tIsFlat;
     document.getElementById('triglav-pkgs-list').innerHTML = pkgsHtml;
   } else {
     triglavCard.style.display = 'none';
@@ -2044,6 +2046,7 @@ function fireFormStart() {
 
 /* ── Odaberi modal ── */
 var _odaberiProvider = '', _odaberiPrice = '', _odaberiAddons = [];
+var _triglavIsFlat = false;
 
 function formatDob(iso) {
   if (!iso) return '';
@@ -2073,7 +2076,7 @@ function _buildLeadInfo() {
   var ime = document.getElementById('odaberi-ime').value.trim();
   var prezime = document.getElementById('odaberi-prezime').value.trim();
   var adresa = document.getElementById('odaberi-adresa').value.trim();
-  return 'Osiguranje: ' + _odaberiProvider + '\n'
+  return 'Osiguranje: ' + _odaberiProvider + (_odaberiProvider === 'Triglav' ? ' (' + (_triglavIsFlat ? 'autokuće' : 'zonska') + ')' : '') + '\n'
     + 'Cijena: ' + _odaberiPrice + '\n'
     + (ime || prezime ? 'Ime i prezime: ' + (ime + ' ' + prezime).trim() + '\n' : '')
     + (adresa ? 'Adresa: ' + adresa + '\n' : '')
@@ -2092,7 +2095,7 @@ function handleWaClick() {
   var prezime = document.getElementById('odaberi-prezime').value.trim();
   var adresa = document.getElementById('odaberi-adresa').value.trim();
   var tipLabel = S.tip === 'F' ? 'Fizička osoba' : S.tip === 'P' ? 'Pravna osoba' : 'Obrt';
-  var msg = 'Zanima me ' + _odaberiProvider + ' AO osiguranje\n'
+  var msg = (_odaberiProvider === 'Triglav' && _triglavIsFlat ? '· ' : '') + 'Zanima me ' + _odaberiProvider + ' AO osiguranje\n'
     + (ime || prezime ? 'Ime: ' + (ime + ' ' + prezime).trim() + '\n' : '')
     + (adresa ? 'Adresa: ' + adresa + '\n' : '')
     + 'Tablica: ' + S.reg + '\n'

@@ -33,7 +33,7 @@
       "headline": "{{ page.title }}",
       "description": "{{ page.description }}",
       "datePublished": "{{ page.date | date: '%Y-%m-%d' }}",
-      "dateModified": "{{ page.date | date: '%Y-%m-%d' }}",
+      "dateModified": "{% if page.modified %}{{ page.modified }}{% else %}{{ page.date | date: '%Y-%m-%d' }}{% endif %}",
       "author": { "@type": "Organization", "name": "Osiguraj.hr" },
       "publisher": {
         "@type": "Organization",
