@@ -4,7 +4,7 @@ title: "Kako obnoviti auto osiguranje u Hrvatskoj: 5 koraka"
 description: "Vodič za obnovu auto osiguranja u 2026. — kada obnoviti, kako usporediti cijene, što pripremiti i kako kupiti policu online bez odlaska u poslovnicu."
 permalink: /blog/kako-obnoviti-auto-osiguranje/
 date: 2026-03-23
-image: /images/kako-obnoviti-auto-osiguranje.jpg
+image: /img/blog/primjer3.webp
 ---
 
 # Kako obnoviti auto osiguranje u Hrvatskoj: 5 koraka
