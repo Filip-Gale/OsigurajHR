@@ -32,20 +32,13 @@ Datum isteka naznačen je na prednjoj stranici vaše trenutne police. Preporuča
 
 Ovo je najvažniji korak. Prema podacima Hrvatskog ureda za osiguranje (HUO), **razlika između najjeftinijeg i najskupljeg osiguravatelja za isti profil vozača i vozila može biti 50–80 € godišnje**.
 
-Osiguravatelji u usporedbi za 2026:
-
-| Osiguravatelj | Jaka strana |
-|---|---|
-| **Triglav** | Konkurentne cijene za sve zone |
-| **Generali** | Dobri paketi s asistencijom i zaštitom bonusa |
-| **Groupama** | Povoljno za starija vozila |
-| **UNIQA** | Fleksibilni planovi plaćanja |
+Svaki osiguravatelj računa premiju prema vlastitoj tarifi — za isti profil vozača i vozila razlike mogu biti i do 80 € godišnje. Nije pitanje tko je "generalno najjeftiniji", nego tko je najjeftiniji **za vaše specifično vozilo i zonu registracije**.
 
 > Bonus/malus razred se **prenosi na novog osiguravatelja** putem OIB-a — ne gubite ostvareni popust promjenom osiguravajuće kuće.
 
 <div class="cta-inline">
 <h3>Usporedite cijene za vaše vozilo</h3>
-<p>Unesite registarsku oznaku — kalkulator uspoređuje sve ponude u 30 sekundi.</p>
+<p>Unesite registarsku oznaku — kalkulator istovremeno uspoređuje ponude vodećih osiguravatelja i prikazuje najnižu cijenu za vaš profil.</p>
 <a href="/izracunaj-cijenu/" class="cta-btn-yellow">Izračunaj cijenu odmah →</a>
 </div>
 
@@ -116,7 +109,7 @@ Zaštita bonusa je dodatak polici koji osigurava da **jedna prijavljena šteta n
 
 <div class="cta-inline">
 <h3>Spremni za obnovu?</h3>
-<p>Usporedite Triglav, Generali, Groupama i UNIQA u 30 sekundi — bez obveze, bez poziva.</p>
+<p>Usporedite ponude vodećih osiguravatelja u 30 sekundi — bez obveze, bez poziva.</p>
 <a href="/izracunaj-cijenu/" class="cta-btn-yellow">Usporedi i obnovi →</a>
 </div>
 

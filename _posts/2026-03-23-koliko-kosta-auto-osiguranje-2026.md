@@ -92,22 +92,17 @@ Mladi vozači (do 25 god.) statistički su najrizičnija skupina i plaćaju osje
 
 ---
 
-## Usporedba osiguravatelja 2026.
+## Zašto je usporedba jedini pravi odgovor
 
-Za isti profil (zona 3, 85 kW, B4, vozač 35 god.) cijene se mogu razlikovati i do **70 €** između osiguravatelja. Zbog toga je usporedba ključna:
+Za isti profil (zona 3, 85 kW, B4, vozač 35 god.) cijene se mogu razlikovati i do **70 €** između osiguravatelja — a koji je najjeftiniji ovisi o vašem specifičnom kombinaciji zone, kW i bonusa.
 
-| Osiguravatelj | Jaka strana | Slaba strana |
-|---|---|---|
-| **Triglav** | Dobre zone cijene, brza isporuka | Manje paketa za mlade |
-| **Generali** | Dobri dodaci (asistencija, bonus protektor) | Skuplje za starija vozila |
-| **Groupama** | Povoljno za niže kW | Slabija pokrića u paketima |
-| **UNIQA** | Fleksibilno plaćanje na rate | Skuplje u nekim zonama |
+Razlog: svaki osiguravatelj ima vlastitu tarifu koja drugačije "rangira" pojedine faktore rizika. Jedan može biti konkurentniji za niže kW vozila, drugi za starije vozače, treći za određene zone. Nema jednog univerzalnog pobjednika — postoji samo pobjednik **za vas**.
 
-> Tržišne cijene se mijenjaju svake godine. Osiguravatelj koji je bio najjeftiniji prošle godine ne mora biti i ove.
+> Tržišne cijene se mijenjaju svake godine. Osiguravatelj koji je bio najjeftiniji prošle godine ne mora biti i ove — jedini način za točnu cijenu je osvježiti usporedbu.
 
 <div class="cta-inline">
 <h3>Usporedite aktualne cijene za vaše vozilo</h3>
-<p>Triglav, Generali, Groupama i UNIQA — sve u jednom kalkulatoru, bez obveze.</p>
+<p>Kalkulator istovremeno prikazuje ponude vodećih osiguravatelja — sve u 30 sekundi, bez obveze.</p>
 <a href="/izracunaj-cijenu/" class="cta-btn-yellow">Usporedi osiguravatelje →</a>
 </div>
 
@@ -144,7 +139,7 @@ Osiguravatelji mogu prilagođavati tarife jednom godišnje. Na promjenu cijene u
 ---
 
 <div class="cta-inline">
-<h3>Provjerite svoju cijenu za 2026.</h3>
+<h3>Pronađite najnižu cijenu za vaš profil</h3>
 <p>Bez obveze — izračun za 30 sekundi, polica odmah online.</p>
 <a href="/izracunaj-cijenu/" class="cta-btn-yellow">Izračunaj cijenu →</a>
 </div>

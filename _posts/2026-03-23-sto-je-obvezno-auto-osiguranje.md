@@ -70,7 +70,7 @@ Viša snaga motora = viša premija. Razlika između 55 kW i 150 kW vozila može 
 
 <div class="cta-inline">
 <h3>Koliko košta AO za vaše vozilo?</h3>
-<p>Unesite registarsku oznaku — usporedba svih osiguravatelja za 30 sekundi.</p>
+<p>Unesite registarsku oznaku — kalkulator istovremeno prikazuje ponude vodećih osiguravatelja i pronalazi najnižu cijenu za vaš profil.</p>
 <a href="/izracunaj-cijenu/" class="cta-btn-yellow">Izračunaj cijenu →</a>
 </div>
 
@@ -95,8 +95,8 @@ Viša snaga motora = viša premija. Razlika između 55 kW i 150 kW vozila može 
 
 Policu možete kupiti:
 
-1. **Online putem usporednog portala** (Osiguraj.hr) — usporedba svih ponuda u 30 sekundi, kupnja karticom, polica odmah
-2. **Direktno kod osiguravatelja** (Triglav, Generali, Groupama, UNIQA, Croatia osiguranje…) — jedna ponuda, bez usporedbe
+1. **Online putem usporednog portala** (Osiguraj.hr) — kalkulator odjednom prikazuje ponude više osiguravatelja, kupnja karticom, polica odmah
+2. **Direktno kod jednog osiguravatelja** — dobivate samo jednu ponudu, bez usporedbe
 3. **U stanici za tehnički pregled** — praktično, ali obično skuplje jer nema usporedbe
 4. **Putem agenta/brokera** — sporo, nije online, nema trenutačne usporedbe
 
@@ -126,7 +126,7 @@ Ne. Polica je vezana uz vlasnika (OIB), ne uz vozilo. Novi vlasnik mora kupiti v
 
 <div class="cta-inline">
 <h3>Usporedite ponude u 30 sekundi</h3>
-<p>Bez obveze, bez poziva. Polica aktivna odmah — vidljiva na svim STP stanicama.</p>
+<p>Bez obveze, bez poziva. Polica aktivna odmah — vidljiva na svim STP stanicama u cijeloj Hrvatskoj.</p>
 <a href="/izracunaj-cijenu/" class="cta-btn-yellow">Usporedi osiguravatelje →</a>
 </div>
 
