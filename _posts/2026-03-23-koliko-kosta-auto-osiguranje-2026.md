@@ -4,7 +4,9 @@ title: "Koliko košta auto osiguranje 2026? Cijene po zonama i kW"
 description: "Cijene obveznog auto osiguranja u Hrvatskoj za 2026. — tablice po zonama, snazi motora i bonusu. Izračunajte koliko biste trebali platiti."
 permalink: /blog/koliko-kosta-auto-osiguranje-2026/
 date: 2026-03-23
+modified: 2026-03-23
 image: /img/blog/koliko-kosta-2026.jpg
+keywords: koliko košta auto osiguranje, cijena AO osiguranja 2026, auto osiguranje zone, bonus malus, auto osiguranje kalkulator
 ---
 
 # Koliko košta auto osiguranje 2026? Cijene po zonama i kW

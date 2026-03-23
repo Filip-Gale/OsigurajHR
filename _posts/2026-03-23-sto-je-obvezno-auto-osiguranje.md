@@ -4,7 +4,9 @@ title: "Što je obvezno auto osiguranje (AO) u Hrvatskoj?"
 description: "Obvezno auto osiguranje (AO) u Hrvatskoj — što pokriva, što ne pokriva, koliko košta i gdje ga kupiti. Kompletni vodič za 2026."
 permalink: /blog/sto-je-obvezno-auto-osiguranje/
 date: 2026-03-23
+modified: 2026-03-23
 image: /img/blog/sto-je-obvezno-ao.jpg
+keywords: obvezno auto osiguranje, AO osiguranje, auto osiguranje Hrvatska, osiguranje od automobilske odgovornosti, cijena auto osiguranja
 ---
 
 # Što je obvezno auto osiguranje (AO) u Hrvatskoj?
