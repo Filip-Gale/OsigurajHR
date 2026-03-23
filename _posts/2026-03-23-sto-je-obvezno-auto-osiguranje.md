@@ -12,7 +12,7 @@ image: /images/sto-je-obvezno-auto-osiguranje.jpg
 **Obvezno auto osiguranje (AO)**, službeno osiguranje od automobilske odgovornosti, zakonski je obavezno za svako registrirano vozilo u Hrvatskoj. Pokriva štetu koju vozač nanese trećim osobama — ali ne pokriva vlastitu štetu ni oštećenje vlastitog vozila.
 
 <div class="stat-grid">
-<div class="stat-card"><span class="stat-number">1,3 mil €</span><span class="stat-label">Zakonski min. pokriće štete</span></div>
+<div class="stat-card"><span class="stat-number">100%</span><span class="stat-label">Digitalna polica — odmah vidljiva na STP</span></div>
 <div class="stat-card"><span class="stat-number">50–80 €</span><span class="stat-label">Moguća ušteda usporedbom</span></div>
 <div class="stat-card"><span class="stat-number">664 €</span><span class="stat-label">Max. kazna za vožnju bez AO</span></div>
 <div class="stat-card"><span class="stat-number">20 god.</span><span class="stat-label">Osiguraj.hr — HANFA licenca</span></div>

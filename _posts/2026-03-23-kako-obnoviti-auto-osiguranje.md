@@ -12,7 +12,7 @@ image: /images/kako-obnoviti-auto-osiguranje.jpg
 Obnova obveznog auto osiguranja (AO) u Hrvatskoj jednostavan je proces koji se može obaviti u potpunosti online, bez odlaska u poslovnicu, za manje od 10 minuta. Polica postaje aktivna odmah nakon uplate i vidljiva je u svim stanicama za tehnički pregled (STP) u cijeloj Hrvatskoj.
 
 <div class="stat-grid">
-<div class="stat-card"><span class="stat-number">10 min</span><span class="stat-label">Cijeli proces online</span></div>
+<div class="stat-card"><span class="stat-number">1 min</span><span class="stat-label">Izračun i usporedba cijena</span></div>
 <div class="stat-card"><span class="stat-number">80 €</span><span class="stat-label">Moguća ušteda usporedbom</span></div>
 <div class="stat-card"><span class="stat-number">30 dana</span><span class="stat-label">Ranije počnite tražiti</span></div>
 <div class="stat-card"><span class="stat-number">5+</span><span class="stat-label">Osiguravatelja za usporedbu</span></div>
