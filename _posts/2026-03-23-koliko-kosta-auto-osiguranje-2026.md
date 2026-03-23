@@ -7,57 +7,6 @@ date: 2026-03-23
 image: /images/koliko-kosta-auto-osiguranje-2026.jpg
 ---
 
-<link rel="stylesheet" href="/css/post.css">
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Koliko košta obvezno auto osiguranje u Hrvatskoj 2026?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Cijena obveznog auto osiguranja u Hrvatskoj za 2026. kreće se od oko 110 € godišnje za najjeftinije zone (Slavonija, Koprivnica) do 350 € za skuplje zone (Zagreb) za prosječno vozilo 55–85 kW s B4 bonusom. Razlika između najjeftinijeg i najskupljeg osiguravatelja za isti profil može biti 50–80 € godišnje."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Zašto je auto osiguranje skuplje u Zagrebu nego u Slavoniji?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Cijena AO police ovisi o registracijskoj zoni, koja odražava statističku frekvenciju prometnih nezgoda u tom području. Zagreb i Rijeka imaju gusti promet i višu stopu nezgoda, pa osiguravatelji naplaćuju višu premiju. Razlika između zone 1 (Slavonija) i zone 7 (Zagreb) može biti 30–40% više za isti profil vozača i vozila."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Kako snaga motora utječe na cijenu auto osiguranja?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Viša snaga motora znači višu premiju. Razlika između vozila do 55 kW i vozila iznad 110 kW može biti 40–80 € godišnje za isti bonus razred i zonu. Svaki osiguravatelj ima vlastite kW razrede, a prelazak u viši razred ne mora biti proporcionalan povećanju cijene."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Kako smanjiti cijenu auto osiguranja?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Najefikasnije metode za smanjenje cijene auto osiguranja: 1) Usporedite ponude više osiguravatelja — ušteda 50–80 € godišnje. 2) Gradite bonus — svaka godina bez štete donosi 5–10% popusta, do maksimalno 50% pri B10 razredu. 3) Izbjegajte prijavu malih šteta — gubitak bonusa košta više nego šteta. 4) Platite jednokratno — kod nekih osiguravatelja 5% popust."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Je li auto osiguranje skuplje za mlade vozače?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Da. Vozači do 25 godina plaćaju 30–50% više od vozača s iskustvom zbog statistički više stope prometnih nezgoda u toj dobnoj skupini. Mladi vozač (18–24 god.) u Zagrebu s vozilom 85 kW može platiti i 300–400 € godišnje, dok iskusan vozač s B7 bonusom za isti auto plaća 150–200 €."
-      }
-    }
-  ]
-}
-</script>
-
 # Koliko košta auto osiguranje 2026? Cijene po zonama i kW
 
 Cijena obveznog auto osiguranja (AO) u Hrvatskoj za 2026. ovisi o četiri faktora: **zoni registracije, snazi motora, bonus/malus razredu i starosti vozača**. Za prosječno vozilo (55–85 kW, B4 bonus) cijene se kreću od **110 € do 350 € godišnje** — ovisno o zoni i osiguravatelju.
@@ -199,3 +148,52 @@ Osiguravatelji mogu prilagođavati tarife jednom godišnje. Na promjenu cijene u
 <p>Bez obveze — izračun za 30 sekundi, polica odmah online.</p>
 <a href="/izracunaj-cijenu/" class="cta-btn-yellow">Izračunaj cijenu →</a>
 </div>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Koliko košta obvezno auto osiguranje u Hrvatskoj 2026?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Cijena obveznog auto osiguranja u Hrvatskoj za 2026. kreće se od oko 110 € godišnje za najjeftinije zone (Slavonija, Koprivnica) do 350 € za skuplje zone (Zagreb) za prosječno vozilo 55–85 kW s B4 bonusom. Razlika između najjeftinijeg i najskupljeg osiguravatelja za isti profil može biti 50–80 € godišnje."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Zašto je auto osiguranje skuplje u Zagrebu nego u Slavoniji?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Cijena AO police ovisi o registracijskoj zoni, koja odražava statističku frekvenciju prometnih nezgoda u tom području. Zagreb i Rijeka imaju gusti promet i višu stopu nezgoda, pa osiguravatelji naplaćuju višu premiju. Razlika između zone 1 (Slavonija) i zone 7 (Zagreb) može biti 30–40% više za isti profil vozača i vozila."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Kako snaga motora utječe na cijenu auto osiguranja?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Viša snaga motora znači višu premiju. Razlika između vozila do 55 kW i vozila iznad 110 kW može biti 40–80 € godišnje za isti bonus razred i zonu. Svaki osiguravatelj ima vlastite kW razrede, a prelazak u viši razred ne mora biti proporcionalan povećanju cijene."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Kako smanjiti cijenu auto osiguranja?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Najefikasnije metode za smanjenje cijene auto osiguranja: 1) Usporedite ponude više osiguravatelja — ušteda 50–80 € godišnje. 2) Gradite bonus — svaka godina bez štete donosi 5–10% popusta, do maksimalno 50% pri B10 razredu. 3) Izbjegajte prijavu malih šteta — gubitak bonusa košta više nego šteta. 4) Platite jednokratno — kod nekih osiguravatelja 5% popust."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Je li auto osiguranje skuplje za mlade vozače?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Da. Vozači do 25 godina plaćaju 30–50% više od vozača s iskustvom zbog statistički više stope prometnih nezgoda u toj dobnoj skupini. Mladi vozač (18–24 god.) u Zagrebu s vozilom 85 kW može platiti i 300–400 € godišnje, dok iskusan vozač s B7 bonusom za isti auto plaća 150–200 €."
+      }
+    }
+  ]
+}
+</script>

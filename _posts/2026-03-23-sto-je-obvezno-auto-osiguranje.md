@@ -7,57 +7,6 @@ date: 2026-03-23
 image: /images/sto-je-obvezno-auto-osiguranje.jpg
 ---
 
-<link rel="stylesheet" href="/css/post.css">
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Što je obvezno auto osiguranje?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Obvezno auto osiguranje (AO), službeno osiguranje od automobilske odgovornosti, zakonski je obavezno za svako registrirano vozilo u Hrvatskoj. Pokriva štetu koju vozač nanese trećim osobama — tjelesne ozljede i materijalnu štetu. Ne pokriva vlastitu štetu vozača ni oštećenje vlastitog vozila."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Što pokriva obvezno auto osiguranje?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Obvezno auto osiguranje pokriva: tjelesne ozljede trećih osoba (do 1.300.000 € po nezgodi), materijalnu štetu na tuđoj imovini (do 1.300.000 € po nezgodi) i troškove liječenja ozlijeđenih. Ne pokriva: vlastitu materijalnu štetu na vozilu, krađu vozila, elementarne nepogode ni tjelesne ozljede samog vozača. Za ta pokrića potrebno je kasko osiguranje."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Koliko košta obvezno auto osiguranje u Hrvatskoj?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Cijena obveznog auto osiguranja u Hrvatskoj ovisi o zoni registracije, snazi motora, bonusu i starosti vozača. Orijentacijski rasponi za 2026: zona 1 (Slavonija) 110–160 €, zona 3 (Zadar, Pula) 180–260 €, zona 7 (Zagreb) 220–350 € godišnje za prosječno vozilo. Usporedbom više osiguravatelja moguće je uštedjeti 50–80 € godišnje."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Mora li svaki automobil imati auto osiguranje?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Da. Svako motorno vozilo koje se koristi na javnim prometnicama u Hrvatskoj mora imati važeće obvezno auto osiguranje. Iznimka su vozila trajno isključena iz prometa (odjavljena vozila). Vožnja bez važeće police kažnjava se novčanom kaznom od 66,36 € do 664,00 €."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Koja je razlika između AO i kasko osiguranja?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "AO (obvezno auto osiguranje) pokriva štetu koju nanesete drugima i zakonski je obavezno. Kasko osiguranje pokriva štetu na vašem vlastitom vozilu (nezgoda, krađa, tuča, elementarne nepogode) i nije obavezno. Kasko se preporuča za novija i skuplja vozila."
-      }
-    }
-  ]
-}
-</script>
-
 # Što je obvezno auto osiguranje (AO) u Hrvatskoj?
 
 **Obvezno auto osiguranje (AO)**, službeno osiguranje od automobilske odgovornosti, zakonski je obavezno za svako registrirano vozilo u Hrvatskoj. Pokriva štetu koju vozač nanese trećim osobama — ali ne pokriva vlastitu štetu ni oštećenje vlastitog vozila.
@@ -180,3 +129,52 @@ Ne. Polica je vezana uz vlasnika (OIB), ne uz vozilo. Novi vlasnik mora kupiti v
 <p>Bez obveze, bez poziva. Polica aktivna odmah — vidljiva na svim STP stanicama.</p>
 <a href="/izracunaj-cijenu/" class="cta-btn-yellow">Usporedi osiguravatelje →</a>
 </div>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Što je obvezno auto osiguranje?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Obvezno auto osiguranje (AO), službeno osiguranje od automobilske odgovornosti, zakonski je obavezno za svako registrirano vozilo u Hrvatskoj. Pokriva štetu koju vozač nanese trećim osobama — tjelesne ozljede i materijalnu štetu. Ne pokriva vlastitu štetu vozača ni oštećenje vlastitog vozila."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Što pokriva obvezno auto osiguranje?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Obvezno auto osiguranje pokriva: tjelesne ozljede trećih osoba (do 1.300.000 € po nezgodi), materijalnu štetu na tuđoj imovini (do 1.300.000 € po nezgodi) i troškove liječenja ozlijeđenih. Ne pokriva: vlastitu materijalnu štetu na vozilu, krađu vozila, elementarne nepogode ni tjelesne ozljede samog vozača. Za ta pokrića potrebno je kasko osiguranje."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Koliko košta obvezno auto osiguranje u Hrvatskoj?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Cijena obveznog auto osiguranja u Hrvatskoj ovisi o zoni registracije, snazi motora, bonusu i starosti vozača. Orijentacijski rasponi za 2026: zona 1 (Slavonija) 110–160 €, zona 3 (Zadar, Pula) 180–260 €, zona 7 (Zagreb) 220–350 € godišnje za prosječno vozilo. Usporedbom više osiguravatelja moguće je uštedjeti 50–80 € godišnje."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Mora li svaki automobil imati auto osiguranje?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Da. Svako motorno vozilo koje se koristi na javnim prometnicama u Hrvatskoj mora imati važeće obvezno auto osiguranje. Iznimka su vozila trajno isključena iz prometa (odjavljena vozila). Vožnja bez važeće police kažnjava se novčanom kaznom od 66,36 € do 664,00 €."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Koja je razlika između AO i kasko osiguranja?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "AO (obvezno auto osiguranje) pokriva štetu koju nanesete drugima i zakonski je obavezno. Kasko osiguranje pokriva štetu na vašem vlastitom vozilu (nezgoda, krađa, tuča, elementarne nepogode) i nije obavezno. Kasko se preporuča za novija i skuplja vozila."
+      }
+    }
+  ]
+}
+</script>

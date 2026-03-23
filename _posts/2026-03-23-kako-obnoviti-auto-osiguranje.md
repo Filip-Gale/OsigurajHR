@@ -7,107 +7,6 @@ date: 2026-03-23
 image: /images/kako-obnoviti-auto-osiguranje.jpg
 ---
 
-<link rel="stylesheet" href="/css/post.css">
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Kada treba obnoviti auto osiguranje?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Auto osiguranje treba obnoviti prije datuma isteka police. Preporuča se pokrenuti usporedbu 14–30 dana unaprijed kako bi imali dovoljno vremena za odabir povoljnije ponude. Datum isteka je naznačen na prednjoj stranici vaše trenutne police."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Što se dogodi ako kasnim s obnovom auto osiguranja?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Ako isteče polica, vozilo nije osigurano i vožnja je zabranjena. Policija može naplatiti kaznu od 66,36 € do 664,00 € za vožnju bez obveznog osiguranja. Uz to, kod tehničkog pregleda vozilo neće proći bez važeće police."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Mogu li promijeniti osiguravatelja pri obnovi?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Da, bonus/malus razred se prenosi na novog osiguravatelja putem OIB-a vozača — ne gubite ostvareni popust. Prema podacima Hrvatskog ureda za osiguranje, promjena osiguravatelja može uštedjeti 50–80 € godišnje za isti profil vozača i vozila."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Koji dokumenti su potrebni za obnovu auto osiguranja?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Za obnovu auto osiguranja potrebni su: prometna dozvola vozila (ili podaci o vozilu: registarska oznaka, snaga motora u kW, godina proizvodnje), osobna iskaznica vlasnika i OIB. Kod online kupnje dovoljno je unijeti registarsku oznaku — ostale podatke sustav može automatski dohvatiti."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Koliko košta obnova auto osiguranja u Hrvatskoj?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Cijena ovisi o zoni registracije, snazi motora, bonusu i starosti vozača. Orijentacijski raspon za prosječno vozilo (55–85 kW) je 130–350 € godišnje. Usporedba više osiguravatelja može uštedjeti i do 80 € na godišnjoj razini."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Je li digitalna polica valjana kod tehničkog pregleda?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Da. Digitalna polica kupljena online odmah je vidljiva u sustavu svih STP stanica u Hrvatskoj. Nije potreban papirnati primjerak — dovoljno je da polica bude aktivna u evidenciji Hrvatskog ureda za osiguranje."
-      }
-    }
-  ]
-}
-</script>
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "HowTo",
-  "name": "Kako obnoviti auto osiguranje u Hrvatskoj",
-  "description": "Korak-po-korak vodič za obnovu obveznog auto osiguranja (AO) u Hrvatskoj.",
-  "totalTime": "PT10M",
-  "step": [
-    {
-      "@type": "HowToStep",
-      "position": 1,
-      "name": "Provjerite datum isteka police",
-      "text": "Datum isteka naznačen je na prednjoj stranici vaše police. Preporuča se obnoviti 14–30 dana unaprijed."
-    },
-    {
-      "@type": "HowToStep",
-      "position": 2,
-      "name": "Usporedite ponude osiguravatelja",
-      "text": "Koristite online kalkulator koji uspoređuje Triglav, Generali, Groupama, UNIQA i ostale osiguravatelje u 30 sekundi."
-    },
-    {
-      "@type": "HowToStep",
-      "position": 3,
-      "name": "Pripremite podatke o vozilu i vozaču",
-      "text": "Trebate: registarsku oznaku, snagu motora u kW, OIB i datum rođenja vozača."
-    },
-    {
-      "@type": "HowToStep",
-      "position": 4,
-      "name": "Odaberite ponudu i platite karticom",
-      "text": "Nakon odabira osiguravatelja, polica se može kupiti online karticom — bez odlaska u poslovnicu."
-    },
-    {
-      "@type": "HowToStep",
-      "position": 5,
-      "name": "Preuzmite policu i provjerite aktivaciju",
-      "text": "Digitalna polica odmah je vidljiva u svim STP stanicama u Hrvatskoj. Papirnati primjerak nije obavezan."
-    }
-  ]
-}
-</script>
-
 # Kako obnoviti auto osiguranje u Hrvatskoj: 5 koraka
 
 Obnova obveznog auto osiguranja (AO) u Hrvatskoj jednostavan je proces koji se može obaviti u potpunosti online, bez odlaska u poslovnicu, za manje od 10 minuta. Polica postaje aktivna odmah nakon uplate i vidljiva je u svim stanicama za tehnički pregled (STP) u cijeloj Hrvatskoj.
@@ -220,3 +119,102 @@ Zaštita bonusa je dodatak polici koji osigurava da **jedna prijavljena šteta n
 <p>Usporedite Triglav, Generali, Groupama i UNIQA u 30 sekundi — bez obveze, bez poziva.</p>
 <a href="/izracunaj-cijenu/" class="cta-btn-yellow">Usporedi i obnovi →</a>
 </div>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Kada treba obnoviti auto osiguranje?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Auto osiguranje treba obnoviti prije datuma isteka police. Preporuča se pokrenuti usporedbu 14–30 dana unaprijed kako bi imali dovoljno vremena za odabir povoljnije ponude. Datum isteka je naznačen na prednjoj stranici vaše trenutne police."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Što se dogodi ako kasnim s obnovom auto osiguranja?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ako isteče polica, vozilo nije osigurano i vožnja je zabranjena. Policija može naplatiti kaznu od 66,36 € do 664,00 € za vožnju bez obveznog osiguranja. Uz to, kod tehničkog pregleda vozilo neće proći bez važeće police."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Mogu li promijeniti osiguravatelja pri obnovi?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Da, bonus/malus razred se prenosi na novog osiguravatelja putem OIB-a vozača — ne gubite ostvareni popust. Prema podacima Hrvatskog ureda za osiguranje, promjena osiguravatelja može uštedjeti 50–80 € godišnje za isti profil vozača i vozila."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Koji dokumenti su potrebni za obnovu auto osiguranja?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Za obnovu auto osiguranja potrebni su: prometna dozvola vozila (ili podaci o vozilu: registarska oznaka, snaga motora u kW, godina proizvodnje), osobna iskaznica vlasnika i OIB. Kod online kupnje dovoljno je unijeti registarsku oznaku — ostale podatke sustav može automatski dohvatiti."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Koliko košta obnova auto osiguranja u Hrvatskoj?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Cijena ovisi o zoni registracije, snazi motora, bonusu i starosti vozača. Orijentacijski raspon za prosječno vozilo (55–85 kW) je 130–350 € godišnje. Usporedba više osiguravatelja može uštedjeti i do 80 € na godišnjoj razini."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Je li digitalna polica valjana kod tehničkog pregleda?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Da. Digitalna polica kupljena online odmah je vidljiva u sustavu svih STP stanica u Hrvatskoj. Nije potreban papirnati primjerak — dovoljno je da polica bude aktivna u evidenciji Hrvatskog ureda za osiguranje."
+      }
+    }
+  ]
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "Kako obnoviti auto osiguranje u Hrvatskoj",
+  "description": "Korak-po-korak vodič za obnovu obveznog auto osiguranja (AO) u Hrvatskoj.",
+  "totalTime": "PT10M",
+  "step": [
+    {
+      "@type": "HowToStep",
+      "position": 1,
+      "name": "Provjerite datum isteka police",
+      "text": "Datum isteka naznačen je na prednjoj stranici vaše police. Preporuča se obnoviti 14–30 dana unaprijed."
+    },
+    {
+      "@type": "HowToStep",
+      "position": 2,
+      "name": "Usporedite ponude osiguravatelja",
+      "text": "Koristite online kalkulator koji uspoređuje Triglav, Generali, Groupama, UNIQA i ostale osiguravatelje u 30 sekundi."
+    },
+    {
+      "@type": "HowToStep",
+      "position": 3,
+      "name": "Pripremite podatke o vozilu i vozaču",
+      "text": "Trebate: registarsku oznaku, snagu motora u kW, OIB i datum rođenja vozača."
+    },
+    {
+      "@type": "HowToStep",
+      "position": 4,
+      "name": "Odaberite ponudu i platite karticom",
+      "text": "Nakon odabira osiguravatelja, polica se može kupiti online karticom — bez odlaska u poslovnicu."
+    },
+    {
+      "@type": "HowToStep",
+      "position": 5,
+      "name": "Preuzmite policu i provjerite aktivaciju",
+      "text": "Digitalna polica odmah je vidljiva u svim STP stanicama u Hrvatskoj. Papirnati primjerak nije obavezan."
+    }
+  ]
+}
+</script>
