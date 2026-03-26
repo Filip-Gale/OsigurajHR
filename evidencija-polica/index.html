@@ -280,8 +280,16 @@
     tbody td { padding: 3px 0; border: none; font-size: 13px; }
     tbody td:empty { display: none; }
 
-    /* Sakrij # i kontakt i osig na mobu */
-    td.col-num, td.col-kontakt, td.col-osig { display: none !important; }
+    /* Sakrij samo # na mobu */
+    td.col-num { display: none !important; }
+
+    /* Kontakt */
+    td.col-kontakt { font-size: 12px; color: var(--muted); }
+    td.col-kontakt::before { content: '📞 '; }
+
+    /* Osiguratelj */
+    td.col-osig { font-size: 12px; color: var(--muted); }
+    td.col-osig::before { content: '🏢 '; }
 
     /* Ime — veliko, gore */
     td.col-ime { font-size: 15px; padding-bottom: 6px; border-bottom: 1px solid var(--border); margin-bottom: 6px; }
@@ -559,12 +567,13 @@ function renderTable() {
     }
 
     const cijena = p.cijena ? Number(p.cijena).toFixed(2) + ' EUR' : '—';
+    const kontaktFmt = (p.kontakt || '').match(/^\d+$/) ? '0' + p.kontakt : (p.kontakt || '—');
 
     return `<tr class="${rowClass}">
       <td class="col-num" style="color:#aaa">${i+1}</td>
       <td class="col-ime"><strong>${esc(p.ime || '—')}</strong></td>
       <td class="col-reg">${esc((p.reg||'').toUpperCase())}</td>
-      <td class="col-kontakt">${esc(p.kontakt || '—')}</td>
+      <td class="col-kontakt">${esc(kontaktFmt)}</td>
       <td class="col-vrsta">${esc(p.vrsta === 'o+k' ? 'obvezno i kasko' : (p.vrsta || '—'))}</td>
       <td class="col-istek">${istekStr}</td>
       <td class="col-dani">${daniStr}</td>
@@ -1008,7 +1017,7 @@ function exportCSV() {
 
 // ── Inicijalni import podataka ────────────────────────────────
 (function importInitialData() {
-  if (localStorage.getItem('police_imported_v3')) return; // već importano
+  if (localStorage.getItem('police_imported_v4')) return; // već importano
   function d(str) { // "M/D/YYYY" → "YYYY-MM-DD"
     const [m,day,y] = str.split('/');
     return `${y}-${m.padStart(2,'0')}-${day.padStart(2,'0')}`;
@@ -1054,10 +1063,10 @@ function exportCSV() {
   const police = rows.map((r, i) => ({
     id: i + 1,
     ime: r[0], reg: r[1], kontakt: r[2], vrsta: r[3],
-    istek: d(r[4]), cijena: r[5], osig: "", napomena: r[6]
+    istek: d(r[4]), cijena: r[5], osig: "Triglav", napomena: r[6]
   }));
   localStorage.setItem('police', JSON.stringify(police));
-  localStorage.setItem('police_imported_v3', '1');
+  localStorage.setItem('police_imported_v4', '1');
 })();
 
 // ── Init ──────────────────────────────────────────────────────
