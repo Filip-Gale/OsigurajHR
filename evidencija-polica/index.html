@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Evidencija Polica</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#573cf9">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Evidencija">
+<link rel="apple-touch-icon" href="icon-192.png">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --purple: #573cf9;
+    --purple-light: #bfc3ff;
+    --purple-bg: #f0eeff;
+    --yellow: #ffbc27;
+    --yellow-bg: #fff8e1;
+    --red: #d32f2f;
+    --red-bg: #fff5f5;
+    --green: #2e7d32;
+    --green-bg: #e8f5e9;
+    --orange: #e65100;
+    --bg: #f4f3ff;
+    --card: #fff;
+    --border: #e8e6ff;
+    --text: #1a1535;
+    --muted: #7b72a8;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Inter', -apple-system, sans-serif; background: var(--bg); color: var(--text); }
+
+  #alarm-banner {
+    display: none;
+    background: var(--red);
+    color: #fff;
+    padding: 13px 24px;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+    letter-spacing: .01em;
+  }
+  #alarm-banner.warn { background: var(--orange); }
+
+  header {
+    background: var(--purple);
+    color: #fff;
+    padding: 0 32px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .logo { display: flex; align-items: center; gap: 0; line-height: 1; margin-right: 20px; }
+  .logo-bracket { color: var(--yellow); font-size: 22px; font-weight: 800; }
+  .logo-text { color: #fff; font-size: 18px; font-weight: 700; margin: 0 3px; letter-spacing: -.01em; }
+  header h1 { font-size: 14px; font-weight: 600; opacity: .7; letter-spacing: .01em; }
+  #header-count { font-size: 12px; opacity: .7; margin-left: auto; background: rgba(255,255,255,.15); padding: 4px 10px; border-radius: 20px; }
+
+  .container { max-width: 1240px; margin: 0 auto; padding: 28px 20px; }
+
+  /* Upload zona */
+  #upload-zone {
+    border: 2px dashed var(--purple-light);
+    border-radius: 14px;
+    background: var(--card);
+    padding: 44px 40px;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color .2s, background .2s;
+    margin-bottom: 20px;
+  }
+  #upload-zone:hover, #upload-zone.drag-over {
+    border-color: var(--purple);
+    background: var(--purple-bg);
+  }
+  #upload-zone .icon { font-size: 36px; margin-bottom: 10px; }
+  #upload-zone strong { font-size: 16px; font-weight: 700; color: var(--text); }
+  #upload-zone p { color: var(--muted); font-size: 14px; margin-top: 6px; }
+  #file-input { display: none; }
+
+  /* Form */
+  #form-section {
+    display: none;
+    background: var(--card);
+    border-radius: 14px;
+    padding: 28px;
+    margin-bottom: 20px;
+    border: 1px solid var(--border);
+    box-shadow: 0 2px 12px rgba(87,60,249,.07);
+  }
+  #form-section h2 { font-size: 15px; font-weight: 700; margin-bottom: 20px; color: var(--text); }
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+  .form-group { display: flex; flex-direction: column; gap: 6px; }
+  .form-group label { font-size: 11px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: .6px; }
+  .form-group input, .form-group select {
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    padding: 9px 13px;
+    font-size: 14px;
+    font-family: inherit;
+    outline: none;
+    color: var(--text);
+    transition: border-color .2s;
+    background: #fff;
+  }
+  .form-group input:focus, .form-group select:focus { border-color: var(--purple); box-shadow: 0 0 0 3px rgba(87,60,249,.1); }
+  .form-group input.extracted { background: #f6fff6; border-color: #a5d6a7; }
+  .form-actions { display: flex; gap: 10px; margin-top: 20px; }
+  .btn {
+    padding: 10px 22px;
+    border-radius: 8px;
+    border: none;
+    font-size: 14px;
+    font-weight: 700;
+    font-family: inherit;
+    cursor: pointer;
+    transition: opacity .15s, transform .1s;
+  }
+  .btn:hover { opacity: .9; }
+  .btn:active { transform: scale(.98); }
+  .btn-primary { background: var(--purple); color: #fff; }
+  .btn-secondary { background: var(--purple-bg); color: var(--purple); }
+
+  /* Tablica */
+  .table-section { background: var(--card); border-radius: 14px; padding: 24px; border: 1px solid var(--border); box-shadow: 0 2px 12px rgba(87,60,249,.07); }
+  .table-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; }
+  .table-header h2 { font-size: 15px; font-weight: 700; color: var(--text); }
+  #table-count { font-size: 13px; color: var(--muted); font-weight: 400; }
+  .table-wrap { overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  thead th {
+    background: var(--purple-bg);
+    padding: 10px 13px;
+    text-align: left;
+    font-size: 10.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .6px;
+    color: var(--purple);
+    border-bottom: 2px solid var(--purple-light);
+  }
+  tbody tr { border-bottom: 1px solid #f0eeff; transition: background .12s; }
+  tbody tr:hover { background: var(--purple-bg); }
+  tbody td { padding: 10px 13px; vertical-align: middle; }
+
+  tbody tr.expired { background: var(--red-bg); }
+  tbody tr.expired:hover { background: #ffe5e5; }
+  tbody tr.expired td { color: var(--red); }
+  tbody tr.warn-14 { background: var(--yellow-bg); }
+  tbody tr.warn-14:hover { background: #fff3cd; }
+  tbody tr.warn-14 td { color: var(--orange); }
+
+  .badge {
+    display: inline-block;
+    padding: 3px 9px;
+    border-radius: 20px;
+    font-size: 10.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .4px;
+  }
+  .badge-expired { background: #ffcdd2; color: var(--red); }
+  .badge-warn { background: var(--yellow); color: #7a4200; }
+  .badge-ok { background: var(--green-bg); color: var(--green); }
+
+  .days-badge { font-size: 12px; font-weight: 700; }
+
+  .info-btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 16px; height: 16px; border-radius: 50%;
+    background: var(--purple-light); color: var(--purple);
+    font-size: 10px; font-weight: 700; cursor: pointer;
+    border: none; margin-left: 5px; vertical-align: middle;
+    position: relative; flex-shrink: 0;
+  }
+  .info-btn .tooltip {
+    display: none;
+    position: absolute; bottom: calc(100% + 8px); left: 50%;
+    transform: translateX(-50%);
+    background: #1a1535; color: #fff;
+    font-size: 12px; font-weight: 400; line-height: 1.5;
+    padding: 8px 12px; border-radius: 8px;
+    white-space: nowrap; z-index: 100;
+    pointer-events: none;
+  }
+  .info-btn .tooltip::after {
+    content: ''; position: absolute; top: 100%; left: 50%;
+    transform: translateX(-50%);
+    border: 5px solid transparent; border-top-color: #1a1535;
+  }
+  .info-btn:hover .tooltip, .info-btn.active .tooltip { display: block; }
+
+  .del-btn {
+    background: none; border: none; color: var(--purple-light);
+    cursor: pointer; font-size: 15px; padding: 3px 7px;
+    border-radius: 6px; transition: color .15s, background .15s;
+  }
+  .del-btn:hover { color: var(--red); background: var(--red-bg); }
+
+  .empty-state { text-align: center; color: var(--muted); padding: 50px; font-size: 14px; }
+
+  .filter-btns { display: flex; gap: 6px; }
+  .filter-btn {
+    background: var(--purple-bg); border: 1.5px solid transparent; color: var(--purple);
+    font-family: inherit; font-size: 13px; font-weight: 600;
+    padding: 6px 14px; border-radius: 20px; cursor: pointer; transition: all .15s;
+  }
+  .filter-btn:hover { background: var(--purple-light); }
+  .filter-btn.active { background: var(--purple); color: #fff; border-color: var(--purple); }
+
+  .export-btn {
+    background: var(--purple-bg); border: none; color: var(--purple);
+    padding: 8px 16px; border-radius: 8px; font-size: 13px;
+    font-weight: 700; font-family: inherit; cursor: pointer;
+    transition: background .15s;
+  }
+  .export-btn:hover { background: var(--purple-light); }
+  .export-btn::before { content: '⬇️ '; }
+
+  #parse-status { font-size: 13px; color: var(--muted); margin-top: 10px; min-height: 20px; }
+
+  .total-box {
+    background: var(--purple-bg);
+    border-radius: 10px;
+    padding: 12px 20px;
+    min-width: 160px;
+  }
+  .total-box .total-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .5px; color: var(--muted); margin-bottom: 4px; }
+  .total-box .total-amount { font-size: 22px; font-weight: 700; color: var(--purple); }
+  .total-box .total-count { font-size: 12px; color: var(--muted); margin-top: 2px; }
+  .total-box.yellow { background: var(--yellow-bg); }
+  .total-box.yellow .total-amount { color: #7a4200; }
+  .total-box.grand { background: var(--purple); }
+  .total-box.grand .total-label { color: rgba(255,255,255,.7); }
+  .total-box.grand .total-amount { color: #fff; }
+  .total-box.grand .total-count { color: rgba(255,255,255,.6); }
+
+  @media (max-width: 700px) {
+    .form-grid { grid-template-columns: 1fr 1fr; }
+    header { padding: 0 16px; }
+    .container { padding: 16px 12px; }
+  }
+
+  #lock-screen {
+    position: fixed; inset: 0; z-index: 9999;
+    background: var(--purple);
+    display: flex; align-items: center; justify-content: center;
+  }
+  #lock-box {
+    background: #fff; border-radius: 20px;
+    padding: 40px 32px; width: 320px; max-width: 90vw;
+    text-align: center; box-shadow: 0 8px 40px rgba(0,0,0,.2);
+  }
+  #lock-box .lock-logo { font-size: 22px; font-weight: 700; color: var(--purple); margin-bottom: 8px; }
+  #lock-box .lock-logo span { color: var(--yellow); }
+  #lock-box h2 { font-size: 17px; font-weight: 700; margin-bottom: 24px; color: var(--text); }
+  #lock-input {
+    width: 100%; padding: 12px 16px; border-radius: 10px;
+    border: 2px solid var(--border); font-family: inherit; font-size: 16px;
+    outline: none; text-align: center; letter-spacing: 2px;
+    transition: border-color .2s;
+  }
+  #lock-input:focus { border-color: var(--purple); }
+  #lock-btn {
+    margin-top: 14px; width: 100%; padding: 13px;
+    background: var(--purple); color: #fff; border: none;
+    border-radius: 10px; font-family: inherit; font-size: 15px;
+    font-weight: 700; cursor: pointer;
+  }
+  #lock-btn:active { opacity: .85; }
+  #lock-error { color: var(--red); font-size: 13px; margin-top: 10px; min-height: 18px; }
+</style>
+</head>
+<body>
+
+<div id="lock-screen">
+  <div id="lock-box">
+    <div class="lock-logo">[ <span>Osiguraj.hr</span> ]</div>
+    <h2>Evidencija polica</h2>
+    <input id="lock-input" type="password" placeholder="Lozinka" autocomplete="current-password"
+      onkeydown="if(event.key==='Enter')checkPassword()">
+    <button id="lock-btn" onclick="checkPassword()">Uđi</button>
+    <div id="lock-error"></div>
+  </div>
+</div>
+
+<div id="alarm-banner"></div>
+
+<header>
+  <div class="logo">
+    <span class="logo-bracket">[</span><span class="logo-text">Osiguraj.hr</span><span class="logo-bracket">]</span>
+  </div>
+  <h1>Evidencija polica</h1>
+  <span id="header-count"></span>
+</header>
+
+<div class="container">
+
+  <!-- Upload -->
+  <div id="upload-zone" onclick="document.getElementById('file-input').click()">
+    <div class="icon">📄</div>
+    <strong style="font-size:16px">Priloži policu</strong>
+    <p>Povuci PDF ovdje ili klikni za odabir — podaci se automatski popune</p>
+    <p id="parse-status"></p>
+    <input type="file" id="file-input" accept=".pdf">
+  </div>
+
+  <!-- Form za provjeru / ručni unos -->
+  <div id="form-section">
+    <h2>Provjeri i spremi</h2>
+    <div class="form-grid">
+      <div class="form-group">
+        <label>Ime i prezime</label>
+        <input type="text" id="f-ime" placeholder="Ime Prezime">
+      </div>
+      <div class="form-group">
+        <label>Registracija</label>
+        <input type="text" id="f-reg" placeholder="ZG1234AB">
+      </div>
+      <div class="form-group">
+        <label>Telefon / Email</label>
+        <input type="text" id="f-kontakt" placeholder="099...">
+      </div>
+      <div class="form-group">
+        <label>Vrsta osiguranja</label>
+        <select id="f-vrsta">
+          <option value="obvezno">Obvezno AO</option>
+          <option value="kasko">Kasko</option>
+          <option value="o+k">Obvezno i kasko</option>
+          <option value="putno">Putno</option>
+          <option value="ostalo">Ostalo</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Istek osiguranja ⚠️</label>
+        <input type="date" id="f-istek">
+      </div>
+      <div class="form-group">
+        <label>Cijena (EUR)</label>
+        <input type="number" id="f-cijena" placeholder="0.00" step="0.01">
+      </div>
+      <div class="form-group">
+        <label>Osiguravatelj</label>
+        <input type="text" id="f-osig" placeholder="Triglav, Uniqa...">
+      </div>
+      <div class="form-group">
+        <label>Napomena</label>
+        <input type="text" id="f-napomena" placeholder="">
+      </div>
+    </div>
+    <div class="form-actions">
+      <button class="btn btn-primary" onclick="savePolica()">💾 Spremi policu</button>
+      <button class="btn btn-secondary" onclick="resetForm()">Odustani</button>
+    </div>
+  </div>
+
+  <!-- Tablica -->
+  <div class="table-section">
+    <div class="table-header">
+      <h2>Sve police <span id="table-count" style="font-size:13px;color:#999;font-weight:400"></span></h2>
+      <div style="display:flex;gap:10px;align-items:center">
+        <div class="filter-btns">
+          <button class="filter-btn active" data-filter="sve" onclick="setFilter('sve')">Sve</button>
+          <button class="filter-btn" data-filter="obvezno" onclick="setFilter('obvezno')">Obvezno</button>
+          <button class="filter-btn" data-filter="kasko" onclick="setFilter('kasko')">Kasko</button>
+        </div>
+        <button class="export-btn" onclick="exportCSV()">Exportaj CSV</button>
+      </div>
+    </div>
+    <div class="table-wrap">
+      <table id="polica-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Ime i prezime</th>
+            <th>Registracija</th>
+            <th>Kontakt</th>
+            <th>Vrsta</th>
+            <th>Istek</th>
+            <th>Dana do isteka</th>
+            <th>Status</th>
+            <th>Cijena</th>
+            <th>Osiguravatelj</th>
+            <th>Napomena</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="polica-tbody">
+          <tr><td colspan="12" class="empty-state">Još nema unesenih polica.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Zbroj -->
+    <div id="totals-row" style="display:none; margin-top:18px; padding-top:16px; border-top:2px solid var(--border); display:flex; gap:24px; flex-wrap:wrap;">
+    </div>
+  </div>
+
+</div>
+
+<script>
+// ── Lozinka ───────────────────────────────────────────────────
+(function() {
+  if (localStorage.getItem('ep_auth') === '1') {
+    document.getElementById('lock-screen').style.display = 'none';
+  }
+})();
+
+function checkPassword() {
+  const val = document.getElementById('lock-input').value;
+  if (val === 'maksimiro') {
+    localStorage.setItem('ep_auth', '1');
+    document.getElementById('lock-screen').style.display = 'none';
+  } else {
+    document.getElementById('lock-error').textContent = 'Pogrešna lozinka.';
+    document.getElementById('lock-input').value = '';
+    document.getElementById('lock-input').focus();
+  }
+}
+
+pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+// ── LocalStorage ──────────────────────────────────────────────
+function loadPolice() {
+  try { return JSON.parse(localStorage.getItem('police') || '[]'); } catch { return []; }
+}
+function savePolice(police) {
+  localStorage.setItem('police', JSON.stringify(police));
+}
+
+// ── Render tablice ────────────────────────────────────────────
+let currentFilter = 'sve';
+
+function setFilter(f) {
+  currentFilter = f;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.toggle('active', b.dataset.filter === f));
+  renderTable();
+}
+
+function renderTable() {
+  let police = loadPolice();
+  const tbody = document.getElementById('polica-tbody');
+  const today = new Date(); today.setHours(0,0,0,0);
+
+  // Filter
+  if (currentFilter === 'obvezno') police = police.filter(p => p.vrsta === 'obvezno');
+  else if (currentFilter === 'kasko') police = police.filter(p => p.vrsta === 'kasko');
+
+  // Sortiraj po isteku (najbliži prvi)
+  police.sort((a,b) => new Date(a.istek) - new Date(b.istek));
+
+  document.getElementById('table-count').textContent = police.length ? `(${police.length})` : '';
+  document.getElementById('header-count').textContent = police.length ? `${police.length} polica` : '';
+
+  if (!police.length) {
+    tbody.innerHTML = '<tr><td colspan="12" class="empty-state">Još nema unesenih polica.</td></tr>';
+    checkAlarms([]);
+    return;
+  }
+
+  tbody.innerHTML = police.map((p, i) => {
+    const istek = new Date(p.istek); istek.setHours(0,0,0,0);
+    const dani = Math.round((istek - today) / 86400000);
+    const istekStr = p.istek ? formatDate(p.istek) : '—';
+
+    let rowClass = '';
+    let badge = '';
+    let daniStr = '—';
+
+    if (p.istek) {
+      if (dani < 0) {
+        rowClass = 'expired';
+        badge = '<span class="badge badge-expired">Isteklo</span>';
+        daniStr = `<span class="days-badge" style="color:#c62828">${Math.abs(dani)} dana isteklo</span>`;
+      } else if (dani <= 14) {
+        rowClass = 'warn-14';
+        badge = '<span class="badge badge-warn">Uskoro</span>';
+        daniStr = `<span class="days-badge" style="color:#e65100">${dani} dana</span>`;
+      } else {
+        badge = '<span class="badge badge-ok">OK</span>';
+        daniStr = `<span class="days-badge" style="color:#2e7d32">${dani} dana</span>`;
+      }
+    }
+
+    const cijena = p.cijena ? Number(p.cijena).toFixed(2) + ' EUR' : '—';
+
+    return `<tr class="${rowClass}">
+      <td style="color:#aaa">${i+1}</td>
+      <td><strong>${esc(p.ime || '—')}</strong></td>
+      <td style="font-family:monospace;font-weight:700">${esc((p.reg||'').toUpperCase())}</td>
+      <td>${esc(p.kontakt || '—')}</td>
+      <td>${esc(p.vrsta === 'o+k' ? 'obvezno i kasko' : (p.vrsta || '—'))}</td>
+      <td>${istekStr}</td>
+      <td>${daniStr}</td>
+      <td>${badge}</td>
+      <td>${cijena}</td>
+      <td>${esc(p.osig || '—')}</td>
+      <td>${esc(p.napomena || '—')}</td>
+      <td><button class="del-btn" onclick="deletePolica(${p.id})" title="Obriši">✕</button></td>
+    </tr>`;
+  }).join('');
+
+  checkAlarms(police);
+  renderTotals(police);
+}
+
+function renderTotals(police) {
+  const totalsRow = document.getElementById('totals-row');
+  if (!police.length) { totalsRow.style.display = 'none'; return; }
+
+  const groups = { obvezno: [], kasko: [], 'o+k': [], ostalo: [] };
+  const groupsProv = { obvezno: [], kasko: [], 'o+k': [] }; // bez 0% provizije
+  police.forEach(p => {
+    const v = (p.vrsta || 'ostalo').toLowerCase();
+    const c = parseFloat(p.cijena) || 0;
+    const bezProv = /0\s*%\s*provizij/i.test(p.napomena || '');
+    if (v === 'obvezno') { groups.obvezno.push(c); if (!bezProv) groupsProv.obvezno.push(c); }
+    else if (v === 'kasko') { groups.kasko.push(c); if (!bezProv) groupsProv.kasko.push(c); }
+    else if (v === 'o+k') { groups['o+k'].push(c); if (!bezProv) groupsProv['o+k'].push(c); }
+    else groups.ostalo.push(c);
+  });
+
+  const sum = arr => arr.reduce((a, b) => a + b, 0);
+  const fmt = n => n.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, '.') + ' EUR';
+
+  // Provizija: neto = cijena * (1 - porez%), provizija AO = neto * 8%, kasko = neto * 6%
+  const provAO    = sum(groupsProv.obvezno) * (1 - 0.15) * 0.08;
+  const provKasko = sum(groupsProv.kasko)   * (1 - 0.10) * 0.06;
+  const provOK    = sum(groupsProv['o+k'])  * (1 - 0.10) * 0.06;
+
+  const totalSve = sum([...groups.obvezno, ...groups.kasko, ...groups['o+k'], ...groups.ostalo]);
+
+  let html = '';
+
+  if (currentFilter === 'sve') {
+    if (groups.obvezno.length) html += `
+      <div class="total-box">
+        <div class="total-label">Obvezno AO</div>
+        <div class="total-amount">${fmt(sum(groups.obvezno))}</div>
+        <div class="total-count">${groups.obvezno.length} polica</div>
+      </div>`;
+    if (groups.kasko.length) html += `
+      <div class="total-box yellow">
+        <div class="total-label">Kasko</div>
+        <div class="total-amount">${fmt(sum(groups.kasko))}</div>
+        <div class="total-count">${groups.kasko.length} polica</div>
+      </div>`;
+    if (groups.ostalo.length) html += `
+      <div class="total-box">
+        <div class="total-label">Ostalo</div>
+        <div class="total-amount">${fmt(sum(groups.ostalo))}</div>
+        <div class="total-count">${groups.ostalo.length} polica</div>
+      </div>`;
+    html += `
+      <div class="total-box grand">
+        <div class="total-label">Ukupno sve</div>
+        <div class="total-amount">${fmt(totalSve)}</div>
+        <div class="total-count">${police.length} polica</div>
+      </div>`;
+    if (groups.obvezno.length) html += `
+      <div class="total-box" style="background:#ede9fe;border-left:3px solid var(--purple)">
+        <div class="total-label" style="display:flex;align-items:center">Provizija AO
+          <button class="info-btn" onclick="this.classList.toggle('active')">i
+            <span class="tooltip">Cijena × 85% × 8%</span>
+          </button>
+        </div>
+        <div class="total-amount" style="color:var(--purple)">${fmt(provAO)}</div>
+        <div class="total-count">od ${fmt(sum(groups.obvezno))}</div>
+      </div>`;
+    if (groups.kasko.length || groups['o+k'].length) html += `
+      <div class="total-box" style="background:#fff8e1;border-left:3px solid var(--yellow)">
+        <div class="total-label" style="display:flex;align-items:center">Provizija Kasko
+          <button class="info-btn" onclick="this.classList.toggle('active')">i
+            <span class="tooltip">Cijena × 90% × 6%</span>
+          </button>
+        </div>
+        <div class="total-amount" style="color:#7a4200">${fmt(provKasko + provOK)}</div>
+        <div class="total-count">od ${fmt(sum(groups.kasko) + sum(groups['o+k']))}</div>
+      </div>`;
+    const ukupnoProvizija = provAO + provKasko + provOK;
+    html += `
+      <div class="total-box grand">
+        <div class="total-label">Ukupno provizija</div>
+        <div class="total-amount">${fmt(ukupnoProvizija)}</div>
+        <div class="total-count">AO + Kasko</div>
+      </div>`;
+  }
+
+  if (currentFilter === 'obvezno') {
+    html += `
+      <div class="total-box">
+        <div class="total-label">Ukupno obvezno</div>
+        <div class="total-amount">${fmt(sum(groups.obvezno))}</div>
+        <div class="total-count">${groups.obvezno.length} polica</div>
+      </div>`;
+    html += `
+      <div class="total-box" style="background:#ede9fe;border-left:3px solid var(--purple)">
+        <div class="total-label" style="display:flex;align-items:center">Provizija obvezno
+          <button class="info-btn" onclick="this.classList.toggle('active')">i
+            <span class="tooltip">Cijena × 85% × 8%</span>
+          </button>
+        </div>
+        <div class="total-amount" style="color:var(--purple)">${fmt(provAO)}</div>
+        <div class="total-count">od ${fmt(sum(groups.obvezno))}</div>
+      </div>`;
+  }
+
+  if (currentFilter === 'kasko') {
+    html += `
+      <div class="total-box yellow">
+        <div class="total-label">Ukupno kasko</div>
+        <div class="total-amount">${fmt(sum(groups.kasko))}</div>
+        <div class="total-count">${groups.kasko.length} polica</div>
+      </div>`;
+    html += `
+      <div class="total-box" style="background:#fff8e1;border-left:3px solid var(--yellow)">
+        <div class="total-label" style="display:flex;align-items:center">Provizija kasko
+          <button class="info-btn" onclick="this.classList.toggle('active')">i
+            <span class="tooltip">Cijena × 90% × 6%</span>
+          </button>
+        </div>
+        <div class="total-amount" style="color:#7a4200">${fmt(provKasko)}</div>
+        <div class="total-count">od ${fmt(sum(groups.kasko))}</div>
+      </div>`;
+  }
+
+  totalsRow.innerHTML = html;
+  totalsRow.style.display = 'flex';
+}
+
+function formatDate(dateStr) {
+  if (!dateStr) return '—';
+  const d = new Date(dateStr);
+  return d.toLocaleDateString('hr-HR');
+}
+
+function esc(s) {
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+// ── Alarm banner ──────────────────────────────────────────────
+function checkAlarms(police) {
+  const today = new Date(); today.setHours(0,0,0,0);
+  const banner = document.getElementById('alarm-banner');
+
+  const expired = [];
+  const soon = [];
+
+  police.forEach(p => {
+    if (!p.istek) return;
+    const istek = new Date(p.istek); istek.setHours(0,0,0,0);
+    const dani = Math.round((istek - today) / 86400000);
+    const label = (p.ime || p.reg || 'Polica').toUpperCase();
+    if (dani < 0) expired.push(label);
+    else if (dani <= 14) soon.push({ label, dani });
+  });
+
+  const parts = [];
+  if (expired.length) parts.push(`🔴 ISTEKLO: ${expired.join(', ')}`);
+  if (soon.length) parts.push(`🟠 USKORO ISTIČE: ${soon.map(x => `${x.label} za ${x.dani} dana`).join(' | ')}`);
+
+  if (parts.length) {
+    banner.textContent = parts.join('    ');
+    banner.style.display = 'block';
+    banner.className = expired.length ? '' : 'warn';
+    // Browser notification (samo ako je dopušteno)
+    if (Notification.permission === 'granted') {
+      parts.forEach(msg => new Notification('Evidencija Polica', { body: msg }));
+    }
+  } else {
+    banner.style.display = 'none';
+  }
+}
+
+// ── Spremi policu ─────────────────────────────────────────────
+function savePolica() {
+  const ime = document.getElementById('f-ime').value.trim();
+  const reg = document.getElementById('f-reg').value.trim();
+  const istek = document.getElementById('f-istek').value;
+
+  if (!reg && !ime) { alert('Upiši barem registraciju ili ime!'); return; }
+  if (!istek) { alert('Datum isteka je obavezan!'); return; }
+
+  const police = loadPolice();
+  const polica = {
+    id: Date.now(),
+    ime,
+    reg,
+    kontakt: document.getElementById('f-kontakt').value.trim(),
+    vrsta: document.getElementById('f-vrsta').value,
+    istek,
+    cijena: document.getElementById('f-cijena').value,
+    osig: document.getElementById('f-osig').value.trim(),
+    napomena: document.getElementById('f-napomena').value.trim(),
+  };
+
+  police.push(polica);
+  savePolice(police);
+  renderTable();
+  resetForm();
+
+  // Traži dopuštenje za notifikacije (jednom)
+  if (Notification.permission === 'default') {
+    Notification.requestPermission();
+  }
+}
+
+function deletePolica(id) {
+  if (!confirm('Obriši ovu policu?')) return;
+  const police = loadPolice().filter(p => p.id !== id);
+  savePolice(police);
+  renderTable();
+}
+
+function resetForm() {
+  document.getElementById('form-section').style.display = 'none';
+  document.getElementById('file-input').value = '';
+  document.getElementById('parse-status').textContent = '';
+  ['f-ime','f-reg','f-kontakt','f-istek','f-cijena','f-osig','f-napomena'].forEach(id => {
+    const el = document.getElementById(id);
+    el.value = '';
+    el.classList.remove('extracted');
+  });
+  document.getElementById('f-vrsta').value = 'obvezno';
+}
+
+// ── PDF parsiranje ────────────────────────────────────────────
+async function parsePDF(file) {
+  const status = document.getElementById('parse-status');
+  status.textContent = 'Čitam PDF...';
+
+  const arrayBuffer = await file.arrayBuffer();
+  const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
+
+  let fullText = '';
+  let allItems = [];
+
+  for (let i = 1; i <= pdf.numPages; i++) {
+    const page = await pdf.getPage(i);
+    const content = await page.getTextContent();
+    const items = content.items.map(item => item.str).filter(s => s.trim());
+    allItems = allItems.concat(items);
+    fullText += items.join(' ') + '\n';
+  }
+
+  // Debug — otvori DevTools (F12 → Console) da vidiš izvučeni tekst
+  console.log('=== PDF TEXT ===\n' + fullText);
+  console.log('=== ITEMS ===', allItems);
+
+  // Ukloni debug box ako postoji
+  const dbg = document.getElementById('debug-box');
+  if (dbg) dbg.remove();
+
+  status.textContent = 'Izvlačim podatke...';
+  const fields = extractFields(fullText, allItems);
+
+  // Izvuci ime i prezime iz naziva datoteke (npr. "renato cvetnić polica_...pdf")
+  if (!fields.ime) {
+    const nameFromFile = file.name
+      .replace(/\.[^.]+$/, '')           // makni ekstenziju
+      .replace(/polica.*$/i, '')         // makni "polica..." i sve iza
+      .replace(/[_\-]/g, ' ')            // zamijeni _ i - s razmakom
+      .replace(/\d+/g, '')               // makni brojeve
+      .replace(/\s+/g, ' ').trim();
+    if (nameFromFile.length > 2) fields.imeHint = toTitleCase(nameFromFile);
+  }
+
+  return fields;
+}
+
+function extractFields(text, items) {
+  const fields = {};
+
+  // ── Registracija ──
+  // Format: ZG1234AB, ST6323H, PU607ZV itd.
+  const plateMatch = text.match(/\b([A-ZŠĐČĆŽ]{2}\s*\d{3,4}\s*[A-ZŠĐČĆŽ]{1,2})\b/);
+  if (plateMatch) fields.reg = plateMatch[1].replace(/\s/g, '');
+
+  // ── Istek osiguranja ──
+  const istekMatch = text.match(/istek osiguranja[:\s,]+(\d{2})\.(\d{2})\.(\d{4})/i)
+                  || text.match(/do\s+(\d{2})\.(\d{2})\.(\d{4})\s+u\s+\d/i);
+  if (istekMatch) {
+    fields.istek = `${istekMatch[3]}-${istekMatch[2]}-${istekMatch[1]}`;
+  }
+
+  // ── Cijena ──
+  const cijenaMatch = text.match(/UKUPNO ZA NAPLATU[:\s]+([\d]+[,.][\d]{2})/i)
+                   || text.match(/UKUPNO[:\s]+([\d]+[,.][\d]{2})\s*EUR/i);
+  if (cijenaMatch) fields.cijena = cijenaMatch[1].replace(',', '.');
+
+  // ── Vrsta osiguranja ──
+  if (/automobilsk[ei]\s+odgovornost/i.test(text) && /kasko/i.test(text)) fields.vrsta = 'o+k';
+  else if (/automobilsk[ei]\s+odgovornost/i.test(text)) fields.vrsta = 'obvezno';
+  else if (/kasko/i.test(text)) fields.vrsta = 'kasko';
+  else if (/putno/i.test(text)) fields.vrsta = 'putno';
+
+  // ── Osiguravatelj ──
+  if (/triglav/i.test(text)) fields.osig = 'Triglav';
+  else if (/uniqa/i.test(text)) fields.osig = 'Uniqa';
+  else if (/wiener/i.test(text)) fields.osig = 'Wiener';
+  else if (/allianz/i.test(text)) fields.osig = 'Allianz';
+  else if (/croatia/i.test(text)) fields.osig = 'Croatia';
+  else if (/generali/i.test(text)) fields.osig = 'Generali';
+  else if (/euroherc/i.test(text)) fields.osig = 'Euroherc';
+  else if (/hok/i.test(text)) fields.osig = 'HOK';
+
+  // ── Ime ── pristup 1: item-by-item (najrobustniji)
+  const labels = ['OSIGURANIK', 'UGOVARATELJ', 'Osiguranik', 'Ugovaratelj'];
+  for (let li = 0; li < items.length && !fields.ime; li++) {
+    const item = items[li].replace(/[:\s]/g, '').toUpperCase();
+    if (labels.map(l => l.toUpperCase()).includes(item)) {
+      // Skeniraj sljedećih 5 itemova — uzmi prvi koji izgleda kao ime (2+ riječi, nije OIB, adresa, datum)
+      for (let ni = li + 1; ni < Math.min(li + 6, items.length); ni++) {
+        const candidate = items[ni].trim();
+        if (!candidate || candidate === ':' || /^\d/.test(candidate)) continue;
+        // Preskoči linije za potpis i garbled unicode
+        if (/^[_\-\s]{3,}$/.test(candidate)) continue;
+        if (/[\x00-\x08\x0e-\x1f]/.test(candidate)) continue;
+        // Preskoči poznate labele i fraze koje nisu ime
+        if (/^(OSIGURANIK|UGOVARATELJ|ZA OSIGURATELJA|OSIGURANO VOZILO|OIB|POLICA|TRIGLAV|UNIQA|WIENER|ALLIANZ|CROATIA|GENERALI|EUROHERC|HOK)/i.test(candidate)) continue;
+        if (/OIB|Datum|BOCAK|ULICA|ZAGREB|\d{5}/i.test(candidate)) break;
+        // Treba biti barem dvije riječi ili jedna riječ dulja od 4 znaka
+        const words = candidate.trim().split(/\s+/).filter(w => w.length > 1);
+        if (words.length >= 2 || (words.length === 1 && words[0].length > 4)) {
+          fields.ime = toTitleCase(candidate);
+          break;
+        }
+      }
+    }
+  }
+
+  // pristup 2: regex u fullText ako item pristup nije našao
+  if (!fields.ime) {
+    const imePatterns = [
+      /OSIGURANIK\s*:?\s+([A-ZŠĐČĆŽ][A-ZŠĐČĆŽ\s\-]{3,40}?)\s+OIB/i,
+      /UGOVARATELJ\s*:?\s+([A-ZŠĐČĆŽ][A-ZŠĐČĆŽ\s\-]{3,40}?)\s+OIB/i,
+      /([A-ZŠĐČĆŽ][A-ZŠĐČĆŽ\s\-]{5,40}?)\s+OIB\s*:?\s*\d{11}/,
+      /([A-ZŠĐČĆŽ][a-zA-ZŠĐČĆŽšđčćž\-]+\s+[A-ZŠĐČĆŽ][a-zA-ZŠĐČĆŽšđčćž\-]+)\s*OIB/,
+    ];
+    for (const pat of imePatterns) {
+      const m = text.match(pat);
+      if (m && m[1] && m[1].trim().length >= 4 && m[1].trim().length < 60) {
+        fields.ime = toTitleCase(m[1].trim());
+        break;
+      }
+    }
+  }
+
+  return fields;
+}
+
+function toTitleCase(str) {
+  return str.toLowerCase().replace(/\b\w/g, c => c.toUpperCase());
+}
+
+// ── Drag & drop i file input ──────────────────────────────────
+const zone = document.getElementById('upload-zone');
+const fileInput = document.getElementById('file-input');
+
+zone.addEventListener('dragover', e => { e.preventDefault(); zone.classList.add('drag-over'); });
+zone.addEventListener('dragleave', () => zone.classList.remove('drag-over'));
+zone.addEventListener('drop', e => {
+  e.preventDefault();
+  zone.classList.remove('drag-over');
+  const file = e.dataTransfer.files[0];
+  if (file && file.type === 'application/pdf') handleFile(file);
+});
+fileInput.addEventListener('change', () => {
+  if (fileInput.files[0]) handleFile(fileInput.files[0]);
+});
+
+async function handleFile(file) {
+  const status = document.getElementById('parse-status');
+  try {
+    const fields = await parsePDF(file);
+    fillForm(fields);
+    document.getElementById('form-section').style.display = 'block';
+    document.getElementById('form-section').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    const found = Object.keys(fields).length;
+    status.textContent = found ? `✅ Izvučeno ${found} polja — provjeri i spremi.` : '⚠️ Nije pronađen nijedan podatak, upiši ručno.';
+  } catch (e) {
+    status.textContent = '❌ Greška pri čitanju PDF-a. Pokušaj ručni unos.';
+    document.getElementById('form-section').style.display = 'block';
+    console.error(e);
+  }
+}
+
+function fillForm(fields) {
+  // Ako ime nije izvučeno ali postoji hint iz naziva datoteke, predloži ga
+  if (!fields.ime && fields.imeHint) {
+    document.getElementById('f-ime').placeholder = fields.imeHint + ' (iz naziva datoteke)';
+  }
+  const map = { ime: 'f-ime', reg: 'f-reg', kontakt: 'f-kontakt', istek: 'f-istek', cijena: 'f-cijena', osig: 'f-osig', napomena: 'f-napomena' };
+  Object.entries(map).forEach(([key, id]) => {
+    const el = document.getElementById(id);
+    if (fields[key] !== undefined) {
+      el.value = fields[key];
+      el.classList.add('extracted');
+    } else {
+      el.classList.remove('extracted');
+    }
+  });
+  if (fields.vrsta) document.getElementById('f-vrsta').value = fields.vrsta;
+}
+
+// ── Gumb za ručni unos ────────────────────────────────────────
+// Klik na "+" ili prazan unos
+function openManual() {
+  resetForm();
+  document.getElementById('form-section').style.display = 'block';
+}
+
+// ── Export CSV ────────────────────────────────────────────────
+function exportCSV() {
+  const police = loadPolice();
+  if (!police.length) { alert('Nema podataka za izvoz.'); return; }
+
+  const header = ['Ime i prezime','Registracija','Kontakt','Vrsta','Istek','Cijena (EUR)','Osiguravatelj','Napomena'];
+  const rows = police.map(p => [
+    p.ime, p.reg, p.kontakt, p.vrsta,
+    p.istek ? formatDate(p.istek) : '',
+    p.cijena, p.osig, p.napomena
+  ].map(v => `"${(v||'').replace(/"/g,'""')}"`));
+
+  const csv = [header.join(','), ...rows.map(r => r.join(','))].join('\n');
+  const blob = new Blob(['\uFEFF' + csv], { type: 'text/csv;charset=utf-8' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = `police_${new Date().toISOString().slice(0,10)}.csv`;
+  a.click();
+}
+
+// ── Inicijalni import podataka ────────────────────────────────
+(function importInitialData() {
+  if (localStorage.getItem('police_imported_v3')) return; // već importano
+  function d(str) { // "M/D/YYYY" → "YYYY-MM-DD"
+    const [m,day,y] = str.split('/');
+    return `${y}-${m.padStart(2,'0')}-${day.padStart(2,'0')}`;
+  }
+  const rows = [
+    ["Ivan Antun Putarek","ZG6426IB","913399993","obvezno","12/7/2026","320",""],
+    ["Ivan Antun Putarek","ZG6426IB","913399993","kasko","12/7/2026","667",""],
+    ["Nikola Žinić","ZG8173JI","993064120","kasko","2/5/2027","478.49",""],
+    ["Sven Žinić","ZG7929GS","98461383","obvezno","2/5/2027","192.87",""],
+    ["Sven Žinić","ZG7929GS","98461383","kasko","2/5/2027","486.87",""],
+    ["Toni Sente","KR474NB","958604151","obvezno","2/15/2027","212.14",""],
+    ["Doroteja Požarić","ZG9893DD","915595787","obvezno","2/20/2027","199.85",""],
+    ["Daniela Mornar","WF0DXXGAKDES58569","958417870","obvezno","2/21/2027","154.38",""],
+    ["Ana Uremović","ZG1825ID","989450478","obvezno","3/17/2027","224.89",""],
+    ["Rajko Preložiček","KR273OJ","98649639","obvezno","2/28/2027","181.87",""],
+    ["Paval Vlašić","DU706LE","911927270","obvezno","3/7/2027","217.93",""],
+    ["Radoslava Jagić","OS778OC","989328692","obvezno","3/6/2027","140.89",""],
+    ["Leona Žugec","KR334OD","992163525","obvezno","3/9/2027","215.28",""],
+    ["Paval Vlašić","DU393HO","911927270","obvezno","3/13/2027","195.39",""],
+    ["Vesna Matić","ZG8508ID","911535515","obvezno","3/11/2027","194.68",""],
+    ["Pero Vujičić","RI8403A","vlado4000@gmail.com","obvezno","3/20/2027","152.54",""],
+    ["Goran Kalinić","ZG5011EK","gorankalinic6@gmail.com","obvezno","3/23/2027","184.69",""],
+    ["Suzana Filipović","PU4696C","suz.filipovic@gmail.com","obvezno","3/9/2027","144.64",""],
+    ["Danijel Lesar","ZG7923DP","992299507","obvezno","3/21/2027","199.85",""],
+    ["Dino Kerovec","ČK844GE","989900864","obvezno","3/13/2027","266.11",""],
+    ["Domagoj Anušić","SB272ED","957757143","obvezno","3/11/2027","173.74",""],
+    ["El Kor Doo","ZG4899BJ","igor.ferencic@gmail.com","obvezno","3/16/2027","204.7",""],
+    ["Sanela Pliško","PU209NZ","sanelapula@yahoo.com","obvezno","3/28/2027","134.77",""],
+    ["Antonio Horvat","OS779RM","998547858","obvezno","3/13/2027","174.67",""],
+    ["Saša Štimac","BJ272HZ","993998632","obvezno","4/15/2027","165.75",""],
+    ["Monika Spajić","ZG3892KN","957971709","obvezno","3/31/2027","223.71",""],
+    ["Matija Fot","ZG5842","matija.fot@gmail.com","obvezno","3/19/2027","213.24",""],
+    ["Marina Spajić","ZG2701MP","955280991","obvezno","3/19/2027","164.45",""],
+    ["Emil Pavlić","ZG2394","edwardjk1989@gmail.com","obvezno","3/26/2027","198.24",""],
+    ["Ante Toni Franić","ZG7641KG","992739985","obvezno","3/25/2027","209.68",""],
+    ["Paula Herak","PU607ZV","996751817","obvezno","3/9/2027","169.49",""],
+    ["Renato Cvetnic","ZG3416KE","renato.cvetnic@gmail.com","obvezno","4/1/2027","172.5",""],
+    ["Danijela Radić","ST6523E","989796484","obvezno","3/28/2027","175.89",""],
+    ["Simone Bianconi","ST6323H","977623029","obvezno","3/27/2027","176.06","0% provizije"],
+    ["Simone Bianconi","ST6323H","977623029","kasko","3/27/2027","460.15","0% provizije"],
+    ["Tamara Kranjčec","ZG4090IO","993211311","obvezno","3/28/2027","261.16",""],
+  ];
+  const police = rows.map((r, i) => ({
+    id: i + 1,
+    ime: r[0], reg: r[1], kontakt: r[2], vrsta: r[3],
+    istek: d(r[4]), cijena: r[5], osig: "", napomena: r[6]
+  }));
+  localStorage.setItem('police', JSON.stringify(police));
+  localStorage.setItem('police_imported_v3', '1');
+})();
+
+// ── Init ──────────────────────────────────────────────────────
+renderTable();
+
+// Provjeri alarme svaki put kad se stranica otvori
+// i svaki dan u 09:00 (ako je stranica otvorena)
+function scheduleDailyCheck() {
+  const now = new Date();
+  const next9 = new Date(now);
+  next9.setHours(9, 0, 0, 0);
+  if (next9 <= now) next9.setDate(next9.getDate() + 1);
+  setTimeout(() => {
+    renderTable();
+    scheduleDailyCheck();
+  }, next9 - now);
+}
+scheduleDailyCheck();
+</script>
+</body>
+</html>
