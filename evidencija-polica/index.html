@@ -621,9 +621,10 @@ function renderTable() {
       ? `<img src="${osigLogoMap[p.osig]}" alt="${esc(p.osig)}">`
       : esc(p.osig || '—');
 
-    return `<tr class="${rowClass}" onclick="if(!event.target.closest('a,button'))editPolica(${p.id})" style="cursor:pointer">
+    const pdfIcon = p.hasPdf ? `<span title="PDF priložen" style="font-size:11px;margin-left:5px;opacity:.5">📄</span>` : '';
+    return `<tr class="${rowClass}" onclick="if(!event.target.closest('a,button'))handleCardClick(${p.id})" style="cursor:pointer">
       <td class="col-num" style="color:#aaa">${i+1}</td>
-      <td class="col-ime"><strong>${esc(p.ime || '—')}</strong></td>
+      <td class="col-ime"><strong>${esc(p.ime || '—')}</strong>${pdfIcon}</td>
       <td class="col-reg">${esc((p.reg||'').toUpperCase())}</td>
       <td class="col-kontakt">${kontaktHtml}</td>
       <td class="col-vrsta">${esc(p.vrsta === 'o+k' ? 'obvezno i kasko' : (p.vrsta || '—'))}</td>
@@ -811,6 +812,45 @@ function checkAlarms(police) {
 
 // ── Spremi policu ─────────────────────────────────────────────
 let editingId = null;
+let pendingPdfBlob = null;
+
+// ── IndexedDB za PDF-ove ──────────────────────────────────────
+function openPdfDb() {
+  return new Promise((res, rej) => {
+    const r = indexedDB.open('ep-pdfs', 1);
+    r.onupgradeneeded = e => e.target.result.createObjectStore('pdfs');
+    r.onsuccess = e => res(e.target.result);
+    r.onerror = e => rej(e);
+  });
+}
+async function savePdfToDb(id, blob) {
+  const db = await openPdfDb();
+  const tx = db.transaction('pdfs', 'readwrite');
+  tx.objectStore('pdfs').put(blob, id);
+}
+async function getPdfFromDb(id) {
+  const db = await openPdfDb();
+  return new Promise(res => {
+    const r = db.transaction('pdfs', 'readonly').objectStore('pdfs').get(id);
+    r.onsuccess = e => res(e.target.result || null);
+    r.onerror = () => res(null);
+  });
+}
+async function deletePdfFromDb(id) {
+  const db = await openPdfDb();
+  db.transaction('pdfs', 'readwrite').objectStore('pdfs').delete(id);
+}
+
+async function handleCardClick(id) {
+  const blob = await getPdfFromDb(id);
+  if (blob) {
+    const url = URL.createObjectURL(blob);
+    window.open(url, '_blank');
+    setTimeout(() => URL.revokeObjectURL(url), 15000);
+  } else {
+    editPolica(id);
+  }
+}
 
 function editPolica(id) {
   const p = loadPolice().find(x => x.id === id);
@@ -845,11 +885,18 @@ function savePolica() {
 
   if (editingId !== null) {
     const idx = police.findIndex(p => p.id === editingId);
-    if (idx !== -1) police[idx] = { ...police[idx], ...data };
+    if (idx !== -1) {
+      if (pendingPdfBlob) { data.hasPdf = true; savePdfToDb(editingId, pendingPdfBlob); }
+      else data.hasPdf = police[idx].hasPdf || false;
+      police[idx] = { ...police[idx], ...data };
+    }
     editingId = null;
   } else {
-    police.push({ id: Date.now(), ...data });
+    const newId = Date.now();
+    if (pendingPdfBlob) { data.hasPdf = true; savePdfToDb(newId, pendingPdfBlob); }
+    police.push({ id: newId, ...data });
   }
+  pendingPdfBlob = null;
 
   savePolice(police);
   renderTable();
@@ -863,6 +910,7 @@ function savePolica() {
 
 function deletePolica(id) {
   if (!confirm('Obriši ovu policu?')) return;
+  deletePdfFromDb(id);
   const police = loadPolice().filter(p => p.id !== id);
   savePolice(police);
   renderTable();
@@ -1028,6 +1076,7 @@ fileInput.addEventListener('change', () => {
 });
 
 async function handleFile(file) {
+  pendingPdfBlob = file;
   const status = document.getElementById('parse-status');
   try {
     const fields = await parsePDF(file);
