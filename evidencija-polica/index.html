@@ -13,7 +13,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-storage-compat.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
@@ -550,7 +549,6 @@ firebase.initializeApp({
   appId: "1:620151493336:web:21aeb09006c84401dc7dad"
 });
 const fbDb = firebase.firestore();
-const fbStorage = firebase.storage();
 const policaDoc = fbDb.collection('data').doc('police');
 let _policeCache = [];
 
@@ -831,20 +829,42 @@ function checkAlarms(police) {
 let editingId = null;
 let pendingPdfBlob = null;
 
-// ── Firebase Storage za PDF-ove ───────────────────────────────
+// ── IndexedDB za PDF-ove (lokalno po uređaju) ─────────────────
+function openPdfDb() {
+  return new Promise((res, rej) => {
+    const r = indexedDB.open('ep-pdfs', 1);
+    r.onupgradeneeded = e => e.target.result.createObjectStore('pdfs');
+    r.onsuccess = e => res(e.target.result);
+    r.onerror = e => rej(e);
+  });
+}
 async function savePdfToDb(id, blob) {
   try {
-    await fbStorage.ref(`pdfs/${id}`).put(blob);
+    const db = await openPdfDb();
+    return new Promise((res, rej) => {
+      const tx = db.transaction('pdfs', 'readwrite');
+      tx.objectStore('pdfs').put(blob, String(id));
+      tx.oncomplete = () => res();
+      tx.onerror = e => rej(e);
+    });
   } catch(e) { console.error('savePdfToDb error', e); }
 }
 async function getPdfUrl(id) {
   try {
-    return await fbStorage.ref(`pdfs/${id}`).getDownloadURL();
+    const db = await openPdfDb();
+    const blob = await new Promise(res => {
+      const r = db.transaction('pdfs', 'readonly').objectStore('pdfs').get(String(id));
+      r.onsuccess = e => res(e.target.result || null);
+      r.onerror = () => res(null);
+    });
+    if (!blob) return null;
+    return URL.createObjectURL(blob);
   } catch(e) { return null; }
 }
 async function deletePdfFromDb(id) {
   try {
-    await fbStorage.ref(`pdfs/${id}`).delete();
+    const db = await openPdfDb();
+    db.transaction('pdfs', 'readwrite').objectStore('pdfs').delete(String(id));
   } catch(e) {}
 }
 
@@ -868,6 +888,7 @@ async function openPdfForPolica(id) {
   const url = await getPdfUrl(id);
   if (url) {
     window.open(url, '_blank');
+    setTimeout(() => URL.revokeObjectURL(url), 15000);
     return true;
   }
   return false;
