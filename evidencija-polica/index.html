@@ -622,9 +622,10 @@ function renderTable() {
       : esc(p.osig || '—');
 
     const pdfIcon = p.hasPdf ? `<button onclick="event.stopPropagation();openPdfForPolica(${p.id})" title="Otvori PDF" style="background:none;border:none;cursor:pointer;font-size:13px;padding:0 3px;opacity:.6;">📄</button>` : '';
+    const attachBtn = !p.hasPdf ? `<button onclick="event.stopPropagation();attachPdf(${p.id})" title="Priloži PDF" style="background:none;border:1.5px dashed #bbb;border-radius:6px;cursor:pointer;font-size:11px;padding:2px 6px;color:#aaa;margin-left:4px;">+ PDF</button>` : '';
     return `<tr class="${rowClass}" onclick="if(!event.target.closest('a,button'))handleCardClick(${p.id})" style="cursor:pointer">
       <td class="col-num" style="color:#aaa">${i+1}</td>
-      <td class="col-ime"><strong>${esc(p.ime || '—')}</strong>${pdfIcon}</td>
+      <td class="col-ime"><strong>${esc(p.ime || '—')}</strong>${pdfIcon}${attachBtn}</td>
       <td class="col-reg">${esc((p.reg||'').toUpperCase())}</td>
       <td class="col-kontakt">${kontaktHtml}</td>
       <td class="col-vrsta">${esc(p.vrsta === 'o+k' ? 'obvezno i kasko' : (p.vrsta || '—'))}</td>
@@ -849,6 +850,22 @@ async function deletePdfFromDb(id) {
     const db = await openPdfDb();
     db.transaction('pdfs', 'readwrite').objectStore('pdfs').delete(String(id));
   } catch(e) {}
+}
+
+function attachPdf(id) {
+  const input = document.createElement('input');
+  input.type = 'file';
+  input.accept = '.pdf';
+  input.onchange = async () => {
+    const file = input.files[0];
+    if (!file) return;
+    await savePdfToDb(id, file);
+    const police = loadPolice();
+    const idx = police.findIndex(p => p.id === id);
+    if (idx !== -1) { police[idx].hasPdf = true; savePolice(police); }
+    renderTable();
+  };
+  input.click();
 }
 
 async function openPdfForPolica(id) {
