@@ -280,19 +280,12 @@
     tbody td { padding: 3px 0; border: none; font-size: 13px; }
     tbody td:empty { display: none; }
 
-    /* Sakrij samo # na mobu */
+    /* Sakrij # na mobu */
     td.col-num { display: none !important; }
 
-    /* Kontakt */
-    td.col-kontakt { font-size: 12px; color: var(--muted); }
-    td.col-kontakt::before { content: '📞 '; }
-
-    /* Osiguratelj */
-    td.col-osig { font-size: 12px; color: var(--muted); }
-    td.col-osig::before { content: '🏢 '; }
-
-    /* Ime — veliko, gore */
-    td.col-ime { font-size: 15px; padding-bottom: 6px; border-bottom: 1px solid var(--border); margin-bottom: 6px; }
+    /* Ime — gore lijevo, padding desno za akcije */
+    td.col-ime { font-size: 15px; padding-bottom: 6px; padding-right: 110px;
+      border-bottom: 1px solid var(--border); margin-bottom: 6px; }
 
     /* Red: reg + vrsta + status */
     td.col-reg { display: inline-block; font-family: monospace; font-weight: 700;
@@ -301,19 +294,36 @@
     td.col-vrsta { display: inline-block; font-size: 12px; color: var(--muted); margin-right: 6px; }
     td.col-status { display: inline-block; }
 
-    /* Istek + dani — drugi red */
+    /* Istek + dani */
     td.col-istek::before { content: 'Istek: '; color: var(--muted); font-size: 12px; }
     td.col-istek { font-size: 13px; }
     td.col-dani { font-size: 12px; }
 
-    /* Cijena — desno gore, pozicionirano */
-    td.col-cijena {
-      position: absolute; top: 12px; right: 44px;
-      font-weight: 700; font-size: 14px; color: var(--purple);
-    }
+    /* Cijena */
+    td.col-cijena { font-weight: 700; font-size: 14px; color: var(--purple); }
 
-    /* Delete — desno gore */
-    td.col-del { position: absolute; top: 8px; right: 6px; }
+    /* Kontakt — desna kolona, pozicionirano */
+    td.col-kontakt {
+      position: absolute; top: 12px; right: 10px;
+      display: flex !important; flex-direction: column; align-items: flex-end; gap: 5px;
+    }
+    .mob-call, .mob-wa {
+      display: flex; align-items: center; gap: 4px;
+      padding: 5px 10px; border-radius: 8px; font-size: 12px;
+      font-weight: 600; font-family: inherit; text-decoration: none; border: none; cursor: pointer;
+    }
+    .mob-call { background: var(--purple-bg); color: var(--purple); }
+    .mob-wa { background: #e8f5e9; color: #2e7d32; }
+
+    /* Osiguratelj — desno dolje */
+    td.col-osig {
+      position: absolute; bottom: 10px; right: 10px;
+      display: flex !important; align-items: center; gap: 4px; font-size: 11px; color: var(--muted);
+    }
+    td.col-osig img { height: 18px; width: auto; }
+
+    /* Delete — dolje lijevo */
+    td.col-del { position: absolute; bottom: 8px; left: 10px; }
 
     /* Napomena */
     td.col-napomena { font-size: 11px; color: var(--muted); margin-top: 4px; }
@@ -567,19 +577,28 @@ function renderTable() {
     }
 
     const cijena = p.cijena ? Number(p.cijena).toFixed(2) + ' EUR' : '—';
-    const kontaktFmt = (p.kontakt || '').match(/^\d+$/) ? '0' + p.kontakt : (p.kontakt || '—');
+    const isPhone = /^\d+$/.test(p.kontakt || '');
+    const kontaktFmt = isPhone ? '0' + p.kontakt : (p.kontakt || '—');
+    const kontaktHtml = isPhone
+      ? `<a class="mob-call" href="tel:0${p.kontakt}">📞 ${kontaktFmt}</a>
+         <a class="mob-wa" href="https://wa.me/385${p.kontakt}" target="_blank">💬 WhatsApp</a>`
+      : esc(kontaktFmt);
+    const osigLogoMap = { 'Triglav': '/img/triglav-logo.svg' };
+    const osigHtml = (p.osig && osigLogoMap[p.osig])
+      ? `<img src="${osigLogoMap[p.osig]}" alt="${esc(p.osig)}">`
+      : esc(p.osig || '—');
 
     return `<tr class="${rowClass}">
       <td class="col-num" style="color:#aaa">${i+1}</td>
       <td class="col-ime"><strong>${esc(p.ime || '—')}</strong></td>
       <td class="col-reg">${esc((p.reg||'').toUpperCase())}</td>
-      <td class="col-kontakt">${esc(kontaktFmt)}</td>
+      <td class="col-kontakt">${kontaktHtml}</td>
       <td class="col-vrsta">${esc(p.vrsta === 'o+k' ? 'obvezno i kasko' : (p.vrsta || '—'))}</td>
       <td class="col-istek">${istekStr}</td>
       <td class="col-dani">${daniStr}</td>
       <td class="col-status">${badge}</td>
       <td class="col-cijena">${cijena}</td>
-      <td class="col-osig">${esc(p.osig || '—')}</td>
+      <td class="col-osig">${osigHtml}</td>
       <td class="col-napomena">${esc(p.napomena || '')}</td>
       <td class="col-del"><button class="del-btn" onclick="deletePolica(${p.id})" title="Obriši">✕</button></td>
     </tr>`;
