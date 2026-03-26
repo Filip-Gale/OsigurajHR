@@ -272,6 +272,7 @@
     .table-section { padding: 14px 10px; }
     .table-header { flex-direction: column; align-items: flex-start; gap: 10px; }
     .table-header > div { width: 100%; justify-content: space-between; }
+    #search-input { margin-left: auto; display: block; }
     .filter-btns { flex-wrap: nowrap; overflow-x: auto; }
     .export-btn { white-space: nowrap; font-size: 11px; padding: 5px 10px; }
     .export-btn::before { content: '⬇️ '; font-size: 11px; }
@@ -463,7 +464,7 @@
       </div>
     </div>
     <div class="form-actions">
-      <button class="btn btn-primary" onclick="savePolica()">💾 Spremi policu</button>
+      <button id="save-btn" class="btn btn-primary" onclick="savePolica()">💾 Spremi policu</button>
       <button class="btn btn-secondary" onclick="resetForm()">Odustani</button>
     </div>
   </div>
@@ -620,7 +621,7 @@ function renderTable() {
       ? `<img src="${osigLogoMap[p.osig]}" alt="${esc(p.osig)}">`
       : esc(p.osig || '—');
 
-    return `<tr class="${rowClass}">
+    return `<tr class="${rowClass}" onclick="if(!event.target.closest('a,button'))editPolica(${p.id})" style="cursor:pointer">
       <td class="col-num" style="color:#aaa">${i+1}</td>
       <td class="col-ime"><strong>${esc(p.ime || '—')}</strong></td>
       <td class="col-reg">${esc((p.reg||'').toUpperCase())}</td>
@@ -809,6 +810,20 @@ function checkAlarms(police) {
 }
 
 // ── Spremi policu ─────────────────────────────────────────────
+let editingId = null;
+
+function editPolica(id) {
+  const p = loadPolice().find(x => x.id === id);
+  if (!p) return;
+  editingId = id;
+  fillForm({ ime: p.ime, reg: p.reg, kontakt: p.kontakt, istek: p.istek,
+              cijena: p.cijena, osig: p.osig, napomena: p.napomena, vrsta: p.vrsta });
+  document.getElementById('f-vrsta').value = p.vrsta || 'obvezno';
+  document.getElementById('form-section').style.display = 'block';
+  document.getElementById('save-btn').textContent = '💾 Ažuriraj policu';
+  document.getElementById('form-section').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
 function savePolica() {
   const ime = document.getElementById('f-ime').value.trim();
   const reg = document.getElementById('f-reg').value.trim();
@@ -818,10 +833,8 @@ function savePolica() {
   if (!istek) { alert('Datum isteka je obavezan!'); return; }
 
   const police = loadPolice();
-  const polica = {
-    id: Date.now(),
-    ime,
-    reg,
+  const data = {
+    ime, reg,
     kontakt: document.getElementById('f-kontakt').value.trim(),
     vrsta: document.getElementById('f-vrsta').value,
     istek,
@@ -830,7 +843,14 @@ function savePolica() {
     napomena: document.getElementById('f-napomena').value.trim(),
   };
 
-  police.push(polica);
+  if (editingId !== null) {
+    const idx = police.findIndex(p => p.id === editingId);
+    if (idx !== -1) police[idx] = { ...police[idx], ...data };
+    editingId = null;
+  } else {
+    police.push({ id: Date.now(), ...data });
+  }
+
   savePolice(police);
   renderTable();
   resetForm();
@@ -849,6 +869,8 @@ function deletePolica(id) {
 }
 
 function resetForm() {
+  editingId = null;
+  document.getElementById('save-btn').textContent = '💾 Spremi policu';
   document.getElementById('form-section').style.display = 'none';
   document.getElementById('file-input').value = '';
   document.getElementById('parse-status').textContent = '';
