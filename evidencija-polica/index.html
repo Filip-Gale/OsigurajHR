@@ -879,7 +879,7 @@ function editPolica(id) {
   document.getElementById('form-section').scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
-async function savePolica() {
+function savePolica() {
   const ime = document.getElementById('f-ime').value.trim();
   const reg = document.getElementById('f-reg').value.trim();
   const istek = document.getElementById('f-istek').value;
@@ -901,14 +901,14 @@ async function savePolica() {
   if (editingId !== null) {
     const idx = police.findIndex(p => p.id === editingId);
     if (idx !== -1) {
-      if (pendingPdfBlob) { data.hasPdf = true; await savePdfToDb(editingId, pendingPdfBlob); }
+      if (pendingPdfBlob) { data.hasPdf = true; savePdfToDb(editingId, pendingPdfBlob); }
       else data.hasPdf = police[idx].hasPdf || false;
       police[idx] = { ...police[idx], ...data };
     }
     editingId = null;
   } else {
     const newId = Date.now();
-    if (pendingPdfBlob) { data.hasPdf = true; await savePdfToDb(newId, pendingPdfBlob); }
+    if (pendingPdfBlob) { data.hasPdf = true; savePdfToDb(newId, pendingPdfBlob); }
     police.push({ id: newId, ...data });
   }
   pendingPdfBlob = null;
