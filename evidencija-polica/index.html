@@ -621,7 +621,7 @@ function renderTable() {
       ? `<img src="${osigLogoMap[p.osig]}" alt="${esc(p.osig)}">`
       : esc(p.osig || '—');
 
-    const pdfIcon = p.hasPdf ? `<span title="PDF priložen" style="font-size:11px;margin-left:5px;opacity:.5">📄</span>` : '';
+    const pdfIcon = p.hasPdf ? `<button onclick="event.stopPropagation();openPdfForPolica(${p.id})" title="Otvori PDF" style="background:none;border:none;cursor:pointer;font-size:13px;padding:0 3px;opacity:.6;">📄</button>` : '';
     return `<tr class="${rowClass}" onclick="if(!event.target.closest('a,button'))handleCardClick(${p.id})" style="cursor:pointer">
       <td class="col-num" style="color:#aaa">${i+1}</td>
       <td class="col-ime"><strong>${esc(p.ime || '—')}</strong>${pdfIcon}</td>
@@ -824,32 +824,47 @@ function openPdfDb() {
   });
 }
 async function savePdfToDb(id, blob) {
-  const db = await openPdfDb();
-  const tx = db.transaction('pdfs', 'readwrite');
-  tx.objectStore('pdfs').put(blob, id);
+  try {
+    const db = await openPdfDb();
+    return new Promise((res, rej) => {
+      const tx = db.transaction('pdfs', 'readwrite');
+      tx.objectStore('pdfs').put(blob, String(id));
+      tx.oncomplete = () => res();
+      tx.onerror = e => rej(e);
+    });
+  } catch(e) { console.error('savePdfToDb error', e); }
 }
 async function getPdfFromDb(id) {
-  const db = await openPdfDb();
-  return new Promise(res => {
-    const r = db.transaction('pdfs', 'readonly').objectStore('pdfs').get(id);
-    r.onsuccess = e => res(e.target.result || null);
-    r.onerror = () => res(null);
-  });
+  try {
+    const db = await openPdfDb();
+    return new Promise(res => {
+      const r = db.transaction('pdfs', 'readonly').objectStore('pdfs').get(String(id));
+      r.onsuccess = e => res(e.target.result || null);
+      r.onerror = () => res(null);
+    });
+  } catch(e) { return null; }
 }
 async function deletePdfFromDb(id) {
-  const db = await openPdfDb();
-  db.transaction('pdfs', 'readwrite').objectStore('pdfs').delete(id);
+  try {
+    const db = await openPdfDb();
+    db.transaction('pdfs', 'readwrite').objectStore('pdfs').delete(String(id));
+  } catch(e) {}
 }
 
-async function handleCardClick(id) {
+async function openPdfForPolica(id) {
   const blob = await getPdfFromDb(id);
   if (blob) {
     const url = URL.createObjectURL(blob);
     window.open(url, '_blank');
     setTimeout(() => URL.revokeObjectURL(url), 15000);
-  } else {
-    editPolica(id);
+    return true;
   }
+  return false;
+}
+
+async function handleCardClick(id) {
+  const opened = await openPdfForPolica(id);
+  if (!opened) editPolica(id);
 }
 
 function editPolica(id) {
@@ -864,7 +879,7 @@ function editPolica(id) {
   document.getElementById('form-section').scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
-function savePolica() {
+async function savePolica() {
   const ime = document.getElementById('f-ime').value.trim();
   const reg = document.getElementById('f-reg').value.trim();
   const istek = document.getElementById('f-istek').value;
@@ -886,14 +901,14 @@ function savePolica() {
   if (editingId !== null) {
     const idx = police.findIndex(p => p.id === editingId);
     if (idx !== -1) {
-      if (pendingPdfBlob) { data.hasPdf = true; savePdfToDb(editingId, pendingPdfBlob); }
+      if (pendingPdfBlob) { data.hasPdf = true; await savePdfToDb(editingId, pendingPdfBlob); }
       else data.hasPdf = police[idx].hasPdf || false;
       police[idx] = { ...police[idx], ...data };
     }
     editingId = null;
   } else {
     const newId = Date.now();
-    if (pendingPdfBlob) { data.hasPdf = true; savePdfToDb(newId, pendingPdfBlob); }
+    if (pendingPdfBlob) { data.hasPdf = true; await savePdfToDb(newId, pendingPdfBlob); }
     police.push({ id: newId, ...data });
   }
   pendingPdfBlob = null;
