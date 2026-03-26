@@ -871,9 +871,12 @@ async function deletePdfFromDb(id) {
 function attachPdf(id) {
   const input = document.createElement('input');
   input.type = 'file';
-  input.accept = '.pdf';
+  input.accept = 'application/pdf,.pdf';
+  input.style.display = 'none';
+  document.body.appendChild(input);
   input.onchange = async () => {
     const file = input.files[0];
+    document.body.removeChild(input);
     if (!file) return;
     await savePdfToDb(id, file);
     const police = [..._policeCache];
