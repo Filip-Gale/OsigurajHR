@@ -241,9 +241,80 @@
   .total-box.grand .total-count { color: rgba(255,255,255,.6); }
 
   @media (max-width: 700px) {
-    .form-grid { grid-template-columns: 1fr 1fr; }
     header { padding: 0 16px; }
-    .container { padding: 16px 12px; }
+    header h1 { font-size: 14px; }
+    .container { padding: 12px 10px; gap: 12px; }
+
+    /* Upload zona */
+    #upload-zone { padding: 20px 16px; }
+    #upload-zone .icon { font-size: 28px; }
+
+    /* Forma */
+    #form-section { padding: 16px; }
+    .form-grid { grid-template-columns: 1fr; }
+    .form-actions { flex-direction: column; }
+    .form-actions .btn { width: 100%; text-align: center; }
+
+    /* Tablica header */
+    .table-section { padding: 14px 10px; }
+    .table-header { flex-direction: column; align-items: flex-start; gap: 10px; }
+    .table-header > div { width: 100%; justify-content: space-between; }
+    .filter-btns { flex-wrap: nowrap; overflow-x: auto; }
+    .export-btn { white-space: nowrap; }
+
+    /* Tablica → kartice */
+    .table-wrap { overflow-x: unset; }
+    table, thead, tbody, tr, td, th { display: block; }
+    thead { display: none; }
+
+    tbody tr {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      margin-bottom: 10px;
+      padding: 12px 14px;
+      position: relative;
+    }
+    tbody tr.expired { background: var(--red-bg); border-color: #ffcdd2; }
+    tbody tr.warn-14 { background: var(--yellow-bg); border-color: #ffe082; }
+    tbody td { padding: 3px 0; border: none; font-size: 13px; }
+    tbody td:empty { display: none; }
+
+    /* Sakrij # i kontakt i osig na mobu */
+    td.col-num, td.col-kontakt, td.col-osig { display: none !important; }
+
+    /* Ime — veliko, gore */
+    td.col-ime { font-size: 15px; padding-bottom: 6px; border-bottom: 1px solid var(--border); margin-bottom: 6px; }
+
+    /* Red: reg + vrsta + status */
+    td.col-reg { display: inline-block; font-family: monospace; font-weight: 700;
+      background: var(--purple-bg); color: var(--purple);
+      padding: 2px 8px; border-radius: 6px; font-size: 12px; margin-right: 6px; }
+    td.col-vrsta { display: inline-block; font-size: 12px; color: var(--muted); margin-right: 6px; }
+    td.col-status { display: inline-block; }
+
+    /* Istek + dani — drugi red */
+    td.col-istek::before { content: 'Istek: '; color: var(--muted); font-size: 12px; }
+    td.col-istek { font-size: 13px; }
+    td.col-dani { font-size: 12px; }
+
+    /* Cijena — desno gore, pozicionirano */
+    td.col-cijena {
+      position: absolute; top: 12px; right: 44px;
+      font-weight: 700; font-size: 14px; color: var(--purple);
+    }
+
+    /* Delete — desno gore */
+    td.col-del { position: absolute; top: 8px; right: 6px; }
+
+    /* Napomena */
+    td.col-napomena { font-size: 11px; color: var(--muted); margin-top: 4px; }
+    td.col-napomena:not(:empty)::before { content: '📝 '; }
+
+    /* Totals */
+    #totals-row { gap: 10px; }
+    .total-box { min-width: 130px; padding: 10px 14px; }
+    .total-box .total-amount { font-size: 18px; }
   }
 
   #lock-screen {
@@ -490,18 +561,18 @@ function renderTable() {
     const cijena = p.cijena ? Number(p.cijena).toFixed(2) + ' EUR' : '—';
 
     return `<tr class="${rowClass}">
-      <td style="color:#aaa">${i+1}</td>
-      <td><strong>${esc(p.ime || '—')}</strong></td>
-      <td style="font-family:monospace;font-weight:700">${esc((p.reg||'').toUpperCase())}</td>
-      <td>${esc(p.kontakt || '—')}</td>
-      <td>${esc(p.vrsta === 'o+k' ? 'obvezno i kasko' : (p.vrsta || '—'))}</td>
-      <td>${istekStr}</td>
-      <td>${daniStr}</td>
-      <td>${badge}</td>
-      <td>${cijena}</td>
-      <td>${esc(p.osig || '—')}</td>
-      <td>${esc(p.napomena || '—')}</td>
-      <td><button class="del-btn" onclick="deletePolica(${p.id})" title="Obriši">✕</button></td>
+      <td class="col-num" style="color:#aaa">${i+1}</td>
+      <td class="col-ime"><strong>${esc(p.ime || '—')}</strong></td>
+      <td class="col-reg">${esc((p.reg||'').toUpperCase())}</td>
+      <td class="col-kontakt">${esc(p.kontakt || '—')}</td>
+      <td class="col-vrsta">${esc(p.vrsta === 'o+k' ? 'obvezno i kasko' : (p.vrsta || '—'))}</td>
+      <td class="col-istek">${istekStr}</td>
+      <td class="col-dani">${daniStr}</td>
+      <td class="col-status">${badge}</td>
+      <td class="col-cijena">${cijena}</td>
+      <td class="col-osig">${esc(p.osig || '—')}</td>
+      <td class="col-napomena">${esc(p.napomena || '')}</td>
+      <td class="col-del"><button class="del-btn" onclick="deletePolica(${p.id})" title="Obriši">✕</button></td>
     </tr>`;
   }).join('');
 
