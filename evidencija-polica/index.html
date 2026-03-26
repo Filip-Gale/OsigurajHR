@@ -11,6 +11,9 @@
 <meta name="apple-mobile-web-app-title" content="Evidencija">
 <link rel="apple-touch-icon" href="icon-192.png">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-storage-compat.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
@@ -537,12 +540,25 @@ function checkPassword() {
 
 pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
 
-// ── LocalStorage ──────────────────────────────────────────────
-function loadPolice() {
-  try { return JSON.parse(localStorage.getItem('police') || '[]'); } catch { return []; }
-}
-function savePolice(police) {
-  localStorage.setItem('police', JSON.stringify(police));
+// ── Firebase ──────────────────────────────────────────────────
+firebase.initializeApp({
+  apiKey: "AIzaSyBX3uLp4xVapWyuTyCPfwj-T6IZE5sdbk0",
+  authDomain: "osiguraj-evidencija.firebaseapp.com",
+  projectId: "osiguraj-evidencija",
+  storageBucket: "osiguraj-evidencija.firebasestorage.app",
+  messagingSenderId: "620151493336",
+  appId: "1:620151493336:web:21aeb09006c84401dc7dad"
+});
+const fbDb = firebase.firestore();
+const fbStorage = firebase.storage();
+const policaDoc = fbDb.collection('data').doc('police');
+let _policeCache = [];
+
+function loadPolice() { return _policeCache; }
+
+async function savePolice(police) {
+  _policeCache = police;
+  await policaDoc.set({ items: police });
 }
 
 // ── Render tablice ────────────────────────────────────────────
@@ -815,40 +831,20 @@ function checkAlarms(police) {
 let editingId = null;
 let pendingPdfBlob = null;
 
-// ── IndexedDB za PDF-ove ──────────────────────────────────────
-function openPdfDb() {
-  return new Promise((res, rej) => {
-    const r = indexedDB.open('ep-pdfs', 1);
-    r.onupgradeneeded = e => e.target.result.createObjectStore('pdfs');
-    r.onsuccess = e => res(e.target.result);
-    r.onerror = e => rej(e);
-  });
-}
+// ── Firebase Storage za PDF-ove ───────────────────────────────
 async function savePdfToDb(id, blob) {
   try {
-    const db = await openPdfDb();
-    return new Promise((res, rej) => {
-      const tx = db.transaction('pdfs', 'readwrite');
-      tx.objectStore('pdfs').put(blob, String(id));
-      tx.oncomplete = () => res();
-      tx.onerror = e => rej(e);
-    });
+    await fbStorage.ref(`pdfs/${id}`).put(blob);
   } catch(e) { console.error('savePdfToDb error', e); }
 }
-async function getPdfFromDb(id) {
+async function getPdfUrl(id) {
   try {
-    const db = await openPdfDb();
-    return new Promise(res => {
-      const r = db.transaction('pdfs', 'readonly').objectStore('pdfs').get(String(id));
-      r.onsuccess = e => res(e.target.result || null);
-      r.onerror = () => res(null);
-    });
+    return await fbStorage.ref(`pdfs/${id}`).getDownloadURL();
   } catch(e) { return null; }
 }
 async function deletePdfFromDb(id) {
   try {
-    const db = await openPdfDb();
-    db.transaction('pdfs', 'readwrite').objectStore('pdfs').delete(String(id));
+    await fbStorage.ref(`pdfs/${id}`).delete();
   } catch(e) {}
 }
 
@@ -860,20 +856,18 @@ function attachPdf(id) {
     const file = input.files[0];
     if (!file) return;
     await savePdfToDb(id, file);
-    const police = loadPolice();
+    const police = [..._policeCache];
     const idx = police.findIndex(p => p.id === id);
-    if (idx !== -1) { police[idx].hasPdf = true; savePolice(police); }
+    if (idx !== -1) { police[idx].hasPdf = true; await savePolice(police); }
     renderTable();
   };
   input.click();
 }
 
 async function openPdfForPolica(id) {
-  const blob = await getPdfFromDb(id);
-  if (blob) {
-    const url = URL.createObjectURL(blob);
+  const url = await getPdfUrl(id);
+  if (url) {
     window.open(url, '_blank');
-    setTimeout(() => URL.revokeObjectURL(url), 15000);
     return true;
   }
   return false;
@@ -885,7 +879,7 @@ async function handleCardClick(id) {
 }
 
 function editPolica(id) {
-  const p = loadPolice().find(x => x.id === id);
+  const p = _policeCache.find(x => x.id === id);
   if (!p) return;
   editingId = id;
   fillForm({ ime: p.ime, reg: p.reg, kontakt: p.kontakt, istek: p.istek,
@@ -896,7 +890,7 @@ function editPolica(id) {
   document.getElementById('form-section').scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
-function savePolica() {
+async function savePolica() {
   const ime = document.getElementById('f-ime').value.trim();
   const reg = document.getElementById('f-reg').value.trim();
   const istek = document.getElementById('f-istek').value;
@@ -904,7 +898,7 @@ function savePolica() {
   if (!reg && !ime) { alert('Upiši barem registraciju ili ime!'); return; }
   if (!istek) { alert('Datum isteka je obavezan!'); return; }
 
-  const police = loadPolice();
+  const police = [..._policeCache];
   const data = {
     ime, reg,
     kontakt: document.getElementById('f-kontakt').value.trim(),
@@ -930,8 +924,7 @@ function savePolica() {
   }
   pendingPdfBlob = null;
 
-  savePolice(police);
-  renderTable();
+  await savePolice(police);
   resetForm();
 
   // Traži dopuštenje za notifikacije (jednom)
@@ -940,12 +933,11 @@ function savePolica() {
   }
 }
 
-function deletePolica(id) {
+async function deletePolica(id) {
   if (!confirm('Obriši ovu policu?')) return;
   deletePdfFromDb(id);
-  const police = loadPolice().filter(p => p.id !== id);
-  savePolice(police);
-  renderTable();
+  const police = _policeCache.filter(p => p.id !== id);
+  await savePolice(police);
 }
 
 function resetForm() {
@@ -1224,7 +1216,29 @@ function exportCSV() {
 })();
 
 // ── Init ──────────────────────────────────────────────────────
-renderTable();
+function initSync() {
+  policaDoc.onSnapshot(doc => {
+    if (doc.exists) {
+      _policeCache = doc.data().items || [];
+    } else {
+      // Migracija iz localStorage pri prvom spajanju
+      try { _policeCache = JSON.parse(localStorage.getItem('police') || '[]'); } catch { _policeCache = []; }
+      if (_policeCache.length > 0) {
+        policaDoc.set({ items: _policeCache });
+        localStorage.removeItem('police');
+      }
+    }
+    renderTable();
+    checkAlarms(_policeCache);
+  }, err => {
+    console.error('Firestore sync error', err);
+    // Fallback na localStorage ako nema interneta
+    try { _policeCache = JSON.parse(localStorage.getItem('police') || '[]'); } catch { _policeCache = []; }
+    renderTable();
+    checkAlarms(_policeCache);
+  });
+}
+initSync();
 
 // Provjeri alarme svaki put kad se stranica otvori
 // i svaki dan u 09:00 (ako je stranica otvorena)
