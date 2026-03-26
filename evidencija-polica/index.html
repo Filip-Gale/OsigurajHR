@@ -173,6 +173,12 @@
 
   .days-badge { font-size: 12px; font-weight: 700; }
 
+  /* Kontakt gumbi — globalno */
+  .mob-call, .mob-wa {
+    display: inline-flex; align-items: center; white-space: nowrap;
+    text-decoration: none; gap: 4px;
+  }
+
   .info-btn {
     display: inline-flex; align-items: center; justify-content: center;
     width: 16px; height: 16px; border-radius: 50%;
@@ -326,7 +332,13 @@
     td.col-osig img { height: 18px; width: auto; }
 
     /* Delete — dolje lijevo */
-    td.col-del { position: absolute; bottom: 8px; left: 10px; }
+    td.col-del {
+      position: absolute; right: 0; top: 50%; transform: translateY(-50%);
+    }
+    td.col-del .del-btn {
+      opacity: 0.15; font-size: 11px; color: #555; padding: 8px 6px;
+    }
+    td.col-del .del-btn:hover { opacity: 0.6; }
 
     /* Napomena */
     td.col-napomena { font-size: 11px; color: var(--muted); margin-top: 4px; }
