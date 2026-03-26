@@ -175,8 +175,12 @@
 
   /* Kontakt gumbi — globalno */
   .mob-call, .mob-wa {
-    display: inline-flex; align-items: center; white-space: nowrap;
-    text-decoration: none; gap: 4px;
+    display: inline-flex; align-items: center; flex-wrap: nowrap;
+    white-space: nowrap; text-decoration: none; gap: 4px;
+  }
+  /* Desktop: kontakt ćelija — stupac, svaki gumb u svom redu */
+  @media (min-width: 701px) {
+    td.col-kontakt { display: flex; flex-direction: column; gap: 3px; align-items: flex-start; }
   }
 
   .info-btn {
@@ -269,7 +273,8 @@
     .table-header { flex-direction: column; align-items: flex-start; gap: 10px; }
     .table-header > div { width: 100%; justify-content: space-between; }
     .filter-btns { flex-wrap: nowrap; overflow-x: auto; }
-    .export-btn { white-space: nowrap; }
+    .export-btn { white-space: nowrap; font-size: 11px; padding: 5px 10px; }
+    .export-btn::before { content: '⬇️ '; font-size: 11px; }
 
     /* Tablica → kartice */
     .table-wrap { overflow-x: unset; }
@@ -467,7 +472,9 @@
   <div class="table-section">
     <div class="table-header">
       <h2>Sve police <span id="table-count" style="font-size:13px;color:#999;font-weight:400"></span></h2>
-      <div style="display:flex;gap:10px;align-items:center">
+      <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;">
+        <input id="search-input" type="search" placeholder="🔍 Pretraži..." oninput="renderTable()"
+          style="padding:6px 12px;border:1.5px solid var(--border);border-radius:20px;font-family:inherit;font-size:13px;outline:none;width:160px;">
         <div class="filter-btns">
           <button class="filter-btn active" data-filter="sve" onclick="setFilter('sve')">Sve</button>
           <button class="filter-btn" data-filter="obvezno" onclick="setFilter('obvezno')">Obvezno</button>
@@ -551,9 +558,19 @@ function renderTable() {
   const tbody = document.getElementById('polica-tbody');
   const today = new Date(); today.setHours(0,0,0,0);
 
-  // Filter
+  // Filter vrsta
   if (currentFilter === 'obvezno') police = police.filter(p => p.vrsta === 'obvezno');
   else if (currentFilter === 'kasko') police = police.filter(p => p.vrsta === 'kasko');
+
+  // Search
+  const searchQ = (document.getElementById('search-input')?.value || '').toLowerCase().trim();
+  if (searchQ) {
+    police = police.filter(p =>
+      [p.ime, p.reg, p.kontakt, p.osig, p.napomena, p.vrsta].some(v =>
+        (v || '').toLowerCase().includes(searchQ)
+      )
+    );
+  }
 
   // Sortiraj po isteku (najbliži prvi)
   police.sort((a,b) => new Date(a.istek) - new Date(b.istek));
