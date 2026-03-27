@@ -1659,7 +1659,7 @@ function triglavFlatPrice(kw, dob) {
   if (base === undefined) base = TRIGLAV_FLAT[TRIGLAV_FLAT.length-1][1];
   if (dob !== undefined && dob !== null) {
     var age = new Date().getFullYear() - Number(dob);
-    if (age <= 28) base = Math.round(base * 1.30 * 100) / 100;
+    if (age >= 25 && age <= 29) base = Math.round(base * 1.20 * 100) / 100;
   }
   return base;
 }
@@ -1727,7 +1727,7 @@ function triglavPrice25(reg, kw, dob) {
     ageFactor = 1.0; // pravna osoba / obrt — bez dobnog faktora
   } else {
     var age = new Date().getFullYear() - Number(dob);
-    if      (age <= 28) ageFactor = 1.20;
+    if      (age >= 25 && age <= 29) ageFactor = 1.20;
     else if (age <= 34) ageFactor = 0.99;
     else if (age <= 48) ageFactor = 0.96;
     else                ageFactor = 0.90;
