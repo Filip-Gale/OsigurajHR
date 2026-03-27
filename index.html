@@ -401,16 +401,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     <img class="hp-partner-logo" src="/img/groupama-logo.svg" alt="Groupama osiguranje">
                     <img class="hp-partner-logo" src="/img/asdirect-logo.svg" alt="AS Direct">
                     <img class="hp-partner-logo" src="/img/uniqa-logo.svg" alt="UNIQA osiguranje">
+                    <img class="hp-partner-logo" src="/img/wiener-logo.svg" alt="Wiener osiguranje">
                     <img class="hp-partner-logo" src="/img/triglav-logo.svg" alt="Triglav osiguranje">
                     <img class="hp-partner-logo" src="/img/generali-logo.svg" alt="Generali osiguranje">
                     <img class="hp-partner-logo" src="/img/groupama-logo.svg" alt="Groupama osiguranje">
                     <img class="hp-partner-logo" src="/img/asdirect-logo.svg" alt="AS Direct">
                     <img class="hp-partner-logo" src="/img/uniqa-logo.svg" alt="UNIQA osiguranje">
+                    <img class="hp-partner-logo" src="/img/wiener-logo.svg" alt="Wiener osiguranje">
                     <img class="hp-partner-logo" src="/img/triglav-logo.svg" alt="Triglav osiguranje">
                     <img class="hp-partner-logo" src="/img/generali-logo.svg" alt="Generali osiguranje">
                     <img class="hp-partner-logo" src="/img/groupama-logo.svg" alt="Groupama osiguranje">
                     <img class="hp-partner-logo" src="/img/asdirect-logo.svg" alt="AS Direct">
                     <img class="hp-partner-logo" src="/img/uniqa-logo.svg" alt="UNIQA osiguranje">
+                    <img class="hp-partner-logo" src="/img/wiener-logo.svg" alt="Wiener osiguranje">
                 </div>
             </div>
         </div>
@@ -1184,6 +1187,7 @@ function hpOpenScanModal() {
   document.getElementById('hp-scan-overlay').classList.add('show');
   document.body.style.overflow = 'hidden';
   hpResetScanModal();
+  if (typeof gtag === 'function') gtag('event', 'magic_button_click');
 }
 function hpCloseScanModal() {
   document.getElementById('hp-scan-overlay').classList.remove('show');
@@ -1265,6 +1269,7 @@ function hpShowScanToast(msg) {
 
 function hpConfirmScanData() {
   if (!hpScanData) return;
+  if (typeof gtag === 'function') gtag('event', 'magic_button_form_filled');
   var f = document.getElementById('wizard-frame');
   if (f && f.contentWindow) {
     f.contentWindow.postMessage({ type: 'scanResult', data: hpScanData }, '*');
