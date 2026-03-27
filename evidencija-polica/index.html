@@ -840,15 +840,14 @@ function openPdfDb() {
   });
 }
 async function savePdfToDb(id, blob) {
-  try {
-    const db = await openPdfDb();
-    return new Promise((res, rej) => {
-      const tx = db.transaction('pdfs', 'readwrite');
-      tx.objectStore('pdfs').put(blob, String(id));
-      tx.oncomplete = () => res();
-      tx.onerror = e => rej(e);
-    });
-  } catch(e) { console.error('savePdfToDb error', e); }
+  const db = await openPdfDb();
+  return new Promise((res, rej) => {
+    const tx = db.transaction('pdfs', 'readwrite');
+    tx.objectStore('pdfs').put(blob, String(id));
+    tx.oncomplete = () => res();
+    tx.onerror = e => rej(e.target.error || new Error('IDB write failed'));
+    tx.onabort = e => rej(e.target.error || new Error('IDB aborted'));
+  });
 }
 async function getPdfUrl(id) {
   try {
@@ -889,7 +888,7 @@ function attachPdf(id) {
       if (idx !== -1) { police[idx].hasPdf = true; await savePolice(police); }
       renderTable();
     } catch(e) {
-      alert('Greška pri spremanju PDF-a: ' + e.message);
+      alert('Greška pri spremanju PDF-a: ' + (e && (e.message || e.name || JSON.stringify(e))));
     }
   });
   input.click();
