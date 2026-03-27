@@ -13,258 +13,300 @@ permalink: /dopunsko-zdravstveno/
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f5f5f7; min-height: 100vh; }
 
-  .hero { background: #573cf9; padding: 20px 20px 40px; text-align: center; }
-  .hero-logo { display: inline-block; color: white; font-size: 1.2rem; font-weight: 800; margin-bottom: 24px; text-decoration: none; }
-  .hero-logo span { color: #ffbc27; }
-  .hero h1 { color: white; font-size: clamp(1.5rem, 4vw, 2.2rem); font-weight: 800; line-height: 1.25; margin-bottom: 8px; }
-  .hero p { color: rgba(255,255,255,0.8); font-size: 1rem; margin-bottom: 28px; }
-  .hero-stats { display: flex; justify-content: center; gap: 32px; margin-bottom: 32px; flex-wrap: wrap; }
-  .hero-stat { color: white; text-align: center; font-size: 0.85rem; }
-  .hero-stat strong { display: block; font-size: 1.1rem; }
+  .topbar { background: #573cf9; padding: 14px 20px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; }
+  .topbar-logo { color: white; font-weight: 800; font-size: 1.1rem; text-decoration: none; }
+  .topbar-logo span { color: #ffbc27; }
+  .topbar-phone { color: white; font-weight: 700; font-size: 0.9rem; text-decoration: none; }
 
-  .wizard { max-width: 520px; margin: -20px auto 40px; padding: 0 16px; }
+  .hero { background: #573cf9; padding: 32px 20px 48px; text-align: center; }
+  .hero h1 { color: white; font-size: clamp(1.4rem, 4vw, 2rem); font-weight: 800; line-height: 1.25; margin-bottom: 8px; }
+  .hero p { color: rgba(255,255,255,0.8); font-size: 0.95rem; margin-bottom: 0; }
+
+  .wizard { max-width: 540px; margin: -24px auto 40px; padding: 0 16px; }
   .card { background: white; border-radius: 16px; padding: 28px 24px; box-shadow: 0 4px 24px rgba(0,0,0,0.1); }
 
-  .step-indicator { display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 24px; }
-  .step-dot { width: 8px; height: 8px; border-radius: 50%; background: #e0e0e0; }
-  .step-dot.active { background: #573cf9; width: 24px; border-radius: 4px; }
+  .card-title { font-size: 1.1rem; font-weight: 800; color: #222; margin-bottom: 20px; }
 
-  label { display: block; font-size: 0.75rem; font-weight: 700; color: #888; letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 8px; }
-  input[type="text"], input[type="date"], input[type="email"], input[type="tel"] {
-    width: 100%; padding: 14px 16px; border: 2px solid #e8e8e8; border-radius: 10px;
-    font-size: 1rem; outline: none; transition: border 0.2s;
-  }
-  input:focus { border-color: #573cf9; }
+  .field { margin-bottom: 16px; }
+  .field label { display: block; font-size: 0.75rem; font-weight: 700; color: #888; letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 6px; }
+  .field input { width: 100%; padding: 13px 14px; border: 2px solid #e8e8e8; border-radius: 10px; font-size: 1rem; outline: none; transition: border 0.2s; }
+  .field input:focus { border-color: #573cf9; }
 
-  .btn-primary { width: 100%; padding: 16px; background: #573cf9; color: white; border: none; border-radius: 10px; font-size: 1rem; font-weight: 700; cursor: pointer; margin-top: 16px; transition: opacity 0.2s; }
-  .btn-primary:hover { opacity: 0.9; }
-  .btn-back { background: none; border: none; color: #573cf9; font-size: 0.9rem; font-weight: 600; cursor: pointer; margin-bottom: 16px; padding: 0; }
+  .row2 { display: flex; gap: 12px; }
+  .row2 .field { flex: 1; }
 
-  /* Paketi */
-  .paketi { display: flex; flex-direction: column; gap: 12px; }
-  .paket { border: 2px solid #e8e8e8; border-radius: 12px; padding: 16px; cursor: pointer; transition: all 0.2s; position: relative; }
-  .paket:hover { border-color: #573cf9; }
-  .paket.selected { border-color: #573cf9; background: #f0edff; }
-  .paket-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
-  .paket-name { font-weight: 800; font-size: 1rem; color: #222; }
-  .paket-price { font-weight: 800; font-size: 1.2rem; color: #573cf9; }
-  .paket-price span { font-size: 0.8rem; font-weight: 400; color: #888; }
-  .paket-features { font-size: 0.82rem; color: #666; line-height: 1.5; }
-  .paket-badge { position: absolute; top: -10px; left: 16px; background: #ffbc27; color: #333; font-size: 0.7rem; font-weight: 800; padding: 2px 10px; border-radius: 20px; }
+  .btn-primary { width: 100%; padding: 15px; background: #573cf9; color: white; border: none; border-radius: 10px; font-size: 1rem; font-weight: 700; cursor: pointer; margin-top: 8px; }
+  .btn-primary:hover { background: #4530d4; }
+  .btn-back { background: none; border: none; color: #573cf9; font-size: 0.9rem; font-weight: 600; cursor: pointer; margin-bottom: 16px; padding: 0; display: block; }
 
-  .osiguravatelj { font-size: 0.8rem; color: #888; margin-bottom: 16px; text-align: center; }
-  .osiguravatelj strong { color: #333; }
+  /* Ponude lista */
+  .ponude-header { margin-bottom: 16px; }
+  .ponude-header h2 { font-size: 1.1rem; font-weight: 800; color: #222; }
+  .ponude-header p { font-size: 0.85rem; color: #888; margin-top: 4px; }
 
-  .result-msg { text-align: center; padding: 16px 0; }
-  .result-msg h2 { color: #573cf9; font-size: 1.3rem; margin-bottom: 8px; }
-  .result-msg p { color: #555; font-size: 0.95rem; line-height: 1.6; }
-  .result-msg .checkmark { font-size: 3rem; margin-bottom: 12px; }
+  .ponuda { background: white; border-radius: 14px; padding: 20px; box-shadow: 0 2px 12px rgba(0,0,0,0.07); margin-bottom: 12px; position: relative; }
+  .ponuda-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+  .ponuda-logo { font-size: 1rem; font-weight: 800; color: #333; }
+  .ponuda-logo img { height: 28px; object-fit: contain; }
+  .ponuda-cijena { text-align: right; }
+  .ponuda-cijena .iznos { font-size: 1.6rem; font-weight: 800; color: #573cf9; line-height: 1; }
+  .ponuda-cijena .period { font-size: 0.8rem; color: #888; }
+  .ponuda-features { display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px; }
+  .ponuda-feature { font-size: 0.82rem; color: #555; display: flex; align-items: center; gap: 6px; }
+  .ponuda-feature::before { content: '✓'; color: #573cf9; font-weight: 700; flex-shrink: 0; }
+  .ponuda-actions { display: flex; gap: 10px; }
+  .btn-detalji { flex: 1; padding: 10px; border: 2px solid #e8e8e8; background: white; border-radius: 8px; font-size: 0.9rem; font-weight: 600; cursor: pointer; color: #333; }
+  .btn-kupi { flex: 1; padding: 10px; background: #573cf9; border: none; border-radius: 8px; font-size: 0.9rem; font-weight: 700; cursor: pointer; color: white; }
+  .ponuda-badge { position: absolute; top: -10px; left: 16px; background: #ffbc27; color: #333; font-size: 0.7rem; font-weight: 800; padding: 3px 10px; border-radius: 20px; }
+  .ponuda-akcija { background: #f0f9ff; border-radius: 8px; padding: 8px 12px; font-size: 0.78rem; color: #0369a1; margin-bottom: 12px; }
 
-  .info-strip { background: #f0edff; border-radius: 10px; padding: 12px 16px; font-size: 0.85rem; color: #573cf9; font-weight: 600; margin-bottom: 20px; text-align: center; }
+  /* Kupi modal */
+  .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 999; align-items: center; justify-content: center; padding: 16px; }
+  .modal-overlay.open { display: flex; }
+  .modal { background: white; border-radius: 16px; padding: 28px 24px; max-width: 420px; width: 100%; }
+  .modal h3 { font-size: 1.1rem; font-weight: 800; margin-bottom: 6px; }
+  .modal-paket { background: #f0edff; border-radius: 8px; padding: 10px 14px; font-size: 0.9rem; color: #573cf9; font-weight: 700; margin-bottom: 20px; }
+  .modal-close { float: right; background: none; border: none; font-size: 1.2rem; cursor: pointer; color: #888; margin-top: -4px; }
 
-  @media (max-width: 480px) { .hero-stats { gap: 16px; } }
+  .success-card { background: white; border-radius: 16px; padding: 40px 24px; box-shadow: 0 4px 24px rgba(0,0,0,0.1); text-align: center; }
+  .success-card .icon { font-size: 3rem; margin-bottom: 16px; }
+  .success-card h2 { font-size: 1.3rem; font-weight: 800; color: #222; margin-bottom: 10px; }
+  .success-card p { color: #555; font-size: 0.95rem; line-height: 1.6; }
+
+  .disclaimer { font-size: 0.75rem; color: #aaa; text-align: center; margin-top: 16px; line-height: 1.5; }
 </style>
 </head>
 <body>
 
+<div class="topbar">
+  <a href="/" class="topbar-logo">[ Osiguraj<span>.hr</span> ]</a>
+  <a href="tel:+38598813221" class="topbar-phone">📞 098 813 221</a>
+</div>
+
 <div class="hero">
-  <a href="/" class="hero-logo">[ Osiguraj<span>.hr</span> ]</a>
-  <h1>Dopunsko zdravstveno<br>osiguranje — usporedi i uštedi</h1>
-  <p>Pokrij participaciju i B listu lijekova već od 6 €/mj</p>
-  <div class="hero-stats">
-    <div class="hero-stat"><strong>6+ osiguravatelja</strong>uspoređujemo</div>
-    <div class="hero-stat"><strong>do 100 €</strong>godišnje uštede</div>
-    <div class="hero-stat"><strong>B lista</strong>lijekova pokrivena</div>
-  </div>
+  <h1>Dopunsko zdravstveno osiguranje</h1>
+  <p>Usporedi ponude 6+ osiguravatelja · Već od 7 €/mj · B lista lijekova</p>
 </div>
 
 <div class="wizard">
 
-  <!-- KORAK 1: Datum rođenja -->
-  <div class="card" id="step1">
-    <div class="step-indicator">
-      <div class="step-dot active"></div>
-      <div class="step-dot"></div>
-      <div class="step-dot"></div>
+  <!-- KORAK 1 -->
+  <div id="step1">
+    <div class="card">
+      <div class="card-title">Za prikaz svih ponuda trebamo tvoje podatke</div>
+      <div class="field">
+        <label>Datum rođenja</label>
+        <input type="date" id="datum" max="">
+      </div>
+      <div class="field">
+        <label>E-mail</label>
+        <input type="email" id="email" placeholder="ivan@gmail.com">
+      </div>
+      <div class="field">
+        <label>Broj mobitela</label>
+        <input type="tel" id="mobitel" placeholder="091 234 5678">
+      </div>
+      <button class="btn-primary" onclick="korak1()">Prikaži sve ponude →</button>
+      <p class="disclaimer">Klikom prihvaćaš uvjete korištenja. Kontaktiramo te isključivo zbog ove ponude.</p>
     </div>
-    <label>Datum rođenja</label>
-    <input type="date" id="datum-rodjenja" max="" placeholder="DD.MM.YYYY">
-    <button class="btn-primary" onclick="korak1()">Prikaži ponude →</button>
   </div>
 
-  <!-- KORAK 2: Odabir paketa -->
-  <div class="card" id="step2" style="display:none;">
-    <div class="step-indicator">
-      <div class="step-dot"></div>
-      <div class="step-dot active"></div>
-      <div class="step-dot"></div>
+  <!-- KORAK 2: Ponude -->
+  <div id="step2" style="display:none;">
+    <button class="btn-back" onclick="prikaziKorak(1)">← Natrag</button>
+    <div class="ponude-header">
+      <h2>Usporedi i izaberi najbolju policu</h2>
+      <p id="ponude-subtitle"></p>
     </div>
-    <button class="btn-back" onclick="nazad(1)">← Natrag</button>
-    <div class="osiguravatelj">Ponude za <strong id="prikaz-godina"></strong> — UNIQA osiguranje</div>
-    <div class="paketi">
-      <div class="paket" id="paket-comfort" onclick="odaberiPaket('comfort', 72, 'DZO24 COMFORT')">
-        <div class="paket-header">
-          <div class="paket-name">Comfort</div>
-          <div class="paket-price">72 € <span>/ god</span></div>
-        </div>
-        <div class="paket-features">✓ Participacija pokrivena &nbsp;·&nbsp; ✓ Bolničko liječenje &nbsp;·&nbsp; ✓ Specijalisti</div>
-      </div>
-      <div class="paket" id="paket-optimal" onclick="odaberiPaket('optimal', 96, 'DZO24 OPTIMAL')">
-        <div class="paket-badge">Najpopularnije</div>
-        <div class="paket-header">
-          <div class="paket-name">Optimal</div>
-          <div class="paket-price">96 € <span>/ god</span></div>
-        </div>
-        <div class="paket-features">✓ Sve iz Comforta &nbsp;·&nbsp; ✓ B lista lijekova &nbsp;·&nbsp; ✓ Dijagnostika</div>
-      </div>
-      <div class="paket" id="paket-exclusive" onclick="odaberiPaket('exclusive', 132, 'DZO24 EXCLUSIVE')">
-        <div class="paket-header">
-          <div class="paket-name">Exclusive</div>
-          <div class="paket-price">132 € <span>/ god</span></div>
-        </div>
-        <div class="paket-features">✓ Sve iz Optimala &nbsp;·&nbsp; ✓ Stomatologija &nbsp;·&nbsp; ✓ Fizikalna rehab.</div>
-      </div>
-    </div>
-    <button class="btn-primary" id="btn-odaberi" onclick="korak2()" style="opacity:0.4; pointer-events:none;">Nastavi →</button>
-  </div>
 
-  <!-- KORAK 3: Kontakt podaci -->
-  <div class="card" id="step3" style="display:none;">
-    <div class="step-indicator">
-      <div class="step-dot"></div>
-      <div class="step-dot"></div>
-      <div class="step-dot active"></div>
-    </div>
-    <button class="btn-back" onclick="nazad(2)">← Natrag</button>
-    <div class="info-strip" id="odabrani-paket-strip">Odabrano: —</div>
-    <div style="display:flex; gap:12px; margin-bottom:16px;">
-      <div style="flex:1;">
-        <label>Ime</label>
-        <input type="text" id="ime" placeholder="Ivan">
+    <!-- UNIQA -->
+    <div class="ponuda">
+      <div class="ponuda-badge">Najpovoljnije</div>
+      <div class="ponuda-top">
+        <div class="ponuda-logo">UNIQA</div>
+        <div class="ponuda-cijena">
+          <div class="iznos" id="cijena-uniqa">7,00 €</div>
+          <div class="period">/ mjesečno</div>
+        </div>
       </div>
-      <div style="flex:1;">
-        <label>Prezime</label>
-        <input type="text" id="prezime" placeholder="Horvat">
+      <div class="ponuda-features">
+        <div class="ponuda-feature">Iskaznica — plaćanje participacije</div>
+        <div class="ponuda-feature">Svi troškovi participacije pokriveni</div>
+        <div class="ponuda-feature">B lista lijekova uključena</div>
+      </div>
+      <div class="ponuda-actions">
+        <button class="btn-detalji">Detalji</button>
+        <button class="btn-kupi" onclick="otvoriKupi('UNIQA Dopunsko', document.getElementById('cijena-uniqa').textContent)">Kupi</button>
       </div>
     </div>
-    <div style="margin-bottom:16px;">
-      <label>Email</label>
-      <input type="email" id="email" placeholder="ivan@gmail.com">
+
+    <!-- Triglav -->
+    <div class="ponuda">
+      <div class="ponuda-top">
+        <div class="ponuda-logo">Triglav</div>
+        <div class="ponuda-cijena">
+          <div class="iznos" id="cijena-triglav">7,30 €</div>
+          <div class="period">/ mjesečno</div>
+        </div>
+      </div>
+      <div class="ponuda-features">
+        <div class="ponuda-feature">Iskaznica — plaćanje participacije</div>
+        <div class="ponuda-feature">Svi troškovi participacije pokriveni</div>
+        <div class="ponuda-feature">Jednokratno plaćanje — 5% uštede</div>
+      </div>
+      <div class="ponuda-actions">
+        <button class="btn-detalji">Detalji</button>
+        <button class="btn-kupi" onclick="otvoriKupi('Triglav Dopunsko', document.getElementById('cijena-triglav').textContent)">Kupi</button>
+      </div>
     </div>
-    <div style="margin-bottom:4px;">
-      <label>Mobitel</label>
-      <input type="tel" id="mobitel" placeholder="091 234 5678">
+
+    <!-- Generali -->
+    <div class="ponuda">
+      <div class="ponuda-top">
+        <div class="ponuda-logo">Generali</div>
+        <div class="ponuda-cijena">
+          <div class="iznos" id="cijena-generali">7,50 €</div>
+          <div class="period">/ mjesečno</div>
+        </div>
+      </div>
+      <div class="ponuda-features">
+        <div class="ponuda-feature">Iskaznica — plaćanje participacije</div>
+        <div class="ponuda-feature">Svi troškovi participacije pokriveni</div>
+        <div class="ponuda-feature">Jednokratno plaćanje — 8% uštede</div>
+      </div>
+      <div class="ponuda-actions">
+        <button class="btn-detalji">Detalji</button>
+        <button class="btn-kupi" onclick="otvoriKupi('Generali Dopunsko', document.getElementById('cijena-generali').textContent)">Kupi</button>
+      </div>
     </div>
-    <button class="btn-primary" onclick="posalji()">Zatraži ponudu →</button>
+
+    <!-- Wiener -->
+    <div class="ponuda">
+      <div class="ponuda-top">
+        <div class="ponuda-logo">Wiener</div>
+        <div class="ponuda-cijena">
+          <div class="iznos" id="cijena-wiener">8,00 €</div>
+          <div class="period">/ mjesečno</div>
+        </div>
+      </div>
+      <div class="ponuda-features">
+        <div class="ponuda-feature">Iskaznica — plaćanje participacije</div>
+        <div class="ponuda-feature">Svi troškovi participacije pokriveni</div>
+        <div class="ponuda-feature">Jednokratno plaćanje — 5% uštede</div>
+      </div>
+      <div class="ponuda-actions">
+        <button class="btn-detalji">Detalji</button>
+        <button class="btn-kupi" onclick="otvoriKupi('Wiener Dopunsko', document.getElementById('cijena-wiener').textContent)">Kupi</button>
+      </div>
+    </div>
+
+    <p class="disclaimer">Cijene su okvirne i prilagođene prema datumu rođenja. Konačna cijena potvrđuje se pri ugovaranju.</p>
   </div>
 
   <!-- USPJEH -->
-  <div class="card result-msg" id="step-success" style="display:none;">
-    <div class="checkmark">✅</div>
-    <h2>Zaprimili smo vaš zahtjev!</h2>
-    <p>Naš agent javit će vam se u najkraćem roku s prijedlogom police i svim potrebnim informacijama.</p>
-    <p style="margin-top:12px; font-size:0.85rem; color:#888;">Dostupni smo svaki dan 8:00–20:00<br>Tel: <a href="tel:+38598813221" style="color:#573cf9;">098 813 221</a></p>
+  <div id="step-success" style="display:none;">
+    <div class="success-card">
+      <div class="icon">✅</div>
+      <h2>Zaprimili smo vaš zahtjev!</h2>
+      <p>Naš agent javit će vam se u najkraćem roku s prijedlogom police i svim detaljima ugovaranja.</p>
+      <p style="margin-top:14px; font-size:0.85rem; color:#888;">Dostupni svaki dan 8:00 – 20:00<br>Tel: <a href="tel:+38598813221" style="color:#573cf9; font-weight:700;">098 813 221</a></p>
+    </div>
   </div>
 
 </div>
 
-<script>
-var _odabranPaket = null;
-var _odabranaCijena = null;
-var _odabranKod = null;
+<!-- Modal za kupnju -->
+<div class="modal-overlay" id="kupi-modal" onclick="if(event.target===this)zatvoriModal()">
+  <div class="modal">
+    <button class="modal-close" onclick="zatvoriModal()">✕</button>
+    <h3>Ugovaranje police</h3>
+    <div class="modal-paket" id="modal-paket-naziv">—</div>
+    <div class="field">
+      <label>Ime i prezime</label>
+      <input type="text" id="modal-ime" placeholder="Ivan Horvat">
+    </div>
+    <div class="field">
+      <label>OIB</label>
+      <input type="text" id="modal-oib" placeholder="12345678901" maxlength="11">
+    </div>
+    <button class="btn-primary" onclick="posalji()">Pošalji zahtjev →</button>
+    <p class="disclaimer" style="margin-top:12px;">Agent će vas kontaktirati u najkraćem roku za finalizaciju.</p>
+  </div>
+</div>
 
-// Set max date to today
-document.getElementById('datum-rodjenja').max = new Date().toISOString().split('T')[0];
+<script>
+document.getElementById('datum').max = new Date().toISOString().split('T')[0];
+
+var _email = '', _mobitel = '', _datum = '', _odabranPaket = '', _odabranaCijena = '';
 
 function korak1() {
-  var d = document.getElementById('datum-rodjenja').value;
-  if (!d) { alert('Unesite datum rođenja'); return; }
-  var god = new Date().getFullYear() - new Date(d).getFullYear();
-  document.getElementById('prikaz-godina').textContent = god + ' godina';
-  // Adjust prices by age
-  var faktor = god < 25 ? 0.85 : god > 60 ? 1.2 : 1;
-  var c = Math.round(72 * faktor / 6) * 6;
-  var o = Math.round(96 * faktor / 6) * 6;
-  var e = Math.round(132 * faktor / 6) * 6;
-  document.querySelector('#paket-comfort .paket-price').innerHTML = c + ' € <span>/ god</span>';
-  document.querySelector('#paket-optimal .paket-price').innerHTML = o + ' € <span>/ god</span>';
-  document.querySelector('#paket-exclusive .paket-price').innerHTML = e + ' € <span>/ god</span>';
-  // Store prices
-  document.getElementById('paket-comfort').setAttribute('data-cijena', c);
-  document.getElementById('paket-optimal').setAttribute('data-cijena', o);
-  document.getElementById('paket-exclusive').setAttribute('data-cijena', e);
+  var datum = document.getElementById('datum').value;
+  var email = document.getElementById('email').value.trim();
+  var mobitel = document.getElementById('mobitel').value.trim();
+  if (!datum || !email || !mobitel) { alert('Molimo ispunite sva polja'); return; }
+  _datum = datum; _email = email; _mobitel = mobitel;
+
+  var god = new Date().getFullYear() - new Date(datum).getFullYear();
+  var f = god < 25 ? 0.9 : god > 60 ? 1.15 : 1;
+  document.getElementById('cijena-uniqa').textContent = (7 * f).toFixed(2).replace('.', ',') + ' €';
+  document.getElementById('cijena-triglav').textContent = (7.3 * f).toFixed(2).replace('.', ',') + ' €';
+  document.getElementById('cijena-generali').textContent = (7.5 * f).toFixed(2).replace('.', ',') + ' €';
+  document.getElementById('cijena-wiener').textContent = (8 * f).toFixed(2).replace('.', ',') + ' €';
+  document.getElementById('ponude-subtitle').textContent = 'Ponude za osobu rođenu ' + new Date(datum).getFullYear() + '. god.';
+
+  // Pošalji lead odmah
+  var fd = new FormData();
+  fd.append('access_key', '3cf56deb-78e0-4c88-8bc2-d73a20b78a80');
+  fd.append('subject', 'DZO upit — ' + email);
+  fd.append('message', 'DZO upit\nDatum rođenja: ' + datum + '\nEmail: ' + email + '\nMobitel: ' + mobitel);
+  fd.append('email', email);
+  fetch('https://api.web3forms.com/submit', { method: 'POST', body: fd }).catch(function(){});
+
   prikaziKorak(2);
 }
 
-function odaberiPaket(id, cijena, kod) {
-  document.querySelectorAll('.paket').forEach(function(p) { p.classList.remove('selected'); });
-  document.getElementById('paket-' + id).classList.add('selected');
-  _odabranPaket = id;
-  _odabranaCijena = document.getElementById('paket-' + id).getAttribute('data-cijena');
-  _odabranKod = kod;
-  var btn = document.getElementById('btn-odaberi');
-  btn.style.opacity = '1';
-  btn.style.pointerEvents = 'auto';
+function otvoriKupi(paket, cijena) {
+  _odabranPaket = paket; _odabranaCijena = cijena;
+  document.getElementById('modal-paket-naziv').textContent = paket + ' — ' + cijena + '/mj';
+  document.getElementById('kupi-modal').classList.add('open');
 }
 
-function korak2() {
-  if (!_odabranPaket) return;
-  var naziv = _odabranKod.split(' ')[1];
-  document.getElementById('odabrani-paket-strip').textContent = naziv + ' — ' + _odabranaCijena + ' €/god (UNIQA)';
-  prikaziKorak(3);
+function zatvoriModal() {
+  document.getElementById('kupi-modal').classList.remove('open');
 }
 
 function posalji() {
-  var ime = document.getElementById('ime').value.trim();
-  var prezime = document.getElementById('prezime').value.trim();
-  var email = document.getElementById('email').value.trim();
-  var mobitel = document.getElementById('mobitel').value.trim();
-  var datum = document.getElementById('datum-rodjenja').value;
+  var ime = document.getElementById('modal-ime').value.trim();
+  var oib = document.getElementById('modal-oib').value.trim();
+  if (!ime) { alert('Unesite ime i prezime'); return; }
 
-  if (!ime || !email || !mobitel) { alert('Molimo ispunite sva polja'); return; }
-
-  var poruka = 'DOPUNSKO ZDRAVSTVENO - novi upit\n' +
-    'Ime: ' + ime + ' ' + prezime + '\n' +
-    'Datum rođenja: ' + datum + '\n' +
-    'Paket: ' + _odabranKod + '\n' +
-    'Cijena: ' + _odabranaCijena + ' EUR/god\n' +
-    'Email: ' + email + '\n' +
-    'Mobitel: ' + mobitel;
-
+  var poruka = 'DZO KUPNJA\nIme: ' + ime + '\nOIB: ' + oib + '\nDatum rodenja: ' + _datum + '\nPaket: ' + _odabranPaket + '\nCijena: ' + _odabranaCijena + '/mj\nEmail: ' + _email + '\nMobitel: ' + _mobitel;
   var fd = new FormData();
   fd.append('access_key', '3cf56deb-78e0-4c88-8bc2-d73a20b78a80');
-  fd.append('subject', 'DZO upit — ' + ime + ' ' + prezime + ' — ' + _odabranKod);
+  fd.append('subject', 'DZO KUPNJA — ' + ime + ' — ' + _odabranPaket);
   fd.append('message', poruka);
-  fd.append('email', email);
-  fd.append('name', ime + ' ' + prezime);
+  fd.append('email', _email);
+  fd.append('name', ime);
+  fetch('https://api.web3forms.com/submit', { method: 'POST', body: fd }).catch(function(){});
 
-  fetch('https://api.web3forms.com/submit', { method: 'POST', body: fd })
-    .catch(function(){});
-
-  // Auto email via Cloudflare Worker
   fetch('https://osiguraj-email.osiguraj1.workers.dev', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ email: email, reg: 'DZO — ' + ime + ' ' + prezime, osig: _odabranKod, cijena: _odabranaCijena + ' EUR/god' })
+    body: JSON.stringify({ email: _email, reg: 'DZO — ' + ime, osig: _odabranPaket, cijena: _odabranaCijena + '/mj' })
   }).catch(function(){});
 
+  zatvoriModal();
   prikaziKorak('success');
 }
 
 function prikaziKorak(n) {
   document.getElementById('step1').style.display = 'none';
   document.getElementById('step2').style.display = 'none';
-  document.getElementById('step3').style.display = 'none';
   document.getElementById('step-success').style.display = 'none';
-  if (n === 'success') {
-    document.getElementById('step-success').style.display = 'block';
-  } else {
-    document.getElementById('step' + n).style.display = 'block';
-  }
+  if (n === 'success') document.getElementById('step-success').style.display = 'block';
+  else document.getElementById('step' + n).style.display = 'block';
   window.scrollTo(0, 0);
 }
-
-function nazad(n) { prikaziKorak(n); }
 </script>
 
 </body>
