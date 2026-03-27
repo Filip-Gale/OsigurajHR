@@ -870,17 +870,28 @@ async function deletePdfFromDb(id) {
 }
 
 function attachPdf(id) {
-  const input = document.getElementById('attach-pdf-input');
-  input.value = '';
-  input.onchange = async () => {
-    const file = input.files[0];
+  // Kreiraj svaki put novi input — najkompatibilnije s iOS Safari/PWA
+  const old = document.getElementById('attach-pdf-input');
+  if (old) old.remove();
+  const input = document.createElement('input');
+  input.type = 'file';
+  input.id = 'attach-pdf-input';
+  input.accept = 'application/pdf,.pdf';
+  input.style.cssText = 'position:fixed;top:-100px;left:-100px;opacity:0;';
+  document.body.appendChild(input);
+  input.addEventListener('change', async () => {
+    const file = input.files && input.files[0];
     if (!file) return;
-    await savePdfToDb(id, file);
-    const police = [..._policeCache];
-    const idx = police.findIndex(p => p.id === id);
-    if (idx !== -1) { police[idx].hasPdf = true; await savePolice(police); }
-    renderTable();
-  };
+    try {
+      await savePdfToDb(id, file);
+      const police = [..._policeCache];
+      const idx = police.findIndex(p => p.id === id);
+      if (idx !== -1) { police[idx].hasPdf = true; await savePolice(police); }
+      renderTable();
+    } catch(e) {
+      alert('Greška pri spremanju PDF-a: ' + e.message);
+    }
+  });
   input.click();
 }
 
