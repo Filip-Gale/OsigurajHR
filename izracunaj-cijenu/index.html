@@ -1818,11 +1818,18 @@ function fetch_quote() {
 /* ── Triglav card render — radi i bez AS Direct ── */
 function renderTriglav(aoBaseVal) {
   var triglavCard = document.getElementById('triglav-card');
-  var triglavAge = new Date().getFullYear() - Number(S.dob);
+  // Točna dob u godinama (na dan izračuna) — Triglav: čim napunio 24, ide u 25+ bracket
+  var triglavAge = (function() {
+    if (!S.dobFull) return new Date().getFullYear() - Number(S.dob);
+    var d = new Date(S.dobFull), t = new Date();
+    var a = t.getFullYear() - d.getFullYear();
+    if (t.getMonth() < d.getMonth() || (t.getMonth() === d.getMonth() && t.getDate() < d.getDate())) a--;
+    return a;
+  })();
   var tPrice = null, tIsFlat = false;
   _triglavIsFlat = false;
   if (S.tip === 'F') {
-    if (triglavAge <= 24) {
+    if (triglavAge < 24) {
       tPrice = triglavFlatPrice(S.kw, S.dob);
       tIsFlat = true;
     } else {
