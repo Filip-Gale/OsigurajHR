@@ -33,6 +33,46 @@
     --text: #1a1535;
     --muted: #7b72a8;
   }
+  body.dark {
+    --purple: #7c63fa;
+    --purple-light: #3d3270;
+    --purple-bg: #1e1a3a;
+    --yellow: #ffbc27;
+    --yellow-bg: #2a2200;
+    --red: #ef5350;
+    --red-bg: #2a0a0a;
+    --green: #66bb6a;
+    --green-bg: #0a2a0c;
+    --orange: #ffa726;
+    --bg: #0f0e1a;
+    --card: #1a1830;
+    --border: #2e2a50;
+    --text: #e8e4ff;
+    --muted: #8a84b8;
+  }
+  body.dark header { background: #1a1830; border-bottom: 1px solid #2e2a50; }
+  body.dark .logo-bracket { color: var(--yellow); }
+  body.dark tr:hover td { background: #22203a !important; }
+  body.dark .stat-card.purple { background: #1e1a3a; border-color: #3d3270; }
+  body.dark .stat-card.yellow { background: #2a2200; border-color: #5a4800; }
+  body.dark .stat-card.green  { background: #0a2a0c; border-color: #1a5a1e; }
+  body.dark .stat-card.red    { background: #2a0a0a; border-color: #5a1a1a; }
+  body.dark .stat-card.orange { background: #2a1800; border-color: #5a3800; }
+  body.dark #lock-box { background: #1a1830; border: 1px solid #2e2a50; }
+  body.dark #lock-screen { background: #0f0e1a; }
+
+  #dark-toggle {
+    margin-left: 12px;
+    background: rgba(255,255,255,.15);
+    border: none;
+    border-radius: 20px;
+    color: #fff;
+    font-size: 16px;
+    padding: 4px 10px;
+    cursor: pointer;
+    line-height: 1;
+  }
+  #dark-toggle:hover { background: rgba(255,255,255,.25); }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: 'Inter', -apple-system, sans-serif; background: var(--bg); color: var(--text); }
 
@@ -433,6 +473,7 @@
   </div>
   <h1>Evidencija polica</h1>
   <span id="header-count"></span>
+  <button id="dark-toggle" onclick="toggleDark()" title="Tamna/svijetla tema">🌙</button>
 </header>
 
 <div class="container">
@@ -547,6 +588,23 @@
 </div>
 
 <script>
+// ── Dark mode ─────────────────────────────────────────────────
+(function() {
+  if (localStorage.getItem('ep_dark') === '1') {
+    document.body.classList.add('dark');
+  }
+})();
+function toggleDark() {
+  const isDark = document.body.classList.toggle('dark');
+  localStorage.setItem('ep_dark', isDark ? '1' : '0');
+  document.getElementById('dark-toggle').textContent = isDark ? '☀️' : '🌙';
+}
+// Postavi pravi emoji na load
+document.addEventListener('DOMContentLoaded', () => {
+  const btn = document.getElementById('dark-toggle');
+  if (btn) btn.textContent = document.body.classList.contains('dark') ? '☀️' : '🌙';
+});
+
 // ── Lozinka ───────────────────────────────────────────────────
 (function() {
   if (localStorage.getItem('ep_auth') === '1') {
