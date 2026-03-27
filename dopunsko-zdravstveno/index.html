@@ -9,17 +9,13 @@ permalink: /dopunsko-zdravstveno/
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Dopunsko zdravstveno osiguranje — Usporedi i uštedi | Osiguraj.hr</title>
 <meta name="description" content="Usporedi ponude dopunskog zdravstvenog osiguranja. Već od 7 €/mj. Besplatan izračun za tvoj datum rođenja.">
-<link rel="icon" type="image/png" href="/img/favicon.jpg">
+<link rel="icon" type="image/jpeg" href="/img/favicon.jpg">
 <link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/nav.css">
 <style>
 *, *::before, *::after { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #573cf9; min-height: 100vh; margin: 0; }
 
-/* NAV */
-nav { display: flex; flex-direction: row; height: 60px; align-items: center; background-color: white; position: fixed; top: 0; left: 0; right: 0; z-index: 1000; box-shadow: 0 1px 0 rgba(0,0,0,0.07), 0 2px 12px rgba(0,0,0,0.05); padding: 0 20px; justify-content: space-between; }
-.nav-logo { color: #573cf9; font-weight: 800; font-size: 1.1rem; text-decoration: none; }
-.nav-logo span { color: #ffbc27; }
-.nav-phone { display: inline-flex; align-items: center; gap: 7px; background: #573cf9; color: white; height: 38px; border-radius: 100px; padding: 0 16px 0 12px; font-size: 0.88rem; font-weight: 700; text-decoration: none; white-space: nowrap; }
 .nav-spacer { height: 60px; }
 
 /* HERO */
@@ -61,46 +57,50 @@ nav { display: flex; flex-direction: row; height: 60px; align-items: center; bac
 .progress-line.done::after { width: 100%; }
 
 /* STEP */
-.step-panel { display: none; }
-.step-panel.active { display: block; }
 .step-title { font-size: 1.3rem; font-weight: 800; color: #1a1033; margin-bottom: 4px; }
 .step-sub { font-size: 0.88rem; color: rgba(0,0,0,0.52); margin-bottom: 22px; }
 
 /* FIELDS */
 .field { margin-bottom: 16px; }
-.field label { display: block; font-size: 0.75rem; font-weight: 700; color: rgba(0,0,0,0.55); letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 6px; }
+.flabel { display: block; font-size: 0.75rem; font-weight: 700; color: rgba(0,0,0,0.55); letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 6px; }
 .finput {
-    width: 100%; padding: 13px 14px;
+    width: 100%; padding: 14px 16px;
     border: 2px solid rgba(0,0,0,0.12);
-    border-radius: 10px; font-size: 1rem;
+    border-radius: 12px; font-size: 1rem;
     background: white; outline: none;
-    transition: border 0.2s;
-    font-family: inherit;
+    font-family: inherit; font-weight: 600; color: #573cf9;
+    -webkit-appearance: none; appearance: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    min-height: 52px;
 }
-.finput:focus { border-color: #573cf9; }
-.finput.ok { border-color: #22c55e; }
+.finput:focus { border-color: #573cf9; box-shadow: 0 0 0 4px rgba(87,60,249,0.12); }
+.finput::placeholder { font-weight: normal; color: rgba(0,0,0,0.25); }
+.finput.err { border-color: #ef4444; }
+.ferror { font-size: 0.76rem; color: #ef4444; margin-top: 5px; display: none; }
 
-/* BUTTONS */
-.btn-primary {
-    width: 100%; padding: 15px;
-    background: #573cf9; color: white;
-    border: none; border-radius: 12px;
-    font-size: 1rem; font-weight: 800;
-    cursor: pointer; margin-top: 8px;
-    font-family: inherit;
-    transition: background 0.2s, transform 0.15s;
+/* BUTTON */
+.btn-main {
+    display: block; width: 100%; padding: 15px;
+    background: #573cf9; color: white; border: none; border-radius: 12px;
+    font-size: 1rem; font-family: inherit; font-weight: 800;
+    cursor: pointer; position: relative; overflow: hidden;
+    box-shadow: 0 5px 0 #3b20d4;
+    transition: transform 0.08s, box-shadow 0.08s;
+    margin-top: 8px;
 }
-.btn-primary:hover { background: #4530d4; transform: translateY(-1px); }
+.btn-main:active { transform: translateY(4px); box-shadow: 0 1px 0 #3b20d4; }
+.btn-main::after { content: ''; position: absolute; top: -50%; left: -75%; width: 50%; height: 200%; background: linear-gradient(90deg,transparent,rgba(255,255,255,0.22),transparent); transform: skewX(-15deg); animation: shine 2.8s infinite; }
+@keyframes shine { 0%{left:-75%;} 45%,100%{left:130%;} }
+
 .btn-back { background: none; border: none; color: rgba(0,0,0,0.4); font-size: 0.88rem; font-weight: 600; cursor: pointer; margin-bottom: 18px; padding: 0; display: block; font-family: inherit; }
 .btn-back:hover { color: #573cf9; }
-
 .disclaimer { font-size: 0.72rem; color: rgba(0,0,0,0.38); text-align: center; margin-top: 12px; line-height: 1.5; }
 
-/* RESULTS — outside card, on purple bg */
+/* RESULTS */
 .results-section { max-width: 580px; width: 92%; margin: 0 auto 60px; }
-.results-header { color: white; margin-bottom: 20px; }
-.results-header h2 { font-size: 1.3rem; font-weight: 800; margin-bottom: 4px; }
-.results-header p { font-size: 0.88rem; opacity: 0.7; }
+.results-header { margin-bottom: 20px; }
+.results-header h2 { font-size: 1.3rem; font-weight: 800; color: white; margin-bottom: 4px; }
+.results-header p { font-size: 0.88rem; color: rgba(255,255,255,0.65); }
 
 .ponuda {
     background: white; border-radius: 18px;
@@ -108,13 +108,7 @@ nav { display: flex; flex-direction: row; height: 60px; align-items: center; bac
     position: relative;
     box-shadow: 0 4px 24px rgba(0,0,0,0.18);
 }
-.ponuda-badge {
-    position: absolute; top: -11px; left: 18px;
-    background: #ffbc27; color: #1a1033;
-    font-size: 0.68rem; font-weight: 800;
-    padding: 3px 12px; border-radius: 20px;
-    text-transform: uppercase; letter-spacing: 0.3px;
-}
+.ponuda-badge { position: absolute; top: -11px; left: 18px; background: #ffbc27; color: #1a1033; font-size: 0.68rem; font-weight: 800; padding: 3px 12px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.3px; }
 .ponuda-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
 .ponuda-logo-name { font-size: 1.15rem; font-weight: 800; color: #1a1033; }
 .ponuda-cijena .iznos { font-size: 1.7rem; font-weight: 800; color: #573cf9; line-height: 1; }
@@ -125,106 +119,94 @@ nav { display: flex; flex-direction: row; height: 60px; align-items: center; bac
 .ponuda-actions { display: flex; gap: 10px; }
 .btn-detalji { flex: 1; padding: 11px; border: 2px solid #e8e8e8; background: white; border-radius: 10px; font-size: 0.88rem; font-weight: 600; cursor: pointer; color: #444; font-family: inherit; transition: border-color 0.2s; }
 .btn-detalji:hover { border-color: #573cf9; color: #573cf9; }
-.btn-kupi { flex: 1.4; padding: 11px; background: #573cf9; border: none; border-radius: 10px; font-size: 0.9rem; font-weight: 800; cursor: pointer; color: white; font-family: inherit; transition: background 0.2s; }
+.btn-kupi { flex: 1.4; padding: 11px; background: #573cf9; border: none; border-radius: 10px; font-size: 0.9rem; font-weight: 800; cursor: pointer; color: white; font-family: inherit; transition: background 0.2s; box-shadow: 0 3px 0 #3b20d4; }
 .btn-kupi:hover { background: #4530d4; }
 
 /* SUCCESS */
 .success-card { background: white; border-radius: 20px; padding: 44px 28px; max-width: 500px; width: 92%; margin: 28px auto 60px; text-align: center; box-shadow: 0 16px 60px rgba(0,0,0,0.2); }
-.success-icon { font-size: 3.5rem; margin-bottom: 18px; }
 .success-card h2 { font-size: 1.4rem; font-weight: 800; color: #1a1033; margin-bottom: 10px; }
 .success-card p { color: #666; font-size: 0.95rem; line-height: 1.6; }
 .success-card a { color: #573cf9; font-weight: 700; }
 
 /* MODAL */
-.modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 999; align-items: center; justify-content: center; padding: 16px; }
+.modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 9999; align-items: center; justify-content: center; padding: 16px; }
 .modal-overlay.open { display: flex; }
-.modal-box { background: white; border-radius: 20px; padding: 0; max-width: 420px; width: 100%; overflow: hidden; }
+.modal-box { background: white; border-radius: 20px; max-width: 420px; width: 100%; overflow: hidden; }
 .modal-header { background: #573cf9; padding: 24px 24px 20px; }
 .modal-header h3 { color: white; font-size: 1.1rem; font-weight: 800; margin: 0 0 4px; }
-.modal-paket { color: rgba(255,255,255,0.75); font-size: 0.88rem; font-weight: 600; }
-.modal-close { float: right; background: rgba(255,255,255,0.2); border: none; border-radius: 50%; width: 28px; height: 28px; font-size: 1rem; cursor: pointer; color: white; margin-top: -4px; line-height: 28px; }
+.modal-paket-naziv { color: rgba(255,255,255,0.75); font-size: 0.88rem; font-weight: 600; }
+.modal-close { float: right; background: rgba(255,255,255,0.2); border: none; border-radius: 50%; width: 28px; height: 28px; font-size: 1rem; cursor: pointer; color: white; line-height: 28px; text-align: center; }
 .modal-body { padding: 24px; }
+.modal-body .finput { border: 2px solid #e5e5e5; color: #111; }
+.modal-body .finput::placeholder { color: #ccc; }
+.modal-body .flabel { color: #888; }
 </style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav>
-  <a href="/" class="nav-logo">[ Osiguraj<span>.hr</span> ]</a>
-  <a href="tel:+38598813221" class="nav-phone">
-    <span style="width:8px;height:8px;border-radius:50%;background:#4ade80;flex-shrink:0;"></span>
-    098 813 221
-  </a>
-</nav>
+{% include nav.html %}
 <div class="nav-spacer"></div>
 
 <!-- HERO -->
 <div class="hero">
   <h1>Dopunsko zdravstveno osiguranje</h1>
-  <p>Usporedi ponude 4+ osiguravatelja u sekundi · Već od 7 €/mj</p>
+  <p>Usporedi ponude 4+ osiguravatelja u sekundi &middot; Već od 7 €/mj</p>
 </div>
 
-<!-- KORAK 1 — YELLOW CARD -->
-<div class="wizard-card" id="card-korak1">
+<!-- KORAK 1 — samo datum -->
+<div class="wizard-card" id="card-k1">
   <div class="progress-bar">
     <div class="progress-step">
       <div class="progress-dot active" id="dot1">1</div>
-      <div class="progress-lbl active" id="lbl1">PODACI</div>
+      <div class="progress-lbl active">DATUM</div>
     </div>
-    <div class="progress-line" id="line1"></div>
+    <div class="progress-line" id="pline"></div>
     <div class="progress-step">
       <div class="progress-dot" id="dot2">2</div>
       <div class="progress-lbl" id="lbl2">PONUDE</div>
     </div>
   </div>
 
-  <div class="step-title">Unesi podatke za izračun</div>
-  <div class="step-sub">Cijena ovisi o dobi — izračun je besplatan i bez obaveza</div>
+  <div class="step-title">Unesi datum rođenja</div>
+  <div class="step-sub">Cijena ovisi o dobi — izračun traje sekundu</div>
 
   <div class="field">
-    <label>Datum rođenja</label>
-    <input type="date" id="datum" class="finput" max="">
+    <label class="flabel" for="dob">Datum rođenja</label>
+    <input class="finput" id="dob" type="text" inputmode="numeric" placeholder="DD.MM.GGGG" maxlength="10" autocomplete="bday">
+    <div class="ferror" id="e-dob">Unesite ispravan datum rođenja.</div>
   </div>
-  <div class="field">
-    <label>E-mail</label>
-    <input type="email" id="email" class="finput" placeholder="ivan@gmail.com">
-  </div>
-  <div class="field">
-    <label>Broj mobitela</label>
-    <input type="tel" id="mobitel" class="finput" placeholder="091 234 5678">
-  </div>
-  <button class="btn-primary" onclick="korak1()">Prikaži sve ponude &rarr;</button>
-  <p class="disclaimer">Klikom prihvaćaš uvjete korištenja. Kontaktiramo te isključivo zbog ove ponude.</p>
+
+  <button class="btn-main" onclick="korak1()">Prikaži ponude &rarr;</button>
+  <p class="disclaimer">Izračun je besplatan i bez obaveza.</p>
 </div>
 
-<!-- KORAK 2 — RESULTS (outside card, on purple) -->
-<div id="korak2-wrap" style="display:none;">
+<!-- KORAK 2 — ponude -->
+<div id="wrap-k2" style="display:none;">
   <div class="wizard-card" style="margin-bottom:24px;">
     <div class="progress-bar">
       <div class="progress-step">
-        <div class="progress-dot done" id="dot1b"></div>
-        <div class="progress-lbl done" id="lbl1b">PODACI</div>
+        <div class="progress-dot done"></div>
+        <div class="progress-lbl done">DATUM</div>
       </div>
-      <div class="progress-line done" id="line1b"></div>
+      <div class="progress-line done"></div>
       <div class="progress-step">
-        <div class="progress-dot active" id="dot2b">2</div>
-        <div class="progress-lbl active" id="lbl2b">PONUDE</div>
+        <div class="progress-dot active">2</div>
+        <div class="progress-lbl active">PONUDE</div>
       </div>
     </div>
     <button class="btn-back" onclick="prikaziKorak(1)">&larr; Natrag</button>
-    <div class="step-title">Usporedi i odaberi</div>
-    <div class="step-sub" id="ponude-subtitle"></div>
+    <div class="step-title">Odaberi policu</div>
+    <div class="step-sub" id="ponude-sub"></div>
   </div>
 
   <div class="results-section">
 
-    <!-- UNIQA -->
     <div class="ponuda">
       <div class="ponuda-badge">Najpovoljnije</div>
       <div class="ponuda-top">
         <div class="ponuda-logo-name">UNIQA</div>
         <div class="ponuda-cijena">
-          <div class="iznos" id="cijena-uniqa">7,00 €</div>
+          <div class="iznos" id="c-uniqa">—</div>
           <div class="period">/ mjesec</div>
         </div>
       </div>
@@ -235,16 +217,15 @@ nav { display: flex; flex-direction: row; height: 60px; align-items: center; bac
       </div>
       <div class="ponuda-actions">
         <button class="btn-detalji">Detalji</button>
-        <button class="btn-kupi" onclick="otvoriKupi('UNIQA Dopunsko', document.getElementById('cijena-uniqa').textContent)">Odaberi &rarr;</button>
+        <button class="btn-kupi" onclick="otvoriModal('UNIQA Dopunsko','c-uniqa')">Odaberi &rarr;</button>
       </div>
     </div>
 
-    <!-- Triglav -->
     <div class="ponuda">
       <div class="ponuda-top">
         <div class="ponuda-logo-name">Triglav</div>
         <div class="ponuda-cijena">
-          <div class="iznos" id="cijena-triglav">7,30 €</div>
+          <div class="iznos" id="c-triglav">—</div>
           <div class="period">/ mjesec</div>
         </div>
       </div>
@@ -255,16 +236,15 @@ nav { display: flex; flex-direction: row; height: 60px; align-items: center; bac
       </div>
       <div class="ponuda-actions">
         <button class="btn-detalji">Detalji</button>
-        <button class="btn-kupi" onclick="otvoriKupi('Triglav Dopunsko', document.getElementById('cijena-triglav').textContent)">Odaberi &rarr;</button>
+        <button class="btn-kupi" onclick="otvoriModal('Triglav Dopunsko','c-triglav')">Odaberi &rarr;</button>
       </div>
     </div>
 
-    <!-- Generali -->
     <div class="ponuda">
       <div class="ponuda-top">
         <div class="ponuda-logo-name">Generali</div>
         <div class="ponuda-cijena">
-          <div class="iznos" id="cijena-generali">7,50 €</div>
+          <div class="iznos" id="c-generali">—</div>
           <div class="period">/ mjesec</div>
         </div>
       </div>
@@ -275,16 +255,15 @@ nav { display: flex; flex-direction: row; height: 60px; align-items: center; bac
       </div>
       <div class="ponuda-actions">
         <button class="btn-detalji">Detalji</button>
-        <button class="btn-kupi" onclick="otvoriKupi('Generali Dopunsko', document.getElementById('cijena-generali').textContent)">Odaberi &rarr;</button>
+        <button class="btn-kupi" onclick="otvoriModal('Generali Dopunsko','c-generali')">Odaberi &rarr;</button>
       </div>
     </div>
 
-    <!-- Wiener -->
     <div class="ponuda">
       <div class="ponuda-top">
         <div class="ponuda-logo-name">Wiener</div>
         <div class="ponuda-cijena">
-          <div class="iznos" id="cijena-wiener">8,00 €</div>
+          <div class="iznos" id="c-wiener">—</div>
           <div class="period">/ mjesec</div>
         </div>
       </div>
@@ -295,103 +274,126 @@ nav { display: flex; flex-direction: row; height: 60px; align-items: center; bac
       </div>
       <div class="ponuda-actions">
         <button class="btn-detalji">Detalji</button>
-        <button class="btn-kupi" onclick="otvoriKupi('Wiener Dopunsko', document.getElementById('cijena-wiener').textContent)">Odaberi &rarr;</button>
+        <button class="btn-kupi" onclick="otvoriModal('Wiener Dopunsko','c-wiener')">Odaberi &rarr;</button>
       </div>
     </div>
 
-    <p style="font-size:0.72rem;color:rgba(255,255,255,0.5);text-align:center;line-height:1.5;">Cijene su okvirne i prilagođene dobi. Konačna cijena potvrđuje se pri ugovaranju.</p>
+    <p style="font-size:0.72rem;color:rgba(255,255,255,0.45);text-align:center;line-height:1.5;margin-top:8px;">Cijene su okvirne i prilagođene dobi. Konačna cijena potvrđuje se pri ugovaranju.</p>
   </div>
 </div>
 
 <!-- USPJEH -->
-<div class="success-card" id="korak-success" style="display:none;">
-  <div class="success-icon">&#9989;</div>
+<div class="success-card" id="wrap-success" style="display:none;">
+  <div style="font-size:3rem;margin-bottom:16px;">&#9989;</div>
   <h2>Zaprimili smo tvoj zahtjev!</h2>
-  <p>Javljamo ti se u najkraćem roku s prijedlogom police i svim detaljima.</p>
+  <p>Javljamo ti se u najkraćem roku s prijedlogom police i svim detaljima ugovaranja.</p>
   <p style="margin-top:16px;font-size:0.88rem;color:#999;">Dostupni svaki dan 8:00 &ndash; 20:00<br>
-  <a href="tel:+38598813221">098 813 221</a></p>
+    <a href="tel:+38598813221">098 813 221</a>
+  </p>
 </div>
 
 <!-- MODAL -->
-<div class="modal-overlay" id="kupi-modal" onclick="if(event.target===this)zatvoriModal()">
+<div class="modal-overlay" id="modal" onclick="if(event.target===this)zatvoriModal()">
   <div class="modal-box">
     <div class="modal-header">
       <button class="modal-close" onclick="zatvoriModal()">&#x2715;</button>
       <h3>Ugovaranje police</h3>
-      <div class="modal-paket" id="modal-paket-naziv">—</div>
+      <div class="modal-paket-naziv" id="modal-naziv">—</div>
     </div>
     <div class="modal-body">
       <div class="field">
-        <label>Ime i prezime</label>
-        <input type="text" id="modal-ime" class="finput" placeholder="Ivan Horvat">
+        <label class="flabel">Ime i prezime</label>
+        <input type="text" id="m-ime" class="finput" placeholder="Ivan Horvat">
       </div>
       <div class="field">
-        <label>OIB</label>
-        <input type="text" id="modal-oib" class="finput" placeholder="12345678901" maxlength="11">
+        <label class="flabel">E-mail</label>
+        <input type="email" id="m-email" class="finput" placeholder="ivan@gmail.com">
       </div>
-      <button class="btn-primary" onclick="posalji()">Pošalji zahtjev &rarr;</button>
+      <div class="field">
+        <label class="flabel">Broj mobitela</label>
+        <input type="tel" id="m-mobitel" class="finput" placeholder="091 234 5678">
+      </div>
+      <button class="btn-main" onclick="posalji()">Pošalji zahtjev &rarr;</button>
       <p class="disclaimer" style="margin-top:12px;">Agent te kontaktira u najkraćem roku za finalizaciju.</p>
     </div>
   </div>
 </div>
 
-<script>
-document.getElementById('datum').max = new Date().toISOString().split('T')[0];
+{% include wapp.html %}
 
-var _email='', _mobitel='', _datum='', _odabranPaket='', _odabranaCijena='';
+<script>
+// Auto-format DD.MM.GGGG
+document.getElementById('dob').addEventListener('input', function() {
+  var v = this.value.replace(/\D/g,'');
+  if (v.length > 2) v = v.slice(0,2) + '.' + v.slice(2);
+  if (v.length > 5) v = v.slice(0,5) + '.' + v.slice(5);
+  if (v.length > 10) v = v.slice(0,10);
+  this.value = v;
+});
+
+var _dobYear = 0, _dobFull = '', _odabranPaket = '', _odabranaCijena = '';
 
 function korak1() {
-  var datum = document.getElementById('datum').value;
-  var email = document.getElementById('email').value.trim();
-  var mobitel = document.getElementById('mobitel').value.trim();
-  if (!datum || !email || !mobitel) { alert('Molimo ispunite sva polja'); return; }
-  _datum = datum; _email = email; _mobitel = mobitel;
+  var v = document.getElementById('dob').value.trim();
+  var parts = v.split('.');
+  var ok = parts.length === 3 && parts[2].length === 4;
+  if (ok) {
+    var d = new Date(parseInt(parts[2],10), parseInt(parts[1],10)-1, parseInt(parts[0],10));
+    var yr = parseInt(parts[2],10);
+    ok = !isNaN(d.getTime()) && d.getDate()===parseInt(parts[0],10) && yr>=1920 && (new Date().getFullYear()-yr)>=16;
+  }
+  if (!ok) {
+    document.getElementById('e-dob').style.display = 'block';
+    document.getElementById('dob').classList.add('err');
+    return;
+  }
+  document.getElementById('e-dob').style.display = 'none';
+  document.getElementById('dob').classList.remove('err');
 
-  var god = new Date().getFullYear() - new Date(datum).getFullYear();
-  var f = god < 25 ? 0.9 : god > 60 ? 1.15 : 1;
-  document.getElementById('cijena-uniqa').textContent    = (7   * f).toFixed(2).replace('.',',') + ' €';
-  document.getElementById('cijena-triglav').textContent  = (7.3 * f).toFixed(2).replace('.',',') + ' €';
-  document.getElementById('cijena-generali').textContent = (7.5 * f).toFixed(2).replace('.',',') + ' €';
-  document.getElementById('cijena-wiener').textContent   = (8   * f).toFixed(2).replace('.',',') + ' €';
-  document.getElementById('ponude-subtitle').textContent = 'Ponude za osobu rođenu ' + new Date(datum).getFullYear() + '. god.';
+  _dobYear = parseInt(parts[2],10);
+  _dobFull = v;
+  var age = new Date().getFullYear() - _dobYear;
+  var f = age < 25 ? 0.90 : age > 60 ? 1.15 : 1;
 
-  var fd = new FormData();
-  fd.append('access_key','3cf56deb-78e0-4c88-8bc2-d73a20b78a80');
-  fd.append('subject','DZO upit — ' + email);
-  fd.append('message','DZO upit\nDatum rođenja: ' + datum + '\nEmail: ' + email + '\nMobitel: ' + mobitel);
-  fd.append('email', email);
-  fetch('https://api.web3forms.com/submit',{method:'POST',body:fd}).catch(function(){});
+  function fmt(base) { return (base*f).toFixed(2).replace('.',',') + ' €'; }
+  document.getElementById('c-uniqa').textContent    = fmt(7.00);
+  document.getElementById('c-triglav').textContent  = fmt(7.30);
+  document.getElementById('c-generali').textContent = fmt(7.50);
+  document.getElementById('c-wiener').textContent   = fmt(8.00);
+  document.getElementById('ponude-sub').textContent = 'Ponude za osobu rođenu ' + _dobYear + '. god.';
 
   prikaziKorak(2);
 }
 
-function otvoriKupi(paket, cijena) {
-  _odabranPaket = paket; _odabranaCijena = cijena;
-  document.getElementById('modal-paket-naziv').textContent = paket + ' — ' + cijena + '/mj';
-  document.getElementById('kupi-modal').classList.add('open');
+function otvoriModal(paket, cijenaId) {
+  _odabranPaket = paket;
+  _odabranaCijena = document.getElementById(cijenaId).textContent;
+  document.getElementById('modal-naziv').textContent = paket + ' — ' + _odabranaCijena + '/mj';
+  document.getElementById('modal').classList.add('open');
 }
 
 function zatvoriModal() {
-  document.getElementById('kupi-modal').classList.remove('open');
+  document.getElementById('modal').classList.remove('open');
 }
 
 function posalji() {
-  var ime = document.getElementById('modal-ime').value.trim();
-  var oib = document.getElementById('modal-oib').value.trim();
-  if (!ime) { alert('Unesite ime i prezime'); return; }
+  var ime     = document.getElementById('m-ime').value.trim();
+  var email   = document.getElementById('m-email').value.trim();
+  var mobitel = document.getElementById('m-mobitel').value.trim();
+  if (!ime || !email) { alert('Molimo unesite ime i e-mail'); return; }
 
-  var poruka = 'DZO KUPNJA\nIme: '+ime+'\nOIB: '+oib+'\nDatum roj.: '+_datum+'\nPaket: '+_odabranPaket+'\nCijena: '+_odabranaCijena+'/mj\nEmail: '+_email+'\nMobitel: '+_mobitel;
+  var poruka = 'DZO KUPNJA\nIme: '+ime+'\nDatum roj.: '+_dobFull+'\nPaket: '+_odabranPaket+'\nCijena: '+_odabranaCijena+'/mj\nEmail: '+email+'\nMobitel: '+mobitel;
   var fd = new FormData();
   fd.append('access_key','3cf56deb-78e0-4c88-8bc2-d73a20b78a80');
   fd.append('subject','DZO KUPNJA — '+ime+' — '+_odabranPaket);
   fd.append('message', poruka);
-  fd.append('email', _email);
+  fd.append('email', email);
   fd.append('name', ime);
   fetch('https://api.web3forms.com/submit',{method:'POST',body:fd}).catch(function(){});
 
   fetch('https://osiguraj-email.osiguraj1.workers.dev',{
     method:'POST', headers:{'Content-Type':'application/json'},
-    body: JSON.stringify({email:_email, reg:'DZO — '+ime, osig:_odabranPaket, cijena:_odabranaCijena+'/mj'})
+    body: JSON.stringify({email:email, reg:'DZO — '+ime, osig:_odabranPaket, cijena:_odabranaCijena+'/mj'})
   }).catch(function(){});
 
   zatvoriModal();
@@ -399,15 +401,14 @@ function posalji() {
 }
 
 function prikaziKorak(n) {
-  document.getElementById('card-korak1').style.display = 'none';
-  document.getElementById('korak2-wrap').style.display = 'none';
-  document.getElementById('korak-success').style.display = 'none';
-  if (n === 1) { document.getElementById('card-korak1').style.display = 'block'; }
-  else if (n === 2) { document.getElementById('korak2-wrap').style.display = 'block'; }
-  else if (n === 'success') { document.getElementById('korak-success').style.display = 'block'; }
+  document.getElementById('card-k1').style.display   = 'none';
+  document.getElementById('wrap-k2').style.display   = 'none';
+  document.getElementById('wrap-success').style.display = 'none';
+  if      (n===1)         document.getElementById('card-k1').style.display = 'block';
+  else if (n===2)         document.getElementById('wrap-k2').style.display = 'block';
+  else if (n==='success') document.getElementById('wrap-success').style.display = 'block';
   window.scrollTo(0,0);
 }
 </script>
-
 </body>
 </html>
