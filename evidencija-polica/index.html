@@ -683,10 +683,14 @@ function renderTotals(police) {
   const sum = arr => arr.reduce((a, b) => a + b, 0);
   const fmt = n => n.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, '.') + ' EUR';
 
-  // Provizija: neto = cijena * (1 - porez%), provizija AO = neto * 8%, kasko = neto * 6%
-  const provAO    = sum(groupsProv.obvezno) * (1 - 0.15) * 0.08;
-  const provKasko = sum(groupsProv.kasko)   * (1 - 0.10) * 0.06;
-  const provOK    = sum(groupsProv['o+k'])  * (1 - 0.10) * 0.06;
+  // Neto provizija: AO = cijena × 85% × 8%, Kasko = cijena × 90% × 6%
+  const provAO      = sum(groupsProv.obvezno) * 0.85 * 0.08;
+  const provKasko   = sum(groupsProv.kasko)   * 0.90 * 0.06;
+  const provOK      = sum(groupsProv['o+k'])  * 0.90 * 0.06;
+  // Bruto provizija: AO = cijena × 85% × 10%, Kasko = cijena × 90% × 8%
+  const brutoAO     = sum(groupsProv.obvezno) * 0.85 * 0.10;
+  const brutoKasko  = sum(groupsProv.kasko)   * 0.90 * 0.08;
+  const brutoOK     = sum(groupsProv['o+k'])  * 0.90 * 0.08;
 
   const totalSve = sum([...groups.obvezno, ...groups.kasko, ...groups['o+k'], ...groups.ostalo]);
 
@@ -726,6 +730,15 @@ function renderTotals(police) {
         </div>
         <div class="total-amount" style="color:var(--purple)">${fmt(provAO)}</div>
         <div class="total-count">od ${fmt(sum(groups.obvezno))}</div>
+      </div>
+      <div class="total-box" style="background:#ede9fe;border-left:3px solid var(--purple)">
+        <div class="total-label" style="display:flex;align-items:center">Bruto provizija AO
+          <button class="info-btn" onclick="this.classList.toggle('active')">i
+            <span class="tooltip">Cijena × 85% × 10%</span>
+          </button>
+        </div>
+        <div class="total-amount" style="color:var(--purple)">${fmt(brutoAO)}</div>
+        <div class="total-count">od ${fmt(sum(groups.obvezno))}</div>
       </div>`;
     if (groups.kasko.length || groups['o+k'].length) html += `
       <div class="total-box" style="background:#fff8e1;border-left:3px solid var(--yellow)">
@@ -735,6 +748,15 @@ function renderTotals(police) {
           </button>
         </div>
         <div class="total-amount" style="color:#7a4200">${fmt(provKasko + provOK)}</div>
+        <div class="total-count">od ${fmt(sum(groups.kasko) + sum(groups['o+k']))}</div>
+      </div>
+      <div class="total-box" style="background:#fff8e1;border-left:3px solid var(--yellow)">
+        <div class="total-label" style="display:flex;align-items:center">Bruto provizija Kasko
+          <button class="info-btn" onclick="this.classList.toggle('active')">i
+            <span class="tooltip">Cijena × 90% × 8%</span>
+          </button>
+        </div>
+        <div class="total-amount" style="color:#7a4200">${fmt(brutoKasko + brutoOK)}</div>
         <div class="total-count">od ${fmt(sum(groups.kasko) + sum(groups['o+k']))}</div>
       </div>`;
     const ukupnoProvizija = provAO + provKasko + provOK;
@@ -762,6 +784,15 @@ function renderTotals(police) {
         </div>
         <div class="total-amount" style="color:var(--purple)">${fmt(provAO)}</div>
         <div class="total-count">od ${fmt(sum(groups.obvezno))}</div>
+      </div>
+      <div class="total-box" style="background:#ede9fe;border-left:3px solid var(--purple)">
+        <div class="total-label" style="display:flex;align-items:center">Bruto provizija obvezno
+          <button class="info-btn" onclick="this.classList.toggle('active')">i
+            <span class="tooltip">Cijena × 85% × 10%</span>
+          </button>
+        </div>
+        <div class="total-amount" style="color:var(--purple)">${fmt(brutoAO)}</div>
+        <div class="total-count">od ${fmt(sum(groups.obvezno))}</div>
       </div>`;
   }
 
@@ -780,6 +811,15 @@ function renderTotals(police) {
           </button>
         </div>
         <div class="total-amount" style="color:#7a4200">${fmt(provKasko)}</div>
+        <div class="total-count">od ${fmt(sum(groups.kasko))}</div>
+      </div>
+      <div class="total-box" style="background:#fff8e1;border-left:3px solid var(--yellow)">
+        <div class="total-label" style="display:flex;align-items:center">Bruto provizija kasko
+          <button class="info-btn" onclick="this.classList.toggle('active')">i
+            <span class="tooltip">Cijena × 90% × 8%</span>
+          </button>
+        </div>
+        <div class="total-amount" style="color:#7a4200">${fmt(brutoKasko)}</div>
         <div class="total-count">od ${fmt(sum(groups.kasko))}</div>
       </div>`;
   }
