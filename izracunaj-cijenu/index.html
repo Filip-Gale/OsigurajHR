@@ -2309,6 +2309,11 @@ function submitEmail() {
         sendEvent('ostavio_email', {provider: _odaberiProvider, cijena: _odaberiPrice});
         document.getElementById('odaberi-email-success').style.display = 'block';
         btns.forEach(function(b){ b.style.display = 'none'; });
+        fetch('https://osiguraj-email.osiguraj1.workers.dev', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: email, reg: S.reg, osig: _odaberiProvider, cijena: _odaberiPrice })
+        }).catch(function(){});
       }
     );
   });
