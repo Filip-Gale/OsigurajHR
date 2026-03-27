@@ -420,6 +420,7 @@
     <p>Povuci PDF ovdje ili klikni za odabir — podaci se automatski popune</p>
     <p id="parse-status"></p>
     <input type="file" id="file-input" accept=".pdf">
+  <input type="file" id="attach-pdf-input" accept="application/pdf,.pdf" style="display:none">
   </div>
 
   <!-- Form za provjeru / ručni unos -->
@@ -869,14 +870,10 @@ async function deletePdfFromDb(id) {
 }
 
 function attachPdf(id) {
-  const input = document.createElement('input');
-  input.type = 'file';
-  input.accept = 'application/pdf,.pdf';
-  input.style.display = 'none';
-  document.body.appendChild(input);
+  const input = document.getElementById('attach-pdf-input');
+  input.value = '';
   input.onchange = async () => {
     const file = input.files[0];
-    document.body.removeChild(input);
     if (!file) return;
     await savePdfToDb(id, file);
     const police = [..._policeCache];
