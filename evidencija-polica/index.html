@@ -760,10 +760,16 @@ function renderTotals(police) {
         <div class="total-count">od ${fmt(sum(groups.kasko) + sum(groups['o+k']))}</div>
       </div>`;
     const ukupnoProvizija = provAO + provKasko + provOK;
+    const ukupnoBruto = brutoAO + brutoKasko + brutoOK;
     html += `
       <div class="total-box grand">
-        <div class="total-label">Ukupno provizija</div>
+        <div class="total-label">Ukupno neto provizija</div>
         <div class="total-amount">${fmt(ukupnoProvizija)}</div>
+        <div class="total-count">AO + Kasko</div>
+      </div>
+      <div class="total-box grand">
+        <div class="total-label">Ukupno bruto provizija</div>
+        <div class="total-amount">${fmt(ukupnoBruto)}</div>
         <div class="total-count">AO + Kasko</div>
       </div>`;
   }
