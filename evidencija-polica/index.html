@@ -219,6 +219,24 @@
 
   .empty-state { text-align: center; color: var(--muted); padding: 50px; font-size: 14px; }
 
+  /* Statistika */
+  .stat-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 14px; margin-bottom: 24px; }
+  .stat-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px; }
+  .stat-card.purple { background: #ede9fe; border-color: #c4b5fd; }
+  .stat-card.yellow { background: #fff8e1; border-color: #ffe082; }
+  .stat-card.green  { background: #e8f5e9; border-color: #a5d6a7; }
+  .stat-card.red    { background: #fff5f5; border-color: #ffcdd2; }
+  .stat-card.orange { background: #fff3e0; border-color: #ffcc80; }
+  .stat-label { font-size: 11px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; margin-bottom: 6px; }
+  .stat-value { font-size: 22px; font-weight: 700; color: var(--text); line-height: 1.2; }
+  .stat-sub   { font-size: 12px; color: var(--muted); margin-top: 4px; }
+  .stat-section-title { font-size: 13px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; margin: 20px 0 10px; }
+  .stat-bar-row { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; font-size: 13px; }
+  .stat-bar-label { width: 120px; flex-shrink: 0; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .stat-bar-track { flex: 1; background: var(--border); border-radius: 99px; height: 8px; }
+  .stat-bar-fill  { height: 8px; border-radius: 99px; background: var(--purple); }
+  .stat-bar-val { width: 70px; text-align: right; color: var(--muted); flex-shrink: 0; }
+
   .filter-btns { display: flex; gap: 6px; }
   .filter-btn {
     background: var(--purple-bg); border: 1.5px solid transparent; color: var(--purple);
@@ -489,6 +507,7 @@
           <button class="filter-btn active" data-filter="sve" onclick="setFilter('sve')">Sve</button>
           <button class="filter-btn" data-filter="obvezno" onclick="setFilter('obvezno')">Obvezno</button>
           <button class="filter-btn" data-filter="kasko" onclick="setFilter('kasko')">Kasko</button>
+          <button class="filter-btn" data-filter="statistika" onclick="setFilter('statistika')">📊 Statistika</button>
         </div>
         <button class="export-btn" onclick="exportCSV()">Exportaj CSV</button>
       </div>
@@ -520,6 +539,9 @@
     <!-- Zbroj -->
     <div id="totals-row" style="display:none; margin-top:18px; padding-top:16px; border-top:2px solid var(--border); display:flex; gap:24px; flex-wrap:wrap;">
     </div>
+
+    <!-- Statistika -->
+    <div id="stats-section" style="display:none; margin-top:8px;"></div>
   </div>
 
 </div>
@@ -572,7 +594,109 @@ let currentFilter = 'sve';
 function setFilter(f) {
   currentFilter = f;
   document.querySelectorAll('.filter-btn').forEach(b => b.classList.toggle('active', b.dataset.filter === f));
-  renderTable();
+  const isStats = f === 'statistika';
+  document.getElementById('stats-section').style.display = isStats ? 'block' : 'none';
+  document.getElementById('polica-table').style.display = isStats ? 'none' : '';
+  document.getElementById('totals-row').style.display = isStats ? 'none' : '';
+  if (isStats) renderStats();
+  else renderTable();
+}
+
+function renderStats() {
+  const police = _policeCache;
+  const today = new Date(); today.setHours(0,0,0,0);
+  const fmt = n => n.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, '.') + ' EUR';
+  const fmtN = n => n.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+
+  const ao = police.filter(p => p.vrsta === 'obvezno');
+  const kasko = police.filter(p => p.vrsta === 'kasko');
+  const bezProv = p => /0\s*%\s*provizij/i.test(p.napomena || '');
+
+  // Prosječne cijene
+  const avg = arr => arr.length ? arr.reduce((s,p) => s + (parseFloat(p.cijena)||0), 0) / arr.length : 0;
+  const sum = arr => arr.reduce((s,p) => s + (parseFloat(p.cijena)||0), 0);
+
+  // Kontakt breakdown
+  const brPhone = police.filter(p => /^\d+$/.test(p.kontakt || ''));
+  const brEmail = police.filter(p => (p.kontakt||'').includes('@'));
+  const brNone  = police.filter(p => !p.kontakt);
+
+  // Istjecanje
+  const expired = police.filter(p => { if(!p.istek) return false; const d=new Date(p.istek); d.setHours(0,0,0,0); return d < today; });
+  const next30  = police.filter(p => { if(!p.istek) return false; const d=new Date(p.istek); d.setHours(0,0,0,0); const diff=Math.round((d-today)/86400000); return diff>=0 && diff<=30; });
+  const next60  = police.filter(p => { if(!p.istek) return false; const d=new Date(p.istek); d.setHours(0,0,0,0); const diff=Math.round((d-today)/86400000); return diff>30 && diff<=60; });
+  const next90  = police.filter(p => { if(!p.istek) return false; const d=new Date(p.istek); d.setHours(0,0,0,0); const diff=Math.round((d-today)/86400000); return diff>60 && diff<=90; });
+
+  // Osiguravatelji
+  const osigCount = {};
+  police.forEach(p => { const o = p.osig||'Nepoznato'; osigCount[o] = (osigCount[o]||0)+1; });
+  const osigSorted = Object.entries(osigCount).sort((a,b)=>b[1]-a[1]);
+
+  // Klijenti s više polica
+  const klijentCount = {};
+  police.forEach(p => { const k = (p.ime||'').trim().toLowerCase(); if(k) klijentCount[k] = (klijentCount[k]||0)+1; });
+  const visePolica = Object.entries(klijentCount).filter(([,n])=>n>1).sort((a,b)=>b[1]-a[1]);
+
+  // Prosječan broj dana do isteka (samo aktivne)
+  const aktivne = police.filter(p => { if(!p.istek) return false; const d=new Date(p.istek); d.setHours(0,0,0,0); return d >= today; });
+  const avgDaniIstek = aktivne.length ? Math.round(aktivne.reduce((s,p)=>{ const d=new Date(p.istek); d.setHours(0,0,0,0); return s+Math.round((d-today)/86400000); },0)/aktivne.length) : 0;
+
+  // Provizija ukupno
+  const aoProvArr = ao.filter(p=>!bezProv(p));
+  const kProvArr  = kasko.filter(p=>!bezProv(p));
+  const brutoAOtot  = sum(aoProvArr) * 0.85 * 0.10;
+  const brutoKtot   = sum(kProvArr)  * 0.90 * 0.08;
+  const netoAOtot   = sum(aoProvArr) * 0.85 * 0.08;
+  const netoKtot    = sum(kProvArr)  * 0.90 * 0.06;
+
+  const maxOsig = osigSorted.length ? osigSorted[0][1] : 1;
+
+  document.getElementById('stats-section').innerHTML = `
+    <div class="stat-section-title">Pregled portfelja</div>
+    <div class="stat-grid">
+      <div class="stat-card"><div class="stat-label">Ukupno polica</div><div class="stat-value">${police.length}</div><div class="stat-sub">AO: ${ao.length} · Kasko: ${kasko.length}</div></div>
+      <div class="stat-card purple"><div class="stat-label">Prosječna cijena AO</div><div class="stat-value">${fmtN(avg(ao))} €</div><div class="stat-sub">Ukupno ${fmt(sum(ao))}</div></div>
+      <div class="stat-card yellow"><div class="stat-label">Prosječna cijena Kasko</div><div class="stat-value">${fmtN(avg(kasko))} €</div><div class="stat-sub">Ukupno ${fmt(sum(kasko))}</div></div>
+      <div class="stat-card green"><div class="stat-label">Bruto provizija ukupno</div><div class="stat-value">${fmtN(brutoAOtot+brutoKtot)} €</div><div class="stat-sub">Neto: ${fmtN(netoAOtot+netoKtot)} €</div></div>
+    </div>
+
+    <div class="stat-section-title">Kontakt kanal</div>
+    <div class="stat-grid">
+      <div class="stat-card"><div class="stat-label">Broj mobitela</div><div class="stat-value">${brPhone.length}</div><div class="stat-sub">${Math.round(brPhone.length/Math.max(police.length,1)*100)}% klijenata</div></div>
+      <div class="stat-card"><div class="stat-label">E-mail</div><div class="stat-value">${brEmail.length}</div><div class="stat-sub">${Math.round(brEmail.length/Math.max(police.length,1)*100)}% klijenata</div></div>
+      <div class="stat-card red"><div class="stat-label">Bez kontakta</div><div class="stat-value">${brNone.length}</div><div class="stat-sub">Nedostaje kontakt</div></div>
+    </div>
+
+    <div class="stat-section-title">Istjecanje polica</div>
+    <div class="stat-grid">
+      <div class="stat-card red"><div class="stat-label">Isteklo</div><div class="stat-value">${expired.length}</div><div class="stat-sub">Potrebna obnova</div></div>
+      <div class="stat-card orange"><div class="stat-label">Ističe za 30 dana</div><div class="stat-value">${next30.length}</div><div class="stat-sub">${next30.map(p=>p.ime||p.reg).join(', ')||'—'}</div></div>
+      <div class="stat-card yellow"><div class="stat-label">Ističe 31–60 dana</div><div class="stat-value">${next60.length}</div><div class="stat-sub">&nbsp;</div></div>
+      <div class="stat-card green"><div class="stat-label">Ističe 61–90 dana</div><div class="stat-value">${next90.length}</div><div class="stat-sub">&nbsp;</div></div>
+      <div class="stat-card"><div class="stat-label">Prosj. dana do isteka</div><div class="stat-value">${avgDaniIstek}</div><div class="stat-sub">za aktivne police</div></div>
+    </div>
+
+    <div class="stat-section-title">Osiguravatelji</div>
+    ${osigSorted.map(([naziv,n])=>`
+      <div class="stat-bar-row">
+        <div class="stat-bar-label">${naziv}</div>
+        <div class="stat-bar-track"><div class="stat-bar-fill" style="width:${Math.round(n/maxOsig*100)}%"></div></div>
+        <div class="stat-bar-val">${n} polica</div>
+      </div>`).join('')}
+
+    ${visePolica.length ? `
+    <div class="stat-section-title">Klijenti s više polica</div>
+    <div class="stat-grid">
+      ${visePolica.map(([ime,n])=>`<div class="stat-card"><div class="stat-label">${ime.replace(/\b\w/g,c=>c.toUpperCase())}</div><div class="stat-value">${n}</div><div class="stat-sub">police</div></div>`).join('')}
+    </div>` : ''}
+
+    <div class="stat-section-title">Provizija breakdown</div>
+    <div class="stat-grid">
+      <div class="stat-card purple"><div class="stat-label">Bruto provizija AO</div><div class="stat-value">${fmtN(brutoAOtot)} €</div><div class="stat-sub">Neto: ${fmtN(netoAOtot)} €</div></div>
+      <div class="stat-card yellow"><div class="stat-label">Bruto provizija Kasko</div><div class="stat-value">${fmtN(brutoKtot)} €</div><div class="stat-sub">Neto: ${fmtN(netoKtot)} €</div></div>
+      <div class="stat-card"><div class="stat-label">Police bez provizije</div><div class="stat-value">${police.filter(bezProv).length}</div><div class="stat-sub">${police.filter(bezProv).map(p=>p.ime||p.reg).join(', ')||'—'}</div></div>
+    </div>
+  `;
 }
 
 function renderTable() {
