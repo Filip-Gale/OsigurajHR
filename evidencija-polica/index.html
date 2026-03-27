@@ -401,6 +401,12 @@
   </div>
 </div>
 
+<!-- PDF viewer modal -->
+<div id="pdf-modal" style="display:none;position:fixed;inset:0;z-index:9999;background:#222;overflow-y:auto;-webkit-overflow-scrolling:touch;">
+  <button onclick="document.getElementById('pdf-modal').style.display='none'" style="position:sticky;top:10px;left:10px;z-index:10;background:#fff;border:none;border-radius:8px;padding:8px 16px;font-weight:700;font-size:15px;cursor:pointer;margin:10px;">✕ Zatvori</button>
+  <div id="pdf-pages" style="padding:10px;"></div>
+</div>
+
 <div id="alarm-banner"></div>
 
 <header>
@@ -897,19 +903,38 @@ function attachPdf(id) {
 }
 
 async function openPdfForPolica(id) {
-  const url = await getPdfUrl(id);
-  if (url) {
-    const a = document.createElement('a');
-    a.href = url;
-    a.target = '_blank';
-    a.rel = 'noopener';
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    setTimeout(() => URL.revokeObjectURL(url), 15000);
-    return true;
+  const db = await openPdfDb();
+  const data = await new Promise(res => {
+    const r = db.transaction('pdfs', 'readonly').objectStore('pdfs').get(String(id));
+    r.onsuccess = e => res(e.target.result || null);
+    r.onerror = () => res(null);
+  });
+  if (!data) return false;
+
+  const modal = document.getElementById('pdf-modal');
+  const container = document.getElementById('pdf-pages');
+  container.innerHTML = '<p style="color:#fff;text-align:center;padding:20px">Učitavam PDF...</p>';
+  modal.style.display = 'block';
+  modal.scrollTop = 0;
+
+  try {
+    const buffer = data instanceof ArrayBuffer ? data : await new Blob([data]).arrayBuffer();
+    const pdf = await pdfjsLib.getDocument({ data: buffer }).promise;
+    container.innerHTML = '';
+    for (let i = 1; i <= pdf.numPages; i++) {
+      const page = await pdf.getPage(i);
+      const viewport = page.getViewport({ scale: window.devicePixelRatio > 1 ? 1.5 : 2 });
+      const canvas = document.createElement('canvas');
+      canvas.width = viewport.width;
+      canvas.height = viewport.height;
+      canvas.style.cssText = 'width:100%;display:block;margin-bottom:8px;';
+      container.appendChild(canvas);
+      await page.render({ canvasContext: canvas.getContext('2d'), viewport }).promise;
+    }
+  } catch(e) {
+    container.innerHTML = `<p style="color:#f88;text-align:center;padding:20px">Greška: ${e.message}</p>`;
   }
-  return false;
+  return true;
 }
 
 async function handleCardClick(id) {
