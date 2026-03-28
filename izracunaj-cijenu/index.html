@@ -1498,6 +1498,16 @@ function go(n, dir) {
 
   // Magic fill Vozač fields when arriving at step 2
   if (n === 2 && scanData) {
+    // Pravna osoba ako nema dob a ima oib
+    var s2isPravna = !scanData.dob && !!scanData.oib;
+    if (s2isPravna) {
+      var s2tipP = document.getElementById('tip-p');
+      if (s2tipP && !s2tipP.checked) {
+        s2tipP.checked = true;
+        s2tipP.dispatchEvent(new Event('change', { bubbles: true }));
+      }
+    }
+
     var s2fills = [
       { id: 'dob', val: scanData.dob || null, delay: 40 },
       { id: 'oib', val: scanData.oib || null, delay: 35 },
@@ -2812,13 +2822,8 @@ async function confirmScanData() {
   closeScanModal();
   await scanSleep(80);
 
-  // Detect company (pravna osoba) from name or explicit tip field
-  var imeVal = (scanData.ime || scanData.naziv || '').toLowerCase();
-  var isPravna = /d\.o\.o|j\.d\.o\.o|d\.d\.|obrt|j\.d\.d\.|komanditno|javno poduze/i.test(imeVal);
-  if (!isPravna && scanData.tip_stranke) {
-    isPravna = /pravna|tvrtka|poduze/i.test(String(scanData.tip_stranke));
-  }
-
+  // Pravna osoba: polica nema datum rođenja ali ima OIB
+  var isPravna = !scanData.dob && !!scanData.oib;
   if (isPravna) {
     var tipP = document.getElementById('tip-p');
     if (tipP && !tipP.checked) {
