@@ -2812,6 +2812,21 @@ async function confirmScanData() {
   closeScanModal();
   await scanSleep(80);
 
+  // Detect company (pravna osoba) from name or explicit tip field
+  var imeVal = (scanData.ime || scanData.naziv || '').toLowerCase();
+  var isPravna = /d\.o\.o|j\.d\.o\.o|d\.d\.|obrt|j\.d\.d\.|komanditno|javno poduze/i.test(imeVal);
+  if (!isPravna && scanData.tip_stranke) {
+    isPravna = /pravna|tvrtka|poduze/i.test(String(scanData.tip_stranke));
+  }
+
+  if (isPravna) {
+    var tipP = document.getElementById('tip-p');
+    if (tipP && !tipP.checked) {
+      tipP.checked = true;
+      tipP.dispatchEvent(new Event('change', { bubbles: true }));
+    }
+  }
+
   var fills = [
     { id: 'reg', val: scanData.registracija ? scanData.registracija.toUpperCase() : null, delay: 35 },
     { id: 'kw',  val: scanData.kw ? String(scanData.kw) : null, delay: 35 },
