@@ -2618,8 +2618,9 @@ function resetUpload() {
     <p class="scan-modal-sub">Slikaj ili priloži staru policu i preskoči unos podataka.</p>
 
     <!-- Drop zone -->
-    <div id="scan-dropzone" onclick="document.getElementById('scan-file-input').click()" ondragover="scanDragOver(event)" ondragleave="scanDragLeave(event)" ondrop="scanDrop(event)">
-      <input type="file" id="scan-file-input" accept="image/*,application/pdf" onchange="handleScanFile(this.files[0])">
+    <div id="scan-dropzone" ondragover="scanDragOver(event)" ondragleave="scanDragLeave(event)" ondrop="scanDrop(event)">
+      <input type="file" id="scan-file-input" accept="image/*,application/pdf" onchange="handleScanFile(this.files[0])" style="display:none">
+      <label for="scan-file-input" style="display:block;cursor:pointer;">
       <div class="scan-dz-icon">
         <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#bfc3ff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
           <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
@@ -2629,6 +2630,7 @@ function resetUpload() {
       </div>
       <p class="scan-dz-text">Klikni ili povuci policu ovdje</p>
       <p class="scan-dz-sub">Podržano: JPG, PNG, PDF</p>
+      </label>
       <div class="scan-dz-sep">ili</div>
       <button class="scan-cam-btn" type="button" onclick="event.stopPropagation(); document.getElementById('scan-cam-input').click()">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
