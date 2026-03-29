@@ -278,8 +278,8 @@
   .buduci-add-form h3 { font-size: 14px; font-weight: 700; margin-bottom: 16px; color: var(--text); }
   .buduci-grid { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr auto; gap: 12px; align-items: end; }
   @media (max-width: 700px) {
-    .buduci-grid { grid-template-columns: 1fr 1fr; }
-    .buduci-grid .buduci-span { grid-column: 1 / -1; }
+    .buduci-grid { grid-template-columns: 1fr; }
+    .buduci-grid .form-group, .buduci-grid .buduci-span { grid-column: 1 / -1; }
   }
   .stat-bar-row { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; font-size: 13px; }
   .stat-bar-label { width: 120px; flex-shrink: 0; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
@@ -1192,14 +1192,14 @@ function renderBuduci() {
 
     const vrstaPrikaz = { 'o+k': 'Obvezno i kasko', 'zdravstveno': 'Zdravstveno', 'obvezno': 'Obvezno AO', 'kasko': 'Kasko', 'putno': 'Putno', 'ostalo': 'Ostalo' };
     return `<tr class="${rowClass}">
-      <td><strong>${esc(k.ime || '—')}</strong></td>
+      <td class="col-ime"><strong>${esc(k.ime || '—')}</strong></td>
       <td class="col-kontakt">${kontaktHtml}</td>
-      <td>${esc(vrstaPrikaz[k.vrsta] || k.vrsta || '—')}</td>
-      <td>${formatDate(k.istek)}</td>
-      <td>${kontaktStr}</td>
+      <td class="col-vrsta">${esc(vrstaPrikaz[k.vrsta] || k.vrsta || '—')}</td>
+      <td class="col-istek">${formatDate(k.istek)}</td>
+      <td class="col-dani">${kontaktStr}</td>
       <td>${badge}</td>
-      <td style="color:var(--muted);font-size:12px">${esc(k.napomena || '')}</td>
-      <td><button class="del-btn" onclick="deleteBuduciKlijent(${k.id})" title="Obriši">✕</button></td>
+      <td class="col-napomena">${esc(k.napomena || '')}</td>
+      <td class="col-del"><button class="del-btn" onclick="deleteBuduciKlijent(${k.id})" title="Obriši">✕</button></td>
     </tr>`;
   }).join('');
 }
