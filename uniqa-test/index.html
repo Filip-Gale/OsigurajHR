@@ -1136,27 +1136,46 @@ async function kupiti() {
 // ─── Dokumenti ────────────────────────────────────────────────────────────────
 
 async function downloadDoc(type) {
-  const btnMap = { POLICY: 'btn-polica-pdf', GREEN_CARD: 'btn-zk-pdf', INVOICE: 'btn-inv-pdf' };
+  const btnMap   = { POLICY: 'btn-polica-pdf', GREEN_CARD: 'btn-zk-pdf', INVOICE: 'btn-inv-pdf' };
+  const labelMap = { POLICY: '📄 Preuzmi policu (PDF)', GREEN_CARD: '🟢 Zelena karta', INVOICE: '🧾 Faktura' };
   const btn = document.getElementById(btnMap[type]);
   btn.disabled = true;
-  try {
-    const r = await fetch(API + '/ao/documents', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ partnerNo: state.partnerNo, policyNo: state.policyNo, documentType: type }),
-    });
-    const data = await r.json();
-    const b64 = data.value?.base64Content || data.base64Content;
-    if (!b64) throw new Error(data.message || 'Dokument nije dostupan.');
-    const blob = new Blob([Uint8Array.from(atob(b64), c => c.charCodeAt(0))], { type: 'application/pdf' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url; a.download = type.toLowerCase() + '_' + state.policyNo + '.pdf'; a.click();
-    URL.revokeObjectURL(url);
-  } catch (e) {
-    alert('Greška: ' + e.message);
-  } finally {
-    btn.disabled = false;
+
+  const MAX_TRIES = 4, WAIT_SEC = 20;
+
+  for (let attempt = 1; attempt <= MAX_TRIES; attempt++) {
+    try {
+      btn.textContent = attempt === 1 ? 'Dohvaćam dokument...' : `Pokušaj ${attempt}/${MAX_TRIES}...`;
+      const r = await fetch(API + '/ao/documents', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ partnerNo: state.partnerNo, policyNo: state.policyNo, documentType: type }),
+      });
+      const data = await r.json();
+      const b64 = data.value?.base64Content || data.base64Content;
+      if (!b64) throw new Error(data.message || 'Dokument nije dostupan.');
+
+      const blob = new Blob([Uint8Array.from(atob(b64), c => c.charCodeAt(0))], { type: 'application/pdf' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url; a.download = type.toLowerCase() + '_' + state.policyNo + '.pdf'; a.click();
+      URL.revokeObjectURL(url);
+      btn.textContent = labelMap[type];
+      btn.disabled = false;
+      return;
+    } catch (e) {
+      if (attempt < MAX_TRIES) {
+        for (let s = WAIT_SEC; s > 0; s--) {
+          btn.textContent = `Čekam dokument... ${s}s`;
+          await new Promise(r => setTimeout(r, 1000));
+        }
+      } else {
+        btn.textContent = labelMap[type];
+        btn.disabled = false;
+        document.getElementById('s5-err-msg').textContent = 'Dokument još nije spreman. Pričekaj minutu pa pokušaj ponovo.';
+        document.getElementById('s5-err').style.display = 'block';
+      }
+    }
   }
 }
 
@@ -1200,19 +1219,21 @@ function launchConfetti() {
     <p class="scan-modal-sub">Slikaj ili priloži staru policu i preskoči unos podataka.</p>
 
     <!-- Drop zone -->
-    <div id="scan-dropzone" onclick="document.getElementById('scan-file-input').click()" ondragover="scanDragOver(event)" ondragleave="scanDragLeave(event)" ondrop="scanDrop(event)">
-      <input type="file" id="scan-file-input" accept="image/*,application/pdf" onchange="handleScanFile(this.files[0])">
-      <div class="scan-dz-icon">
-        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#bfc3ff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-          <polyline points="17 8 12 3 7 8"/>
-          <line x1="12" y1="3" x2="12" y2="15"/>
-        </svg>
-      </div>
-      <p class="scan-dz-text">Klikni ili povuci policu ovdje</p>
-      <p class="scan-dz-sub">Podržano: JPG, PNG, PDF</p>
+    <div id="scan-dropzone" ondragover="scanDragOver(event)" ondragleave="scanDragLeave(event)" ondrop="scanDrop(event)">
+      <input type="file" id="scan-file-input" accept="image/*,application/pdf" onchange="handleScanFile(this.files[0])" style="display:none">
+      <label for="scan-file-input" style="display:block;cursor:pointer;">
+        <div class="scan-dz-icon">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#bfc3ff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="17 8 12 3 7 8"/>
+            <line x1="12" y1="3" x2="12" y2="15"/>
+          </svg>
+        </div>
+        <p class="scan-dz-text">Klikni ili povuci policu ovdje</p>
+        <p class="scan-dz-sub">Podržano: JPG, PNG, PDF</p>
+      </label>
       <div class="scan-dz-sep">ili</div>
-      <button class="scan-cam-btn" type="button" onclick="event.stopPropagation(); document.getElementById('scan-cam-input').click()">
+      <button class="scan-cam-btn" type="button" onclick="document.getElementById('scan-cam-input').click()">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
           <circle cx="12" cy="13" r="4"/>
@@ -1332,7 +1353,6 @@ function fileToBase64(file) {
 
 function renderScanPreview(d) {
   const rows = [
-    { lbl: 'Registracija',   val: d.registracija },
     { lbl: 'Registracija',   val: d.registracija },
     { lbl: 'Marka',          val: d.marka },
     { lbl: 'Model',          val: d.model },

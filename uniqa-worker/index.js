@@ -93,7 +93,7 @@ async function handleQuote(body, headers) {
       plateRegistrationZone: body.plateZone,
       vehicleLeasing: body.leasing || '2',
       plateNo: body.plateNo,
-      vinNo: body.vinNo,
+      vinNo: 'AAAAA',
       yearOfManufactoring: Number(body.year),
       enginePower: Number(body.enginePower),
       numberOfSeat: String(body.seats || '5'),
@@ -139,6 +139,7 @@ async function handleCreatePolicy(body, headers) {
     extensions: {
       E_IsDiplomat: 'No',
       bonusMalusScenario: 'B4',
+      skipDuplicateCheck: 'YES',
     },
     issuanceHolder: {
       userType: body.customerType === 'COMPANY' ? 'COMPANY' : 'PERSONAL',
@@ -148,7 +149,7 @@ async function handleCreatePolicy(body, headers) {
       fullName: `${body.firstName} ${body.lastName}`,
       lastName: body.lastName,
       firstName: body.firstName,
-      mobilePhone: [{ phoneNo: body.phone, phoneType: 'PHONE', countryCode: '+385' }],
+      mobilePhone: [{ phoneNo: String(body.phone).replace(/^0+/, ''), phoneType: 'PHONE', countryCode: '+385' }],
       address: [
         { addressType: 'PERMANENT', zipCode: body.zipCode, address11: body.street, address12: body.streetNo, address13: body.city, address15: 'Croatia' },
         { addressType: 'CONTACT',   zipCode: body.zipCode, address11: body.street, address12: body.streetNo, address13: body.city, address15: 'Croatia' },
@@ -172,7 +173,7 @@ async function handleCreatePolicy(body, headers) {
           vehicleLeasing: body.leasing === '1' ? 'YES' : 'NO',
           plateNo: body.plateNo,
           vinNo: body.vinNo,
-          yearOfManufactoring: Number(body.year),
+          yearOfManufacturing: Number(body.year),
           enginePower: Number(body.enginePower),
           numberOfSeat: String(body.seats || '5'),
           vehicleBrand: body.brand,
@@ -182,6 +183,7 @@ async function handleCreatePolicy(body, headers) {
           vehicleUsage: 'StandardUsage',
           vehicleGroup: 'Passenger',
           isNotRegistered: 'NO',
+          isNewVehicle: 'NO',
           vehicleInAdvertisingAndBranding: 'NO',
           autoBodyType: body.bodyType || 'ZATVORENI',
           extensions: { skipDuplicateCheck: 'YES' },
@@ -247,24 +249,36 @@ async function handleExtractPolicy(body, headers, env) {
     return json({ ok: false, error: 'Missing image or mimeType' }, 400, headers);
   }
 
-  const prompt = `Ovo je fotografija ili PDF policije auto osiguranja, prometne dozvole ili srodnog dokumenta na hrvatskom jeziku.
+  const prompt = `Ovo je fotografija ili PDF police auto osiguranja, prometne dozvole ili zelene karte na hrvatskom jeziku.
 Pronađi i vrati ISKLJUČIVO sljedeći JSON objekt (bez komentara, bez markdown blokova, samo čisti JSON):
 {
-  "registracija": "registracijska oznaka vozila (npr. ZG-123-AB, bez razmaka i crtica)",
+  "registracija": "registracijska oznaka vozila bez razmaka i crtica, npr. ZG1234AB",
   "kw": (samo broj — snaga motora u kW, integer),
-  "dob": "datum rođenja vlasnika u formatu DD.MM.GGGG",
-  "oib": "OIB — točno 11 znamenki bez razmaka i crtica"
+  "dob": "datum rođenja vlasnika/ugovaratelja u formatu DD.MM.GGGG",
+  "oib": "OIB — točno 11 znamenki bez razmaka i crtica",
+  "marka": "marka vozila velika slova, npr. RENAULT",
+  "model": "SAMO osnovno ime modela velika slova, npr. TWINGO ili CLIO (bez motorizacije!)",
+  "spec_motora": "motorizacija i varijanta, npr. 1.2 TREND 16V ili 1.5 DCI (bez marke i modela)",
+  "godina": (godina proizvodnje vozila, integer),
+  "gorivo": "Otto" ili "Diesel" (benzin/plin/hibrid = Otto, dizel = Diesel),
+  "vin": "broj šasije/VIN — 17 alfanumeričkih znakova bez razmaka",
+  "ime": "ime ugovaratelja/vlasnika",
+  "prezime": "prezime ugovaratelja/vlasnika",
+  "ulica": "naziv ulice bez kućnog broja",
+  "kucni_broj": "kućni broj (samo broj i slovo ako postoji)",
+  "postanski_broj": "poštanski broj (5 znamenki)",
+  "grad": "naziv grada"
 }
 Za polja koja nisu vidljiva postavi null. Vrati SAMO JSON, ništa drugo.`;
 
   const r = await fetch(
-    `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${env.GEMINI_API_KEY}`,
+    `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${env.GEMINI_API_KEY}`,
     {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         contents: [{ parts: [{ text: prompt }, { inline_data: { mime_type: mimeType, data: image } }] }],
-        generationConfig: { temperature: 0, maxOutputTokens: 256 },
+        generationConfig: { temperature: 0, maxOutputTokens: 8192, thinkingConfig: { thinkingBudget: 0 } },
       }),
     }
   );
@@ -274,17 +288,30 @@ Za polja koja nisu vidljiva postavi null. Vrati SAMO JSON, ništa drugo.`;
     return json({ ok: false, error: gemini.error?.message || 'Gemini error' }, 500, headers);
   }
 
-  const text = (gemini.candidates?.[0]?.content?.parts?.[0]?.text || '').trim();
+  // gemini-2.5-flash returns thinking tokens — find the part that contains JSON
+  const parts = gemini.candidates?.[0]?.content?.parts || [];
+  const text = (parts.map(p => p.text || '').find(t => t.includes('{')) || '').trim();
   try {
-    const clean = text.replace(/^```json\s*/i, '').replace(/^```\s*/i, '').replace(/\s*```$/i, '').trim();
+    const match = text.match(/\{[\s\S]*\}/);
+    const clean = match ? match[0] : text;
     const parsed = JSON.parse(clean);
-    // Normalize: strip spaces/dashes from OIB
-    if (parsed.oib) parsed.oib = String(parsed.oib).replace(/[\s\-]/g, '');
-    // Normalize kw to number
-    if (parsed.kw) parsed.kw = parseInt(parsed.kw, 10) || null;
+    if (parsed.oib)    parsed.oib    = String(parsed.oib).replace(/[\s\-]/g, '');
+    if (parsed.kw)     parsed.kw     = parseInt(parsed.kw, 10) || null;
+    if (parsed.godina) parsed.godina = parseInt(parsed.godina, 10) || null;
+    if (parsed.marka)  parsed.marka  = String(parsed.marka).toUpperCase().trim();
+    if (parsed.model)  parsed.model  = String(parsed.model).toUpperCase().trim();
+    if (parsed.vin)     parsed.vin     = String(parsed.vin).replace(/[\s\-]/g, '').toUpperCase();
+    if (parsed.gorivo && !['Otto','Diesel'].includes(parsed.gorivo)) parsed.gorivo = null;
+    if (parsed.ime)           parsed.ime           = String(parsed.ime).trim();
+    if (parsed.prezime)       parsed.prezime       = String(parsed.prezime).trim();
+    if (parsed.spec_motora)   parsed.spec_motora   = String(parsed.spec_motora).trim();
+    if (parsed.ulica)         parsed.ulica         = String(parsed.ulica).trim();
+    if (parsed.kucni_broj)    parsed.kucni_broj    = String(parsed.kucni_broj).trim();
+    if (parsed.postanski_broj) parsed.postanski_broj = String(parsed.postanski_broj).replace(/\D/g,'');
+    if (parsed.grad)          parsed.grad          = String(parsed.grad).trim();
     return json({ ok: true, ...parsed }, 200, headers);
   } catch {
-    return json({ ok: false, error: 'Nisam uspio pročitati dokument. Pokušaj s boljom fotografijom.', raw: text }, 500, headers);
+    return json({ ok: false, error: 'Nisam uspio pročitati dokument. Pokušaj s boljom fotografijom.', raw: text, parts: parts.map(p => p.text?.slice(0,200)) }, 500, headers);
   }
 }
 
