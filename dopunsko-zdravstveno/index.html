@@ -636,6 +636,73 @@ function prikaziKorak(n) {
 function toggleFaq(el) {
   el.parentElement.classList.toggle('open');
 }
+
+// Health-themed background pattern (Telegram/WhatsApp doodle style)
+(function() {
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="340" height="340">
+  <g fill="none" stroke="rgba(255,255,255,0.11)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <g transform="translate(48,58) rotate(40)">
+      <rect x="-21" y="-9" width="42" height="18" rx="9"/>
+      <line x1="0" y1="-9" x2="0" y2="9"/>
+    </g>
+    <g transform="translate(215,44)">
+      <rect x="-5" y="-17" width="10" height="34" rx="3"/>
+      <rect x="-17" y="-5" width="34" height="10" rx="3"/>
+    </g>
+    <g transform="translate(85,165)">
+      <path d="M0,9 C-2,6 -19,-2 -19,-15 C-19,-22 -11,-27 0,-21 C11,-27 19,-22 19,-15 C19,-2 2,6 0,9 Z"/>
+    </g>
+    <g transform="translate(58,258)">
+      <path d="M-19,-22 L-19,-6 C-19,9 19,9 19,-6 L19,-22"/>
+      <circle cx="0" cy="13" r="9"/>
+    </g>
+    <g transform="translate(268,135)">
+      <rect x="-5" y="-30" width="10" height="38" rx="5"/>
+      <circle cx="0" cy="15" r="9"/>
+      <line x1="-5" y1="-12" x2="-11" y2="-12"/>
+      <line x1="-5" y1="-20" x2="-11" y2="-20"/>
+    </g>
+    <g transform="translate(248,262) rotate(-45)">
+      <rect x="-24" y="-5" width="48" height="10" rx="3"/>
+      <line x1="24" y1="0" x2="38" y2="0"/>
+      <line x1="-5" y1="-5" x2="-5" y2="5"/>
+      <line x1="5" y1="-5" x2="5" y2="5"/>
+    </g>
+    <g transform="translate(165,170) rotate(15)">
+      <rect x="-26" y="-11" width="52" height="22" rx="6"/>
+      <rect x="-11" y="-11" width="22" height="22" rx="3"/>
+      <circle cx="0" cy="0" r="4"/>
+    </g>
+    <polyline points="95,32 104,32 108,19 113,45 118,23 123,39 128,32 137,32"/>
+    <g transform="translate(298,210) rotate(60)">
+      <rect x="-15" y="-7" width="30" height="14" rx="7"/>
+      <line x1="0" y1="-7" x2="0" y2="7"/>
+    </g>
+    <g transform="translate(158,84)">
+      <line x1="0" y1="-8" x2="0" y2="8"/>
+      <line x1="-8" y1="0" x2="8" y2="0"/>
+    </g>
+    <g transform="translate(278,76)">
+      <line x1="0" y1="-6" x2="0" y2="6"/>
+      <line x1="-6" y1="0" x2="6" y2="0"/>
+    </g>
+    <g transform="translate(130,300) rotate(-20)">
+      <rect x="-16" y="-7" width="32" height="14" rx="7"/>
+      <line x1="0" y1="-7" x2="0" y2="7"/>
+    </g>
+    <g transform="translate(310,165)">
+      <path d="M0,6 C-1,4 -12,-1 -12,-9 C-12,-13 -7,-16 0,-12 C7,-16 12,-13 12,-9 C12,-1 1,4 0,6 Z"/>
+    </g>
+    <circle cx="32" cy="145" r="3" fill="rgba(255,255,255,0.09)" stroke="none"/>
+    <circle cx="188" cy="318" r="2.5" fill="rgba(255,255,255,0.09)" stroke="none"/>
+    <circle cx="318" cy="42" r="2.5" fill="rgba(255,255,255,0.09)" stroke="none"/>
+    <circle cx="200" cy="110" r="2" fill="rgba(255,255,255,0.07)" stroke="none"/>
+    <circle cx="65" cy="110" r="1.5" fill="rgba(255,255,255,0.07)" stroke="none"/>
+  </g>
+</svg>`;
+  document.body.style.backgroundImage = 'url("data:image/svg+xml,' + encodeURIComponent(svg) + '")';
+  document.body.style.backgroundSize = '340px 340px';
+})();
 </script>
 </body>
 </html>
