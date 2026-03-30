@@ -194,10 +194,22 @@ input[type=number] { -moz-appearance: textfield; }
 .kupi-submit { display: block; width: 100%; padding: 14px; background: #22c55e; color: white; border: none; border-radius: 11px; font-size: 1rem; font-family: inherit; font-weight: 800; cursor: pointer; box-shadow: 0 4px 0 #15803d; transition: transform 0.08s, box-shadow 0.08s; }
 .kupi-submit:active { transform: translateY(3px); box-shadow: 0 1px 0 #15803d; }
 .kupi-submit:disabled { opacity: 0.5; cursor: not-allowed; }
-.kupi-loading { text-align: center; padding: 16px 0; }
-.kupi-spinner { width: 32px; height: 32px; border: 3px solid rgba(87,60,249,.15); border-top-color: #573cf9; border-radius: 50%; animation: spin .7s linear infinite; margin: 0 auto 10px; }
-@keyframes spin { to { transform: rotate(360deg); } }
-.kupi-loading p { font-size: 0.85rem; color: #888; margin: 0; font-weight: 600; }
+.kupi-loading { text-align: center; padding: 10px 0 4px; }
+.kupi-car-scene { position: relative; width: 100%; height: 64px; overflow: hidden; margin-bottom: 14px; }
+.kupi-road { position: absolute; bottom: 0; left: 0; right: 0; height: 16px; background: #ededf7; border-radius: 4px; overflow: hidden; }
+.kupi-road-dash { position: absolute; top: 50%; height: 3px; width: 36px; background: #573cf9; border-radius: 2px; opacity: 0.2; animation: kupi-roadmove 0.55s linear infinite; }
+.kupi-road-dash:nth-child(1){ left:0%;  animation-delay:0s; }
+.kupi-road-dash:nth-child(2){ left:25%; animation-delay:-0.138s; }
+.kupi-road-dash:nth-child(3){ left:50%; animation-delay:-0.275s; }
+.kupi-road-dash:nth-child(4){ left:75%; animation-delay:-0.413s; }
+@keyframes kupi-roadmove { from{transform:translateY(-50%) translateX(0)} to{transform:translateY(-50%) translateX(-100%)} }
+.kupi-car-emoji { position: absolute; bottom: 16px; left: 50%; transform: translateX(-50%); font-size: 30px; line-height:1; animation: kupi-bounce 0.32s ease-in-out infinite alternate; }
+@keyframes kupi-bounce { from{transform:translateX(-50%) translateY(0)} to{transform:translateX(-50%) translateY(-4px)} }
+.kupi-progress-wrap { background: rgba(87,60,249,0.1); border-radius: 100px; height: 5px; margin: 0 4px 14px; overflow: hidden; }
+.kupi-progress-bar { height: 100%; border-radius: 100px; background: linear-gradient(90deg,#573cf9,#a78bfa); width: 0%; transition: width 1s ease; }
+.kupi-load-step { font-size: 0.68rem; color: #c0b8ff; text-transform: uppercase; letter-spacing: 0.08em; font-weight: 800; margin-bottom: 5px; }
+.kupi-load-msg-main { font-size: 0.9rem; color: #333; font-weight: 700; margin-bottom: 5px; min-height: 22px; }
+.kupi-load-tip { font-size: 0.75rem; color: #aaa; font-weight: normal; min-height: 18px; }
 .kupi-err { background: #fef2f2; border: 1px solid #fecaca; border-radius: 10px; padding: 10px 14px; font-size: 0.82rem; color: #dc2626; margin-bottom: 12px; display: none; }
 .kupi-city-wrap { position: relative; }
 .kupi-city-results { position: absolute; top: 100%; left: 0; right: 0; background: white; border: 1.5px solid #573cf9; border-top: none; border-radius: 0 0 10px 10px; max-height: 160px; overflow-y: auto; z-index: 100; display: none; box-shadow: 0 8px 20px rgba(0,0,0,.1); }
@@ -644,8 +656,19 @@ input[type=number] { -moz-appearance: textfield; }
   </div>
 
   <div class="kupi-loading" id="kupi-loading" style="display:none">
-    <div class="kupi-spinner"></div>
-    <p id="kupi-load-msg">Kreiram policu...</p>
+    <div class="kupi-car-scene">
+      <div class="kupi-car-emoji" id="kupi-car-emoji">🚗</div>
+      <div class="kupi-road">
+        <div class="kupi-road-dash"></div>
+        <div class="kupi-road-dash"></div>
+        <div class="kupi-road-dash"></div>
+        <div class="kupi-road-dash"></div>
+      </div>
+    </div>
+    <div class="kupi-progress-wrap"><div class="kupi-progress-bar" id="kupi-progress-bar"></div></div>
+    <div class="kupi-load-step" id="kupi-load-step">Ugovaranje u tijeku</div>
+    <div class="kupi-load-msg-main" id="kupi-load-msg">Kreiram policu...</div>
+    <div class="kupi-load-tip" id="kupi-load-tip">Generali provjerava podatke vozila</div>
   </div>
 </div>
 
@@ -1095,6 +1118,52 @@ function closeKupi() {
   el('kupi-sheet').classList.remove('show');
 }
 
+var _kupiLoadTimer = null;
+var _kupiTipTimer = null;
+var _kupiCars = ['🚗','🚙','🚕','🏎️'];
+var _kupiTips = [
+  'Generali provjerava podatke vozila…',
+  'Izračunavamo premiju osiguranja…',
+  'Provjera u bazi osiguranika…',
+  'Generiramo dokumente police…',
+  'Priprema zelene karte u tijeku…',
+  'Gotovo za koji trenutak — hvala na strpljenju!',
+  'Polica se aktivira u Generalijevom sustavu…',
+  'Još malo — sve ide po planu ✓',
+];
+
+function startKupiLoading(phase) {
+  clearInterval(_kupiLoadTimer);
+  clearInterval(_kupiTipTimer);
+
+  var isGen = phase === 'genpolicy';
+  el('kupi-load-step').textContent = isGen ? '1 / 2 — Kreiranje police' : '2 / 2 — Aktivacija police';
+  el('kupi-load-msg').textContent  = isGen ? 'Šaljemo podatke Generaliju…' : 'Aktiviramo policu i generiramo dokumente…';
+  el('kupi-car-emoji').textContent = _kupiCars[Math.floor(Math.random() * _kupiCars.length)];
+
+  var progress = isGen ? 0 : 50;
+  var target   = isGen ? 45 : 92;
+  el('kupi-progress-bar').style.width = progress + '%';
+
+  var tipIdx = 0;
+  el('kupi-load-tip').textContent = _kupiTips[tipIdx];
+
+  _kupiLoadTimer = setInterval(function() {
+    if (progress < target) { progress = Math.min(progress + 1, target); el('kupi-progress-bar').style.width = progress + '%'; }
+  }, isGen ? 600 : 1200);
+
+  _kupiTipTimer = setInterval(function() {
+    tipIdx = (tipIdx + 1) % _kupiTips.length;
+    el('kupi-load-tip').textContent = _kupiTips[tipIdx];
+  }, 4000);
+}
+
+function stopKupiLoading() {
+  clearInterval(_kupiLoadTimer);
+  clearInterval(_kupiTipTimer);
+  el('kupi-progress-bar').style.width = '100%';
+}
+
 function doKupi() {
   var isPravna = S.tip === 'P' || S.tip === 'O';
   var required = isPravna
@@ -1117,7 +1186,7 @@ function doKupi() {
   el('kupi-submit').disabled    = true;
   el('kupi-form-wrap').style.display = 'none';
   el('kupi-loading').style.display   = 'block';
-  el('kupi-load-msg').textContent = 'Kreiram policu (GenPolicy)...';
+  startKupiLoading('genpolicy');
 
   var payload = {
     vozilo: { sasija: vin, proizvodac: brand, model: 'N/A', registracija: zona, snagaMotora: S.kw, godinaProizvodnje: S.yr || (new Date().getFullYear()-5) },
@@ -1146,7 +1215,7 @@ function doKupi() {
       throw new Error((details || d.error || JSON.stringify(d)));
     }
     genPolicyResp = d;
-    el('kupi-load-msg').textContent = 'Aktiviram policu (SetPaymentStatus)...';
+    startKupiLoading('setpayment');
     return fetch(WORKER+'/set-payment-status', { method:'POST', headers:{'Content-Type':'application/json'},
       body: JSON.stringify({
         brojPolice: d.brojPolice, brojSasije: vin, paid: true, storno: false,
@@ -1156,11 +1225,13 @@ function doKupi() {
   })
   .then(function(r){ return r.json(); })
   .then(function(d){
+    stopKupiLoading();
     setPmtResp = d;
     closeKupi();
     showPolica(d);
   })
   .catch(function(e){
+    stopKupiLoading();
     el('kupi-loading').style.display  = 'none';
     el('kupi-form-wrap').style.display = 'block';
     el('kupi-submit').disabled = false;
