@@ -20,25 +20,25 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; b
 .nav-spacer { height: 60px; }
 
 /* HERO */
-.hero { text-align: center; padding: 40px 20px 16px; color: white; }
-.hero h1 { font-size: clamp(1.45rem, 4.5vw, 2.4rem); color: #ffbc27; margin-bottom: 10px; letter-spacing: -0.5px; font-weight: 800; line-height: 1.2; }
-.hero p { font-size: clamp(0.9rem, 2.5vw, 1.05rem); opacity: 0.82; max-width: 480px; margin: 0 auto; }
+.hero { text-align: center; padding: 22px 20px 8px; color: white; }
+.hero h1 { font-size: clamp(1.3rem, 4vw, 2.1rem); color: #ffbc27; margin-bottom: 8px; letter-spacing: -0.5px; font-weight: 800; line-height: 1.2; }
+.hero p { font-size: clamp(0.85rem, 2.2vw, 0.98rem); opacity: 0.82; max-width: 480px; margin: 0 auto; }
 
 /* WIZARD CARD */
 .wizard-card {
     background: #ffbc27;
-    border-radius: 24px;
+    border-radius: 20px;
     max-width: 500px; width: 92%;
-    margin: 28px auto 0;
-    padding: 30px 24px 34px;
-    box-shadow: 0 32px 80px rgba(255,188,39,0.4), 0 8px 24px rgba(0,0,0,0.2);
+    margin: 16px auto 0;
+    padding: 20px 22px 22px;
+    box-shadow: 0 24px 60px rgba(255,188,39,0.4), 0 6px 20px rgba(0,0,0,0.2);
     position: relative;
 }
-@media (min-width: 600px) { .wizard-card { padding: 38px 42px 42px; } }
-@media (min-width: 768px) { .wizard-card { max-width: 580px; } }
+@media (min-width: 600px) { .wizard-card { padding: 26px 36px 30px; } }
+@media (min-width: 768px) { .wizard-card { max-width: 560px; } }
 
 /* PROGRESS */
-.progress-bar { display: flex; align-items: center; margin-bottom: 32px; justify-content: center; }
+.progress-bar { display: flex; align-items: center; margin-bottom: 18px; justify-content: center; }
 .progress-step { display: flex; flex-direction: column; align-items: center; gap: 5px; }
 .progress-dot {
     width: 32px; height: 32px; border-radius: 50%;
@@ -58,21 +58,21 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; b
 .progress-line.done::after { width: 100%; }
 
 /* STEP */
-.step-title { font-size: 1.3rem; font-weight: 800; color: #1a1033; margin-bottom: 4px; }
-.step-sub { font-size: 0.88rem; color: rgba(0,0,0,0.52); margin-bottom: 22px; }
+.step-title { font-size: 1.15rem; font-weight: 800; color: #1a1033; margin-bottom: 2px; }
+.step-sub { font-size: 0.84rem; color: rgba(0,0,0,0.52); margin-bottom: 14px; }
 
 /* FIELDS */
 .field { margin-bottom: 16px; }
 .flabel { display: block; font-size: 0.75rem; font-weight: 700; color: rgba(0,0,0,0.55); letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 6px; }
 .finput {
-    width: 100%; padding: 14px 16px;
+    width: 100%; padding: 11px 14px;
     border: 2px solid rgba(0,0,0,0.12);
-    border-radius: 12px; font-size: 1rem;
+    border-radius: 10px; font-size: 1rem;
     background: white; outline: none;
     font-family: inherit; font-weight: 600; color: #573cf9;
     -webkit-appearance: none; appearance: none;
     transition: border-color 0.2s, box-shadow 0.2s;
-    min-height: 52px;
+    min-height: 46px;
 }
 .finput:focus { border-color: #573cf9; box-shadow: 0 0 0 4px rgba(87,60,249,0.12); }
 .finput::placeholder { font-weight: normal; color: rgba(0,0,0,0.25); }
@@ -81,8 +81,8 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; b
 
 /* BUTTON */
 .btn-main {
-    display: block; width: 100%; padding: 15px;
-    background: #573cf9; color: white; border: none; border-radius: 12px;
+    display: block; width: 100%; padding: 12px;
+    background: #573cf9; color: white; border: none; border-radius: 10px;
     font-size: 1rem; font-family: inherit; font-weight: 800;
     cursor: pointer; position: relative; overflow: hidden;
     box-shadow: 0 5px 0 #3b20d4;
@@ -100,32 +100,24 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; b
 /* TRUST POINTS */
 .trust-strip {
     display: flex; justify-content: center; gap: 0;
-    max-width: 580px; width: 92%; margin: 32px auto 0;
+    max-width: 560px; width: 92%; margin: 16px auto 0;
 }
 .trust-item {
-    flex: 1; text-align: center; padding: 16px 10px;
+    flex: 1; text-align: center; padding: 10px 8px;
     border-right: 1px solid rgba(255,255,255,0.15);
 }
 .trust-item:last-child { border-right: none; }
-.trust-item .ti-val { font-size: 1.05rem; font-weight: 800; color: #ffbc27; margin-bottom: 3px; }
-.trust-item .ti-lbl { font-size: 0.75rem; color: rgba(255,255,255,0.65); font-weight: 500; }
+.trust-item .ti-val { font-size: 1rem; font-weight: 800; color: #ffbc27; margin-bottom: 2px; }
+.trust-item .ti-lbl { font-size: 0.72rem; color: rgba(255,255,255,0.65); font-weight: 500; }
 
-/* LOGOS STRIP */
-.logos-wrap { overflow: hidden; padding: 28px 0 32px; position: relative; }
-.logos-track { display: flex; gap: 36px; align-items: center; width: max-content; animation: scrollLogos 18s linear infinite; }
+/* LOGOS STRIP — full width, homepage style */
+.logos-wrap { overflow: hidden; padding: 18px 0 20px; position: relative; width: 100%; }
+.logos-track { display: flex; gap: 20px; align-items: center; width: max-content; animation: scrollLogos 22s linear infinite; }
 .logos-track:hover { animation-play-state: paused; }
-.logos-track .lname {
-    font-size: 0.85rem; font-weight: 800;
-    color: rgba(255,255,255,0.5);
-    white-space: nowrap; letter-spacing: 0.3px;
-    padding: 8px 18px; border: 1.5px solid rgba(255,255,255,0.18);
-    border-radius: 100px;
-    transition: color 0.2s, border-color 0.2s;
-}
-.logos-track .lname:hover { color: white; border-color: rgba(255,255,255,0.5); }
+.logo-badge { height: 42px; width: auto; max-width: 140px; object-fit: contain; background: white; border-radius: 10px; padding: 6px 14px; box-sizing: border-box; flex-shrink: 0; display: block; }
 @keyframes scrollLogos { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-.logos-fade-l { position: absolute; left: 0; top: 0; bottom: 0; width: 60px; background: linear-gradient(to right, #573cf9, transparent); pointer-events: none; z-index: 1; }
-.logos-fade-r { position: absolute; right: 0; top: 0; bottom: 0; width: 60px; background: linear-gradient(to left, #573cf9, transparent); pointer-events: none; z-index: 1; }
+.logos-fade-l { position: absolute; left: 0; top: 0; bottom: 0; width: 80px; background: linear-gradient(to right, #573cf9, transparent); pointer-events: none; z-index: 1; }
+.logos-fade-r { position: absolute; right: 0; top: 0; bottom: 0; width: 80px; background: linear-gradient(to left, #573cf9, transparent); pointer-events: none; z-index: 1; }
 
 /* RESULTS */
 .results-section { max-width: 580px; width: 92%; margin: 0 auto 60px; }
@@ -289,20 +281,18 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; b
     <div class="logos-fade-l"></div>
     <div class="logos-fade-r"></div>
     <div class="logos-track">
-      <span class="lname">UNIQA</span>
-      <span class="lname">Triglav</span>
-      <span class="lname">Generali</span>
-      <span class="lname">Wiener</span>
-      <span class="lname">Allianz</span>
-      <span class="lname">Merkur</span>
-      <span class="lname">Groupama</span>
-      <span class="lname">UNIQA</span>
-      <span class="lname">Triglav</span>
-      <span class="lname">Generali</span>
-      <span class="lname">Wiener</span>
-      <span class="lname">Allianz</span>
-      <span class="lname">Merkur</span>
-      <span class="lname">Groupama</span>
+      <img class="logo-badge" src="/img/uniqa-logo.svg" alt="UNIQA">
+      <img class="logo-badge" src="/img/triglav-logo.svg" alt="Triglav">
+      <img class="logo-badge" src="/img/generali-logo.svg" alt="Generali">
+      <img class="logo-badge" src="/img/wiener-logo.svg" alt="Wiener">
+      <img class="logo-badge" src="/img/groupama-logo.svg" alt="Groupama">
+      <img class="logo-badge" src="/img/asdirect-logo.svg" alt="AS Direct">
+      <img class="logo-badge" src="/img/uniqa-logo.svg" alt="UNIQA">
+      <img class="logo-badge" src="/img/triglav-logo.svg" alt="Triglav">
+      <img class="logo-badge" src="/img/generali-logo.svg" alt="Generali">
+      <img class="logo-badge" src="/img/wiener-logo.svg" alt="Wiener">
+      <img class="logo-badge" src="/img/groupama-logo.svg" alt="Groupama">
+      <img class="logo-badge" src="/img/asdirect-logo.svg" alt="AS Direct">
     </div>
   </div>
 </div>
