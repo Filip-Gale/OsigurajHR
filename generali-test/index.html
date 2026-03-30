@@ -1085,7 +1085,11 @@ function doKupi() {
     genPolicyResp = d;
     el('kupi-load-msg').textContent = 'Aktiviram policu (SetPaymentStatus)...';
     return fetch(WORKER+'/set-payment-status', { method:'POST', headers:{'Content-Type':'application/json'},
-      body: JSON.stringify({brojPolice:d.brojPolice, brojSasije:vin, paid:true, storno:false}) });
+      body: JSON.stringify({
+        brojPolice: d.brojPolice, brojSasije: vin, paid: true, storno: false,
+        email: v('k-email'),
+        ime: isPravna ? v('k-naziv') : (v('k-ime') + ' ' + v('k-prezime')),
+      }) });
   })
   .then(function(r){ return r.json(); })
   .then(function(d){

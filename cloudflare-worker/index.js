@@ -92,7 +92,8 @@ function izracunajCijenu(premijaBezPoreza, porezPct, applyDiscount = true) {
 async function handleGetQuote(body, credentials, env, headers) {
   const { registracija, snagaMotora, godinaRodjenja, tipStranke, godinaProizvodnje, oib } = body;
 
-  if (!registracija || !snagaMotora || !godinaRodjenja || !tipStranke) {
+  const isPravna = tipStranke === 'P' || tipStranke === 'O';
+  if (!registracija || !snagaMotora || (!isPravna && !godinaRodjenja) || !tipStranke) {
     return json({ error: 'Nedostaju obavezni parametri' }, 400, headers);
   }
 
@@ -111,7 +112,7 @@ async function handleGetQuote(body, credentials, env, headers) {
       novonabavnaVrijednostVozila: null,
     },
     osiguranik: {
-      godinaRodjenja: Number(godinaRodjenja),
+      godinaRodjenja: godinaRodjenja ? Number(godinaRodjenja) : null,
       tipStranke: String(tipStranke),
     },
     datumPocetkaOsiguranja: getTomorrow(),
@@ -274,7 +275,37 @@ async function handleGenPolicy(body, credentials, env, headers) {
   }, 200, headers);
 }
 
-async function handleSetPaymentStatus(body, credentials, headers) {
+async function sendPolicyEmail(env, { email, ime, brojPolice, policaB64, zkB64 }) {
+  if (!env.RESEND_API_KEY || !email) return;
+  const attachments = [];
+  if (policaB64) attachments.push({ filename: 'polica.pdf', content: policaB64 });
+  if (zkB64) attachments.push({ filename: 'zelena-karta.pdf', content: zkB64 });
+  const html = `<div style="font-family:sans-serif;max-width:520px;margin:0 auto;padding:24px;">
+    <h2 style="color:#573cf9;margin-bottom:8px;">Polica uspješno ugovorena ✅</h2>
+    <p style="color:#444;">Poštovani/a ${ime || ''},</p>
+    <p style="color:#444;">Vaša polica obveznog auto osiguranja (Generali) uspješno je ugovorena.</p>
+    <p style="color:#444;"><strong>Broj police:</strong> ${brojPolice}</p>
+    ${attachments.length ? '<p style="color:#444;">U prilogu se nalaze dokumenti police.</p>' : ''}
+    <p style="color:#aaa;font-size:0.82em;margin-top:24px;">Posrednik: Maksi Miro d.o.o. · osiguraj.hr</p>
+  </div>`;
+  try {
+    await fetch('https://api.resend.com/emails', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${env.RESEND_API_KEY}` },
+      body: JSON.stringify({
+        from: 'Osiguraj.hr <auto@osiguraj.hr>',
+        to: [email],
+        subject: `Vaša polica auto osiguranja — ${brojPolice}`,
+        html,
+        attachments,
+      }),
+    });
+  } catch {
+    // non-fatal
+  }
+}
+
+async function handleSetPaymentStatus(body, credentials, env, headers) {
   const { brojPolice, brojSasije, paid, storno } = body;
 
   if (!brojPolice || !brojSasije) {
@@ -308,6 +339,15 @@ async function handleSetPaymentStatus(body, credentials, headers) {
   try { data = JSON.parse(rawText); } catch {
     return json({ error: 'Nevaljani JSON od Generalija', details: rawText }, 502, headers);
   }
+
+  // Pošalji email klijentu s policom
+  await sendPolicyEmail(env, {
+    email:     body.email,
+    ime:       body.ime,
+    brojPolice: data.brojPolice || brojPolice,
+    policaB64: data.polica,
+    zkB64:     data.ZK,
+  });
 
   return json({
     brojPolice: data.brojPolice,
@@ -418,7 +458,7 @@ export default {
     }
 
     if (path === '/set-payment-status') {
-      return handleSetPaymentStatus(body, credentials, headers);
+      return handleSetPaymentStatus(body, credentials, env, headers);
     }
 
     return json({ error: 'Not found' }, 404, headers);
