@@ -1154,7 +1154,7 @@ async function downloadDoc(type) {
       });
       const data = await r.json();
       lastRaw = data;
-      const b64 = data.value?.base64Content || data.base64Content;
+      const b64 = data.document?.content || data.value?.base64Content || data.base64Content;
       if (!b64) throw new Error(data.value?.message || data.message || JSON.stringify(data).slice(0, 120));
 
       const blob = new Blob([Uint8Array.from(atob(b64), c => c.charCodeAt(0))], { type: 'application/pdf' });
