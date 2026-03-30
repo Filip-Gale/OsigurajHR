@@ -1408,7 +1408,6 @@ function spawnSparkles(el_, count) {
 async function typeInto(el_, value, charDelay) {
   el_.value = '';
   el_.classList.add('ai-filling');
-  el_.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   for (var i = 0; i < value.length; i++) {
     el_.value = value.slice(0, i + 1);
     if (i % 2 === 0) spawnSparkles(el_, 2);
