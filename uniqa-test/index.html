@@ -1141,7 +1141,8 @@ async function downloadDoc(type) {
   const btn = document.getElementById(btnMap[type]);
   btn.disabled = true;
 
-  const MAX_TRIES = 4, WAIT_SEC = 20;
+  const MAX_TRIES = 8, WAIT_SEC = 20;
+  let lastRaw = null;
 
   for (let attempt = 1; attempt <= MAX_TRIES; attempt++) {
     try {
@@ -1152,8 +1153,9 @@ async function downloadDoc(type) {
         body: JSON.stringify({ partnerNo: state.partnerNo, policyNo: state.policyNo, documentType: type }),
       });
       const data = await r.json();
+      lastRaw = data;
       const b64 = data.value?.base64Content || data.base64Content;
-      if (!b64) throw new Error(data.message || 'Dokument nije dostupan.');
+      if (!b64) throw new Error(data.value?.message || data.message || JSON.stringify(data).slice(0, 120));
 
       const blob = new Blob([Uint8Array.from(atob(b64), c => c.charCodeAt(0))], { type: 'application/pdf' });
       const url = URL.createObjectURL(blob);
@@ -1162,17 +1164,19 @@ async function downloadDoc(type) {
       URL.revokeObjectURL(url);
       btn.textContent = labelMap[type];
       btn.disabled = false;
+      document.getElementById('s5-err').style.display = 'none';
       return;
     } catch (e) {
       if (attempt < MAX_TRIES) {
         for (let s = WAIT_SEC; s > 0; s--) {
-          btn.textContent = `Čekam dokument... ${s}s`;
+          btn.textContent = `Čekam... ${s}s (${attempt}/${MAX_TRIES})`;
           await new Promise(r => setTimeout(r, 1000));
         }
       } else {
         btn.textContent = labelMap[type];
         btn.disabled = false;
-        document.getElementById('s5-err-msg').textContent = 'Dokument još nije spreman. Pričekaj minutu pa pokušaj ponovo.';
+        const errMsg = e.message || 'Dokument nije dostupan.';
+        document.getElementById('s5-err-msg').textContent = `Dokument nije spreman (${errMsg}). Raw: ${JSON.stringify(lastRaw).slice(0,200)}`;
         document.getElementById('s5-err').style.display = 'block';
       }
     }
