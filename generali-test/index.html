@@ -217,6 +217,14 @@ input[type=number] { -moz-appearance: textfield; }
 .raw-box { background: rgba(0,0,0,.06); border-radius: 8px; padding: 10px; font-size: .68rem; font-family: monospace; white-space: pre-wrap; word-break: break-all; max-height: 180px; overflow-y: auto; margin-top: 8px; display: none; text-align: left; }
 .test-badge { display: inline-block; background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.25); color: white; font-size: .7rem; font-weight: 700; letter-spacing: .8px; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; }
 
+/* ── Dokumentacija ── */
+.dok-section { margin-top: 14px; padding-top: 12px; border-top: 1px solid rgba(0,0,0,0.08); }
+.dok-title { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.8px; color: rgba(0,0,0,0.38); font-weight: 700; margin-bottom: 7px; }
+.dok-btn { display: flex; align-items: center; gap: 7px; width: 100%; text-align: left; padding: 8px 11px; background: rgba(87,60,249,0.06); border: 1.5px solid rgba(87,60,249,0.14); border-radius: 8px; color: #573cf9; font-size: 0.79rem; font-family: inherit; font-weight: 700; cursor: pointer; margin-bottom: 5px; transition: background 0.15s; }
+.dok-btn:hover { background: rgba(87,60,249,0.13); }
+.dok-unavail { display: block; font-size: 0.78rem; color: rgba(0,0,0,0.32); padding: 5px 0; }
+.dok-loading { font-size: 0.78rem; color: rgba(0,0,0,0.32); padding: 10px 0; text-align: center; }
+
 /* ── AI sparkle button ── */
 .scan-sparkle-btn {
   position: absolute;
@@ -521,6 +529,7 @@ input[type=number] { -moz-appearance: textfield; }
       </div>
 
       <p class="disclaimer">Posrednik: Maksi Miro d.o.o. · Test okruženje</p>
+      <div id="predok-section"></div>
     </div>
 
     <div id="r-err" style="display:none">
@@ -545,6 +554,7 @@ input[type=number] { -moz-appearance: textfield; }
       <button class="btn-pdf btn-pdf-zk" id="s4-zk" onclick="downloadPdf('zk')" disabled>
         📋 Zelena karta (PDF)
       </button>
+      <div id="ugovdok-section" style="margin-top:14px;text-align:left;"></div>
       <button class="raw-toggle" onclick="document.getElementById('s4-raw').style.display=document.getElementById('s4-raw').style.display==='none'?'block':'none'">Prikaži raw odgovor</button>
       <pre class="raw-box" id="s4-raw"></pre>
     </div>
@@ -563,7 +573,11 @@ input[type=number] { -moz-appearance: textfield; }
   <div id="kupi-form-wrap">
     <div class="kupi-err" id="kupi-err"></div>
     <div class="kupi-fields">
-      <div class="kupi-row2">
+      <div id="k-naziv-row" style="display:none">
+        <label class="kupi-label">Naziv tvrtke / obrta *</label>
+        <input class="kupi-input" id="k-naziv" placeholder="Primjer d.o.o.">
+      </div>
+      <div id="k-imeprezime-row" class="kupi-row2">
         <div>
           <label class="kupi-label">Ime *</label>
           <input class="kupi-input" id="k-ime" placeholder="Ivan">
@@ -573,15 +587,13 @@ input[type=number] { -moz-appearance: textfield; }
           <input class="kupi-input" id="k-prezime" placeholder="Horvat">
         </div>
       </div>
-      <div class="kupi-row2">
-        <div>
-          <label class="kupi-label">OIB *</label>
-          <input class="kupi-input" id="k-oib" placeholder="12345678901" maxlength="11" inputmode="numeric">
-        </div>
-        <div>
-          <label class="kupi-label">Datum rođenja *</label>
-          <input class="kupi-input" id="k-dob" type="date">
-        </div>
+      <div>
+        <label class="kupi-label">OIB *</label>
+        <input class="kupi-input" id="k-oib" placeholder="12345678901" maxlength="11" inputmode="numeric">
+      </div>
+      <div id="k-dob-row">
+        <label class="kupi-label">Datum rođenja *</label>
+        <input class="kupi-input" id="k-dob" type="date">
       </div>
       <div class="kupi-row2">
         <div>
@@ -693,6 +705,7 @@ var quoteData = {};
 var selectedPkgs = {};
 var mjesta = [];
 var setPmtResp = null, genPolicyResp = null;
+var _dokData = {};
 
 // ── Helpers ──────────────────────────────────────────────────────────────────
 function v(id){ return document.getElementById(id).value.trim(); }
@@ -850,6 +863,7 @@ function showOk(d) {
   el('pkg-list').innerHTML = html;
   el('pkg-wrap').style.display = pkgs.length ? 'block' : 'none';
   updateTotal();
+  fetchDokumenti('predugovorna', 'predok-section');
 }
 
 function showErr(msg) {
@@ -885,6 +899,48 @@ function updateTotal() {
   if (hasExtras) {
     el('total-num').textContent = total.toFixed(2).replace('.',',') + ' €';
   }
+}
+
+// ── Dokumentacija ─────────────────────────────────────────────────────────────
+function fetchDokumenti(faza, sectionId) {
+  var sec = el(sectionId);
+  if (!sec) return;
+  sec.innerHTML = '<div class="dok-loading">Učitavam dokumentaciju…</div>';
+  fetch(WORKER + '/get-dokumenti?faza=' + faza)
+    .then(function(r){ return r.json(); })
+    .then(function(d){
+      var docs = Array.isArray(d) ? d : (Array.isArray(d.dokumenti) ? d.dokumenti : []);
+      _dokData[faza] = docs;
+      if (!docs.length) { sec.innerHTML = ''; return; }
+      var title = faza === 'predugovorna' ? 'Predugovorna dokumentacija' : 'Ugovorna dokumentacija';
+      var html = '<div class="dok-section"><div class="dok-title">' + title + '</div>';
+      docs.forEach(function(doc, i) {
+        var hasFile = doc.filedata && doc.filedata.length > 10;
+        var fname = doc.filename || 'dokument.pdf';
+        if (hasFile) {
+          html += '<button class="dok-btn" onclick="downloadDokIdx(\'' + faza + '\',' + i + ')">📄 ' + fname + '</button>';
+        } else {
+          html += '<span class="dok-unavail">📄 ' + fname + '</span>';
+        }
+      });
+      html += '</div>';
+      sec.innerHTML = html;
+    })
+    .catch(function(){ sec.innerHTML = ''; });
+}
+
+function downloadDokIdx(faza, i) {
+  var docs = _dokData[faza];
+  if (!docs || !docs[i]) return;
+  var doc = docs[i];
+  var b64 = doc.filedata;
+  var fname = doc.filename || 'dokument.pdf';
+  if (!b64) { alert('Dokument nije dostupan za preuzimanje.'); return; }
+  var bytes = atob(b64), arr = new Uint8Array(bytes.length);
+  for (var j = 0; j < bytes.length; j++) arr[j] = bytes.charCodeAt(j);
+  var url = URL.createObjectURL(new Blob([arr], {type:'application/pdf'}));
+  var a = document.createElement('a'); a.href = url; a.download = fname; a.click();
+  URL.revokeObjectURL(url);
 }
 
 // ── GetMjesta ─────────────────────────────────────────────────────────────────
@@ -940,6 +996,12 @@ function openKupi(btn) {
   Object.values(selectedPkgs).forEach(function(p){ total += p; });
   el('kupi-price-lbl').textContent = total.toFixed(2).replace('.',',') + ' € / godišnje';
 
+  // Prikaži/sakrij polja ovisno o tipu stranke
+  var isPravna = S.tip === 'P' || S.tip === 'O';
+  el('k-naziv-row').style.display = isPravna ? '' : 'none';
+  el('k-imeprezime-row').style.display = isPravna ? 'none' : '';
+  el('k-dob-row').style.display = isPravna ? 'none' : '';
+
   // Pre-fill OIB iz step 2 ako postoji
   if (S.oib && !el('k-oib').value) el('k-oib').value = S.oib;
   // Pre-fill datum iz step 2 (DD.MM.GGGG → YYYY-MM-DD)
@@ -971,10 +1033,10 @@ function closeKupi() {
 }
 
 function doKupi() {
-  var required = [
-    ['k-ime','Ime'],['k-prezime','Prezime'],['k-oib','OIB'],['k-dob','Datum rođenja'],
-    ['k-ulica','Ulica'],['k-kbr','Kućni broj'],['k-mob','Mobitel'],['k-email','Email'],['k-vin','Broj šasije']
-  ];
+  var isPravna = S.tip === 'P' || S.tip === 'O';
+  var required = isPravna
+    ? [['k-naziv','Naziv tvrtke'],['k-oib','OIB'],['k-ulica','Ulica'],['k-kbr','Kućni broj'],['k-mob','Mobitel'],['k-email','Email'],['k-vin','Broj šasije']]
+    : [['k-ime','Ime'],['k-prezime','Prezime'],['k-oib','OIB'],['k-dob','Datum rođenja'],['k-ulica','Ulica'],['k-kbr','Kućni broj'],['k-mob','Mobitel'],['k-email','Email'],['k-vin','Broj šasije']];
   var ok = true;
   required.forEach(function(r){
     if (!v(r[0])){ el(r[0]).classList.add('err'); if(ok){el(r[0]).focus(); ok=false;} }
@@ -997,9 +1059,13 @@ function doKupi() {
   var payload = {
     vozilo: { sasija: vin, proizvodac: brand, model: 'N/A', registracija: zona, snagaMotora: S.kw, godinaProizvodnje: S.yr || (new Date().getFullYear()-5) },
     ugovaratelj: {
-      ime: v('k-ime'), prezime: v('k-prezime'), oib: v('k-oib'),
-      datumRodjenja: v('k-dob'), ulica: v('k-ulica'), kucniBroj: v('k-kbr'),
-      mjesto: el('k-grad').value, spol: 'M',
+      ime: isPravna ? null : v('k-ime'),
+      prezime: isPravna ? null : v('k-prezime'),
+      naziv: isPravna ? v('k-naziv') : null,
+      oib: v('k-oib'),
+      datumRodjenja: isPravna ? null : v('k-dob'),
+      ulica: v('k-ulica'), kucniBroj: v('k-kbr'),
+      mjesto: el('k-grad').value, spol: isPravna ? null : 'M',
       mobitel: v('k-mob'), email: v('k-email'),
       tipStranke: S.tip, marketinskaSuglasnost: 'N', provjeraStranke: true,
     },
@@ -1046,6 +1112,7 @@ function showPolica(d) {
   el('s4-raw').textContent = JSON.stringify({genPolicy:genPolicyResp, setPayment:d}, null, 2);
   go(4);
   launchConfetti();
+  fetchDokumenti('ugovorna', 'ugovdok-section');
 }
 
 function downloadPdf(type) {
