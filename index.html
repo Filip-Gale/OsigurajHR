@@ -405,7 +405,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
         <!-- 2. Partner logo marquee -->
         <style>
-        .hp-partners-wrap { max-width:500px; width:92%; margin:0 auto 20px; }
+        .hp-partners-wrap { width:100%; overflow:hidden; margin:0 0 20px; }
         .hp-partners-label { display:none; }
         .hp-partners-track-outer { overflow:hidden; }
         .hp-partners-track { display:flex; align-items:center; gap:24px; width:max-content; animation:partnersScroll 20s linear infinite; }
@@ -413,11 +413,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             0%   { transform:translateX(0); }
             100% { transform:translateX(-33.333%); }
         }
-        .hp-partner-logo { height:44px; width:auto; max-width:150px; object-fit:contain; background:white; border-radius:10px; padding:6px 14px; box-sizing:border-box; flex-shrink:0; display:block; }
+        .hp-partner-logo { height:44px; width:150px; object-fit:contain; background:white; border-radius:10px; padding:6px 14px; box-sizing:border-box; flex-shrink:0; display:block; }
         @media (min-width: 768px) {
-            .hp-partners-wrap { max-width:1000px; }
             .hp-partners-track { gap:40px; animation-duration:40s; }
-            .hp-partner-logo { height:58px; width:190px; max-width:190px; padding:8px 20px; border-radius:12px; }
+            .hp-partner-logo { height:58px; width:190px; padding:8px 20px; border-radius:12px; }
         }
         </style>
         <div class="hp-partners-wrap">
@@ -454,7 +453,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         .hp-pay-bar-text { font-size:0.74rem; color:rgba(255,255,255,0.6); line-height:1.5; margin:0 0 8px; }
         .hp-pay-disclaimer { font-size:0.68rem; color:rgba(255,255,255,0.35); line-height:1.4; margin:0; }
         </style>
-        <div class="row-pc width-container-1000">
+        <div class="row-pc" style="width:100%; padding:0 16px; box-sizing:border-box; gap:16px;">
             <div class="after-form-panel background-purple-light text-purple round row" style="flex:1;">
                 <img src="img/policy-purple.jpg" alt="phone_bubble">
                 <p>
