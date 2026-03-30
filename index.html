@@ -320,7 +320,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             frameborder="0"
             scrolling="no"
             allowtransparency="true"
-            style="width:100%; max-width:500px; display:block; margin:12px auto 0; border:none; min-height:200px; border-radius:18px;"
+            style="width:100%; max-width:500px; display:block; margin:12px auto 0; border:none; min-height:200px; border-radius:18px; transition:max-width 0.2s;"
         ></iframe>
         <script>
         window.addEventListener('message', function(e) {
@@ -358,6 +358,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <!-- 1. Garantiramo najpovoljniju ponudu -->
         <style>
         .guar-wrap { max-width:500px; width:92%; margin:0 auto 20px; }
+        @media (min-width: 768px) {
+            .guar-wrap { max-width:700px; }
+            #wizard-frame { max-width:700px !important; }
+        }
         .guar-card {
             position: relative; overflow: hidden;
             background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 40%, #fde68a 100%);
