@@ -463,6 +463,11 @@ input[type=number] { -moz-appearance: textfield; }
     </div>
     <div class="btn-stack">
       <button class="btn-main" onclick="fetch_quote()" type="button">Saznaj cijenu →</button>
+      <div style="display:flex;gap:6px;margin-top:4px;flex-wrap:wrap">
+        <button type="button" onclick="fillTestData('smart')" style="background:none;border:1px dashed rgba(0,0,0,0.2);color:rgba(0,0,0,0.5);font-size:0.75rem;padding:6px 12px;border-radius:8px;cursor:pointer;font-family:inherit">🧪 Smart Fortwo</button>
+        <button type="button" onclick="fillTestData('golf')" style="background:none;border:1px dashed rgba(0,0,0,0.2);color:rgba(0,0,0,0.5);font-size:0.75rem;padding:6px 12px;border-radius:8px;cursor:pointer;font-family:inherit">🧪 VW Golf</button>
+        <button type="button" onclick="fillTestData('pravna')" style="background:none;border:1px dashed rgba(0,0,0,0.2);color:rgba(0,0,0,0.5);font-size:0.75rem;padding:6px 12px;border-radius:8px;cursor:pointer;font-family:inherit">🧪 Pravna osoba</button>
+      </div>
       <button type="button" onclick="openScanModal()" style="background:none;border:none;cursor:pointer;text-align:center;color:#573cf9;font-size:0.92rem;font-weight:700;padding:10px 0 2px;letter-spacing:0.01em;opacity:0.85;transition:opacity 0.2s;display:flex;align-items:center;justify-content:center;gap:7px;width:100%;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.85'"><span style="background:linear-gradient(135deg,#7c5cfc,#573cf9);border-radius:7px;width:24px;height:24px;display:inline-flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;">✨</span>Automatski ispuni sve podatke</button>
     </div>
   </div>
@@ -706,6 +711,60 @@ var selectedPkgs = {};
 var mjesta = [];
 var setPmtResp = null, genPolicyResp = null;
 var _dokData = {};
+var _testPreset = null;
+
+// ── Test prefill ──────────────────────────────────────────────────────────────
+function fillTestData(preset) {
+  var presets = {
+    smart: {
+      tip:'F', reg:'ZG6741GI', kw:'33', dob:'25.04.1976', oib:'17342130754',
+      ime:'Ivan', prezime:'Horvat', ulica:'Ilica', kbr:'1',
+      mob:'0911234567', email:'test@osiguraj.hr', vin:'WME4513001K309018',
+      grad:'ZG', gradNaziv:'Zagreb (ZG)',
+    },
+    golf: {
+      tip:'F', reg:'ST1234AA', kw:'85', dob:'15.06.1988', oib:'91612982872',
+      ime:'Marko', prezime:'Marković', ulica:'Domovinskog rata', kbr:'5',
+      mob:'0921234567', email:'test@osiguraj.hr', vin:'WVWZZZ1KZAM123456',
+      grad:'ST', gradNaziv:'Split (ST)',
+    },
+    pravna: {
+      tip:'P', reg:'ZG2345BB', kw:'110', dob:null, oib:'88600236681',
+      naziv:'Primjer d.o.o.', ulica:'Savska', kbr:'10',
+      mob:'0911234567', email:'test@osiguraj.hr', vin:'WVWZZZ1KZAM654321',
+      grad:'ZG', gradNaziv:'Zagreb (ZG)',
+    },
+  };
+  var p = presets[preset];
+  if (!p) return;
+  _testPreset = p;
+  el('reg').value = p.reg;
+  el('kw').value = p.kw;
+  if (p.dob) el('dob').value = p.dob;
+  el('oib').value = p.oib;
+  var tipRadio = document.querySelector('input[name=tip][value="'+p.tip+'"]');
+  if (tipRadio) { tipRadio.checked = true; el('dob-row').style.display = p.tip==='F' ? 'block' : 'none'; }
+  go(2);
+}
+
+function prefillKupiFromPreset(p) {
+  if (!p) return;
+  if (p.tip==='P' || p.tip==='O') {
+    if (p.naziv && !el('k-naziv').value) el('k-naziv').value = p.naziv;
+  } else {
+    if (p.ime && !el('k-ime').value) el('k-ime').value = p.ime;
+    if (p.prezime && !el('k-prezime').value) el('k-prezime').value = p.prezime;
+  }
+  if (p.ulica && !el('k-ulica').value) el('k-ulica').value = p.ulica;
+  if (p.kbr && !el('k-kbr').value) el('k-kbr').value = p.kbr;
+  if (p.mob && !el('k-mob').value) el('k-mob').value = p.mob;
+  if (p.email && !el('k-email').value) el('k-email').value = p.email;
+  if (p.vin && !el('k-vin').value) { el('k-vin').value = p.vin; decodeVin(p.vin); }
+  if (p.grad && !el('k-grad').value) {
+    el('k-grad').value = p.grad;
+    el('k-grad-search').value = p.gradNaziv || p.grad;
+  }
+}
 
 // ── Helpers ──────────────────────────────────────────────────────────────────
 function v(id){ return document.getElementById(id).value.trim(); }
@@ -1001,6 +1060,9 @@ function openKupi(btn) {
   el('k-naziv-row').style.display = isPravna ? '' : 'none';
   el('k-imeprezime-row').style.display = isPravna ? 'none' : '';
   el('k-dob-row').style.display = isPravna ? 'none' : '';
+
+  // Pre-fill iz test preseta
+  prefillKupiFromPreset(_testPreset);
 
   // Pre-fill OIB iz step 2 ako postoji
   if (S.oib && !el('k-oib').value) el('k-oib').value = S.oib;
