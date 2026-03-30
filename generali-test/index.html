@@ -1302,8 +1302,10 @@ function renderScanPreview(d) {
   var rows = [
     { lbl: 'Registracija',  val: d.registracija },
     { lbl: 'kW',            val: d.kw ? d.kw + ' kW' : null },
+    { lbl: 'Tip stranke',   val: d.dob ? 'Fizička osoba' : 'Pravna osoba' },
     { lbl: 'Datum rođenja', val: d.dob },
     { lbl: 'OIB',           val: d.oib },
+    { lbl: 'VIN / Šasija',  val: d.vin },
   ];
   document.getElementById('scan-preview').innerHTML = rows.map(function(r) {
     return '<div class="scan-field-row">'
@@ -1360,24 +1362,36 @@ async function confirmScanData() {
   if (!scanData) return;
   await sleep(80);
 
+  // Detect pravna osoba: polica bez datuma rođenja
+  var isPravna = !scanData.dob;
+  if (isPravna) {
+    var tipLabel = document.querySelector('label[for="tip-p"]');
+    if (tipLabel) { tipLabel.click(); await sleep(150); }
+  }
+
   var fills = [
-    { id: 'reg',      val: scanData.registracija ? scanData.registracija.toUpperCase() : null, delay: 25 },
-    { id: 'kw',       val: scanData.kw ? String(scanData.kw) : null, delay: 25 },
-    { id: 'dob',      val: scanData.dob || null, delay: 20 },
-    { id: 'oib',      val: scanData.oib || null, delay: 15 },
-    { id: 'k-ime',    val: scanData.ime || null, delay: 20 },
-    { id: 'k-prezime',val: scanData.prezime || null, delay: 20 },
-    { id: 'k-oib',    val: scanData.oib || null, delay: 15 },
-    { id: 'k-ulica',  val: scanData.ulica || null, delay: 18 },
-    { id: 'k-kbr',    val: scanData.kucni_broj || null, delay: 18 },
+    { id: 'reg',       val: scanData.registracija ? scanData.registracija.toUpperCase() : null, delay: 25 },
+    { id: 'kw',        val: scanData.kw ? String(scanData.kw) : null, delay: 25 },
+    { id: 'oib',       val: scanData.oib || null, delay: 15 },
+    { id: 'k-oib',     val: scanData.oib || null, delay: 15 },
+    { id: 'k-ulica',   val: scanData.ulica || null, delay: 18 },
+    { id: 'k-kbr',     val: scanData.kucni_broj || null, delay: 18 },
+    { id: 'k-vin',     val: scanData.vin || null, delay: 12 },
   ];
 
-  // k-dob is type="date", needs YYYY-MM-DD
-  if (scanData.dob) {
-    var dp = scanData.dob.split('.');
-    if (dp.length === 3) {
-      var kdob = document.getElementById('k-dob');
-      if (kdob) kdob.value = dp[2] + '-' + dp[1].padStart(2,'0') + '-' + dp[0].padStart(2,'0');
+  if (isPravna) {
+    fills.push({ id: 'k-naziv', val: scanData.ime || null, delay: 20 });
+  } else {
+    fills.push({ id: 'dob',       val: scanData.dob || null, delay: 20 });
+    fills.push({ id: 'k-ime',     val: scanData.ime || null, delay: 20 });
+    fills.push({ id: 'k-prezime', val: scanData.prezime || null, delay: 20 });
+    // k-dob is type="date", needs YYYY-MM-DD
+    if (scanData.dob) {
+      var dp = scanData.dob.split('.');
+      if (dp.length === 3) {
+        var kdob = document.getElementById('k-dob');
+        if (kdob) kdob.value = dp[2] + '-' + dp[1].padStart(2,'0') + '-' + dp[0].padStart(2,'0');
+      }
     }
   }
 
@@ -1387,6 +1401,7 @@ async function confirmScanData() {
     var elF = document.getElementById(f.id);
     if (!elF) continue;
     await typeInto(elF, f.val, f.delay);
+    if (f.id === 'k-vin') decodeVin(f.val);
     await sleep(40);
   }
 
