@@ -785,7 +785,7 @@ function go(n, dir) {
     el('l'+i) && (el('l'+i).className = 'progress-lbl'+(i<n?' done':i===n?' active':''));
     if (i<4) el('ln'+i) && (el('ln'+i).className = 'progress-line'+(i<n?' done':''));
   }
-  window.scrollTo({top:0, behavior:'smooth'});
+  window.scrollTo({top:0, behavior:'instant'});
 }
 
 // ── Step 1 ───────────────────────────────────────────────────────────────────
