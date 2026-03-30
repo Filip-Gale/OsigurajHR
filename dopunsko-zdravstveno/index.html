@@ -159,18 +159,22 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; b
 .feat-desc { font-size: 0.85rem; color: #666; line-height: 1.6; }
 
 /* COMPARISON TABLE */
-.comp-table { width: 100%; border-collapse: collapse; min-width: 340px; }
-.comp-table th { padding: 14px 18px; font-size: 0.85rem; font-weight: 800; text-align: center; }
+.comp-table { width: 100%; border-collapse: collapse; }
+.comp-table th { padding: 10px 10px; font-size: 0.8rem; font-weight: 800; text-align: center; }
 .comp-table th:first-child { text-align: left; background: #f5f5f7; color: #666; }
 .comp-table th.hzzo { background: #f5f5f7; color: #888; }
 .comp-table th.priv { background: #573cf9; color: white; }
-.comp-table td { padding: 13px 18px; font-size: 0.88rem; border-top: 1px solid #f0f0f0; }
+.comp-table td { padding: 11px 10px; font-size: 0.83rem; border-top: 1px solid #f0f0f0; }
 .comp-table td:first-child { color: #333; font-weight: 600; }
 .comp-table td:not(:first-child) { text-align: center; }
 .comp-table tr:nth-child(even) td { background: #fafafa; }
 .check-yes { color: #22c55e; font-weight: 800; font-size: 1rem; }
 .check-no { color: #ddd; font-size: 1rem; }
 .price-highlight { color: #573cf9; font-weight: 800; font-size: 1rem; }
+@media (min-width: 600px) {
+  .comp-table th { padding: 14px 18px; font-size: 0.85rem; }
+  .comp-table td { padding: 13px 18px; font-size: 0.88rem; }
+}
 
 /* FAQ */
 .faq-list { margin-top: 32px; }
