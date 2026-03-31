@@ -514,7 +514,6 @@ function buildCards() {
   const ponude = window._ponude || [];
   const bLista = document.getElementById('toggleBLista').checked;
   const dop = ponude.filter(p => p.cjenik === 'DOP24');
-  const dzos = ponude.filter(p => p.cjenik === 'DZO24');
 
   let html = '';
 
@@ -532,17 +531,6 @@ function buildCards() {
     ];
     html += cardHtml(pkg, idx, 'Uniqa Dopunsko', typeLabel, feats);
   }
-
-  // Dobrovoljno cards
-  dzos.forEach(p => {
-    const idx = ponude.indexOf(p);
-    const feats = [
-      { t: 'Specijalisti bez čekanja', d: 'Direktan pristup specijalistima bez uputnice.' },
-      { t: 'Privatne klinike i poliklinike', d: null },
-      { t: 'Sistematski pregledi', d: null },
-    ];
-    html += cardHtml(p, idx, escHtml(p.rizikNaziv || p.rizik), 'DOBROVOLJNO', feats);
-  });
 
   const wrap = document.getElementById('pkgCards');
   wrap.innerHTML = html;
