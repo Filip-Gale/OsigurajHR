@@ -158,6 +158,13 @@ input.fi.date-empty::-webkit-datetime-edit-fields-wrapper { color: transparent; 
 .za-sebe-row input[type=checkbox] { width: 18px; height: 18px; accent-color: #573cf9; cursor: pointer; flex-shrink: 0; }
 .za-sebe-row span { font-size: .93rem; font-weight: 600; color: #1a1033; }
 
+/* Package feature badges */
+.pkg-features { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 6px; }
+.pkg-feat {
+  font-size: .68rem; font-weight: 700; padding: 2px 8px; border-radius: 20px;
+  background: rgba(87,60,249,.08); color: #573cf9; white-space: nowrap;
+}
+
 /* Osiguranik section */
 .section-divider {
   font-size: .73rem; font-weight: 800; text-transform: uppercase; letter-spacing: .5px;
@@ -510,16 +517,17 @@ function applyFilter(filter) {
       lastCjenik = p.cjenik;
     }
     const isChecked = S.selectedPkg && S.selectedPkg.rizik === p.rizik ? 'checked' : '';
+    const feats = pkgFeatures(p.cjenik);
     return `
       ${catLabel}
       <label class="pkg-wrap">
         <input type="radio" name="pkg" value="${globalIdx}" data-idx="${globalIdx}" ${isChecked}>
         <div class="pkg-card">
-          <div>
+          <div style="flex:1">
             <div class="pkg-name">${escHtml(p.rizikNaziv || p.rizik)}</div>
-            <div class="pkg-cjenik">${escHtml(p.cjenikNaziv || p.cjenik)}</div>
+            <div class="pkg-features">${feats.map(f => `<span class="pkg-feat">${f}</span>`).join('')}</div>
           </div>
-          <div class="pkg-price">${formatKn(p.premija)} <span>€/god</span></div>
+          <div class="pkg-price" style="margin-left:10px">${formatKn(p.premija)} <span>€/god</span></div>
         </div>
       </label>`;
   }).join('');
@@ -784,6 +792,12 @@ document.getElementById('btnBack4').addEventListener('click', () => {
 });
 
 // ─── helpers ──────────────────────────────────────────────────────────────────
+function pkgFeatures(cjenik) {
+  if (cjenik === 'DOP24') return ['✓ B lista lijekova', '✓ Svi troškovi participacije'];
+  if (cjenik === 'DZO24') return ['✓ Privatne klinike', '✓ Specijalisti bez čekanja'];
+  return [];
+}
+
 function formatKn(n) {
   if (!n && n !== 0) return '—';
   return n.toFixed(2).replace('.', ',');
