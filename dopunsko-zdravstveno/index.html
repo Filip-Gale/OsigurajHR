@@ -631,6 +631,7 @@ function korak1() {
   document.getElementById('c-wiener').textContent   = fmt(8.00);
   document.getElementById('c-uniqa').textContent    = '...';
   prikaziKorak(2);
+  launchConfetti();
 
   // Fetch real Uniqa price
   fetch(DZO_PROXY + '/dzo/ponude', {
@@ -691,7 +692,6 @@ function posalji() {
   fetch('https://osiguraj-email.osiguraj1.workers.dev',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:email,reg:'DZO — '+ime,osig:_odabranPaket,cijena:_odabranaCijena+'/mj'})}).catch(function(){});
   zatvoriModal();
   prikaziKorak('success');
-  launchConfetti();
 }
 
 function prikaziKorak(n) {
