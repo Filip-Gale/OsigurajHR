@@ -225,6 +225,26 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; b
 
 /* Bottom purple margin fix */
 .purple-bottom { padding-bottom: 48px; }
+
+/* DZO toggles inside wizard card */
+.dzo-opt-row {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  background: white; border-radius: 12px; padding: 11px 14px; margin-bottom: 8px;
+  cursor: pointer;
+}
+.dzo-opt-title { font-size: .88rem; font-weight: 700; color: #1a1033; }
+.dzo-opt-desc  { font-size: .74rem; color: rgba(0,0,0,.45); margin-top: 2px; }
+.dzo-opt-row input[type=checkbox] { display: none; }
+.dzo-tog {
+  width: 44px; height: 24px; background: rgba(0,0,0,.15); border-radius: 12px;
+  position: relative; flex-shrink: 0; transition: background .2s;
+}
+.dzo-tog::after {
+  content: ''; position: absolute; width: 18px; height: 18px; top: 3px; left: 3px;
+  background: white; border-radius: 50%; transition: transform .2s; box-shadow: 0 1px 3px rgba(0,0,0,.25);
+}
+.dzo-opt-row input:checked ~ .dzo-tog { background: #573cf9; }
+.dzo-opt-row input:checked ~ .dzo-tog::after { transform: translateX(20px); }
 </style>
 </head>
 <body>
@@ -316,6 +336,24 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; b
     <button class="btn-back" onclick="prikaziKorak(1)">&larr; Natrag</button>
     <div class="step-title">Odaberi policu</div>
     <div class="step-sub" id="ponude-sub"></div>
+    <div style="margin-top:12px">
+      <label class="dzo-opt-row" id="bListaOptRow" style="display:none">
+        <div>
+          <div class="dzo-opt-title">B lista lijekova</div>
+          <div class="dzo-opt-desc">Lijekovi koji su na recept i plaćaju se, ti ih ne plaćaš.</div>
+        </div>
+        <input type="checkbox" id="dzo-bLista">
+        <span class="dzo-tog"></span>
+      </label>
+      <label class="dzo-opt-row">
+        <div>
+          <div class="dzo-opt-title">Jednokratno plaćanje</div>
+          <div class="dzo-opt-desc">Plati cijelu godinu odjednom i uštedi na ratama.</div>
+        </div>
+        <input type="checkbox" id="dzo-jednokratno" checked>
+        <span class="dzo-tog"></span>
+      </label>
+    </div>
   </div>
 
   <div class="results-section">
@@ -323,12 +361,12 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; b
       <div class="ponuda-badge">Najpovoljnije</div>
       <div class="ponuda-top">
         <div class="ponuda-logo-name">UNIQA</div>
-        <div class="ponuda-cijena"><div class="iznos" id="c-uniqa">—</div><div class="period">/ mjesec</div></div>
+        <div class="ponuda-cijena"><div class="iznos" id="c-uniqa">—</div><div class="period" id="uniqa-period">/ mj</div></div>
       </div>
       <div class="ponuda-features">
         <div class="ponuda-feature">Pokriva sve troškove participacije</div>
-        <div class="ponuda-feature">B lista lijekova uključena</div>
-        <div class="ponuda-feature">Iskaznica odmah na mail</div>
+        <div class="ponuda-feature">Iskaznica je sredstvo plaćanja</div>
+        <div class="ponuda-feature">5% uštede pri jednokratnom plaćanju</div>
       </div>
       <div class="ponuda-actions">
         <button class="btn-detalji">Detalji</button>
@@ -552,6 +590,8 @@ document.getElementById('dob').addEventListener('input', function() {
 });
 
 var _dobYear=0, _dobFull='', _odabranPaket='', _odabranaCijena='';
+var _uniqaPonude = [];
+const DZO_PROXY = 'https://uniqa-dzo-proxy.osiguraj1.workers.dev';
 
 function korak1() {
   var v = document.getElementById('dob').value.trim();
@@ -571,16 +611,50 @@ function korak1() {
   document.getElementById('dob').classList.remove('err');
   _dobYear = parseInt(parts[2],10);
   _dobFull = v;
+
   var age = new Date().getFullYear() - _dobYear;
   var f = age<25 ? 0.90 : age>60 ? 1.15 : 1;
   function fmt(base){ return (base*f).toFixed(2).replace('.',',')+ ' €'; }
-  document.getElementById('c-uniqa').textContent    = fmt(7.00);
   document.getElementById('c-triglav').textContent  = fmt(7.30);
   document.getElementById('c-generali').textContent = fmt(7.50);
   document.getElementById('c-wiener').textContent   = fmt(8.00);
+  document.getElementById('c-uniqa').textContent    = '...';
   document.getElementById('ponude-sub').textContent = 'Ponude za osobu rođenu '+_dobYear+'. god.';
   prikaziKorak(2);
+
+  // Fetch real Uniqa price
+  fetch(DZO_PROXY + '/dzo/ponude', {
+    method: 'POST',
+    headers: {'Content-Type':'application/json'},
+    body: JSON.stringify({datumRodenja: _dobFull})
+  })
+  .then(function(r){ return r.json(); })
+  .then(function(data){
+    _uniqaPonude = data.ponude || [];
+    var hasBLista = _uniqaPonude.filter(function(p){return p.cjenik==='DOP24';}).length >= 2;
+    document.getElementById('bListaOptRow').style.display = hasBLista ? 'flex' : 'none';
+    updateUniqaCard();
+  })
+  .catch(function(){ document.getElementById('c-uniqa').textContent = '—'; });
 }
+
+function updateUniqaCard() {
+  var bLista = document.getElementById('dzo-bLista').checked;
+  var jednokratno = document.getElementById('dzo-jednokratno').checked;
+  var dop = _uniqaPonude.filter(function(p){return p.cjenik==='DOP24';});
+  if (!dop.length) return;
+  var pkg = bLista
+    ? (dop.find(function(p){return p.rizik==='DI7B1';}) || dop[dop.length-1])
+    : (dop.find(function(p){return p.rizik==='DI7A1';}) || dop[0]);
+  if (!pkg || !pkg.premija) return;
+  var cijena = jednokratno ? pkg.premija : pkg.premija * 1.05 / 12;
+  var period = jednokratno ? '/ god.' : '/ mj';
+  document.getElementById('c-uniqa').textContent = cijena.toFixed(2).replace('.',',') + ' €';
+  document.getElementById('uniqa-period').textContent = period;
+}
+
+document.getElementById('dzo-bLista').addEventListener('change', updateUniqaCard);
+document.getElementById('dzo-jednokratno').addEventListener('change', updateUniqaCard);
 
 function otvoriModal(paket, cijenaId) {
   _odabranPaket = paket;
