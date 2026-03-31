@@ -271,26 +271,14 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; b
 
 <!-- KORAK 1 — samo datum -->
 <div class="wizard-card" id="card-k1">
-  <div class="progress-bar">
-    <div class="progress-step">
-      <div class="progress-dot active">1</div>
-      <div class="progress-lbl active">DATUM</div>
+  <div style="display:flex;gap:10px;align-items:flex-start">
+    <div style="flex:1">
+      <input class="finput" id="dob" type="text" inputmode="numeric" placeholder="Datum rođenja  DD.MM.GGGG" maxlength="10" autocomplete="bday" style="margin:0">
+      <div class="ferror" id="e-dob">Unesite ispravan datum rođenja.</div>
     </div>
-    <div class="progress-line" id="pline"></div>
-    <div class="progress-step">
-      <div class="progress-dot">2</div>
-      <div class="progress-lbl">PONUDE</div>
-    </div>
+    <button class="btn-main" onclick="korak1()" style="flex-shrink:0;width:auto;padding-left:22px;padding-right:22px;white-space:nowrap">Prikaži ponude &rarr;</button>
   </div>
-  <div class="step-title">Unesi datum rođenja</div>
-  <div class="step-sub">Cijena ovisi o dobi &mdash; izračun traje sekundu</div>
-  <div class="field">
-    <label class="flabel" for="dob">Datum rođenja</label>
-    <input class="finput" id="dob" type="text" inputmode="numeric" placeholder="DD.MM.GGGG" maxlength="10" autocomplete="bday">
-    <div class="ferror" id="e-dob">Unesite ispravan datum rođenja.</div>
-  </div>
-  <button class="btn-main" onclick="korak1()">Prikaži ponude &rarr;</button>
-  <p class="disclaimer">Izračun je besplatan i bez obaveza.</p>
+  <p class="disclaimer" style="margin-top:10px">Izračun je besplatan i bez obaveza.</p>
 </div>
 
 <!-- TRUST + LOGOS -->
@@ -381,7 +369,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; b
       </div>
       <div class="ponuda-actions">
         <button class="btn-detalji" onclick="const p=this.closest('.ponuda');p.classList.toggle('open');this.querySelector('span').textContent=p.classList.contains('open')?'Prikaži manje':'Prikaži detalje'"><span>Prikaži detalje</span><svg width="11" height="11" viewBox="0 0 14 14" fill="none"><path d="M2 5l5 5 5-5" stroke="#573cf9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-        <button class="btn-kupi" onclick="otvoriModal('UNIQA Dopunsko','c-uniqa')">Kupi Odaberi &rarr;rarr;</button>
+        <button class="btn-kupi" onclick="otvoriModal('UNIQA Dopunsko','c-uniqa')">Kupi &rarr;</button>
       </div>
     </div>
 
@@ -397,7 +385,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; b
       </div>
       <div class="ponuda-actions">
         <button class="btn-detalji">Detalji</button>
-        <button class="btn-kupi" onclick="otvoriModal('Triglav Dopunsko','c-triglav')">Kupi Odaberi &rarr;rarr;</button>
+        <button class="btn-kupi" onclick="otvoriModal('Triglav Dopunsko','c-triglav')">Kupi &rarr;</button>
       </div>
     </div>
 
@@ -413,7 +401,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; b
       </div>
       <div class="ponuda-actions">
         <button class="btn-detalji">Detalji</button>
-        <button class="btn-kupi" onclick="otvoriModal('Generali Dopunsko','c-generali')">Kupi Odaberi &rarr;rarr;</button>
+        <button class="btn-kupi" onclick="otvoriModal('Generali Dopunsko','c-generali')">Kupi &rarr;</button>
       </div>
     </div>
 
@@ -429,7 +417,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; b
       </div>
       <div class="ponuda-actions">
         <button class="btn-detalji">Detalji</button>
-        <button class="btn-kupi" onclick="otvoriModal('Wiener Dopunsko','c-wiener')">Kupi Odaberi &rarr;rarr;</button>
+        <button class="btn-kupi" onclick="otvoriModal('Wiener Dopunsko','c-wiener')">Kupi &rarr;</button>
       </div>
     </div>
 
