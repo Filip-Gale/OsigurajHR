@@ -185,11 +185,19 @@ input.fi.date-empty::-webkit-datetime-edit-fields-wrapper { color: transparent; 
 
 /* Karenca info notice */
 .info-notice {
-  background: rgba(87,60,249,.08); border: 1.5px solid rgba(87,60,249,.2);
-  border-radius: 12px; padding: 12px 14px; margin-bottom: 16px;
-  font-size: .82rem; color: rgba(0,0,0,.6); line-height: 1.5;
+  background: #f5f5f5; border: 1px solid #e0e0e0;
+  border-radius: 10px; padding: 12px 14px; margin-bottom: 16px;
+  font-size: .82rem; color: rgba(0,0,0,.55); line-height: 1.5;
 }
 .info-notice strong { color: #573cf9; }
+/* Uvjeti osiguranja */
+.uvjeti-wrap { background: white; border-radius: 14px; padding: 16px; margin-bottom: 16px; }
+.uvjeti-title { font-size: .82rem; font-weight: 700; color: #573cf9; margin-bottom: 10px; }
+.uvjeti-div { border: none; border-top: 1.5px dashed rgba(0,0,0,.1); margin: 10px 0; }
+.uvjeti-row { padding: 6px 0; }
+.uvjeti-lbl { font-size: .7rem; font-weight: 700; color: #999; letter-spacing: .06em; text-transform: uppercase; margin-bottom: 2px; }
+.uvjeti-val { font-size: .9rem; font-weight: 600; color: #1a1033; }
+.uvjeti-sub { font-size: .76rem; color: #999; margin-top: 1px; }
 
 /* Za sebe checkbox */
 .za-sebe-row {
@@ -400,6 +408,25 @@ input.fi.date-empty::-webkit-datetime-edit-fields-wrapper { color: transparent; 
     <!-- Karenca obavijest -->
     <div class="info-notice">
       ℹ️ Polica počinje vrijediti nakon isteka <strong>karence od 15 dana</strong> od datuma početka osiguranja.
+    </div>
+
+    <!-- Uvjeti osiguranja -->
+    <div class="uvjeti-wrap">
+      <div class="uvjeti-title">Uvjeti osiguranja</div>
+      <hr class="uvjeti-div">
+      <div class="uvjeti-row">
+        <div class="uvjeti-lbl">Početak osiguranja</div>
+        <div class="uvjeti-val">Nakon isteka karence</div>
+      </div>
+      <div class="info-notice" style="margin-top:8px;margin-bottom:8px">
+        *Karenca je razdoblje od 15 dana u kojem se polica ne može koristiti. Tvoja polica počinje vrijediti nakon isteka karence.
+      </div>
+      <hr class="uvjeti-div">
+      <div class="uvjeti-row">
+        <div class="uvjeti-lbl">Trajanje osiguranja</div>
+        <div class="uvjeti-val">Do otkaza ugovora</div>
+        <div class="uvjeti-sub">(za sve informacije pročitajte uvjete osiguranja)</div>
+      </div>
     </div>
 
     <div class="summary" id="summary"></div>
