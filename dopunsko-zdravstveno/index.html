@@ -254,9 +254,11 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; b
 }
 .dzo-opt-row input:checked ~ .dzo-tog { background: #573cf9; }
 .dzo-opt-row input:checked ~ .dzo-tog::after { transform: translateX(20px); }
+#confetti-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9999; }
 </style>
 </head>
 <body>
+<canvas id="confetti-canvas"></canvas>
 
 {% include nav.html %}
 <div class="nav-spacer"></div>
@@ -689,6 +691,7 @@ function posalji() {
   fetch('https://osiguraj-email.osiguraj1.workers.dev',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:email,reg:'DZO — '+ime,osig:_odabranPaket,cijena:_odabranaCijena+'/mj'})}).catch(function(){});
   zatvoriModal();
   prikaziKorak('success');
+  launchConfetti();
 }
 
 function prikaziKorak(n) {
@@ -711,6 +714,34 @@ function prikaziKorak(n) {
 
 function toggleFaq(el) {
   el.parentElement.classList.toggle('open');
+}
+
+function launchConfetti() {
+  var canvas = document.getElementById('confetti-canvas');
+  var ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+  var pieces = Array.from({length: 90}, function() {
+    return {
+      x: Math.random() * canvas.width, y: Math.random() * -canvas.height,
+      r: Math.random() * 7 + 4, d: Math.random() * 3 + 1,
+      c: ['#573cf9','#ffbc27','#22c55e','#f472b6','#38bdf8'][Math.floor(Math.random()*5)],
+      rot: Math.random() * 360, vr: (Math.random() - 0.5) * 8
+    };
+  });
+  var frames = 0;
+  function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    pieces.forEach(function(p) {
+      p.y += p.d + 1; p.x += (Math.random() - 0.5) * 1.5; p.rot += p.vr;
+      ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = p.c; ctx.globalAlpha = Math.max(0, 1 - p.y / canvas.height * 1.2);
+      ctx.fill();
+    });
+    ctx.globalAlpha = 1;
+    if (++frames < 160) requestAnimationFrame(draw);
+    else ctx.clearRect(0, 0, canvas.width, canvas.height);
+  }
+  draw();
 }
 
 // Health-themed background pattern (Telegram/WhatsApp doodle style)
