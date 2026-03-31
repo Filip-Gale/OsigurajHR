@@ -331,21 +331,10 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; b
 <!-- KORAK 2 — ponude -->
 <div id="wrap-k2" style="display:none;">
   <div class="wizard-card" style="margin-bottom:24px;">
-    <div class="progress-bar">
-      <div class="progress-step">
-        <div class="progress-dot done"></div>
-        <div class="progress-lbl done">DATUM</div>
-      </div>
-      <div class="progress-line done"></div>
-      <div class="progress-step">
-        <div class="progress-dot active">2</div>
-        <div class="progress-lbl active">PONUDE</div>
-      </div>
+    <div style="display:flex;justify-content:flex-end;margin-bottom:10px;">
+      <button class="btn-back" onclick="prikaziKorak(1)" style="margin:0">&larr; Natrag</button>
     </div>
-    <button class="btn-back" onclick="prikaziKorak(1)">&larr; Natrag</button>
-    <div class="step-title">Odaberi policu</div>
-    <div class="step-sub" id="ponude-sub"></div>
-    <div style="margin-top:12px">
+    <div style="margin-top:0">
       <label class="dzo-opt-row" id="bListaOptRow" style="display:none">
         <div>
           <div class="dzo-opt-title">B lista lijekova</div>
