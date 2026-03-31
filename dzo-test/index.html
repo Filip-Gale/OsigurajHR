@@ -1,0 +1,609 @@
+---
+layout: null
+title: Uniqa DZO — Test | Osiguraj.hr
+permalink: /dzo-test/
+---
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Uniqa DZO — Test</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="icon" type="image/jpeg" href="/img/favicon.jpg">
+<style>
+*, *::before, *::after { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+body { background: #573cf9; min-height: 100vh; margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
+
+.hero { text-align: center; padding: 32px 20px 12px; color: white; }
+.hero h1 { font-size: clamp(1.6rem, 5vw, 2.4rem); color: #ffbc27; margin: 0 0 8px; letter-spacing: -0.5px; }
+.hero p  { font-size: .93rem; opacity: .8; margin: 0; }
+.badge   { display: inline-block; background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.25); color: white; font-size: .68rem; font-weight: 700; letter-spacing: .8px; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; }
+
+.card {
+  background: #ffbc27; border-radius: 24px;
+  max-width: 500px; width: 92%; margin: 24px auto 40px;
+  padding: 30px 24px 34px;
+  box-shadow: 0 32px 80px rgba(255,188,39,.4), 0 8px 24px rgba(0,0,0,.2);
+}
+@media(min-width:600px){ .card { padding: 38px 42px 42px; } }
+
+/* Progress */
+.prog { display: flex; align-items: center; justify-content: center; margin-bottom: 28px; }
+.ps   { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+.pd   { width: 30px; height: 30px; border-radius: 50%; background: rgba(0,0,0,.12); color: rgba(0,0,0,.35); font-size: .76rem; font-weight: 800; display: flex; align-items: center; justify-content: center; transition: all .3s cubic-bezier(.34,1.56,.64,1); }
+.pd.active { background: #573cf9; color: white; box-shadow: 0 0 0 5px rgba(87,60,249,.25); transform: scale(1.1); }
+.pd.done   { background: #22c55e; color: white; font-size: 0; }
+.pd.done::after { content: '✓'; font-size: .82rem; }
+.pl { font-size: .62rem; color: rgba(0,0,0,.35); font-weight: 700; text-transform: uppercase; letter-spacing: .4px; white-space: nowrap; }
+.pl.active { color: #573cf9; }
+.pl.done   { color: #22c55e; }
+.pline { flex: none; width: 36px; height: 3px; background: rgba(0,0,0,.12); margin-bottom: 16px; border-radius: 2px; overflow: hidden; position: relative; }
+.pline::after { content: ''; position: absolute; left: 0; top: 0; height: 100%; width: 0; background: #22c55e; transition: width .5s ease; border-radius: 2px; }
+.pline.done::after { width: 100%; }
+
+/* Steps */
+.step  { display: none; animation: .3s ease both; }
+.step.active { display: block; }
+.slide-r { animation-name: slideR; }
+.slide-l { animation-name: slideL; }
+@keyframes slideR { from { opacity:0; transform:translateX(30px); } to { opacity:1; transform:translateX(0); } }
+@keyframes slideL { from { opacity:0; transform:translateX(-30px); } to { opacity:1; transform:translateX(0); } }
+
+h2.stitle { font-size: 1.28rem; color: #1a1033; margin: 0 0 3px; }
+p.ssub    { font-size: .86rem; color: rgba(0,0,0,.5); margin: 0 0 22px; }
+
+/* Fields */
+.fields { display: flex; flex-direction: column; gap: 14px; margin-bottom: 20px; }
+.row2   { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+label.fl { font-size: .73rem; text-transform: uppercase; letter-spacing: .5px; color: rgba(0,0,0,.55); margin-bottom: 5px; display: block; }
+input.fi, select.fi {
+  width: 100%; padding: 13px 15px; border: 2px solid rgba(0,0,0,.12); border-radius: 12px;
+  font-size: .97rem; font-family: inherit; font-weight: 600; color: #573cf9;
+  -webkit-appearance: none; appearance: none; background: white; outline: none;
+  transition: border-color .2s; min-height: 50px;
+}
+input.fi:focus, select.fi:focus { border-color: #573cf9; box-shadow: 0 0 0 4px rgba(87,60,249,.1); }
+input.fi::placeholder { font-weight: normal; color: #ccc; }
+input.fi.err, select.fi.err { border-color: #ef4444; }
+.fhint  { font-size: .73rem; color: rgba(0,0,0,.38); margin-top: 4px; }
+.ferr   { font-size: .73rem; color: #ef4444; margin-top: 4px; display: none; }
+
+/* Buttons */
+.btn {
+  width: 100%; padding: 16px; border: none; border-radius: 14px;
+  font-size: 1.02rem; font-weight: 800; cursor: pointer; transition: all .2s;
+  background: #573cf9; color: white; letter-spacing: .3px;
+}
+.btn:hover:not(:disabled) { background: #4a33d6; transform: translateY(-1px); box-shadow: 0 8px 24px rgba(87,60,249,.35); }
+.btn:disabled { opacity: .55; cursor: not-allowed; transform: none !important; }
+.btn-back { background: rgba(0,0,0,.08); color: rgba(0,0,0,.5); margin-bottom: 10px; }
+.btn-back:hover:not(:disabled) { background: rgba(0,0,0,.14); box-shadow: none; }
+
+/* Package cards */
+.pkg-cards { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
+.pkg-wrap input[type=radio] { position: absolute; opacity: 0; width: 0; height: 0; }
+.pkg-card {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 16px; border: 2px solid rgba(0,0,0,.1); border-radius: 14px;
+  cursor: pointer; transition: all .2s; background: white;
+}
+.pkg-wrap input:checked + .pkg-card { border-color: #573cf9; box-shadow: 0 0 0 3px rgba(87,60,249,.15); }
+.pkg-name  { font-size: .93rem; font-weight: 700; color: #1a1033; }
+.pkg-cjenik { font-size: .72rem; color: rgba(0,0,0,.4); margin-top: 2px; }
+.pkg-price { font-size: 1.2rem; font-weight: 900; color: #573cf9; white-space: nowrap; }
+.pkg-price span { font-size: .75rem; font-weight: 600; color: rgba(87,60,249,.7); }
+
+/* Loading */
+.loading { text-align: center; padding: 20px 0; }
+.spin { width: 40px; height: 40px; border: 4px solid rgba(87,60,249,.2); border-top-color: #573cf9; border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto 12px; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.loading p { color: rgba(0,0,0,.5); font-size: .9rem; margin: 0; }
+
+/* Summary box */
+.summary { background: rgba(255,255,255,.6); border-radius: 14px; padding: 16px 18px; margin-bottom: 20px; }
+.sum-row { display: flex; justify-content: space-between; align-items: center; padding: 5px 0; font-size: .88rem; color: rgba(0,0,0,.6); }
+.sum-row strong { color: #1a1033; }
+.sum-total { border-top: 1px solid rgba(0,0,0,.1); margin-top: 8px; padding-top: 10px; font-size: 1.1rem; font-weight: 800; color: #1a1033; }
+
+/* Success */
+.success { text-align: center; padding: 8px 0; }
+.success .check { width: 64px; height: 64px; border-radius: 50%; background: #22c55e; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; font-size: 1.8rem; }
+.success h3 { font-size: 1.35rem; color: #1a1033; margin: 0 0 6px; }
+.success p  { font-size: .88rem; color: rgba(0,0,0,.5); margin: 0 0 20px; }
+.policy-no { font-size: 1.3rem; font-weight: 900; color: #573cf9; background: rgba(87,60,249,.08); border-radius: 10px; padding: 10px 18px; display: inline-block; margin-bottom: 20px; }
+
+.dl-btns { display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; }
+.btn-dl { background: rgba(0,0,0,.07); color: #1a1033; font-size: .9rem; padding: 12px; }
+.btn-dl:hover { background: rgba(0,0,0,.12); box-shadow: none; transform: none !important; }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="badge">TEST OKRUŽENJE</div>
+  <h1>Uniqa Dopunsko</h1>
+  <p>Dopunsko i dobrovoljno zdravstveno osiguranje</p>
+</div>
+
+<div class="card">
+
+  <!-- Progress bar -->
+  <div class="prog" id="prog">
+    <div class="ps"><div class="pd active" id="d1">1</div><div class="pl active" id="l1">Dob</div></div>
+    <div class="pline" id="pl1"></div>
+    <div class="ps"><div class="pd" id="d2">2</div><div class="pl" id="l2">Paket</div></div>
+    <div class="pline" id="pl2"></div>
+    <div class="ps"><div class="pd" id="d3">3</div><div class="pl" id="l3">Podaci</div></div>
+    <div class="pline" id="pl3"></div>
+    <div class="ps"><div class="pd" id="d4">4</div><div class="pl" id="l4">Polica</div></div>
+  </div>
+
+  <!-- Step 1: Datum rođenja -->
+  <div class="step active slide-r" id="s1">
+    <h2 class="stitle">Datum rođenja</h2>
+    <p class="ssub">Unesite datum za izračun premije</p>
+    <div class="fields">
+      <div>
+        <label class="fl" for="datumRodenja">Datum rođenja</label>
+        <input class="fi" id="datumRodenja" type="date" max="2024-01-01" min="1920-01-01">
+      </div>
+    </div>
+    <button class="btn" id="btnIzracunaj">Prikaži pakete</button>
+  </div>
+
+  <!-- Step 2: Odabir paketa -->
+  <div class="step" id="s2">
+    <h2 class="stitle">Odaberite paket</h2>
+    <p class="ssub">Dostupni paketi za vašu godinu rođenja</p>
+    <div id="pkgLoading" class="loading">
+      <div class="spin"></div>
+      <p>Dohvaćam pakete...</p>
+    </div>
+    <div class="pkg-cards" id="pkgCards" style="display:none"></div>
+    <button class="btn" id="btnPickPkg" disabled>Nastavi</button>
+    <button class="btn btn-back" id="btnBack2" style="margin-top:8px">Nazad</button>
+  </div>
+
+  <!-- Step 3: Osobni podaci -->
+  <div class="step" id="s3">
+    <h2 class="stitle">Osobni podaci</h2>
+    <p class="ssub">Podaci ugovaratelja i osiguranika</p>
+    <div class="fields">
+      <div class="row2">
+        <div>
+          <label class="fl" for="ime">Ime</label>
+          <input class="fi" id="ime" type="text" placeholder="Marko">
+        </div>
+        <div>
+          <label class="fl" for="prezime">Prezime</label>
+          <input class="fi" id="prezime" type="text" placeholder="Horvat">
+        </div>
+      </div>
+      <div>
+        <label class="fl" for="oib">OIB</label>
+        <input class="fi" id="oib" type="text" inputmode="numeric" maxlength="11" placeholder="12345678901">
+      </div>
+      <div class="row2">
+        <div>
+          <label class="fl" for="spol">Spol</label>
+          <select class="fi" id="spol">
+            <option value="M">Muški</option>
+            <option value="Z">Ženski</option>
+          </select>
+        </div>
+        <div>
+          <label class="fl" for="datumRodenjaDisp">Datum rođenja</label>
+          <input class="fi" id="datumRodenjaDisp" type="text" readonly style="background:#f8f8f8;color:#999">
+        </div>
+      </div>
+      <div class="row2">
+        <div>
+          <label class="fl" for="ulica">Ulica</label>
+          <input class="fi" id="ulica" type="text" placeholder="Ilica">
+        </div>
+        <div>
+          <label class="fl" for="kbr">Kućni broj</label>
+          <input class="fi" id="kbr" type="text" placeholder="1">
+        </div>
+      </div>
+      <div>
+        <label class="fl" for="grad">Grad</label>
+        <input class="fi" id="grad" type="text" placeholder="Zagreb" autocomplete="off">
+        <div class="fhint">Upišite grad za pretraživanje</div>
+        <div id="gradSugg" style="background:white;border-radius:10px;margin-top:4px;display:none;max-height:160px;overflow-y:auto;border:2px solid rgba(87,60,249,.2)"></div>
+        <input type="hidden" id="mjestoid">
+      </div>
+      <div>
+        <label class="fl" for="email">Email</label>
+        <input class="fi" id="email" type="email" placeholder="marko@email.com">
+      </div>
+      <div>
+        <label class="fl" for="tel">Mobitel</label>
+        <input class="fi" id="tel" type="tel" placeholder="0911234567">
+      </div>
+    </div>
+    <button class="btn" id="btnOsobni">Nastavi</button>
+    <button class="btn btn-back" id="btnBack3" style="margin-top:8px">Nazad</button>
+  </div>
+
+  <!-- Step 4: HZZO + potvrda -->
+  <div class="step" id="s4">
+    <h2 class="stitle">HZZO broj i potvrda</h2>
+    <p class="ssub">Broj zdravstvene iskaznice (MBO)</p>
+    <div class="fields">
+      <div>
+        <label class="fl" for="mbo">HZZO broj (MBO)</label>
+        <input class="fi" id="mbo" type="text" inputmode="numeric" maxlength="12" placeholder="123456789">
+        <div id="mboStatus" class="fhint"></div>
+      </div>
+      <div>
+        <label class="fl" for="pocetakOsiguranja">Početak osiguranja</label>
+        <input class="fi" id="pocetakOsiguranja" type="date">
+      </div>
+    </div>
+
+    <div class="summary" id="summary"></div>
+
+    <div id="s4Loading" class="loading" style="display:none">
+      <div class="spin"></div>
+      <p>Kreiram policu...</p>
+    </div>
+
+    <button class="btn" id="btnIzdaj">Izdaj policu</button>
+    <button class="btn btn-back" id="btnBack4" style="margin-top:8px">Nazad</button>
+  </div>
+
+  <!-- Step 5: Uspjeh -->
+  <div class="step" id="s5">
+    <div class="success">
+      <div class="check">✓</div>
+      <h3>Polica kreirana!</h3>
+      <p>Uniqa dopunsko zdravstveno osiguranje</p>
+      <div class="policy-no" id="brojPolice">—</div>
+      <div class="dl-btns">
+        <button class="btn btn-dl" id="btnDlPolica" style="display:none">⬇ Preuzmi policu (PDF)</button>
+        <button class="btn btn-dl" id="btnDlIskaznica" style="display:none">⬇ Preuzmi zdravstvenu iskaznicu (PDF)</button>
+      </div>
+      <p id="s5Debug" style="font-size:.7rem;color:rgba(0,0,0,.3);word-break:break-all;text-align:left"></p>
+    </div>
+  </div>
+
+</div><!-- /card -->
+
+<script>
+const PROXY = 'https://uniqa-dzo-proxy.osiguraj1.workers.dev';
+
+// ─── state ───────────────────────────────────────────────────────────────────
+const S = {
+  datumRodenja:    '',   // ISO: YYYY-MM-DD
+  datumRodenjaDZO: '',   // HR format: DD.MM.YYYY
+  selectedPkg:     null, // { cjenik, rizik, premija, cjenikNaziv, rizikNaziv }
+  pocetakOsiguranja: '',
+};
+
+// ─── progress helpers ─────────────────────────────────────────────────────────
+function setStep(n, dir='right') {
+  document.querySelectorAll('.step').forEach(e => e.classList.remove('active'));
+  const step = document.getElementById('s' + n);
+  step.classList.add('active', dir === 'right' ? 'slide-r' : 'slide-l');
+  // After animation remove class
+  setTimeout(() => step.classList.remove('slide-r', 'slide-l'), 400);
+
+  for (let i = 1; i <= 4; i++) {
+    const d = document.getElementById('d' + i);
+    const l = document.getElementById('l' + i);
+    d.className = 'pd' + (i < n ? ' done' : i === n ? ' active' : '');
+    l.className = 'pl' + (i < n ? ' done' : i === n ? ' active' : '');
+  }
+  for (let i = 1; i <= 3; i++) {
+    const pl = document.getElementById('pl' + i);
+    pl.className = 'pline' + (i < n ? ' done' : '');
+  }
+
+  if (n === 5) document.getElementById('prog').style.display = 'none';
+  else document.getElementById('prog').style.display = 'flex';
+
+  window.scrollTo({ top: 0, behavior: 'instant' });
+}
+
+// ─── ISO → HR date ────────────────────────────────────────────────────────────
+function toHR(iso) {
+  const [y, m, d] = iso.split('-');
+  return `${d}.${m}.${y}`;
+}
+
+// ─── Step 1 → 2 ───────────────────────────────────────────────────────────────
+document.getElementById('btnIzracunaj').addEventListener('click', async () => {
+  const val = document.getElementById('datumRodenja').value;
+  if (!val) { alert('Unesite datum rođenja.'); return; }
+
+  S.datumRodenja    = val;
+  S.datumRodenjaDZO = toHR(val);
+
+  setStep(2);
+  document.getElementById('pkgLoading').style.display = '';
+  document.getElementById('pkgCards').style.display   = 'none';
+  document.getElementById('btnPickPkg').disabled = true;
+  document.getElementById('pkgCards').innerHTML = '';
+
+  try {
+    const res = await fetch(PROXY + '/dzo/ponude', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ datumRodenja: S.datumRodenjaDZO }),
+    });
+    const data = await res.json();
+
+    if (data.error) throw new Error(data.error);
+
+    const ponude = data.ponude || [];
+    if (!ponude.length) {
+      document.getElementById('pkgLoading').innerHTML = '<p style="color:#ef4444">Nema dostupnih paketa za ovaj datum.</p><p style="font-size:.7rem;color:rgba(0,0,0,.35)">' + JSON.stringify(data._debug) + '</p>';
+      return;
+    }
+
+    renderPonude(ponude);
+  } catch (e) {
+    document.getElementById('pkgLoading').innerHTML = '<p style="color:#ef4444">Greška: ' + e.message + '</p>';
+  }
+});
+
+function renderPonude(ponude) {
+  document.getElementById('pkgLoading').style.display = 'none';
+  const wrap = document.getElementById('pkgCards');
+  wrap.style.display = '';
+
+  wrap.innerHTML = ponude.map((p, i) => `
+    <label class="pkg-wrap">
+      <input type="radio" name="pkg" value="${i}" data-idx="${i}">
+      <div class="pkg-card">
+        <div>
+          <div class="pkg-name">${escHtml(p.rizikNaziv || p.rizik)}</div>
+          <div class="pkg-cjenik">${escHtml(p.cjenikNaziv || p.cjenik)}</div>
+        </div>
+        <div class="pkg-price">${formatKn(p.premija)} <span>€/god</span></div>
+      </div>
+    </label>
+  `).join('');
+
+  // Store ponude on window for access
+  window._ponude = ponude;
+
+  wrap.querySelectorAll('input[type=radio]').forEach(r => r.addEventListener('change', () => {
+    const pkg = window._ponude[parseInt(r.dataset.idx)];
+    S.selectedPkg = pkg;
+    document.getElementById('btnPickPkg').disabled = false;
+  }));
+}
+
+document.getElementById('btnPickPkg').addEventListener('click', () => {
+  if (!S.selectedPkg) return;
+  document.getElementById('datumRodenjaDisp').value = toHR(S.datumRodenja);
+  setStep(3);
+});
+
+document.getElementById('btnBack2').addEventListener('click', () => setStep(1, 'left'));
+
+// ─── City autocomplete ─────────────────────────────────────────────────────────
+let _mjesta = null;
+let _mjestaLoading = false;
+
+document.getElementById('grad').addEventListener('input', async function() {
+  const q = this.value.trim();
+  const sugg = document.getElementById('gradSugg');
+
+  if (q.length < 2) { sugg.style.display = 'none'; return; }
+
+  if (!_mjesta && !_mjestaLoading) {
+    _mjestaLoading = true;
+    try {
+      const r = await fetch(PROXY + '/dzo/mjesta?q=' + encodeURIComponent(q));
+      _mjesta = await r.json();
+    } catch { _mjesta = []; }
+    _mjestaLoading = false;
+  }
+
+  if (!_mjesta) { sugg.style.display = 'none'; return; }
+
+  const lq = q.toLowerCase();
+  const filtered = (_mjesta.length ? _mjesta : []).filter(m => {
+    const n = (m.naziv || m.Naziv || m.NAZIV || '').toLowerCase();
+    const p = m.ptt || '';
+    return n.includes(lq) || p.startsWith(q);
+  }).slice(0, 10);
+
+  if (!filtered.length) { sugg.style.display = 'none'; return; }
+
+  sugg.innerHTML = filtered.map(m => {
+    const ptt   = m.ptt   || m.Sifra || m.SIFRA || '';
+    const naziv = m.naziv || m.Naziv || m.NAZIV || '';
+    return `<div style="padding:10px 14px;cursor:pointer;border-bottom:1px solid rgba(0,0,0,.06);font-size:.9rem" data-ptt="${ptt}" data-naziv="${escHtml(naziv)}">${ptt} ${escHtml(naziv)}</div>`;
+  }).join('');
+  sugg.style.display = '';
+
+  sugg.querySelectorAll('div').forEach(d => d.addEventListener('click', () => {
+    document.getElementById('grad').value     = d.dataset.naziv;
+    document.getElementById('mjestoid').value = d.dataset.ptt;
+    sugg.style.display = 'none';
+  }));
+});
+
+document.addEventListener('click', e => {
+  if (!e.target.closest('#grad') && !e.target.closest('#gradSugg')) {
+    document.getElementById('gradSugg').style.display = 'none';
+  }
+});
+
+// ─── Step 3 → 4 ───────────────────────────────────────────────────────────────
+document.getElementById('btnOsobni').addEventListener('click', () => {
+  const fields = ['ime', 'prezime', 'oib', 'email'];
+  let ok = true;
+  fields.forEach(id => {
+    const el = document.getElementById(id);
+    if (!el.value.trim()) { el.classList.add('err'); ok = false; }
+    else el.classList.remove('err');
+  });
+  if (!ok) return;
+  if (document.getElementById('oib').value.length !== 11) {
+    document.getElementById('oib').classList.add('err');
+    return;
+  }
+
+  // Set default start date (tomorrow)
+  const tom = new Date(); tom.setDate(tom.getDate() + 1);
+  document.getElementById('pocetakOsiguranja').value = tom.toISOString().split('T')[0];
+  S.pocetakOsiguranja = toHR(document.getElementById('pocetakOsiguranja').value);
+
+  // Build summary
+  buildSummary();
+  setStep(4);
+});
+document.getElementById('btnBack3').addEventListener('click', () => setStep(2, 'left'));
+
+function buildSummary() {
+  const pkg = S.selectedPkg;
+  const html = `
+    <div class="sum-row"><span>Paket</span><strong>${escHtml(pkg.rizikNaziv || pkg.rizik)}</strong></div>
+    <div class="sum-row"><span>Cjenik</span><strong>${escHtml(pkg.cjenikNaziv || pkg.cjenik)}</strong></div>
+    <div class="sum-row"><span>Osiguranik</span><strong>${escHtml(document.getElementById('ime').value + ' ' + document.getElementById('prezime').value)}</strong></div>
+    <div class="sum-row"><span>OIB</span><strong>${escHtml(document.getElementById('oib').value)}</strong></div>
+    <div class="sum-row sum-total"><span>Godišnja premija</span><strong>${formatKn(pkg.premija)} €</strong></div>
+  `;
+  document.getElementById('summary').innerHTML = html;
+}
+
+// HZZO change → update start date in summary
+document.getElementById('pocetakOsiguranja').addEventListener('change', function() {
+  S.pocetakOsiguranja = toHR(this.value);
+  buildSummary();
+});
+
+// MBO validation on blur
+document.getElementById('mbo').addEventListener('blur', async function() {
+  const mbo = this.value.trim();
+  const status = document.getElementById('mboStatus');
+  if (!mbo || mbo.length < 6) return;
+  status.textContent = 'Provjera...';
+  try {
+    const r = await fetch(PROXY + '/dzo/validiraj-mbo', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ mbo }),
+    });
+    const d = await r.json();
+    if (d.ok) {
+      status.style.color = '#22c55e';
+      status.textContent = '✓ HZZO broj je validan';
+    } else {
+      status.style.color = '#ef4444';
+      status.textContent = '✗ ' + (d.message || 'Neispravan HZZO broj');
+    }
+  } catch { status.textContent = ''; }
+});
+
+// ─── Step 4 → 5 (issue policy) ───────────────────────────────────────────────
+document.getElementById('btnIzdaj').addEventListener('click', async () => {
+  const mbo = document.getElementById('mbo').value.trim();
+  if (!mbo) { alert('Unesite HZZO broj.'); return; }
+
+  const pocetek = document.getElementById('pocetakOsiguranja').value;
+  if (!pocetek) { alert('Odaberite datum početka osiguranja.'); return; }
+
+  const pkg = S.selectedPkg;
+
+  document.getElementById('btnIzdaj').disabled = true;
+  document.getElementById('btnBack4').disabled = true;
+  document.getElementById('s4Loading').style.display = '';
+  document.getElementById('summary').style.display = 'none';
+
+  const payload = {
+    datumRodenja:     S.datumRodenjaDZO,
+    cjenik:           pkg.cjenik,
+    rizici:           pkg.rizik,
+    pocetakOsiguranja: toHR(pocetek),
+    ime:              document.getElementById('ime').value.trim(),
+    prezime:          document.getElementById('prezime').value.trim(),
+    oib:              document.getElementById('oib').value.trim(),
+    spol:             document.getElementById('spol').value,
+    ulica:            document.getElementById('ulica').value.trim(),
+    kbr:              document.getElementById('kbr').value.trim(),
+    mjestoid:         document.getElementById('mjestoid').value,
+    email:            document.getElementById('email').value.trim(),
+    mobitel:          document.getElementById('tel').value.trim(),
+    mbo,
+  };
+
+  try {
+    const r = await fetch(PROXY + '/dzo/spremi-policu', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
+    const d = await r.json();
+
+    if (d.error || !d.ok) {
+      throw new Error(d.error || d.message || 'Nepoznata greška');
+    }
+
+    document.getElementById('brojPolice').textContent = d.brojPolice || '—';
+    document.getElementById('s5Debug').textContent = JSON.stringify({ premija: d.ukupnaPremija });
+
+    // Setup PDF downloads
+    if (d.policaPdf) {
+      const btn = document.getElementById('btnDlPolica');
+      btn.style.display = '';
+      btn.onclick = () => b64Download(d.policaPdf, 'polica-' + d.brojPolice + '.pdf');
+    }
+    if (d.iskaznicaPdf) {
+      const btn = document.getElementById('btnDlIskaznica');
+      btn.style.display = '';
+      btn.onclick = () => b64Download(d.iskaznicaPdf, 'iskaznica-' + d.brojPolice + '.pdf');
+    }
+
+    setStep(5);
+  } catch (e) {
+    document.getElementById('s4Loading').style.display = 'none';
+    document.getElementById('summary').style.display = '';
+    document.getElementById('btnIzdaj').disabled = false;
+    document.getElementById('btnBack4').disabled = false;
+    alert('Greška: ' + e.message);
+  }
+});
+
+document.getElementById('btnBack4').addEventListener('click', () => {
+  document.getElementById('summary').style.display = '';
+  setStep(3, 'left');
+});
+
+// ─── helpers ──────────────────────────────────────────────────────────────────
+function formatKn(n) {
+  if (!n && n !== 0) return '—';
+  return n.toFixed(2).replace('.', ',');
+}
+
+function escHtml(s) {
+  return String(s || '')
+    .replace(/&/g,'&amp;')
+    .replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;')
+    .replace(/"/g,'&quot;');
+}
+
+function b64Download(b64, filename) {
+  // If it's already a URL, open it
+  if (b64.startsWith('http')) { window.open(b64, '_blank'); return; }
+  try {
+    const bin   = atob(b64);
+    const arr   = new Uint8Array(bin.length);
+    for (let i = 0; i < bin.length; i++) arr[i] = bin.charCodeAt(i);
+    const blob  = new Blob([arr], { type: 'application/pdf' });
+    const url   = URL.createObjectURL(blob);
+    const a     = document.createElement('a');
+    a.href      = url; a.download = filename; a.click();
+    URL.revokeObjectURL(url);
+  } catch { window.open('data:application/pdf;base64,' + b64); }
+}
+</script>
+</body>
+</html>
