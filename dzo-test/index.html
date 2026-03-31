@@ -143,6 +143,11 @@ input.fi.date-empty::-webkit-datetime-edit-fields-wrapper { color: transparent; 
   transition: all .2s; letter-spacing: .2px;
 }
 .btn-odaberi:hover { background: #4a33d6; transform: translateY(-1px); box-shadow: 0 6px 20px rgba(87,60,249,.35); }
+.savings-badge {
+  display: inline-block; background: #dcfce7; color: #16a34a;
+  font-size: .68rem; font-weight: 800; padding: 3px 8px; border-radius: 20px;
+  margin-top: 5px; letter-spacing: .3px;
+}
 
 /* Autocomplete dropdown */
 .sugg-list {
@@ -560,7 +565,7 @@ function buildCards() {
 
 function cardHtml(pkg, idx, name, typeLabel, feats) {
   const jednokratno = document.getElementById('toggleJednokratno').checked;
-  const cijena = jednokratno ? pkg.premija : pkg.premija / 12;
+  const cijena = jednokratno ? pkg.premija : pkg.premija * 1.05 / 12;
   const period = jednokratno ? 'godišnje' : 'mjesečno';
   return `
     <div class="pkg-v2">
@@ -569,6 +574,7 @@ function cardHtml(pkg, idx, name, typeLabel, feats) {
           <img class="pkg-v2-logo" src="/img/uniqa-logo.svg" alt="Uniqa">
           <div class="pkg-v2-name">${name}</div>
           <div class="pkg-v2-type">${typeLabel}</div>
+          ${jednokratno ? '<span class="savings-badge">5% uštede</span>' : ''}
         </div>
         <div class="pkg-v2-price">
           <div class="amount">${formatKn(cijena)}&nbsp;€</div>
