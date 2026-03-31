@@ -373,6 +373,9 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; b
         <div class="ponuda-feature">
           <div><div class="ponuda-feat-title">Svi troškovi participacije su pokriveni neograničeno</div><div class="ponuda-feat-desc">Kada ti zatreba pomoć liječnika, ne trebaš ništa nadoplaćivati.</div></div>
         </div>
+        <div class="ponuda-feature" id="uniqa-blista-feat" style="display:none">
+          <div><div class="ponuda-feat-title">B lista lijekova</div><div class="ponuda-feat-desc">Lijekovi s recepta — ne plaćaš participaciju.</div></div>
+        </div>
       </div>
       <div class="ponuda-actions">
         <button class="btn-detalji" onclick="const p=this.closest('.ponuda');p.classList.toggle('open');this.querySelector('span').textContent=p.classList.contains('open')?'Prikaži manje':'Prikaži detalje'"><span>Prikaži detalje</span><svg width="11" height="11" viewBox="0 0 14 14" fill="none"><path d="M2 5l5 5 5-5" stroke="#573cf9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
@@ -625,7 +628,6 @@ function korak1() {
   document.getElementById('c-generali').textContent = fmt(7.50);
   document.getElementById('c-wiener').textContent   = fmt(8.00);
   document.getElementById('c-uniqa').textContent    = '...';
-  document.getElementById('ponude-sub').textContent = 'Ponude za osobu rođenu '+_dobYear+'. god.';
   prikaziKorak(2);
 
   // Fetch real Uniqa price
@@ -658,6 +660,7 @@ function updateUniqaCard() {
   document.getElementById('c-uniqa').textContent = cijena.toFixed(2).replace('.',',') + ' €';
   document.getElementById('uniqa-period').textContent = period;
   document.getElementById('uniqa-savings').style.display = jednokratno ? 'inline-block' : 'none';
+  document.getElementById('uniqa-blista-feat').style.display = bLista ? 'flex' : 'none';
 }
 
 document.getElementById('dzo-bLista').addEventListener('change', updateUniqaCard);
