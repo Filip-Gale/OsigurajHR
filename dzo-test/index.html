@@ -139,8 +139,8 @@ input.fi.date-empty::-webkit-datetime-edit-fields-wrapper { color: transparent; 
 .pkg-v2-ft { padding: 0 18px 16px; display: flex; justify-content: space-between; align-items: center; }
 .btn-detalji {
   background: none; border: none; padding: 0; cursor: pointer;
-  font-size: .88rem; font-weight: 700; color: #573cf9; font-family: inherit;
-  display: flex; align-items: center; gap: 5px; transition: opacity .2s;
+  font-size: .82rem; font-weight: 600; color: #573cf9; font-family: inherit;
+  display: flex; align-items: center; gap: 4px; transition: opacity .2s;
 }
 .btn-detalji:hover { opacity: .7; }
 .btn-detalji svg { transition: transform .2s; }
@@ -602,7 +602,7 @@ function cardHtml(pkg, idx, name, typeLabel, feats) {
           </div>`).join('')}
       </div>
       <div class="pkg-v2-ft">
-        <button class="btn-detalji" onclick="const c=this.closest('.pkg-v2');c.classList.toggle('open');this.querySelector('span').textContent=c.classList.contains('open')?'Prikaži manje':'Prikaži detalje'"><span>Prikaži detalje</span><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 5l5 5 5-5" stroke="#573cf9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <button class="btn-detalji" onclick="const c=this.closest('.pkg-v2');c.classList.toggle('open');this.querySelector('span').textContent=c.classList.contains('open')?'Prikaži manje':'Prikaži detalje'"><span>Prikaži detalje</span><svg width="11" height="11" viewBox="0 0 14 14" fill="none"><path d="M2 5l5 5 5-5" stroke="#573cf9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
         <button class="btn-odaberi" data-idx="${idx}">Odaberi →</button>
       </div>
     </div>`;
