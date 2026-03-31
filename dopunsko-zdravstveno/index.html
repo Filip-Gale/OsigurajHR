@@ -254,6 +254,18 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; b
 }
 .dzo-opt-row input:checked ~ .dzo-tog { background: #573cf9; }
 .dzo-opt-row input:checked ~ .dzo-tog::after { transform: translateX(20px); }
+/* Per-card jednokratno toggle row */
+.card-jednak { display:flex; align-items:center; justify-content:space-between; padding:10px 0; border-bottom:1.5px dashed rgba(0,0,0,.08); margin-bottom:12px; }
+.card-jednak-type { font-size:.7rem; font-weight:700; letter-spacing:.08em; color:#999; text-transform:uppercase; }
+.card-jednak-right { display:flex; align-items:center; gap:8px; cursor:pointer; }
+.card-jednak-right input { display:none; }
+.card-jednak-lbl { font-size:.82rem; color:#555; }
+.card-tok { width:44px; height:24px; background:rgba(0,0,0,.15); border-radius:12px; position:relative; flex-shrink:0; transition:background .2s; }
+.card-tok::after { content:''; position:absolute; width:18px; height:18px; top:3px; left:3px; background:white; border-radius:50%; transition:transform .2s; box-shadow:0 1px 3px rgba(0,0,0,.25); }
+.card-jednak-right input:checked ~ .card-tok { background:#573cf9; }
+.card-jednak-right input:checked ~ .card-tok::after { transform:translateX(20px); }
+.card-jednak-save { font-size:.72rem; font-weight:700; background:#dcfce7; color:#16a34a; border-radius:20px; padding:2px 8px; display:none; }
+.card-jednak-right input:checked ~ .card-jednak-save { display:inline; }
 #confetti-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9999; }
 </style>
 </head>
@@ -271,14 +283,23 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; b
 
 <!-- KORAK 1 — samo datum -->
 <div class="wizard-card" id="card-k1">
-  <div style="display:flex;gap:10px;align-items:flex-start">
-    <div style="flex:1">
-      <input class="finput" id="dob" type="text" inputmode="numeric" placeholder="Datum rođenja  DD.MM.GGGG" maxlength="10" autocomplete="bday" style="margin:0">
-      <div class="ferror" id="e-dob">Unesite ispravan datum rođenja.</div>
+  <div class="progress-bar">
+    <div class="progress-step">
+      <div class="progress-dot active">1</div>
+      <div class="progress-lbl active">DATUM</div>
     </div>
-    <button class="btn-main" onclick="korak1()" style="flex-shrink:0;width:auto;padding-left:22px;padding-right:22px;white-space:nowrap">Prikaži ponude &rarr;</button>
+    <div class="progress-line" id="pline"></div>
+    <div class="progress-step">
+      <div class="progress-dot">2</div>
+      <div class="progress-lbl">PONUDE</div>
+    </div>
   </div>
-  <p class="disclaimer" style="margin-top:10px">Izračun je besplatan i bez obaveza.</p>
+  <div class="field">
+    <input class="finput" id="dob" type="text" inputmode="numeric" placeholder="Datum rođenja" maxlength="10" autocomplete="bday">
+    <div class="ferror" id="e-dob">Unesite ispravan datum rođenja.</div>
+  </div>
+  <button class="btn-main" onclick="korak1()">Prikaži ponude &rarr;</button>
+  <p class="disclaimer">Izračun je besplatan i bez obaveza.</p>
 </div>
 
 <!-- TRUST + LOGOS -->
@@ -333,14 +354,6 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; b
         <input type="checkbox" id="dzo-bLista">
         <span class="dzo-tog"></span>
       </label>
-      <label class="dzo-opt-row">
-        <div>
-          <div class="dzo-opt-title">Jednokratno plaćanje</div>
-          <div class="dzo-opt-desc">Plati cijelu godinu odjednom i uštedi na ratama.</div>
-        </div>
-        <input type="checkbox" id="dzo-jednokratno" checked>
-        <span class="dzo-tog"></span>
-      </label>
     </div>
   </div>
 
@@ -356,6 +369,15 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; b
         <div class="ponuda-cijena"><div class="iznos" id="c-uniqa">—</div><div class="period" id="uniqa-period">/ god.</div></div>
       </div>
       <hr class="ponuda-div">
+      <div class="card-jednak">
+        <span class="card-jednak-type">Dopunsko</span>
+        <label class="card-jednak-right">
+          <span class="card-jednak-lbl">Jednokratno plaćanje</span>
+          <input type="checkbox" id="jednak-uniqa" onchange="updateUniqaCard()">
+          <span class="card-jednak-save">5% uštede</span>
+          <span class="card-tok"></span>
+        </label>
+      </div>
       <div class="ponuda-features">
         <div class="ponuda-feature">
           <div><div class="ponuda-feat-title">Iskaznica</div><div class="ponuda-feat-desc">Iskaznica je sredstvo plaćanja.</div></div>
@@ -376,15 +398,23 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; b
     <div class="ponuda">
       <div class="ponuda-top">
         <div class="ponuda-logo-name">Triglav</div>
-        <div class="ponuda-cijena"><div class="iznos" id="c-triglav">—</div><div class="period">/ mjesec</div></div>
+        <div class="ponuda-cijena"><div class="iznos" id="c-triglav">—</div><div class="period" id="triglav-period">/ mj</div></div>
+      </div>
+      <hr class="ponuda-div">
+      <div class="card-jednak">
+        <span class="card-jednak-type">Dopunsko</span>
+        <label class="card-jednak-right">
+          <span class="card-jednak-lbl">Jednokratno plaćanje</span>
+          <input type="checkbox" id="jednak-triglav" onchange="updateTriglavCard()">
+          <span class="card-jednak-save">5% uštede</span>
+          <span class="card-tok"></span>
+        </label>
       </div>
       <div class="ponuda-features">
         <div class="ponuda-feature">Pokriva sve troškove participacije</div>
         <div class="ponuda-feature">B lista lijekova uključena</div>
-        <div class="ponuda-feature">5% uštede pri godišnjem plaćanju</div>
       </div>
       <div class="ponuda-actions">
-        <button class="btn-detalji">Detalji</button>
         <button class="btn-kupi" onclick="otvoriModal('Triglav Dopunsko','c-triglav')">Kupi &rarr;</button>
       </div>
     </div>
@@ -392,15 +422,23 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; b
     <div class="ponuda">
       <div class="ponuda-top">
         <div class="ponuda-logo-name">Generali</div>
-        <div class="ponuda-cijena"><div class="iznos" id="c-generali">—</div><div class="period">/ mjesec</div></div>
+        <div class="ponuda-cijena"><div class="iznos" id="c-generali">—</div><div class="period" id="generali-period">/ mj</div></div>
+      </div>
+      <hr class="ponuda-div">
+      <div class="card-jednak">
+        <span class="card-jednak-type">Dopunsko</span>
+        <label class="card-jednak-right">
+          <span class="card-jednak-lbl">Jednokratno plaćanje</span>
+          <input type="checkbox" id="jednak-generali" onchange="updateGeneraliCard()">
+          <span class="card-jednak-save">8% uštede</span>
+          <span class="card-tok"></span>
+        </label>
       </div>
       <div class="ponuda-features">
         <div class="ponuda-feature">Pokriva sve troškove participacije</div>
         <div class="ponuda-feature">B lista lijekova uključena</div>
-        <div class="ponuda-feature">8% uštede pri godišnjem plaćanju</div>
       </div>
       <div class="ponuda-actions">
-        <button class="btn-detalji">Detalji</button>
         <button class="btn-kupi" onclick="otvoriModal('Generali Dopunsko','c-generali')">Kupi &rarr;</button>
       </div>
     </div>
@@ -408,15 +446,23 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; b
     <div class="ponuda">
       <div class="ponuda-top">
         <div class="ponuda-logo-name">Wiener</div>
-        <div class="ponuda-cijena"><div class="iznos" id="c-wiener">—</div><div class="period">/ mjesec</div></div>
+        <div class="ponuda-cijena"><div class="iznos" id="c-wiener">—</div><div class="period" id="wiener-period">/ mj</div></div>
+      </div>
+      <hr class="ponuda-div">
+      <div class="card-jednak">
+        <span class="card-jednak-type">Dopunsko</span>
+        <label class="card-jednak-right">
+          <span class="card-jednak-lbl">Jednokratno plaćanje</span>
+          <input type="checkbox" id="jednak-wiener" onchange="updateWienerCard()">
+          <span class="card-jednak-save">5% uštede</span>
+          <span class="card-tok"></span>
+        </label>
       </div>
       <div class="ponuda-features">
         <div class="ponuda-feature">Pokriva sve troškove participacije</div>
         <div class="ponuda-feature">B lista lijekova uključena</div>
-        <div class="ponuda-feature">5% uštede pri godišnjem plaćanju</div>
       </div>
       <div class="ponuda-actions">
-        <button class="btn-detalji">Detalji</button>
         <button class="btn-kupi" onclick="otvoriModal('Wiener Dopunsko','c-wiener')">Kupi &rarr;</button>
       </div>
     </div>
@@ -614,9 +660,9 @@ function korak1() {
   var age = new Date().getFullYear() - _dobYear;
   var f = age<25 ? 0.90 : age>60 ? 1.15 : 1;
   function fmt(base){ return (base*f).toFixed(2).replace('.',',')+ ' €'; }
-  document.getElementById('c-triglav').textContent  = fmt(7.30);
-  document.getElementById('c-generali').textContent = fmt(7.50);
-  document.getElementById('c-wiener').textContent   = fmt(8.00);
+  updateTriglavCard();
+  updateGeneraliCard();
+  updateWienerCard();
   document.getElementById('c-uniqa').textContent    = '...';
   prikaziKorak(2);
   launchConfetti();
@@ -639,7 +685,7 @@ function korak1() {
 
 function updateUniqaCard() {
   var bLista = document.getElementById('dzo-bLista').checked;
-  var jednokratno = document.getElementById('dzo-jednokratno').checked;
+  var jednokratno = document.getElementById('jednak-uniqa').checked;
   var dop = _uniqaPonude.filter(function(p){return p.cjenik==='DOP24';});
   if (!dop.length) return;
   var pkg = bLista
@@ -654,8 +700,40 @@ function updateUniqaCard() {
   document.getElementById('uniqa-blista-feat').style.display = bLista ? 'flex' : 'none';
 }
 
+function updateTriglavCard() {
+  var jednak = document.getElementById('jednak-triglav') && document.getElementById('jednak-triglav').checked;
+  var age = new Date().getFullYear() - _dobYear;
+  var f = age < 25 ? 0.90 : age > 60 ? 1.15 : 1;
+  var monthly = 7.30 * f;
+  document.getElementById('c-triglav').textContent = jednak
+    ? (monthly * 12 * 0.95).toFixed(2).replace('.', ',') + ' €'
+    : monthly.toFixed(2).replace('.', ',') + ' €';
+  document.getElementById('triglav-period').textContent = jednak ? '/ god.' : '/ mj';
+}
+
+function updateGeneraliCard() {
+  var jednak = document.getElementById('jednak-generali') && document.getElementById('jednak-generali').checked;
+  var age = new Date().getFullYear() - _dobYear;
+  var f = age < 25 ? 0.90 : age > 60 ? 1.15 : 1;
+  var monthly = 7.50 * f;
+  document.getElementById('c-generali').textContent = jednak
+    ? (monthly * 12 * 0.92).toFixed(2).replace('.', ',') + ' €'
+    : monthly.toFixed(2).replace('.', ',') + ' €';
+  document.getElementById('generali-period').textContent = jednak ? '/ god.' : '/ mj';
+}
+
+function updateWienerCard() {
+  var jednak = document.getElementById('jednak-wiener') && document.getElementById('jednak-wiener').checked;
+  var age = new Date().getFullYear() - _dobYear;
+  var f = age < 25 ? 0.90 : age > 60 ? 1.15 : 1;
+  var monthly = 8.00 * f;
+  document.getElementById('c-wiener').textContent = jednak
+    ? (monthly * 12 * 0.95).toFixed(2).replace('.', ',') + ' €'
+    : monthly.toFixed(2).replace('.', ',') + ' €';
+  document.getElementById('wiener-period').textContent = jednak ? '/ god.' : '/ mj';
+}
+
 document.getElementById('dzo-bLista').addEventListener('change', updateUniqaCard);
-document.getElementById('dzo-jednokratno').addEventListener('change', updateUniqaCard);
 
 function otvoriModal(paket, cijenaId) {
   _odabranPaket = paket;
