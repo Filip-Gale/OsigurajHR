@@ -136,7 +136,15 @@ input.fi.date-empty::-webkit-datetime-edit-fields-wrapper { color: transparent; 
 .feat-chk { color: #22c55e; font-weight: 900; font-size: .9rem; flex-shrink: 0; margin-top: 1px; }
 .feat-t { font-size: .88rem; font-weight: 600; color: #1a1033; }
 .feat-d { font-size: .76rem; color: rgba(0,0,0,.42); margin-top: 2px; }
-.pkg-v2-ft { padding: 0 18px 16px; display: flex; justify-content: flex-end; }
+.pkg-v2-ft { padding: 0 18px 16px; display: flex; justify-content: space-between; align-items: center; }
+.btn-detalji {
+  background: none; border: none; padding: 0; cursor: pointer;
+  font-size: .88rem; font-weight: 700; color: #573cf9;
+  display: flex; align-items: center; gap: 5px;
+}
+.btn-detalji:hover { text-decoration: underline; }
+.feat-d { display: none; }
+.pkg-v2.open .feat-d { display: block; }
 .btn-odaberi {
   background: #573cf9; color: white; border: none; border-radius: 12px;
   padding: 12px 24px; font-size: .95rem; font-weight: 800; cursor: pointer;
@@ -592,6 +600,7 @@ function cardHtml(pkg, idx, name, typeLabel, feats) {
           </div>`).join('')}
       </div>
       <div class="pkg-v2-ft">
+        <button class="btn-detalji" onclick="this.closest('.pkg-v2').classList.toggle('open');this.innerHTML=this.closest('.pkg-v2').classList.contains('open')?'Prikaži manje ▲':'Prikaži detalje ▼'">Prikaži detalje ▼</button>
         <button class="btn-odaberi" data-idx="${idx}">Odaberi →</button>
       </div>
     </div>`;
