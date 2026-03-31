@@ -641,6 +641,14 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; b
         <label class="flabel">Broj mobitela</label>
         <input type="tel" id="m-mobitel" class="finput" placeholder="091 234 5678">
       </div>
+      <div class="field">
+        <label class="flabel">OIB</label>
+        <input type="text" id="m-oib" class="finput" inputmode="numeric" maxlength="11" placeholder="12345678901">
+      </div>
+      <div class="field">
+        <label class="flabel">Adresa i grad</label>
+        <input type="text" id="m-adresa" class="finput" placeholder="Adresa i grad (npr. Ilica 10, Zagreb)">
+      </div>
       <button class="btn-main" onclick="posalji()">Pošalji zahtjev &rarr;</button>
       <p class="disclaimer" style="margin-top:12px;">Agent te kontaktira u najkraćem roku za finalizaciju.</p>
     </div>
@@ -786,11 +794,13 @@ function posalji() {
   var ime=document.getElementById('m-ime').value.trim();
   var email=document.getElementById('m-email').value.trim();
   var mobitel=document.getElementById('m-mobitel').value.trim();
+  var oib=document.getElementById('m-oib').value.trim();
+  var adresa=document.getElementById('m-adresa').value.trim();
   if (!ime||!email) { alert('Molimo unesite ime i e-mail'); return; }
   var fd=new FormData();
   fd.append('access_key','3cf56deb-78e0-4c88-8bc2-d73a20b78a80');
   fd.append('subject','DZO KUPNJA — '+ime+' — '+_odabranPaket);
-  fd.append('message','DZO KUPNJA\nIme: '+ime+'\nDatum roj.: '+_dobFull+'\nPaket: '+_odabranPaket+'\nCijena: '+_odabranaCijena+'/mj\nEmail: '+email+'\nMobitel: '+mobitel);
+  fd.append('message','DZO KUPNJA\nIme: '+ime+'\nDatum roj.: '+_dobFull+'\nOIB: '+oib+'\nAdresa: '+adresa+'\nPaket: '+_odabranPaket+'\nCijena: '+_odabranaCijena+'\nEmail: '+email+'\nMobitel: '+mobitel);
   fd.append('email',email); fd.append('name',ime);
   fetch('https://api.web3forms.com/submit',{method:'POST',body:fd}).catch(function(){});
   fetch('https://osiguraj-email.osiguraj1.workers.dev',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:email,reg:'DZO — '+ime,osig:_odabranPaket,cijena:_odabranaCijena+'/mj'})}).catch(function(){});
