@@ -259,6 +259,14 @@ input.fi.date-empty::-webkit-datetime-edit-fields-wrapper { color: transparent; 
         <input type="checkbox" id="toggleBLista">
         <span class="tog"></span>
       </label>
+      <label class="opt-row">
+        <div>
+          <div class="opt-title">Jednokratno plaćanje</div>
+          <div class="opt-desc">Plati cijelu godinu odjednom i uštedi na ratama.</div>
+        </div>
+        <input type="checkbox" id="toggleJednokratno" checked>
+        <span class="tog"></span>
+      </label>
     </div>
     <div class="pkg-cards" id="pkgCards" style="display:none"></div>
     <button class="btn btn-back" id="btnBack2" style="margin-top:4px">Nazad</button>
@@ -509,7 +517,7 @@ function renderPonude(ponude) {
   // Show B lista toggle only for adults with both DI7A1 + DI7B1
   const dop = ponude.filter(p => p.cjenik === 'DOP24');
   const hasBLista = dop.length >= 2;
-  document.getElementById('pkgOptions').style.display = hasBLista ? '' : 'none';
+  document.getElementById('pkgOptions').style.display = '';
   document.getElementById('bListaRow').style.display  = hasBLista ? 'flex' : 'none';
 
   buildCards();
@@ -551,6 +559,9 @@ function buildCards() {
 }
 
 function cardHtml(pkg, idx, name, typeLabel, feats) {
+  const jednokratno = document.getElementById('toggleJednokratno').checked;
+  const cijena = jednokratno ? pkg.premija : pkg.premija / 12;
+  const period = jednokratno ? 'godišnje' : 'mjesečno';
   return `
     <div class="pkg-v2">
       <div class="pkg-v2-hd">
@@ -560,8 +571,8 @@ function cardHtml(pkg, idx, name, typeLabel, feats) {
           <div class="pkg-v2-type">${typeLabel}</div>
         </div>
         <div class="pkg-v2-price">
-          <div class="amount">${formatKn(pkg.premija)}&nbsp;€</div>
-          <div class="period">godišnje</div>
+          <div class="amount">${formatKn(cijena)}&nbsp;€</div>
+          <div class="period">${period}</div>
         </div>
       </div>
       <hr class="pkg-div">
@@ -582,6 +593,7 @@ function cardHtml(pkg, idx, name, typeLabel, feats) {
 }
 
 document.getElementById('toggleBLista').addEventListener('change', buildCards);
+document.getElementById('toggleJednokratno').addEventListener('change', buildCards);
 
 document.getElementById('btnBack2').addEventListener('click', () => setStep(1, 'left'));
 
@@ -774,6 +786,7 @@ document.getElementById('btnIzdaj').addEventListener('click', async () => {
     email:             document.getElementById('email').value.trim(),
     mobitel:           document.getElementById('tel').value.trim(),
     mbo:               '',
+    brojRata:          document.getElementById('toggleJednokratno').checked ? '1' : '12',
   };
 
   // If not purchasing for self, include insured person data

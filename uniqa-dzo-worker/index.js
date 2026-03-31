@@ -306,7 +306,7 @@ async function spremiPolicu(body) {
     Ugovaratelj: sifra,
     Osiguranik: sifraOsiguranik,
     SredstvoPlacanja: 'KAR',
-    BrojRata: '1',
+    BrojRata: body.brojRata || '1',
     HZZOBroj: body.mbo,
     Cjenik: body.cjenik,
     Rizici: body.rizici,
