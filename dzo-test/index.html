@@ -122,6 +122,7 @@ input.fi.date-empty::-webkit-datetime-edit-fields-wrapper { color: transparent; 
   display: flex; align-items: flex-start; justify-content: space-between;
   padding: 16px 18px 12px; gap: 10px;
 }
+.pkg-v2-logo { height: 22px; width: auto; display: block; margin-bottom: 6px; }
 .pkg-v2-name { font-size: 1rem; font-weight: 800; color: #1a1033; }
 .pkg-v2-type { font-size: .68rem; font-weight: 800; text-transform: uppercase; letter-spacing: .5px; color: rgba(0,0,0,.38); margin-top: 3px; }
 .pkg-v2-price .amount { font-size: 1.55rem; font-weight: 900; color: #1a1033; line-height: 1; }
@@ -191,6 +192,9 @@ input.fi.date-empty::-webkit-datetime-edit-fields-wrapper { color: transparent; 
   margin-bottom: 2px;
 }
 
+/* Confetti */
+#confetti-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9999; }
+
 /* Success */
 .success { text-align: center; padding: 8px 0; }
 .success .check { width: 64px; height: 64px; border-radius: 50%; background: #22c55e; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; font-size: 1.8rem; }
@@ -204,6 +208,7 @@ input.fi.date-empty::-webkit-datetime-edit-fields-wrapper { color: transparent; 
 </style>
 </head>
 <body>
+<canvas id="confetti-canvas"></canvas>
 
 <div class="hero">
   <div class="badge">TEST OKRUŽENJE</div>
@@ -550,6 +555,7 @@ function cardHtml(pkg, idx, name, typeLabel, feats) {
     <div class="pkg-v2">
       <div class="pkg-v2-hd">
         <div>
+          <img class="pkg-v2-logo" src="/img/uniqa-logo.svg" alt="Uniqa">
           <div class="pkg-v2-name">${name}</div>
           <div class="pkg-v2-type">${typeLabel}</div>
         </div>
@@ -805,6 +811,7 @@ document.getElementById('btnIzdaj').addEventListener('click', async () => {
     }
 
     setStep(5);
+    launchConfetti();
   } catch (e) {
     document.getElementById('s4Loading').style.display = 'none';
     document.getElementById('summary').style.display = '';
@@ -831,6 +838,31 @@ function escHtml(s) {
     .replace(/</g,'&lt;')
     .replace(/>/g,'&gt;')
     .replace(/"/g,'&quot;');
+}
+
+// ─── Confetti ─────────────────────────────────────────────────────────────────
+function launchConfetti() {
+  const canvas = document.getElementById('confetti-canvas');
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+  const pieces = Array.from({length: 90}, () => ({
+    x: Math.random() * canvas.width, y: Math.random() * -canvas.height,
+    r: Math.random() * 7 + 4, d: Math.random() * 3 + 1,
+    c: ['#573cf9','#ffbc27','#22c55e','#f472b6','#38bdf8'][Math.floor(Math.random()*5)],
+    t: Math.random() * Math.PI * 2,
+  }));
+  let frames = 0;
+  function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    pieces.forEach(p => {
+      ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = p.c; ctx.fill();
+      p.y += p.d; p.x += Math.sin(p.t) * 1.5; p.t += 0.04;
+    });
+    if (++frames < 160) requestAnimationFrame(draw);
+    else ctx.clearRect(0, 0, canvas.width, canvas.height);
+  }
+  draw();
 }
 
 function b64Download(b64, filename) {
