@@ -33,12 +33,12 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; b
 
 /* WIZARD CARD */
 .wizard-card {
-    background: #ffffff;
+    background: #ffbc27;
     border-radius: 20px;
     max-width: 500px; width: 92%;
     margin: 12px auto 0;
     padding: 16px 22px 18px;
-    box-shadow: 0 24px 60px rgba(0,0,0,0.15), 0 6px 20px rgba(0,0,0,0.12);
+    box-shadow: 0 24px 60px rgba(255,188,39,0.4), 0 6px 20px rgba(0,0,0,0.2);
     position: relative;
 }
 @media (min-width: 600px) { .wizard-card { padding: 26px 36px 30px; } }
@@ -266,6 +266,12 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; b
 .card-jednak-right input:checked ~ .card-tok::after { transform:translateX(20px); }
 .card-jednak-save { font-size:.72rem; font-weight:700; background:#dcfce7; color:#16a34a; border-radius:20px; padding:2px 8px; display:none; }
 .card-jednak-right input:checked ~ .card-jednak-save { display:inline; }
+.dob-wrap { position: relative; }
+.dob-q { position: absolute; right: 14px; top: 50%; transform: translateY(-50%); width: 22px; height: 22px; border-radius: 50%; background: rgba(0,0,0,0.12); color: rgba(0,0,0,0.45); font-size: 0.78rem; font-weight: 800; display: flex; align-items: center; justify-content: center; cursor: pointer; user-select: none; flex-shrink: 0; }
+.dob-q:hover { background: rgba(0,0,0,0.2); }
+.dob-tooltip { display: none; position: absolute; bottom: calc(100% + 10px); left: 0; right: 0; background: white; border-radius: 12px; padding: 12px 14px; font-size: 0.82rem; color: #333; line-height: 1.5; box-shadow: 0 4px 20px rgba(0,0,0,0.15); z-index: 10; }
+.dob-tooltip::after { content: ''; position: absolute; bottom: -6px; left: 24px; width: 12px; height: 12px; background: white; transform: rotate(45deg); box-shadow: 2px 2px 4px rgba(0,0,0,0.05); }
+.dob-wrap.tip-open .dob-tooltip { display: block; }
 #confetti-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9999; }
 </style>
 </head>
@@ -295,7 +301,11 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; b
     </div>
   </div>
   <div class="field" style="margin-bottom:20px">
-    <input class="finput" id="dob" type="text" inputmode="numeric" placeholder="DATUM ROĐENJA" maxlength="10" autocomplete="bday" style="min-height:56px;font-size:1.05rem">
+    <div class="dob-wrap" id="dobWrap">
+      <input class="finput" id="dob" type="text" inputmode="numeric" placeholder="DATUM ROĐENJA" maxlength="10" autocomplete="bday" style="min-height:56px;font-size:1.05rem;padding-right:46px">
+      <div class="dob-q" onclick="document.getElementById('dobWrap').classList.toggle('tip-open')">?</div>
+      <div class="dob-tooltip">Cijena osiguranja ovisi o tvojoj dobi — zato nam trebaš datum rođenja. Podatak koristimo isključivo za izračun cijene.</div>
+    </div>
     <div class="ferror" id="e-dob">Unesite ispravan datum rođenja.</div>
   </div>
   <button class="btn-main" onclick="korak1()" style="padding:16px">Prikaži ponude &rarr;</button>
