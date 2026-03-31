@@ -247,22 +247,29 @@ async function findPartner(guid, oib) {
 }
 
 // Create new partner
-// NOTE: Partneri_UnosNovog has a server-side NullReferenceException bug in Uniqa UAT.
-// Until fixed, partner creation will fail. Contact Filip @ Uniqa.
 async function createPartner(guid, p) {
-  // Only send params confirmed to not throw "not known parameter" errors
+  // Format date with trailing period as per docx C# example: "01.01.1978."
+  const dr = p.datumRodenja || '';
+  const datumFormatted = dr && !dr.endsWith('.') ? dr + '.' : dr;
+
+  const naziv = `${p.ime || ''} ${p.prezime || ''}`.trim();
   const params = {
     Id: guid,
     Ime: p.ime || '',
     Prezime: p.prezime || '',
     OIB: p.oib,
-    Naziv: `${p.ime || ''} ${p.prezime || ''}`.trim(),
+    Naziv: naziv,
     Sektor: '1',
     Ulica: p.ulica || '',
     Mjesto: p.mjestoid || '',
-    Drzava: '385',  // Croatia code from Partneri_GetDrzave
+    Drzava: 'HR',
+    DatumRodjenja: datumFormatted,
+    Spol: p.spol || '',
     Email: p.email || '',
     Mobitel: p.mobitel || '',
+    DostavaNaziv: naziv,
+    DostavaUlica: p.ulica || '',
+    DostavaMjesto: p.mjestoid || '',
   };
   const r = await soap('Partneri_UnosNovog', params);
   if (!r.ok) throw new Error('Partner nije pronađen u Uniqa sustavu i nije ga moguće automatski kreirati. Kontaktirajte podršku. (' + r.message + ')');
@@ -272,17 +279,32 @@ async function createPartner(guid, p) {
 async function spremiPolicu(body) {
   const guid = await authGuid();
 
-  // Find or create partner
+  // Find or create Ugovaratelj (policyholder)
   let sifra = await findPartner(guid, body.oib);
   if (!sifra) sifra = await createPartner(guid, body);
   if (!sifra) throw new Error('Could not resolve partner');
+
+  // Find or create Osiguranik if different person
+  let sifraOsiguranik = sifra;
+  if (body.osoba && body.osoba.oib && body.osoba.oib !== body.oib) {
+    const osobaData = {
+      ime: body.osoba.ime, prezime: body.osoba.prezime,
+      oib: body.osoba.oib, spol: body.osoba.spol,
+      datumRodenja: body.datumRodenja,
+      ulica: body.ulica, mjestoid: body.mjestoid,
+      email: body.email, mobitel: body.mobitel,
+    };
+    sifraOsiguranik = await findPartner(guid, body.osoba.oib);
+    if (!sifraOsiguranik) sifraOsiguranik = await createPartner(guid, osobaData);
+    if (!sifraOsiguranik) throw new Error('Could not resolve insured partner');
+  }
 
   const params = {
     Id: guid,
     PocetakOsiguranja: body.pocetakOsiguranja,
     IstekOsiguranja: '1',
     Ugovaratelj: sifra,
-    Osiguranik: sifra,
+    Osiguranik: sifraOsiguranik,
     SredstvoPlacanja: 'KAR',
     BrojRata: '1',
     HZZOBroj: body.mbo,
@@ -370,6 +392,12 @@ export default {
       if (url.pathname === '/dzo/spremi-policu') {
         const data = await spremiPolicu(body);
         return jsonOk(data, origin);
+      }
+
+      if (url.pathname === '/dzo/test-osiguranici') {
+        const guid = await authGuid();
+        const r = await soap('DZO_VratiTestOsiguranike', { Id: guid });
+        return jsonOk({ ok: r.ok, message: r.message, payload: r.payload, raw: r.raw }, origin);
       }
 
       return jsonErr('Not found', 404, origin);

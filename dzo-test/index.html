@@ -66,6 +66,16 @@ input.fi, select.fi {
 input.fi:focus, select.fi:focus { border-color: #573cf9; box-shadow: 0 0 0 4px rgba(87,60,249,.1); }
 input.fi::placeholder { font-weight: normal; color: #ccc; }
 input.fi.err, select.fi.err { border-color: #ef4444; }
+
+/* Date input placeholder trick */
+.date-wrap { position: relative; }
+.date-ph {
+  position: absolute; top: 50%; left: 15px; transform: translateY(-50%);
+  font-size: .78rem; font-weight: 800; letter-spacing: 1.2px; color: #bbb;
+  pointer-events: none; text-transform: uppercase;
+}
+input.fi.date-empty::-webkit-datetime-edit { color: transparent; }
+input.fi.date-empty::-webkit-datetime-edit-fields-wrapper { color: transparent; }
 .fhint  { font-size: .73rem; color: rgba(0,0,0,.38); margin-top: 4px; }
 .ferr   { font-size: .73rem; color: #ef4444; margin-top: 4px; display: none; }
 
@@ -80,6 +90,15 @@ input.fi.err, select.fi.err { border-color: #ef4444; }
 .btn-back { background: rgba(0,0,0,.08); color: rgba(0,0,0,.5); margin-bottom: 10px; }
 .btn-back:hover:not(:disabled) { background: rgba(0,0,0,.14); box-shadow: none; }
 
+/* Filter tabs */
+.filter-tabs { display: flex; gap: 6px; margin-bottom: 16px; }
+.ftab {
+  flex: 1; padding: 8px 6px; border: 2px solid rgba(0,0,0,.12); border-radius: 10px;
+  background: white; font-size: .78rem; font-weight: 700; cursor: pointer;
+  color: rgba(0,0,0,.45); transition: all .2s;
+}
+.ftab.active { background: #573cf9; color: white; border-color: #573cf9; }
+
 /* Package cards */
 .pkg-cards { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
 .pkg-wrap input[type=radio] { position: absolute; opacity: 0; width: 0; height: 0; }
@@ -93,6 +112,22 @@ input.fi.err, select.fi.err { border-color: #ef4444; }
 .pkg-cjenik { font-size: .72rem; color: rgba(0,0,0,.4); margin-top: 2px; }
 .pkg-price { font-size: 1.2rem; font-weight: 900; color: #573cf9; white-space: nowrap; }
 .pkg-price span { font-size: .75rem; font-weight: 600; color: rgba(87,60,249,.7); }
+.pkg-cat-label {
+  font-size: .68rem; font-weight: 800; text-transform: uppercase; letter-spacing: .6px;
+  color: rgba(0,0,0,.35); padding: 2px 0 6px; margin-top: 4px;
+}
+
+/* Autocomplete dropdown */
+.sugg-list {
+  background: white; border-radius: 10px; margin-top: 4px; display: none;
+  max-height: 160px; overflow-y: auto; border: 2px solid rgba(87,60,249,.2);
+}
+.sugg-item {
+  padding: 10px 14px; cursor: pointer; border-bottom: 1px solid rgba(0,0,0,.06);
+  font-size: .9rem;
+}
+.sugg-item:last-child { border-bottom: none; }
+.sugg-item:hover { background: rgba(87,60,249,.06); }
 
 /* Loading */
 .loading { text-align: center; padding: 20px 0; }
@@ -105,6 +140,30 @@ input.fi.err, select.fi.err { border-color: #ef4444; }
 .sum-row { display: flex; justify-content: space-between; align-items: center; padding: 5px 0; font-size: .88rem; color: rgba(0,0,0,.6); }
 .sum-row strong { color: #1a1033; }
 .sum-total { border-top: 1px solid rgba(0,0,0,.1); margin-top: 8px; padding-top: 10px; font-size: 1.1rem; font-weight: 800; color: #1a1033; }
+
+/* Karenca info notice */
+.info-notice {
+  background: rgba(87,60,249,.08); border: 1.5px solid rgba(87,60,249,.2);
+  border-radius: 12px; padding: 12px 14px; margin-bottom: 16px;
+  font-size: .82rem; color: rgba(0,0,0,.6); line-height: 1.5;
+}
+.info-notice strong { color: #573cf9; }
+
+/* Za sebe checkbox */
+.za-sebe-row {
+  display: flex; align-items: center; gap: 10px;
+  background: rgba(255,255,255,.5); border-radius: 12px; padding: 13px 15px;
+  cursor: pointer; border: 2px solid rgba(0,0,0,.08);
+}
+.za-sebe-row input[type=checkbox] { width: 18px; height: 18px; accent-color: #573cf9; cursor: pointer; flex-shrink: 0; }
+.za-sebe-row span { font-size: .93rem; font-weight: 600; color: #1a1033; }
+
+/* Osiguranik section */
+.section-divider {
+  font-size: .73rem; font-weight: 800; text-transform: uppercase; letter-spacing: .5px;
+  color: rgba(0,0,0,.4); padding: 4px 0 2px; border-bottom: 1px solid rgba(0,0,0,.1);
+  margin-bottom: 2px;
+}
 
 /* Success */
 .success { text-align: center; padding: 8px 0; }
@@ -146,7 +205,10 @@ input.fi.err, select.fi.err { border-color: #ef4444; }
     <div class="fields">
       <div>
         <label class="fl" for="datumRodenja">Datum rođenja</label>
-        <input class="fi" id="datumRodenja" type="date" max="2024-01-01" min="1920-01-01">
+        <div class="date-wrap">
+          <input class="fi date-empty" id="datumRodenja" type="date" max="2024-01-01" min="1920-01-01">
+          <span class="date-ph" id="datePh">Datum rođenja</span>
+        </div>
       </div>
     </div>
     <button class="btn" id="btnIzracunaj">Prikaži pakete</button>
@@ -160,6 +222,12 @@ input.fi.err, select.fi.err { border-color: #ef4444; }
       <div class="spin"></div>
       <p>Dohvaćam pakete...</p>
     </div>
+    <!-- Filter tabs — shown only for adults (2+ categories) -->
+    <div class="filter-tabs" id="pkgFilters" style="display:none">
+      <button class="ftab active" data-filter="all">Svi paketi</button>
+      <button class="ftab" data-filter="DOP24">Dopunsko</button>
+      <button class="ftab" data-filter="DZO24">Dobrovoljno</button>
+    </div>
     <div class="pkg-cards" id="pkgCards" style="display:none"></div>
     <button class="btn" id="btnPickPkg" disabled>Nastavi</button>
     <button class="btn btn-back" id="btnBack2" style="margin-top:8px">Nazad</button>
@@ -169,7 +237,14 @@ input.fi.err, select.fi.err { border-color: #ef4444; }
   <div class="step" id="s3">
     <h2 class="stitle">Osobni podaci</h2>
     <p class="ssub">Podaci ugovaratelja i osiguranika</p>
-    <div class="fields">
+
+    <!-- Za sebe toggle -->
+    <label class="za-sebe-row" style="margin-bottom:16px">
+      <input type="checkbox" id="zaSebe" checked>
+      <span>Policu ugovaram za sebe</span>
+    </label>
+
+    <div class="fields" id="ugovarateljFields">
       <div class="row2">
         <div>
           <label class="fl" for="ime">Ime</label>
@@ -200,7 +275,8 @@ input.fi.err, select.fi.err { border-color: #ef4444; }
       <div class="row2">
         <div>
           <label class="fl" for="ulica">Ulica</label>
-          <input class="fi" id="ulica" type="text" placeholder="Ilica">
+          <input class="fi" id="ulica" type="text" placeholder="Ilica" autocomplete="off">
+          <div id="ulicaSugg" class="sugg-list"></div>
         </div>
         <div>
           <label class="fl" for="kbr">Kućni broj</label>
@@ -211,7 +287,7 @@ input.fi.err, select.fi.err { border-color: #ef4444; }
         <label class="fl" for="grad">Grad</label>
         <input class="fi" id="grad" type="text" placeholder="Zagreb" autocomplete="off">
         <div class="fhint">Upišite grad za pretraživanje</div>
-        <div id="gradSugg" style="background:white;border-radius:10px;margin-top:4px;display:none;max-height:160px;overflow-y:auto;border:2px solid rgba(87,60,249,.2)"></div>
+        <div id="gradSugg" class="sugg-list"></div>
         <input type="hidden" id="mjestoid">
       </div>
       <div>
@@ -223,6 +299,35 @@ input.fi.err, select.fi.err { border-color: #ef4444; }
         <input class="fi" id="tel" type="tel" placeholder="0911234567">
       </div>
     </div>
+
+    <!-- Podaci osiguranika — prikazano kad "za sebe" nije označeno -->
+    <div id="osobaSection" style="display:none">
+      <div class="section-divider" style="margin-bottom:14px">Podaci osiguranika</div>
+      <div class="fields">
+        <div class="row2">
+          <div>
+            <label class="fl" for="osobaIme">Ime</label>
+            <input class="fi" id="osobaIme" type="text" placeholder="Ana">
+          </div>
+          <div>
+            <label class="fl" for="osobaPrezime">Prezime</label>
+            <input class="fi" id="osobaPrezime" type="text" placeholder="Horvat">
+          </div>
+        </div>
+        <div>
+          <label class="fl" for="osobaOib">OIB osiguranika</label>
+          <input class="fi" id="osobaOib" type="text" inputmode="numeric" maxlength="11" placeholder="12345678901">
+        </div>
+        <div>
+          <label class="fl" for="osobaSpol">Spol</label>
+          <select class="fi" id="osobaSpol">
+            <option value="M">Muški</option>
+            <option value="Z">Ženski</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
     <button class="btn" id="btnOsobni">Nastavi</button>
     <button class="btn btn-back" id="btnBack3" style="margin-top:8px">Nazad</button>
   </div>
@@ -233,14 +338,14 @@ input.fi.err, select.fi.err { border-color: #ef4444; }
     <p class="ssub">Broj zdravstvene iskaznice (MBO)</p>
     <div class="fields">
       <div>
-        <label class="fl" for="mbo">HZZO broj (MBO)</label>
-        <input class="fi" id="mbo" type="text" inputmode="numeric" maxlength="12" placeholder="123456789">
-        <div id="mboStatus" class="fhint"></div>
-      </div>
-      <div>
         <label class="fl" for="pocetakOsiguranja">Početak osiguranja</label>
         <input class="fi" id="pocetakOsiguranja" type="date">
       </div>
+    </div>
+
+    <!-- Karenca obavijest -->
+    <div class="info-notice">
+      ℹ️ Polica počinje vrijediti nakon isteka <strong>karence od 15 dana</strong> od datuma početka osiguranja.
     </div>
 
     <div class="summary" id="summary"></div>
@@ -276,10 +381,11 @@ const PROXY = 'https://uniqa-dzo-proxy.osiguraj1.workers.dev';
 
 // ─── state ───────────────────────────────────────────────────────────────────
 const S = {
-  datumRodenja:    '',   // ISO: YYYY-MM-DD
-  datumRodenjaDZO: '',   // HR format: DD.MM.YYYY
-  selectedPkg:     null, // { cjenik, rizik, premija, cjenikNaziv, rizikNaziv }
+  datumRodenja:    '',
+  datumRodenjaDZO: '',
+  selectedPkg:     null,
   pocetakOsiguranja: '',
+  activeFilter:    'all',
 };
 
 // ─── progress helpers ─────────────────────────────────────────────────────────
@@ -287,7 +393,6 @@ function setStep(n, dir='right') {
   document.querySelectorAll('.step').forEach(e => e.classList.remove('active'));
   const step = document.getElementById('s' + n);
   step.classList.add('active', dir === 'right' ? 'slide-r' : 'slide-l');
-  // After animation remove class
   setTimeout(() => step.classList.remove('slide-r', 'slide-l'), 400);
 
   for (let i = 1; i <= 4; i++) {
@@ -307,7 +412,16 @@ function setStep(n, dir='right') {
   window.scrollTo({ top: 0, behavior: 'instant' });
 }
 
-// ─── ISO → HR date ────────────────────────────────────────────────────────────
+// Date placeholder toggle
+const _dInput = document.getElementById('datumRodenja');
+const _dPh    = document.getElementById('datePh');
+_dInput.addEventListener('change', () => {
+  _dInput.classList.toggle('date-empty', !_dInput.value);
+  _dPh.style.display = _dInput.value ? 'none' : '';
+});
+_dInput.addEventListener('focus', () => { _dPh.style.display = 'none'; });
+_dInput.addEventListener('blur',  () => { if (!_dInput.value) _dPh.style.display = ''; });
+
 function toHR(iso) {
   const [y, m, d] = iso.split('-');
   return `${d}.${m}.${y}`;
@@ -324,6 +438,7 @@ document.getElementById('btnIzracunaj').addEventListener('click', async () => {
   setStep(2);
   document.getElementById('pkgLoading').style.display = '';
   document.getElementById('pkgCards').style.display   = 'none';
+  document.getElementById('pkgFilters').style.display = 'none';
   document.getElementById('btnPickPkg').disabled = true;
   document.getElementById('pkgCards').innerHTML = '';
 
@@ -334,15 +449,12 @@ document.getElementById('btnIzracunaj').addEventListener('click', async () => {
       body: JSON.stringify({ datumRodenja: S.datumRodenjaDZO }),
     });
     const data = await res.json();
-
     if (data.error) throw new Error(data.error);
-
     const ponude = data.ponude || [];
     if (!ponude.length) {
-      document.getElementById('pkgLoading').innerHTML = '<p style="color:#ef4444">Nema dostupnih paketa za ovaj datum.</p><p style="font-size:.7rem;color:rgba(0,0,0,.35)">' + JSON.stringify(data._debug) + '</p>';
+      document.getElementById('pkgLoading').innerHTML = '<p style="color:#ef4444">Nema dostupnih paketa za ovaj datum.</p>';
       return;
     }
-
     renderPonude(ponude);
   } catch (e) {
     document.getElementById('pkgLoading').innerHTML = '<p style="color:#ef4444">Greška: ' + e.message + '</p>';
@@ -351,31 +463,69 @@ document.getElementById('btnIzracunaj').addEventListener('click', async () => {
 
 function renderPonude(ponude) {
   document.getElementById('pkgLoading').style.display = 'none';
-  const wrap = document.getElementById('pkgCards');
-  wrap.style.display = '';
-
-  wrap.innerHTML = ponude.map((p, i) => `
-    <label class="pkg-wrap">
-      <input type="radio" name="pkg" value="${i}" data-idx="${i}">
-      <div class="pkg-card">
-        <div>
-          <div class="pkg-name">${escHtml(p.rizikNaziv || p.rizik)}</div>
-          <div class="pkg-cjenik">${escHtml(p.cjenikNaziv || p.cjenik)}</div>
-        </div>
-        <div class="pkg-price">${formatKn(p.premija)} <span>€/god</span></div>
-      </div>
-    </label>
-  `).join('');
-
-  // Store ponude on window for access
   window._ponude = ponude;
 
+  // Show filter tabs only if we have both categories
+  const hasMultipleCategories = new Set(ponude.map(p => p.cjenik)).size > 1;
+  document.getElementById('pkgFilters').style.display = hasMultipleCategories ? 'flex' : 'none';
+
+  applyFilter(S.activeFilter);
+
+  document.getElementById('pkgCards').style.display = '';
+}
+
+function applyFilter(filter) {
+  S.activeFilter = filter;
+  const ponude = window._ponude || [];
+  const filtered = filter === 'all' ? ponude : ponude.filter(p => p.cjenik === filter);
+
+  // Update tab styles
+  document.querySelectorAll('.ftab').forEach(t => {
+    t.classList.toggle('active', t.dataset.filter === filter);
+  });
+
+  // If selected package is now hidden, deselect it
+  if (S.selectedPkg && filter !== 'all' && S.selectedPkg.cjenik !== filter) {
+    S.selectedPkg = null;
+    document.getElementById('btnPickPkg').disabled = true;
+  }
+
+  const wrap = document.getElementById('pkgCards');
+  const hasMultiple = new Set(ponude.map(p => p.cjenik)).size > 1;
+
+  let lastCjenik = null;
+  wrap.innerHTML = filtered.map((p, i) => {
+    const globalIdx = ponude.indexOf(p);
+    let catLabel = '';
+    if (hasMultiple && filter === 'all' && p.cjenik !== lastCjenik) {
+      catLabel = `<div class="pkg-cat-label">${escHtml(p.cjenikNaziv || p.cjenik)}</div>`;
+      lastCjenik = p.cjenik;
+    }
+    const isChecked = S.selectedPkg && S.selectedPkg.rizik === p.rizik ? 'checked' : '';
+    return `
+      ${catLabel}
+      <label class="pkg-wrap">
+        <input type="radio" name="pkg" value="${globalIdx}" data-idx="${globalIdx}" ${isChecked}>
+        <div class="pkg-card">
+          <div>
+            <div class="pkg-name">${escHtml(p.rizikNaziv || p.rizik)}</div>
+            <div class="pkg-cjenik">${escHtml(p.cjenikNaziv || p.cjenik)}</div>
+          </div>
+          <div class="pkg-price">${formatKn(p.premija)} <span>€/god</span></div>
+        </div>
+      </label>`;
+  }).join('');
+
   wrap.querySelectorAll('input[type=radio]').forEach(r => r.addEventListener('change', () => {
-    const pkg = window._ponude[parseInt(r.dataset.idx)];
-    S.selectedPkg = pkg;
+    S.selectedPkg = window._ponude[parseInt(r.dataset.idx)];
     document.getElementById('btnPickPkg').disabled = false;
   }));
 }
+
+document.getElementById('pkgFilters').addEventListener('click', e => {
+  const tab = e.target.closest('.ftab');
+  if (tab) applyFilter(tab.dataset.filter);
+});
 
 document.getElementById('btnPickPkg').addEventListener('click', () => {
   if (!S.selectedPkg) return;
@@ -384,6 +534,13 @@ document.getElementById('btnPickPkg').addEventListener('click', () => {
 });
 
 document.getElementById('btnBack2').addEventListener('click', () => setStep(1, 'left'));
+
+// ─── Za sebe toggle ─────────────────────────────────────────────────────────
+document.getElementById('zaSebe').addEventListener('change', function() {
+  document.getElementById('osobaSection').style.display = this.checked ? 'none' : 'block';
+  // When za sebe, spol field is for the policyholder (who is also insured)
+  // When not za sebe, show spol for ugovaratelj but insured has separate spol
+});
 
 // ─── City autocomplete ─────────────────────────────────────────────────────────
 let _mjesta = null;
@@ -408,35 +565,79 @@ document.getElementById('grad').addEventListener('input', async function() {
 
   const lq = q.toLowerCase();
   const filtered = (_mjesta.length ? _mjesta : []).filter(m => {
-    const n = (m.naziv || m.Naziv || m.NAZIV || '').toLowerCase();
+    const n = (m.naziv || '').toLowerCase();
     const p = m.ptt || '';
     return n.includes(lq) || p.startsWith(q);
   }).slice(0, 10);
 
   if (!filtered.length) { sugg.style.display = 'none'; return; }
 
-  sugg.innerHTML = filtered.map(m => {
-    const ptt   = m.ptt   || m.Sifra || m.SIFRA || '';
-    const naziv = m.naziv || m.Naziv || m.NAZIV || '';
-    return `<div style="padding:10px 14px;cursor:pointer;border-bottom:1px solid rgba(0,0,0,.06);font-size:.9rem" data-ptt="${ptt}" data-naziv="${escHtml(naziv)}">${ptt} ${escHtml(naziv)}</div>`;
-  }).join('');
+  sugg.innerHTML = filtered.map(m =>
+    `<div class="sugg-item" data-ptt="${m.ptt}" data-naziv="${escHtml(m.naziv)}">${m.ptt} ${escHtml(m.naziv)}</div>`
+  ).join('');
   sugg.style.display = '';
 
-  sugg.querySelectorAll('div').forEach(d => d.addEventListener('click', () => {
+  sugg.querySelectorAll('.sugg-item').forEach(d => d.addEventListener('click', () => {
     document.getElementById('grad').value     = d.dataset.naziv;
     document.getElementById('mjestoid').value = d.dataset.ptt;
     sugg.style.display = 'none';
+    // Trigger street autocomplete update with new city
+    _selectedCity = d.dataset.naziv;
   }));
 });
 
+// ─── Street autocomplete (Nominatim) ─────────────────────────────────────────
+let _selectedCity = '';
+let _ulicaTimer = null;
+
+document.getElementById('ulica').addEventListener('input', function() {
+  clearTimeout(_ulicaTimer);
+  const q = this.value.trim();
+  const sugg = document.getElementById('ulicaSugg');
+  if (q.length < 3) { sugg.style.display = 'none'; return; }
+
+  _ulicaTimer = setTimeout(() => fetchStreets(q, _selectedCity), 500);
+});
+
+async function fetchStreets(q, city) {
+  const sugg = document.getElementById('ulicaSugg');
+  try {
+    const searchQ = city ? `${q}, ${city}` : q;
+    const url = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(searchQ)}&format=json&countrycodes=hr&addressdetails=1&limit=10`;
+    const r = await fetch(url);
+    const data = await r.json();
+
+    // Extract unique street names
+    const seen = new Set();
+    const streets = data
+      .map(item => item.address?.road || item.address?.pedestrian || item.address?.path || '')
+      .filter(s => s && !seen.has(s) && seen.add(s));
+
+    if (!streets.length) { sugg.style.display = 'none'; return; }
+
+    sugg.innerHTML = streets.slice(0, 8).map(s =>
+      `<div class="sugg-item" data-val="${escHtml(s)}">${escHtml(s)}</div>`
+    ).join('');
+    sugg.style.display = '';
+
+    sugg.querySelectorAll('.sugg-item').forEach(d => d.addEventListener('click', () => {
+      document.getElementById('ulica').value = d.dataset.val;
+      sugg.style.display = 'none';
+    }));
+  } catch { /* silently fail */ }
+}
+
+// Close dropdowns on outside click
 document.addEventListener('click', e => {
-  if (!e.target.closest('#grad') && !e.target.closest('#gradSugg')) {
+  if (!e.target.closest('#grad') && !e.target.closest('#gradSugg'))
     document.getElementById('gradSugg').style.display = 'none';
-  }
+  if (!e.target.closest('#ulica') && !e.target.closest('#ulicaSugg'))
+    document.getElementById('ulicaSugg').style.display = 'none';
 });
 
 // ─── Step 3 → 4 ───────────────────────────────────────────────────────────────
 document.getElementById('btnOsobni').addEventListener('click', () => {
+  const zaSebe = document.getElementById('zaSebe').checked;
   const fields = ['ime', 'prezime', 'oib', 'email'];
   let ok = true;
   fields.forEach(id => {
@@ -446,16 +647,27 @@ document.getElementById('btnOsobni').addEventListener('click', () => {
   });
   if (!ok) return;
   if (document.getElementById('oib').value.length !== 11) {
-    document.getElementById('oib').classList.add('err');
-    return;
+    document.getElementById('oib').classList.add('err'); return;
   }
 
-  // Set default start date (tomorrow)
+  // Validate osiguranik fields if not za sebe
+  if (!zaSebe) {
+    const osobaFields = ['osobaIme', 'osobaPrezime', 'osobaOib'];
+    osobaFields.forEach(id => {
+      const el = document.getElementById(id);
+      if (!el.value.trim()) { el.classList.add('err'); ok = false; }
+      else el.classList.remove('err');
+    });
+    if (!ok) return;
+    if (document.getElementById('osobaOib').value.length !== 11) {
+      document.getElementById('osobaOib').classList.add('err'); return;
+    }
+  }
+
   const tom = new Date(); tom.setDate(tom.getDate() + 1);
   document.getElementById('pocetakOsiguranja').value = tom.toISOString().split('T')[0];
   S.pocetakOsiguranja = toHR(document.getElementById('pocetakOsiguranja').value);
 
-  // Build summary
   buildSummary();
   setStep(4);
 });
@@ -463,54 +675,35 @@ document.getElementById('btnBack3').addEventListener('click', () => setStep(2, '
 
 function buildSummary() {
   const pkg = S.selectedPkg;
+  const zaSebe = document.getElementById('zaSebe').checked;
+  const ime = document.getElementById('ime').value;
+  const prezime = document.getElementById('prezime').value;
+  let osiguranikName = ime + ' ' + prezime;
+  if (!zaSebe) {
+    osiguranikName = document.getElementById('osobaIme').value + ' ' + document.getElementById('osobaPrezime').value;
+  }
   const html = `
     <div class="sum-row"><span>Paket</span><strong>${escHtml(pkg.rizikNaziv || pkg.rizik)}</strong></div>
     <div class="sum-row"><span>Cjenik</span><strong>${escHtml(pkg.cjenikNaziv || pkg.cjenik)}</strong></div>
-    <div class="sum-row"><span>Osiguranik</span><strong>${escHtml(document.getElementById('ime').value + ' ' + document.getElementById('prezime').value)}</strong></div>
+    <div class="sum-row"><span>Osiguranik</span><strong>${escHtml(osiguranikName.trim())}</strong></div>
     <div class="sum-row"><span>OIB</span><strong>${escHtml(document.getElementById('oib').value)}</strong></div>
     <div class="sum-row sum-total"><span>Godišnja premija</span><strong>${formatKn(pkg.premija)} €</strong></div>
   `;
   document.getElementById('summary').innerHTML = html;
 }
 
-// HZZO change → update start date in summary
 document.getElementById('pocetakOsiguranja').addEventListener('change', function() {
   S.pocetakOsiguranja = toHR(this.value);
   buildSummary();
 });
 
-// MBO validation on blur
-document.getElementById('mbo').addEventListener('blur', async function() {
-  const mbo = this.value.trim();
-  const status = document.getElementById('mboStatus');
-  if (!mbo || mbo.length < 6) return;
-  status.textContent = 'Provjera...';
-  try {
-    const r = await fetch(PROXY + '/dzo/validiraj-mbo', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ mbo }),
-    });
-    const d = await r.json();
-    if (d.ok) {
-      status.style.color = '#22c55e';
-      status.textContent = '✓ HZZO broj je validan';
-    } else {
-      status.style.color = '#ef4444';
-      status.textContent = '✗ ' + (d.message || 'Neispravan HZZO broj');
-    }
-  } catch { status.textContent = ''; }
-});
-
 // ─── Step 4 → 5 (issue policy) ───────────────────────────────────────────────
 document.getElementById('btnIzdaj').addEventListener('click', async () => {
-  const mbo = document.getElementById('mbo').value.trim();
-  if (!mbo) { alert('Unesite HZZO broj.'); return; }
-
   const pocetek = document.getElementById('pocetakOsiguranja').value;
   if (!pocetek) { alert('Odaberite datum početka osiguranja.'); return; }
 
   const pkg = S.selectedPkg;
+  const zaSebe = document.getElementById('zaSebe').checked;
 
   document.getElementById('btnIzdaj').disabled = true;
   document.getElementById('btnBack4').disabled = true;
@@ -518,21 +711,30 @@ document.getElementById('btnIzdaj').addEventListener('click', async () => {
   document.getElementById('summary').style.display = 'none';
 
   const payload = {
-    datumRodenja:     S.datumRodenjaDZO,
-    cjenik:           pkg.cjenik,
-    rizici:           pkg.rizik,
+    datumRodenja:      S.datumRodenjaDZO,
+    cjenik:            pkg.cjenik,
+    rizici:            pkg.rizik,
     pocetakOsiguranja: toHR(pocetek),
-    ime:              document.getElementById('ime').value.trim(),
-    prezime:          document.getElementById('prezime').value.trim(),
-    oib:              document.getElementById('oib').value.trim(),
-    spol:             document.getElementById('spol').value,
-    ulica:            document.getElementById('ulica').value.trim(),
-    kbr:              document.getElementById('kbr').value.trim(),
-    mjestoid:         document.getElementById('mjestoid').value,
-    email:            document.getElementById('email').value.trim(),
-    mobitel:          document.getElementById('tel').value.trim(),
-    mbo,
+    ime:               document.getElementById('ime').value.trim(),
+    prezime:           document.getElementById('prezime').value.trim(),
+    oib:               document.getElementById('oib').value.trim(),
+    spol:              document.getElementById('spol').value,
+    ulica:             (document.getElementById('ulica').value.trim() + ' ' + document.getElementById('kbr').value.trim()).trim(),
+    mjestoid:          document.getElementById('mjestoid').value,
+    email:             document.getElementById('email').value.trim(),
+    mobitel:           document.getElementById('tel').value.trim(),
+    mbo:               '',
   };
+
+  // If not purchasing for self, include insured person data
+  if (!zaSebe) {
+    payload.osoba = {
+      ime:     document.getElementById('osobaIme').value.trim(),
+      prezime: document.getElementById('osobaPrezime').value.trim(),
+      oib:     document.getElementById('osobaOib').value.trim(),
+      spol:    document.getElementById('osobaSpol').value,
+    };
+  }
 
   try {
     const r = await fetch(PROXY + '/dzo/spremi-policu', {
@@ -542,14 +744,11 @@ document.getElementById('btnIzdaj').addEventListener('click', async () => {
     });
     const d = await r.json();
 
-    if (d.error || !d.ok) {
-      throw new Error(d.error || d.message || 'Nepoznata greška');
-    }
+    if (d.error || !d.ok) throw new Error(d.error || d.message || 'Nepoznata greška');
 
     document.getElementById('brojPolice').textContent = d.brojPolice || '—';
     document.getElementById('s5Debug').textContent = JSON.stringify({ premija: d.ukupnaPremija });
 
-    // Setup PDF downloads
     if (d.policaPdf) {
       const btn = document.getElementById('btnDlPolica');
       btn.style.display = '';
@@ -591,16 +790,15 @@ function escHtml(s) {
 }
 
 function b64Download(b64, filename) {
-  // If it's already a URL, open it
   if (b64.startsWith('http')) { window.open(b64, '_blank'); return; }
   try {
-    const bin   = atob(b64);
-    const arr   = new Uint8Array(bin.length);
+    const bin = atob(b64);
+    const arr = new Uint8Array(bin.length);
     for (let i = 0; i < bin.length; i++) arr[i] = bin.charCodeAt(i);
-    const blob  = new Blob([arr], { type: 'application/pdf' });
-    const url   = URL.createObjectURL(blob);
-    const a     = document.createElement('a');
-    a.href      = url; a.download = filename; a.click();
+    const blob = new Blob([arr], { type: 'application/pdf' });
+    const url  = URL.createObjectURL(blob);
+    const a    = document.createElement('a');
+    a.href = url; a.download = filename; a.click();
     URL.revokeObjectURL(url);
   } catch { window.open('data:application/pdf;base64,' + b64); }
 }
