@@ -130,17 +130,26 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; b
     box-shadow: 0 4px 24px rgba(0,0,0,0.18);
 }
 .ponuda-badge { position: absolute; top: -11px; left: 18px; background: #ffbc27; color: #1a1033; font-size: 0.68rem; font-weight: 800; padding: 3px 12px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.3px; }
-.ponuda-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
+.ponuda-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; }
 .ponuda-logo-name { font-size: 1.15rem; font-weight: 800; color: #1a1033; }
-.ponuda-cijena .iznos { font-size: 1.7rem; font-weight: 800; color: #573cf9; line-height: 1; }
-.ponuda-cijena .period { font-size: 0.75rem; color: #999; text-align: right; }
+.ponuda-logo-img { width: 110px; height: auto; display: block; margin-bottom: 6px; border-radius: 4px; }
+.ponuda-type { font-size: 0.68rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; color: rgba(0,0,0,0.38); margin-bottom: 5px; }
+.ponuda-savings { display: none; background: #dcfce7; color: #16a34a; font-size: 0.72rem; font-weight: 800; padding: 3px 8px; border-radius: 20px; margin-bottom: 8px; }
+.ponuda-cijena .iznos { font-size: 1.7rem; font-weight: 800; color: #1a1033; line-height: 1; }
+.ponuda-cijena .period { font-size: 0.75rem; color: #999; text-align: right; margin-top: 3px; }
+.ponuda-div { border: none; border-top: 1.5px dashed rgba(0,0,0,.1); margin: 10px 0; }
 .ponuda-features { display: flex; flex-direction: column; gap: 7px; margin-bottom: 16px; }
-.ponuda-feature { font-size: 0.83rem; color: #444; display: flex; align-items: center; gap: 8px; }
-.ponuda-feature::before { content: '✓'; color: #22c55e; font-weight: 800; flex-shrink: 0; font-size: 0.9rem; }
-.ponuda-actions { display: flex; gap: 10px; }
-.btn-detalji { flex: 1; padding: 11px; border: 2px solid #e8e8e8; background: white; border-radius: 10px; font-size: 0.88rem; font-weight: 600; cursor: pointer; color: #444; font-family: inherit; transition: border-color 0.2s; }
-.btn-detalji:hover { border-color: #573cf9; color: #573cf9; }
-.btn-kupi { flex: 1.4; padding: 11px; background: #573cf9; border: none; border-radius: 10px; font-size: 0.9rem; font-weight: 800; cursor: pointer; color: white; font-family: inherit; box-shadow: 0 3px 0 #3b20d4; }
+.ponuda-feature { font-size: 0.83rem; color: #444; display: flex; align-items: flex-start; gap: 8px; background: rgba(0,0,0,.03); border-radius: 8px; padding: 8px 10px; }
+.ponuda-feature::before { content: '✓'; color: #22c55e; font-weight: 800; flex-shrink: 0; font-size: 0.9rem; margin-top: 1px; }
+.ponuda-feat-title { font-weight: 600; }
+.ponuda-feat-desc { font-size: 0.77rem; color: #888; margin-top: 2px; display: none; }
+.ponuda.open .ponuda-feat-desc { display: block; }
+.ponuda-actions { display: flex; gap: 10px; align-items: center; }
+.btn-detalji { background: none; border: none; padding: 0; cursor: pointer; font-size: 0.82rem; font-weight: 600; color: #573cf9; font-family: inherit; display: flex; align-items: center; gap: 4px; transition: opacity .2s; }
+.btn-detalji:hover { opacity: .7; }
+.btn-detalji svg { transition: transform .2s; }
+.ponuda.open .btn-detalji svg { transform: rotate(180deg); }
+.btn-kupi { flex: 1; padding: 11px; background: #573cf9; border: none; border-radius: 10px; font-size: 0.9rem; font-weight: 800; cursor: pointer; color: white; font-family: inherit; box-shadow: 0 3px 0 #3b20d4; }
 .btn-kupi:hover { background: #4530d4; }
 
 /* CONTENT SECTION (white bg) */
@@ -360,16 +369,24 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; b
     <div class="ponuda">
       <div class="ponuda-badge">Najpovoljnije</div>
       <div class="ponuda-top">
-        <div class="ponuda-logo-name">UNIQA</div>
-        <div class="ponuda-cijena"><div class="iznos" id="c-uniqa">—</div><div class="period" id="uniqa-period">/ mj</div></div>
+        <div>
+          <img class="ponuda-logo-img" src="/img/uniqa-logo-blue.svg" alt="UNIQA">
+          <div class="ponuda-type">Dopunsko</div>
+          <div class="ponuda-savings" id="uniqa-savings">5% uštede</div>
+        </div>
+        <div class="ponuda-cijena"><div class="iznos" id="c-uniqa">—</div><div class="period" id="uniqa-period">/ god.</div></div>
       </div>
+      <hr class="ponuda-div">
       <div class="ponuda-features">
-        <div class="ponuda-feature">Pokriva sve troškove participacije</div>
-        <div class="ponuda-feature">Iskaznica je sredstvo plaćanja</div>
-        <div class="ponuda-feature">5% uštede pri jednokratnom plaćanju</div>
+        <div class="ponuda-feature">
+          <div><div class="ponuda-feat-title">Iskaznica</div><div class="ponuda-feat-desc">Iskaznica je sredstvo plaćanja.</div></div>
+        </div>
+        <div class="ponuda-feature">
+          <div><div class="ponuda-feat-title">Svi troškovi participacije su pokriveni neograničeno</div><div class="ponuda-feat-desc">Kada ti zatreba pomoć liječnika, ne trebaš ništa nadoplaćivati.</div></div>
+        </div>
       </div>
       <div class="ponuda-actions">
-        <button class="btn-detalji">Detalji</button>
+        <button class="btn-detalji" onclick="const p=this.closest('.ponuda');p.classList.toggle('open');this.querySelector('span').textContent=p.classList.contains('open')?'Prikaži manje':'Prikaži detalje'"><span>Prikaži detalje</span><svg width="11" height="11" viewBox="0 0 14 14" fill="none"><path d="M2 5l5 5 5-5" stroke="#573cf9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
         <button class="btn-kupi" onclick="otvoriModal('UNIQA Dopunsko','c-uniqa')">Odaberi &rarr;</button>
       </div>
     </div>
@@ -651,6 +668,7 @@ function updateUniqaCard() {
   var period = jednokratno ? '/ god.' : '/ mj';
   document.getElementById('c-uniqa').textContent = cijena.toFixed(2).replace('.',',') + ' €';
   document.getElementById('uniqa-period').textContent = period;
+  document.getElementById('uniqa-savings').style.display = jednokratno ? 'inline-block' : 'none';
 }
 
 document.getElementById('dzo-bLista').addEventListener('change', updateUniqaCard);
