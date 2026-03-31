@@ -204,10 +204,7 @@ input.fi.date-empty::-webkit-datetime-edit-fields-wrapper { color: transparent; 
     <p class="ssub">Unesite datum za izračun premije</p>
     <div class="fields">
       <div>
-        <div class="date-wrap">
-          <input class="fi date-empty" id="datumRodenja" type="date" max="2024-01-01" min="1920-01-01">
-          <span class="date-ph" id="datePh">Datum rođenja</span>
-        </div>
+        <input class="fi" id="datumRodenja" type="text" inputmode="numeric" placeholder="DD.MM.GGGG" maxlength="10" autocomplete="bday">
       </div>
     </div>
     <button class="btn" id="btnIzracunaj">Prikaži pakete</button>
@@ -411,15 +408,26 @@ function setStep(n, dir='right') {
   window.scrollTo({ top: 0, behavior: 'instant' });
 }
 
-// Date placeholder toggle
-const _dInput = document.getElementById('datumRodenja');
-const _dPh    = document.getElementById('datePh');
-_dInput.addEventListener('change', () => {
-  _dInput.classList.toggle('date-empty', !_dInput.value);
-  _dPh.style.display = _dInput.value ? 'none' : '';
+// Date auto-format: korisnik upisuje brojeve, točke se dodaju same → DD.MM.GGGG
+document.getElementById('datumRodenja').addEventListener('input', function(e) {
+  let v = this.value.replace(/\D/g, ''); // samo brojevi
+  if (v.length > 8) v = v.slice(0, 8);
+  let out = '';
+  if (v.length > 4)      out = v.slice(0,2) + '.' + v.slice(2,4) + '.' + v.slice(4);
+  else if (v.length > 2) out = v.slice(0,2) + '.' + v.slice(2);
+  else                    out = v;
+  this.value = out;
 });
-_dInput.addEventListener('focus', () => { _dPh.style.display = 'none'; });
-_dInput.addEventListener('blur',  () => { if (!_dInput.value) _dPh.style.display = ''; });
+
+// Parse DD.MM.GGGG → ISO YYYY-MM-DD
+function parseHR(hr) {
+  const p = hr.split('.');
+  if (p.length < 3 || p[2].length < 4) return null;
+  const iso = `${p[2]}-${p[1].padStart(2,'0')}-${p[0].padStart(2,'0')}`;
+  const d = new Date(iso);
+  if (isNaN(d)) return null;
+  return iso;
+}
 
 function toHR(iso) {
   const [y, m, d] = iso.split('-');
@@ -428,11 +436,12 @@ function toHR(iso) {
 
 // ─── Step 1 → 2 ───────────────────────────────────────────────────────────────
 document.getElementById('btnIzracunaj').addEventListener('click', async () => {
-  const val = document.getElementById('datumRodenja').value;
-  if (!val) { alert('Unesite datum rođenja.'); return; }
+  const raw = document.getElementById('datumRodenja').value.trim();
+  const iso = parseHR(raw);
+  if (!iso) { alert('Unesite ispravan datum rođenja (npr. 15.06.1985).'); return; }
 
-  S.datumRodenja    = val;
-  S.datumRodenjaDZO = toHR(val);
+  S.datumRodenja    = iso;
+  S.datumRodenjaDZO = raw.endsWith('.') ? raw : raw; // already DD.MM.GGGG
 
   setStep(2);
   document.getElementById('pkgLoading').style.display = '';
@@ -528,7 +537,7 @@ document.getElementById('pkgFilters').addEventListener('click', e => {
 
 document.getElementById('btnPickPkg').addEventListener('click', () => {
   if (!S.selectedPkg) return;
-  document.getElementById('datumRodenjaDisp').value = toHR(S.datumRodenja);
+  document.getElementById('datumRodenjaDisp').value = S.datumRodenjaDZO;
   setStep(3);
 });
 
