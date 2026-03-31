@@ -90,32 +90,58 @@ input.fi.date-empty::-webkit-datetime-edit-fields-wrapper { color: transparent; 
 .btn-back { background: rgba(0,0,0,.08); color: rgba(0,0,0,.5); margin-bottom: 10px; }
 .btn-back:hover:not(:disabled) { background: rgba(0,0,0,.14); box-shadow: none; }
 
-/* Filter tabs */
-.filter-tabs { display: flex; gap: 6px; margin-bottom: 16px; }
-.ftab {
-  flex: 1; padding: 8px 6px; border: 2px solid rgba(0,0,0,.12); border-radius: 10px;
-  background: white; font-size: .78rem; font-weight: 700; cursor: pointer;
-  color: rgba(0,0,0,.45); transition: all .2s;
+/* Option toggles */
+.opt-row {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  background: white; border-radius: 14px; padding: 14px 16px; margin-bottom: 10px;
+  cursor: pointer;
 }
-.ftab.active { background: #573cf9; color: white; border-color: #573cf9; }
+.opt-title { font-size: .93rem; font-weight: 700; color: #1a1033; }
+.opt-desc  { font-size: .78rem; color: rgba(0,0,0,.45); margin-top: 2px; }
+.opt-row input[type=checkbox] { display: none; }
+.tog {
+  width: 46px; height: 26px; background: rgba(0,0,0,.15); border-radius: 13px;
+  position: relative; flex-shrink: 0; transition: background .2s;
+}
+.tog::after {
+  content: ''; position: absolute;
+  width: 20px; height: 20px; top: 3px; left: 3px;
+  background: white; border-radius: 50%;
+  transition: transform .2s; box-shadow: 0 1px 4px rgba(0,0,0,.25);
+}
+.opt-row input:checked ~ .tog { background: #573cf9; }
+.opt-row input:checked ~ .tog::after { transform: translateX(20px); }
 
-/* Package cards */
-.pkg-cards { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
-.pkg-wrap input[type=radio] { position: absolute; opacity: 0; width: 0; height: 0; }
-.pkg-card {
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 14px 16px; border: 2px solid rgba(0,0,0,.1); border-radius: 14px;
-  cursor: pointer; transition: all .2s; background: white;
+/* Package cards v2 */
+.pkg-cards { display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px; }
+.pkg-v2 {
+  background: white; border-radius: 16px; border: 2px solid rgba(0,0,0,.08);
+  overflow: hidden; transition: border-color .2s, box-shadow .2s;
 }
-.pkg-wrap input:checked + .pkg-card { border-color: #573cf9; box-shadow: 0 0 0 3px rgba(87,60,249,.15); }
-.pkg-name  { font-size: .93rem; font-weight: 700; color: #1a1033; }
-.pkg-cjenik { font-size: .72rem; color: rgba(0,0,0,.4); margin-top: 2px; }
-.pkg-price { font-size: 1.2rem; font-weight: 900; color: #573cf9; white-space: nowrap; }
-.pkg-price span { font-size: .75rem; font-weight: 600; color: rgba(87,60,249,.7); }
-.pkg-cat-label {
-  font-size: .68rem; font-weight: 800; text-transform: uppercase; letter-spacing: .6px;
-  color: rgba(0,0,0,.35); padding: 2px 0 6px; margin-top: 4px;
+.pkg-v2-hd {
+  display: flex; align-items: flex-start; justify-content: space-between;
+  padding: 16px 18px 12px; gap: 10px;
 }
+.pkg-v2-name { font-size: 1rem; font-weight: 800; color: #1a1033; }
+.pkg-v2-type { font-size: .68rem; font-weight: 800; text-transform: uppercase; letter-spacing: .5px; color: rgba(0,0,0,.38); margin-top: 3px; }
+.pkg-v2-price .amount { font-size: 1.55rem; font-weight: 900; color: #1a1033; line-height: 1; }
+.pkg-v2-price .period { font-size: .72rem; color: rgba(0,0,0,.4); text-align: right; margin-top: 2px; }
+.pkg-div { border: none; border-top: 1.5px dashed rgba(0,0,0,.1); margin: 0 18px; }
+.pkg-feats { padding: 12px 18px; display: flex; flex-direction: column; gap: 6px; }
+.pkg-feat {
+  display: flex; align-items: flex-start; gap: 10px;
+  background: rgba(0,0,0,.03); border-radius: 8px; padding: 9px 12px;
+}
+.feat-chk { color: #22c55e; font-weight: 900; font-size: .9rem; flex-shrink: 0; margin-top: 1px; }
+.feat-t { font-size: .88rem; font-weight: 600; color: #1a1033; }
+.feat-d { font-size: .76rem; color: rgba(0,0,0,.42); margin-top: 2px; }
+.pkg-v2-ft { padding: 0 18px 16px; display: flex; justify-content: flex-end; }
+.btn-odaberi {
+  background: #573cf9; color: white; border: none; border-radius: 12px;
+  padding: 12px 24px; font-size: .95rem; font-weight: 800; cursor: pointer;
+  transition: all .2s; letter-spacing: .2px;
+}
+.btn-odaberi:hover { background: #4a33d6; transform: translateY(-1px); box-shadow: 0 6px 20px rgba(87,60,249,.35); }
 
 /* Autocomplete dropdown */
 .sugg-list {
@@ -157,13 +183,6 @@ input.fi.date-empty::-webkit-datetime-edit-fields-wrapper { color: transparent; 
 }
 .za-sebe-row input[type=checkbox] { width: 18px; height: 18px; accent-color: #573cf9; cursor: pointer; flex-shrink: 0; }
 .za-sebe-row span { font-size: .93rem; font-weight: 600; color: #1a1033; }
-
-/* Package feature badges */
-.pkg-features { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 6px; }
-.pkg-feat {
-  font-size: .68rem; font-weight: 700; padding: 2px 8px; border-radius: 20px;
-  background: rgba(87,60,249,.08); color: #573cf9; white-space: nowrap;
-}
 
 /* Osiguranik section */
 .section-divider {
@@ -225,15 +244,19 @@ input.fi.date-empty::-webkit-datetime-edit-fields-wrapper { color: transparent; 
       <div class="spin"></div>
       <p>Dohvaćam pakete...</p>
     </div>
-    <!-- Filter tabs — shown only for adults (2+ categories) -->
-    <div class="filter-tabs" id="pkgFilters" style="display:none">
-      <button class="ftab active" data-filter="all">Svi paketi</button>
-      <button class="ftab" data-filter="DOP24">Dopunsko</button>
-      <button class="ftab" data-filter="DZO24">Dobrovoljno</button>
+    <div id="pkgOptions" style="display:none">
+      <!-- B lista toggle — prikazano samo za odrasle -->
+      <label class="opt-row" id="bListaRow" style="display:none">
+        <div>
+          <div class="opt-title">B lista lijekova</div>
+          <div class="opt-desc">Lijekovi koji su na recept i plaćaju se, ti ih ne plaćaš.</div>
+        </div>
+        <input type="checkbox" id="toggleBLista">
+        <span class="tog"></span>
+      </label>
     </div>
     <div class="pkg-cards" id="pkgCards" style="display:none"></div>
-    <button class="btn" id="btnPickPkg" disabled>Nastavi</button>
-    <button class="btn btn-back" id="btnBack2" style="margin-top:8px">Nazad</button>
+    <button class="btn btn-back" id="btnBack2" style="margin-top:4px">Nazad</button>
   </div>
 
   <!-- Step 3: Osobni podaci -->
@@ -388,7 +411,6 @@ const S = {
   datumRodenjaDZO: '',
   selectedPkg:     null,
   pocetakOsiguranja: '',
-  activeFilter:    'all',
 };
 
 // ─── progress helpers ─────────────────────────────────────────────────────────
@@ -452,9 +474,8 @@ document.getElementById('btnIzracunaj').addEventListener('click', async () => {
 
   setStep(2);
   document.getElementById('pkgLoading').style.display = '';
+  document.getElementById('pkgOptions').style.display = 'none';
   document.getElementById('pkgCards').style.display   = 'none';
-  document.getElementById('pkgFilters').style.display = 'none';
-  document.getElementById('btnPickPkg').disabled = true;
   document.getElementById('pkgCards').innerHTML = '';
 
   try {
@@ -480,74 +501,93 @@ function renderPonude(ponude) {
   document.getElementById('pkgLoading').style.display = 'none';
   window._ponude = ponude;
 
-  // Show filter tabs only if we have both categories
-  const hasMultipleCategories = new Set(ponude.map(p => p.cjenik)).size > 1;
-  document.getElementById('pkgFilters').style.display = hasMultipleCategories ? 'flex' : 'none';
+  // Show B lista toggle only for adults with both DI7A1 + DI7B1
+  const dop = ponude.filter(p => p.cjenik === 'DOP24');
+  const hasBLista = dop.length >= 2;
+  document.getElementById('pkgOptions').style.display = hasBLista ? '' : 'none';
+  document.getElementById('bListaRow').style.display  = hasBLista ? 'flex' : 'none';
 
-  applyFilter(S.activeFilter);
-
-  document.getElementById('pkgCards').style.display = '';
+  buildCards();
 }
 
-function applyFilter(filter) {
-  S.activeFilter = filter;
+function buildCards() {
   const ponude = window._ponude || [];
-  const filtered = filter === 'all' ? ponude : ponude.filter(p => p.cjenik === filter);
+  const bLista = document.getElementById('toggleBLista').checked;
+  const dop = ponude.filter(p => p.cjenik === 'DOP24');
+  const dzos = ponude.filter(p => p.cjenik === 'DZO24');
 
-  // Update tab styles
-  document.querySelectorAll('.ftab').forEach(t => {
-    t.classList.toggle('active', t.dataset.filter === filter);
-  });
+  let html = '';
 
-  // If selected package is now hidden, deselect it
-  if (S.selectedPkg && filter !== 'all' && S.selectedPkg.cjenik !== filter) {
-    S.selectedPkg = null;
-    document.getElementById('btnPickPkg').disabled = true;
+  // ONE Dopunsko card — switches between DI7A1 (bez) and DI7B1 (s B listom)
+  if (dop.length) {
+    const pkg = bLista
+      ? (dop.find(p => p.rizik === 'DI7B1') || dop[dop.length - 1])
+      : (dop.find(p => p.rizik === 'DI7A1') || dop[0]);
+    const idx = ponude.indexOf(pkg);
+    const typeLabel = bLista ? 'DOPUNSKO S B LISTOM' : 'DOPUNSKO';
+    const feats = [
+      ...(bLista ? [{ t: 'B lista lijekova', d: 'Lijekovi s recepta — ne plaćaš participaciju.' }] : []),
+      { t: 'Iskaznica', d: 'Iskaznica je sredstvo plaćanja.' },
+      { t: 'Svi troškovi participacije su pokriveni neograničeno', d: 'Kada ti zatreba pomoć liječnika, ne trebaš ništa nadoplaćivati.' },
+    ];
+    html += cardHtml(pkg, idx, 'Uniqa Dopunsko', typeLabel, feats);
   }
 
+  // Dobrovoljno cards
+  dzos.forEach(p => {
+    const idx = ponude.indexOf(p);
+    const feats = [
+      { t: 'Specijalisti bez čekanja', d: 'Direktan pristup specijalistima bez uputnice.' },
+      { t: 'Privatne klinike i poliklinike', d: null },
+      { t: 'Sistematski pregledi', d: null },
+    ];
+    html += cardHtml(p, idx, escHtml(p.rizikNaziv || p.rizik), 'DOBROVOLJNO', feats);
+  });
+
   const wrap = document.getElementById('pkgCards');
-  const hasMultiple = new Set(ponude.map(p => p.cjenik)).size > 1;
+  wrap.innerHTML = html;
+  wrap.style.display = '';
 
-  let lastCjenik = null;
-  wrap.innerHTML = filtered.map((p, i) => {
-    const globalIdx = ponude.indexOf(p);
-    let catLabel = '';
-    if (hasMultiple && filter === 'all' && p.cjenik !== lastCjenik) {
-      catLabel = `<div class="pkg-cat-label">${escHtml(p.cjenikNaziv || p.cjenik)}</div>`;
-      lastCjenik = p.cjenik;
-    }
-    const isChecked = S.selectedPkg && S.selectedPkg.rizik === p.rizik ? 'checked' : '';
-    const feats = pkgFeatures(p.cjenik);
-    return `
-      ${catLabel}
-      <label class="pkg-wrap">
-        <input type="radio" name="pkg" value="${globalIdx}" data-idx="${globalIdx}" ${isChecked}>
-        <div class="pkg-card">
-          <div style="flex:1">
-            <div class="pkg-name">${escHtml(p.rizikNaziv || p.rizik)}</div>
-            <div class="pkg-features">${feats.map(f => `<span class="pkg-feat">${f}</span>`).join('')}</div>
-          </div>
-          <div class="pkg-price" style="margin-left:10px">${formatKn(p.premija)} <span>€/god</span></div>
-        </div>
-      </label>`;
-  }).join('');
-
-  wrap.querySelectorAll('input[type=radio]').forEach(r => r.addEventListener('change', () => {
-    S.selectedPkg = window._ponude[parseInt(r.dataset.idx)];
-    document.getElementById('btnPickPkg').disabled = false;
-  }));
+  wrap.querySelectorAll('.btn-odaberi').forEach(btn => {
+    btn.addEventListener('click', () => {
+      S.selectedPkg = window._ponude[parseInt(btn.dataset.idx)];
+      document.getElementById('datumRodenjaDisp').value = S.datumRodenjaDZO;
+      setStep(3);
+    });
+  });
 }
 
-document.getElementById('pkgFilters').addEventListener('click', e => {
-  const tab = e.target.closest('.ftab');
-  if (tab) applyFilter(tab.dataset.filter);
-});
+function cardHtml(pkg, idx, name, typeLabel, feats) {
+  return `
+    <div class="pkg-v2">
+      <div class="pkg-v2-hd">
+        <div>
+          <div class="pkg-v2-name">${name}</div>
+          <div class="pkg-v2-type">${typeLabel}</div>
+        </div>
+        <div class="pkg-v2-price">
+          <div class="amount">${formatKn(pkg.premija)}&nbsp;€</div>
+          <div class="period">godišnje</div>
+        </div>
+      </div>
+      <hr class="pkg-div">
+      <div class="pkg-feats">
+        ${feats.map(f => `
+          <div class="pkg-feat">
+            <span class="feat-chk">✓</span>
+            <div>
+              <div class="feat-t">${f.t}</div>
+              ${f.d ? `<div class="feat-d">${f.d}</div>` : ''}
+            </div>
+          </div>`).join('')}
+      </div>
+      <div class="pkg-v2-ft">
+        <button class="btn-odaberi" data-idx="${idx}">Odaberi →</button>
+      </div>
+    </div>`;
+}
 
-document.getElementById('btnPickPkg').addEventListener('click', () => {
-  if (!S.selectedPkg) return;
-  document.getElementById('datumRodenjaDisp').value = S.datumRodenjaDZO;
-  setStep(3);
-});
+document.getElementById('toggleBLista').addEventListener('change', buildCards);
 
 document.getElementById('btnBack2').addEventListener('click', () => setStep(1, 'left'));
 
@@ -792,12 +832,6 @@ document.getElementById('btnBack4').addEventListener('click', () => {
 });
 
 // ─── helpers ──────────────────────────────────────────────────────────────────
-function pkgFeatures(cjenik) {
-  if (cjenik === 'DOP24') return ['✓ B lista lijekova', '✓ Svi troškovi participacije'];
-  if (cjenik === 'DZO24') return ['✓ Privatne klinike', '✓ Specijalisti bez čekanja'];
-  return [];
-}
-
 function formatKn(n) {
   if (!n && n !== 0) return '—';
   return n.toFixed(2).replace('.', ',');
