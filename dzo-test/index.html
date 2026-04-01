@@ -683,6 +683,18 @@ document.getElementById('grad').addEventListener('input', async function() {
   }));
 });
 
+// Auto-select first match on blur if mjestoid still empty
+document.getElementById('grad').addEventListener('blur', function() {
+  const sugg = document.getElementById('gradSugg');
+  const first = sugg.querySelector('.sugg-item');
+  if (first && !document.getElementById('mjestoid').value) {
+    document.getElementById('grad').value     = first.dataset.naziv;
+    document.getElementById('mjestoid').value = first.dataset.ptt;
+    _selectedCity = first.dataset.naziv;
+    sugg.style.display = 'none';
+  }
+});
+
 // ─── Street autocomplete (Nominatim) ─────────────────────────────────────────
 let _selectedCity = '';
 let _ulicaTimer = null;
