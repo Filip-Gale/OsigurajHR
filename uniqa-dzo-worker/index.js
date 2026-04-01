@@ -275,7 +275,7 @@ async function createPartner(guid, p) {
   const params = {
     Id: guid,
     Sektor: '1',
-    MaticniBroj: '',
+    MaticniBroj: p.oib,
     OIB: p.oib,
     DatumRodjenja: datumFormatted,
     Naziv: naziv,
