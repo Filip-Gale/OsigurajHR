@@ -666,7 +666,7 @@ function renderGradSugg(q) {
   sugg.style.display = 'block';
 
   sugg.querySelectorAll('.sugg-item').forEach(d => d.addEventListener('click', () => {
-    document.getElementById('grad').value     = toTitleCase(d.dataset.naziv);
+    document.getElementById('grad').value     = d.dataset.ptt + ' ' + toTitleCase(d.dataset.naziv);
     document.getElementById('mjestoid').value = d.dataset.ptt;
     sugg.style.display = 'none';
     _selectedCity = toTitleCase(d.dataset.naziv);
@@ -699,7 +699,7 @@ document.getElementById('grad').addEventListener('blur', function() {
   const sugg = document.getElementById('gradSugg');
   const first = sugg.querySelector('.sugg-item');
   if (first && !document.getElementById('mjestoid').value) {
-    document.getElementById('grad').value     = toTitleCase(first.dataset.naziv);
+    document.getElementById('grad').value     = first.dataset.ptt + ' ' + toTitleCase(first.dataset.naziv);
     document.getElementById('mjestoid').value = first.dataset.ptt;
     _selectedCity = toTitleCase(first.dataset.naziv);
     sugg.style.display = 'none';
