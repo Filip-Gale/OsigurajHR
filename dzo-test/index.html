@@ -640,6 +640,10 @@ document.getElementById('zaSebe').addEventListener('change', function() {
 });
 
 // ─── City autocomplete ─────────────────────────────────────────────────────────
+function toTitleCase(str) {
+  return str.toLowerCase().replace(/(?:^|[\s-])./g, c => c.toUpperCase());
+}
+
 let _mjesta = null;
 let _mjestaLoading = false;
 
@@ -657,15 +661,15 @@ function renderGradSugg(q) {
   if (!filtered.length) { sugg.style.display = 'none'; return; }
 
   sugg.innerHTML = filtered.map(m =>
-    `<div class="sugg-item" data-ptt="${m.ptt}" data-naziv="${escHtml(m.naziv)}">${m.ptt} ${escHtml(m.naziv)}</div>`
+    `<div class="sugg-item" data-ptt="${m.ptt}" data-naziv="${escHtml(m.naziv)}">${m.ptt} ${escHtml(toTitleCase(m.naziv))}</div>`
   ).join('');
   sugg.style.display = 'block';
 
   sugg.querySelectorAll('.sugg-item').forEach(d => d.addEventListener('click', () => {
-    document.getElementById('grad').value     = d.dataset.naziv;
+    document.getElementById('grad').value     = toTitleCase(d.dataset.naziv);
     document.getElementById('mjestoid').value = d.dataset.ptt;
     sugg.style.display = 'none';
-    _selectedCity = d.dataset.naziv;
+    _selectedCity = toTitleCase(d.dataset.naziv);
   }));
 }
 
@@ -695,9 +699,9 @@ document.getElementById('grad').addEventListener('blur', function() {
   const sugg = document.getElementById('gradSugg');
   const first = sugg.querySelector('.sugg-item');
   if (first && !document.getElementById('mjestoid').value) {
-    document.getElementById('grad').value     = first.dataset.naziv;
+    document.getElementById('grad').value     = toTitleCase(first.dataset.naziv);
     document.getElementById('mjestoid').value = first.dataset.ptt;
-    _selectedCity = first.dataset.naziv;
+    _selectedCity = toTitleCase(first.dataset.naziv);
     sugg.style.display = 'none';
   }
 });
