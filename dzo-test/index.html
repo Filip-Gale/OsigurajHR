@@ -360,6 +360,10 @@ input.fi.date-empty::-webkit-datetime-edit-fields-wrapper { color: transparent; 
         <label class="fl" for="tel">Mobitel</label>
         <input class="fi" id="tel" type="tel" placeholder="0911234567">
       </div>
+      <div>
+        <label class="fl" for="mbo">MBO (HZZO broj)</label>
+        <input class="fi" id="mbo" type="text" inputmode="numeric" maxlength="9" placeholder="124387527">
+      </div>
     </div>
 
     <!-- Podaci osiguranika — prikazano kad "za sebe" nije označeno -->
@@ -851,7 +855,7 @@ document.getElementById('btnIzdaj').addEventListener('click', async () => {
     mjestoid:          document.getElementById('mjestoid').value,
     email:             document.getElementById('email').value.trim(),
     mobitel:           document.getElementById('tel').value.trim(),
-    mbo:               '',
+    mbo:               document.getElementById('mbo').value.trim(),
     brojRata:          document.getElementById('toggleJednokratno').checked ? '1' : '12',
   };
 
