@@ -246,13 +246,18 @@ async function findPartner(guid, oib) {
   return (p.jmbg || p.JMBG || '').trim() || null;
 }
 
-// Format Croatian phone → +385 0XX XXXXXXX (format confirmed working with UNIQA)
+// Format Croatian phone → "+385 09X XXXXXXX" (spaces required by UNIQA)
 function formatPhone(mob) {
   if (!mob) return '';
   const digits = mob.replace(/\D/g, '');
-  if (digits.startsWith('385')) return '+385 0' + digits.slice(3);
-  if (digits.startsWith('0'))   return '+385 ' + digits;
-  return '+385 0' + digits;
+  let local;
+  if (digits.startsWith('385')) local = '0' + digits.slice(3);
+  else if (digits.startsWith('0')) local = digits;
+  else local = '0' + digits;
+  // area code = first 3 chars (091, 098, 099...), rest = subscriber number
+  const area = local.slice(0, 3);
+  const num  = local.slice(3);
+  return `+385 ${area} ${num}`;
 }
 
 // Create new partner
