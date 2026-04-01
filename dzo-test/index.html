@@ -643,25 +643,12 @@ document.getElementById('zaSebe').addEventListener('change', function() {
 let _mjesta = null;
 let _mjestaLoading = false;
 
-document.getElementById('grad').addEventListener('input', async function() {
-  const q = this.value.trim();
+function renderGradSugg(q) {
   const sugg = document.getElementById('gradSugg');
-
-  if (q.length < 2) { sugg.style.display = 'none'; return; }
-
-  if (!_mjesta && !_mjestaLoading) {
-    _mjestaLoading = true;
-    try {
-      const r = await fetch(PROXY + '/dzo/mjesta?q=' + encodeURIComponent(q));
-      _mjesta = await r.json();
-    } catch { _mjesta = []; }
-    _mjestaLoading = false;
-  }
-
-  if (!_mjesta) { sugg.style.display = 'none'; return; }
+  if (!_mjesta || q.length < 2) { sugg.style.display = 'none'; return; }
 
   const lq = q.toLowerCase();
-  const filtered = (_mjesta.length ? _mjesta : []).filter(m => {
+  const filtered = _mjesta.filter(m => {
     const n = (m.naziv || '').toLowerCase();
     const p = m.ptt || '';
     return n.includes(lq) || p.startsWith(q);
@@ -678,9 +665,29 @@ document.getElementById('grad').addEventListener('input', async function() {
     document.getElementById('grad').value     = d.dataset.naziv;
     document.getElementById('mjestoid').value = d.dataset.ptt;
     sugg.style.display = 'none';
-    // Trigger street autocomplete update with new city
     _selectedCity = d.dataset.naziv;
   }));
+}
+
+document.getElementById('grad').addEventListener('input', async function() {
+  const q = this.value.trim();
+  const sugg = document.getElementById('gradSugg');
+
+  if (q.length < 2) { sugg.style.display = 'none'; return; }
+
+  if (!_mjesta && !_mjestaLoading) {
+    _mjestaLoading = true;
+    try {
+      const r = await fetch(PROXY + '/dzo/mjesta?q=' + encodeURIComponent(q));
+      _mjesta = await r.json();
+    } catch { _mjesta = []; }
+    _mjestaLoading = false;
+    // Re-render with whatever the user has typed by now
+    renderGradSugg(document.getElementById('grad').value.trim());
+    return;
+  }
+
+  renderGradSugg(q);
 });
 
 // Auto-select first match on blur if mjestoid still empty
