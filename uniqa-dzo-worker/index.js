@@ -260,20 +260,26 @@ function formatPhone(mob) {
   return `+385 ${area} ${num}`;
 }
 
+// Convert DD.MM.YYYY to YYYY-MM-DD (ISO) — format confirmed working by Filip
+function toISO(ddmmyyyy) {
+  const parts = (ddmmyyyy || '').replace(/\.$/, '').split('.');
+  if (parts.length < 3) return ddmmyyyy || '';
+  return `${parts[2].trim()}-${parts[1].padStart(2,'0')}-${parts[0].padStart(2,'0')}`;
+}
+
 // Create new partner
 async function createPartner(guid, p) {
-  // Format date with trailing period as per docx C# example: "01.01.1978."
-  const dr = p.datumRodenja || '';
-  const datumFormatted = dr && !dr.endsWith('.') ? dr + '.' : dr;
+  const datumFormatted = toISO(p.datumRodenja || '');
 
   const naziv = `${p.ime || ''} ${p.prezime || ''}`.trim();
   const params = {
     Id: guid,
-    Ime: p.ime || '',
-    Prezime: p.prezime || '',
+    Sektor: '1',
+    MaticniBroj: '',
     OIB: p.oib,
     Naziv: naziv,
-    Sektor: '1',
+    Ime: p.ime || '',
+    Prezime: p.prezime || '',
     Ulica: p.ulica || '',
     Mjesto: p.mjestoid || '',
     Drzava: '385',
