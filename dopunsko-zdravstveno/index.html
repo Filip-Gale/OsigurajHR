@@ -477,13 +477,14 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; b
         <label class="card-jednak-right">
           <span class="card-jednak-lbl">Jednokratno plaćanje</span>
           <input type="checkbox" id="jednak-generali" onchange="updateGeneraliCard()">
-          <span class="card-jednak-save">8% uštede</span>
+          <span class="card-jednak-save">5% uštede</span>
           <span class="card-tok"></span>
         </label>
       </div>
       <div class="ponuda-features">
         <div class="ponuda-feature">Pokriva sve troškove participacije</div>
-        <div class="ponuda-feature">B lista lijekova uključena</div>
+        <div class="ponuda-feature">B lista lijekova do 200 € godišnje</div>
+        <div class="ponuda-feature">15% povrat premije bez odštete</div>
       </div>
       <div class="ponuda-actions">
         <button class="btn-kupi" onclick="otvoriModal('Generali Dopunsko','c-generali')">Kupi &rarr;</button>
@@ -770,10 +771,14 @@ function updateTriglavCard() {
 function updateGeneraliCard() {
   var jednak = document.getElementById('jednak-generali') && document.getElementById('jednak-generali').checked;
   var age = new Date().getFullYear() - _dobYear;
-  var f = age < 25 ? 0.90 : age > 60 ? 1.15 : 1;
-  var monthly = 7.50 * f;
+  var monthly, annual;
+  if      (age <= 40) { monthly =  9.58; annual = 115.00; }
+  else if (age <= 50) { monthly = 14.00; annual = 168.00; }
+  else if (age <= 55) { monthly = 17.08; annual = 205.00; }
+  else if (age <= 60) { monthly = 18.75; annual = 225.00; }
+  else                { monthly = 40.25; annual = 483.00; }
   document.getElementById('c-generali').textContent = jednak
-    ? (monthly * 12 * 0.92).toFixed(2).replace('.', ',') + ' €'
+    ? (annual * 0.95).toFixed(2).replace('.', ',') + ' €'
     : monthly.toFixed(2).replace('.', ',') + ' €';
   document.getElementById('generali-period').textContent = jednak ? '/ god.' : '/ mj';
 }
