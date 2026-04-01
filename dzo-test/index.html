@@ -766,6 +766,15 @@ document.getElementById('btnOsobni').addEventListener('click', () => {
     document.getElementById('oib').classList.add('err'); return;
   }
 
+  // Validate grad (mjestoid must be set via autocomplete)
+  if (!document.getElementById('mjestoid').value) {
+    const gradEl = document.getElementById('grad');
+    gradEl.classList.add('err');
+    gradEl.focus();
+    return;
+  }
+  document.getElementById('grad').classList.remove('err');
+
   // Validate osiguranik fields if not za sebe
   if (!zaSebe) {
     const osobaFields = ['osobaIme', 'osobaPrezime', 'osobaOib'];
