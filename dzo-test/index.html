@@ -411,7 +411,7 @@ input.fi.date-empty::-webkit-datetime-edit-fields-wrapper { color: transparent; 
       </div>
       <div class="info-notice" style="margin-top:8px;margin-bottom:8px;font-size:.76rem">
         Karenca traje 15 dana od aktivacije police — standardno za sve osiguravatelje u Hrvatskoj. Ugovaranjem danas, polica postaje aktivna od <strong id="karencaDate"></strong>.
-        <br><span style="color:#22c55e;font-weight:600">✓ Nema skrivenih troškova, možeš otkazati u bilo kada.</span>
+        <br><span style="color:#22c55e;font-weight:600">✓ Nema skrivenih troškova, možeš otkazati bilo kada.</span>
       </div>
       <hr class="uvjeti-div">
       <div class="uvjeti-row">
@@ -764,7 +764,7 @@ document.getElementById('btnOsobni').addEventListener('click', () => {
   const tom = new Date(); tom.setDate(tom.getDate() + 1);
   document.getElementById('pocetakOsiguranja').value = tom.toISOString().split('T')[0];
   S.pocetakOsiguranja = toHR(document.getElementById('pocetakOsiguranja').value);
-  const karenca = new Date(tom); karenca.setDate(karenca.getDate() + 15);
+  const karenca = new Date(); karenca.setDate(karenca.getDate() + 15);
   const kd = document.getElementById('karencaDate');
   if (kd) kd.textContent = karenca.getDate()+'.'+(karenca.getMonth()+1)+'.'+karenca.getFullYear()+'.';
 

@@ -279,6 +279,23 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; b
 .dob-tooltip::after { content: ''; position: absolute; bottom: -6px; left: 24px; width: 12px; height: 12px; background: white; transform: rotate(45deg); box-shadow: 2px 2px 4px rgba(0,0,0,0.05); }
 .dob-wrap.tip-open .dob-tooltip { display: block; }
 #confetti-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9999; }
+
+/* MOBILE spacing fixes */
+@media (max-width: 599px) {
+  .nav-spacer { height: 48px; }
+  .hero { padding: 14px 16px 0; }
+  .hero h1 { font-size: 1.45rem; margin-bottom: 6px; }
+  .wizard-card { margin-top: 10px; padding: 14px 16px 16px; width: 94%; }
+  .trust-strip { margin-top: 10px; width: 94%; }
+  .trust-item { padding: 10px 6px; }
+  .trust-item .ti-val { font-size: 0.93rem; }
+  .trust-item .ti-lbl { font-size: 0.67rem; }
+  .logos-wrap { padding: 14px 0 18px; }
+  .logo-badge { height: 44px; width: 150px; padding: 7px 16px; border-radius: 10px; }
+  .logos-fade-l, .logos-fade-r { width: 40px; }
+  .progress-bar { margin-bottom: 14px; }
+  .btn-main { padding: 14px !important; }
+}
 </style>
 </head>
 <body>
