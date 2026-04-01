@@ -659,7 +659,7 @@ function renderGradSugg(q) {
   sugg.innerHTML = filtered.map(m =>
     `<div class="sugg-item" data-ptt="${m.ptt}" data-naziv="${escHtml(m.naziv)}">${m.ptt} ${escHtml(m.naziv)}</div>`
   ).join('');
-  sugg.style.display = '';
+  sugg.style.display = 'block';
 
   sugg.querySelectorAll('.sugg-item').forEach(d => d.addEventListener('click', () => {
     document.getElementById('grad').value     = d.dataset.naziv;
@@ -734,7 +734,7 @@ async function fetchStreets(q, city) {
     sugg.innerHTML = streets.slice(0, 8).map(s =>
       `<div class="sugg-item" data-val="${escHtml(s)}">${escHtml(s)}</div>`
     ).join('');
-    sugg.style.display = '';
+    sugg.style.display = 'block';
 
     sugg.querySelectorAll('.sugg-item').forEach(d => d.addEventListener('click', () => {
       document.getElementById('ulica').value = d.dataset.val;
