@@ -281,7 +281,6 @@ async function createPartner(guid, p) {
     Spol: p.spol || '',
     Email: p.email || '',
     Mobitel: formatPhone(p.mobitel),
-    Telefon: formatPhone(p.mobitel),
     DostavaNaziv: naziv,
     DostavaUlica: p.ulica || '',
     DostavaMjesto: p.mjestoid || '',
