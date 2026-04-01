@@ -246,6 +246,15 @@ async function findPartner(guid, oib) {
   return (p.jmbg || p.JMBG || '').trim() || null;
 }
 
+// Format Croatian phone → +385 0XX XXXXXXX (format confirmed working with UNIQA)
+function formatPhone(mob) {
+  if (!mob) return '';
+  const digits = mob.replace(/\D/g, '');
+  if (digits.startsWith('385')) return '+385 0' + digits.slice(3);
+  if (digits.startsWith('0'))   return '+385 ' + digits;
+  return '+385 0' + digits;
+}
+
 // Create new partner
 async function createPartner(guid, p) {
   // Format date with trailing period as per docx C# example: "01.01.1978."
@@ -262,11 +271,12 @@ async function createPartner(guid, p) {
     Sektor: '1',
     Ulica: p.ulica || '',
     Mjesto: p.mjestoid || '',
-    Drzava: 'HR',
+    Drzava: '385',
     DatumRodjenja: datumFormatted,
     Spol: p.spol || '',
     Email: p.email || '',
-    Mobitel: p.mobitel || '',
+    Mobitel: formatPhone(p.mobitel),
+    Telefon: formatPhone(p.mobitel),
     DostavaNaziv: naziv,
     DostavaUlica: p.ulica || '',
     DostavaMjesto: p.mjestoid || '',
@@ -398,6 +408,13 @@ export default {
         const guid = await authGuid();
         const r = await soap('DZO_VratiTestOsiguranike', { Id: guid });
         return jsonOk({ ok: r.ok, message: r.message, payload: r.payload, raw: r.raw }, origin);
+      }
+
+      if (url.pathname === '/dzo/partner-info') {
+        const oib = url.searchParams.get('oib') || '12345678903';
+        const guid = await authGuid();
+        const r = await soap('Partner_Pretraga', { Id: guid, OIB: oib });
+        return jsonOk({ ok: r.ok, message: r.message, payload: r.payload, raw: r.raw.slice(0, 2000) }, origin);
       }
 
       return jsonErr('Not found', 404, origin);
