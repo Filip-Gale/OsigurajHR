@@ -14,6 +14,8 @@ const http = require('http');
 const https = require('https');
 const url = require('url');
 
+const PORT = process.env.PORT || 3001;
+
 // ─── Credentials ──────────────────────────────────────────────────────────
 const OIDC_TOKEN_URL = 'https://secure-sso-rh-sso.services.wiener.hr/auth/realms/vanjski/protocol/openid-connect/token';
 const BASE_URL = 'https://api-rc.services.wiener.hr/v1';
@@ -480,4 +482,4 @@ http.createServer(async (req, res) => {
     send(500, { ok: false, error: e.message });
   }
 
-}).listen(process.env.PORT || 3001, () => console.log(`[wiener-proxy] listening on port ${process.env.PORT || 3001}`));
+}).listen(PORT, () => console.log(`[wiener-proxy] listening on port ${PORT}`));
