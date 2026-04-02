@@ -201,13 +201,16 @@ input.fi.date-empty::-webkit-datetime-edit-fields-wrapper { color: transparent; 
 
 /* Predugovorna dokumentacija / uvjeti poslovanja */
 .predug-wrap { background: white; border-radius: 14px; padding: 16px 18px; margin-bottom: 16px; }
-.predug-title { font-size: .82rem; font-weight: 700; color: #573cf9; margin-bottom: 10px; }
-.predug-docs { display: flex; flex-direction: column; gap: 7px; margin-bottom: 14px; }
-.predug-doc { display: flex; align-items: center; gap: 9px; text-decoration: none; font-size: .82rem; font-weight: 600; color: #1a1033; background: #f5f3ff; border-radius: 9px; padding: 9px 12px; transition: background .15s; }
-.predug-doc:hover { background: #ede9fe; }
-.predug-doc-icon { font-size: 1rem; flex-shrink: 0; }
-.predug-check-row { display: flex; align-items: flex-start; gap: 10px; font-size: .8rem; color: rgba(0,0,0,.65); line-height: 1.5; cursor: pointer; }
-.predug-check-row input[type=checkbox] { width: 18px; height: 18px; flex-shrink: 0; margin-top: 2px; accent-color: #573cf9; cursor: pointer; }
+.predug-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+.predug-title { font-size: .82rem; font-weight: 700; color: #573cf9; }
+.predug-btn { display: inline-flex; align-items: center; gap: 6px; font-size: .78rem; font-weight: 700; color: #573cf9; background: #f5f3ff; border: none; border-radius: 8px; padding: 7px 12px; cursor: pointer; transition: background .15s; text-decoration: none; }
+.predug-btn:hover { background: #ede9fe; }
+.predug-dropdown { display: none; flex-direction: column; gap: 6px; margin-bottom: 12px; }
+.predug-dropdown.open { display: flex; }
+.predug-doc { display: flex; align-items: center; gap: 8px; text-decoration: none; font-size: .8rem; font-weight: 600; color: #1a1033; background: #fafafa; border: 1px solid #eee; border-radius: 8px; padding: 8px 11px; transition: background .15s; }
+.predug-doc:hover { background: #f5f3ff; }
+.predug-check-row { display: flex; align-items: flex-start; gap: 11px; font-size: .84rem; color: #1a1033; line-height: 1.5; cursor: pointer; background: #f5f3ff; border-radius: 10px; padding: 12px 13px; }
+.predug-check-row input[type=checkbox] { width: 20px; height: 20px; flex-shrink: 0; margin-top: 1px; accent-color: #573cf9; cursor: pointer; }
 
 /* Za sebe checkbox */
 .za-sebe-row {
@@ -435,24 +438,19 @@ input.fi.date-empty::-webkit-datetime-edit-fields-wrapper { color: transparent; 
 
     <!-- Uvjeti poslovanja + predugovorna dokumentacija -->
     <div class="predug-wrap">
-      <div class="predug-title">Uvjeti poslovanja</div>
-      <div class="predug-docs">
-        <a class="predug-doc" href="/docs/uniqa-dzo-ipid.pdf" target="_blank" download>
-          <span class="predug-doc-icon">📄</span> IPID – Dopunsko zdravstveno osiguranje
-        </a>
-        <a class="predug-doc" href="/docs/uniqa-dzo-uvjeti.pdf" target="_blank" download>
-          <span class="predug-doc-icon">📄</span> Uvjeti dopunskog zdravstvenog osiguranja
-        </a>
-        <a class="predug-doc" href="/docs/uniqa-dzo-informacije-ugovaratelju.pdf" target="_blank" download>
-          <span class="predug-doc-icon">📄</span> Informacije ugovaratelju
-        </a>
-        <a class="predug-doc" href="/docs/uniqa-dzo-osobni-podaci.pdf" target="_blank" download>
-          <span class="predug-doc-icon">📄</span> Informacije o obradi osobnih podataka
-        </a>
+      <div class="predug-header">
+        <div class="predug-title">Uvjeti poslovanja</div>
+        <button class="predug-btn" id="btnPredug" type="button" onclick="togglePredug()">📄 Predugovorna dokumentacija ▾</button>
+      </div>
+      <div class="predug-dropdown" id="predugDropdown">
+        <a class="predug-doc" href="/docs/uniqa-dzo-ipid.pdf" target="_blank">📄 IPID – Dopunsko zdravstveno osiguranje</a>
+        <a class="predug-doc" href="/docs/uniqa-dzo-uvjeti.pdf" target="_blank">📄 Uvjeti dopunskog zdravstvenog osiguranja</a>
+        <a class="predug-doc" href="/docs/uniqa-dzo-informacije-ugovaratelju.pdf" target="_blank">📄 Informacije ugovaratelju</a>
+        <a class="predug-doc" href="/docs/uniqa-dzo-osobni-podaci.pdf" target="_blank">📄 Informacije o obradi osobnih podataka</a>
       </div>
       <label class="predug-check-row">
         <input type="checkbox" id="chkUvjeti">
-        Potvrđujem da sam primio/la i pročitao/la svu predugovornu dokumentaciju, da su svi podaci točni te da ovaj proizvod zadovoljava moje potrebe.
+        <span>Pročitao/la sam predugovornu dokumentaciju i potvrđujem da su svi moji podaci točni.</span>
       </label>
     </div>
 
@@ -483,6 +481,13 @@ input.fi.date-empty::-webkit-datetime-edit-fields-wrapper { color: transparent; 
 </div><!-- /card -->
 
 <script>
+function togglePredug() {
+  const d = document.getElementById('predugDropdown');
+  const btn = document.getElementById('btnPredug');
+  const open = d.classList.toggle('open');
+  btn.textContent = open ? '📄 Predugovorna dokumentacija ▴' : '📄 Predugovorna dokumentacija ▾';
+}
+
 const PROXY = 'https://uniqa-dzo-proxy.osiguraj1.workers.dev';
 
 // ─── state ───────────────────────────────────────────────────────────────────
