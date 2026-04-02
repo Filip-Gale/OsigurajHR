@@ -478,8 +478,8 @@ http.createServer(async (req, res) => {
     return send(404, { error: 'Not found' });
 
   } catch (e) {
-    console.error('[error]', e.message);
-    send(500, { ok: false, error: e.message });
+    console.error('[error]', e.message, e.cause?.message || '', e.cause?.code || '');
+    send(500, { ok: false, error: e.message, cause: e.cause?.message, code: e.cause?.code });
   }
 
 }).listen(PORT, () => console.log(`[wiener-proxy] listening on port ${PORT}`));
