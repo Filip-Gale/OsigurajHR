@@ -7,7 +7,7 @@
  * Oracle proxy: http://158.180.27.110:3001
  */
 
-const ORACLE_PROXY = 'http://proxy.osiguraj.hr:3001';
+const ORACLE_PROXY = 'http://proxy.osiguraj.hr:3002';
 
 const ALLOWED_ORIGINS = [
   'https://www.osiguraj.hr',
