@@ -226,7 +226,7 @@ async function mjesta(q) {
     const lq = q.toLowerCase();
     return mapped.filter(m => m.naziv.toLowerCase().includes(lq) || m.ptt.startsWith(q)).slice(0, 20);
   }
-  return mapped.slice(0, 500);
+  return mapped; // return all for client-side caching
 }
 
 async function validacijaMBO(mbo) {

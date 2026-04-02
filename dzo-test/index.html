@@ -720,11 +720,10 @@ document.getElementById('grad').addEventListener('input', async function() {
   if (!_mjesta && !_mjestaLoading) {
     _mjestaLoading = true;
     try {
-      const r = await fetch(PROXY + '/dzo/mjesta?q=' + encodeURIComponent(q));
+      const r = await fetch(PROXY + '/dzo/mjesta');
       _mjesta = await r.json();
     } catch { _mjesta = []; }
     _mjestaLoading = false;
-    // Re-render with whatever the user has typed by now
     renderGradSugg(document.getElementById('grad').value.trim());
     return;
   }
