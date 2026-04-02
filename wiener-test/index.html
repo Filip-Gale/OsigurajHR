@@ -15,36 +15,49 @@ permalink: /wiener-test/
 <style>
 *, *::before, *::after { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 *:not(input):not(textarea):not(select) { -webkit-user-select: none !important; user-select: none !important; }
-body { background: #0f3460; min-height: 100vh; margin: 0; }
+body { background: #573cf9; min-height: 100vh; margin: 0; }
 input[type=number]::-webkit-outer-spin-button,
 input[type=number]::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
 input[type=number] { -moz-appearance: textfield; }
 .nav-spacer { height: 80px; }
 .hero { text-align: center; padding: 36px 20px 16px; color: white; }
-.hero h1 { font-size: clamp(1.8rem, 5vw, 2.8rem); color: #e63946; margin-bottom: 10px; letter-spacing: -0.5px; }
+.hero h1 { font-size: clamp(1.8rem, 5vw, 2.8rem); color: #ffbc27; margin-bottom: 10px; letter-spacing: -0.5px; }
 .hero p { font-size: clamp(0.95rem, 2.5vw, 1.15rem); opacity: 0.82; font-weight: normal; max-width: 480px; margin: 0 auto; }
 .test-badge { display: inline-block; background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.25); color: white; font-size: .7rem; font-weight: 700; letter-spacing: .8px; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; }
 
 /* Card */
 .wizard-card {
-  background: white; border-radius: 24px;
+  background: #ffbc27; border-radius: 24px;
   max-width: 500px; width: 92%;
   margin: 28px auto 40px;
   padding: 30px 24px 34px;
-  box-shadow: 0 32px 80px rgba(0,0,0,0.35), 0 8px 24px rgba(0,0,0,0.2);
-  position: relative; overflow: hidden;
+  box-shadow: 0 32px 80px rgba(255,188,39,0.4), 0 8px 24px rgba(0,0,0,0.2);
+  position: relative; overflow: visible;
 }
 @media (min-width: 600px) { .wizard-card { padding: 38px 42px 42px; } }
+
+/* Yellow card overrides */
+.step-title { color: #1a1033 !important; }
+.step-sub   { color: rgba(0,0,0,0.52) !important; }
+.flabel     { color: rgba(0,0,0,0.58) !important; }
+.fhint      { color: rgba(0,0,0,0.38) !important; }
+.progress-dot     { background: rgba(0,0,0,0.12) !important; color: rgba(0,0,0,0.35) !important; }
+.progress-dot.active { background: #573cf9 !important; color: white !important; box-shadow: 0 0 0 5px rgba(87,60,249,0.25) !important; }
+.progress-dot.done   { background: #22c55e !important; color: white !important; }
+.progress-lbl        { color: rgba(0,0,0,0.38) !important; }
+.progress-lbl.active { color: #573cf9 !important; }
+.progress-lbl.done   { color: #22c55e !important; }
+.progress-line       { background: rgba(0,0,0,0.12) !important; }
 
 /* Progress */
 .progress-bar { display: flex; align-items: center; margin-bottom: 32px; justify-content: center; }
 .progress-step { display: flex; flex-direction: column; align-items: center; gap: 5px; }
 .progress-dot { width: 32px; height: 32px; border-radius: 50%; background: #ebebeb; color: #bbb; font-size: 0.78rem; font-weight: 800; display: flex; align-items: center; justify-content: center; transition: all 0.35s cubic-bezier(0.34,1.56,0.64,1); }
-.progress-dot.active { background: #0f3460; color: white; box-shadow: 0 0 0 5px rgba(15,52,96,0.2); transform: scale(1.1); }
+.progress-dot.active { background: #573cf9; color: white; box-shadow: 0 0 0 5px rgba(87,60,249,0.2); transform: scale(1.1); }
 .progress-dot.done { background: #22c55e; color: white; font-size: 0; }
 .progress-dot.done::after { content: '✓'; font-size: 0.85rem; }
 .progress-lbl { font-size: 0.68rem; color: #bbb; font-weight: 700; text-transform: uppercase; letter-spacing: 0.4px; white-space: nowrap; transition: color 0.3s; }
-.progress-lbl.active { color: #0f3460; }
+.progress-lbl.active { color: #573cf9; }
 .progress-lbl.done   { color: #22c55e; }
 .progress-line { flex: none; width: 44px; height: 3px; background: #ebebeb; margin-bottom: 18px; position: relative; overflow: hidden; border-radius: 2px; }
 .progress-line::after { content: ''; position: absolute; left: 0; top: 0; height: 100%; width: 0; background: #22c55e; transition: width 0.5s cubic-bezier(0.65,0,0.35,1); border-radius: 2px; }
@@ -57,69 +70,72 @@ input[type=number] { -moz-appearance: textfield; }
 .step-panel.slide-in-left  { animation-name: slideInLeft; }
 @keyframes slideInRight { from { opacity:0; transform:translateX(36px); } to { opacity:1; transform:translateX(0); } }
 @keyframes slideInLeft  { from { opacity:0; transform:translateX(-36px); } to { opacity:1; transform:translateX(0); } }
-.step-title { font-size: 1.35rem; font-weight: 800; color: #0f172a; margin-bottom: 4px; }
-.step-sub   { font-size: 0.88rem; color: #94a3b8; font-weight: normal; margin-bottom: 22px; }
+.step-title { font-size: 1.35rem; font-weight: 800; color: #111; margin-bottom: 4px; }
+.step-sub   { font-size: 0.88rem; color: #999; font-weight: normal; margin-bottom: 22px; }
 
 /* Fields */
 .fields { display: flex; flex-direction: column; gap: 14px; margin-bottom: 22px; }
 .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 .flabel { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px; color: #666; margin-bottom: 6px; display: block; }
-.finput { width: 100%; padding: 14px 16px; border: 2px solid #e5e5e5; border-radius: 12px; font-size: 1rem; font-family: inherit; font-weight: 600; color: #0f3460; -webkit-appearance: none; appearance: none; background: white; transition: border-color 0.2s; box-sizing: border-box; min-height: 52px; }
-.finput:focus { outline: none; border-color: #0f3460; box-shadow: 0 0 0 4px rgba(15,52,96,0.12); }
+.finput { width: 100%; padding: 14px 16px; border: 2px solid #e5e5e5; border-radius: 12px; font-size: 1rem; font-family: inherit; font-weight: 600; color: #573cf9; -webkit-appearance: none; appearance: none; background: white; transition: border-color 0.2s; box-sizing: border-box; min-height: 52px; }
+.finput:focus { outline: none; border-color: #573cf9; box-shadow: 0 0 0 4px rgba(87,60,249,0.12); }
 .finput::placeholder { font-weight: normal; color: #ccc; }
 .finput.err { border-color: #ef4444; }
-.fhint  { font-size: 0.76rem; color: #bbb; font-weight: normal; margin-top: 5px; }
+.fhint { font-size: 0.76rem; color: #bbb; font-weight: normal; margin-top: 5px; }
 
 /* Test data buttons */
 .testdata-bar { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 18px; }
-.td-btn { font-size: .72rem; font-weight: 700; border: 1.5px solid #cbd5e1; border-radius: 8px; padding: 5px 12px; background: #f8fafc; color: #475569; cursor: pointer; transition: all .15s; font-family: inherit; }
-.td-btn:hover { background: #e2e8f0; color: #0f172a; border-color: #0f3460; }
+.td-btn { font-size: .72rem; font-weight: 700; border: 1.5px solid rgba(0,0,0,0.15); border-radius: 8px; padding: 5px 12px; background: rgba(255,255,255,0.55); color: #333; cursor: pointer; transition: all .15s; font-family: inherit; }
+.td-btn:hover { background: white; border-color: #573cf9; color: #573cf9; }
 
 /* Buttons */
-.btn-main { display: block; width: 100%; padding: 15px; background: #0f3460; color: white; border: none; border-radius: 12px; font-size: 1rem; font-family: inherit; font-weight: 800; cursor: pointer; text-align: center; position: relative; overflow: hidden; box-shadow: 0 5px 0 #091f3d; transition: transform 0.08s, box-shadow 0.08s; }
-.btn-main:active { transform: translateY(4px); box-shadow: 0 1px 0 #091f3d; }
+.btn-main { display: block; width: 100%; padding: 15px; background: #573cf9; color: white; border: none; border-radius: 12px; font-size: 1rem; font-family: inherit; font-weight: 800; cursor: pointer; text-align: center; position: relative; overflow: hidden; box-shadow: 0 5px 0 #3b20d4; transition: transform 0.08s, box-shadow 0.08s; }
+.btn-main:active { transform: translateY(4px); box-shadow: 0 1px 0 #3b20d4; }
 .btn-main:disabled { opacity: .5; cursor: not-allowed; transform: none; }
-.btn-back { display: block; width: 100%; padding: 13px; background: #f1f5f9; color: #475569; border: none; border-radius: 12px; font-size: 0.95rem; font-family: inherit; font-weight: 700; cursor: pointer; text-align: center; margin-bottom: 8px; transition: background 0.15s; }
-.btn-back:hover { background: #e2e8f0; }
-.btn-red { display: block; width: 100%; padding: 13px; background: #e63946; color: white; border: none; border-radius: 12px; font-size: 0.95rem; font-family: inherit; font-weight: 700; cursor: pointer; text-align: center; box-shadow: 0 4px 0 #b02735; transition: transform 0.08s, box-shadow 0.08s; }
-.btn-red:active { transform: translateY(3px); box-shadow: 0 1px 0 #b02735; }
+.btn-main::after { content: ''; position: absolute; top: -50%; left: -75%; width: 50%; height: 200%; background: linear-gradient(90deg,transparent,rgba(255,255,255,0.22),transparent); transform: skewX(-15deg); animation: shine 2.8s infinite; }
+@keyframes shine { 0%{left:-75%;} 45%,100%{left:130%;} }
+.btn-back { display: block; width: 100%; padding: 13px; background: none; border: 1.5px solid rgba(0,0,0,0.15); border-radius: 12px; font-size: 0.9rem; font-family: inherit; font-weight: 700; cursor: pointer; text-align: center; color: rgba(0,0,0,0.45); margin-bottom: 8px; transition: all 0.15s; }
+.btn-back:hover { border-color: #573cf9; color: #573cf9; }
+.btn-red { display: block; width: 100%; padding: 13px; background: none; border: 1.5px solid rgba(0,0,0,0.15); border-radius: 12px; font-size: 0.9rem; font-family: inherit; font-weight: 700; cursor: pointer; text-align: center; color: rgba(0,0,0,0.45); transition: all 0.15s; }
+.btn-red:hover { border-color: #ef4444; color: #ef4444; }
 
 /* Loader */
 .r-loading { display: flex; flex-direction: column; align-items: center; gap: 16px; padding: 40px 0; text-align: center; }
-.loader-spinner { width: 44px; height: 44px; border: 4px solid #e2e8f0; border-top-color: #0f3460; border-radius: 50%; animation: spin .8s linear infinite; }
+.loader-spinner { width: 44px; height: 44px; border: 4px solid rgba(0,0,0,0.1); border-top-color: #573cf9; border-radius: 50%; animation: spin .8s linear infinite; }
 @keyframes spin { to { transform: rotate(360deg); } }
-.r-loading p { color: #64748b; font-weight: 600; font-size: 0.92rem; }
+.r-loading p { color: rgba(0,0,0,0.45); font-weight: 600; font-size: 0.92rem; }
 
 /* Error */
-.err-box { background: #fff1f2; border: 1.5px solid #fecdd3; border-radius: 12px; padding: 14px 16px; font-size: 0.85rem; color: #be123c; margin-bottom: 16px; display: none; }
+.err-box { background: rgba(255,255,255,0.7); border: 1.5px solid rgba(239,68,68,0.3); border-radius: 12px; padding: 14px 16px; font-size: 0.85rem; color: #dc2626; margin-bottom: 16px; display: none; }
 
 /* Package cards */
 .pkg-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
-.pkg-card { border: 2px solid #e2e8f0; border-radius: 14px; padding: 16px 18px; cursor: pointer; transition: all .2s; position: relative; }
-.pkg-card:hover { border-color: #0f3460; background: #f8fafc; }
-.pkg-card.selected { border-color: #0f3460; background: #eff6ff; }
-.pkg-card.selected::after { content: '✓'; position: absolute; top: 12px; right: 14px; color: #0f3460; font-weight: 900; font-size: 1.1rem; }
-.pkg-name { font-size: 0.78rem; font-weight: 800; color: #475569; text-transform: uppercase; letter-spacing: 0.7px; margin-bottom: 4px; }
-.pkg-price { font-size: 1.7rem; font-weight: 900; color: #0f3460; line-height: 1; }
-.pkg-price span { font-size: 0.85rem; font-weight: 600; color: #94a3b8; }
-.pkg-covers { font-size: 0.79rem; color: #64748b; margin-top: 8px; line-height: 1.65; }
+.pkg-card { border: 2px solid rgba(0,0,0,0.1); border-radius: 14px; padding: 16px 18px; cursor: pointer; transition: all .2s; position: relative; background: rgba(255,255,255,0.55); }
+.pkg-card:hover { border-color: #573cf9; background: rgba(255,255,255,0.8); }
+.pkg-card.selected { border-color: #573cf9; background: white; box-shadow: 0 0 0 3px rgba(87,60,249,0.15); }
+.pkg-card.selected::after { content: '✓'; position: absolute; top: 12px; right: 14px; color: #573cf9; font-weight: 900; font-size: 1.1rem; }
+.pkg-name { font-size: 0.78rem; font-weight: 800; color: rgba(0,0,0,0.45); text-transform: uppercase; letter-spacing: 0.7px; margin-bottom: 4px; }
+.pkg-price { font-size: 1.7rem; font-weight: 900; color: #573cf9; line-height: 1; }
+.pkg-price span { font-size: 0.85rem; font-weight: 600; color: rgba(0,0,0,0.35); }
+.pkg-covers { font-size: 0.79rem; color: rgba(0,0,0,0.5); margin-top: 8px; line-height: 1.65; }
 .pkg-discounts { font-size: 0.73rem; color: #16a34a; margin-top: 5px; font-weight: 600; }
 
 /* Vehicle chip */
-.vehicle-chip { display: inline-flex; align-items: center; gap: 6px; background: #eff6ff; border: 1.5px solid #bfdbfe; border-radius: 20px; padding: 5px 12px; font-size: 0.78rem; font-weight: 700; color: #1d4ed8; margin-bottom: 14px; }
+.vehicle-chip { display: inline-flex; align-items: center; gap: 6px; background: rgba(255,255,255,0.6); border: 1.5px solid rgba(0,0,0,0.1); border-radius: 20px; padding: 5px 12px; font-size: 0.78rem; font-weight: 700; color: #1a1033; margin-bottom: 14px; }
 
 /* Policy box */
-.policy-box { background: #eff6ff; border: 2px solid #bfdbfe; border-radius: 14px; padding: 18px 20px; margin-bottom: 20px; }
-.policy-box .lbl { font-size: 0.72rem; font-weight: 700; color: #1e40af; letter-spacing: 0.5px; margin-bottom: 6px; text-transform: uppercase; }
-.policy-box .val { font-size: 1.4rem; font-weight: 900; color: #1d4ed8; letter-spacing: 1px; }
-.policy-box .hint { font-size: 0.75rem; color: #3b82f6; margin-top: 5px; }
+.policy-box { background: white; border: 2px solid rgba(87,60,249,0.2); border-radius: 14px; padding: 18px 20px; margin-bottom: 20px; }
+.policy-box .lbl { font-size: 0.72rem; font-weight: 700; color: #573cf9; letter-spacing: 0.5px; margin-bottom: 6px; text-transform: uppercase; }
+.policy-box .val { font-size: 1.4rem; font-weight: 900; color: #1a1033; letter-spacing: 1px; }
+.policy-box .hint { font-size: 0.75rem; color: rgba(0,0,0,0.4); margin-top: 5px; }
 
 /* Success */
 .polica-box { text-align: center; padding: 8px 0; }
 .polica-icon { font-size: 2.8rem; margin-bottom: 10px; }
 .polica-title { font-size: 1.2rem; font-weight: 900; color: #16a34a; margin-bottom: 6px; }
-.polica-sub { font-size: 0.85rem; color: #64748b; margin-bottom: 18px; line-height: 1.5; }
-.btn-pdf { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 13px; background: #16a34a; color: white; border: none; border-radius: 11px; font-size: 0.92rem; font-family: inherit; font-weight: 800; cursor: pointer; margin-bottom: 8px; box-shadow: 0 4px 0 #166534; }
+.polica-sub { font-size: 0.85rem; color: rgba(0,0,0,0.45); margin-bottom: 18px; line-height: 1.5; }
+.btn-pdf { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 13px; background: #16a34a; color: white; border: none; border-radius: 11px; font-size: 0.92rem; font-family: inherit; font-weight: 800; cursor: pointer; margin-bottom: 8px; box-shadow: 0 4px 0 #166534; transition: transform 0.08s, box-shadow 0.08s; }
+.btn-pdf:active { transform: translateY(3px); box-shadow: 0 1px 0 #166534; }
 </style>
 </head>
 <body>
@@ -163,7 +179,7 @@ input[type=number] { -moz-appearance: textfield; }
     <div class="step-sub">Registracija, OIB i datum rođenja vlasnika</div>
 
     <div class="testdata-bar">
-      <span style="font-size:.7rem;color:#94a3b8;align-self:center;font-weight:600;">Test:</span>
+      <span style="font-size:.7rem;color:rgba(0,0,0,0.38);align-self:center;font-weight:600;">Test:</span>
       <button class="td-btn" onclick="fillTest('a')">ZG1959HR (Cirimotić)</button>
       <button class="td-btn" onclick="fillTest('b')">ZG3177IR (Bože)</button>
       <button class="td-btn" onclick="fillTest('c')">ZG4505KJ (Šturlić)</button>
@@ -189,11 +205,11 @@ input[type=number] { -moz-appearance: textfield; }
       </div>
       <div>
         <label class="flabel" for="inception">Početak osiguranja <span style="font-weight:400;text-transform:none;">(opcionalno)</span></label>
-        <input id="inception" class="finput" type="text" placeholder="GGGG-MM-DD (prazno = zadnji HUO)" autocomplete="off">
+        <input id="inception" class="finput" type="text" placeholder="GGGG-MM-DD" autocomplete="off">
       </div>
     </div>
 
-    <button class="btn-main" id="s1-btn" onclick="doCalculate()">Izračunaj cijenu →</button>
+    <button class="btn-main" onclick="doCalculate()">Izračunaj cijenu →</button>
   </div>
 
   <!-- ─── Step 1 loader ─── -->
@@ -245,7 +261,7 @@ input[type=number] { -moz-appearance: textfield; }
         </div>
         <div>
           <label class="flabel" for="phone">Telefon</label>
-          <input id="phone" class="finput" type="text" placeholder="01/1234-567" autocomplete="off">
+          <input id="phone" class="finput" type="text" placeholder="011234567" autocomplete="off">
         </div>
       </div>
       <div>
@@ -275,7 +291,7 @@ input[type=number] { -moz-appearance: textfield; }
     </div>
 
     <button class="btn-back" onclick="go(2,'left')">← Natrag</button>
-    <button class="btn-main" id="s3-btn" onclick="doReserve()">Rezerviraj policu →</button>
+    <button class="btn-main" onclick="doReserve()">Rezerviraj policu →</button>
   </div>
 
   <!-- ─── Step 3 loader ─── -->
@@ -293,8 +309,8 @@ input[type=number] { -moz-appearance: textfield; }
 
     <div class="err-box" id="s4-err"></div>
 
-    <div class="policy-box" id="s4-policy-box">
-      <div class="lbl">Poziv na plaćanje (broj police)</div>
+    <div class="policy-box">
+      <div class="lbl">Poziv na plaćanje</div>
       <div class="val" id="s4-policy-num">—</div>
       <div class="hint">Referentni broj za plaćanje putem Monrija</div>
     </div>
@@ -335,7 +351,6 @@ const S = {
   partnerId: null, contractOid: null, policyNumber: null,
 };
 
-// ─── Test data ────────────────────────────────────────────────────────────────
 function fillTest(key) {
   const data = {
     a: { plate:'ZG1959HR', oib:'62407068041', dob:'1960-01-01', firstName:'Emanuel', lastName:'Cirimotić', gender:'M', phone:'011234567', email:'test@osiguraj.hr', streetName:'Celovečka', streetNumber:'1', postalCode:'10000', postalName:'Zagreb' },
@@ -348,25 +363,20 @@ function fillTest(key) {
   });
 }
 
-// ─── Progress ─────────────────────────────────────────────────────────────────
 function updateProgress(step) {
   for (let i = 1; i <= 4; i++) {
-    const dot = document.getElementById('pd' + i);
-    const lbl = document.getElementById('pl' + i);
-    dot.className = 'progress-dot' + (i < step ? ' done' : i === step ? ' active' : '');
-    lbl.className = 'progress-lbl' + (i < step ? ' done' : i === step ? ' active' : '');
+    document.getElementById('pd' + i).className = 'progress-dot' + (i < step ? ' done' : i === step ? ' active' : '');
+    document.getElementById('pl' + i).className = 'progress-lbl' + (i < step ? ' done' : i === step ? ' active' : '');
   }
   for (let i = 1; i <= 3; i++) {
     document.getElementById('pline' + i).className = 'progress-line' + (i < step ? ' done' : '');
   }
 }
 
-let _currentStep = 1;
 function go(step, dir) {
   document.querySelectorAll('.step-panel').forEach(p => p.classList.remove('active','slide-in-right','slide-in-left'));
   const el = document.getElementById('s' + step);
   el.classList.add('active', dir === 'left' ? 'slide-in-left' : 'slide-in-right');
-  _currentStep = step;
   updateProgress(step);
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
@@ -374,9 +384,8 @@ function go(step, dir) {
 function showLoad(step, txt) {
   document.querySelectorAll('.step-panel').forEach(p => p.classList.remove('active','slide-in-right','slide-in-left'));
   const el = document.getElementById('s' + step + '-load');
-  if (txt && document.getElementById('s' + step + '-load-txt')) {
-    document.getElementById('s' + step + '-load-txt').textContent = txt;
-  }
+  const txtEl = document.getElementById('s' + step + '-load-txt');
+  if (txt && txtEl) txtEl.textContent = txt;
   el.classList.add('active');
 }
 
@@ -389,41 +398,29 @@ function hideErr(step) {
   if (el) el.style.display = 'none';
 }
 
-// ─── Step 1: Kalkulacija ──────────────────────────────────────────────────────
 async function doCalculate() {
   hideErr(1);
   const plate     = document.getElementById('plate').value.trim();
   const oib       = document.getElementById('oib').value.trim();
   const dob       = document.getElementById('dob').value.trim();
   const inception = document.getElementById('inception').value.trim();
-
   if (!plate || !oib || !dob) { showErr(1, 'Popuni sve obavezne podatke.'); return; }
-
   S.plate = plate; S.oib = oib; S.dob = dob;
   showLoad(1, 'Autentifikacija i dohvat paketa od Wienera…');
-
   try {
     const body = { plate, oib, dateOfBirth: dob };
     if (inception) body.inceptionDate = inception + 'T00:00:00';
-
-    const r = await fetch(API + '/ao/calculate', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(body),
-    });
+    const r = await fetch(API + '/ao/calculate', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(body) });
     const data = await r.json();
-
     if (!data.ok) {
-      go(1, 'left');
-      const detail = data.error?.errors?.[0]?.detail || data.error?.message || JSON.stringify(data.error);
-      showErr(1, 'Greška: ' + detail);
+      go(1,'left');
+      showErr(1, 'Greška: ' + (data.error?.errors?.[0]?.detail || data.error?.message || JSON.stringify(data.error)));
       return;
     }
-
     renderPackages(data.packages, data.vehicleInfo);
-    go(2, 'right');
+    go(2,'right');
   } catch (e) {
-    go(1, 'left');
+    go(1,'left');
     showErr(1, 'Mrežna greška: ' + e.message);
   }
 }
@@ -431,39 +428,31 @@ async function doCalculate() {
 function renderPackages(packages, vehicleInfo) {
   const list = document.getElementById('pkg-list');
   list.innerHTML = '';
-
   const veh = document.getElementById('s2-vehicle');
   if (vehicleInfo) {
     veh.innerHTML = '<div class="vehicle-chip">🚗 ' + vehicleInfo.Make + ' ' + vehicleInfo.Type + ' ' + vehicleInfo.Model + ' (' + vehicleInfo.ProductionYear + ')</div>';
   }
-
   packages.forEach(pkg => {
     const covers = (pkg.Covers || []).map(c => '✓ ' + c.Name).join('<br>');
     const applied = pkg.Corrections?.Applied || pkg.Corrections || [];
-    const discounts = applied.filter(c => c.Type === 'Discount')
-      .map(c => c.Name + ': ' + (c.Amount > 0 ? '+' : '') + c.Amount.toFixed(2) + ' €').join(' · ');
-
+    const discounts = applied.filter(c => c.Type === 'Discount').map(c => c.Name + ': ' + c.Amount.toFixed(2) + ' €').join(' · ');
     const card = document.createElement('div');
     card.className = 'pkg-card';
-    card.dataset.oid = pkg.CalculationOid;
     card.innerHTML =
       '<div class="pkg-name">' + pkg.PackageName + '</div>' +
       '<div class="pkg-price">' + pkg.PremiumTotal.toFixed(2) + ' <span>€ / god.</span></div>' +
       '<div class="pkg-covers">' + covers + '</div>' +
       (discounts ? '<div class="pkg-discounts">' + discounts + '</div>' : '');
-    card.onclick = () => selectPackage(pkg.CalculationOid, card);
+    card.onclick = () => {
+      document.querySelectorAll('.pkg-card').forEach(c => c.classList.remove('selected'));
+      card.classList.add('selected');
+      S.calculationOid = pkg.CalculationOid;
+      document.getElementById('s2-btn').disabled = false;
+    };
     list.appendChild(card);
   });
 }
 
-function selectPackage(oid, cardEl) {
-  document.querySelectorAll('.pkg-card').forEach(c => c.classList.remove('selected'));
-  cardEl.classList.add('selected');
-  S.calculationOid = oid;
-  document.getElementById('s2-btn').disabled = false;
-}
-
-// ─── Step 3: Partner + Rezervacija ───────────────────────────────────────────
 async function doReserve() {
   hideErr(3);
   const firstName    = document.getElementById('firstName').value.trim();
@@ -475,87 +464,42 @@ async function doReserve() {
   const streetNumber = document.getElementById('streetNumber').value.trim();
   const postalCode   = document.getElementById('postalCode').value.trim();
   const postalName   = document.getElementById('postalName').value.trim();
-
-  if (!firstName || !lastName || !email || !postalCode || !postalName) {
-    showErr(3, 'Popuni sve obavezne podatke.'); return;
-  }
-
+  if (!firstName || !lastName || !email || !postalCode || !postalName) { showErr(3,'Popuni sve obavezne podatke.'); return; }
   showLoad(3, 'Kreiram/ažuriram partnera u Wiener sustavu…');
-
   try {
-    // 1. Partner
-    const partnerRes = await fetch(API + '/ao/partner', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ oib: S.oib, firstName, lastName, gender, dateOfBirth: S.dob, phone, email, streetName, streetNumber, postalCode, postalName }),
-    });
+    const partnerRes = await fetch(API + '/ao/partner', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({ oib:S.oib, firstName, lastName, gender, dateOfBirth:S.dob, phone, email, streetName, streetNumber, postalCode, postalName }) });
     const partnerData = await partnerRes.json();
-    if (!partnerData.ok) {
-      go(3, 'left');
-      showErr(3, 'Partner greška: ' + JSON.stringify(partnerData.error));
-      return;
-    }
+    if (!partnerData.ok) { go(3,'left'); showErr(3,'Partner greška: ' + JSON.stringify(partnerData.error)); return; }
     S.partnerId = partnerData.partnerId;
-
     document.getElementById('s3-load-txt').textContent = 'Rezerviram policu…';
-
-    // 2. Reserve
-    const reserveRes = await fetch(API + '/ao/reserve', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ calculationOid: S.calculationOid, partnerId: S.partnerId }),
-    });
+    const reserveRes = await fetch(API + '/ao/reserve', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({ calculationOid:S.calculationOid, partnerId:S.partnerId }) });
     const reserveData = await reserveRes.json();
-    if (!reserveData.ok) {
-      go(3, 'left');
-      showErr(3, 'Rezervacija greška: ' + JSON.stringify(reserveData.error));
-      return;
-    }
+    if (!reserveData.ok) { go(3,'left'); showErr(3,'Rezervacija greška: ' + JSON.stringify(reserveData.error)); return; }
     S.contractOid  = reserveData.contractOid;
     S.policyNumber = reserveData.policyNumber;
-
     document.getElementById('s4-policy-num').textContent = S.policyNumber;
-    go(4, 'right');
+    go(4,'right');
   } catch (e) {
-    go(3, 'left');
-    showErr(3, 'Mrežna greška: ' + e.message);
+    go(3,'left');
+    showErr(3,'Mrežna greška: ' + e.message);
   }
 }
 
-// ─── Step 4: Aktivacija bez naplate ──────────────────────────────────────────
 async function doActivateNoPay() {
   hideErr(4);
   document.getElementById('s4-actions').style.display = 'none';
   document.getElementById('s4-load').style.display = 'block';
-
   try {
-    const r = await fetch(API + '/ao/activate-nopay', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ contractOid: S.contractOid, policyNumber: S.policyNumber }),
-    });
+    const r = await fetch(API + '/ao/activate-nopay', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({ contractOid:S.contractOid, policyNumber:S.policyNumber }) });
     const data = await r.json();
-
     document.getElementById('s4-load').style.display = 'none';
-
-    if (!data.ok) {
-      document.getElementById('s4-actions').style.display = 'block';
-      showErr(4, 'Aktivacija greška: ' + JSON.stringify(data.error));
-      return;
-    }
-
+    if (!data.ok) { document.getElementById('s4-actions').style.display = 'block'; showErr(4,'Aktivacija greška: ' + JSON.stringify(data.error)); return; }
     renderDocs(data.printouts);
-
-    fetch(API + '/ao/delivered', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ contractOid: S.contractOid, policyNumber: S.policyNumber }),
-    }).catch(() => {});
-
+    fetch(API + '/ao/delivered', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({ contractOid:S.contractOid, policyNumber:S.policyNumber }) }).catch(()=>{});
   } catch (e) {
     document.getElementById('s4-load').style.display = 'none';
     document.getElementById('s4-actions').style.display = 'block';
-    showErr(4, 'Mrežna greška: ' + e.message);
+    showErr(4,'Mrežna greška: ' + e.message);
   }
 }
 
@@ -564,37 +508,25 @@ function renderDocs(printouts) {
   list.innerHTML = '';
   (printouts || []).forEach(doc => {
     if (!doc.content) return;
-    const icons = { 1: '📄', 2: '🌿', 3: '📋' };
-    const btn = document.createElement('a');
-    btn.className = 'btn-pdf';
-    btn.href = 'data:application/pdf;base64,' + doc.content;
-    btn.download = (doc.documentTypeName || 'dokument') + '.pdf';
-    btn.innerHTML = '<span>' + (icons[doc.documentTypeId] || '📎') + '</span> ' + (doc.documentTypeName || 'Dokument');
-    list.appendChild(btn);
+    const icons = {1:'📄', 2:'🌿', 3:'📋'};
+    const a = document.createElement('a');
+    a.className = 'btn-pdf';
+    a.href = 'data:application/pdf;base64,' + doc.content;
+    a.download = (doc.documentTypeName || 'dokument') + '.pdf';
+    a.innerHTML = '<span>' + (icons[doc.documentTypeId] || '📎') + '</span> ' + (doc.documentTypeName || 'Dokument');
+    list.appendChild(a);
   });
   document.getElementById('s4-docs').style.display = 'block';
 }
 
-// ─── Storno ───────────────────────────────────────────────────────────────────
 async function doCancelReserved() {
   if (!confirm('Stornirati rezerviranu policu?')) return;
   try {
-    const r = await fetch(API + '/ao/cancel-reserved', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ contractOid: S.contractOid }),
-    });
+    const r = await fetch(API + '/ao/cancel-reserved', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({ contractOid:S.contractOid }) });
     const data = await r.json();
-    if (data.ok) {
-      alert('Rezervacija stornirana.');
-      S.contractOid = null; S.policyNumber = null;
-      go(1, 'left');
-    } else {
-      showErr(4, 'Storno greška: ' + JSON.stringify(data.error));
-    }
-  } catch (e) {
-    showErr(4, 'Mrežna greška: ' + e.message);
-  }
+    if (data.ok) { alert('Rezervacija stornirana.'); S.contractOid = null; S.policyNumber = null; go(1,'left'); }
+    else { showErr(4,'Storno greška: ' + JSON.stringify(data.error)); }
+  } catch (e) { showErr(4,'Mrežna greška: ' + e.message); }
 }
 </script>
 </body>
