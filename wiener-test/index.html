@@ -1,0 +1,615 @@
+---
+layout: null
+title: Wiener — Test | Osiguraj.hr
+permalink: /wiener-test/
+---
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wiener — Test | Osiguraj.hr</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="icon" type="image/jpeg" href="/img/favicon.jpg">
+<link rel="stylesheet" href="/css/style.css">
+<style>
+*, *::before, *::after { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+body { background: #0f3460; min-height: 100vh; margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
+
+/* Hero */
+.hero { text-align: center; padding: 32px 20px 14px; color: white; }
+.hero h1 { font-size: clamp(1.6rem, 5vw, 2.4rem); color: #e63946; margin-bottom: 8px; }
+.hero p  { font-size: clamp(0.9rem, 2.5vw, 1.05rem); opacity: .75; max-width: 460px; margin: 0 auto; }
+.test-badge { display: inline-block; background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.2); color: white; font-size: .68rem; font-weight: 700; letter-spacing: .8px; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; }
+
+/* Card */
+.wizard-card { background: white; border-radius: 20px; max-width: 520px; width: 93%; margin: 24px auto 40px; padding: 30px 24px 34px; box-shadow: 0 24px 64px rgba(0,0,0,0.35); position: relative; overflow: hidden; }
+@media (min-width: 600px) { .wizard-card { padding: 36px 40px 42px; } }
+
+/* Progress */
+.progress-bar { display: flex; align-items: center; margin-bottom: 28px; justify-content: center; }
+.progress-step { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+.progress-dot { width: 30px; height: 30px; border-radius: 50%; background: #e2e8f0; color: #94a3b8; font-size: .75rem; font-weight: 800; display: flex; align-items: center; justify-content: center; transition: all .3s; }
+.progress-dot.active { background: #0f3460; color: white; box-shadow: 0 0 0 4px rgba(15,52,96,.2); }
+.progress-dot.done { background: #22c55e; color: white; }
+.progress-lbl { font-size: .65rem; font-weight: 700; color: #94a3b8; letter-spacing: .3px; }
+.progress-lbl.active { color: #0f3460; }
+.progress-lbl.done { color: #22c55e; }
+.progress-line { width: 48px; height: 2px; background: #e2e8f0; margin-bottom: 16px; transition: background .3s; }
+.progress-line.done { background: #22c55e; }
+
+/* Steps */
+.step-panel { display: none; }
+.step-panel.active { display: block; animation: fadeIn .22s ease; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
+.step-title { font-size: 1.2rem; font-weight: 800; color: #0f172a; margin-bottom: 4px; }
+.step-sub   { font-size: .88rem; color: #64748b; margin-bottom: 22px; }
+
+/* Form */
+.flabel { font-size: .75rem; font-weight: 700; color: #475569; margin-bottom: 5px; display: block; letter-spacing: .3px; }
+.finput { width: 100%; border: 1.5px solid #e2e8f0; border-radius: 10px; padding: 11px 14px; font-size: .95rem; color: #0f172a; background: #f8fafc; transition: border .2s; outline: none; -webkit-appearance: none; }
+.finput:focus { border-color: #0f3460; background: white; }
+.fgroup { margin-bottom: 16px; }
+.frow { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.fhint { font-size: .72rem; color: #94a3b8; margin-top: 4px; }
+
+/* Button */
+.btn { width: 100%; border: none; border-radius: 12px; padding: 14px; font-size: 1rem; font-weight: 800; cursor: pointer; transition: all .2s; letter-spacing: .2px; }
+.btn-primary { background: #0f3460; color: white; box-shadow: 0 4px 0 #091f3d; }
+.btn-primary:hover:not(:disabled) { background: #1a4a8a; transform: translateY(-1px); }
+.btn-primary:active { transform: translateY(2px); box-shadow: 0 1px 0 #091f3d; }
+.btn-primary:disabled { opacity: .5; cursor: not-allowed; transform: none; }
+.btn-red { background: #e63946; color: white; box-shadow: 0 4px 0 #b02735; }
+.btn-red:hover:not(:disabled) { background: #f04f5b; transform: translateY(-1px); }
+.btn-back { background: #f1f5f9; color: #475569; margin-bottom: 10px; }
+.btn-back:hover { background: #e2e8f0; }
+
+/* Loader */
+.loader-wrap { text-align: center; padding: 32px 0; }
+.loader-spinner { width: 44px; height: 44px; border: 4px solid #e2e8f0; border-top-color: #0f3460; border-radius: 50%; animation: spin .8s linear infinite; margin: 0 auto 14px; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.loader-txt { font-size: .9rem; color: #64748b; font-weight: 600; }
+
+/* Error box */
+.err-box { background: #fff1f2; border: 1.5px solid #fecdd3; border-radius: 10px; padding: 12px 16px; font-size: .85rem; color: #be123c; margin-bottom: 16px; display: none; }
+
+/* Packages */
+.pkg-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px; }
+.pkg-card { border: 2px solid #e2e8f0; border-radius: 14px; padding: 16px 18px; cursor: pointer; transition: all .2s; position: relative; }
+.pkg-card:hover { border-color: #0f3460; background: #f8fafc; }
+.pkg-card.selected { border-color: #0f3460; background: #eff6ff; }
+.pkg-card.selected::after { content: '✓'; position: absolute; top: 12px; right: 14px; color: #0f3460; font-weight: 900; font-size: 1.1rem; }
+.pkg-name { font-size: .8rem; font-weight: 800; color: #475569; text-transform: uppercase; letter-spacing: .6px; margin-bottom: 4px; }
+.pkg-price { font-size: 1.6rem; font-weight: 900; color: #0f3460; }
+.pkg-price span { font-size: .85rem; font-weight: 600; color: #64748b; }
+.pkg-covers { font-size: .78rem; color: #64748b; margin-top: 6px; line-height: 1.6; }
+.pkg-discounts { font-size: .72rem; color: #16a34a; margin-top: 4px; }
+
+/* Policy number box */
+.policy-box { background: #eff6ff; border: 2px solid #bfdbfe; border-radius: 12px; padding: 16px 20px; margin-bottom: 20px; }
+.policy-box .lbl { font-size: .72rem; font-weight: 700; color: #1e40af; letter-spacing: .4px; margin-bottom: 4px; }
+.policy-box .val { font-size: 1.3rem; font-weight: 900; color: #1d4ed8; letter-spacing: 1px; }
+.policy-box .hint { font-size: .75rem; color: #3b82f6; margin-top: 4px; }
+
+/* Documents */
+.doc-list { display: flex; flex-direction: column; gap: 8px; margin-top: 16px; }
+.doc-item { display: flex; align-items: center; gap: 10px; padding: 10px 14px; background: #f8fafc; border-radius: 10px; border: 1.5px solid #e2e8f0; text-decoration: none; color: #0f172a; font-size: .85rem; font-weight: 600; transition: all .15s; }
+.doc-item:hover { background: #eff6ff; border-color: #0f3460; }
+.doc-icon { font-size: 1.2rem; }
+
+/* Test data bar */
+.testdata-bar { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 18px; }
+.td-btn { font-size: .72rem; font-weight: 700; border: 1.5px solid #cbd5e1; border-radius: 8px; padding: 4px 10px; background: #f8fafc; color: #475569; cursor: pointer; transition: all .15s; }
+.td-btn:hover { background: #e2e8f0; color: #0f172a; }
+
+/* Success */
+.success-icon { font-size: 3.5rem; text-align: center; margin-bottom: 10px; }
+.success-title { font-size: 1.2rem; font-weight: 900; color: #15803d; text-align: center; margin-bottom: 4px; }
+.success-sub { font-size: .85rem; color: #64748b; text-align: center; margin-bottom: 22px; }
+</style>
+</head>
+<body>
+
+{% include nav.html %}
+
+<div class="hero">
+  <div class="test-badge">TEST OKOLINA</div>
+  <h1>Wiener — AO kalkulacija</h1>
+  <p>Test integracije Wiener (Vienna Insurance Group) API-ja — samo za internu upotrebu.</p>
+</div>
+
+<div class="wizard-card">
+
+  <!-- Progress -->
+  <div class="progress-bar" id="progress">
+    <div class="progress-step">
+      <div class="progress-dot active" id="pd1">1</div>
+      <div class="progress-lbl active" id="pl1">Vozilo</div>
+    </div>
+    <div class="progress-line" id="pline1"></div>
+    <div class="progress-step">
+      <div class="progress-dot" id="pd2">2</div>
+      <div class="progress-lbl" id="pl2">Paketi</div>
+    </div>
+    <div class="progress-line" id="pline2"></div>
+    <div class="progress-step">
+      <div class="progress-dot" id="pd3">3</div>
+      <div class="progress-lbl" id="pl3">Podaci</div>
+    </div>
+    <div class="progress-line" id="pline3"></div>
+    <div class="progress-step">
+      <div class="progress-dot" id="pd4">4</div>
+      <div class="progress-lbl" id="pl4">Polica</div>
+    </div>
+  </div>
+
+  <!-- ─── Step 1: Vozilo ─────────────────────────────────────────────────── -->
+  <div class="step-panel active" id="s1">
+    <div class="step-title">Podaci o vozilu</div>
+    <div class="step-sub">Upiši registraciju, OIB i datum rođenja vlasnika</div>
+
+    <div class="testdata-bar">
+      <span style="font-size:.7rem;color:#94a3b8;align-self:center;font-weight:600;">Test podaci:</span>
+      <button class="td-btn" onclick="fillTest('a')">ZG1959HR (Cirimotić)</button>
+      <button class="td-btn" onclick="fillTest('b')">ZG3177IR (Bože)</button>
+      <button class="td-btn" onclick="fillTest('c')">ZG4505KJ (Šturlić)</button>
+    </div>
+
+    <div id="s1-err" class="err-box"></div>
+
+    <div class="fgroup">
+      <label class="flabel">Registracija</label>
+      <input id="plate" class="finput" type="text" placeholder="npr. ZG1234AB" autocomplete="off" autocapitalize="characters">
+    </div>
+    <div class="frow">
+      <div class="fgroup">
+        <label class="flabel">OIB</label>
+        <input id="oib" class="finput" type="text" placeholder="11 znamenki" maxlength="11" autocomplete="off">
+      </div>
+      <div class="fgroup">
+        <label class="flabel">Datum rođenja</label>
+        <input id="dob" class="finput" type="text" placeholder="GGGG-MM-DD" autocomplete="off">
+        <div class="fhint">Format: 1985-06-15</div>
+      </div>
+    </div>
+    <div class="fgroup">
+      <label class="flabel">Datum početka osiguranja (opcionalno)</label>
+      <input id="inception" class="finput" type="text" placeholder="GGGG-MM-DD (prazno = zadnji HUO)" autocomplete="off">
+    </div>
+
+    <button class="btn btn-primary" id="s1-btn" onclick="doCalculate()">Izračunaj cijenu →</button>
+  </div>
+
+  <!-- ─── Step 1 loader ──────────────────────────────────────────────────── -->
+  <div class="step-panel" id="s1-load">
+    <div class="loader-wrap">
+      <div class="loader-spinner"></div>
+      <div class="loader-txt" id="s1-load-txt">Dohvaćam pakete od Wienera…</div>
+    </div>
+  </div>
+
+  <!-- ─── Step 2: Paketi ─────────────────────────────────────────────────── -->
+  <div class="step-panel" id="s2">
+    <div class="step-title">Odaberi paket</div>
+    <div class="step-sub" id="s2-sub">Klikni na paket koji želiš ugovoriti</div>
+
+    <div id="s2-err" class="err-box"></div>
+    <div id="pkg-list" class="pkg-list"></div>
+
+    <button class="btn btn-back" onclick="go(1)">← Natrag</button>
+    <button class="btn btn-primary" id="s2-btn" onclick="go(3)" disabled>Nastavi s odabranim paketom →</button>
+  </div>
+
+  <!-- ─── Step 3: Osobni podaci ──────────────────────────────────────────── -->
+  <div class="step-panel" id="s3">
+    <div class="step-title">Osobni podaci</div>
+    <div class="step-sub">Podaci o ugovaratelju police</div>
+
+    <div id="s3-err" class="err-box"></div>
+
+    <div class="frow">
+      <div class="fgroup">
+        <label class="flabel">Ime</label>
+        <input id="firstName" class="finput" type="text" placeholder="Pero" autocomplete="off">
+      </div>
+      <div class="fgroup">
+        <label class="flabel">Prezime</label>
+        <input id="lastName" class="finput" type="text" placeholder="Perić" autocomplete="off">
+      </div>
+    </div>
+    <div class="frow">
+      <div class="fgroup">
+        <label class="flabel">Spol</label>
+        <select id="gender" class="finput">
+          <option value="M">Muški</option>
+          <option value="F">Ženski</option>
+        </select>
+      </div>
+      <div class="fgroup">
+        <label class="flabel">Telefon</label>
+        <input id="phone" class="finput" type="text" placeholder="01/1234-567" autocomplete="off">
+      </div>
+    </div>
+    <div class="fgroup">
+      <label class="flabel">E-mail</label>
+      <input id="email" class="finput" type="email" placeholder="pero@primjer.hr" autocomplete="off">
+    </div>
+    <div class="frow">
+      <div class="fgroup">
+        <label class="flabel">Ulica</label>
+        <input id="streetName" class="finput" type="text" placeholder="Ilica" autocomplete="off">
+      </div>
+      <div class="fgroup">
+        <label class="flabel">Kućni broj</label>
+        <input id="streetNumber" class="finput" type="text" placeholder="1" autocomplete="off">
+      </div>
+    </div>
+    <div class="frow">
+      <div class="fgroup">
+        <label class="flabel">Poštanski broj</label>
+        <input id="postalCode" class="finput" type="text" placeholder="10000" maxlength="5" autocomplete="off">
+      </div>
+      <div class="fgroup">
+        <label class="flabel">Grad</label>
+        <input id="postalName" class="finput" type="text" placeholder="Zagreb" autocomplete="off">
+      </div>
+    </div>
+
+    <button class="btn btn-back" onclick="go(2)">← Natrag</button>
+    <button class="btn btn-primary" id="s3-btn" onclick="doReserve()">Rezerviraj policu →</button>
+  </div>
+
+  <!-- ─── Step 3 loader ──────────────────────────────────────────────────── -->
+  <div class="step-panel" id="s3-load">
+    <div class="loader-wrap">
+      <div class="loader-spinner"></div>
+      <div class="loader-txt" id="s3-load-txt">Kreiram partnera u Wiener sustavu…</div>
+    </div>
+  </div>
+
+  <!-- ─── Step 4: Polica ─────────────────────────────────────────────────── -->
+  <div class="step-panel" id="s4">
+    <div class="step-title">Polica rezervirana</div>
+    <div class="step-sub">Polica je kreirana. Aktiviraj je naplatom ili bez naplate (test).</div>
+
+    <div id="s4-err" class="err-box"></div>
+
+    <div class="policy-box" id="s4-policy-box">
+      <div class="lbl">POZIV NA PLAĆANJE (broj police)</div>
+      <div class="val" id="s4-policy-num">—</div>
+      <div class="hint">Ovaj broj je referentni broj za plaćanje putem Monrija</div>
+    </div>
+
+    <div id="s4-load" style="display:none;">
+      <div class="loader-wrap">
+        <div class="loader-spinner"></div>
+        <div class="loader-txt">Aktiviram policu…</div>
+      </div>
+    </div>
+
+    <div id="s4-actions">
+      <button class="btn btn-primary" style="margin-bottom:10px;" onclick="doActivateNoPay()">
+        ✅ Aktiviraj bez naplate (TEST)
+      </button>
+      <button class="btn btn-back" onclick="doCancelReserved()">❌ Storniraj rezervaciju</button>
+    </div>
+
+    <div id="s4-docs" style="display:none;">
+      <div class="success-icon">🎉</div>
+      <div class="success-title">Polica aktivirana!</div>
+      <div class="success-sub">Dokumenti su dostupni za preuzimanje.</div>
+      <div class="doc-list" id="doc-list"></div>
+    </div>
+  </div>
+
+</div><!-- /.wizard-card -->
+
+{% include footer.html %}
+{% include wapp.html %}
+
+<script>
+const API = 'https://wiener-proxy.osiguraj1.workers.dev';
+
+// ─── State ────────────────────────────────────────────────────────────────────
+const S = {
+  plate: null, oib: null, dob: null,
+  calculationOid: null, selectedPackage: null,
+  partnerId: null, contractOid: null, policyNumber: null,
+};
+
+// ─── Test data ────────────────────────────────────────────────────────────────
+function fillTest(key) {
+  const data = {
+    a: { plate:'ZG1959HR', oib:'62407068041', dob:'1960-01-01', firstName:'Emanuel', lastName:'Cirimotić', gender:'M', phone:'011234567', email:'test@osiguraj.hr', streetName:'Celovečka', streetNumber:'1', postalCode:'10000', postalName:'Zagreb' },
+    b: { plate:'ZG3177IR', oib:'17342130754', dob:'1976-04-25', firstName:'Bože',   lastName:'Radoš',     gender:'M', phone:'011234567', email:'test@osiguraj.hr', streetName:'Ilica',     streetNumber:'1', postalCode:'10000', postalName:'Zagreb' },
+    c: { plate:'ZG4505KJ', oib:'24332844535', dob:'1975-03-10', firstName:'Branko', lastName:'Šturlić',   gender:'M', phone:'011234567', email:'test@osiguraj.hr', streetName:'Savska',    streetNumber:'5', postalCode:'10000', postalName:'Zagreb' },
+  };
+  const d = data[key];
+  if (!d) return;
+  document.getElementById('plate').value = d.plate;
+  document.getElementById('oib').value = d.oib;
+  document.getElementById('dob').value = d.dob;
+  document.getElementById('firstName').value = d.firstName;
+  document.getElementById('lastName').value = d.lastName;
+  document.getElementById('gender').value = d.gender;
+  document.getElementById('phone').value = d.phone;
+  document.getElementById('email').value = d.email;
+  document.getElementById('streetName').value = d.streetName;
+  document.getElementById('streetNumber').value = d.streetNumber;
+  document.getElementById('postalCode').value = d.postalCode;
+  document.getElementById('postalName').value = d.postalName;
+}
+
+// ─── Progress ─────────────────────────────────────────────────────────────────
+function updateProgress(step) {
+  for (let i = 1; i <= 4; i++) {
+    const dot = document.getElementById('pd' + i);
+    const lbl = document.getElementById('pl' + i);
+    dot.className = 'progress-dot' + (i < step ? ' done' : i === step ? ' active' : '');
+    lbl.className = 'progress-lbl' + (i < step ? ' done' : i === step ? ' active' : '');
+  }
+  for (let i = 1; i <= 3; i++) {
+    document.getElementById('pline' + i).className = 'progress-line' + (i < step ? ' done' : '');
+  }
+}
+
+function go(step) {
+  document.querySelectorAll('.step-panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('s' + step).classList.add('active');
+  updateProgress(step);
+}
+
+function showLoad(step, txt) {
+  document.querySelectorAll('.step-panel').forEach(p => p.classList.remove('active'));
+  const el = document.getElementById('s' + step + '-load');
+  if (txt) document.getElementById('s' + step + '-load-txt').textContent = txt;
+  el.classList.add('active');
+}
+
+function showErr(step, msg) {
+  const el = document.getElementById('s' + step + '-err');
+  el.textContent = msg;
+  el.style.display = 'block';
+}
+
+function hideErr(step) {
+  const el = document.getElementById('s' + step + '-err');
+  if (el) el.style.display = 'none';
+}
+
+// ─── Step 1: Kalkulacija ──────────────────────────────────────────────────────
+async function doCalculate() {
+  hideErr(1);
+  const plate = document.getElementById('plate').value.trim();
+  const oib = document.getElementById('oib').value.trim();
+  const dob = document.getElementById('dob').value.trim();
+  const inception = document.getElementById('inception').value.trim();
+
+  if (!plate || !oib || !dob) {
+    showErr(1, 'Popuni sve obavezne podatke.');
+    return;
+  }
+
+  S.plate = plate; S.oib = oib; S.dob = dob;
+
+  showLoad(1, 'Autentifikacija i dohvat paketa od Wienera…');
+
+  try {
+    const body = { plate, oib, dateOfBirth: dob };
+    if (inception) body.inceptionDate = inception + 'T00:00:00';
+
+    const r = await fetch(API + '/ao/calculate', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body),
+    });
+    const data = await r.json();
+
+    if (!data.ok) {
+      go(1);
+      const detail = data.error?.errors?.[0]?.detail || data.error?.message || JSON.stringify(data.error);
+      showErr(1, 'Greška: ' + detail);
+      return;
+    }
+
+    renderPackages(data.packages, data.vehicleInfo, data.contractInfo);
+    go(2);
+  } catch (e) {
+    go(1);
+    showErr(1, 'Mrežna greška: ' + e.message);
+  }
+}
+
+function renderPackages(packages, vehicleInfo, contractInfo) {
+  const list = document.getElementById('pkg-list');
+  list.innerHTML = '';
+
+  if (vehicleInfo) {
+    document.getElementById('s2-sub').textContent =
+      vehicleInfo.Make + ' ' + vehicleInfo.Type + ' ' + vehicleInfo.Model +
+      ' (' + vehicleInfo.ProductionYear + ') — ' + vehicleInfo.LicencePlate;
+  }
+
+  packages.forEach(pkg => {
+    const covers = (pkg.Covers || []).map(c => '✓ ' + c.Name).join('<br>');
+    const applied = (pkg.Corrections?.Applied || pkg.Corrections || []);
+    const discounts = applied.filter(c => c.Type === 'Discount')
+      .map(c => c.Name + ': ' + (c.Amount > 0 ? '+' : '') + c.Amount.toFixed(2) + ' €').join(' · ');
+
+    const card = document.createElement('div');
+    card.className = 'pkg-card';
+    card.dataset.oid = pkg.CalculationOid;
+    card.innerHTML = `
+      <div class="pkg-name">${pkg.PackageName}</div>
+      <div class="pkg-price">${pkg.PremiumTotal.toFixed(2)} <span>€ / god.</span></div>
+      <div class="pkg-covers">${covers}</div>
+      ${discounts ? '<div class="pkg-discounts">' + discounts + '</div>' : ''}
+    `;
+    card.onclick = () => selectPackage(pkg.CalculationOid, card);
+    list.appendChild(card);
+  });
+}
+
+function selectPackage(oid, cardEl) {
+  document.querySelectorAll('.pkg-card').forEach(c => c.classList.remove('selected'));
+  cardEl.classList.add('selected');
+  S.calculationOid = oid;
+  document.getElementById('s2-btn').disabled = false;
+}
+
+// ─── Step 3: Partner + Rezervacija ───────────────────────────────────────────
+async function doReserve() {
+  hideErr(3);
+
+  const firstName   = document.getElementById('firstName').value.trim();
+  const lastName    = document.getElementById('lastName').value.trim();
+  const gender      = document.getElementById('gender').value;
+  const phone       = document.getElementById('phone').value.trim();
+  const email       = document.getElementById('email').value.trim();
+  const streetName  = document.getElementById('streetName').value.trim();
+  const streetNumber = document.getElementById('streetNumber').value.trim();
+  const postalCode  = document.getElementById('postalCode').value.trim();
+  const postalName  = document.getElementById('postalName').value.trim();
+
+  if (!firstName || !lastName || !email || !postalCode || !postalName) {
+    showErr(3, 'Popuni sve obavezne podatke.');
+    return;
+  }
+
+  showLoad(3, 'Kreiram/ažuriram partnera u Wiener sustavu…');
+
+  try {
+    // 1. Partner
+    const partnerRes = await fetch(API + '/ao/partner', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        oib: S.oib,
+        firstName, lastName, gender,
+        dateOfBirth: S.dob,
+        phone, email,
+        streetName, streetNumber,
+        postalCode, postalName,
+      }),
+    });
+    const partnerData = await partnerRes.json();
+    if (!partnerData.ok) {
+      go(3);
+      showErr(3, 'Partner greška: ' + JSON.stringify(partnerData.error));
+      return;
+    }
+    S.partnerId = partnerData.partnerId;
+
+    document.getElementById('s3-load-txt').textContent = 'Rezerviram policu…';
+
+    // 2. Reserve
+    const reserveRes = await fetch(API + '/ao/reserve', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        calculationOid: S.calculationOid,
+        partnerId: S.partnerId,
+      }),
+    });
+    const reserveData = await reserveRes.json();
+    if (!reserveData.ok) {
+      go(3);
+      showErr(3, 'Rezervacija greška: ' + JSON.stringify(reserveData.error));
+      return;
+    }
+    S.contractOid = reserveData.contractOid;
+    S.policyNumber = reserveData.policyNumber;
+
+    document.getElementById('s4-policy-num').textContent = S.policyNumber;
+    go(4);
+  } catch (e) {
+    go(3);
+    showErr(3, 'Mrežna greška: ' + e.message);
+  }
+}
+
+// ─── Step 4: Aktivacija bez naplate ──────────────────────────────────────────
+async function doActivateNoPay() {
+  hideErr(4);
+  document.getElementById('s4-actions').style.display = 'none';
+  document.getElementById('s4-load').style.display = 'block';
+
+  try {
+    const r = await fetch(API + '/ao/activate-nopay', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ contractOid: S.contractOid, policyNumber: S.policyNumber }),
+    });
+    const data = await r.json();
+
+    document.getElementById('s4-load').style.display = 'none';
+
+    if (!data.ok) {
+      document.getElementById('s4-actions').style.display = 'block';
+      showErr(4, 'Aktivacija greška: ' + JSON.stringify(data.error));
+      return;
+    }
+
+    renderDocs(data.printouts);
+    if (data.remarks) {
+      const hint = document.createElement('p');
+      hint.style.cssText = 'font-size:.78rem;color:#64748b;margin-top:10px;text-align:center;';
+      hint.textContent = data.remarks;
+      document.getElementById('doc-list').after(hint);
+    }
+
+    // Obavijesti Wiener da smo "dostavili" policu (na test okolini)
+    fetch(API + '/ao/delivered', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ contractOid: S.contractOid, policyNumber: S.policyNumber }),
+    }).catch(() => {});
+
+  } catch (e) {
+    document.getElementById('s4-load').style.display = 'none';
+    document.getElementById('s4-actions').style.display = 'block';
+    showErr(4, 'Mrežna greška: ' + e.message);
+  }
+}
+
+function renderDocs(printouts) {
+  const list = document.getElementById('doc-list');
+  list.innerHTML = '';
+  (printouts || []).forEach(doc => {
+    if (!doc.content) return;
+    const icons = { 1: '📄', 2: '🌿', 3: '📋' };
+    const a = document.createElement('a');
+    a.className = 'doc-item';
+    a.href = 'data:application/pdf;base64,' + doc.content;
+    a.download = (doc.documentTypeName || 'dokument') + '.pdf';
+    a.innerHTML = `<span class="doc-icon">${icons[doc.documentTypeId] || '📎'}</span> ${doc.documentTypeName || 'Dokument'}`;
+    list.appendChild(a);
+  });
+  document.getElementById('s4-docs').style.display = 'block';
+}
+
+// ─── Storno rezervacije ───────────────────────────────────────────────────────
+async function doCancelReserved() {
+  if (!confirm('Stornirati rezerviranu policu?')) return;
+  try {
+    const r = await fetch(API + '/ao/cancel-reserved', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ contractOid: S.contractOid }),
+    });
+    const data = await r.json();
+    if (data.ok) {
+      alert('Rezervacija stornirana.');
+      S.contractOid = null; S.policyNumber = null;
+      go(1);
+    } else {
+      alert('Storno greška: ' + JSON.stringify(data.error));
+    }
+  } catch (e) {
+    alert('Mrežna greška: ' + e.message);
+  }
+}
+</script>
+</body>
+</html>
