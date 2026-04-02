@@ -480,5 +480,4 @@ http.createServer(async (req, res) => {
     send(500, { ok: false, error: e.message });
   }
 
-const PORT = process.env.PORT || 3001;
-}).listen(PORT, () => console.log(`[wiener-proxy] listening on port ${PORT}`));
+}).listen(process.env.PORT || 3001, () => console.log(`[wiener-proxy] listening on port ${process.env.PORT || 3001}`));
