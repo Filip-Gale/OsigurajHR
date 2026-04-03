@@ -561,6 +561,7 @@
           <button class="filter-btn" data-filter="kasko" onclick="setFilter('kasko')">Kasko</button>
           <button class="filter-btn" data-filter="statistika" onclick="setFilter('statistika')">📊 Statistika</button>
           <button class="filter-btn" data-filter="buduci" onclick="setFilter('buduci')">👥 Budući klijenti</button>
+          <button class="filter-btn" data-filter="ugovori" onclick="setFilter('ugovori')">📋 Ugovori</button>
         </div>
         <button class="export-btn" onclick="exportCSV()">Exportaj CSV</button>
       </div>
@@ -595,6 +596,19 @@
 
     <!-- Statistika -->
     <div id="stats-section" style="display:none; margin-top:8px;"></div>
+
+    <!-- Ugovori s partnerima -->
+    <div id="ugovori-section" style="display:none; margin-top:8px;">
+      <div class="buduci-add-form">
+        <h3>📋 Ugovori s osiguravateljima</h3>
+        <p style="font-size:13px;color:var(--muted);margin-bottom:16px;">Priloži ugovor za svakog osiguravatelja. Klikni na gumb s imenom da otvoriš ugovor.</p>
+        <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:20px;">
+          <input type="text" id="ugovor-naziv" placeholder="Naziv (npr. Uniqa)" style="border:1.5px solid var(--border);border-radius:8px;padding:9px 13px;font-size:14px;font-family:inherit;outline:none;color:var(--text);width:200px;">
+          <button class="btn btn-primary" onclick="dodajUgovor()">➕ Dodaj osiguravatelja</button>
+        </div>
+        <div id="ugovori-grid" style="display:flex;gap:10px;flex-wrap:wrap;"></div>
+      </div>
+    </div>
 
     <!-- Budući klijenti -->
     <div id="buduci-section">
@@ -727,13 +741,17 @@ function setFilter(f) {
   document.querySelectorAll('.filter-btn').forEach(b => b.classList.toggle('active', b.dataset.filter === f));
   const isStats = f === 'statistika';
   const isBuduci = f === 'buduci';
+  const isUgovori = f === 'ugovori';
+  const hideTable = isStats || isBuduci || isUgovori;
   document.getElementById('stats-section').style.display = isStats ? 'block' : 'none';
   document.getElementById('buduci-section').style.display = isBuduci ? 'block' : 'none';
-  document.getElementById('polica-table').style.display = (isStats || isBuduci) ? 'none' : '';
-  document.getElementById('totals-row').style.display = (isStats || isBuduci) ? 'none' : '';
-  document.getElementById('upload-zone').style.display = isBuduci ? 'none' : '';
+  document.getElementById('ugovori-section').style.display = isUgovori ? 'block' : 'none';
+  document.getElementById('polica-table').style.display = hideTable ? 'none' : '';
+  document.getElementById('totals-row').style.display = hideTable ? 'none' : '';
+  document.getElementById('upload-zone').style.display = (isBuduci || isUgovori) ? 'none' : '';
   if (isStats) renderStats();
   else if (isBuduci) renderBuduci();
+  else if (isUgovori) renderUgovori();
   else renderTable();
 }
 
@@ -901,11 +919,13 @@ function renderTable() {
       ? `<img src="${osigLogoMap[p.osig]}" alt="${esc(p.osig)}">`
       : esc(p.osig || '—');
 
-    const pdfIcon = p.hasPdf ? `<button onclick="event.stopPropagation();openPdfForPolica(${p.id})" title="Otvori PDF" style="background:none;border:none;cursor:pointer;font-size:13px;padding:0 3px;opacity:.6;">📄</button>` : '';
-    const attachBtn = !p.hasPdf ? `<button onclick="event.stopPropagation();attachPdf(${p.id})" title="Priloži PDF" style="background:none;border:1.5px dashed #bbb;border-radius:6px;cursor:pointer;font-size:11px;padding:2px 6px;color:#aaa;margin-left:4px;">+ PDF</button>` : '';
+    const pdfIcon = p.hasPdf ? `<button onclick="event.stopPropagation();openPdfForPolica(${p.id})" title="Otvori policu" style="background:none;border:none;cursor:pointer;font-size:13px;padding:0 2px;opacity:.6;">📄</button>` : '';
+    const attachBtn = !p.hasPdf ? `<button onclick="event.stopPropagation();attachPdf(${p.id})" title="Priloži policu (PDF)" style="background:none;border:1.5px dashed #bbb;border-radius:6px;cursor:pointer;font-size:11px;padding:2px 6px;color:#aaa;margin-left:4px;">+ PDF</button>` : '';
+    const potvrdaIcon = p.hasPotvrdaPdf ? `<button onclick="event.stopPropagation();openPotvrdaPdf(${p.id})" title="Otvori potvrdu plaćanja" style="background:none;border:none;cursor:pointer;font-size:13px;padding:0 2px;opacity:.6;">🧾</button>` : '';
+    const attachPotvrdaBtn = !p.hasPotvrdaPdf ? `<button onclick="event.stopPropagation();attachPotvrdaPdf(${p.id})" title="Priloži potvrdu plaćanja" style="background:none;border:1.5px dashed #bbb;border-radius:6px;cursor:pointer;font-size:11px;padding:2px 5px;color:#aaa;margin-left:2px;">+ 🧾</button>` : '';
     return `<tr class="${rowClass}" onclick="if(!event.target.closest('a,button'))handleCardClick(${p.id})" style="cursor:pointer">
       <td class="col-num" style="color:#aaa">${i+1}</td>
-      <td class="col-ime"><strong>${esc(p.ime || '—')}</strong>${pdfIcon}${attachBtn}</td>
+      <td class="col-ime"><strong>${esc(p.ime || '—')}</strong>${pdfIcon}${potvrdaIcon}${attachBtn}${attachPotvrdaBtn}</td>
       <td class="col-reg">${esc((p.reg||'').toUpperCase())}</td>
       <td class="col-kontakt">${kontaktHtml}</td>
       <td class="col-vrsta">${esc(p.vrsta === 'o+k' ? 'obvezno i kasko' : (p.vrsta || '—'))}</td>
@@ -1241,6 +1261,119 @@ buduciDoc.onSnapshot(doc => {
   checkAlarms(_policeCache);
 });
 
+// ── Ugovori s partnerima ───────────────────────────────────────
+const ugovoriDoc = fbDb.collection('data').doc('ugovori');
+let _ugovoriCache = []; // [{ id, naziv }]
+
+async function saveUgovoriData(arr) {
+  _ugovoriCache = arr;
+  await ugovoriDoc.set({ items: arr });
+}
+
+ugovoriDoc.onSnapshot(doc => {
+  _ugovoriCache = doc.exists ? (doc.data().items || []) : [];
+  if (currentFilter === 'ugovori') renderUgovori();
+});
+
+function renderUgovori() {
+  const grid = document.getElementById('ugovori-grid');
+  if (!grid) return;
+  if (!_ugovoriCache.length) {
+    grid.innerHTML = '<p style="font-size:13px;color:var(--muted)">Još nema dodanih osiguravatelja. Upisi naziv i klikni Dodaj.</p>';
+    return;
+  }
+  grid.innerHTML = _ugovoriCache.map(u => `
+    <div style="display:flex;flex-direction:column;align-items:center;gap:6px;">
+      <button onclick="openUgovor('${u.id}')" style="background:var(--purple-bg);border:1.5px solid var(--purple-light);border-radius:10px;color:var(--purple);font-family:inherit;font-size:14px;font-weight:700;padding:12px 20px;cursor:pointer;min-width:120px;transition:background .15s;" onmouseover="this.style.background='var(--purple-light)'" onmouseout="this.style.background='var(--purple-bg)'">
+        📋 ${esc(u.naziv)}
+      </button>
+      <div style="display:flex;gap:6px;">
+        <button onclick="attachUgovor('${u.id}')" style="background:none;border:1.5px dashed #bbb;border-radius:6px;cursor:pointer;font-size:11px;padding:2px 8px;color:#aaa;" title="Priloži/zamijeni PDF">+ PDF</button>
+        <button onclick="deleteUgovor('${u.id}')" style="background:none;border:none;cursor:pointer;font-size:11px;padding:2px 8px;color:#ccc;border-radius:6px;" title="Obriši" onmouseover="this.style.color='#d32f2f'" onmouseout="this.style.color='#ccc'">✕</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+async function dodajUgovor() {
+  const naziv = document.getElementById('ugovor-naziv').value.trim();
+  if (!naziv) { alert('Upiši naziv osiguravatelja!'); return; }
+  if (_ugovoriCache.find(u => u.naziv.toLowerCase() === naziv.toLowerCase())) {
+    alert('Taj osiguravatelj već postoji!'); return;
+  }
+  const newId = 'ug-' + Date.now();
+  await saveUgovoriData([..._ugovoriCache, { id: newId, naziv }]);
+  document.getElementById('ugovor-naziv').value = '';
+  renderUgovori();
+}
+
+function attachUgovor(uid) {
+  const old = document.getElementById('attach-ugovor-input');
+  if (old) old.remove();
+  const input = document.createElement('input');
+  input.type = 'file';
+  input.id = 'attach-ugovor-input';
+  input.accept = 'application/pdf,.pdf';
+  input.style.cssText = 'position:fixed;top:-100px;left:-100px;opacity:0;';
+  document.body.appendChild(input);
+  input.addEventListener('change', async () => {
+    const file = input.files && input.files[0];
+    if (!file) return;
+    try {
+      await savePdfToDb(uid, file);
+      renderUgovori();
+    } catch(e) {
+      alert('Greška pri spremanju ugovora: ' + (e && (e.message || e.name || JSON.stringify(e))));
+    }
+  });
+  input.click();
+}
+
+async function openUgovor(uid) {
+  const db = await openPdfDb();
+  const data = await new Promise(res => {
+    const r = db.transaction('pdfs', 'readonly').objectStore('pdfs').get(String(uid));
+    r.onsuccess = e => res(e.target.result || null);
+    r.onerror = () => res(null);
+  });
+  if (!data) {
+    alert('Nema priloženog PDF-a. Klikni "+ PDF" da dodaš ugovor.');
+    return;
+  }
+
+  const modal = document.getElementById('pdf-modal');
+  const container = document.getElementById('pdf-pages');
+  container.innerHTML = '<p style="color:#fff;text-align:center;padding:20px">Učitavam ugovor...</p>';
+  modal.style.display = 'block';
+  modal.scrollTop = 0;
+
+  try {
+    const buffer = data instanceof ArrayBuffer ? data : await new Blob([data]).arrayBuffer();
+    const pdf = await pdfjsLib.getDocument({ data: buffer }).promise;
+    container.innerHTML = '';
+    for (let i = 1; i <= pdf.numPages; i++) {
+      const page = await pdf.getPage(i);
+      const viewport = page.getViewport({ scale: window.devicePixelRatio > 1 ? 1.5 : 2 });
+      const canvas = document.createElement('canvas');
+      canvas.width = viewport.width;
+      canvas.height = viewport.height;
+      canvas.style.cssText = 'width:100%;display:block;margin-bottom:8px;';
+      container.appendChild(canvas);
+      await page.render({ canvasContext: canvas.getContext('2d'), viewport }).promise;
+    }
+  } catch(e) {
+    container.innerHTML = `<p style="color:#f88;text-align:center;padding:20px">Greška: ${e.message}</p>`;
+  }
+}
+
+async function deleteUgovor(uid) {
+  const u = _ugovoriCache.find(x => x.id === uid);
+  if (!confirm(`Obriši ${u ? u.naziv : 'ovog osiguravatelja'}?`)) return;
+  deletePdfFromDb(uid);
+  await saveUgovoriData(_ugovoriCache.filter(x => x.id !== uid));
+  renderUgovori();
+}
+
 // ── Spremi policu ─────────────────────────────────────────────
 let editingId = null;
 let pendingPdfBlob = null;
@@ -1346,6 +1479,66 @@ async function openPdfForPolica(id) {
   return true;
 }
 
+function attachPotvrdaPdf(id) {
+  const old = document.getElementById('attach-potvrda-input');
+  if (old) old.remove();
+  const input = document.createElement('input');
+  input.type = 'file';
+  input.id = 'attach-potvrda-input';
+  input.accept = 'application/pdf,.pdf';
+  input.style.cssText = 'position:fixed;top:-100px;left:-100px;opacity:0;';
+  document.body.appendChild(input);
+  input.addEventListener('change', async () => {
+    const file = input.files && input.files[0];
+    if (!file) return;
+    try {
+      await savePdfToDb('pot-' + id, file);
+      const police = [..._policeCache];
+      const idx = police.findIndex(p => p.id === id);
+      if (idx !== -1) { police[idx].hasPotvrdaPdf = true; await savePolice(police); }
+      renderTable();
+    } catch(e) {
+      alert('Greška pri spremanju potvrde: ' + (e && (e.message || e.name || JSON.stringify(e))));
+    }
+  });
+  input.click();
+}
+
+async function openPotvrdaPdf(id) {
+  const db = await openPdfDb();
+  const data = await new Promise(res => {
+    const r = db.transaction('pdfs', 'readonly').objectStore('pdfs').get('pot-' + id);
+    r.onsuccess = e => res(e.target.result || null);
+    r.onerror = () => res(null);
+  });
+  if (!data) return false;
+
+  const modal = document.getElementById('pdf-modal');
+  const container = document.getElementById('pdf-pages');
+  container.innerHTML = '<p style="color:#fff;text-align:center;padding:20px">Učitavam potvrdu plaćanja...</p>';
+  modal.style.display = 'block';
+  modal.scrollTop = 0;
+
+  try {
+    const buffer = data instanceof ArrayBuffer ? data : await new Blob([data]).arrayBuffer();
+    const pdf = await pdfjsLib.getDocument({ data: buffer }).promise;
+    container.innerHTML = '';
+    for (let i = 1; i <= pdf.numPages; i++) {
+      const page = await pdf.getPage(i);
+      const viewport = page.getViewport({ scale: window.devicePixelRatio > 1 ? 1.5 : 2 });
+      const canvas = document.createElement('canvas');
+      canvas.width = viewport.width;
+      canvas.height = viewport.height;
+      canvas.style.cssText = 'width:100%;display:block;margin-bottom:8px;';
+      container.appendChild(canvas);
+      await page.render({ canvasContext: canvas.getContext('2d'), viewport }).promise;
+    }
+  } catch(e) {
+    container.innerHTML = `<p style="color:#f88;text-align:center;padding:20px">Greška: ${e.message}</p>`;
+  }
+  return true;
+}
+
 async function handleCardClick(id) {
   const opened = await openPdfForPolica(id);
   if (!opened) editPolica(id);
@@ -1371,6 +1564,11 @@ async function savePolica() {
   if (!reg && !ime) { alert('Upiši barem registraciju ili ime!'); return; }
   if (!istek) { alert('Datum isteka je obavezan!'); return; }
 
+  const saveBtn = document.getElementById('save-btn');
+  const origText = saveBtn.textContent;
+  saveBtn.disabled = true;
+  saveBtn.textContent = '⏳ Spremam...';
+
   const police = [..._policeCache];
   const data = {
     ime, reg,
@@ -1382,33 +1580,38 @@ async function savePolica() {
     napomena: document.getElementById('f-napomena').value.trim(),
   };
 
+  let newId = null;
   if (editingId !== null) {
     const idx = police.findIndex(p => p.id === editingId);
     if (idx !== -1) {
-      if (pendingPdfBlob) { data.hasPdf = true; savePdfToDb(editingId, pendingPdfBlob); }
+      if (pendingPdfBlob) { data.hasPdf = true; savePdfToDb(editingId, pendingPdfBlob).catch(()=>{}); }
       else data.hasPdf = police[idx].hasPdf || false;
       police[idx] = { ...police[idx], ...data };
     }
     editingId = null;
   } else {
-    const newId = Date.now();
-    if (pendingPdfBlob) { data.hasPdf = true; savePdfToDb(newId, pendingPdfBlob); }
+    newId = Date.now();
+    if (pendingPdfBlob) { data.hasPdf = true; savePdfToDb(newId, pendingPdfBlob).catch(()=>{}); }
     police.push({ id: newId, ...data });
   }
   pendingPdfBlob = null;
 
-  await savePolice(police);
-  resetForm();
-
-  // Traži dopuštenje za notifikacije (jednom)
-  if (Notification.permission === 'default') {
-    Notification.requestPermission();
+  try {
+    await savePolice(police);
+    renderTable();
+    resetForm();
+    if (Notification.permission === 'default') Notification.requestPermission();
+  } catch(e) {
+    saveBtn.disabled = false;
+    saveBtn.textContent = origText;
+    alert('❌ Greška pri spremanju: ' + (e && (e.message || e.code || JSON.stringify(e))) + '\n\nProvjeri internetsku vezu i pokušaj opet.');
   }
 }
 
 async function deletePolica(id) {
   if (!confirm('Obriši ovu policu?')) return;
   deletePdfFromDb(id);
+  deletePdfFromDb('pot-' + id);
   const police = _policeCache.filter(p => p.id !== id);
   await savePolice(police);
 }
