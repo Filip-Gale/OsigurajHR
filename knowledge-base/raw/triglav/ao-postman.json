@@ -1,0 +1,293 @@
+{
+  "info": {
+    "_postman_id": "6a2c1a5a-f517-44b2-84d2-27f57890b12f",
+    "name": "AO API Primjer",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "44708978",
+    "_collection_link": "https://go.postman.co/collection/44708978-6a2c1a5a-f517-44b2-84d2-27f57890b12f?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "TokenAO2022",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/x-www-form-urlencoded",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": [
+            {
+              "key": "grant_type",
+              "value": "password",
+              "type": "text"
+            },
+            {
+              "key": "password",
+              "value": "",
+              "type": "text"
+            },
+            {
+              "key": "username",
+              "value": "",
+              "type": "text"
+            },
+            {
+              "key": "client_id",
+              "value": "testClient",
+              "type": "text"
+            }
+          ]
+        },
+        "url": {
+          "raw": "https://b2bapi-pp.tozg.hr/Adinsure.Web.B2BAPI-TOZG-PP/Token",
+          "protocol": "https",
+          "host": [
+            "b2bapi-pp",
+            "tozg",
+            "hr"
+          ],
+          "path": [
+            "Adinsure.Web.B2BAPI-TOZG-PP",
+            "Token"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create policyAO2022_OsobniAutomobili_BezPaketa",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "text/json",
+            "type": "text"
+          },
+          {
+            "key": "Accept",
+            "value": "text/json",
+            "type": "text"
+          },
+          {
+            "key": "Authorization",
+            "value": "bearer VUD40CTxLfMr-r4CxrvvXK_F0gKq9a85XsvWD5q51dLs5x9XxyZ_UmvHFJt_Vnf1jaYcAQzzXwJWNFnIiePnkkusvAPrxBInctIX49x7GXTTLsKcmspyhGG5OQw8NiXacinrIK5TUp-elB3uZAIILHZQ4VQDSrtcfK_XLqnMFdBZ2q48kFVnrVfUZG_wq0WJE1TMkfPPFLXMIwSkB6-xTiOtqiN8stAOcOGGKENnDmk6sCU6j64YXadyWqtjYwSdfxyCLscNvR7wZ3JZzPuJz_Yu7aaMdOfd2XtwD3nZKcuMp3blibzgJrI00nwfKkd_esxSmVUWQUr0-Akz2u90yx2OWP1Z2y8Y_oQo1B4phkfxgP1ywk4cOIojKWtip4YqyJKqskGmisOrss_a6-cTMQ",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n   \"StartDate\":\"2025-09-18T22:00:00.000Z\",\r\n   \"Invoice\":{\r\n      \"OtherInstallments\":0,\r\n      \"PaymentModeId\":0,\r\n      \"PaymentTypeFirstId\":2,\r\n      \"PaymentTypeOtherId\":2,\r\n      \"FirstInstallment\":422.99\r\n   },\r\n   \"Sale\":{\r\n      \"Discounts\":[\r\n         {\r\n            \"DiscountId\":\"COMMERCIAL_DISCOUNT\"\r\n         }\r\n      ]\r\n   },\r\n   \"IsProRate\":true,\r\n   \"EndDate\":\"2026-09-18T22:00:00.000Z\",\r\n   \"FromDashboard\":false,\r\n   \"PersonalVehicleCoverage\":{\r\n      \"BasicSubCoverage\":{\r\n         \"PackageType\":0,\r\n         \"AgeOfTheInsured\":1,\r\n         \"PowerInKW\":65,\r\n         \"VehicleRegistration\":\"ZG1234TEST\",\r\n         \"ChassisNumber\":\"123123123\",\r\n         \"IsSpecialPlatesVehicle\":0,\r\n         \"IsVehicleInspectedByDealer\":0,\r\n         \"IsVehicleInLeasing\":0,\r\n         \"MaximumMassInKg\":0,\r\n         \"LoadCapacityInKg\":0,\r\n         \"VehicleBrand\":\"KIA\",\r\n         \"VehicleType\":\"CARAVAN\",\r\n         \"YearOfProduction\":2021,\r\n         \"VolumeInCCM\":1000,\r\n         \"NumberOfSeats\":\"5\",\r\n         \"Purpose\":\"\",\r\n         \"TotalMileageInKmOrWorkingHours\":\"110000\"\r\n      },\r\n      \"VehicleSubCoverage\":{\r\n         \"IsEnabled\":true,\r\n         \"CoverageHeight\":0,\r\n         \"RiskFactorForOtherCountries\":1,\r\n         \"PremiumClass\":1\r\n      }\r\n   },\r\n   \"PreviousPolicy\":null,\r\n   \"Persons\":[\r\n      {\r\n         \"PersonRoles\":[\r\n            0,\r\n            1\r\n         ],\r\n         \"NaturalPerson\":{\r\n            \"Addresses\":[\r\n               {\r\n                  \"AddressTypeId\":4,\r\n                  \"CountryId\":\"HR\",\r\n                  \"Street\":\"Horvatovac \",\r\n                  \"HouseNumber\":\"18\",\r\n                  \"PostNumber\":\"10000\",\r\n                  \"City\":\"Zagreb\"\r\n               }\r\n            ],\r\n            \"Gender\":1,\r\n            \"IsResident\":true,\r\n            \"Name\":\"Valentin\",\r\n            \"Surname\":\"Marinac\",\r\n            \"DateOfBirth\":\"2000-09-14T22:00:00.000Z\",\r\n            \"TaxNumber\":\"13976030965\",\r\n            \"MobileTelephoneNumber\":\"0914665237\",\r\n            \"Email\":\"valentin.marinac@triglav.hr\"\r\n         }\r\n      }\r\n   ],\r\n   \"PolicyTypeId\":0,\r\n   \"AgentId\":21448\r\n}"
+        },
+        "url": {
+          "raw": "https://b2bapi-pp.tozg.hr/Adinsure.Web.B2BAPI-TOZG-PP/api/public/v1/policies/NV0450001B2B/create-policy",
+          "protocol": "https",
+          "host": [
+            "b2bapi-pp",
+            "tozg",
+            "hr"
+          ],
+          "path": [
+            "Adinsure.Web.B2BAPI-TOZG-PP",
+            "api",
+            "public",
+            "v1",
+            "policies",
+            "NV0450001B2B",
+            "create-policy"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "PrintPolicyTestAO2022-Polica",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "text/json",
+            "type": "text"
+          },
+          {
+            "key": "Accept",
+            "value": "text/json",
+            "type": "text"
+          },
+          {
+            "key": "Authorization",
+            "value": "bearer ",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n\"PolicyId\":\"220000000187\",\r\n\"DocumentType\": 0\r\n}\r\n"
+        },
+        "url": {
+          "raw": "https://b2bapi-pp.tozg.hr/Adinsure.Web.B2BAPI-TOZG-PP/api/public/v1/policies/NV0450001B2B/print",
+          "protocol": "https",
+          "host": [
+            "b2bapi-pp",
+            "tozg",
+            "hr"
+          ],
+          "path": [
+            "Adinsure.Web.B2BAPI-TOZG-PP",
+            "api",
+            "public",
+            "v1",
+            "policies",
+            "NV0450001B2B",
+            "print"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "PrintPolicyTestAO2022-ZK",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "text/json",
+            "type": "text"
+          },
+          {
+            "key": "Accept",
+            "value": "text/json",
+            "type": "text"
+          },
+          {
+            "key": "Authorization",
+            "value": "bearer",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n\"PolicyId\":\"ZK0100104159\",\r\n\"DocumentType\": 4\r\n}\r\n"
+        },
+        "url": {
+          "raw": "https://b2bapi-pp.tozg.hr/Adinsure.Web.B2BAPI-TOZG-PP/api/public/v1/policies/NV0450001B2B/print",
+          "protocol": "https",
+          "host": [
+            "b2bapi-pp",
+            "tozg",
+            "hr"
+          ],
+          "path": [
+            "Adinsure.Web.B2BAPI-TOZG-PP",
+            "api",
+            "public",
+            "v1",
+            "policies",
+            "NV0450001B2B",
+            "print"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "PrintPolicyTestAO2022-Faktura",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "text/json",
+            "type": "text"
+          },
+          {
+            "key": "Accept",
+            "value": "text/json",
+            "type": "text"
+          },
+          {
+            "key": "Authorization",
+            "value": "bearer ",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n\"PolicyId\":\"220000000476\",\r\n\"DocumentType\": 1\r\n}\r\n"
+        },
+        "url": {
+          "raw": "https://b2bapi-pp.tozg.hr/Adinsure.Web.B2BAPI-TOZG-PP/api/public/v1/policies/NV0450001B2B/print",
+          "protocol": "https",
+          "host": [
+            "b2bapi-pp",
+            "tozg",
+            "hr"
+          ],
+          "path": [
+            "Adinsure.Web.B2BAPI-TOZG-PP",
+            "api",
+            "public",
+            "v1",
+            "policies",
+            "NV0450001B2B",
+            "print"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get premiumAO2022_OsobniAutomobili_BezPaketa",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "text/json",
+            "type": "text"
+          },
+          {
+            "key": "Accept",
+            "value": "text/json",
+            "type": "text"
+          },
+          {
+            "key": "Authorization",
+            "value": "bearer 797nGFvyQPkLI26qJvgY_vOsEWH0s-MYqtG0_ufitRBOhe2Bsu7ZQ8mc84lNEf2lXBC4F4hMZ6zi06Jm52kM01WihbIbFe4UXD6JbKvcpSmhmoQIWGpuaeu45Ewi1jJ469A4Cp58LJ8-1Y8a3S6wNpgbh10k0smJP0eB8AIDWfXcT2t-UbGvNAu0-VqqDtcjbvPQpmpugeGM5pvNpCLM8vKKhjfMLL1KhFELwxa7QopFQCT9Vu8nOAiarWmHJfp9oMIet_agBcq-i-AeCQ6G-38A2RLz9kBhSFBTJPDJ7-bEmgNWt6FRxBzBYjUEvWZm-V5UHPfpfRUUVUvvQALwBmf1XneN9tpGfuOOtZNNmjei07N5gKBWjqXXF5Y0fVXmlwWAaAtvhBA64G-4AxhzOQ",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n   \"StartDate\":\"2025-09-18T22:00:00.000Z\",\r\n   \"Invoice\":null,\r\n   \"Sale\":{\r\n      \"Discounts\":[\r\n         {\r\n            \"DiscountId\":\"COMMERCIAL_DISCOUNT\"\r\n         }\r\n      ]\r\n   },\r\n   \"IsProRate\":true,\r\n   \"EndDate\":\"2026-09-18T22:00:00.000Z\",\r\n   \"FromDashboard\":true,\r\n   \"PersonalVehicleCoverage\":{\r\n      \"BasicSubCoverage\":{\r\n         \"PackageType\":0,\r\n         \"AgeOfTheInsured\":1,\r\n         \"PowerInKW\":\"65\",\r\n         \"VehicleRegistration\":\"ZG1234TEST\",\r\n         \"ChassisNumber\":\"123123123\",\r\n         \"IsSpecialPlatesVehicle\":0,\r\n         \"VehicleBrand\":\"Test\",\r\n         \"VehicleType\":\"Test\",\r\n         \"VolumeInCCM\":1000,\r\n         \"NumberOfSeats\":0,\r\n         \"IsVehicleInLeasing\":0,\r\n         \"YearOfProduction\":\"2021\"\r\n      },\r\n      \"VehicleSubCoverage\":{\r\n         \"IsEnabled\":true,\r\n         \"PremiumClass\":1,\r\n         \"OverheadAllowance\":40,\r\n         \"CoverageHeight\":1,\r\n         \"RiskFactorForOtherCountries\":1,\r\n         \"BasePlus\":{\r\n            \"Kilometers\":1000,\r\n            \"Transmission\":0\r\n         }\r\n      }\r\n   },\r\n   \"PreviousPolicy\":null,\r\n   \"Persons\":[\r\n      {\r\n         \"PersonRoles\":[\r\n            0,\r\n            1\r\n         ],\r\n         \"NaturalPerson\":{\r\n            \"Addresses\":[\r\n               {\r\n                  \"AddressTypeId\":4,\r\n                  \"CountryId\":\"HR\",\r\n                  \"Street\":\"Horvatovac \",\r\n                  \"HouseNumber\":\"18\",\r\n                  \"PostNumber\":\"10000\",\r\n                  \"City\":\"Zagreb\"\r\n               }\r\n            ],\r\n            \"Gender\":1,\r\n            \"IsResident\":true,\r\n            \"Name\":\"Valentin\",\r\n            \"Surname\":\"Marinac\",\r\n            \"DateOfBirth\":\"2000-09-14T22:00:00.000Z\",\r\n            \"TaxNumber\":\"13976030965\",\r\n            \"MobileTelephoneNumber\":\"0914665237\",\r\n            \"Email\":\"valentin.marinac@triglav.hr\"\r\n         }\r\n      }\r\n   ],\r\n}"
+        },
+        "url": {
+          "raw": "https://b2bapi-pp.tozg.hr/Adinsure.Web.B2BAPI-TOZG-PP/api/public/v1/policies/NV0450001B2B/get-premium",
+          "protocol": "https",
+          "host": [
+            "b2bapi-pp",
+            "tozg",
+            "hr"
+          ],
+          "path": [
+            "Adinsure.Web.B2BAPI-TOZG-PP",
+            "api",
+            "public",
+            "v1",
+            "policies",
+            "NV0450001B2B",
+            "get-premium"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}

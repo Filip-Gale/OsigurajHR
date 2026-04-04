@@ -1,0 +1,784 @@
+{
+  "info": {
+    "_postman_id": "d15e1b88-d1de-4496-85a1-5064058a704b",
+    "name": "Peak3 MTPL & MHULL - latest",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "33526954"
+  },
+  "item": [
+    {
+      "name": "CubisPlacanja",
+      "item": [
+        {
+          "name": "AuthUser",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "var jsonData = pm.response.json();\r",
+                  "pm.collectionVariables.set(\"Token\",jsonData.payload);"
+                ],
+                "type": "text/javascript",
+                "packages": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"Username\": \"WEB\",\r\n    \"Password\": \"12HOK34\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{Baseurl}}/CubisWebApi/Cubislogin/authuser",
+              "host": [
+                "{{Baseurl}}"
+              ],
+              "path": [
+                "CubisWebApi",
+                "Cubislogin",
+                "authuser"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "AuthUser-Uniqa",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"Username\": \"KMRKOCI\",\r\n    \"Password\": \"RBA\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{Baseurl}}/CubisWebApi/Cubislogin/authuser",
+                  "host": [
+                    "{{Baseurl}}"
+                  ],
+                  "path": [
+                    "CubisWebApi",
+                    "Cubislogin",
+                    "authuser"
+                  ]
+                }
+              },
+              "_postman_previewlanguage": "Text",
+              "header": [],
+              "cookie": [],
+              "body": ""
+            }
+          ]
+        },
+        {
+          "name": "ZaprimiSred_Placanja",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"Id\":\"{{Token}}\",\r\n    \"pwebpla_id\":\"GOX\",\r\n    \"pid_ws\":\"005\",\r\n    \"ppartija\":\"*\",\r\n    \"pbanka_izd\":\"*\",\r\n    \"pbanka_par\":\"*\",\r\n    \"pid_kosarice\":\"379909\",\r\n    \"piznos\":\"100\",\r\n    \"ppolica\":\"211009146694\",\r\n    \"ptid\":\"*\",\r\n    \"pautorizacija\":\"*\",\r\n    \"pbr_rata\":\"1\",\r\n    \"pproizvod\":\"IZ\",\r\n    \"pimepre\":\"SALE LOGISTIK d.o.o.\",\r\n    \"psuradnik\":\"4892\",\r\n    \"pponuda\":\"0\",\r\n    \"pdat_dosp\":\"02.01.2025\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{Baseurl}}/CubisWebApi/CubisPlacanja/ZaprimiSred_Placanja",
+              "host": [
+                "{{Baseurl}}"
+              ],
+              "path": [
+                "CubisWebApi",
+                "CubisPlacanja",
+                "ZaprimiSred_Placanja"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "MHULL Example -----------",
+      "request": {
+        "method": "OPTIONS",
+        "header": [],
+        "url": {
+          "raw": ""
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "1. FQ (K)",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              "const partnerNo = Math.floor(Math.random() * 9000000000) + 1000000000;",
+              "pm.variables.set('partnerNo', partnerNo.toString());"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "x-za-tenant",
+            "value": "uniqahrv"
+          },
+          {
+            "key": "Context-Country-Code",
+            "value": "HRV"
+          },
+          {
+            "key": "Ocp-Apim-Subscription-Key",
+            "value": "00c33fb1e01442a4b250766803dcfc5b"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"partnerCode\": \"UniqaAgencyChannel\",\n    \"partnerNo\": {{partnerNo}},\n    \"planId\": \"921476643438592\",\n    \"policyFactors\": {\n        \"E_IsDiplomat\": \"No\",\n        \"deductibleToReducePremium\": \"0\",\n        \"policyEffectiveStartDate\": \"2025-08-29T11:00:01.000Z\",\n        \"policyExpiryDate\": \"2026-08-29T11:00:01.000Z\"\n        //Discounts - optional\n        //\"specialSalesDiscountMHULL\": \"0.03\" //3%\n        //\"specialAgreementsDiscountMHULL\": \"0.05\" //can be 5% or 10%\n    },\n    \"claimStackFactors\": [\n        {\n            \"stackCode\": \"MotorHullDeductibleAmount\",\n            \"stackValue\": \"200\"\n        },  \n        {\n            \"stackCode\": \"MotorHullDeductiblePercentage\",\n            \"stackValue\": \"5\"\n        }\n    ],\n    \"policyHolderFactors\": {\n        \"certiNo\": \"17342130754\",\n        \"customerType\": \"PERSON\",\n        \"birthday\": \"1976-04-25\"\n    },\n    \"insuredFactors\": {\n        \"certiNo\": \"17342130754\",\n        \"customerType\": \"PERSON\",\n        \"birthday\": \"1976-04-25\"\n    },\n    \"objectFactors\": {\n        \"vatStatusForVehicle\": \"0\",\n        \"plateRegistrationZone\": \"ZG\",\n        \"vehicleLeasing\": \"2\",\n        \"plateNo\": \"4119JF\",\n        \"vinNo\": \"VF17RBF0A58516588\",\n        \"yearOfManufactoring\": 2017,\n        \"enginePower\": 55,\n        \"numberOfSeat\": \"5\",\n        \"vehicleBrand\": \"RENAULT\",\n        \"vehicleType\": \"CLIO\",\n        \"autoModel\": \"1.5 DCI\",\n        \"engineType\": \"Diesel\",\n        \"vehicleUsage\": \"StandardUsage\",\n        \"vehicleGroup\": \"Passenger\",\n        \"isNotRegistered\": \"NO\",\n        \"vehicleInAdvertisingAndBranding\": \"NO\",\n        \"autoBodyType\": \"ZATVORENI\",\n        \"purchasePrice\": \"20000\",\n        // Additional equipment - optional\n        \"E_CustomerOwnEquipmentName\": \"Metalik boja, felne\", // Add a list of equipment, divided by a comma\n        \"E_CustomerOwnEquipmentValue\": \"500\", // Add the sum of the price (in euro) for all the additional equipment\n        \"extensions\": {\n            \"skipDuplicateCheck\": \"YES\"\n        }\n    },\n    \"commonInfo\": {\n        // Coverages - depends on products\n        \"legalProtection\": \"2000\",\n        \"deathAndDisabilityBenefitSumInsured\": \"2500\",\n        \"roadsideAssistanceRegion\": \"Croatia\",\n        \"isQuickQuotation\": false\n    },\n    \"products\": [\n        {\n            \"productId\": 911453179625479 //MHULL_PRODUCT\n        },\n        {\n            \"productId\": 911630632239106 // TIRE_INSURANCE\n        },\n        {\n            \"productId\": 911455578767368 //ROADSIDE_ASSISTANCE\n        },\n        {\n            \"productId\": 911625582297089 // ACCIDENT\n        },\n        {\n            \"productId\": 911619391504384 // LEGAL_PROTECTION\n        },\n        {\n            \"productId\": 911635547963396 // RENTING_A_CAR\n        }\n    ]\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{local_url}}/v2/standard/policy/quotation",
+          "host": [
+            "{{local_url}}"
+          ],
+          "path": [
+            "v2",
+            "standard",
+            "policy",
+            "quotation"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "1. Cr. Iss. (K)",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              "const partnerNo = Math.floor(Math.random() * 9000000000) + 1000000000;",
+              "pm.variables.set('partnerNo', partnerNo.toString());"
+            ],
+            "type": "text/javascript",
+            "packages": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "x-za-tenant",
+            "value": "uniqahrv"
+          },
+          {
+            "key": "Context-Country-Code",
+            "value": "HRV"
+          },
+          {
+            "key": "Ocp-Apim-Subscription-Key",
+            "value": "00c33fb1e01442a4b250766803dcfc5b"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"partnerCode\": \"UniqaAgencyChannel\",\n    \"partnerNo\": {{partnerNo}},\n    \"agentCode\": \"1839159\",\n    \"branchCode\": \"99\",\n    \"planId\": \"921476643438592\",\n    \"goodsId\": \"921476140122112\",\n    \"premium\": \"447.88\",\n    \"insureDate\": \"2025-08-29T11:00:01.000Z\",\n    \"expiryDate\": \"2026-08-29T11:00:01.000Z\",\n    \"extensions\": {\n        \"E_IsDiplomat\": \"No\",\n        \"bonusMalusScenario\": \"B4\",\n        //Coverages - depends on products\n        \"legalProtection\": \"2000\",\n        \"deathAndDisabilityBenefitSumInsured\": \"2500\",\n        \"roadsideAssistanceRegion\": \"Croatia\"\n        //Discounts\n        //\"specialSalesDiscountMHULL\": \"0.03\" //3%\n        //\"specialAgreementsDiscountMHULL\": \"0.05\" //can be 5% or 10% - not implemented yet (as per new document)\n    },\n    \"issuanceClaimStackList\": [\n        {\n            \"stackCode\": \"MotorHullDeductibleAmount\",\n            \"stackValue\": \"200\"\n        },\n        {\n            \"stackCode\": \"MotorHullDeductiblePercentage\",\n            \"stackValue\": \"5\"\n        }\n    ],\n    \"issuanceHolder\": {\n        \"userType\": \"PERSONAL\",\n        \"certiType\": \"IDCARD\",\n        \"certiNo\": \"17342130754\",\n        \"birthday\": [\n            1976,\n            4,\n            25\n        ],\n        \"fullName\": \"Sara Maric\",\n        \"lastName\": \"Maric\",\n        \"firstName\": \"Sara\",\n        \"mobilePhone\": [\n            {\n                \"phoneNo\": \"10293485\",\n                \"phoneType\": \"PHONE\",\n                \"countryCode\": \"+385\"\n            }\n        ],\n        \"address\": [\n            {\n                \"addressType\": \"PERMANENT\",\n                \"zipCode\": \"21000\",\n                \"address11\": \"TIJARDOVIĆEVA\",\n                \"address12\": \"6\",\n                \"address13\": \"SPLIT\",\n                \"address15\": \"Croatia\"\n            },\n            {\n                \"addressType\": \"CONTACT\",\n                \"zipCode\": \"21000\",\n                \"address11\": \"TIJARDOVIĆEVA\",\n                \"address12\": \"6\",\n                \"address13\": \"SPLIT\",\n                \"address15\": \"Croatia\"\n            }\n        ],\n        \"email\": [\n            {\n                \"email\": \"b2b-uniqa@kompare.hr\"\n            }\n        ]\n    },\n    \"paymentPlan\": {\n        \"samePaymentMethodForAllInstallments\": \"YES\",\n        \"payMethod\": \"CREDIT_CARD\",\n        \"periodPayMethodList\": [\n            {\n                \"periodNo\": 0,\n                \"payMethod\": \"CREDIT_CARD\"\n            }\n        ]\n    },\n    \"issueWithoutPayment\": \"YES\",\n    \"issuanceProductList\": [\n        {\n            \"productId\": \"911453179625479\", //MHULL_PRODUCT\n            \"premiumFrequencyType\": \"SINGLE\",\n            \"issuanceInsuredObject\": [\n                {\n                    \"insuredType\": \"INSURED_AUTO\",\n                    \"issuanceInsuredAuto\": {\n                        \"vatStatusForVehicle\": \"0\",\n                        \"plateRegistrationZone\": \"ZG\",\n                        \"vehicleLeasing\": \"NO\",\n                        \"plateNo\": \"4119JF\",\n                        \"vinNo\": \"VF17RBF0A58516588\",\n                        \"yearOfManufactoring\": 2017,\n                        \"enginePower\": 55,\n                        \"numberOfSeat\": \"5\",\n                        \"vehicleBrand\": \"RENAULT\",\n                        \"vehicleType\": \"CLIO\",\n                        \"autoModel\": \"1.5 DCI\",\n                        \"engineType\": \"Diesel\",\n                        \"vehicleUsage\": \"StandardUsage\",\n                        \"vehicleGroup\": \"Passenger\",\n                        \"isNotRegistered\": \"NO\",\n                        \"vehicleInAdvertisingAndBranding\": \"NO\",\n                        \"autoBodyType\": \"ZATVORENI\",\n                        \"purchasePrice\": \"20000\",\n                        //Additional equipment - optional\n                        \"issuanceAdditionalEquipmentList\": [\n                            {\n                                \"equipmentName\": \"Metalik boja\",\n                                \"equipmentPrice\": \"300\"\n                            },\n                            {\n                                \"equipmentName\": \"Felne\",\n                                \"equipmentPrice\": \"200\"\n                            }\n                        ],\n                        \"extensions\": {\n                            \"skipDuplicateCheck\": \"YES\"\n                        }\n                    }\n                }\n            ]\n        },\n        {\n            \"productId\": 911630632239106 // TIRE_INSURANCE\n        },\n        {\n            \"productId\": 911455578767368 //ROADSIDE_ASSISTANCE\n        },\n        {\n            \"productId\": 911625582297089 // ACCIDENT\n        },\n        {\n            \"productId\": 911619391504384 // LEGAL_PROTECTION\n        },\n        {\n            \"productId\": 911635547963396 // RENTING_A_CAR\n        }\n    ]\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/v2/standard/policy/underwriting-issuance",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "v2",
+            "standard",
+            "policy",
+            "underwriting-issuance"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "2. FQ (K) - Leasing",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              "const partnerNo = Math.floor(Math.random() * 9000000000) + 1000000000;",
+              "pm.variables.set('partnerNo', partnerNo.toString());"
+            ],
+            "type": "text/javascript",
+            "packages": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "x-za-tenant",
+            "value": "uniqahrv"
+          },
+          {
+            "key": "Context-Country-Code",
+            "value": "HRV"
+          },
+          {
+            "key": "Ocp-Apim-Subscription-Key",
+            "value": "00c33fb1e01442a4b250766803dcfc5b"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"partnerCode\": \"UniqaAgencyChannel\",\n    \"partnerNo\": {{partnerNo}},\n    \"planId\": \"921476643438592\",\n    \"policyFactors\": {\n        \"E_IsDiplomat\": \"No\",\n        \"deductibleToReducePremium\": \"0\",\n        \"policyEffectiveStartDate\": \"2025-08-29T11:00:01.000Z\",\n        \"policyExpiryDate\": \"2026-08-29T11:00:01.000Z\"\n    },\n    \"claimStackFactors\": [\n        {\n            \"stackCode\": \"MotorHullDeductibleAmount\",\n            \"stackValue\": \"200\"\n        },\n        {\n            \"stackCode\": \"MotorHullDeductiblePercentage\",\n            \"stackValue\": \"10\"\n        }\n    ],\n    \"policyHolderFactors\": {\n        \"certiNo\": \"98604679818\",\n        \"customerType\": \"PERSON\",\n        \"birthday\": \"1986-04-25\"\n    },\n    \"insuredFactors\": {\n        \"certiNo\": \"90275854576\",\n        \"customerType\": \"COMPANY\"\n    },\n    \"objectFactors\": {\n        \"vatStatusForVehicle\": \"0\",\n        \"plateRegistrationZone\": \"SK\",\n        \"vehicleLeasing\": \"1\",\n        \"plateNo\": \"460KT\",\n        \"vinNo\": \"TMAJC81BAPJ393308\",\n        \"yearOfManufactoring\": 2023,\n        \"enginePower\": 110,\n        \"numberOfSeat\": \"5\",\n        \"vehicleBrand\": \"HYUNDAI\",\n        \"vehicleType\": \"TUCSON\",\n        \"autoModel\": \"1.6 T\",\n        \"engineType\": \"Otto\",\n        \"vehicleUsage\": \"StandardUsage\",\n        \"vehicleGroup\": \"Passenger\",\n        \"isNotRegistered\": \"NO\",\n        \"vehicleInAdvertisingAndBranding\": \"NO\",\n        \"autoBodyType\": \"ZATVORENI\",\n        \"extensions\": {\n            \"skipDuplicateCheck\": \"YES\"\n        }\n    },\n    \"commonInfo\": {\n        \"isQuickQuotation\": false\n    },\n    \"products\": [\n        {\n            \"productId\": \"911453179625479\"\n        }\n    ]\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/v2/standard/policy/quotation",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "v2",
+            "standard",
+            "policy",
+            "quotation"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "2. Cr. Iss. (K) - Leasing",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              "const partnerNo = Math.floor(Math.random() * 9000000000) + 1000000000;",
+              "pm.variables.set('partnerNo', partnerNo.toString());"
+            ],
+            "type": "text/javascript",
+            "packages": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "x-za-tenant",
+            "value": "uniqahrv"
+          },
+          {
+            "key": "Context-Country-Code",
+            "value": "HRV"
+          },
+          {
+            "key": "Ocp-Apim-Subscription-Key",
+            "value": "00c33fb1e01442a4b250766803dcfc5b"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"partnerCode\": \"UniqaAgencyChannel\",\n    \"partnerNo\": {{partnerNo}},\n    \"agentCode\": \"1839159\",\n    \"branchCode\": \"99\",\n    \"planId\": \"921476643438592\",\n    \"goodsId\": \"921476140122112\",\n    \"premium\": \"607.61\",\n    \"effectiveDate\": \"2024-05-22T11:00:01.000Z\",\n    \"expiryDate\": \"2025-05-22T11:00:01.000Z\",\n    \"extensions\": {\n        \"E_IsDiplomat\": \"No\",\n        \"bonusMalusScenario\": \"B4\"\n    },\n    \"issuanceClaimStackList\": [\n        {\n            \"stackCode\": \"MotorHullDeductibleAmount\",\n            \"stackValue\": \"200\"\n        },\n        {\n            \"stackCode\": \"MotorHullDeductiblePercentage\",\n            \"stackValue\": \"10\"\n        }\n    ],\n    \"issuanceHolder\": {\n        \"userType\": \"PERSONAL\",\n        \"certiType\": \"IDCARD\",\n        \"certiNo\": \"98604679818\",\n        \"birthday\": [\n            1986,\n            4,\n            25\n        ],\n        \"fullName\": \"Ana Horvat\",\n        \"lastName\": \"Horvat\",\n        \"firstName\": \"Ana\",\n        \"mobilePhone\": [\n            {\n                \"phoneNo\": \"58673928\",\n                \"phoneType\": \"PHONE\",\n                \"countryCode\": \"+385\"\n            }\n        ],\n        \"address\": [\n            {\n                \"addressType\": \"PERMANENT\",\n                \"zipCode\": \"21000\",\n                \"address11\": \"Misina\",\n                \"address12\": \"7\",\n                \"address13\": \"SPLIT\",\n                \"address15\": \"Croatia\"\n            },\n            {\n                \"addressType\": \"CONTACT\",\n                \"zipCode\": \"21000\",\n                \"address11\": \"Misina\",\n                \"address12\": \"7\",\n                \"address13\": \"SPLIT\",\n                \"address15\": \"Croatia\"\n            }\n        ],\n        \"email\": [\n            {\n                \"email\": \"b2b-uniqa@kompare.hr\"\n            }\n        ]\n    },\n    \"paymentPlan\": {\n        \"samePaymentMethodForAllInstallments\": \"YES\",\n        \"payMethod\": \"CREDIT_CARD\",\n        \"periodPayMethodList\": [\n            {\n                \"periodNo\": 0,\n                \"payMethod\": \"CREDIT_CARD\"\n            }\n        ]\n    },\n    \"issueWithoutPayment\": \"YES\",\n    \"issuanceProductList\": [\n        {\n            \"productId\": \"911453179625479\",\n            \"premiumFrequencyType\": \"SINGLE\",\n            \"issuanceInsuredObject\": [\n                {\n                    \"insuredType\": \"INSURED_AUTO\",\n                    \"issuanceInsuredAuto\": {\n                        \"vatStatusForVehicle\": \"0\",\n                        \"plateRegistrationZone\": \"SK\",\n                        \"vehicleLeasing\": \"YES\",\n                        \"plateNo\": \"460KT\",\n                        \"vinNo\": \"TMAJC81BAPJ393308\",\n                        \"yearOfManufactoring\": 2023,\n                        \"enginePower\": 110,\n                        \"numberOfSeat\": \"5\",\n                        \"vehicleBrand\": \"HYUNDAI\",\n                        \"vehicleType\": \"TUCSON\",\n                        \"autoModel\": \"1.6 T\",\n                        \"engineType\": \"Otto\",\n                        \"vehicleUsage\": \"StandardUsage\",\n                        \"vehicleGroup\": \"Passenger\",\n                        \"isNotRegistered\": \"NO\",\n                        \"vehicleInAdvertisingAndBranding\": \"NO\",\n                        \"autoBodyType\": \"ZATVORENI\",\n                        \"extensions\": {\n                            \"skipDuplicateCheck\": \"YES\"\n                        }\n                    }\n                }\n            ],\n            \"issuanceInsurantList\": [\n                {\n                    \"userType\": \"COMPANY\",\n                    \"certiType\": \"IDCARD\",\n                    \"certiNo\": \"90275854576\",\n                    \"company\": {\n                        \"organizationName\": \"Porche leasing d.o.o.\",\n                        \"organizationIdType\": \"BUSINESS_LICENSE_NUMBER\",\n                        \"organizationIdNo\": \"90275854576\",\n                        \"organizationSize\": \"LARGE\",\n                        \"branchCode\": \"0000000\",\n                        \"typeOfBusiness\": \"Leasing\"\n                    },\n                    \"mobilePhone\": [\n                        {\n                            \"phoneNo\": \"40294321\",\n                            \"phoneType\": \"PHONE\",\n                            \"countryCode\": \"+385\"\n                        }\n                    ],\n                    \"address\": [\n                        {\n                            \"addressType\": \"PERMANENT\",\n                            \"zipCode\": \"21000\",\n                            \"address11\": \"Drniska\",\n                            \"address12\": \"5\",\n                            \"address13\": \"SPLIT\",\n                            \"address15\": \"Croatia\"\n                        },\n                        {\n                            \"addressType\": \"CONTACT\",\n                            \"zipCode\": \"21000\",\n                            \"address11\": \"Drniska\",\n                            \"address12\": \"5\",\n                            \"address13\": \"SPLIT\",\n                            \"address15\": \"Croatia\"\n                        }\n                    ],\n                    \"email\": [\n                        {\n                            \"email\": \"b2b-uniqa@kompare.hr\"\n                        }\n                    ],\n                    \"relationshipWithPolicyholder\": \"OTHER\"\n                }\n            ]\n        }\n    ]\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/v2/standard/policy/underwriting-issuance",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "v2",
+            "standard",
+            "policy",
+            "underwriting-issuance"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "MTPL Example -----------",
+      "request": {
+        "method": "OPTIONS",
+        "header": [],
+        "url": {
+          "raw": ""
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "1. FQ (K)",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              "const partnerNo = Math.floor(Math.random() * 9000000000) + 1000000000;",
+              "pm.variables.set('partnerNo', partnerNo.toString());"
+            ],
+            "type": "text/javascript",
+            "packages": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "x-za-tenant",
+            "value": "uniqahrv"
+          },
+          {
+            "key": "Context-Country-Code",
+            "value": "HRV"
+          },
+          {
+            "key": "Ocp-Apim-Subscription-Key",
+            "value": "00c33fb1e01442a4b250766803dcfc5b"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"partnerCode\": \"UniqaAgencyChannel\",\n    \"partnerNo\": {{partnerNo}},\n    \"planId\": \"1217324174557184\",\n    \"policyFactors\": {\n        \"E_IsDiplomat\": \"No\",\n        \"deductibleToReducePremium\": \"0\",\n        \"policyEffectiveStartDate\": \"2025-08-29T11:00:01.000Z\",\n        \"policyExpiryDate\": \"2026-08-29T11:00:01.000Z\",\n        //Discounts\n        \"specialAgreementsDiscountMTPL\": \"0.1\",\n        \"comercialSalesDiscountMTPL\": \"0.03\"\n    },\n    \"policyHolderFactors\": {\n        \"certiNo\": \"12699189335\",\n        \"customerType\": \"COMPANY\"\n    },\n    \"insuredFactors\": {\n        \"certiNo\": \"12699189335\",\n        \"customerType\": \"COMPANY\"\n    },\n    \"objectFactors\": {\n        \"vatStatusForVehicle\": \"0\",\n        \"plateRegistrationZone\": \"ZG\",\n        \"vehicleLeasing\": \"2\",\n        \"plateNo\": \"3105LM\",\n        \"vinNo\": \"JF1ZD8L81PG006453\",\n        \"yearOfManufacturing\": 2022,\n        \"enginePower\": 172,\n        \"numberOfSeat\": \"4\",\n        \"vehicleBrand\": \"SUBARU\",\n        \"vehicleType\": \"BRZ\",\n        \"autoModel\": \"2.4\",\n        \"engineType\": \"Otto\",\n        \"vehicleUsage\": \"StandardUsage\",\n        \"vehicleGroup\": \"Passenger\",\n        \"isNotRegistered\": \"NO\",\n        \"vehicleInAdvertisingAndBranding\": \"NO\",\n        \"autoBodyType\": \"ZATVORENI\",\n        \"isNewVehicle\": \"NO\",\n        \"extensions\": {\n            \"skipDuplicateCheck\": \"YES\"\n        }\n    },\n    \"commonInfo\": {\n        \"legalProtection\": \"2000\",\n        \"deathAndDisabilityBenefitSumInsured\": \"5000\",\n        \"roadsideAssistanceRegion\": \"Croatia\",\n        \"glassBreakage\": \"1000\",\n        \"isQuickQuotation\": false\n    },\n    \"products\": [\n        {\n            \"productId\": 1215969347272704 //MTPL_PRODUCT\n        },\n        {\n            \"productId\": 911630632239106 // TIRE_INSURANCE\n        },\n        {\n            \"productId\": 911455578767368 //ROADSIDE_ASSISTANCE\n        },\n        {\n            \"productId\": 911625582297089 // ACCIDENT\n        },\n        {\n            \"productId\": 911619391504384 // LEGAL_PROTECTION\n        },\n        {\n            \"productId\": 911635547963396 // RENTING_A_CAR\n        },\n        {\n            \"productId\": 1254853850447873 //GLASS_BREAKAGE\n        },\n        {\n            \"productId\": 1254977934737411 // ANIMAL_COLLISION\n        }\n    ]\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/v2/standard/policy/quotation",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "v2",
+            "standard",
+            "policy",
+            "quotation"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "1. Cr. Iss. (K)",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              "const partnerNo = Math.floor(Math.random() * 9000000000) + 1000000000;",
+              "pm.variables.set('partnerNo', partnerNo.toString());"
+            ],
+            "type": "text/javascript",
+            "packages": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "x-za-tenant",
+            "value": "uniqahrv"
+          },
+          {
+            "key": "Context-Country-Code",
+            "value": "HRV"
+          },
+          {
+            "key": "Ocp-Apim-Subscription-Key",
+            "value": "00c33fb1e01442a4b250766803dcfc5b"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"partnerCode\": \"UniqaAgencyChannel\",\n    \"partnerNo\": {{partnerNo}},\n    \"agentCode\": \"1839159\",\n    \"branchCode\": \"99\",\n    \"planId\": \"1217324174557184\",\n    \"goodsId\": \"1217295619735552\",\n    \"premium\": \"530.23\",\n    \"effectiveDate\": \"2025-08-29T11:00:01.000Z\",\n    \"expiryDate\": \"2026-08-29T11:00:01.000Z\",\n    \"extensions\": {\n        \"E_IsDiplomat\": \"No\",\n        \"bonusMalusScenario\": \"B4\",\n        //Coverages\n        \"legalProtection\": \"2000\",\n        \"deathAndDisabilityBenefitSumInsured\": \"5000\",\n        \"roadsideAssistanceRegion\": \"Croatia\",\n        \"glassBreakage\": \"1000\",\n        //Discountss\n        \"specialAgreementsDiscountMTPL\": \"0.1\",\n        \"comercialSalesDiscountMTPL\": \"0.03\"\n    },\n    \"issuanceHolder\": {\n        \"userType\": \"COMPANY\",\n        \"certiType\": \"IDCARD\",\n        \"certiNo\": \"12699189335\",\n        \"company\": {\n            \"organizationName\": \"Test d.o.o.\",\n            \"organizationIdType\": \"BUSINESS_LICENSE_NUMBER\",\n            \"organizationIdNo\": \"68195665956\",\n            \"organizationSize\": \"SMALL\",\n            \"branchCode\": \"0000000\"\n        },\n        \"mobilePhone\": [\n            {\n                \"phoneNo\": \"94058694\",\n                \"phoneType\": \"PHONE\",\n                \"countryCode\": \"+385\"\n            }\n        ],\n        \"address\": [\n            {\n                \"addressType\": \"PERMANENT\",\n                \"zipCode\": \"21000\",\n                \"address11\": \"Trakace\",\n                \"address12\": \"15\",\n                \"address13\": \"MAKARSKA\",\n                \"address15\": \"Croatia\"\n            },\n            {\n                \"addressType\": \"CONTACT\",\n                \"zipCode\": \"21000\",\n                \"address11\": \"Trakace\",\n                \"address12\": \"15\",\n                \"address13\": \"MAKARSKA\",\n                \"address15\": \"Croatia\"\n            }\n        ],\n        \"email\": [\n            {\n                \"email\": \"b2b-uniqa@kompare.hr\"\n            }\n        ]\n    },\n    \"paymentPlan\": {\n        \"samePaymentMethodForAllInstallments\": \"YES\",\n        \"payMethod\": \"CREDIT_CARD\",\n        \"periodPayMethodList\": [\n            {\n                \"periodNo\": 0,\n                \"payMethod\": \"CREDIT_CARD\"\n            }\n        ]\n    },\n    \"issueWithoutPayment\": \"YES\",\n    \"issuanceProductList\": [\n        {\n            \"productId\": \"1215969347272704\", // MTPL_PRODUCT\n            \"premiumFrequencyType\": \"SINGLE\",\n            \"issuanceInsuredObject\": [\n                {\n                    \"insuredType\": \"INSURED_AUTO\",\n                    \"issuanceInsuredAuto\": {\n                        \"vatStatusForVehicle\": \"0\",\n                        \"plateRegistrationZone\": \"ZG\",\n                        \"vehicleLeasing\": \"NO\",\n                        \"plateNo\": \"3105LM\",\n                        \"vinNo\": \"JF1ZD8L81PG006453\",\n                        \"yearOfManufacturing\": 2022,\n                        \"enginePower\": 172,\n                        \"numberOfSeat\": \"4\",\n                        \"vehicleBrand\": \"SUBARU\",\n                        \"vehicleType\": \"BRZ\",\n                        \"autoModel\": \"2.4\",\n                        \"engineType\": \"Otto\",\n                        \"vehicleUsage\": \"StandardUsage\",\n                        \"vehicleGroup\": \"Passenger\",\n                        \"isNotRegistered\": \"NO\",\n                        \"vehicleInAdvertisingAndBranding\": \"NO\",\n                        \"autoBodyType\": \"ZATVORENI\",\n                        \"isNewVehicle\": \"NO\",\n                        \"extensions\": {\n                            \"skipDuplicateCheck\": \"YES\"\n                        }\n                    }\n                }\n            ]\n        },\n         {\n            \"productId\": 911630632239106 // TIRE_INSURANCE\n        },\n        {\n            \"productId\": 911455578767368 //ROADSIDE_ASSISTANCE\n        },\n        {\n            \"productId\": 911625582297089 // ACCIDENT\n        },\n        {\n            \"productId\": 911619391504384 // LEGAL_PROTECTION\n        },\n        {\n            \"productId\": 911635547963396 // RENTING_A_CAR\n        },\n        {\n            \"productId\": 1254853850447873 //GLASS_BREAKAGE\n        },\n        {\n            \"productId\": 1254977934737411 // ANIMAL_COLLISION\n        }\n    ]\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/v2/standard/policy/underwriting-issuance",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "v2",
+            "standard",
+            "policy",
+            "underwriting-issuance"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "2. FQ (K) - Leasing",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              "const partnerNo = Math.floor(Math.random() * 9000000000) + 1000000000;",
+              "pm.variables.set('partnerNo', partnerNo.toString());"
+            ],
+            "type": "text/javascript",
+            "packages": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "x-za-tenant",
+            "value": "uniqahrv"
+          },
+          {
+            "key": "Context-Country-Code",
+            "value": "HRV"
+          },
+          {
+            "key": "Ocp-Apim-Subscription-Key",
+            "value": "00c33fb1e01442a4b250766803dcfc5b"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"partnerCode\": \"UniqaAgencyChannel\",\n    \"partnerNo\": {{partnerNo}},\n    \"planId\": \"1217324174557184\",\n    \"policyFactors\": {\n        \"E_IsDiplomat\": \"No\",\n        \"deductibleToReducePremium\": \"0\",\n        \"policyEffectiveStartDate\": \"2025-08-29T11:00:01.000Z\",\n        \"policyExpiryDate\": \"2026-08-29T11:00:01.000Z\"\n    },\n    \"policyHolderFactors\": {\n        \"certiNo\": \"98604679818\",\n        \"customerType\": \"PERSON\",\n        \"birthday\": \"1986-04-25\"\n    },\n    \"insuredFactors\": {\n        \"certiNo\": \"90275854576\",\n        \"customerType\": \"COMPANY\"\n    },\n    \"objectFactors\": {\n        \"vatStatusForVehicle\": \"0\",\n        \"plateRegistrationZone\": \"SK\",\n        \"vehicleLeasing\": \"1\",\n        \"plateNo\": \"460KT\",\n        \"vinNo\": \"TMAJC81BAPJ393308\",\n        \"yearOfManufactoring\": 2023,\n        \"enginePower\": 110,\n        \"numberOfSeat\": \"5\",\n        \"vehicleBrand\": \"HYUNDAI\",\n        \"vehicleType\": \"TUCSON\",\n        \"autoModel\": \"1.6 T\",\n        \"engineType\": \"Otto\",\n        \"vehicleUsage\": \"StandardUsage\",\n        \"vehicleGroup\": \"Passenger\",\n        \"isNotRegistered\": \"NO\",\n        \"vehicleInAdvertisingAndBranding\": \"NO\",\n        \"autoBodyType\": \"ZATVORENI\",\n        \"extensions\": {\n            \"skipDuplicateCheck\": \"YES\"\n        }\n    },\n    \"commonInfo\": {\n        \"isQuickQuotation\": false\n    },\n    \"products\": [\n        {\n            \"productId\": \"1215969347272704\"\n        }\n    ]\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/v2/standard/policy/quotation",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "v2",
+            "standard",
+            "policy",
+            "quotation"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "2. Cr. Iss. (K) - Leasing",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              "const partnerNo = Math.floor(Math.random() * 9000000000) + 1000000000;",
+              "pm.variables.set('partnerNo', partnerNo.toString());"
+            ],
+            "type": "text/javascript",
+            "packages": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "x-za-tenant",
+            "value": "uniqahrv"
+          },
+          {
+            "key": "Context-Country-Code",
+            "value": "HRV"
+          },
+          {
+            "key": "Ocp-Apim-Subscription-Key",
+            "value": "00c33fb1e01442a4b250766803dcfc5b"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"partnerCode\": \"UniqaAgencyChannel\",\n    \"partnerNo\": {{partnerNo}},\n    \"agentCode\": \"1839159\",\n    \"branchCode\": \"99\",\n    \"planId\": \"1217324174557184\",\n    \"goodsId\": \"1217295619735552\",\n    \"premium\": \"297.31\",\n    \"effectiveDate\": \"2025-08-29T11:00:01.000Z\",\n    \"expiryDate\": \"2026-08-29T11:00:01.000Z\",\n    \"extensions\": {\n        \"E_IsDiplomat\": \"No\",\n        \"bonusMalusScenario\": \"B4\"\n    },\n    \"issuanceHolder\": {\n        \"userType\": \"PERSONAL\",\n        \"certiType\": \"IDCARD\",\n        \"certiNo\": \"98604679818\",\n        \"birthday\": [\n            1986,\n            4,\n            25\n        ],\n        \"fullName\": \"Ana Horvat\",\n        \"lastName\": \"Horvat\",\n        \"firstName\": \"Ana\",\n        \"mobilePhone\": [\n            {\n                \"phoneNo\": \"58673928\",\n                \"phoneType\": \"PHONE\",\n                \"countryCode\": \"+385\"\n            }\n        ],\n        \"address\": [\n            {\n                \"addressType\": \"PERMANENT\",\n                \"zipCode\": \"21000\",\n                \"address11\": \"Misina\",\n                \"address12\": \"7\",\n                \"address13\": \"SPLIT\",\n                \"address15\": \"Croatia\"\n            },\n            {\n                \"addressType\": \"CONTACT\",\n                \"zipCode\": \"21000\",\n                \"address11\": \"Misina\",\n                \"address12\": \"7\",\n                \"address13\": \"SPLIT\",\n                \"address15\": \"Croatia\"\n            }\n        ],\n        \"email\": [\n            {\n                \"email\": \"b2b-uniqa@kompare.hr\"\n            }\n        ]\n    },\n    \"paymentPlan\": {\n        \"samePaymentMethodForAllInstallments\": \"YES\",\n        \"payMethod\": \"CREDIT_CARD\",\n        \"periodPayMethodList\": [\n            {\n                \"periodNo\": 0,\n                \"payMethod\": \"CREDIT_CARD\"\n            }\n        ]\n    },\n    \"issueWithoutPayment\": \"YES\",\n    \"issuanceProductList\": [\n        {\n            \"productId\": \"1215969347272704\",\n            \"premiumFrequencyType\": \"SINGLE\",\n            \"issuanceInsuredObject\": [\n                {\n                    \"insuredType\": \"INSURED_AUTO\",\n                    \"issuanceInsuredAuto\": {\n                        \"vatStatusForVehicle\": \"0\",\n                        \"plateRegistrationZone\": \"SK\",\n                        \"vehicleLeasing\": \"YES\",\n                        \"plateNo\": \"460KT\",\n                        \"vinNo\": \"TMAJC81BAPJ393308\",\n                        \"yearOfManufactoring\": 2023,\n                        \"enginePower\": 110,\n                        \"numberOfSeat\": \"5\",\n                        \"vehicleBrand\": \"HYUNDAI\",\n                        \"vehicleType\": \"TUCSON\",\n                        \"autoModel\": \"1.6 T\",\n                        \"engineType\": \"Otto\",\n                        \"vehicleUsage\": \"StandardUsage\",\n                        \"vehicleGroup\": \"Passenger\",\n                        \"isNotRegistered\": \"NO\",\n                        \"vehicleInAdvertisingAndBranding\": \"NO\",\n                        \"autoBodyType\": \"ZATVORENI\",\n                        \"extensions\": {\n                            \"skipDuplicateCheck\": \"YES\"\n                        }\n                    }\n                }\n            ],\n            \"issuanceInsurantList\": [\n                {\n                    \"userType\": \"COMPANY\",\n                    \"certiType\": \"IDCARD\",\n                    \"certiNo\": \"90275854576\",\n                    \"company\": {\n                        \"organizationName\": \"Porche leasing d.o.o.\",\n                        \"organizationIdType\": \"BUSINESS_LICENSE_NUMBER\",\n                        \"organizationIdNo\": \"90275854576\",\n                        \"branchCode\": \"0000000\",\n                        \"organizationSize\": \"LARGE\",\n                        \"typeOfBusiness\": \"Leasing\"\n                    },\n                    \"mobilePhone\": [\n                        {\n                            \"phoneNo\": \"40294321\",\n                            \"phoneType\": \"PHONE\",\n                            \"countryCode\": \"+385\"\n                        }\n                    ],\n                    \"address\": [\n                        {\n                            \"addressType\": \"PERMANENT\",\n                            \"zipCode\": \"21000\",\n                            \"address11\": \"Drniska\",\n                            \"address12\": \"5\",\n                            \"address13\": \"SPLIT\",\n                            \"address15\": \"Croatia\"\n                        },\n                        {\n                            \"addressType\": \"CONTACT\",\n                            \"zipCode\": \"21000\",\n                            \"address11\": \"Drniska\",\n                            \"address12\": \"5\",\n                            \"address13\": \"SPLIT\",\n                            \"address15\": \"Croatia\"\n                        }\n                    ],\n                    \"email\": [\n                        {\n                            \"email\": \"b2b-uniqa@kompare.hr\"\n                        }\n                    ],\n                    \"relationshipWithPolicyholder\": \"OTHER\"\n                }\n            ]\n        }\n    ]\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{local_url}}/v2/standard/policy/underwriting-issuance",
+          "host": [
+            "{{local_url}}"
+          ],
+          "path": [
+            "v2",
+            "standard",
+            "policy",
+            "underwriting-issuance"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Global calls -----------------",
+      "request": {
+        "method": "OPTIONS",
+        "header": [],
+        "url": {
+          "raw": ""
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Issue issuance",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              "const partnerNo = Math.floor(Math.random() * 9000000000) + 1000000000;",
+              "pm.variables.set('partnerNo', partnerNo.toString());"
+            ],
+            "type": "text/javascript",
+            "packages": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Ocp-Apim-Subscription-Key",
+            "value": "00c33fb1e01442a4b250766803dcfc5b",
+            "type": "text"
+          },
+          {
+            "key": "x-za-tenant",
+            "value": "uniqahrv",
+            "type": "text"
+          },
+          {
+            "key": "Context-Country-Code",
+            "value": "HRV",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"partnerCode\": \"UniqaAgencyChannel\",\n  \"partnerNo\": \"35925923592395923952932\", //same as the one used for underwriting-issuance\n  \"issuanceNo\": \"262500012100\" //the one we get from issuance response\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/v2/standard/policy/issue-issuance",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "v2",
+            "standard",
+            "policy",
+            "issue-issuance"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Download-Document",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              "const partnerNo = Math.floor(Math.random() * 9000000000) + 1000000000;",
+              "pm.variables.set('partnerNo', partnerNo.toString());"
+            ],
+            "type": "text/javascript",
+            "packages": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "x-za-tenant",
+            "value": "uniqahrv",
+            "type": "default"
+          },
+          {
+            "key": "Ocp-Apim-Subscription-Key",
+            "value": "00c33fb1e01442a4b250766803dcfc5b",
+            "type": "text"
+          },
+          {
+            "key": "Context-Country-Code",
+            "value": "HRV",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"partnerCode\": \"UniqaAgencyChannel\",\n    \"partnerNo\": \"<partnerNo from underwriting-issuance request>\",\n    \"businessNo\": \"<policyNo from underwriting-issuance response>\",\n    \"documentType\": \"POLICY\" //POLICY, GREEN_CARD, INVOICE\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/v1/download/e-document",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "v1",
+            "download",
+            "e-document"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Codebook",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Ocp-Apim-Subscription-Key",
+            "value": "00c33fb1e01442a4b250766803dcfc5b",
+            "type": "text"
+          },
+          {
+            "key": "x-za-tenant",
+            "value": "uniqahrv",
+            "type": "text"
+          },
+          {
+            "key": "Context-Country-Code",
+            "value": "HRV",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/v1/codebook/list",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "v1",
+            "codebook",
+            "list"
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "ruBVWJlfaWbktdyiIZW0wpPhpG_R9iv5GMGxMzZ89-pYgP0FSGfFgvAjy8D6QT6KpDnhCPdFQgpfI4ipzrgesoowBIjdWUdl5mSBLUJMdszHtDNWHIgAeDslhwav5955",
+        "type": "string"
+      }
+    ]
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "https://apim-stg-public-reg.uniqa-see.com/graphene.api"
+    },
+    {
+      "key": "Token",
+      "value": ""
+    }
+  ]
+}
